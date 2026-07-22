@@ -1,0 +1,74 @@
+# Entity: free_caption_meme_success
+
+main: kit: entity: free_caption_meme_success: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "caption"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "template_slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "visibility"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "watermark"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "free_caption_meme_success"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/free/memes/caption"
+          parts: [
+            "api"
+            "free"
+            "memes"
+            "caption"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/v1/memes/caption-template"
+          parts: [
+            "api"
+            "v1"
+            "memes"
+            "caption-template"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

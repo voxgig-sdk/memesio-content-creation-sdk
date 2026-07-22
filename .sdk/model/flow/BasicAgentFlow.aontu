@@ -1,0 +1,55 @@
+# BasicAgentFlow
+
+main: kit: flow: BasicAgentFlow:
+{
+  entity: "agent",
+  kind: "basic",
+  name: "BasicAgentFlow",
+  step: [
+    {
+      input: {
+        ref: "agent_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "agent_ref01",
+        srcdatavar: "agent_ref01_data",
+        suffix: "_up0",
+        textfield: "description"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-agent_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "agent_ref01",
+        srcdatavar: "agent_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-agent_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAgentFlow"
+}

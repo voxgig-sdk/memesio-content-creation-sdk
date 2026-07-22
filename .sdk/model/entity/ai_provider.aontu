@@ -1,0 +1,178 @@
+# Entity: ai_provider
+
+main: kit: entity: ai_provider: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "actor_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "correlation_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "limit"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "mapping_mode"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "max_slot"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "prompt"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "source_image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "text"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "trend_signal"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "workspace_id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "ai_provider"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/ai/templates/detect"
+          parts: [
+            "api"
+            "ai"
+            "templates"
+            "detect"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/templates/suggest"
+          parts: [
+            "api"
+            "ai"
+            "templates"
+            "suggest"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "refresh"
+                orig: "refresh"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/ai/providers/background-remove-benchmark"
+          parts: [
+            "api"
+            "ai"
+            "providers"
+            "background-remove-benchmark"
+          ]
+          select: {
+            exist: [
+              "refresh"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "refresh"
+                orig: "refresh"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/ai/providers/face-swap-benchmark"
+          parts: [
+            "api"
+            "ai"
+            "providers"
+            "face-swap-benchmark"
+          ]
+          select: {
+            exist: [
+              "refresh"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/ai/memes/generate"
+          parts: [
+            "api"
+            "ai"
+            "memes"
+            "generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

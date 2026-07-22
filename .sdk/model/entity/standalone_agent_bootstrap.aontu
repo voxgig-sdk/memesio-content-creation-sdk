@@ -1,0 +1,89 @@
+# Entity: standalone_agent_bootstrap
+
+main: kit: entity: standalone_agent_bootstrap: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "handle"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "locale"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "style_preset"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "system_prompt"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "watermark_text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "website_url"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "standalone_agent_bootstrap"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/v1/agents/bootstrap"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "bootstrap"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/v1/agents/create-agent"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "create-agent"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

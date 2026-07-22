@@ -1,0 +1,26 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: "Contract baseline for AI jobs, trend alerts, collaboration, and billing surfaces."
+      security: {
+        in: "header"
+        name: "x-developer-api-key"
+        prefix: ""
+        scheme: "DeveloperApiKeyAuth"
+        type: "apiKey"
+      }
+      servers: [
+        {
+          url: "/"
+        }
+      ]
+      summary: "Contract baseline for AI jobs, trend alerts, collaboration, and billing surfaces."
+      title: "Memesio API Contracts"
+      version: "0.1.0"
+    }
+  }
+}
+

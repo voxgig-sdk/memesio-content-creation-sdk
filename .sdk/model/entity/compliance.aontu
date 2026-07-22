@@ -1,0 +1,34 @@
+# Entity: compliance
+
+main: kit: entity: compliance: {
+
+  alias: field: {}
+
+  name: "compliance"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/api/compliance/content-policy"
+          parts: [
+            "api"
+            "compliance"
+            "content-policy"
+          ]
+          select: {
+            "$action": "content_policy"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

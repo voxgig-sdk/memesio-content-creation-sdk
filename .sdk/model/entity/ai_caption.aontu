@@ -1,0 +1,308 @@
+# Entity: ai_caption
+
+main: kit: entity: ai_caption: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "blocked_term"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "canvas_text"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "caption_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "caption_set"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "entity"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "fallback_used"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "generation_strategy"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "locale"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "meme_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "meme_slug"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "ok"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "option_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "owner_token"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "provider_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "reference_caption"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "rewrite_note"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "scene_summary"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "template_description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "template_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "template_tag"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "tone"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "tone_cue"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "trend_keyword"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "trend_reference"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "trend_signal"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "variation_offset"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "voice_rule"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "ai_caption"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/ai/captions/generate"
+          parts: [
+            "api"
+            "ai"
+            "captions"
+            "generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/captions/moderate"
+          parts: [
+            "api"
+            "ai"
+            "captions"
+            "moderate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/captions/prompt"
+          parts: [
+            "api"
+            "ai"
+            "captions"
+            "prompt"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/captions/rank"
+          parts: [
+            "api"
+            "ai"
+            "captions"
+            "rank"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/captions/rewrite"
+          parts: [
+            "api"
+            "ai"
+            "captions"
+            "rewrite"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/captions/scene"
+          parts: [
+            "api"
+            "ai"
+            "captions"
+            "scene"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/captions/tone-presets"
+          parts: [
+            "api"
+            "ai"
+            "captions"
+            "tone-presets"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "locale"
+                orig: "locale"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/ai/captions/tone-presets"
+          parts: [
+            "api"
+            "ai"
+            "captions"
+            "tone-presets"
+          ]
+          select: {
+            exist: [
+              "locale"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/ai/captions/generate"
+          parts: [
+            "api"
+            "ai"
+            "captions"
+            "generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

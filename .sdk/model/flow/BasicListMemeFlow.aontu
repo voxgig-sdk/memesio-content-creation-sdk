@@ -1,0 +1,22 @@
+# BasicListMemeFlow
+
+main: kit: flow: BasicListMemeFlow:
+{
+  entity: "list_meme",
+  kind: "basic",
+  name: "BasicListMemeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "list_meme_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListMemeFlow"
+}

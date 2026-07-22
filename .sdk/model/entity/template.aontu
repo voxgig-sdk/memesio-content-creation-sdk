@@ -1,0 +1,352 @@
+# Entity: template
+
+main: kit: entity: template: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "animated"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "asset_byte"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "asset_content_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "box_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "caption"
+      op: {
+        list: {
+          req: true
+          type: "`$ARRAY`"
+        }
+      }
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "caption_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "category"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "description"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "duration_m"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "example_image_url"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "fps"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "frame_count"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "gif_slug"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "height"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "media_type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "poster_image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "preview_image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "quality_status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "return_base64"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "source_template_id"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "source_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "start_m"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "tag"
+      op: {
+        list: {
+          req: true
+          type: "`$ARRAY`"
+        }
+      }
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "width"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "width_px"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "template"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api/gifs/{slug}/generate"
+          parts: [
+            "api"
+            "gifs"
+            "{slug}"
+            "generate"
+          ]
+          select: {
+            exist: [
+              "slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "image"
+                kind: "query"
+                name: "media_type"
+                orig: "media_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "mode"
+                orig: "mode"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "page_size"
+                orig: "page_size"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "tag"
+                orig: "tag"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/templates"
+          parts: [
+            "api"
+            "templates"
+          ]
+          select: {
+            exist: [
+              "media_type"
+              "mode"
+              "page"
+              "page_size"
+              "q"
+              "query"
+              "sort"
+              "tag"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "gif"
+      ]
+    ]
+  }
+
+
+
+}

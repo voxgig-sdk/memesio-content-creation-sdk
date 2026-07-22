@@ -1,0 +1,70 @@
+{
+  "existing": {
+    "list_meme": {
+      "LIST_MEME00": {
+        "alt_text": "s82",
+        "canonical_image_url": "s83",
+        "created_at": "s84",
+        "image_url": "s85",
+        "nsfw_status": "s86",
+        "share_slug": "s87",
+        "share_url": "s88",
+        "share_view": "s89",
+        "slug": "s8a",
+        "tag": [],
+        "template_slug": "s8c",
+        "title": "s8d",
+        "visibility": "s8e"
+      },
+      "LIST_MEME01": {
+        "alt_text": "s104",
+        "canonical_image_url": "s105",
+        "created_at": "s106",
+        "image_url": "s107",
+        "nsfw_status": "s108",
+        "share_slug": "s109",
+        "share_url": "s10a",
+        "share_view": "s10b",
+        "slug": "s10c",
+        "tag": [],
+        "template_slug": "s10e",
+        "title": "s10f",
+        "visibility": "s110"
+      },
+      "LIST_MEME02": {
+        "alt_text": "s186",
+        "canonical_image_url": "s187",
+        "created_at": "s188",
+        "image_url": "s189",
+        "nsfw_status": "s18a",
+        "share_slug": "s18b",
+        "share_url": "s18c",
+        "share_view": "s18d",
+        "slug": "s18e",
+        "tag": [],
+        "template_slug": "s190",
+        "title": "s191",
+        "visibility": "s192"
+      }
+    }
+  },
+  "new": {
+    "list_meme": {
+      "list_meme_ref01": {
+        "alt_text": "s208",
+        "canonical_image_url": "s209",
+        "created_at": "s20a",
+        "image_url": "s20b",
+        "nsfw_status": "s20c",
+        "share_slug": "s20d",
+        "share_url": "s20e",
+        "share_view": "s20f",
+        "slug": "s210",
+        "tag": [],
+        "template_slug": "s212",
+        "title": "s213",
+        "visibility": "s214"
+      }
+    }
+  }
+}

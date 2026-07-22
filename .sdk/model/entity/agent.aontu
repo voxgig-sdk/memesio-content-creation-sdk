@@ -1,0 +1,178 @@
+# Entity: agent
+
+main: kit: entity: agent: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "locale"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "slug"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "style_preset"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "system_prompt"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "watermark_text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "website_url"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "agent"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/v1/agents"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "agent_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/agents/{agentId}"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              agentId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/v1/agents"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "agent_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PATCH"
+          orig: "/api/v1/agents/{agentId}"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              agentId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

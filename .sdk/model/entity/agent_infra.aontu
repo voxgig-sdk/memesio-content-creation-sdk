@@ -1,0 +1,509 @@
+# Entity: agent_infra
+
+main: kit: entity: agent_infra: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "action"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "chat_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "meme_slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "metadata"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "payout_reference"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "payout_status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "phone_or_chat_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "prompt"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "proof"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "quota_boost_per_day"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "scope"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "user_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "week_start"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "agent_infra"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "agent_id"
+                orig: "agent_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api/v1/agents/{agentId}/channels/telegram/bind"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "{agent_id}"
+            "channels"
+            "telegram"
+            "bind"
+          ]
+          rename: {
+            param: {
+              agentId: "agent_id"
+            }
+          }
+          select: {
+            exist: [
+              "agent_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "agent_id"
+                orig: "agent_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api/v1/agents/{agentId}/channels/whatsapp/bind"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "{agent_id}"
+            "channels"
+            "whatsapp"
+            "bind"
+          ]
+          rename: {
+            param: {
+              agentId: "agent_id"
+            }
+          }
+          select: {
+            exist: [
+              "agent_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "agent_id"
+                orig: "agent_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api/v1/agents/{agentId}/unlocks/social-action"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "{agent_id}"
+            "unlocks"
+            "social-action"
+          ]
+          rename: {
+            param: {
+              agentId: "agent_id"
+            }
+          }
+          select: {
+            exist: [
+              "agent_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "agent_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api/v1/agents/{agentId}/keys"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "{id}"
+            "keys"
+          ]
+          rename: {
+            param: {
+              agentId: "id"
+            }
+          }
+          select: {
+            "$action": "keys"
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "unlock_id"
+                orig: "unlock_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api/v1/agents/unlocks/{unlockId}/approve"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "unlocks"
+            "{unlock_id}"
+            "approve"
+          ]
+          rename: {
+            param: {
+              unlockId: "unlock_id"
+            }
+          }
+          select: {
+            exist: [
+              "unlock_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/v1/agents/names:generate"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "names:generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/v1/agents/rewards/votes"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "rewards"
+            "votes"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/v1/agents/rewards/winner:close"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "rewards"
+            "winner:close"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/v1/agents/webhooks/telegram"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "webhooks"
+            "telegram"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/v1/agents/webhooks/whatsapp"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "webhooks"
+            "whatsapp"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "week_start"
+                orig: "week_start"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/agents/rewards/leaderboard"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "rewards"
+            "leaderboard"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "week_start"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "agent_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/agents/{agentId}/keys"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "{id}"
+            "keys"
+          ]
+          rename: {
+            param: {
+              agentId: "id"
+            }
+          }
+          select: {
+            "$action": "keys"
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/v1/agents/webhooks/whatsapp"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "webhooks"
+            "whatsapp"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "agent_id"
+                orig: "agent_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "key_id"
+                orig: "key_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/api/v1/agents/{agentId}/keys/{keyId}"
+          parts: [
+            "api"
+            "v1"
+            "agents"
+            "{agent_id}"
+            "keys"
+            "{key_id}"
+          ]
+          rename: {
+            param: {
+              agentId: "agent_id"
+              keyId: "key_id"
+            }
+          }
+          select: {
+            exist: [
+              "agent_id"
+              "key_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "unlock"
+      ]
+      [
+        "agent"
+      ]
+      [
+        "agent"
+        "key"
+      ]
+    ]
+  }
+
+
+
+}

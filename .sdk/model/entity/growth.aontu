@@ -1,0 +1,382 @@
+# Entity: growth
+
+main: kit: entity: growth: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "account_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "action"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "actor_id"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "caption"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "code"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "external_account_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "handle"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "limit"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "log_exposure"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "meme_slug"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "now"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "platform"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "profile"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "share_slug"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "surface"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "week_start"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "growth"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/growth/experiments/decision"
+          parts: [
+            "api"
+            "growth"
+            "experiments"
+            "decision"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/growth/lifecycle-messaging"
+          parts: [
+            "api"
+            "growth"
+            "lifecycle-messaging"
+          ]
+          select: {
+            "$action": "lifecycle_messaging"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/growth/referrals"
+          parts: [
+            "api"
+            "growth"
+            "referrals"
+          ]
+          select: {
+            "$action": "referral"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/growth/social-publish"
+          parts: [
+            "api"
+            "growth"
+            "social-publish"
+          ]
+          select: {
+            "$action": "social_publish"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/growth/trend-campaigns"
+          parts: [
+            "api"
+            "growth"
+            "trend-campaigns"
+          ]
+          select: {
+            "$action": "trend_campaign"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "actor_id"
+                orig: "actor_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "log_exposure"
+                orig: "log_exposure"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "surface"
+                orig: "surface"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/growth/experiments/decision"
+          parts: [
+            "api"
+            "growth"
+            "experiments"
+            "decision"
+          ]
+          select: {
+            exist: [
+              "actor_id"
+              "log_exposure"
+              "surface"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "published_only"
+                orig: "published_only"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "week_start"
+                orig: "week_start"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/growth/trend-campaigns"
+          parts: [
+            "api"
+            "growth"
+            "trend-campaigns"
+          ]
+          select: {
+            "$action": "trend_campaign"
+            exist: [
+              "limit"
+              "published_only"
+              "week_start"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "actor_id"
+                orig: "actor_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "publish_limit"
+                orig: "publish_limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/growth/social-publish"
+          parts: [
+            "api"
+            "growth"
+            "social-publish"
+          ]
+          select: {
+            "$action": "social_publish"
+            exist: [
+              "actor_id"
+              "publish_limit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "actor_id"
+                orig: "actor_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/growth/referrals"
+          parts: [
+            "api"
+            "growth"
+            "referrals"
+          ]
+          select: {
+            "$action": "referral"
+            exist: [
+              "actor_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/growth/lifecycle-messaging"
+          parts: [
+            "api"
+            "growth"
+            "lifecycle-messaging"
+          ]
+          select: {
+            "$action": "lifecycle_messaging"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/growth/viral-triggers"
+          parts: [
+            "api"
+            "growth"
+            "viral-triggers"
+          ]
+          select: {
+            "$action": "viral_trigger"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

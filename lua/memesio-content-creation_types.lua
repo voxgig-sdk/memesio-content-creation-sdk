@@ -1,0 +1,958 @@
+-- Typed models for the MemesioContentCreation SDK (LuaLS annotations).
+--
+-- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
+-- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
+-- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
+-- edit by hand.
+
+---@class Agent
+---@field description? string
+---@field locale? string
+---@field name string
+---@field slug? string
+---@field status? string
+---@field style_preset? string
+---@field system_prompt? string
+---@field watermark_text? string
+---@field website_url? string
+
+---@class AgentLoadMatch
+---@field id? string
+
+---@class AgentCreateData
+---@field description? string
+---@field locale? string
+---@field name string
+---@field slug? string
+---@field status? string
+---@field style_preset? string
+---@field system_prompt? string
+---@field watermark_text? string
+---@field website_url? string
+
+---@class AgentUpdateData
+---@field id string
+
+---@class AgentInfra
+---@field action string
+---@field chat_id string
+---@field meme_slug string
+---@field metadata? table
+---@field payout_reference? string
+---@field payout_status? string
+---@field phone_or_chat_id string
+---@field prompt string
+---@field proof? table
+---@field quota_boost_per_day? number
+---@field scope? table
+---@field user_id? string
+---@field week_start? string
+
+---@class AgentInfraLoadMatch
+---@field action? string
+---@field chat_id? string
+---@field meme_slug? string
+---@field metadata? table
+---@field payout_reference? string
+---@field payout_status? string
+---@field phone_or_chat_id? string
+---@field prompt? string
+---@field proof? table
+---@field quota_boost_per_day? number
+---@field scope? table
+---@field user_id? string
+---@field week_start? string
+
+---@class AgentInfraCreateData
+---@field agent_id? string
+---@field unlock_id? string
+
+---@class AgentInfraRemoveMatch
+---@field agent_id string
+---@field key_id string
+
+---@class AiCaption
+---@field blocked_term? table
+---@field canvas_text table
+---@field caption_count? number
+---@field caption_set? table
+---@field entity? table
+---@field fallback_used? boolean
+---@field generation_strategy? string
+---@field locale? string
+---@field meme_id? string
+---@field meme_slug? string
+---@field name string
+---@field ok? boolean
+---@field option_count? number
+---@field owner_token? string
+---@field provider_id? string
+---@field reference_caption? table
+---@field rewrite_note? string
+---@field scene_summary? string
+---@field template_description? string
+---@field template_name? string
+---@field template_tag? table
+---@field tone string
+---@field tone_cue? table
+---@field trend_keyword? table
+---@field trend_reference? table
+---@field trend_signal? table
+---@field variation_offset? number
+---@field voice_rule? table
+
+---@class AiCaptionLoadMatch
+---@field blocked_term? table
+---@field canvas_text? table
+---@field caption_count? number
+---@field caption_set? table
+---@field entity? table
+---@field fallback_used? boolean
+---@field generation_strategy? string
+---@field locale? string
+---@field meme_id? string
+---@field meme_slug? string
+---@field name? string
+---@field ok? boolean
+---@field option_count? number
+---@field owner_token? string
+---@field provider_id? string
+---@field reference_caption? table
+---@field rewrite_note? string
+---@field scene_summary? string
+---@field template_description? string
+---@field template_name? string
+---@field template_tag? table
+---@field tone? string
+---@field tone_cue? table
+---@field trend_keyword? table
+---@field trend_reference? table
+---@field trend_signal? table
+---@field variation_offset? number
+---@field voice_rule? table
+
+---@class AiCaptionCreateData
+---@field blocked_term? table
+---@field canvas_text table
+---@field caption_count? number
+---@field caption_set? table
+---@field entity? table
+---@field fallback_used? boolean
+---@field generation_strategy? string
+---@field locale? string
+---@field meme_id? string
+---@field meme_slug? string
+---@field name string
+---@field ok? boolean
+---@field option_count? number
+---@field owner_token? string
+---@field provider_id? string
+---@field reference_caption? table
+---@field rewrite_note? string
+---@field scene_summary? string
+---@field template_description? string
+---@field template_name? string
+---@field template_tag? table
+---@field tone string
+---@field tone_cue? table
+---@field trend_keyword? table
+---@field trend_reference? table
+---@field trend_signal? table
+---@field variation_offset? number
+---@field voice_rule? table
+
+---@class AiJob
+---@field action string
+---@field actor_id? string
+---@field after_state? table
+---@field attempt? number
+---@field before_state? table
+---@field brush_edit? table
+---@field capability string
+---@field celebrity_confidence? number
+---@field consent_attested? boolean
+---@field created_at? string
+---@field detected_face_count number
+---@field edge_refinement? number
+---@field estimated_cost_usd? number
+---@field frame_time_m? number
+---@field height number
+---@field id string
+---@field input? table
+---@field layer_id string
+---@field layer_type? string
+---@field max_attempt? number
+---@field max_face? number
+---@field media_type? string
+---@field metadata? table
+---@field nsfw_score? number
+---@field output? table
+---@field project_id string
+---@field provider_id? string
+---@field reason? string
+---@field run_after_m? number
+---@field source_asset_url string
+---@field source_face_index? number
+---@field source_image_url string
+---@field status string
+---@field target_asset_url string
+---@field target_face_index? number
+---@field timeout_m? number
+---@field trace_id? string
+---@field updated_at? string
+---@field version_id? string
+---@field width number
+---@field worker_id string
+---@field workspace_id? string
+
+---@class AiJobLoadMatch
+---@field id? string
+
+---@class AiJobCreateData
+---@field job_id? string
+
+---@class AiMemeGenerationSucceeded
+---@field allow_heuristic_fallback? boolean
+---@field caption? table
+---@field caption_source? string
+---@field correlation_id? string
+---@field degraded_from_async? boolean
+---@field editable_caption? table
+---@field flow string
+---@field image_url? string
+---@field mode string
+---@field ok boolean
+---@field preferred_provider_id? string
+---@field prompt string
+---@field rewrite_note? string
+---@field run_id? string
+---@field status string
+---@field template_id? string
+---@field tone? string
+---@field tone_cue? table
+---@field variant table
+---@field variant_count number
+---@field workspace_id? string
+
+---@class AiMemeGenerationSucceededCreateData
+---@field allow_heuristic_fallback? boolean
+---@field caption? table
+---@field caption_source? string
+---@field correlation_id? string
+---@field degraded_from_async? boolean
+---@field editable_caption? table
+---@field flow string
+---@field image_url? string
+---@field mode string
+---@field ok boolean
+---@field preferred_provider_id? string
+---@field prompt string
+---@field rewrite_note? string
+---@field run_id? string
+---@field status string
+---@field template_id? string
+---@field tone? string
+---@field tone_cue? table
+---@field variant table
+---@field variant_count number
+---@field workspace_id? string
+
+---@class AiProvider
+---@field actor_id? string
+---@field correlation_id? string
+---@field limit? number
+---@field mapping_mode? string
+---@field max_slot? number
+---@field prompt string
+---@field source_image_url string
+---@field text? table
+---@field trend_signal? table
+---@field workspace_id? string
+
+---@class AiProviderLoadMatch
+---@field actor_id? string
+---@field correlation_id? string
+---@field limit? number
+---@field mapping_mode? string
+---@field max_slot? number
+---@field prompt? string
+---@field source_image_url? string
+---@field text? table
+---@field trend_signal? table
+---@field workspace_id? string
+
+---@class AiProviderCreateData
+---@field actor_id? string
+---@field correlation_id? string
+---@field limit? number
+---@field mapping_mode? string
+---@field max_slot? number
+---@field prompt string
+---@field source_image_url string
+---@field text? table
+---@field trend_signal? table
+---@field workspace_id? string
+
+---@class Analytics
+
+---@class AnalyticsLoadMatch
+
+---@class Auth
+---@field display_name? string
+---@field email string
+---@field password string
+
+---@class AuthCreateData
+---@field display_name? string
+---@field email string
+---@field password string
+
+---@class Billing
+
+---@class BillingLoadMatch
+
+---@class Collaboration
+---@field author_id? string
+---@field message string
+---@field project_id string
+
+---@class CollaborationLoadMatch
+---@field author_id? string
+---@field message? string
+---@field project_id? string
+
+---@class CollaborationCreateData
+---@field author_id? string
+---@field message string
+---@field project_id string
+
+---@class Compliance
+
+---@class ComplianceLoadMatch
+
+---@class CreateMeme
+---@field canva table
+---@field caption table
+---@field generation_run_id? any
+---@field generation_variant_id? any
+---@field image_data_url string
+---@field overlay? table
+---@field source_image_url string
+---@field template_slug? string
+---@field title? string
+---@field visibility? string
+---@field watermark table
+
+---@class CreateMemeCreateData
+---@field canva table
+---@field caption table
+---@field generation_run_id? any
+---@field generation_variant_id? any
+---@field image_data_url string
+---@field overlay? table
+---@field source_image_url string
+---@field template_slug? string
+---@field title? string
+---@field visibility? string
+---@field watermark table
+
+---@class DeveloperApi
+---@field limit? number
+---@field prompt string
+---@field trend_signal? table
+
+---@class DeveloperApiLoadMatch
+---@field limit? number
+---@field prompt? string
+---@field trend_signal? table
+
+---@class DeveloperApiCreateData
+---@field limit? number
+---@field prompt string
+---@field trend_signal? table
+
+---@class FreeCaptionMemeSuccess
+---@field caption table
+---@field template_slug string
+---@field title? string
+---@field visibility? string
+---@field watermark? table
+
+---@class FreeCaptionMemeSuccessCreateData
+---@field caption table
+---@field template_slug string
+---@field title? string
+---@field visibility? string
+---@field watermark? table
+
+---@class FreeTemplateSearch
+---@field animated? boolean
+---@field asset_byte? any
+---@field asset_content_type? string
+---@field box_count number
+---@field caption table
+---@field caption_count number
+---@field description string
+---@field duration_m? any
+---@field example_image_url? any
+---@field frame_count? any
+---@field height any
+---@field id string
+---@field image_url string
+---@field media_type string
+---@field name string
+---@field poster_image_url? string
+---@field quality_status? string
+---@field slug string
+---@field source_template_id any
+---@field source_url? string
+---@field tag? table
+---@field width any
+
+---@class FreeTemplateSearchListMatch
+---@field animated? boolean
+---@field asset_byte? any
+---@field asset_content_type? string
+---@field box_count? number
+---@field caption? table
+---@field caption_count? number
+---@field description? string
+---@field duration_m? any
+---@field example_image_url? any
+---@field frame_count? any
+---@field height? any
+---@field id? string
+---@field image_url? string
+---@field media_type? string
+---@field name? string
+---@field poster_image_url? string
+---@field quality_status? string
+---@field slug? string
+---@field source_template_id? any
+---@field source_url? string
+---@field tag? table
+---@field width? any
+
+---@class Generate
+---@field caption? table
+---@field data table
+---@field duration_m? number
+---@field fps? number
+---@field gif_slug? string
+---@field ok boolean
+---@field return_base64? boolean
+---@field start_m? number
+---@field tag? table
+---@field title? string
+---@field width_px? number
+
+---@class GenerateCreateData
+---@field caption? table
+---@field data table
+---@field duration_m? number
+---@field fps? number
+---@field gif_slug? string
+---@field ok boolean
+---@field return_base64? boolean
+---@field start_m? number
+---@field tag? table
+---@field title? string
+---@field width_px? number
+
+---@class Growth
+---@field account_id? string
+---@field action string
+---@field actor_id? string
+---@field caption? string
+---@field code? string
+---@field external_account_id? string
+---@field handle? string
+---@field limit? number
+---@field log_exposure? boolean
+---@field meme_slug? string
+---@field now? string
+---@field platform? string
+---@field profile? table
+---@field share_slug? string
+---@field surface? string
+---@field week_start? string
+
+---@class GrowthLoadMatch
+---@field account_id? string
+---@field action? string
+---@field actor_id? string
+---@field caption? string
+---@field code? string
+---@field external_account_id? string
+---@field handle? string
+---@field limit? number
+---@field log_exposure? boolean
+---@field meme_slug? string
+---@field now? string
+---@field platform? string
+---@field profile? table
+---@field share_slug? string
+---@field surface? string
+---@field week_start? string
+
+---@class GrowthCreateData
+---@field account_id? string
+---@field action string
+---@field actor_id? string
+---@field caption? string
+---@field code? string
+---@field external_account_id? string
+---@field handle? string
+---@field limit? number
+---@field log_exposure? boolean
+---@field meme_slug? string
+---@field now? string
+---@field platform? string
+---@field profile? table
+---@field share_slug? string
+---@field surface? string
+---@field week_start? string
+
+---@class ListMeme
+---@field alt_text string
+---@field canonical_image_url string
+---@field created_at string
+---@field image_url string
+---@field nsfw_status string
+---@field share_slug string
+---@field share_url string
+---@field share_view number
+---@field slug string
+---@field tag table
+---@field template_slug string
+---@field title string
+---@field visibility string
+
+---@class ListMemeListMatch
+---@field alt_text? string
+---@field canonical_image_url? string
+---@field created_at? string
+---@field image_url? string
+---@field nsfw_status? string
+---@field share_slug? string
+---@field share_url? string
+---@field share_view? number
+---@field slug? string
+---@field tag? table
+---@field template_slug? string
+---@field title? string
+---@field visibility? string
+
+---@class Media
+---@field action string
+---@field content_type? string
+---@field expires_in_second? number
+---@field owner_token? string
+---@field path? string
+---@field prefix? string
+
+---@class MediaCreateData
+---@field action string
+---@field content_type? string
+---@field expires_in_second? number
+---@field owner_token? string
+---@field path? string
+---@field prefix? string
+
+---@class Meme
+---@field alt_text string
+---@field canonical_image_url string
+---@field canva table
+---@field caption table
+---@field created_at string
+---@field image_url string
+---@field nsfw_status string
+---@field overlay table
+---@field share_slug string
+---@field share_url string
+---@field share_view number
+---@field slug string
+---@field source_image_url string
+---@field tag table
+---@field template_slug string
+---@field title string
+---@field visibility string
+---@field watermark table
+
+---@class MemeLoadMatch
+---@field id string
+
+---@class MemeRemoveMatch
+---@field id string
+
+---@class PublicTemplateMediaItem
+---@field animated? boolean
+---@field asset_byte? any
+---@field asset_content_type? string
+---@field box_count? number
+---@field caption table
+---@field caption_count? number
+---@field category? table
+---@field description string
+---@field duration_m? any
+---@field example_image_url? any
+---@field frame_count? any
+---@field height any
+---@field id string
+---@field image_url string
+---@field media_type string
+---@field name string
+---@field poster_image_url? string
+---@field preview_image_url? string
+---@field quality_status? string
+---@field slug string
+---@field source_template_id any
+---@field source_url? string
+---@field tag table
+---@field width any
+
+---@class PublicTemplateMediaItemLoadMatch
+---@field slug string
+
+---@class StandaloneAgentBootstrap
+---@field description? string
+---@field handle string
+---@field locale? string
+---@field name string
+---@field style_preset? string
+---@field system_prompt? string
+---@field watermark_text? string
+---@field website_url? string
+
+---@class StandaloneAgentBootstrapCreateData
+---@field description? string
+---@field handle string
+---@field locale? string
+---@field name string
+---@field style_preset? string
+---@field system_prompt? string
+---@field watermark_text? string
+---@field website_url? string
+
+---@class Template
+---@field animated? boolean
+---@field asset_byte? any
+---@field asset_content_type? string
+---@field box_count? number
+---@field caption? table
+---@field caption_count? number
+---@field category? table
+---@field description string
+---@field duration_m? number
+---@field example_image_url? any
+---@field fps? number
+---@field frame_count? any
+---@field gif_slug? string
+---@field height any
+---@field id string
+---@field image_url string
+---@field media_type string
+---@field name string
+---@field poster_image_url? string
+---@field preview_image_url? string
+---@field quality_status? string
+---@field return_base64? boolean
+---@field slug string
+---@field source_template_id any
+---@field source_url? string
+---@field start_m? number
+---@field tag? table
+---@field title? string
+---@field width any
+---@field width_px? number
+
+---@class TemplateListMatch
+---@field animated? boolean
+---@field asset_byte? any
+---@field asset_content_type? string
+---@field box_count? number
+---@field caption? table
+---@field caption_count? number
+---@field category? table
+---@field description? string
+---@field duration_m? number
+---@field example_image_url? any
+---@field fps? number
+---@field frame_count? any
+---@field gif_slug? string
+---@field height? any
+---@field id? string
+---@field image_url? string
+---@field media_type? string
+---@field name? string
+---@field poster_image_url? string
+---@field preview_image_url? string
+---@field quality_status? string
+---@field return_base64? boolean
+---@field slug? string
+---@field source_template_id? any
+---@field source_url? string
+---@field start_m? number
+---@field tag? table
+---@field title? string
+---@field width? any
+---@field width_px? number
+
+---@class TemplateCreateData
+---@field slug string
+
+---@class TemplateSearch
+---@field animated? boolean
+---@field asset_byte? any
+---@field asset_content_type? string
+---@field box_count? number
+---@field caption table
+---@field caption_count? number
+---@field category? table
+---@field description string
+---@field duration_m? any
+---@field example_image_url? any
+---@field frame_count? any
+---@field height any
+---@field id string
+---@field image_url string
+---@field media_type string
+---@field name string
+---@field poster_image_url? string
+---@field preview_image_url? string
+---@field quality_status? string
+---@field slug string
+---@field source_template_id any
+---@field source_url? string
+---@field tag table
+---@field width any
+
+---@class TemplateSearchListMatch
+---@field animated? boolean
+---@field asset_byte? any
+---@field asset_content_type? string
+---@field box_count? number
+---@field caption? table
+---@field caption_count? number
+---@field category? table
+---@field description? string
+---@field duration_m? any
+---@field example_image_url? any
+---@field frame_count? any
+---@field height? any
+---@field id? string
+---@field image_url? string
+---@field media_type? string
+---@field name? string
+---@field poster_image_url? string
+---@field preview_image_url? string
+---@field quality_status? string
+---@field slug? string
+---@field source_template_id? any
+---@field source_url? string
+---@field tag? table
+---@field width? any
+
+---@class TrendAlert
+---@field action string
+---@field actor_id string
+---@field aggressiveness? number
+---@field alert_id string
+---@field channel? table
+---@field deliver_all_alert? boolean
+---@field event? table
+---@field explicit_niche? table
+---@field explicit_region? table
+---@field explicit_source? table
+---@field explicit_topic? table
+---@field follower_count? number
+---@field niche? string
+---@field region? string
+---@field source? string
+---@field topic string
+
+---@class TrendAlertLoadMatch
+---@field action? string
+---@field actor_id? string
+---@field aggressiveness? number
+---@field alert_id? string
+---@field channel? table
+---@field deliver_all_alert? boolean
+---@field event? table
+---@field explicit_niche? table
+---@field explicit_region? table
+---@field explicit_source? table
+---@field explicit_topic? table
+---@field follower_count? number
+---@field niche? string
+---@field region? string
+---@field source? string
+---@field topic? string
+
+---@class TrendAlertCreateData
+---@field action string
+---@field actor_id string
+---@field aggressiveness? number
+---@field alert_id string
+---@field channel? table
+---@field deliver_all_alert? boolean
+---@field event? table
+---@field explicit_niche? table
+---@field explicit_region? table
+---@field explicit_source? table
+---@field explicit_topic? table
+---@field follower_count? number
+---@field niche? string
+---@field region? string
+---@field source? string
+---@field topic string
+
+---@class UploadCaptionMemeSuccess
+
+---@class UploadCaptionMemeSuccessCreateData
+
+---@class Video
+---@field action? string
+---@field asset_id? string
+---@field at_m? number
+---@field audio_asset_id? string
+---@field beat_offset_m? number
+---@field bitrate_kbp? number
+---@field bpm? number
+---@field cancelled? boolean
+---@field container? string
+---@field duration_m? number
+---@field duration_second number
+---@field easing? string
+---@field error? string
+---@field frame_rate? number
+---@field input_format string
+---@field intensity? number
+---@field job_id? string
+---@field locale? string
+---@field mime_type string
+---@field name? string
+---@field offset_m? number
+---@field output_preset_id string
+---@field output_url? string
+---@field plan_tier string
+---@field preset_id string
+---@field progress_percent? number
+---@field project? table
+---@field project_id? string
+---@field property? string
+---@field source_device_id? string
+---@field source_url? string
+---@field stage? string
+---@field start_m? number
+---@field style_preset_id? string
+---@field sync_to_beat_grid? boolean
+---@field tone? string
+---@field track_id? string
+---@field transcript? string
+---@field trend_keyword? table
+---@field type? string
+---@field updated_at? string
+---@field value? number
+---@field watermark_enabled? boolean
+---@field watermark_text? string
+---@field worker_id? string
+
+---@class VideoLoadMatch
+---@field action? string
+---@field asset_id? string
+---@field at_m? number
+---@field audio_asset_id? string
+---@field beat_offset_m? number
+---@field bitrate_kbp? number
+---@field bpm? number
+---@field cancelled? boolean
+---@field container? string
+---@field duration_m? number
+---@field duration_second? number
+---@field easing? string
+---@field error? string
+---@field frame_rate? number
+---@field input_format? string
+---@field intensity? number
+---@field job_id? string
+---@field locale? string
+---@field mime_type? string
+---@field name? string
+---@field offset_m? number
+---@field output_preset_id? string
+---@field output_url? string
+---@field plan_tier? string
+---@field preset_id? string
+---@field progress_percent? number
+---@field project? table
+---@field project_id? string
+---@field property? string
+---@field source_device_id? string
+---@field source_url? string
+---@field stage? string
+---@field start_m? number
+---@field style_preset_id? string
+---@field sync_to_beat_grid? boolean
+---@field tone? string
+---@field track_id? string
+---@field transcript? string
+---@field trend_keyword? table
+---@field type? string
+---@field updated_at? string
+---@field value? number
+---@field watermark_enabled? boolean
+---@field watermark_text? string
+---@field worker_id? string
+
+---@class VideoCreateData
+---@field action? string
+---@field asset_id? string
+---@field at_m? number
+---@field audio_asset_id? string
+---@field beat_offset_m? number
+---@field bitrate_kbp? number
+---@field bpm? number
+---@field cancelled? boolean
+---@field container? string
+---@field duration_m? number
+---@field duration_second number
+---@field easing? string
+---@field error? string
+---@field frame_rate? number
+---@field input_format string
+---@field intensity? number
+---@field job_id? string
+---@field locale? string
+---@field mime_type string
+---@field name? string
+---@field offset_m? number
+---@field output_preset_id string
+---@field output_url? string
+---@field plan_tier string
+---@field preset_id string
+---@field progress_percent? number
+---@field project? table
+---@field project_id? string
+---@field property? string
+---@field source_device_id? string
+---@field source_url? string
+---@field stage? string
+---@field start_m? number
+---@field style_preset_id? string
+---@field sync_to_beat_grid? boolean
+---@field tone? string
+---@field track_id? string
+---@field transcript? string
+---@field trend_keyword? table
+---@field type? string
+---@field updated_at? string
+---@field value? number
+---@field watermark_enabled? boolean
+---@field watermark_text? string
+---@field worker_id? string
+
+local M = {}
+
+return M

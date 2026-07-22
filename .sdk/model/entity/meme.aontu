@@ -1,0 +1,194 @@
+# Entity: meme
+
+main: kit: entity: meme: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alt_text"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "canonical_image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "canva"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "caption"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "created_at"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "nsfw_status"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "overlay"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "share_slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "share_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "share_view"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "source_image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "template_slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "visibility"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "watermark"
+      req: true
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "meme"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "owner_token"
+                orig: "owner_token"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/memes/{slug}"
+          parts: [
+            "api"
+            "memes"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              slug: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "owner_token"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/api/memes/{slug}"
+          parts: [
+            "api"
+            "memes"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              slug: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

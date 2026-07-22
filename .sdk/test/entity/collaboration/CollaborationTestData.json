@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "collaboration": {
+      "COLLABORATION00": {
+        "author_id": "AUTHOR01",
+        "message": "s1f",
+        "project_id": "PROJECT01",
+        "id": "COLLABORATION00"
+      },
+      "COLLABORATION01": {
+        "author_id": "AUTHOR01",
+        "message": "s3d",
+        "project_id": "PROJECT01",
+        "id": "COLLABORATION01"
+      },
+      "COLLABORATION02": {
+        "author_id": "AUTHOR01",
+        "message": "s5b",
+        "project_id": "PROJECT01",
+        "id": "COLLABORATION02"
+      }
+    }
+  },
+  "new": {
+    "collaboration": {
+      "collaboration_ref01": {
+        "author_id": "AUTHOR01",
+        "message": "s79",
+        "project_id": "PROJECT01"
+      }
+    }
+  }
+}

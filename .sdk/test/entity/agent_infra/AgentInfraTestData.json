@@ -1,0 +1,82 @@
+{
+  "existing": {
+    "agent_infra": {
+      "AGENT_INFRA00": {
+        "action": "s82",
+        "chat_id": "CHAT01",
+        "meme_slug": "s84",
+        "metadata": {},
+        "payout_reference": "s86",
+        "payout_status": "s87",
+        "phone_or_chat_id": "PHONE_OR_CHAT01",
+        "prompt": "s89",
+        "proof": {},
+        "quota_boost_per_day": "s8b",
+        "scope": [],
+        "user_id": "USER01",
+        "week_start": "s8e",
+        "agent_id": "AGENT01",
+        "unlock_id": "UNLOCK01",
+        "key_id": "KEY01",
+        "id": "AGENT_INFRA00"
+      },
+      "AGENT_INFRA01": {
+        "action": "s104",
+        "chat_id": "CHAT01",
+        "meme_slug": "s106",
+        "metadata": {},
+        "payout_reference": "s108",
+        "payout_status": "s109",
+        "phone_or_chat_id": "PHONE_OR_CHAT01",
+        "prompt": "s10b",
+        "proof": {},
+        "quota_boost_per_day": "s10d",
+        "scope": [],
+        "user_id": "USER01",
+        "week_start": "s110",
+        "agent_id": "AGENT01",
+        "unlock_id": "UNLOCK01",
+        "key_id": "KEY01",
+        "id": "AGENT_INFRA01"
+      },
+      "AGENT_INFRA02": {
+        "action": "s186",
+        "chat_id": "CHAT01",
+        "meme_slug": "s188",
+        "metadata": {},
+        "payout_reference": "s18a",
+        "payout_status": "s18b",
+        "phone_or_chat_id": "PHONE_OR_CHAT01",
+        "prompt": "s18d",
+        "proof": {},
+        "quota_boost_per_day": "s18f",
+        "scope": [],
+        "user_id": "USER01",
+        "week_start": "s192",
+        "agent_id": "AGENT01",
+        "unlock_id": "UNLOCK01",
+        "key_id": "KEY01",
+        "id": "AGENT_INFRA02"
+      }
+    }
+  },
+  "new": {
+    "agent_infra": {
+      "agent_infra_ref01": {
+        "action": "s208",
+        "chat_id": "CHAT01",
+        "meme_slug": "s20a",
+        "metadata": {},
+        "payout_reference": "s20c",
+        "payout_status": "s20d",
+        "phone_or_chat_id": "PHONE_OR_CHAT01",
+        "prompt": "s20f",
+        "proof": {},
+        "quota_boost_per_day": "s211",
+        "scope": [],
+        "user_id": "USER01",
+        "week_start": "s214"
+      }
+    }
+  }
+}

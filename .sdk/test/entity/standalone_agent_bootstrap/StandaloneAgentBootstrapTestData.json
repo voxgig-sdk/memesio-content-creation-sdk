@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "standalone_agent_bootstrap": {
+      "STANDALONE_AGENT_BOOTSTRAP00": {
+        "description": "s50",
+        "handle": "s51",
+        "locale": "s52",
+        "name": "s53",
+        "style_preset": "s54",
+        "system_prompt": "s55",
+        "watermark_text": "s56",
+        "website_url": "s57",
+        "id": "STANDALONE_AGENT_BOOTSTRAP00"
+      },
+      "STANDALONE_AGENT_BOOTSTRAP01": {
+        "description": "sa0",
+        "handle": "sa1",
+        "locale": "sa2",
+        "name": "sa3",
+        "style_preset": "sa4",
+        "system_prompt": "sa5",
+        "watermark_text": "sa6",
+        "website_url": "sa7",
+        "id": "STANDALONE_AGENT_BOOTSTRAP01"
+      },
+      "STANDALONE_AGENT_BOOTSTRAP02": {
+        "description": "sf0",
+        "handle": "sf1",
+        "locale": "sf2",
+        "name": "sf3",
+        "style_preset": "sf4",
+        "system_prompt": "sf5",
+        "watermark_text": "sf6",
+        "website_url": "sf7",
+        "id": "STANDALONE_AGENT_BOOTSTRAP02"
+      }
+    }
+  },
+  "new": {
+    "standalone_agent_bootstrap": {
+      "standalone_agent_bootstrap_ref01": {
+        "description": "s140",
+        "handle": "s141",
+        "locale": "s142",
+        "name": "s143",
+        "style_preset": "s144",
+        "system_prompt": "s145",
+        "watermark_text": "s146",
+        "website_url": "s147"
+      }
+    }
+  }
+}

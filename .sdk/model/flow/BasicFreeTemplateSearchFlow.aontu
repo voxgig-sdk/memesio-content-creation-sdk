@@ -1,0 +1,22 @@
+# BasicFreeTemplateSearchFlow
+
+main: kit: flow: BasicFreeTemplateSearchFlow:
+{
+  entity: "free_template_search",
+  kind: "basic",
+  name: "BasicFreeTemplateSearchFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "free_template_search_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicFreeTemplateSearchFlow"
+}

@@ -1,0 +1,18 @@
+# BasicStandaloneAgentBootstrapFlow
+
+main: kit: flow: BasicStandaloneAgentBootstrapFlow:
+{
+  entity: "standalone_agent_bootstrap",
+  kind: "basic",
+  name: "BasicStandaloneAgentBootstrapFlow",
+  step: [
+    {
+      input: {
+        ref: "standalone_agent_bootstrap_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicStandaloneAgentBootstrapFlow"
+}

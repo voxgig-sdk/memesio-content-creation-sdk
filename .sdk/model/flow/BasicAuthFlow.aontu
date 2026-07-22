@@ -1,0 +1,18 @@
+# BasicAuthFlow
+
+main: kit: flow: BasicAuthFlow:
+{
+  entity: "auth",
+  kind: "basic",
+  name: "BasicAuthFlow",
+  step: [
+    {
+      input: {
+        ref: "auth_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicAuthFlow"
+}

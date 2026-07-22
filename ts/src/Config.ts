@@ -1,0 +1,7467 @@
+
+import { BaseFeature } from './feature/base/BaseFeature'
+import { TestFeature } from './feature/test/TestFeature'
+
+
+
+const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
+   test: TestFeature,
+
+}
+
+
+class Config {
+
+  makeFeature(this: any, fn: string) {
+    const fc = FEATURE_CLASS[fn]
+    const fi = new fc()
+    // TODO: errors etc
+    return fi
+  }
+
+
+  main = {
+    name: 'ProjectName',
+  }
+
+
+  feature = {
+     test:     {
+      "options": {
+        "active": false
+      }
+    },
+
+  }
+
+
+  options = {
+    base: '/',
+
+    auth: {
+      prefix: '',
+    },
+
+    headers: {
+      "content-type": "application/json"
+    },
+
+    entity: {
+      
+      agent: {
+      },
+
+      agent_infra: {
+      },
+
+      ai_caption: {
+      },
+
+      ai_job: {
+      },
+
+      ai_meme_generation_succeeded: {
+      },
+
+      ai_provider: {
+      },
+
+      analytics: {
+      },
+
+      auth: {
+      },
+
+      billing: {
+      },
+
+      collaboration: {
+      },
+
+      compliance: {
+      },
+
+      create_meme: {
+      },
+
+      developer_api: {
+      },
+
+      free_caption_meme_success: {
+      },
+
+      free_template_search: {
+      },
+
+      generate: {
+      },
+
+      growth: {
+      },
+
+      list_meme: {
+      },
+
+      media: {
+      },
+
+      meme: {
+      },
+
+      public_template_media_item: {
+      },
+
+      standalone_agent_bootstrap: {
+      },
+
+      template: {
+      },
+
+      template_search: {
+      },
+
+      trend_alert: {
+      },
+
+      upload_caption_meme_success: {
+      },
+
+      video: {
+      },
+
+    }
+  }
+
+
+  entity = {
+    "agent": {
+      "fields": [
+        {
+          "active": true,
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "locale",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "name",
+          "op": {
+            "update": {
+              "req": false,
+              "type": "`$STRING`"
+            }
+          },
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "slug",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "status",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "style_preset",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "system_prompt",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "watermark_text",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "website_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 8
+        }
+      ],
+      "name": "agent",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/agents",
+              "parts": [
+                "api",
+                "v1",
+                "agents"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "agent_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/v1/agents/{agentId}",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "agentId": "id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/v1/agents",
+              "parts": [
+                "api",
+                "v1",
+                "agents"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            }
+          ],
+          "key$": "load"
+        },
+        "update": {
+          "input": "data",
+          "name": "update",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "agent_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "PATCH",
+              "orig": "/api/v1/agents/{agentId}",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "agentId": "id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "update"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "agent_infra": {
+      "fields": [
+        {
+          "active": true,
+          "name": "action",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "chat_id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "meme_slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "metadata",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "payout_reference",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "payout_status",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "phone_or_chat_id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "prompt",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "proof",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "quota_boost_per_day",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "scope",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "user_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "week_start",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 12
+        }
+      ],
+      "name": "agent_infra",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "agent_id",
+                    "orig": "agent_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "POST",
+              "orig": "/api/v1/agents/{agentId}/channels/telegram/bind",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "{agent_id}",
+                "channels",
+                "telegram",
+                "bind"
+              ],
+              "rename": {
+                "param": {
+                  "agentId": "agent_id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "agent_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "agent_id",
+                    "orig": "agent_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "POST",
+              "orig": "/api/v1/agents/{agentId}/channels/whatsapp/bind",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "{agent_id}",
+                "channels",
+                "whatsapp",
+                "bind"
+              ],
+              "rename": {
+                "param": {
+                  "agentId": "agent_id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "agent_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "agent_id",
+                    "orig": "agent_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "POST",
+              "orig": "/api/v1/agents/{agentId}/unlocks/social-action",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "{agent_id}",
+                "unlocks",
+                "social-action"
+              ],
+              "rename": {
+                "param": {
+                  "agentId": "agent_id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "agent_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "agent_id",
+                    "reqd": true,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "POST",
+              "orig": "/api/v1/agents/{agentId}/keys",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "{id}",
+                "keys"
+              ],
+              "rename": {
+                "param": {
+                  "agentId": "id"
+                }
+              },
+              "select": {
+                "$action": "keys",
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            },
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "unlock_id",
+                    "orig": "unlock_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "POST",
+              "orig": "/api/v1/agents/unlocks/{unlockId}/approve",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "unlocks",
+                "{unlock_id}",
+                "approve"
+              ],
+              "rename": {
+                "param": {
+                  "unlockId": "unlock_id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "unlock_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 4
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/agents/names:generate",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "names:generate"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 5
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/agents/rewards/votes",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "rewards",
+                "votes"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 6
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/agents/rewards/winner:close",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "rewards",
+                "winner:close"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 7
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/agents/webhooks/telegram",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "webhooks",
+                "telegram"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 8
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/agents/webhooks/whatsapp",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "webhooks",
+                "whatsapp"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 9
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "limit",
+                    "orig": "limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "week_start",
+                    "orig": "week_start",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/v1/agents/rewards/leaderboard",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "rewards",
+                "leaderboard"
+              ],
+              "select": {
+                "exist": [
+                  "limit",
+                  "week_start"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "agent_id",
+                    "reqd": true,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/v1/agents/{agentId}/keys",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "{id}",
+                "keys"
+              ],
+              "rename": {
+                "param": {
+                  "agentId": "id"
+                }
+              },
+              "select": {
+                "$action": "keys",
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/v1/agents/webhooks/whatsapp",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "webhooks",
+                "whatsapp"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            }
+          ],
+          "key$": "load"
+        },
+        "remove": {
+          "input": "data",
+          "name": "remove",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "agent_id",
+                    "orig": "agent_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  },
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "key_id",
+                    "orig": "key_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 1
+                  }
+                ]
+              },
+              "method": "DELETE",
+              "orig": "/api/v1/agents/{agentId}/keys/{keyId}",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "{agent_id}",
+                "keys",
+                "{key_id}"
+              ],
+              "rename": {
+                "param": {
+                  "agentId": "agent_id",
+                  "keyId": "key_id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "agent_id",
+                  "key_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "remove"
+        }
+      },
+      "relations": {
+        "ancestors": [
+          [
+            "unlock"
+          ],
+          [
+            "agent"
+          ],
+          [
+            "agent",
+            "key"
+          ]
+        ]
+      }
+    },
+    "ai_caption": {
+      "fields": [
+        {
+          "active": true,
+          "name": "blocked_term",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "canvas_text",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "caption_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "caption_set",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "entity",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "fallback_used",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "generation_strategy",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "locale",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "meme_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "meme_slug",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "ok",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "option_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "owner_token",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "provider_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "reference_caption",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "rewrite_note",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "scene_summary",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 17
+        },
+        {
+          "active": true,
+          "name": "template_description",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 18
+        },
+        {
+          "active": true,
+          "name": "template_name",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 19
+        },
+        {
+          "active": true,
+          "name": "template_tag",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 20
+        },
+        {
+          "active": true,
+          "name": "tone",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 21
+        },
+        {
+          "active": true,
+          "name": "tone_cue",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 22
+        },
+        {
+          "active": true,
+          "name": "trend_keyword",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 23
+        },
+        {
+          "active": true,
+          "name": "trend_reference",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 24
+        },
+        {
+          "active": true,
+          "name": "trend_signal",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 25
+        },
+        {
+          "active": true,
+          "name": "variation_offset",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 26
+        },
+        {
+          "active": true,
+          "name": "voice_rule",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 27
+        }
+      ],
+      "name": "ai_caption",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/captions/generate",
+              "parts": [
+                "api",
+                "ai",
+                "captions",
+                "generate"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/captions/moderate",
+              "parts": [
+                "api",
+                "ai",
+                "captions",
+                "moderate"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/captions/prompt",
+              "parts": [
+                "api",
+                "ai",
+                "captions",
+                "prompt"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/captions/rank",
+              "parts": [
+                "api",
+                "ai",
+                "captions",
+                "rank"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/captions/rewrite",
+              "parts": [
+                "api",
+                "ai",
+                "captions",
+                "rewrite"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 4
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/captions/scene",
+              "parts": [
+                "api",
+                "ai",
+                "captions",
+                "scene"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 5
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/captions/tone-presets",
+              "parts": [
+                "api",
+                "ai",
+                "captions",
+                "tone-presets"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 6
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "locale",
+                    "orig": "locale",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/ai/captions/tone-presets",
+              "parts": [
+                "api",
+                "ai",
+                "captions",
+                "tone-presets"
+              ],
+              "select": {
+                "exist": [
+                  "locale"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/ai/captions/generate",
+              "parts": [
+                "api",
+                "ai",
+                "captions",
+                "generate"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "ai_job": {
+      "fields": [
+        {
+          "active": true,
+          "name": "action",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "actor_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "after_state",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "attempt",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "before_state",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "brush_edit",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "capability",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "celebrity_confidence",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "consent_attested",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "created_at",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "detected_face_count",
+          "req": true,
+          "type": "`$NUMBER`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "edge_refinement",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "estimated_cost_usd",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "frame_time_m",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "height",
+          "req": true,
+          "type": "`$NUMBER`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "input",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "layer_id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 17
+        },
+        {
+          "active": true,
+          "name": "layer_type",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 18
+        },
+        {
+          "active": true,
+          "name": "max_attempt",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 19
+        },
+        {
+          "active": true,
+          "name": "max_face",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 20
+        },
+        {
+          "active": true,
+          "name": "media_type",
+          "op": {
+            "create": {
+              "req": true,
+              "type": "`$STRING`"
+            }
+          },
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 21
+        },
+        {
+          "active": true,
+          "name": "metadata",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 22
+        },
+        {
+          "active": true,
+          "name": "nsfw_score",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 23
+        },
+        {
+          "active": true,
+          "name": "output",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 24
+        },
+        {
+          "active": true,
+          "name": "project_id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 25
+        },
+        {
+          "active": true,
+          "name": "provider_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 26
+        },
+        {
+          "active": true,
+          "name": "reason",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 27
+        },
+        {
+          "active": true,
+          "name": "run_after_m",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 28
+        },
+        {
+          "active": true,
+          "name": "source_asset_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 29
+        },
+        {
+          "active": true,
+          "name": "source_face_index",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 30
+        },
+        {
+          "active": true,
+          "name": "source_image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 31
+        },
+        {
+          "active": true,
+          "name": "status",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 32
+        },
+        {
+          "active": true,
+          "name": "target_asset_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 33
+        },
+        {
+          "active": true,
+          "name": "target_face_index",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 34
+        },
+        {
+          "active": true,
+          "name": "timeout_m",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 35
+        },
+        {
+          "active": true,
+          "name": "trace_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 36
+        },
+        {
+          "active": true,
+          "name": "updated_at",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 37
+        },
+        {
+          "active": true,
+          "name": "version_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 38
+        },
+        {
+          "active": true,
+          "name": "width",
+          "req": true,
+          "type": "`$NUMBER`",
+          "index$": 39
+        },
+        {
+          "active": true,
+          "name": "worker_id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 40
+        },
+        {
+          "active": true,
+          "name": "workspace_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 41
+        }
+      ],
+      "name": "ai_job",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "job_id",
+                    "orig": "job_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "POST",
+              "orig": "/api/ai/jobs/{jobId}/cancel",
+              "parts": [
+                "api",
+                "ai",
+                "jobs",
+                "{job_id}",
+                "cancel"
+              ],
+              "rename": {
+                "param": {
+                  "jobId": "job_id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "job_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "job_id",
+                    "orig": "job_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "POST",
+              "orig": "/api/ai/jobs/{jobId}/complete",
+              "parts": [
+                "api",
+                "ai",
+                "jobs",
+                "{job_id}",
+                "complete"
+              ],
+              "rename": {
+                "param": {
+                  "jobId": "job_id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "job_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/background-remove",
+              "parts": [
+                "api",
+                "ai",
+                "background-remove"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/edit-history",
+              "parts": [
+                "api",
+                "ai",
+                "edit-history"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/face-swap",
+              "parts": [
+                "api",
+                "ai",
+                "face-swap"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 4
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/face-targets",
+              "parts": [
+                "api",
+                "ai",
+                "face-targets"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 5
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/jobs",
+              "parts": [
+                "api",
+                "ai",
+                "jobs"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 6
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "from_version_id",
+                    "orig": "from_version_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "layer_id",
+                    "orig": "layer_id",
+                    "reqd": true,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "limit",
+                    "orig": "limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "mode",
+                    "orig": "mode",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "project_id",
+                    "orig": "project_id",
+                    "reqd": true,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "to_version_id",
+                    "orig": "to_version_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/ai/edit-history",
+              "parts": [
+                "api",
+                "ai",
+                "edit-history"
+              ],
+              "select": {
+                "exist": [
+                  "from_version_id",
+                  "layer_id",
+                  "limit",
+                  "mode",
+                  "project_id",
+                  "to_version_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page",
+                    "orig": "page",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page_size",
+                    "orig": "page_size",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "status",
+                    "orig": "status",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/ai/jobs",
+              "parts": [
+                "api",
+                "ai",
+                "jobs"
+              ],
+              "select": {
+                "exist": [
+                  "page",
+                  "page_size",
+                  "status"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "job_id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/ai/jobs/{jobId}",
+              "parts": [
+                "api",
+                "ai",
+                "jobs",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "jobId": "id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": [
+          [
+            "job"
+          ]
+        ]
+      }
+    },
+    "ai_meme_generation_succeeded": {
+      "fields": [
+        {
+          "active": true,
+          "name": "allow_heuristic_fallback",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "caption",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "caption_source",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "correlation_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "degraded_from_async",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "editable_caption",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "flow",
+          "op": {
+            "create": {
+              "req": false,
+              "type": "`$STRING`"
+            }
+          },
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "image_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "mode",
+          "op": {
+            "create": {
+              "req": false,
+              "type": "`$STRING`"
+            }
+          },
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "ok",
+          "req": true,
+          "type": "`$BOOLEAN`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "preferred_provider_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "prompt",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "rewrite_note",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "run_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "status",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "template_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "tone",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "tone_cue",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 17
+        },
+        {
+          "active": true,
+          "name": "variant",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 18
+        },
+        {
+          "active": true,
+          "name": "variant_count",
+          "op": {
+            "create": {
+              "req": false,
+              "type": "`$NUMBER`"
+            }
+          },
+          "req": true,
+          "type": "`$INTEGER`",
+          "index$": 19
+        },
+        {
+          "active": true,
+          "name": "workspace_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 20
+        }
+      ],
+      "name": "ai_meme_generation_succeeded",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/memes/generate",
+              "parts": [
+                "api",
+                "ai",
+                "memes",
+                "generate"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/memes/generate",
+              "parts": [
+                "api",
+                "v1",
+                "memes",
+                "generate"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            }
+          ],
+          "key$": "create"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "ai_provider": {
+      "fields": [
+        {
+          "active": true,
+          "name": "actor_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "correlation_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "limit",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "mapping_mode",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "max_slot",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "prompt",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "source_image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "text",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "trend_signal",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "workspace_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 9
+        }
+      ],
+      "name": "ai_provider",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/templates/detect",
+              "parts": [
+                "api",
+                "ai",
+                "templates",
+                "detect"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/ai/templates/suggest",
+              "parts": [
+                "api",
+                "ai",
+                "templates",
+                "suggest"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "refresh",
+                    "orig": "refresh",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/ai/providers/background-remove-benchmark",
+              "parts": [
+                "api",
+                "ai",
+                "providers",
+                "background-remove-benchmark"
+              ],
+              "select": {
+                "exist": [
+                  "refresh"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "refresh",
+                    "orig": "refresh",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/ai/providers/face-swap-benchmark",
+              "parts": [
+                "api",
+                "ai",
+                "providers",
+                "face-swap-benchmark"
+              ],
+              "select": {
+                "exist": [
+                  "refresh"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/ai/memes/generate",
+              "parts": [
+                "api",
+                "ai",
+                "memes",
+                "generate"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "analytics": {
+      "fields": [],
+      "name": "analytics",
+      "op": {
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "template_id",
+                    "orig": "template_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/analytics/experiments/templates",
+              "parts": [
+                "api",
+                "analytics",
+                "experiments",
+                "templates"
+              ],
+              "select": {
+                "exist": [
+                  "template_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "window_hour",
+                    "orig": "window_hour",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/analytics/dashboards/backend-reliability",
+              "parts": [
+                "api",
+                "analytics",
+                "dashboards",
+                "backend-reliability"
+              ],
+              "select": {
+                "exist": [
+                  "window_hour"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/analytics/alerts/backend",
+              "parts": [
+                "api",
+                "analytics",
+                "alerts",
+                "backend"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/analytics/anomalies/ai",
+              "parts": [
+                "api",
+                "analytics",
+                "anomalies",
+                "ai"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/analytics/dashboards/activation-retention",
+              "parts": [
+                "api",
+                "analytics",
+                "dashboards",
+                "activation-retention"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 4
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/analytics/dashboards/feature-adoption",
+              "parts": [
+                "api",
+                "analytics",
+                "dashboards",
+                "feature-adoption"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 5
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/analytics/metric-dictionary",
+              "parts": [
+                "api",
+                "analytics",
+                "metric-dictionary"
+              ],
+              "select": {
+                "$action": "metric_dictionary"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 6
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "auth": {
+      "fields": [
+        {
+          "active": true,
+          "name": "display_name",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "email",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "password",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 2
+        }
+      ],
+      "name": "auth",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/auth/resend-verification",
+              "parts": [
+                "api",
+                "auth",
+                "resend-verification"
+              ],
+              "select": {
+                "$action": "resend_verification"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/auth/signup",
+              "parts": [
+                "api",
+                "auth",
+                "signup"
+              ],
+              "select": {
+                "$action": "signup"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            }
+          ],
+          "key$": "create"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "billing": {
+      "fields": [],
+      "name": "billing",
+      "op": {
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "window_day",
+                    "orig": "window_day",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "workspace_id",
+                    "orig": "workspace_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/billing/usage",
+              "parts": [
+                "api",
+                "billing",
+                "usage"
+              ],
+              "select": {
+                "$action": "usage",
+                "exist": [
+                  "window_day",
+                  "workspace_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "collaboration": {
+      "fields": [
+        {
+          "active": true,
+          "name": "author_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "message",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "project_id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 2
+        }
+      ],
+      "name": "collaboration",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/collab/comments",
+              "parts": [
+                "api",
+                "collab",
+                "comments"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page",
+                    "orig": "page",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page_size",
+                    "orig": "page_size",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "project_id",
+                    "orig": "project_id",
+                    "reqd": true,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/collab/comments",
+              "parts": [
+                "api",
+                "collab",
+                "comments"
+              ],
+              "select": {
+                "exist": [
+                  "page",
+                  "page_size",
+                  "project_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "compliance": {
+      "fields": [],
+      "name": "compliance",
+      "op": {
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/compliance/content-policy",
+              "parts": [
+                "api",
+                "compliance",
+                "content-policy"
+              ],
+              "select": {
+                "$action": "content_policy"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "create_meme": {
+      "fields": [
+        {
+          "active": true,
+          "name": "canva",
+          "req": true,
+          "type": "`$OBJECT`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "caption",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "generation_run_id",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "generation_variant_id",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "image_data_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "overlay",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "source_image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "template_slug",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "visibility",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "watermark",
+          "req": true,
+          "type": "`$OBJECT`",
+          "index$": 10
+        }
+      ],
+      "name": "create_meme",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/memes",
+              "parts": [
+                "api",
+                "memes"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "create"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "developer_api": {
+      "fields": [
+        {
+          "active": true,
+          "name": "limit",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "prompt",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "trend_signal",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 2
+        }
+      ],
+      "name": "developer_api",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/templates/ideas",
+              "parts": [
+                "api",
+                "v1",
+                "templates",
+                "ideas"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/v1/memes/generate",
+              "parts": [
+                "api",
+                "v1",
+                "memes",
+                "generate"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "free_caption_meme_success": {
+      "fields": [
+        {
+          "active": true,
+          "name": "caption",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "template_slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "visibility",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "watermark",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 4
+        }
+      ],
+      "name": "free_caption_meme_success",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/free/memes/caption",
+              "parts": [
+                "api",
+                "free",
+                "memes",
+                "caption"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/memes/caption-template",
+              "parts": [
+                "api",
+                "v1",
+                "memes",
+                "caption-template"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            }
+          ],
+          "key$": "create"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "free_template_search": {
+      "fields": [
+        {
+          "active": true,
+          "name": "animated",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "asset_byte",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "asset_content_type",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "box_count",
+          "req": true,
+          "type": "`$INTEGER`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "caption",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "caption_count",
+          "req": true,
+          "type": "`$INTEGER`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "description",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "duration_m",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "example_image_url",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "frame_count",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "height",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$NUMBER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "media_type",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "poster_image_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "quality_status",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 17
+        },
+        {
+          "active": true,
+          "name": "source_template_id",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 18
+        },
+        {
+          "active": true,
+          "name": "source_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 19
+        },
+        {
+          "active": true,
+          "name": "tag",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 20
+        },
+        {
+          "active": true,
+          "name": "width",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$NUMBER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 21
+        }
+      ],
+      "name": "free_template_search",
+      "op": {
+        "list": {
+          "input": "data",
+          "name": "list",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "example": "image",
+                    "kind": "query",
+                    "name": "media_type",
+                    "orig": "media_type",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "mode",
+                    "orig": "mode",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page",
+                    "orig": "page",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page_size",
+                    "orig": "page_size",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "tag",
+                    "orig": "tag",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/free/templates",
+              "parts": [
+                "api",
+                "free",
+                "templates"
+              ],
+              "select": {
+                "exist": [
+                  "media_type",
+                  "mode",
+                  "page",
+                  "page_size",
+                  "q",
+                  "query",
+                  "sort",
+                  "tag"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "list"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "generate": {
+      "fields": [
+        {
+          "active": true,
+          "name": "caption",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "data",
+          "req": true,
+          "type": "`$OBJECT`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "duration_m",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "fps",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "gif_slug",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "ok",
+          "req": true,
+          "type": "`$BOOLEAN`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "return_base64",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "start_m",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "tag",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "width_px",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 10
+        }
+      ],
+      "name": "generate",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/gifs/generate",
+              "parts": [
+                "api",
+                "v1",
+                "gifs",
+                "generate"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "create"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "growth": {
+      "fields": [
+        {
+          "active": true,
+          "name": "account_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "action",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "actor_id",
+          "op": {
+            "create": {
+              "req": true,
+              "type": "`$STRING`"
+            }
+          },
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "caption",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "code",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "external_account_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "handle",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "limit",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "log_exposure",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "meme_slug",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "now",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "platform",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "profile",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "share_slug",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "surface",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "week_start",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 15
+        }
+      ],
+      "name": "growth",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/growth/experiments/decision",
+              "parts": [
+                "api",
+                "growth",
+                "experiments",
+                "decision"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/growth/lifecycle-messaging",
+              "parts": [
+                "api",
+                "growth",
+                "lifecycle-messaging"
+              ],
+              "select": {
+                "$action": "lifecycle_messaging"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/growth/referrals",
+              "parts": [
+                "api",
+                "growth",
+                "referrals"
+              ],
+              "select": {
+                "$action": "referral"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/growth/social-publish",
+              "parts": [
+                "api",
+                "growth",
+                "social-publish"
+              ],
+              "select": {
+                "$action": "social_publish"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/growth/trend-campaigns",
+              "parts": [
+                "api",
+                "growth",
+                "trend-campaigns"
+              ],
+              "select": {
+                "$action": "trend_campaign"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 4
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "actor_id",
+                    "orig": "actor_id",
+                    "reqd": true,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "log_exposure",
+                    "orig": "log_exposure",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "surface",
+                    "orig": "surface",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/growth/experiments/decision",
+              "parts": [
+                "api",
+                "growth",
+                "experiments",
+                "decision"
+              ],
+              "select": {
+                "exist": [
+                  "actor_id",
+                  "log_exposure",
+                  "surface"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "limit",
+                    "orig": "limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "published_only",
+                    "orig": "published_only",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "week_start",
+                    "orig": "week_start",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/growth/trend-campaigns",
+              "parts": [
+                "api",
+                "growth",
+                "trend-campaigns"
+              ],
+              "select": {
+                "$action": "trend_campaign",
+                "exist": [
+                  "limit",
+                  "published_only",
+                  "week_start"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "actor_id",
+                    "orig": "actor_id",
+                    "reqd": true,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "publish_limit",
+                    "orig": "publish_limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/growth/social-publish",
+              "parts": [
+                "api",
+                "growth",
+                "social-publish"
+              ],
+              "select": {
+                "$action": "social_publish",
+                "exist": [
+                  "actor_id",
+                  "publish_limit"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "actor_id",
+                    "orig": "actor_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/growth/referrals",
+              "parts": [
+                "api",
+                "growth",
+                "referrals"
+              ],
+              "select": {
+                "$action": "referral",
+                "exist": [
+                  "actor_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/growth/lifecycle-messaging",
+              "parts": [
+                "api",
+                "growth",
+                "lifecycle-messaging"
+              ],
+              "select": {
+                "$action": "lifecycle_messaging"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 4
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/growth/viral-triggers",
+              "parts": [
+                "api",
+                "growth",
+                "viral-triggers"
+              ],
+              "select": {
+                "$action": "viral_trigger"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 5
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "list_meme": {
+      "fields": [
+        {
+          "active": true,
+          "name": "alt_text",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "canonical_image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "created_at",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "nsfw_status",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "share_slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "share_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "share_view",
+          "req": true,
+          "type": "`$INTEGER`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "tag",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "template_slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "title",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "visibility",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 12
+        }
+      ],
+      "name": "list_meme",
+      "op": {
+        "list": {
+          "input": "data",
+          "name": "list",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "exclude_template_clone",
+                    "orig": "exclude_template_clone",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "include_nsfw",
+                    "orig": "include_nsfw",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "official_only",
+                    "orig": "official_only",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "owner_token",
+                    "orig": "owner_token",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page",
+                    "orig": "page",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page_size",
+                    "orig": "page_size",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "template_slug",
+                    "orig": "template_slug",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "visibility",
+                    "orig": "visibility",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/memes",
+              "parts": [
+                "api",
+                "memes"
+              ],
+              "select": {
+                "exist": [
+                  "exclude_template_clone",
+                  "include_nsfw",
+                  "official_only",
+                  "owner_token",
+                  "page",
+                  "page_size",
+                  "query",
+                  "template_slug",
+                  "visibility"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "list"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "media": {
+      "fields": [
+        {
+          "active": true,
+          "name": "action",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "content_type",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "expires_in_second",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "owner_token",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "path",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "prefix",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 5
+        }
+      ],
+      "name": "media",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/media/signed-url",
+              "parts": [
+                "api",
+                "media",
+                "signed-url"
+              ],
+              "select": {
+                "$action": "signed_url"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "create"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "meme": {
+      "fields": [
+        {
+          "active": true,
+          "name": "alt_text",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "canonical_image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "canva",
+          "req": true,
+          "type": "`$OBJECT`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "caption",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "created_at",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "nsfw_status",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "overlay",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "share_slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "share_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "share_view",
+          "req": true,
+          "type": "`$INTEGER`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "source_image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "tag",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "template_slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "title",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "visibility",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "watermark",
+          "req": true,
+          "type": "`$OBJECT`",
+          "index$": 17
+        }
+      ],
+      "name": "meme",
+      "op": {
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "slug",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ],
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "owner_token",
+                    "orig": "owner_token",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/memes/{slug}",
+              "parts": [
+                "api",
+                "memes",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "slug": "id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "id",
+                  "owner_token"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "load"
+        },
+        "remove": {
+          "input": "data",
+          "name": "remove",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "slug",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "DELETE",
+              "orig": "/api/memes/{slug}",
+              "parts": [
+                "api",
+                "memes",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "slug": "id"
+                }
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "remove"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "public_template_media_item": {
+      "fields": [
+        {
+          "active": true,
+          "name": "animated",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "asset_byte",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "asset_content_type",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "box_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "caption",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "caption_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "category",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "description",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "duration_m",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "example_image_url",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "frame_count",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "height",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$NUMBER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "media_type",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "poster_image_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "preview_image_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 17
+        },
+        {
+          "active": true,
+          "name": "quality_status",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 18
+        },
+        {
+          "active": true,
+          "name": "slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 19
+        },
+        {
+          "active": true,
+          "name": "source_template_id",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 20
+        },
+        {
+          "active": true,
+          "name": "source_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 21
+        },
+        {
+          "active": true,
+          "name": "tag",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 22
+        },
+        {
+          "active": true,
+          "name": "width",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$NUMBER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 23
+        }
+      ],
+      "name": "public_template_media_item",
+      "op": {
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "slug",
+                    "orig": "slug",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ],
+                "query": [
+                  {
+                    "active": true,
+                    "example": "image",
+                    "kind": "query",
+                    "name": "media_type",
+                    "orig": "media_type",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/templates/{slug}",
+              "parts": [
+                "api",
+                "templates",
+                "{slug}"
+              ],
+              "select": {
+                "exist": [
+                  "media_type",
+                  "slug"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "slug",
+                    "orig": "slug",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/gifs/{slug}",
+              "parts": [
+                "api",
+                "gifs",
+                "{slug}"
+              ],
+              "select": {
+                "exist": [
+                  "slug"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": [
+          [
+            "gif"
+          ],
+          [
+            "template"
+          ]
+        ]
+      }
+    },
+    "standalone_agent_bootstrap": {
+      "fields": [
+        {
+          "active": true,
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "handle",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "locale",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "style_preset",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "system_prompt",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "watermark_text",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "website_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 7
+        }
+      ],
+      "name": "standalone_agent_bootstrap",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/agents/bootstrap",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "bootstrap"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/agents/create-agent",
+              "parts": [
+                "api",
+                "v1",
+                "agents",
+                "create-agent"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            }
+          ],
+          "key$": "create"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "template": {
+      "fields": [
+        {
+          "active": true,
+          "name": "animated",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "asset_byte",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "asset_content_type",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "box_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "caption",
+          "op": {
+            "list": {
+              "req": true,
+              "type": "`$ARRAY`"
+            }
+          },
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "caption_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "category",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "description",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "duration_m",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "example_image_url",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "fps",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "frame_count",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "gif_slug",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "height",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$NUMBER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "media_type",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 17
+        },
+        {
+          "active": true,
+          "name": "poster_image_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 18
+        },
+        {
+          "active": true,
+          "name": "preview_image_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 19
+        },
+        {
+          "active": true,
+          "name": "quality_status",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 20
+        },
+        {
+          "active": true,
+          "name": "return_base64",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 21
+        },
+        {
+          "active": true,
+          "name": "slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 22
+        },
+        {
+          "active": true,
+          "name": "source_template_id",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 23
+        },
+        {
+          "active": true,
+          "name": "source_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 24
+        },
+        {
+          "active": true,
+          "name": "start_m",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 25
+        },
+        {
+          "active": true,
+          "name": "tag",
+          "op": {
+            "list": {
+              "req": true,
+              "type": "`$ARRAY`"
+            }
+          },
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 26
+        },
+        {
+          "active": true,
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 27
+        },
+        {
+          "active": true,
+          "name": "width",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$NUMBER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 28
+        },
+        {
+          "active": true,
+          "name": "width_px",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 29
+        }
+      ],
+      "name": "template",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "kind": "param",
+                    "name": "slug",
+                    "orig": "slug",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ]
+              },
+              "method": "POST",
+              "orig": "/api/gifs/{slug}/generate",
+              "parts": [
+                "api",
+                "gifs",
+                "{slug}",
+                "generate"
+              ],
+              "select": {
+                "exist": [
+                  "slug"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "create"
+        },
+        "list": {
+          "input": "data",
+          "name": "list",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "example": "image",
+                    "kind": "query",
+                    "name": "media_type",
+                    "orig": "media_type",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "mode",
+                    "orig": "mode",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page",
+                    "orig": "page",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page_size",
+                    "orig": "page_size",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "tag",
+                    "orig": "tag",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/templates",
+              "parts": [
+                "api",
+                "templates"
+              ],
+              "select": {
+                "exist": [
+                  "media_type",
+                  "mode",
+                  "page",
+                  "page_size",
+                  "q",
+                  "query",
+                  "sort",
+                  "tag"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "list"
+        }
+      },
+      "relations": {
+        "ancestors": [
+          [
+            "gif"
+          ]
+        ]
+      }
+    },
+    "template_search": {
+      "fields": [
+        {
+          "active": true,
+          "name": "animated",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "asset_byte",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "asset_content_type",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "box_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "caption",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "caption_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "category",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "description",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "duration_m",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "example_image_url",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "frame_count",
+          "req": false,
+          "type": [
+            "`$ONE`",
+            [
+              "`$INTEGER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "height",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$NUMBER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "image_url",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "media_type",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "poster_image_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "preview_image_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 17
+        },
+        {
+          "active": true,
+          "name": "quality_status",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 18
+        },
+        {
+          "active": true,
+          "name": "slug",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 19
+        },
+        {
+          "active": true,
+          "name": "source_template_id",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$STRING`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 20
+        },
+        {
+          "active": true,
+          "name": "source_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 21
+        },
+        {
+          "active": true,
+          "name": "tag",
+          "req": true,
+          "type": "`$ARRAY`",
+          "index$": 22
+        },
+        {
+          "active": true,
+          "name": "width",
+          "req": true,
+          "type": [
+            "`$ONE`",
+            [
+              "`$NUMBER`",
+              "`$NULL`"
+            ]
+          ],
+          "index$": 23
+        }
+      ],
+      "name": "template_search",
+      "op": {
+        "list": {
+          "input": "data",
+          "name": "list",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page",
+                    "orig": "page",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page_size",
+                    "orig": "page_size",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "tag",
+                    "orig": "tag",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/gifs",
+              "parts": [
+                "api",
+                "gifs"
+              ],
+              "select": {
+                "exist": [
+                  "page",
+                  "page_size",
+                  "q",
+                  "query",
+                  "sort",
+                  "tag"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "list"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "trend_alert": {
+      "fields": [
+        {
+          "active": true,
+          "name": "action",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "actor_id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "aggressiveness",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "alert_id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "channel",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "deliver_all_alert",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "event",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "explicit_niche",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "explicit_region",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "explicit_source",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "explicit_topic",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "follower_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "niche",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "region",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "source",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "topic",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 15
+        }
+      ],
+      "name": "trend_alert",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/alerts/delivery",
+              "parts": [
+                "api",
+                "alerts",
+                "delivery"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/alerts/feedback",
+              "parts": [
+                "api",
+                "alerts",
+                "feedback"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/alerts/preferences",
+              "parts": [
+                "api",
+                "alerts",
+                "preferences"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/alerts/triggers",
+              "parts": [
+                "api",
+                "alerts",
+                "triggers"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "actor_id",
+                    "orig": "actor_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "aggressiveness",
+                    "orig": "aggressiveness",
+                    "reqd": false,
+                    "type": "`$NUMBER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "follower_count",
+                    "orig": "follower_count",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "niche",
+                    "orig": "niche",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page",
+                    "orig": "page",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "page_size",
+                    "orig": "page_size",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "preferred_niche",
+                    "orig": "preferred_niche",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "preferred_region",
+                    "orig": "preferred_region",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "region",
+                    "orig": "region",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "source",
+                    "orig": "source",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "status",
+                    "orig": "status",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "topic",
+                    "orig": "topic",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/alerts",
+              "parts": [
+                "api",
+                "alerts"
+              ],
+              "select": {
+                "exist": [
+                  "actor_id",
+                  "aggressiveness",
+                  "follower_count",
+                  "niche",
+                  "page",
+                  "page_size",
+                  "preferred_niche",
+                  "preferred_region",
+                  "query",
+                  "region",
+                  "source",
+                  "status",
+                  "topic"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "actor_id",
+                    "orig": "actor_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "aggressiveness",
+                    "orig": "aggressiveness",
+                    "reqd": false,
+                    "type": "`$NUMBER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "follower_count",
+                    "orig": "follower_count",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "limit",
+                    "orig": "limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "preferred_niche",
+                    "orig": "preferred_niche",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "preferred_region",
+                    "orig": "preferred_region",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "topic",
+                    "orig": "topic",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/alerts/ranking",
+              "parts": [
+                "api",
+                "alerts",
+                "ranking"
+              ],
+              "select": {
+                "exist": [
+                  "actor_id",
+                  "aggressiveness",
+                  "follower_count",
+                  "limit",
+                  "preferred_niche",
+                  "preferred_region",
+                  "topic"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "actor_id",
+                    "orig": "actor_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "limit",
+                    "orig": "limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/alerts/feedback",
+              "parts": [
+                "api",
+                "alerts",
+                "feedback"
+              ],
+              "select": {
+                "exist": [
+                  "actor_id",
+                  "limit"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "actor_id",
+                    "orig": "actor_id",
+                    "reqd": true,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/alerts/preferences",
+              "parts": [
+                "api",
+                "alerts",
+                "preferences"
+              ],
+              "select": {
+                "exist": [
+                  "actor_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "refresh",
+                    "orig": "refresh",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/alerts/delivery",
+              "parts": [
+                "api",
+                "alerts",
+                "delivery"
+              ],
+              "select": {
+                "exist": [
+                  "refresh"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 4
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "refresh",
+                    "orig": "refresh",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/alerts/ingestion",
+              "parts": [
+                "api",
+                "alerts",
+                "ingestion"
+              ],
+              "select": {
+                "exist": [
+                  "refresh"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 5
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "refresh",
+                    "orig": "refresh",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/alerts/quality-report",
+              "parts": [
+                "api",
+                "alerts",
+                "quality-report"
+              ],
+              "select": {
+                "exist": [
+                  "refresh"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 6
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "template_id",
+                    "orig": "template_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/alerts/message-templates",
+              "parts": [
+                "api",
+                "alerts",
+                "message-templates"
+              ],
+              "select": {
+                "exist": [
+                  "template_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 7
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/alerts/connectors",
+              "parts": [
+                "api",
+                "alerts",
+                "connectors"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 8
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "GET",
+              "orig": "/api/alerts/triggers",
+              "parts": [
+                "api",
+                "alerts",
+                "triggers"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 9
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "upload_caption_meme_success": {
+      "fields": [],
+      "name": "upload_caption_meme_success",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/v1/memes/caption-upload",
+              "parts": [
+                "api",
+                "v1",
+                "memes",
+                "caption-upload"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "create"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "video": {
+      "fields": [
+        {
+          "active": true,
+          "name": "action",
+          "op": {
+            "create": {
+              "req": true,
+              "type": "`$STRING`"
+            }
+          },
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "asset_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 1
+        },
+        {
+          "active": true,
+          "name": "at_m",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "audio_asset_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "beat_offset_m",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "bitrate_kbp",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "bpm",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "cancelled",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "container",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "duration_m",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "duration_second",
+          "op": {
+            "create": {
+              "req": false,
+              "type": "`$NUMBER`"
+            }
+          },
+          "req": true,
+          "type": "`$NUMBER`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "easing",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 11
+        },
+        {
+          "active": true,
+          "name": "error",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 12
+        },
+        {
+          "active": true,
+          "name": "frame_rate",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 13
+        },
+        {
+          "active": true,
+          "name": "input_format",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 14
+        },
+        {
+          "active": true,
+          "name": "intensity",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "job_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "locale",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 17
+        },
+        {
+          "active": true,
+          "name": "mime_type",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 18
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 19
+        },
+        {
+          "active": true,
+          "name": "offset_m",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 20
+        },
+        {
+          "active": true,
+          "name": "output_preset_id",
+          "op": {
+            "create": {
+              "req": false,
+              "type": "`$STRING`"
+            }
+          },
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 21
+        },
+        {
+          "active": true,
+          "name": "output_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 22
+        },
+        {
+          "active": true,
+          "name": "plan_tier",
+          "op": {
+            "create": {
+              "req": false,
+              "type": "`$STRING`"
+            }
+          },
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 23
+        },
+        {
+          "active": true,
+          "name": "preset_id",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 24
+        },
+        {
+          "active": true,
+          "name": "progress_percent",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 25
+        },
+        {
+          "active": true,
+          "name": "project",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 26
+        },
+        {
+          "active": true,
+          "name": "project_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 27
+        },
+        {
+          "active": true,
+          "name": "property",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 28
+        },
+        {
+          "active": true,
+          "name": "source_device_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 29
+        },
+        {
+          "active": true,
+          "name": "source_url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 30
+        },
+        {
+          "active": true,
+          "name": "stage",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 31
+        },
+        {
+          "active": true,
+          "name": "start_m",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 32
+        },
+        {
+          "active": true,
+          "name": "style_preset_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 33
+        },
+        {
+          "active": true,
+          "name": "sync_to_beat_grid",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 34
+        },
+        {
+          "active": true,
+          "name": "tone",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 35
+        },
+        {
+          "active": true,
+          "name": "track_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 36
+        },
+        {
+          "active": true,
+          "name": "transcript",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 37
+        },
+        {
+          "active": true,
+          "name": "trend_keyword",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 38
+        },
+        {
+          "active": true,
+          "name": "type",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 39
+        },
+        {
+          "active": true,
+          "name": "updated_at",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 40
+        },
+        {
+          "active": true,
+          "name": "value",
+          "req": false,
+          "type": "`$NUMBER`",
+          "index$": 41
+        },
+        {
+          "active": true,
+          "name": "watermark_enabled",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 42
+        },
+        {
+          "active": true,
+          "name": "watermark_text",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 43
+        },
+        {
+          "active": true,
+          "name": "worker_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 44
+        }
+      ],
+      "name": "video",
+      "op": {
+        "create": {
+          "input": "data",
+          "name": "create",
+          "points": [
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/video/drafts",
+              "parts": [
+                "api",
+                "video",
+                "drafts"
+              ],
+              "select": {
+                "$action": "draft"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/video/export-settings",
+              "parts": [
+                "api",
+                "video",
+                "export-settings"
+              ],
+              "select": {
+                "$action": "export_setting"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/video/formats",
+              "parts": [
+                "api",
+                "video",
+                "formats"
+              ],
+              "select": {
+                "$action": "format"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/video/render-queue",
+              "parts": [
+                "api",
+                "video",
+                "render-queue"
+              ],
+              "select": {
+                "$action": "render_queue"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/video/subtitles",
+              "parts": [
+                "api",
+                "video",
+                "subtitles"
+              ],
+              "select": {
+                "$action": "subtitle"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 4
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/video/text-animations",
+              "parts": [
+                "api",
+                "video",
+                "text-animations"
+              ],
+              "select": {
+                "$action": "text_animation"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 5
+            },
+            {
+              "active": true,
+              "args": {},
+              "method": "POST",
+              "orig": "/api/video/timeline",
+              "parts": [
+                "api",
+                "video",
+                "timeline"
+              ],
+              "select": {
+                "$action": "timeline"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 6
+            }
+          ],
+          "key$": "create"
+        },
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "beat_offset_m",
+                    "orig": "beat_offset_m",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "bpm",
+                    "orig": "bpm",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "locale",
+                    "orig": "locale",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "style_preset_id",
+                    "orig": "style_preset_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "sync_to_beat_grid",
+                    "orig": "sync_to_beat_grid",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "tone",
+                    "orig": "tone",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "transcript",
+                    "orig": "transcript",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "trend_keyword",
+                    "orig": "trend_keyword",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/video/subtitles",
+              "parts": [
+                "api",
+                "video",
+                "subtitles"
+              ],
+              "select": {
+                "$action": "subtitle",
+                "exist": [
+                  "beat_offset_m",
+                  "bpm",
+                  "locale",
+                  "style_preset_id",
+                  "sync_to_beat_grid",
+                  "tone",
+                  "transcript",
+                  "trend_keyword"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "kind",
+                    "orig": "kind",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "limit",
+                    "orig": "limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "tag",
+                    "orig": "tag",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "target_bpm",
+                    "orig": "target_bpm",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "tolerance_bpm",
+                    "orig": "tolerance_bpm",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/video/audio-library",
+              "parts": [
+                "api",
+                "video",
+                "audio-library"
+              ],
+              "select": {
+                "$action": "audio_library",
+                "exist": [
+                  "kind",
+                  "limit",
+                  "query",
+                  "tag",
+                  "target_bpm",
+                  "tolerance_bpm"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "bitrate_kbp",
+                    "orig": "bitrate_kbp",
+                    "reqd": false,
+                    "type": "`$NUMBER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "container",
+                    "orig": "container",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "plan_tier",
+                    "orig": "plan_tier",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "preset_id",
+                    "orig": "preset_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "watermark_enabled",
+                    "orig": "watermark_enabled",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "watermark_text",
+                    "orig": "watermark_text",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/video/export-settings",
+              "parts": [
+                "api",
+                "video",
+                "export-settings"
+              ],
+              "select": {
+                "$action": "export_setting",
+                "exist": [
+                  "bitrate_kbp",
+                  "container",
+                  "plan_tier",
+                  "preset_id",
+                  "watermark_enabled",
+                  "watermark_text"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 2
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "duration_second",
+                    "orig": "duration_second",
+                    "reqd": false,
+                    "type": "`$NUMBER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "input_format",
+                    "orig": "input_format",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "mime_type",
+                    "orig": "mime_type",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "output_preset_id",
+                    "orig": "output_preset_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "plan_tier",
+                    "orig": "plan_tier",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/video/formats",
+              "parts": [
+                "api",
+                "video",
+                "formats"
+              ],
+              "select": {
+                "$action": "format",
+                "exist": [
+                  "duration_second",
+                  "input_format",
+                  "mime_type",
+                  "output_preset_id",
+                  "plan_tier"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 3
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "limit",
+                    "orig": "limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "mode",
+                    "orig": "mode",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "plan_tier",
+                    "orig": "plan_tier",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "status",
+                    "orig": "status",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/video/render-queue",
+              "parts": [
+                "api",
+                "video",
+                "render-queue"
+              ],
+              "select": {
+                "$action": "render_queue",
+                "exist": [
+                  "limit",
+                  "mode",
+                  "plan_tier",
+                  "status"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 4
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "duration_m",
+                    "orig": "duration_m",
+                    "reqd": false,
+                    "type": "`$NUMBER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "intensity",
+                    "orig": "intensity",
+                    "reqd": false,
+                    "type": "`$NUMBER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "preset_id",
+                    "orig": "preset_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "start_m",
+                    "orig": "start_m",
+                    "reqd": false,
+                    "type": "`$NUMBER`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/video/text-animations",
+              "parts": [
+                "api",
+                "video",
+                "text-animations"
+              ],
+              "select": {
+                "$action": "text_animation",
+                "exist": [
+                  "duration_m",
+                  "intensity",
+                  "preset_id",
+                  "start_m"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 5
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "limit",
+                    "orig": "limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "project_id",
+                    "orig": "project_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/video/drafts",
+              "parts": [
+                "api",
+                "video",
+                "drafts"
+              ],
+              "select": {
+                "$action": "draft",
+                "exist": [
+                  "limit",
+                  "project_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 6
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "limit",
+                    "orig": "limit",
+                    "reqd": false,
+                    "type": "`$INTEGER`"
+                  },
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "project_id",
+                    "orig": "project_id",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/video/timeline",
+              "parts": [
+                "api",
+                "video",
+                "timeline"
+              ],
+              "select": {
+                "$action": "timeline",
+                "exist": [
+                  "limit",
+                  "project_id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 7
+            },
+            {
+              "active": true,
+              "args": {
+                "query": [
+                  {
+                    "active": true,
+                    "kind": "query",
+                    "name": "refresh",
+                    "orig": "refresh",
+                    "reqd": false,
+                    "type": "`$BOOLEAN`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/api/video/render-performance",
+              "parts": [
+                "api",
+                "video",
+                "render-performance"
+              ],
+              "select": {
+                "$action": "render_performance",
+                "exist": [
+                  "refresh"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 8
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    }
+  }
+}
+
+
+const config = new Config()
+
+export {
+  config
+}
+

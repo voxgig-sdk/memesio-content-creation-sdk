@@ -1,0 +1,90 @@
+# Entity: generate
+
+main: kit: entity: generate: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "caption"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "data"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "duration_m"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "fps"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "gif_slug"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ok"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "return_base64"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "start_m"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "tag"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "width_px"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "generate"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/v1/gifs/generate"
+          parts: [
+            "api"
+            "v1"
+            "gifs"
+            "generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

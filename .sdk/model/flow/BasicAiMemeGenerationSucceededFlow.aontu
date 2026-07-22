@@ -1,0 +1,18 @@
+# BasicAiMemeGenerationSucceededFlow
+
+main: kit: flow: BasicAiMemeGenerationSucceededFlow:
+{
+  entity: "ai_meme_generation_succeeded",
+  kind: "basic",
+  name: "BasicAiMemeGenerationSucceededFlow",
+  step: [
+    {
+      input: {
+        ref: "ai_meme_generation_succeeded_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicAiMemeGenerationSucceededFlow"
+}

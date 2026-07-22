@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "ai_provider": {
+      "AI_PROVIDER00": {
+        "actor_id": "ACTOR01",
+        "correlation_id": "CORRELATION01",
+        "limit": 102,
+        "mapping_mode": "s67",
+        "max_slot": "s68",
+        "prompt": "s69",
+        "source_image_url": "s6a",
+        "text": [],
+        "trend_signal": [],
+        "workspace_id": "WORKSPACE01",
+        "id": "AI_PROVIDER00"
+      },
+      "AI_PROVIDER01": {
+        "actor_id": "ACTOR01",
+        "correlation_id": "CORRELATION01",
+        "limit": 202,
+        "mapping_mode": "scb",
+        "max_slot": "scc",
+        "prompt": "scd",
+        "source_image_url": "sce",
+        "text": [],
+        "trend_signal": [],
+        "workspace_id": "WORKSPACE01",
+        "id": "AI_PROVIDER01"
+      },
+      "AI_PROVIDER02": {
+        "actor_id": "ACTOR01",
+        "correlation_id": "CORRELATION01",
+        "limit": 302,
+        "mapping_mode": "s12f",
+        "max_slot": "s130",
+        "prompt": "s131",
+        "source_image_url": "s132",
+        "text": [],
+        "trend_signal": [],
+        "workspace_id": "WORKSPACE01",
+        "id": "AI_PROVIDER02"
+      }
+    }
+  },
+  "new": {
+    "ai_provider": {
+      "ai_provider_ref01": {
+        "actor_id": "ACTOR01",
+        "correlation_id": "CORRELATION01",
+        "limit": 402,
+        "mapping_mode": "s193",
+        "max_slot": "s194",
+        "prompt": "s195",
+        "source_image_url": "s196",
+        "text": [],
+        "trend_signal": [],
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  }
+}

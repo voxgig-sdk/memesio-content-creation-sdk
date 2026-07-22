@@ -1,0 +1,85 @@
+{
+  "existing": {
+    "trend_alert": {
+      "TREND_ALERT00": {
+        "action": "sa0",
+        "actor_id": "ACTOR01",
+        "aggressiveness": 162,
+        "alert_id": "ALERT01",
+        "channel": [],
+        "deliver_all_alert": false,
+        "event": {},
+        "explicit_niche": [],
+        "explicit_region": [],
+        "explicit_source": [],
+        "explicit_topic": [],
+        "follower_count": "sab",
+        "niche": "sac",
+        "region": "sad",
+        "source": "sae",
+        "topic": "saf",
+        "id": "TREND_ALERT00"
+      },
+      "TREND_ALERT01": {
+        "action": "s140",
+        "actor_id": "ACTOR01",
+        "aggressiveness": 322,
+        "alert_id": "ALERT01",
+        "channel": [],
+        "deliver_all_alert": false,
+        "event": {},
+        "explicit_niche": [],
+        "explicit_region": [],
+        "explicit_source": [],
+        "explicit_topic": [],
+        "follower_count": "s14b",
+        "niche": "s14c",
+        "region": "s14d",
+        "source": "s14e",
+        "topic": "s14f",
+        "id": "TREND_ALERT01"
+      },
+      "TREND_ALERT02": {
+        "action": "s1e0",
+        "actor_id": "ACTOR01",
+        "aggressiveness": 482,
+        "alert_id": "ALERT01",
+        "channel": [],
+        "deliver_all_alert": false,
+        "event": {},
+        "explicit_niche": [],
+        "explicit_region": [],
+        "explicit_source": [],
+        "explicit_topic": [],
+        "follower_count": "s1eb",
+        "niche": "s1ec",
+        "region": "s1ed",
+        "source": "s1ee",
+        "topic": "s1ef",
+        "id": "TREND_ALERT02"
+      }
+    }
+  },
+  "new": {
+    "trend_alert": {
+      "trend_alert_ref01": {
+        "action": "s280",
+        "actor_id": "ACTOR01",
+        "aggressiveness": 642,
+        "alert_id": "ALERT01",
+        "channel": [],
+        "deliver_all_alert": false,
+        "event": {},
+        "explicit_niche": [],
+        "explicit_region": [],
+        "explicit_source": [],
+        "explicit_topic": [],
+        "follower_count": "s28b",
+        "niche": "s28c",
+        "region": "s28d",
+        "source": "s28e",
+        "topic": "s28f"
+      }
+    }
+  }
+}

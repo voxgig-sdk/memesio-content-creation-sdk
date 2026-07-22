@@ -1,0 +1,32 @@
+# BasicPublicTemplateMediaItemFlow
+
+main: kit: flow: BasicPublicTemplateMediaItemFlow:
+{
+  entity: "public_template_media_item",
+  kind: "basic",
+  name: "BasicPublicTemplateMediaItemFlow",
+  step: [
+    {
+      input: {
+        ref: "public_template_media_item_ref01",
+        srcdatavar: "public_template_media_item_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "public_template_media_item01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-public_template_media_item_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPublicTemplateMediaItemFlow"
+}

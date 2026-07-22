@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "agent": {
+      "AGENT00": {
+        "description": "s5a",
+        "locale": "s5b",
+        "name": "s5c",
+        "slug": "s5d",
+        "status": "s5e",
+        "style_preset": "s5f",
+        "system_prompt": "s60",
+        "watermark_text": "s61",
+        "website_url": "s62",
+        "id": "AGENT00"
+      },
+      "AGENT01": {
+        "description": "sb4",
+        "locale": "sb5",
+        "name": "sb6",
+        "slug": "sb7",
+        "status": "sb8",
+        "style_preset": "sb9",
+        "system_prompt": "sba",
+        "watermark_text": "sbb",
+        "website_url": "sbc",
+        "id": "AGENT01"
+      },
+      "AGENT02": {
+        "description": "s10e",
+        "locale": "s10f",
+        "name": "s110",
+        "slug": "s111",
+        "status": "s112",
+        "style_preset": "s113",
+        "system_prompt": "s114",
+        "watermark_text": "s115",
+        "website_url": "s116",
+        "id": "AGENT02"
+      }
+    }
+  },
+  "new": {
+    "agent": {
+      "agent_ref01": {
+        "description": "s168",
+        "locale": "s169",
+        "name": "s16a",
+        "slug": "s16b",
+        "status": "s16c",
+        "style_preset": "s16d",
+        "system_prompt": "s16e",
+        "watermark_text": "s16f",
+        "website_url": "s170"
+      }
+    }
+  }
+}

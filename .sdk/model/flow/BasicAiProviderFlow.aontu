@@ -1,0 +1,36 @@
+# BasicAiProviderFlow
+
+main: kit: flow: BasicAiProviderFlow:
+{
+  entity: "ai_provider",
+  kind: "basic",
+  name: "BasicAiProviderFlow",
+  step: [
+    {
+      input: {
+        ref: "ai_provider_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "ai_provider_ref01",
+        srcdatavar: "ai_provider_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ai_provider_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAiProviderFlow"
+}

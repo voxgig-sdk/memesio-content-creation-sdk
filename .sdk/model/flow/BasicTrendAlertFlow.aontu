@@ -1,0 +1,36 @@
+# BasicTrendAlertFlow
+
+main: kit: flow: BasicTrendAlertFlow:
+{
+  entity: "trend_alert",
+  kind: "basic",
+  name: "BasicTrendAlertFlow",
+  step: [
+    {
+      input: {
+        ref: "trend_alert_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "trend_alert_ref01",
+        srcdatavar: "trend_alert_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-trend_alert_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTrendAlertFlow"
+}

@@ -1,0 +1,172 @@
+# Entity: ai_meme_generation_succeeded
+
+main: kit: entity: ai_meme_generation_succeeded: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allow_heuristic_fallback"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "caption"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "caption_source"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "correlation_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "degraded_from_async"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "editable_caption"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "flow"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "mode"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "ok"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "preferred_provider_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "prompt"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "rewrite_note"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "run_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "template_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tone"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tone_cue"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "variant"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "variant_count"
+      op: {
+        create: {
+          req: false
+          type: "`$NUMBER`"
+        }
+      }
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "workspace_id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "ai_meme_generation_succeeded"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/ai/memes/generate"
+          parts: [
+            "api"
+            "ai"
+            "memes"
+            "generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/v1/memes/generate"
+          parts: [
+            "api"
+            "v1"
+            "memes"
+            "generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

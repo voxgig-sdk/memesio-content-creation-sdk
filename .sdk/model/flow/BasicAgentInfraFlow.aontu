@@ -1,0 +1,54 @@
+# BasicAgentInfraFlow
+
+main: kit: flow: BasicAgentInfraFlow:
+{
+  entity: "agent_infra",
+  kind: "basic",
+  name: "BasicAgentInfraFlow",
+  step: [
+    {
+      input: {
+        ref: "agent_infra_ref01"
+      }
+
+      match: {
+        agent_id: "agent01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "agent_infra_ref01",
+        srcdatavar: "agent_infra_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-agent_infra_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "agent_infra_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        agent_id: "agent01",
+        id: "agent_infra01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicAgentInfraFlow"
+}

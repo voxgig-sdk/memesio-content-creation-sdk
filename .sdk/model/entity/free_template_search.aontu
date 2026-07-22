@@ -1,0 +1,264 @@
+# Entity: free_template_search
+
+main: kit: entity: free_template_search: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "animated"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "asset_byte"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "asset_content_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "box_count"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "caption"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "caption_count"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "description"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "duration_m"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "example_image_url"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "frame_count"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "height"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "media_type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "poster_image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "quality_status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "source_template_id"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "source_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "width"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "free_template_search"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "image"
+                kind: "query"
+                name: "media_type"
+                orig: "media_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "mode"
+                orig: "mode"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "page_size"
+                orig: "page_size"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "tag"
+                orig: "tag"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/free/templates"
+          parts: [
+            "api"
+            "free"
+            "templates"
+          ]
+          select: {
+            exist: [
+              "media_type"
+              "mode"
+              "page"
+              "page_size"
+              "q"
+              "query"
+              "sort"
+              "tag"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

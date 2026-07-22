@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "generate": {
+      "GENERATE00": {
+        "caption": [],
+        "data": {},
+        "duration_m": "s70",
+        "fps": "s71",
+        "gif_slug": "s72",
+        "ok": false,
+        "return_base64": true,
+        "start_m": "s75",
+        "tag": [],
+        "title": "s77",
+        "width_px": "s78",
+        "id": "GENERATE00"
+      },
+      "GENERATE01": {
+        "caption": [],
+        "data": {},
+        "duration_m": "sde",
+        "fps": "sdf",
+        "gif_slug": "se0",
+        "ok": false,
+        "return_base64": true,
+        "start_m": "se3",
+        "tag": [],
+        "title": "se5",
+        "width_px": "se6",
+        "id": "GENERATE01"
+      },
+      "GENERATE02": {
+        "caption": [],
+        "data": {},
+        "duration_m": "s14c",
+        "fps": "s14d",
+        "gif_slug": "s14e",
+        "ok": false,
+        "return_base64": true,
+        "start_m": "s151",
+        "tag": [],
+        "title": "s153",
+        "width_px": "s154",
+        "id": "GENERATE02"
+      }
+    }
+  },
+  "new": {
+    "generate": {
+      "generate_ref01": {
+        "caption": [],
+        "data": {},
+        "duration_m": "s1ba",
+        "fps": "s1bb",
+        "gif_slug": "s1bc",
+        "ok": false,
+        "return_base64": true,
+        "start_m": "s1bf",
+        "tag": [],
+        "title": "s1c1",
+        "width_px": "s1c2"
+      }
+    }
+  }
+}

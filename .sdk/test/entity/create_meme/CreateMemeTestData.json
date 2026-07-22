@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "create_meme": {
+      "CREATE_MEME00": {
+        "canva": {},
+        "caption": [],
+        "generation_run_id": "GENERATION_RUN01",
+        "generation_variant_id": "GENERATION_VARIANT01",
+        "image_data_url": "s72",
+        "overlay": [],
+        "source_image_url": "s74",
+        "template_slug": "s75",
+        "title": "s76",
+        "visibility": "s77",
+        "watermark": {},
+        "id": "CREATE_MEME00"
+      },
+      "CREATE_MEME01": {
+        "canva": {},
+        "caption": [],
+        "generation_run_id": "GENERATION_RUN01",
+        "generation_variant_id": "GENERATION_VARIANT01",
+        "image_data_url": "se0",
+        "overlay": [],
+        "source_image_url": "se2",
+        "template_slug": "se3",
+        "title": "se4",
+        "visibility": "se5",
+        "watermark": {},
+        "id": "CREATE_MEME01"
+      },
+      "CREATE_MEME02": {
+        "canva": {},
+        "caption": [],
+        "generation_run_id": "GENERATION_RUN01",
+        "generation_variant_id": "GENERATION_VARIANT01",
+        "image_data_url": "s14e",
+        "overlay": [],
+        "source_image_url": "s150",
+        "template_slug": "s151",
+        "title": "s152",
+        "visibility": "s153",
+        "watermark": {},
+        "id": "CREATE_MEME02"
+      }
+    }
+  },
+  "new": {
+    "create_meme": {
+      "create_meme_ref01": {
+        "canva": {},
+        "caption": [],
+        "generation_run_id": "GENERATION_RUN01",
+        "generation_variant_id": "GENERATION_VARIANT01",
+        "image_data_url": "s1bc",
+        "overlay": [],
+        "source_image_url": "s1be",
+        "template_slug": "s1bf",
+        "title": "s1c0",
+        "visibility": "s1c1",
+        "watermark": {}
+      }
+    }
+  }
+}

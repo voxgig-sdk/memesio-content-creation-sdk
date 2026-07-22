@@ -1,0 +1,45 @@
+# BasicMemeFlow
+
+main: kit: flow: BasicMemeFlow:
+{
+  entity: "meme",
+  kind: "basic",
+  name: "BasicMemeFlow",
+  step: [
+    {
+      input: {
+        ref: "meme_ref01",
+        srcdatavar: "meme_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "meme01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-meme_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "meme_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "meme01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicMemeFlow"
+}

@@ -1,0 +1,889 @@
+# Entity: video
+
+main: kit: entity: video: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "action"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "asset_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "at_m"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "audio_asset_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "beat_offset_m"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "bitrate_kbp"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "bpm"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "cancelled"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "container"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "duration_m"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "duration_second"
+      op: {
+        create: {
+          req: false
+          type: "`$NUMBER`"
+        }
+      }
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "easing"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "error"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "frame_rate"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "input_format"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "intensity"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "job_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "locale"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "mime_type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "offset_m"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "output_preset_id"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "output_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "plan_tier"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "preset_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "progress_percent"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "project"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "project_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "property"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "source_device_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "source_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "stage"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "start_m"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "style_preset_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "sync_to_beat_grid"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "tone"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "track_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "transcript"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "trend_keyword"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "value"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "watermark_enabled"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "watermark_text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "worker_id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "video"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/video/drafts"
+          parts: [
+            "api"
+            "video"
+            "drafts"
+          ]
+          select: {
+            "$action": "draft"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/video/export-settings"
+          parts: [
+            "api"
+            "video"
+            "export-settings"
+          ]
+          select: {
+            "$action": "export_setting"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/video/formats"
+          parts: [
+            "api"
+            "video"
+            "formats"
+          ]
+          select: {
+            "$action": "format"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/video/render-queue"
+          parts: [
+            "api"
+            "video"
+            "render-queue"
+          ]
+          select: {
+            "$action": "render_queue"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/video/subtitles"
+          parts: [
+            "api"
+            "video"
+            "subtitles"
+          ]
+          select: {
+            "$action": "subtitle"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/video/text-animations"
+          parts: [
+            "api"
+            "video"
+            "text-animations"
+          ]
+          select: {
+            "$action": "text_animation"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/video/timeline"
+          parts: [
+            "api"
+            "video"
+            "timeline"
+          ]
+          select: {
+            "$action": "timeline"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "beat_offset_m"
+                orig: "beat_offset_m"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "bpm"
+                orig: "bpm"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "locale"
+                orig: "locale"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "style_preset_id"
+                orig: "style_preset_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sync_to_beat_grid"
+                orig: "sync_to_beat_grid"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "tone"
+                orig: "tone"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "transcript"
+                orig: "transcript"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "trend_keyword"
+                orig: "trend_keyword"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/video/subtitles"
+          parts: [
+            "api"
+            "video"
+            "subtitles"
+          ]
+          select: {
+            "$action": "subtitle"
+            exist: [
+              "beat_offset_m"
+              "bpm"
+              "locale"
+              "style_preset_id"
+              "sync_to_beat_grid"
+              "tone"
+              "transcript"
+              "trend_keyword"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "kind"
+                orig: "kind"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "tag"
+                orig: "tag"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "target_bpm"
+                orig: "target_bpm"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "tolerance_bpm"
+                orig: "tolerance_bpm"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/video/audio-library"
+          parts: [
+            "api"
+            "video"
+            "audio-library"
+          ]
+          select: {
+            "$action": "audio_library"
+            exist: [
+              "kind"
+              "limit"
+              "query"
+              "tag"
+              "target_bpm"
+              "tolerance_bpm"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "bitrate_kbp"
+                orig: "bitrate_kbp"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "container"
+                orig: "container"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "plan_tier"
+                orig: "plan_tier"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "preset_id"
+                orig: "preset_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "watermark_enabled"
+                orig: "watermark_enabled"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "watermark_text"
+                orig: "watermark_text"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/video/export-settings"
+          parts: [
+            "api"
+            "video"
+            "export-settings"
+          ]
+          select: {
+            "$action": "export_setting"
+            exist: [
+              "bitrate_kbp"
+              "container"
+              "plan_tier"
+              "preset_id"
+              "watermark_enabled"
+              "watermark_text"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "duration_second"
+                orig: "duration_second"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "input_format"
+                orig: "input_format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "mime_type"
+                orig: "mime_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "output_preset_id"
+                orig: "output_preset_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "plan_tier"
+                orig: "plan_tier"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/video/formats"
+          parts: [
+            "api"
+            "video"
+            "formats"
+          ]
+          select: {
+            "$action": "format"
+            exist: [
+              "duration_second"
+              "input_format"
+              "mime_type"
+              "output_preset_id"
+              "plan_tier"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "mode"
+                orig: "mode"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "plan_tier"
+                orig: "plan_tier"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "status"
+                orig: "status"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/video/render-queue"
+          parts: [
+            "api"
+            "video"
+            "render-queue"
+          ]
+          select: {
+            "$action": "render_queue"
+            exist: [
+              "limit"
+              "mode"
+              "plan_tier"
+              "status"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "duration_m"
+                orig: "duration_m"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "intensity"
+                orig: "intensity"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "preset_id"
+                orig: "preset_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "start_m"
+                orig: "start_m"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/video/text-animations"
+          parts: [
+            "api"
+            "video"
+            "text-animations"
+          ]
+          select: {
+            "$action": "text_animation"
+            exist: [
+              "duration_m"
+              "intensity"
+              "preset_id"
+              "start_m"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/video/drafts"
+          parts: [
+            "api"
+            "video"
+            "drafts"
+          ]
+          select: {
+            "$action": "draft"
+            exist: [
+              "limit"
+              "project_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/video/timeline"
+          parts: [
+            "api"
+            "video"
+            "timeline"
+          ]
+          select: {
+            "$action": "timeline"
+            exist: [
+              "limit"
+              "project_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "refresh"
+                orig: "refresh"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/video/render-performance"
+          parts: [
+            "api"
+            "video"
+            "render-performance"
+          ]
+          select: {
+            "$action": "render_performance"
+            exist: [
+              "refresh"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

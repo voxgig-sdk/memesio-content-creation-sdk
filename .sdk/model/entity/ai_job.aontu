@@ -1,0 +1,541 @@
+# Entity: ai_job
+
+main: kit: entity: ai_job: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "action"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "actor_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "after_state"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "attempt"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "before_state"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "brush_edit"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "capability"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "celebrity_confidence"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "consent_attested"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "created_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "detected_face_count"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "edge_refinement"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "estimated_cost_usd"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "frame_time_m"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "height"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "input"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "layer_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "layer_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "max_attempt"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "max_face"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "media_type"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "metadata"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "nsfw_score"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "output"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "project_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "provider_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "reason"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "run_after_m"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "source_asset_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "source_face_index"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "source_image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "target_asset_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "target_face_index"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "timeout_m"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "trace_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "version_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "width"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "worker_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "workspace_id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ai_job"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "job_id"
+                orig: "job_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api/ai/jobs/{jobId}/cancel"
+          parts: [
+            "api"
+            "ai"
+            "jobs"
+            "{job_id}"
+            "cancel"
+          ]
+          rename: {
+            param: {
+              jobId: "job_id"
+            }
+          }
+          select: {
+            exist: [
+              "job_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "job_id"
+                orig: "job_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api/ai/jobs/{jobId}/complete"
+          parts: [
+            "api"
+            "ai"
+            "jobs"
+            "{job_id}"
+            "complete"
+          ]
+          rename: {
+            param: {
+              jobId: "job_id"
+            }
+          }
+          select: {
+            exist: [
+              "job_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/background-remove"
+          parts: [
+            "api"
+            "ai"
+            "background-remove"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/edit-history"
+          parts: [
+            "api"
+            "ai"
+            "edit-history"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/face-swap"
+          parts: [
+            "api"
+            "ai"
+            "face-swap"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/face-targets"
+          parts: [
+            "api"
+            "ai"
+            "face-targets"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/ai/jobs"
+          parts: [
+            "api"
+            "ai"
+            "jobs"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "from_version_id"
+                orig: "from_version_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "layer_id"
+                orig: "layer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "mode"
+                orig: "mode"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "to_version_id"
+                orig: "to_version_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/ai/edit-history"
+          parts: [
+            "api"
+            "ai"
+            "edit-history"
+          ]
+          select: {
+            exist: [
+              "from_version_id"
+              "layer_id"
+              "limit"
+              "mode"
+              "project_id"
+              "to_version_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "page_size"
+                orig: "page_size"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "status"
+                orig: "status"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/ai/jobs"
+          parts: [
+            "api"
+            "ai"
+            "jobs"
+          ]
+          select: {
+            exist: [
+              "page"
+              "page_size"
+              "status"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "job_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/ai/jobs/{jobId}"
+          parts: [
+            "api"
+            "ai"
+            "jobs"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              jobId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "job"
+      ]
+    ]
+  }
+
+
+
+}

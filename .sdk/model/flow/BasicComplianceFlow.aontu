@@ -1,0 +1,28 @@
+# BasicComplianceFlow
+
+main: kit: flow: BasicComplianceFlow:
+{
+  entity: "compliance",
+  kind: "basic",
+  name: "BasicComplianceFlow",
+  step: [
+    {
+      input: {
+        ref: "compliance_ref01",
+        srcdatavar: "compliance_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-compliance_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicComplianceFlow"
+}

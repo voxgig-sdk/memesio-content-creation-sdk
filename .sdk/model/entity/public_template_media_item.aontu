@@ -1,0 +1,268 @@
+# Entity: public_template_media_item
+
+main: kit: entity: public_template_media_item: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "animated"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "asset_byte"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "asset_content_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "box_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "caption"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "caption_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "category"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "description"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "duration_m"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "example_image_url"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "frame_count"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "height"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "media_type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "poster_image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "preview_image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "quality_status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "source_template_id"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "source_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "width"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "public_template_media_item"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "image"
+                kind: "query"
+                name: "media_type"
+                orig: "media_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/templates/{slug}"
+          parts: [
+            "api"
+            "templates"
+            "{slug}"
+          ]
+          select: {
+            exist: [
+              "media_type"
+              "slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/gifs/{slug}"
+          parts: [
+            "api"
+            "gifs"
+            "{slug}"
+          ]
+          select: {
+            exist: [
+              "slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "gif"
+      ]
+      [
+        "template"
+      ]
+    ]
+  }
+
+
+
+}

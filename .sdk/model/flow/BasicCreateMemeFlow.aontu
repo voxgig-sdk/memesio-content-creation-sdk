@@ -1,0 +1,18 @@
+# BasicCreateMemeFlow
+
+main: kit: flow: BasicCreateMemeFlow:
+{
+  entity: "create_meme",
+  kind: "basic",
+  name: "BasicCreateMemeFlow",
+  step: [
+    {
+      input: {
+        ref: "create_meme_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicCreateMemeFlow"
+}

@@ -1,0 +1,18 @@
+# BasicUploadCaptionMemeSuccessFlow
+
+main: kit: flow: BasicUploadCaptionMemeSuccessFlow:
+{
+  entity: "upload_caption_meme_success",
+  kind: "basic",
+  name: "BasicUploadCaptionMemeSuccessFlow",
+  step: [
+    {
+      input: {
+        ref: "upload_caption_meme_success_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicUploadCaptionMemeSuccessFlow"
+}

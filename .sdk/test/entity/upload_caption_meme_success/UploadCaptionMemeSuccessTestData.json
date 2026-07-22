@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "upload_caption_meme_success": {
+      "UPLOAD_CAPTION_MEME_SUCCESS00": {
+        "id": "UPLOAD_CAPTION_MEME_SUCCESS00"
+      },
+      "UPLOAD_CAPTION_MEME_SUCCESS01": {
+        "id": "UPLOAD_CAPTION_MEME_SUCCESS01"
+      },
+      "UPLOAD_CAPTION_MEME_SUCCESS02": {
+        "id": "UPLOAD_CAPTION_MEME_SUCCESS02"
+      }
+    }
+  },
+  "new": {
+    "upload_caption_meme_success": {
+      "upload_caption_meme_success_ref01": {}
+    }
+  }
+}

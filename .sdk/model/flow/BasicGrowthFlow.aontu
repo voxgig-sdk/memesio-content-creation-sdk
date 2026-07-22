@@ -1,0 +1,36 @@
+# BasicGrowthFlow
+
+main: kit: flow: BasicGrowthFlow:
+{
+  entity: "growth",
+  kind: "basic",
+  name: "BasicGrowthFlow",
+  step: [
+    {
+      input: {
+        ref: "growth_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "growth_ref01",
+        srcdatavar: "growth_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-growth_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGrowthFlow"
+}

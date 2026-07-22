@@ -1,0 +1,67 @@
+# Entity: media
+
+main: kit: entity: media: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "action"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "content_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "expires_in_second"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "owner_token"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "path"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "prefix"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "media"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/media/signed-url"
+          parts: [
+            "api"
+            "media"
+            "signed-url"
+          ]
+          select: {
+            "$action": "signed_url"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

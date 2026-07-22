@@ -1,0 +1,69 @@
+# Entity: developer_api
+
+main: kit: entity: developer_api: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "limit"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "prompt"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "trend_signal"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "developer_api"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/v1/templates/ideas"
+          parts: [
+            "api"
+            "v1"
+            "templates"
+            "ideas"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/api/v1/memes/generate"
+          parts: [
+            "api"
+            "v1"
+            "memes"
+            "generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

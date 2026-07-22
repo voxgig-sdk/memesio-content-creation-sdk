@@ -1,0 +1,150 @@
+# Entity: analytics
+
+main: kit: entity: analytics: {
+
+  alias: field: {}
+
+  name: "analytics"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "template_id"
+                orig: "template_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/analytics/experiments/templates"
+          parts: [
+            "api"
+            "analytics"
+            "experiments"
+            "templates"
+          ]
+          select: {
+            exist: [
+              "template_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "window_hour"
+                orig: "window_hour"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/analytics/dashboards/backend-reliability"
+          parts: [
+            "api"
+            "analytics"
+            "dashboards"
+            "backend-reliability"
+          ]
+          select: {
+            exist: [
+              "window_hour"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/analytics/alerts/backend"
+          parts: [
+            "api"
+            "analytics"
+            "alerts"
+            "backend"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/analytics/anomalies/ai"
+          parts: [
+            "api"
+            "analytics"
+            "anomalies"
+            "ai"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/analytics/dashboards/activation-retention"
+          parts: [
+            "api"
+            "analytics"
+            "dashboards"
+            "activation-retention"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/analytics/dashboards/feature-adoption"
+          parts: [
+            "api"
+            "analytics"
+            "dashboards"
+            "feature-adoption"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/api/analytics/metric-dictionary"
+          parts: [
+            "api"
+            "analytics"
+            "metric-dictionary"
+          ]
+          select: {
+            "$action": "metric_dictionary"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

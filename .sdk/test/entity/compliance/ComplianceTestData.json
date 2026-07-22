@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "compliance": {
+      "COMPLIANCE00": {
+        "id": "COMPLIANCE00"
+      },
+      "COMPLIANCE01": {
+        "id": "COMPLIANCE01"
+      },
+      "COMPLIANCE02": {
+        "id": "COMPLIANCE02"
+      }
+    }
+  },
+  "new": {
+    "compliance": {
+      "compliance_ref01": {}
+    }
+  }
+}

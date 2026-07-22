@@ -1,0 +1,178 @@
+# Entity: list_meme
+
+main: kit: entity: list_meme: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alt_text"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "canonical_image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "created_at"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "nsfw_status"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "share_slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "share_url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "share_view"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "template_slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "visibility"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "list_meme"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "exclude_template_clone"
+                orig: "exclude_template_clone"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "include_nsfw"
+                orig: "include_nsfw"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "official_only"
+                orig: "official_only"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "owner_token"
+                orig: "owner_token"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "page_size"
+                orig: "page_size"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "template_slug"
+                orig: "template_slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "visibility"
+                orig: "visibility"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/memes"
+          parts: [
+            "api"
+            "memes"
+          ]
+          select: {
+            exist: [
+              "exclude_template_clone"
+              "include_nsfw"
+              "official_only"
+              "owner_token"
+              "page"
+              "page_size"
+              "query"
+              "template_slug"
+              "visibility"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

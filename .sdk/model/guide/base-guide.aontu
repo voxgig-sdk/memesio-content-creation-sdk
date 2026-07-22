@@ -1,0 +1,421 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 27
+  metrics: count: path: 88
+  metrics: count: method: 117
+
+  entity: agent: {
+    path: "/api/v1/agents": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/v1/agents/{agentId}": {
+      rename: param: "agentId": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: agent_infra: {
+    path: "/api/v1/agents/names:generate": {
+      op: create: method: *POST
+    }
+    path: "/api/v1/agents/rewards/leaderboard": {
+      op: load: method: *GET
+    }
+    path: "/api/v1/agents/rewards/votes": {
+      op: create: method: *POST
+    }
+    path: "/api/v1/agents/rewards/winner:close": {
+      op: create: method: *POST
+    }
+    path: "/api/v1/agents/unlocks/{unlockId}/approve": {
+      rename: param: "unlockId": *"unlock_id"
+      op: create: method: *POST
+    }
+    path: "/api/v1/agents/webhooks/telegram": {
+      op: create: method: *POST
+    }
+    path: "/api/v1/agents/webhooks/whatsapp": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/v1/agents/{agentId}/channels/telegram/bind": {
+      rename: param: "agentId": *"agent_id"
+      op: create: method: *POST
+    }
+    path: "/api/v1/agents/{agentId}/channels/whatsapp/bind": {
+      rename: param: "agentId": *"agent_id"
+      op: create: method: *POST
+    }
+    path: "/api/v1/agents/{agentId}/keys": {
+      action: "keys": {}
+      rename: param: "agentId": *"id"
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/v1/agents/{agentId}/keys/{keyId}": {
+      rename: param: "agentId": *"agent_id"
+      rename: param: "keyId": *"key_id"
+      op: remove: method: *DELETE
+    }
+    path: "/api/v1/agents/{agentId}/unlocks/social-action": {
+      rename: param: "agentId": *"agent_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: ai_caption: {
+    path: "/api/ai/captions/generate": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/ai/captions/moderate": {
+      op: create: method: *POST
+    }
+    path: "/api/ai/captions/prompt": {
+      op: create: method: *POST
+    }
+    path: "/api/ai/captions/rank": {
+      op: create: method: *POST
+    }
+    path: "/api/ai/captions/rewrite": {
+      op: create: method: *POST
+    }
+    path: "/api/ai/captions/scene": {
+      op: create: method: *POST
+    }
+    path: "/api/ai/captions/tone-presets": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+  entity: ai_job: {
+    path: "/api/ai/background-remove": {
+      op: create: method: *POST
+    }
+    path: "/api/ai/edit-history": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/ai/face-swap": {
+      op: create: method: *POST
+    }
+    path: "/api/ai/face-targets": {
+      op: create: method: *POST
+    }
+    path: "/api/ai/jobs": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/ai/jobs/{jobId}": {
+      rename: param: "jobId": *"id"
+      op: load: method: *GET
+    }
+    path: "/api/ai/jobs/{jobId}/cancel": {
+      rename: param: "jobId": *"job_id"
+      op: create: method: *POST
+    }
+    path: "/api/ai/jobs/{jobId}/complete": {
+      rename: param: "jobId": *"job_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: ai_meme_generation_succeeded: {
+    path: "/api/ai/memes/generate": {
+      op: create: method: *POST
+    }
+    path: "/api/v1/memes/generate": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: ai_provider: {
+    path: "/api/ai/memes/generate": {
+      op: load: method: *GET
+    }
+    path: "/api/ai/providers/background-remove-benchmark": {
+      op: load: method: *GET
+    }
+    path: "/api/ai/providers/face-swap-benchmark": {
+      op: load: method: *GET
+    }
+    path: "/api/ai/templates/detect": {
+      op: create: method: *POST
+    }
+    path: "/api/ai/templates/suggest": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: analytics: {
+    path: "/api/analytics/alerts/backend": {
+      op: load: method: *GET
+    }
+    path: "/api/analytics/anomalies/ai": {
+      op: load: method: *GET
+    }
+    path: "/api/analytics/dashboards/activation-retention": {
+      op: load: method: *GET
+    }
+    path: "/api/analytics/dashboards/backend-reliability": {
+      op: load: method: *GET
+    }
+    path: "/api/analytics/dashboards/feature-adoption": {
+      op: load: method: *GET
+    }
+    path: "/api/analytics/experiments/templates": {
+      op: load: method: *GET
+    }
+    path: "/api/analytics/metric-dictionary": {
+      action: "metric_dictionary": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: auth: {
+    path: "/api/auth/resend-verification": {
+      action: "resend_verification": {}
+      op: create: method: *POST
+    }
+    path: "/api/auth/signup": {
+      action: "signup": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: billing: {
+    path: "/api/billing/usage": {
+      action: "usage": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: collaboration: {
+    path: "/api/collab/comments": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+  entity: compliance: {
+    path: "/api/compliance/content-policy": {
+      action: "content_policy": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: create_meme: {
+    path: "/api/memes": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: developer_api: {
+    path: "/api/v1/memes/generate": {
+      op: load: method: *GET
+    }
+    path: "/api/v1/templates/ideas": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: free_caption_meme_success: {
+    path: "/api/free/memes/caption": {
+      op: create: method: *POST
+    }
+    path: "/api/v1/memes/caption-template": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: free_template_search: {
+    path: "/api/free/templates": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: generate: {
+    path: "/api/v1/gifs/generate": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: growth: {
+    path: "/api/growth/experiments/decision": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/growth/lifecycle-messaging": {
+      action: "lifecycle_messaging": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/growth/referrals": {
+      action: "referral": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/growth/social-publish": {
+      action: "social_publish": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/growth/trend-campaigns": {
+      action: "trend_campaign": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/growth/viral-triggers": {
+      action: "viral_trigger": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: list_meme: {
+    path: "/api/memes": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: media: {
+    path: "/api/media/signed-url": {
+      action: "signed_url": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: meme: {
+    path: "/api/memes/{slug}": {
+      rename: param: "slug": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: public_template_media_item: {
+    path: "/api/gifs/{slug}": {
+      op: load: method: *GET
+    }
+    path: "/api/templates/{slug}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: standalone_agent_bootstrap: {
+    path: "/api/v1/agents/bootstrap": {
+      op: create: method: *POST
+    }
+    path: "/api/v1/agents/create-agent": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: template: {
+    path: "/api/gifs/{slug}/generate": {
+      op: create: method: *POST
+    }
+    path: "/api/templates": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: template_search: {
+    path: "/api/gifs": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: trend_alert: {
+    path: "/api/alerts": {
+      op: load: method: *GET
+    }
+    path: "/api/alerts/connectors": {
+      op: load: method: *GET
+    }
+    path: "/api/alerts/delivery": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/alerts/feedback": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/alerts/ingestion": {
+      op: load: method: *GET
+    }
+    path: "/api/alerts/message-templates": {
+      op: load: method: *GET
+    }
+    path: "/api/alerts/preferences": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/alerts/quality-report": {
+      op: load: method: *GET
+    }
+    path: "/api/alerts/ranking": {
+      op: load: method: *GET
+    }
+    path: "/api/alerts/triggers": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+  entity: upload_caption_meme_success: {
+    path: "/api/v1/memes/caption-upload": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: video: {
+    path: "/api/video/audio-library": {
+      action: "audio_library": {}
+      op: load: method: *GET
+    }
+    path: "/api/video/drafts": {
+      action: "draft": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/video/export-settings": {
+      action: "export_setting": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/video/formats": {
+      action: "format": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/video/render-performance": {
+      action: "render_performance": {}
+      op: load: method: *GET
+    }
+    path: "/api/video/render-queue": {
+      action: "render_queue": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/video/subtitles": {
+      action: "subtitle": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/video/text-animations": {
+      action: "text_animation": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/api/video/timeline": {
+      action: "timeline": {}
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+}
