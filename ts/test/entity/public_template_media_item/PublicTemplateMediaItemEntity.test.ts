@@ -26,8 +26,8 @@ import {
 describe('PublicTemplateMediaItemEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -63,7 +63,7 @@ describe('PublicTemplateMediaItemEntity', async () => {
     const public_template_media_item_ref01_ent = client.PublicTemplateMediaItem()
     const public_template_media_item_ref01_match_dt0: any = {}
     public_template_media_item_ref01_match_dt0.id = public_template_media_item_ref01_data.id
-    const public_template_media_item_ref01_data_dt0 = await public_template_media_item_ref01_ent.load(public_template_media_item_ref01_match_dt0)
+    const public_template_media_item_ref01_data_dt0 = (await public_template_media_item_ref01_ent.load(public_template_media_item_ref01_match_dt0)).data()
     assert(public_template_media_item_ref01_data_dt0.id === public_template_media_item_ref01_data.id)
 
 

@@ -6,12 +6,12 @@ main: kit: entity: free_caption_meme_success: {
 
   fields: [
     {
-      name: "caption"
+      name: "captions"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "template_slug"
+      name: "templateSlug"
       req: true
       type: "`$STRING`"
     }
@@ -48,7 +48,7 @@ main: kit: entity: free_caption_meme_success: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -62,7 +62,7 @@ main: kit: entity: free_caption_meme_success: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

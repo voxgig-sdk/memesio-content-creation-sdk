@@ -6,7 +6,7 @@ main: kit: entity: growth: {
 
   fields: [
     {
-      name: "account_id"
+      name: "accountId"
       req: false
       type: "`$STRING`"
     }
@@ -16,7 +16,7 @@ main: kit: entity: growth: {
       type: "`$STRING`"
     }
     {
-      name: "actor_id"
+      name: "actorId"
       op: {
         create: {
           req: true
@@ -37,7 +37,7 @@ main: kit: entity: growth: {
       type: "`$STRING`"
     }
     {
-      name: "external_account_id"
+      name: "externalAccountId"
       req: false
       type: "`$STRING`"
     }
@@ -52,12 +52,12 @@ main: kit: entity: growth: {
       type: "`$INTEGER`"
     }
     {
-      name: "log_exposure"
+      name: "logExposure"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "meme_slug"
+      name: "memeSlug"
       req: false
       type: "`$STRING`"
     }
@@ -72,12 +72,12 @@ main: kit: entity: growth: {
       type: "`$STRING`"
     }
     {
-      name: "profile"
+      name: "profiles"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "share_slug"
+      name: "shareSlug"
       req: false
       type: "`$STRING`"
     }
@@ -87,7 +87,7 @@ main: kit: entity: growth: {
       type: "`$STRING`"
     }
     {
-      name: "week_start"
+      name: "weekStart"
       req: false
       type: "`$STRING`"
     }

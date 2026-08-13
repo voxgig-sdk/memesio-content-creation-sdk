@@ -6,19 +6,39 @@ main: kit: entity: generate: {
 
   fields: [
     {
-      name: "caption"
+      name: "base64"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "byteLength"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "captions"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "data"
-      req: true
-      type: "`$OBJECT`"
+      name: "dataUrl"
+      req: false
+      type: "`$STRING`"
     }
     {
-      name: "duration_m"
+      name: "delayMs"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "durationMs"
       req: false
       type: "`$INTEGER`"
+    }
+    {
+      name: "filename"
+      req: true
+      type: "`$STRING`"
     }
     {
       name: "fps"
@@ -26,27 +46,53 @@ main: kit: entity: generate: {
       type: "`$INTEGER`"
     }
     {
-      name: "gif_slug"
-      req: false
+      name: "gifSlug"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
       type: "`$STRING`"
     }
     {
-      name: "ok"
+      name: "height"
       req: true
-      type: "`$BOOLEAN`"
+      type: "`$INTEGER`"
     }
     {
-      name: "return_base64"
+      name: "mimeType"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "pages"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "parameters"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "returnBase64"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "start_m"
+      name: "sourceDurationMs"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "startMs"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "tag"
+      name: "tags"
       req: false
       type: "`$ARRAY`"
     }
@@ -56,7 +102,12 @@ main: kit: entity: generate: {
       type: "`$STRING`"
     }
     {
-      name: "width_px"
+      name: "width"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "widthPx"
       req: false
       type: "`$INTEGER`"
     }
@@ -78,7 +129,7 @@ main: kit: entity: generate: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

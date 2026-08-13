@@ -53,7 +53,7 @@ local created, err = client:Agent():create({ name = "example_name" })
 if err then error(err) end
 
 -- Update
-client:Agent():update({ id = "example_id" })
+client:Agent():update({ id = "example_id", description = "example_description", locale = "example_locale" })
 
 ```
 
@@ -64,7 +64,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local agent, err = client:Agent():load({ id = "example_id" })
+local trendalert, err = client:TrendAlert():load()
 if err then error(err) end
 ```
 
@@ -122,7 +122,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Agent():load({ id = "test01" })
+local result, err = client:TrendAlert():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -279,10 +279,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `name` |  |
 | `slug` |  |
 | `status` |  |
-| `style_preset` |  |
-| `system_prompt` |  |
-| `watermark_text` |  |
-| `website_url` |  |
+| `stylePreset` |  |
+| `systemPrompt` |  |
+| `watermarkText` |  |
+| `websiteUrl` |  |
 
 Operations: Create, Load, Update.
 
@@ -293,18 +293,18 @@ API path: `/api/v1/agents`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `chat_id` |  |
-| `meme_slug` |  |
+| `chatId` |  |
+| `memeSlug` |  |
 | `metadata` |  |
-| `payout_reference` |  |
-| `payout_status` |  |
-| `phone_or_chat_id` |  |
+| `payoutReference` |  |
+| `payoutStatus` |  |
+| `phoneOrChatId` |  |
 | `prompt` |  |
 | `proof` |  |
-| `quota_boost_per_day` |  |
-| `scope` |  |
-| `user_id` |  |
-| `week_start` |  |
+| `quotaBoostPerDay` |  |
+| `scopes` |  |
+| `userId` |  |
+| `weekStart` |  |
 
 Operations: Create, Load, Remove.
 
@@ -314,34 +314,34 @@ API path: `/api/v1/agents/{agentId}/channels/telegram/bind`
 
 | Field | Description |
 | --- | --- |
-| `blocked_term` |  |
-| `canvas_text` |  |
-| `caption_count` |  |
-| `caption_set` |  |
-| `entity` |  |
-| `fallback_used` |  |
-| `generation_strategy` |  |
+| `blockedTerms` |  |
+| `canvasText` |  |
+| `captionCount` |  |
+| `captionSets` |  |
+| `entities` |  |
+| `fallbackUsed` |  |
+| `generationStrategy` |  |
 | `locale` |  |
-| `meme_id` |  |
-| `meme_slug` |  |
+| `memeId` |  |
+| `memeSlug` |  |
 | `name` |  |
 | `ok` |  |
-| `option_count` |  |
-| `owner_token` |  |
-| `provider_id` |  |
-| `reference_caption` |  |
-| `rewrite_note` |  |
-| `scene_summary` |  |
-| `template_description` |  |
-| `template_name` |  |
-| `template_tag` |  |
+| `optionCount` |  |
+| `ownerToken` |  |
+| `providerId` |  |
+| `referenceCaptions` |  |
+| `rewriteNote` |  |
+| `sceneSummary` |  |
+| `templateDescription` |  |
+| `templateName` |  |
+| `templateTags` |  |
 | `tone` |  |
-| `tone_cue` |  |
-| `trend_keyword` |  |
-| `trend_reference` |  |
-| `trend_signal` |  |
-| `variation_offset` |  |
-| `voice_rule` |  |
+| `toneCues` |  |
+| `trendKeywords` |  |
+| `trendReferences` |  |
+| `trendSignals` |  |
+| `variationOffset` |  |
+| `voiceRules` |  |
 
 Operations: Create, Load.
 
@@ -352,47 +352,47 @@ API path: `/api/ai/captions/generate`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `actor_id` |  |
-| `after_state` |  |
-| `attempt` |  |
-| `before_state` |  |
-| `brush_edit` |  |
+| `actorId` |  |
+| `afterState` |  |
+| `attempts` |  |
+| `beforeState` |  |
+| `brushEdits` |  |
 | `capability` |  |
-| `celebrity_confidence` |  |
-| `consent_attested` |  |
-| `created_at` |  |
-| `detected_face_count` |  |
-| `edge_refinement` |  |
-| `estimated_cost_usd` |  |
-| `frame_time_m` |  |
+| `celebrityConfidence` |  |
+| `consentAttested` |  |
+| `createdAt` |  |
+| `detectedFaceCount` |  |
+| `edgeRefinement` |  |
+| `estimatedCostUsd` |  |
+| `frameTimeMs` |  |
 | `height` |  |
 | `id` |  |
 | `input` |  |
-| `layer_id` |  |
-| `layer_type` |  |
-| `max_attempt` |  |
-| `max_face` |  |
-| `media_type` |  |
+| `layerId` |  |
+| `layerType` |  |
+| `maxAttempts` |  |
+| `maxFaces` |  |
+| `mediaType` |  |
 | `metadata` |  |
-| `nsfw_score` |  |
+| `nsfwScore` |  |
 | `output` |  |
-| `project_id` |  |
-| `provider_id` |  |
+| `projectId` |  |
+| `providerId` |  |
 | `reason` |  |
-| `run_after_m` |  |
-| `source_asset_url` |  |
-| `source_face_index` |  |
-| `source_image_url` |  |
+| `runAfterMs` |  |
+| `sourceAssetUrl` |  |
+| `sourceFaceIndex` |  |
+| `sourceImageUrl` |  |
 | `status` |  |
-| `target_asset_url` |  |
-| `target_face_index` |  |
-| `timeout_m` |  |
-| `trace_id` |  |
-| `updated_at` |  |
-| `version_id` |  |
+| `targetAssetUrl` |  |
+| `targetFaceIndex` |  |
+| `timeoutMs` |  |
+| `traceId` |  |
+| `updatedAt` |  |
+| `versionId` |  |
 | `width` |  |
-| `worker_id` |  |
-| `workspace_id` |  |
+| `workerId` |  |
+| `workspaceId` |  |
 
 Operations: Create, Load.
 
@@ -402,27 +402,27 @@ API path: `/api/ai/jobs/{jobId}/cancel`
 
 | Field | Description |
 | --- | --- |
-| `allow_heuristic_fallback` |  |
-| `caption` |  |
-| `caption_source` |  |
-| `correlation_id` |  |
-| `degraded_from_async` |  |
-| `editable_caption` |  |
+| `allowHeuristicFallback` |  |
+| `captionSource` |  |
+| `captions` |  |
+| `correlationId` |  |
+| `degradedFromAsync` |  |
+| `editableCaptions` |  |
 | `flow` |  |
-| `image_url` |  |
+| `imageUrl` |  |
 | `mode` |  |
 | `ok` |  |
-| `preferred_provider_id` |  |
+| `preferredProviderId` |  |
 | `prompt` |  |
-| `rewrite_note` |  |
-| `run_id` |  |
+| `rewriteNote` |  |
+| `runId` |  |
 | `status` |  |
-| `template_id` |  |
+| `templateId` |  |
 | `tone` |  |
-| `tone_cue` |  |
-| `variant` |  |
-| `variant_count` |  |
-| `workspace_id` |  |
+| `toneCues` |  |
+| `variantCount` |  |
+| `variants` |  |
+| `workspaceId` |  |
 
 Operations: Create.
 
@@ -432,16 +432,16 @@ API path: `/api/ai/memes/generate`
 
 | Field | Description |
 | --- | --- |
-| `actor_id` |  |
-| `correlation_id` |  |
+| `actorId` |  |
+| `correlationId` |  |
 | `limit` |  |
-| `mapping_mode` |  |
-| `max_slot` |  |
+| `mappingMode` |  |
+| `maxSlots` |  |
 | `prompt` |  |
-| `source_image_url` |  |
-| `text` |  |
-| `trend_signal` |  |
-| `workspace_id` |  |
+| `sourceImageUrl` |  |
+| `texts` |  |
+| `trendSignals` |  |
+| `workspaceId` |  |
 
 Operations: Create, Load.
 
@@ -460,7 +460,7 @@ API path: `/api/analytics/experiments/templates`
 
 | Field | Description |
 | --- | --- |
-| `display_name` |  |
+| `displayName` |  |
 | `email` |  |
 | `password` |  |
 
@@ -481,9 +481,9 @@ API path: `/api/billing/usage`
 
 | Field | Description |
 | --- | --- |
-| `author_id` |  |
+| `authorId` |  |
 | `message` |  |
-| `project_id` |  |
+| `projectId` |  |
 
 Operations: Create, Load.
 
@@ -502,14 +502,14 @@ API path: `/api/compliance/content-policy`
 
 | Field | Description |
 | --- | --- |
-| `canva` |  |
-| `caption` |  |
-| `generation_run_id` |  |
-| `generation_variant_id` |  |
-| `image_data_url` |  |
-| `overlay` |  |
-| `source_image_url` |  |
-| `template_slug` |  |
+| `canvas` |  |
+| `captions` |  |
+| `generationRunId` |  |
+| `generationVariantId` |  |
+| `imageDataUrl` |  |
+| `overlays` |  |
+| `sourceImageUrl` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 | `watermark` |  |
@@ -524,7 +524,7 @@ API path: `/api/memes`
 | --- | --- |
 | `limit` |  |
 | `prompt` |  |
-| `trend_signal` |  |
+| `trendSignals` |  |
 
 Operations: Create, Load.
 
@@ -534,8 +534,8 @@ API path: `/api/v1/templates/ideas`
 
 | Field | Description |
 | --- | --- |
-| `caption` |  |
-| `template_slug` |  |
+| `captions` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 | `watermark` |  |
@@ -549,26 +549,26 @@ API path: `/api/free/memes/caption`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
-| `frame_count` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `quality_status` |  |
+| `posterImageUrl` |  |
+| `qualityStatus` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
 | `width` |  |
 
 Operations: List.
@@ -579,17 +579,26 @@ API path: `/api/free/templates`
 
 | Field | Description |
 | --- | --- |
-| `caption` |  |
-| `data` |  |
-| `duration_m` |  |
+| `base64` |  |
+| `byteLength` |  |
+| `captions` |  |
+| `dataUrl` |  |
+| `delayMs` |  |
+| `durationMs` |  |
+| `filename` |  |
 | `fps` |  |
-| `gif_slug` |  |
-| `ok` |  |
-| `return_base64` |  |
-| `start_m` |  |
-| `tag` |  |
+| `gifSlug` |  |
+| `height` |  |
+| `mimeType` |  |
+| `pages` |  |
+| `parameters` |  |
+| `returnBase64` |  |
+| `sourceDurationMs` |  |
+| `startMs` |  |
+| `tags` |  |
 | `title` |  |
-| `width_px` |  |
+| `width` |  |
+| `widthPx` |  |
 
 Operations: Create.
 
@@ -599,22 +608,22 @@ API path: `/api/v1/gifs/generate`
 
 | Field | Description |
 | --- | --- |
-| `account_id` |  |
+| `accountId` |  |
 | `action` |  |
-| `actor_id` |  |
+| `actorId` |  |
 | `caption` |  |
 | `code` |  |
-| `external_account_id` |  |
+| `externalAccountId` |  |
 | `handle` |  |
 | `limit` |  |
-| `log_exposure` |  |
-| `meme_slug` |  |
+| `logExposure` |  |
+| `memeSlug` |  |
 | `now` |  |
 | `platform` |  |
-| `profile` |  |
-| `share_slug` |  |
+| `profiles` |  |
+| `shareSlug` |  |
 | `surface` |  |
-| `week_start` |  |
+| `weekStart` |  |
 
 Operations: Create, Load.
 
@@ -624,17 +633,17 @@ API path: `/api/growth/experiments/decision`
 
 | Field | Description |
 | --- | --- |
-| `alt_text` |  |
-| `canonical_image_url` |  |
-| `created_at` |  |
-| `image_url` |  |
-| `nsfw_status` |  |
-| `share_slug` |  |
-| `share_url` |  |
-| `share_view` |  |
+| `altText` |  |
+| `canonicalImageUrl` |  |
+| `createdAt` |  |
+| `imageUrl` |  |
+| `nsfwStatus` |  |
+| `shareSlug` |  |
+| `shareUrl` |  |
+| `shareViews` |  |
 | `slug` |  |
-| `tag` |  |
-| `template_slug` |  |
+| `tags` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 
@@ -647,9 +656,9 @@ API path: `/api/memes`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `content_type` |  |
-| `expires_in_second` |  |
-| `owner_token` |  |
+| `contentType` |  |
+| `expiresInSeconds` |  |
+| `ownerToken` |  |
 | `path` |  |
 | `prefix` |  |
 
@@ -661,21 +670,21 @@ API path: `/api/media/signed-url`
 
 | Field | Description |
 | --- | --- |
-| `alt_text` |  |
-| `canonical_image_url` |  |
-| `canva` |  |
-| `caption` |  |
-| `created_at` |  |
-| `image_url` |  |
-| `nsfw_status` |  |
-| `overlay` |  |
-| `share_slug` |  |
-| `share_url` |  |
-| `share_view` |  |
+| `altText` |  |
+| `canonicalImageUrl` |  |
+| `canvas` |  |
+| `captions` |  |
+| `createdAt` |  |
+| `imageUrl` |  |
+| `nsfwStatus` |  |
+| `overlays` |  |
+| `shareSlug` |  |
+| `shareUrl` |  |
+| `shareViews` |  |
 | `slug` |  |
-| `source_image_url` |  |
-| `tag` |  |
-| `template_slug` |  |
+| `sourceImageUrl` |  |
+| `tags` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 | `watermark` |  |
@@ -689,28 +698,28 @@ API path: `/api/memes/{slug}`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
-| `category` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
-| `frame_count` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `preview_image_url` |  |
-| `quality_status` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
 | `width` |  |
 
 Operations: Load.
@@ -725,10 +734,10 @@ API path: `/api/templates/{slug}`
 | `handle` |  |
 | `locale` |  |
 | `name` |  |
-| `style_preset` |  |
-| `system_prompt` |  |
-| `watermark_text` |  |
-| `website_url` |  |
+| `stylePreset` |  |
+| `systemPrompt` |  |
+| `watermarkText` |  |
+| `websiteUrl` |  |
 
 Operations: Create.
 
@@ -739,35 +748,35 @@ API path: `/api/v1/agents/bootstrap`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
-| `category` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
 | `fps` |  |
-| `frame_count` |  |
-| `gif_slug` |  |
+| `frameCount` |  |
+| `gifSlug` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `preview_image_url` |  |
-| `quality_status` |  |
-| `return_base64` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
+| `returnBase64` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `start_m` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `startMs` |  |
+| `tags` |  |
 | `title` |  |
 | `width` |  |
-| `width_px` |  |
+| `widthPx` |  |
 
 Operations: Create, List.
 
@@ -778,28 +787,28 @@ API path: `/api/gifs/{slug}/generate`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
-| `category` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
-| `frame_count` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `preview_image_url` |  |
-| `quality_status` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
 | `width` |  |
 
 Operations: List.
@@ -811,17 +820,17 @@ API path: `/api/gifs`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `actor_id` |  |
+| `actorId` |  |
 | `aggressiveness` |  |
-| `alert_id` |  |
-| `channel` |  |
-| `deliver_all_alert` |  |
+| `alertId` |  |
+| `channels` |  |
+| `deliverAllAlerts` |  |
 | `event` |  |
-| `explicit_niche` |  |
-| `explicit_region` |  |
-| `explicit_source` |  |
-| `explicit_topic` |  |
-| `follower_count` |  |
+| `explicitNiches` |  |
+| `explicitRegions` |  |
+| `explicitSources` |  |
+| `explicitTopics` |  |
+| `followerCount` |  |
 | `niche` |  |
 | `region` |  |
 | `source` |  |
@@ -845,50 +854,50 @@ API path: `/api/v1/memes/caption-upload`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `asset_id` |  |
-| `at_m` |  |
-| `audio_asset_id` |  |
-| `beat_offset_m` |  |
-| `bitrate_kbp` |  |
+| `assetId` |  |
+| `atMs` |  |
+| `audioAssetId` |  |
+| `beatOffsetMs` |  |
+| `bitrateKbps` |  |
 | `bpm` |  |
 | `cancelled` |  |
 | `container` |  |
-| `duration_m` |  |
-| `duration_second` |  |
+| `durationMs` |  |
+| `durationSeconds` |  |
 | `easing` |  |
 | `error` |  |
-| `frame_rate` |  |
-| `input_format` |  |
+| `frameRate` |  |
+| `inputFormat` |  |
 | `intensity` |  |
-| `job_id` |  |
+| `jobId` |  |
 | `locale` |  |
-| `mime_type` |  |
+| `mimeType` |  |
 | `name` |  |
-| `offset_m` |  |
-| `output_preset_id` |  |
-| `output_url` |  |
-| `plan_tier` |  |
-| `preset_id` |  |
-| `progress_percent` |  |
+| `offsetMs` |  |
+| `outputPresetId` |  |
+| `outputUrl` |  |
+| `planTier` |  |
+| `presetId` |  |
+| `progressPercent` |  |
 | `project` |  |
-| `project_id` |  |
+| `projectId` |  |
 | `property` |  |
-| `source_device_id` |  |
-| `source_url` |  |
+| `sourceDeviceId` |  |
+| `sourceUrl` |  |
 | `stage` |  |
-| `start_m` |  |
-| `style_preset_id` |  |
-| `sync_to_beat_grid` |  |
+| `startMs` |  |
+| `stylePresetId` |  |
+| `syncToBeatGrid` |  |
 | `tone` |  |
-| `track_id` |  |
+| `trackId` |  |
 | `transcript` |  |
-| `trend_keyword` |  |
+| `trendKeywords` |  |
 | `type` |  |
-| `updated_at` |  |
+| `updatedAt` |  |
 | `value` |  |
-| `watermark_enabled` |  |
-| `watermark_text` |  |
-| `worker_id` |  |
+| `watermarkEnabled` |  |
+| `watermarkText` |  |
+| `workerId` |  |
 
 Operations: Create, Load.
 
@@ -920,10 +929,10 @@ Create an instance: `local agent = client:Agent(nil)`
 | `name` | `string` |  |
 | `slug` | `string` |  |
 | `status` | `string` |  |
-| `style_preset` | `string` |  |
-| `system_prompt` | `string` |  |
-| `watermark_text` | `string` |  |
-| `website_url` | `string` |  |
+| `stylePreset` | `string` |  |
+| `systemPrompt` | `string` |  |
+| `watermarkText` | `string` |  |
+| `websiteUrl` | `string` |  |
 
 #### Example: Load
 
@@ -957,18 +966,18 @@ Create an instance: `local agent_infra = client:AgentInfra(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `chat_id` | `string` |  |
-| `meme_slug` | `string` |  |
+| `chatId` | `string` |  |
+| `memeSlug` | `string` |  |
 | `metadata` | `table` |  |
-| `payout_reference` | `string` |  |
-| `payout_status` | `string` |  |
-| `phone_or_chat_id` | `string` |  |
+| `payoutReference` | `string` |  |
+| `payoutStatus` | `string` |  |
+| `phoneOrChatId` | `string` |  |
 | `prompt` | `string` |  |
 | `proof` | `table` |  |
-| `quota_boost_per_day` | `number` |  |
-| `scope` | `table` |  |
-| `user_id` | `string` |  |
-| `week_start` | `string` |  |
+| `quotaBoostPerDay` | `number` |  |
+| `scopes` | `table` |  |
+| `userId` | `string` |  |
+| `weekStart` | `string` |  |
 
 #### Example: Load
 
@@ -980,6 +989,11 @@ local agent_infra, err = client:AgentInfra():load()
 
 ```lua
 local agent_infra, err = client:AgentInfra():create({
+  action = "example_action", -- string
+  chatId = "example_chatId", -- string
+  memeSlug = "example_memeSlug", -- string
+  phoneOrChatId = "example_phoneOrChatId", -- string
+  prompt = "example_prompt", -- string
 })
 ```
 
@@ -999,34 +1013,34 @@ Create an instance: `local ai_caption = client:AiCaption(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `blocked_term` | `table` |  |
-| `canvas_text` | `table` |  |
-| `caption_count` | `number` |  |
-| `caption_set` | `table` |  |
-| `entity` | `table` |  |
-| `fallback_used` | `boolean` |  |
-| `generation_strategy` | `string` |  |
+| `blockedTerms` | `table` |  |
+| `canvasText` | `table` |  |
+| `captionCount` | `number` |  |
+| `captionSets` | `table` |  |
+| `entities` | `table` |  |
+| `fallbackUsed` | `boolean` |  |
+| `generationStrategy` | `string` |  |
 | `locale` | `string` |  |
-| `meme_id` | `string` |  |
-| `meme_slug` | `string` |  |
+| `memeId` | `string` |  |
+| `memeSlug` | `string` |  |
 | `name` | `string` |  |
 | `ok` | `boolean` |  |
-| `option_count` | `number` |  |
-| `owner_token` | `string` |  |
-| `provider_id` | `string` |  |
-| `reference_caption` | `table` |  |
-| `rewrite_note` | `string` |  |
-| `scene_summary` | `string` |  |
-| `template_description` | `string` |  |
-| `template_name` | `string` |  |
-| `template_tag` | `table` |  |
+| `optionCount` | `number` |  |
+| `ownerToken` | `string` |  |
+| `providerId` | `string` |  |
+| `referenceCaptions` | `table` |  |
+| `rewriteNote` | `string` |  |
+| `sceneSummary` | `string` |  |
+| `templateDescription` | `string` |  |
+| `templateName` | `string` |  |
+| `templateTags` | `table` |  |
 | `tone` | `string` |  |
-| `tone_cue` | `table` |  |
-| `trend_keyword` | `table` |  |
-| `trend_reference` | `table` |  |
-| `trend_signal` | `table` |  |
-| `variation_offset` | `number` |  |
-| `voice_rule` | `table` |  |
+| `toneCues` | `table` |  |
+| `trendKeywords` | `table` |  |
+| `trendReferences` | `table` |  |
+| `trendSignals` | `table` |  |
+| `variationOffset` | `number` |  |
+| `voiceRules` | `table` |  |
 
 #### Example: Load
 
@@ -1038,7 +1052,7 @@ local ai_caption, err = client:AiCaption():load()
 
 ```lua
 local ai_caption, err = client:AiCaption():create({
-  canvas_text = {}, -- table
+  canvasText = {}, -- table
   name = "example_name", -- string
   tone = "example_tone", -- string
 })
@@ -1061,47 +1075,47 @@ Create an instance: `local ai_job = client:AiJob(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `actor_id` | `string` |  |
-| `after_state` | `table` |  |
-| `attempt` | `number` |  |
-| `before_state` | `table` |  |
-| `brush_edit` | `table` |  |
+| `actorId` | `string` |  |
+| `afterState` | `table` |  |
+| `attempts` | `number` |  |
+| `beforeState` | `table` |  |
+| `brushEdits` | `table` |  |
 | `capability` | `string` |  |
-| `celebrity_confidence` | `number` |  |
-| `consent_attested` | `boolean` |  |
-| `created_at` | `string` |  |
-| `detected_face_count` | `number` |  |
-| `edge_refinement` | `number` |  |
-| `estimated_cost_usd` | `number` |  |
-| `frame_time_m` | `number` |  |
+| `celebrityConfidence` | `number` |  |
+| `consentAttested` | `boolean` |  |
+| `createdAt` | `string` |  |
+| `detectedFaceCount` | `number` |  |
+| `edgeRefinement` | `number` |  |
+| `estimatedCostUsd` | `number` |  |
+| `frameTimeMs` | `number` |  |
 | `height` | `number` |  |
 | `id` | `string` |  |
 | `input` | `table` |  |
-| `layer_id` | `string` |  |
-| `layer_type` | `string` |  |
-| `max_attempt` | `number` |  |
-| `max_face` | `number` |  |
-| `media_type` | `string` |  |
+| `layerId` | `string` |  |
+| `layerType` | `string` |  |
+| `maxAttempts` | `number` |  |
+| `maxFaces` | `number` |  |
+| `mediaType` | `string` |  |
 | `metadata` | `table` |  |
-| `nsfw_score` | `number` |  |
+| `nsfwScore` | `number` |  |
 | `output` | `table` |  |
-| `project_id` | `string` |  |
-| `provider_id` | `string` |  |
+| `projectId` | `string` |  |
+| `providerId` | `string` |  |
 | `reason` | `string` |  |
-| `run_after_m` | `number` |  |
-| `source_asset_url` | `string` |  |
-| `source_face_index` | `number` |  |
-| `source_image_url` | `string` |  |
+| `runAfterMs` | `number` |  |
+| `sourceAssetUrl` | `string` |  |
+| `sourceFaceIndex` | `number` |  |
+| `sourceImageUrl` | `string` |  |
 | `status` | `string` |  |
-| `target_asset_url` | `string` |  |
-| `target_face_index` | `number` |  |
-| `timeout_m` | `number` |  |
-| `trace_id` | `string` |  |
-| `updated_at` | `string` |  |
-| `version_id` | `string` |  |
+| `targetAssetUrl` | `string` |  |
+| `targetFaceIndex` | `number` |  |
+| `timeoutMs` | `number` |  |
+| `traceId` | `string` |  |
+| `updatedAt` | `string` |  |
+| `versionId` | `string` |  |
 | `width` | `number` |  |
-| `worker_id` | `string` |  |
-| `workspace_id` | `string` |  |
+| `workerId` | `string` |  |
+| `workspaceId` | `string` |  |
 
 #### Example: Load
 
@@ -1113,6 +1127,19 @@ local ai_job, err = client:AiJob():load({ id = "ai_job_id" })
 
 ```lua
 local ai_job, err = client:AiJob():create({
+  action = "example_action", -- string
+  capability = "example_capability", -- string
+  detectedFaceCount = 1, -- number
+  height = 1, -- number
+  id = "example_id", -- string
+  layerId = "example_layerId", -- string
+  projectId = "example_projectId", -- string
+  sourceAssetUrl = "example_sourceAssetUrl", -- string
+  sourceImageUrl = "example_sourceImageUrl", -- string
+  status = "example_status", -- string
+  targetAssetUrl = "example_targetAssetUrl", -- string
+  width = 1, -- number
+  workerId = "example_workerId", -- string
 })
 ```
 
@@ -1131,27 +1158,27 @@ Create an instance: `local ai_meme_generation_succeeded = client:AiMemeGeneratio
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allow_heuristic_fallback` | `boolean` |  |
-| `caption` | `table` |  |
-| `caption_source` | `string` |  |
-| `correlation_id` | `string` |  |
-| `degraded_from_async` | `boolean` |  |
-| `editable_caption` | `table` |  |
+| `allowHeuristicFallback` | `boolean` |  |
+| `captionSource` | `string` |  |
+| `captions` | `table` |  |
+| `correlationId` | `string` |  |
+| `degradedFromAsync` | `boolean` |  |
+| `editableCaptions` | `table` |  |
 | `flow` | `string` |  |
-| `image_url` | `string` |  |
+| `imageUrl` | `string` |  |
 | `mode` | `string` |  |
 | `ok` | `boolean` |  |
-| `preferred_provider_id` | `string` |  |
+| `preferredProviderId` | `string` |  |
 | `prompt` | `string` |  |
-| `rewrite_note` | `string` |  |
-| `run_id` | `string` |  |
+| `rewriteNote` | `string` |  |
+| `runId` | `string` |  |
 | `status` | `string` |  |
-| `template_id` | `string` |  |
+| `templateId` | `string` |  |
 | `tone` | `string` |  |
-| `tone_cue` | `table` |  |
-| `variant` | `table` |  |
-| `variant_count` | `number` |  |
-| `workspace_id` | `string` |  |
+| `toneCues` | `table` |  |
+| `variantCount` | `number` |  |
+| `variants` | `table` |  |
+| `workspaceId` | `string` |  |
 
 #### Example: Create
 
@@ -1162,8 +1189,8 @@ local ai_meme_generation_succeeded, err = client:AiMemeGenerationSucceeded():cre
   ok = true, -- boolean
   prompt = "example_prompt", -- string
   status = "example_status", -- string
-  variant = {}, -- table
-  variant_count = 1, -- number
+  variantCount = 1, -- number
+  variants = {}, -- table
 })
 ```
 
@@ -1183,16 +1210,16 @@ Create an instance: `local ai_provider = client:AiProvider(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `actor_id` | `string` |  |
-| `correlation_id` | `string` |  |
+| `actorId` | `string` |  |
+| `correlationId` | `string` |  |
 | `limit` | `number` |  |
-| `mapping_mode` | `string` |  |
-| `max_slot` | `number` |  |
+| `mappingMode` | `string` |  |
+| `maxSlots` | `number` |  |
 | `prompt` | `string` |  |
-| `source_image_url` | `string` |  |
-| `text` | `table` |  |
-| `trend_signal` | `table` |  |
-| `workspace_id` | `string` |  |
+| `sourceImageUrl` | `string` |  |
+| `texts` | `table` |  |
+| `trendSignals` | `table` |  |
+| `workspaceId` | `string` |  |
 
 #### Example: Load
 
@@ -1205,7 +1232,7 @@ local ai_provider, err = client:AiProvider():load()
 ```lua
 local ai_provider, err = client:AiProvider():create({
   prompt = "example_prompt", -- string
-  source_image_url = "example_source_image_url", -- string
+  sourceImageUrl = "example_sourceImageUrl", -- string
 })
 ```
 
@@ -1241,7 +1268,7 @@ Create an instance: `local auth = client:Auth(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `display_name` | `string` |  |
+| `displayName` | `string` |  |
 | `email` | `string` |  |
 | `password` | `string` |  |
 
@@ -1287,9 +1314,9 @@ Create an instance: `local collaboration = client:Collaboration(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author_id` | `string` |  |
+| `authorId` | `string` |  |
 | `message` | `string` |  |
-| `project_id` | `string` |  |
+| `projectId` | `string` |  |
 
 #### Example: Load
 
@@ -1302,7 +1329,7 @@ local collaboration, err = client:Collaboration():load()
 ```lua
 local collaboration, err = client:Collaboration():create({
   message = "example_message", -- string
-  project_id = "example_project_id", -- string
+  projectId = "example_projectId", -- string
 })
 ```
 
@@ -1338,14 +1365,14 @@ Create an instance: `local create_meme = client:CreateMeme(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canva` | `table` |  |
-| `caption` | `table` |  |
-| `generation_run_id` | `any` |  |
-| `generation_variant_id` | `any` |  |
-| `image_data_url` | `string` |  |
-| `overlay` | `table` |  |
-| `source_image_url` | `string` |  |
-| `template_slug` | `string` |  |
+| `canvas` | `table` |  |
+| `captions` | `table` |  |
+| `generationRunId` | `string|nil` |  |
+| `generationVariantId` | `string|nil` |  |
+| `imageDataUrl` | `string` |  |
+| `overlays` | `table` |  |
+| `sourceImageUrl` | `string` |  |
+| `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
 | `watermark` | `table` |  |
@@ -1354,10 +1381,10 @@ Create an instance: `local create_meme = client:CreateMeme(nil)`
 
 ```lua
 local create_meme, err = client:CreateMeme():create({
-  canva = {}, -- table
-  caption = {}, -- table
-  image_data_url = "example_image_data_url", -- string
-  source_image_url = "example_source_image_url", -- string
+  canvas = {}, -- table
+  captions = {}, -- table
+  imageDataUrl = "example_imageDataUrl", -- string
+  sourceImageUrl = "example_sourceImageUrl", -- string
   watermark = {}, -- table
 })
 ```
@@ -1380,7 +1407,7 @@ Create an instance: `local developer_api = client:DeveloperApi(nil)`
 | --- | --- | --- |
 | `limit` | `number` |  |
 | `prompt` | `string` |  |
-| `trend_signal` | `table` |  |
+| `trendSignals` | `table` |  |
 
 #### Example: Load
 
@@ -1411,8 +1438,8 @@ Create an instance: `local free_caption_meme_success = client:FreeCaptionMemeSuc
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caption` | `table` |  |
-| `template_slug` | `string` |  |
+| `captions` | `table` |  |
+| `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
 | `watermark` | `table` |  |
@@ -1421,8 +1448,8 @@ Create an instance: `local free_caption_meme_success = client:FreeCaptionMemeSuc
 
 ```lua
 local free_caption_meme_success, err = client:FreeCaptionMemeSuccess():create({
-  caption = {}, -- table
-  template_slug = "example_template_slug", -- string
+  captions = {}, -- table
+  templateSlug = "example_templateSlug", -- string
 })
 ```
 
@@ -1442,27 +1469,27 @@ Create an instance: `local free_template_search = client:FreeTemplateSearch(nil)
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `boolean` |  |
-| `asset_byte` | `any` |  |
-| `asset_content_type` | `string` |  |
-| `box_count` | `number` |  |
-| `caption` | `table` |  |
-| `caption_count` | `number` |  |
+| `assetBytes` | `number|nil` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `number` |  |
+| `captionCount` | `number` |  |
+| `captions` | `table` |  |
 | `description` | `string` |  |
-| `duration_m` | `any` |  |
-| `example_image_url` | `any` |  |
-| `frame_count` | `any` |  |
-| `height` | `any` |  |
+| `durationMs` | `number|nil` |  |
+| `exampleImageUrl` | `string|nil` |  |
+| `frameCount` | `number|nil` |  |
+| `height` | `number|nil` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
-| `media_type` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
 | `name` | `string` |  |
-| `poster_image_url` | `string` |  |
-| `quality_status` | `string` |  |
+| `posterImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
 | `slug` | `string` |  |
-| `source_template_id` | `any` |  |
-| `source_url` | `string` |  |
-| `tag` | `table` |  |
-| `width` | `any` |  |
+| `sourceTemplateId` | `string|nil` |  |
+| `sourceUrl` | `string` |  |
+| `tags` | `table` |  |
+| `width` | `number|nil` |  |
 
 #### Example: List
 
@@ -1485,24 +1512,41 @@ Create an instance: `local generate = client:Generate(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caption` | `table` |  |
-| `data` | `table` |  |
-| `duration_m` | `number` |  |
+| `base64` | `string` |  |
+| `byteLength` | `number` |  |
+| `captions` | `table` |  |
+| `dataUrl` | `string` |  |
+| `delayMs` | `number` |  |
+| `durationMs` | `number` |  |
+| `filename` | `string` |  |
 | `fps` | `number` |  |
-| `gif_slug` | `string` |  |
-| `ok` | `boolean` |  |
-| `return_base64` | `boolean` |  |
-| `start_m` | `number` |  |
-| `tag` | `table` |  |
+| `gifSlug` | `string` |  |
+| `height` | `number` |  |
+| `mimeType` | `string` |  |
+| `pages` | `number` |  |
+| `parameters` | `table` |  |
+| `returnBase64` | `boolean` |  |
+| `sourceDurationMs` | `number` |  |
+| `startMs` | `number` |  |
+| `tags` | `table` |  |
 | `title` | `string` |  |
-| `width_px` | `number` |  |
+| `width` | `number` |  |
+| `widthPx` | `number` |  |
 
 #### Example: Create
 
 ```lua
 local generate, err = client:Generate():create({
-  data = {}, -- table
-  ok = true, -- boolean
+  byteLength = 1, -- number
+  delayMs = 1, -- number
+  filename = "example_filename", -- string
+  gifSlug = "example_gifSlug", -- string
+  height = 1, -- number
+  mimeType = "example_mimeType", -- string
+  pages = 1, -- number
+  parameters = {}, -- table
+  sourceDurationMs = 1, -- number
+  width = 1, -- number
 })
 ```
 
@@ -1522,22 +1566,22 @@ Create an instance: `local growth = client:Growth(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_id` | `string` |  |
+| `accountId` | `string` |  |
 | `action` | `string` |  |
-| `actor_id` | `string` |  |
+| `actorId` | `string` |  |
 | `caption` | `string` |  |
 | `code` | `string` |  |
-| `external_account_id` | `string` |  |
+| `externalAccountId` | `string` |  |
 | `handle` | `string` |  |
 | `limit` | `number` |  |
-| `log_exposure` | `boolean` |  |
-| `meme_slug` | `string` |  |
+| `logExposure` | `boolean` |  |
+| `memeSlug` | `string` |  |
 | `now` | `string` |  |
 | `platform` | `string` |  |
-| `profile` | `table` |  |
-| `share_slug` | `string` |  |
+| `profiles` | `table` |  |
+| `shareSlug` | `string` |  |
 | `surface` | `string` |  |
-| `week_start` | `string` |  |
+| `weekStart` | `string` |  |
 
 #### Example: Load
 
@@ -1568,17 +1612,17 @@ Create an instance: `local list_meme = client:ListMeme(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | `string` |  |
-| `canonical_image_url` | `string` |  |
-| `created_at` | `string` |  |
-| `image_url` | `string` |  |
-| `nsfw_status` | `string` |  |
-| `share_slug` | `string` |  |
-| `share_url` | `string` |  |
-| `share_view` | `number` |  |
+| `altText` | `string` |  |
+| `canonicalImageUrl` | `string` |  |
+| `createdAt` | `string` |  |
+| `imageUrl` | `string` |  |
+| `nsfwStatus` | `string` |  |
+| `shareSlug` | `string` |  |
+| `shareUrl` | `string` |  |
+| `shareViews` | `number` |  |
 | `slug` | `string` |  |
-| `tag` | `table` |  |
-| `template_slug` | `string` |  |
+| `tags` | `table` |  |
+| `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
 
@@ -1604,9 +1648,9 @@ Create an instance: `local media = client:Media(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `content_type` | `string` |  |
-| `expires_in_second` | `number` |  |
-| `owner_token` | `string` |  |
+| `contentType` | `string` |  |
+| `expiresInSeconds` | `number` |  |
+| `ownerToken` | `string` |  |
 | `path` | `string` |  |
 | `prefix` | `string` |  |
 
@@ -1634,21 +1678,21 @@ Create an instance: `local meme = client:Meme(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | `string` |  |
-| `canonical_image_url` | `string` |  |
-| `canva` | `table` |  |
-| `caption` | `table` |  |
-| `created_at` | `string` |  |
-| `image_url` | `string` |  |
-| `nsfw_status` | `string` |  |
-| `overlay` | `table` |  |
-| `share_slug` | `string` |  |
-| `share_url` | `string` |  |
-| `share_view` | `number` |  |
+| `altText` | `string` |  |
+| `canonicalImageUrl` | `string` |  |
+| `canvas` | `table` |  |
+| `captions` | `table` |  |
+| `createdAt` | `string` |  |
+| `imageUrl` | `string` |  |
+| `nsfwStatus` | `string` |  |
+| `overlays` | `table` |  |
+| `shareSlug` | `string` |  |
+| `shareUrl` | `string` |  |
+| `shareViews` | `number` |  |
 | `slug` | `string` |  |
-| `source_image_url` | `string` |  |
-| `tag` | `table` |  |
-| `template_slug` | `string` |  |
+| `sourceImageUrl` | `string` |  |
+| `tags` | `table` |  |
+| `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
 | `watermark` | `table` |  |
@@ -1675,29 +1719,29 @@ Create an instance: `local public_template_media_item = client:PublicTemplateMed
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `boolean` |  |
-| `asset_byte` | `any` |  |
-| `asset_content_type` | `string` |  |
-| `box_count` | `number` |  |
-| `caption` | `table` |  |
-| `caption_count` | `number` |  |
-| `category` | `table` |  |
+| `assetBytes` | `number|nil` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `number` |  |
+| `captionCount` | `number` |  |
+| `captions` | `table` |  |
+| `categories` | `table` |  |
 | `description` | `string` |  |
-| `duration_m` | `any` |  |
-| `example_image_url` | `any` |  |
-| `frame_count` | `any` |  |
-| `height` | `any` |  |
+| `durationMs` | `number|nil` |  |
+| `exampleImageUrl` | `string|nil` |  |
+| `frameCount` | `number|nil` |  |
+| `height` | `number|nil` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
-| `media_type` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
 | `name` | `string` |  |
-| `poster_image_url` | `string` |  |
-| `preview_image_url` | `string` |  |
-| `quality_status` | `string` |  |
+| `posterImageUrl` | `string` |  |
+| `previewImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
 | `slug` | `string` |  |
-| `source_template_id` | `any` |  |
-| `source_url` | `string` |  |
-| `tag` | `table` |  |
-| `width` | `any` |  |
+| `sourceTemplateId` | `string|nil` |  |
+| `sourceUrl` | `string` |  |
+| `tags` | `table` |  |
+| `width` | `number|nil` |  |
 
 #### Example: Load
 
@@ -1724,10 +1768,10 @@ Create an instance: `local standalone_agent_bootstrap = client:StandaloneAgentBo
 | `handle` | `string` |  |
 | `locale` | `string` |  |
 | `name` | `string` |  |
-| `style_preset` | `string` |  |
-| `system_prompt` | `string` |  |
-| `watermark_text` | `string` |  |
-| `website_url` | `string` |  |
+| `stylePreset` | `string` |  |
+| `systemPrompt` | `string` |  |
+| `watermarkText` | `string` |  |
+| `websiteUrl` | `string` |  |
 
 #### Example: Create
 
@@ -1755,35 +1799,35 @@ Create an instance: `local template = client:Template(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `boolean` |  |
-| `asset_byte` | `any` |  |
-| `asset_content_type` | `string` |  |
-| `box_count` | `number` |  |
-| `caption` | `table` |  |
-| `caption_count` | `number` |  |
-| `category` | `table` |  |
+| `assetBytes` | `number|nil` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `number` |  |
+| `captionCount` | `number` |  |
+| `captions` | `table` |  |
+| `categories` | `table` |  |
 | `description` | `string` |  |
-| `duration_m` | `number` |  |
-| `example_image_url` | `any` |  |
+| `durationMs` | `number` |  |
+| `exampleImageUrl` | `string|nil` |  |
 | `fps` | `number` |  |
-| `frame_count` | `any` |  |
-| `gif_slug` | `string` |  |
-| `height` | `any` |  |
+| `frameCount` | `number|nil` |  |
+| `gifSlug` | `string` |  |
+| `height` | `number|nil` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
-| `media_type` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
 | `name` | `string` |  |
-| `poster_image_url` | `string` |  |
-| `preview_image_url` | `string` |  |
-| `quality_status` | `string` |  |
-| `return_base64` | `boolean` |  |
+| `posterImageUrl` | `string` |  |
+| `previewImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
+| `returnBase64` | `boolean` |  |
 | `slug` | `string` |  |
-| `source_template_id` | `any` |  |
-| `source_url` | `string` |  |
-| `start_m` | `number` |  |
-| `tag` | `table` |  |
+| `sourceTemplateId` | `string|nil` |  |
+| `sourceUrl` | `string` |  |
+| `startMs` | `number` |  |
+| `tags` | `table` |  |
 | `title` | `string` |  |
-| `width` | `any` |  |
-| `width_px` | `number` |  |
+| `width` | `number|nil` |  |
+| `widthPx` | `number` |  |
 
 #### Example: List
 
@@ -1796,6 +1840,14 @@ local templates, err = client:Template():list()
 ```lua
 local template, err = client:Template():create({
   slug = "example_slug", -- string
+  description = "example_description", -- string
+  height = "example_height", -- number|nil
+  id = "example_id", -- string
+  imageUrl = "example_imageUrl", -- string
+  mediaType = "example_mediaType", -- string
+  name = "example_name", -- string
+  sourceTemplateId = "example_sourceTemplateId", -- string|nil
+  width = "example_width", -- number|nil
 })
 ```
 
@@ -1815,29 +1867,29 @@ Create an instance: `local template_search = client:TemplateSearch(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `boolean` |  |
-| `asset_byte` | `any` |  |
-| `asset_content_type` | `string` |  |
-| `box_count` | `number` |  |
-| `caption` | `table` |  |
-| `caption_count` | `number` |  |
-| `category` | `table` |  |
+| `assetBytes` | `number|nil` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `number` |  |
+| `captionCount` | `number` |  |
+| `captions` | `table` |  |
+| `categories` | `table` |  |
 | `description` | `string` |  |
-| `duration_m` | `any` |  |
-| `example_image_url` | `any` |  |
-| `frame_count` | `any` |  |
-| `height` | `any` |  |
+| `durationMs` | `number|nil` |  |
+| `exampleImageUrl` | `string|nil` |  |
+| `frameCount` | `number|nil` |  |
+| `height` | `number|nil` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
-| `media_type` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
 | `name` | `string` |  |
-| `poster_image_url` | `string` |  |
-| `preview_image_url` | `string` |  |
-| `quality_status` | `string` |  |
+| `posterImageUrl` | `string` |  |
+| `previewImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
 | `slug` | `string` |  |
-| `source_template_id` | `any` |  |
-| `source_url` | `string` |  |
-| `tag` | `table` |  |
-| `width` | `any` |  |
+| `sourceTemplateId` | `string|nil` |  |
+| `sourceUrl` | `string` |  |
+| `tags` | `table` |  |
+| `width` | `number|nil` |  |
 
 #### Example: List
 
@@ -1862,17 +1914,17 @@ Create an instance: `local trend_alert = client:TrendAlert(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `actor_id` | `string` |  |
+| `actorId` | `string` |  |
 | `aggressiveness` | `number` |  |
-| `alert_id` | `string` |  |
-| `channel` | `table` |  |
-| `deliver_all_alert` | `boolean` |  |
+| `alertId` | `string` |  |
+| `channels` | `table` |  |
+| `deliverAllAlerts` | `boolean` |  |
 | `event` | `table` |  |
-| `explicit_niche` | `table` |  |
-| `explicit_region` | `table` |  |
-| `explicit_source` | `table` |  |
-| `explicit_topic` | `table` |  |
-| `follower_count` | `number` |  |
+| `explicitNiches` | `table` |  |
+| `explicitRegions` | `table` |  |
+| `explicitSources` | `table` |  |
+| `explicitTopics` | `table` |  |
+| `followerCount` | `number` |  |
 | `niche` | `string` |  |
 | `region` | `string` |  |
 | `source` | `string` |  |
@@ -1889,8 +1941,8 @@ local trend_alert, err = client:TrendAlert():load()
 ```lua
 local trend_alert, err = client:TrendAlert():create({
   action = "example_action", -- string
-  actor_id = "example_actor_id", -- string
-  alert_id = "example_alert_id", -- string
+  actorId = "example_actorId", -- string
+  alertId = "example_alertId", -- string
   topic = "example_topic", -- string
 })
 ```
@@ -1930,50 +1982,50 @@ Create an instance: `local video = client:Video(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `asset_id` | `string` |  |
-| `at_m` | `number` |  |
-| `audio_asset_id` | `string` |  |
-| `beat_offset_m` | `number` |  |
-| `bitrate_kbp` | `number` |  |
+| `assetId` | `string` |  |
+| `atMs` | `number` |  |
+| `audioAssetId` | `string` |  |
+| `beatOffsetMs` | `number` |  |
+| `bitrateKbps` | `number` |  |
 | `bpm` | `number` |  |
 | `cancelled` | `boolean` |  |
 | `container` | `string` |  |
-| `duration_m` | `number` |  |
-| `duration_second` | `number` |  |
+| `durationMs` | `number` |  |
+| `durationSeconds` | `number` |  |
 | `easing` | `string` |  |
 | `error` | `string` |  |
-| `frame_rate` | `number` |  |
-| `input_format` | `string` |  |
+| `frameRate` | `number` |  |
+| `inputFormat` | `string` |  |
 | `intensity` | `number` |  |
-| `job_id` | `string` |  |
+| `jobId` | `string` |  |
 | `locale` | `string` |  |
-| `mime_type` | `string` |  |
+| `mimeType` | `string` |  |
 | `name` | `string` |  |
-| `offset_m` | `number` |  |
-| `output_preset_id` | `string` |  |
-| `output_url` | `string` |  |
-| `plan_tier` | `string` |  |
-| `preset_id` | `string` |  |
-| `progress_percent` | `number` |  |
+| `offsetMs` | `number` |  |
+| `outputPresetId` | `string` |  |
+| `outputUrl` | `string` |  |
+| `planTier` | `string` |  |
+| `presetId` | `string` |  |
+| `progressPercent` | `number` |  |
 | `project` | `table` |  |
-| `project_id` | `string` |  |
+| `projectId` | `string` |  |
 | `property` | `string` |  |
-| `source_device_id` | `string` |  |
-| `source_url` | `string` |  |
+| `sourceDeviceId` | `string` |  |
+| `sourceUrl` | `string` |  |
 | `stage` | `string` |  |
-| `start_m` | `number` |  |
-| `style_preset_id` | `string` |  |
-| `sync_to_beat_grid` | `boolean` |  |
+| `startMs` | `number` |  |
+| `stylePresetId` | `string` |  |
+| `syncToBeatGrid` | `boolean` |  |
 | `tone` | `string` |  |
-| `track_id` | `string` |  |
+| `trackId` | `string` |  |
 | `transcript` | `string` |  |
-| `trend_keyword` | `table` |  |
+| `trendKeywords` | `table` |  |
 | `type` | `string` |  |
-| `updated_at` | `string` |  |
+| `updatedAt` | `string` |  |
 | `value` | `number` |  |
-| `watermark_enabled` | `boolean` |  |
-| `watermark_text` | `string` |  |
-| `worker_id` | `string` |  |
+| `watermarkEnabled` | `boolean` |  |
+| `watermarkText` | `string` |  |
+| `workerId` | `string` |  |
 
 #### Example: Load
 
@@ -1985,12 +2037,12 @@ local video, err = client:Video():load()
 
 ```lua
 local video, err = client:Video():create({
-  duration_second = 1, -- number
-  input_format = "example_input_format", -- string
-  mime_type = "example_mime_type", -- string
-  output_preset_id = "example_output_preset_id", -- string
-  plan_tier = "example_plan_tier", -- string
-  preset_id = "example_preset_id", -- string
+  durationSeconds = 1, -- number
+  inputFormat = "example_inputFormat", -- string
+  mimeType = "example_mimeType", -- string
+  outputPresetId = "example_outputPresetId", -- string
+  planTier = "example_planTier", -- string
+  presetId = "example_presetId", -- string
 })
 ```
 
@@ -2071,11 +2123,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local agent = client:Agent()
-agent:load({ id = "example_id" })
+local trendalert = client:TrendAlert()
+trendalert:load()
 
--- agent:data_get() now returns the agent data from the last load
--- agent:match_get() returns the last match criteria
+-- trendalert:data_get() now returns the trendalert data from the last load
+-- trendalert:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -39,7 +39,7 @@ PublicTemplateMediaItem is nested under slug, so provide the `slug`.
 
 ```php
 try {
-    // load() returns the bare PublicTemplateMediaItem record (throws on error).
+    // load() returns the ENTITY — call data_get() for the PublicTemplateMediaItem record (throws on error).
     $publictemplatemediaitem = $client->PublicTemplateMediaItem()->load(["slug" => "example_slug"]);
     print_r($publictemplatemediaitem);
 } catch (\Throwable $err) {
@@ -50,11 +50,11 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Agent record.
+// create() returns the ENTITY — call data_get() for the created Agent record.
 $created = $client->Agent()->create(["name" => "example_name"]);
 
 // Update
-$client->Agent()->update(["id" => "example_id"]);
+$client->Agent()->update(["id" => "example_id", "description" => "example_description", "locale" => "example_locale"]);
 
 ```
 
@@ -66,7 +66,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $agent = $client->Agent()->load(["id" => "example_id"]);
+    $trendalert = $client->TrendAlert()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -133,17 +133,15 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = MemesioContentCreationSDK::test([
-    "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
-]);
+$client = MemesioContentCreationSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$agent = $client->Agent()->load(["id" => "test01"]);
-print_r($agent);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$trendalert = $client->TrendAlert()->load();
+print_r($trendalert);
 ```
 
 ### Use a custom fetch function
@@ -272,7 +270,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -299,10 +297,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `name` |  |
 | `slug` |  |
 | `status` |  |
-| `style_preset` |  |
-| `system_prompt` |  |
-| `watermark_text` |  |
-| `website_url` |  |
+| `stylePreset` |  |
+| `systemPrompt` |  |
+| `watermarkText` |  |
+| `websiteUrl` |  |
 
 Operations: Create, Load, Update.
 
@@ -313,18 +311,18 @@ API path: `/api/v1/agents`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `chat_id` |  |
-| `meme_slug` |  |
+| `chatId` |  |
+| `memeSlug` |  |
 | `metadata` |  |
-| `payout_reference` |  |
-| `payout_status` |  |
-| `phone_or_chat_id` |  |
+| `payoutReference` |  |
+| `payoutStatus` |  |
+| `phoneOrChatId` |  |
 | `prompt` |  |
 | `proof` |  |
-| `quota_boost_per_day` |  |
-| `scope` |  |
-| `user_id` |  |
-| `week_start` |  |
+| `quotaBoostPerDay` |  |
+| `scopes` |  |
+| `userId` |  |
+| `weekStart` |  |
 
 Operations: Create, Load, Remove.
 
@@ -334,34 +332,34 @@ API path: `/api/v1/agents/{agentId}/channels/telegram/bind`
 
 | Field | Description |
 | --- | --- |
-| `blocked_term` |  |
-| `canvas_text` |  |
-| `caption_count` |  |
-| `caption_set` |  |
-| `entity` |  |
-| `fallback_used` |  |
-| `generation_strategy` |  |
+| `blockedTerms` |  |
+| `canvasText` |  |
+| `captionCount` |  |
+| `captionSets` |  |
+| `entities` |  |
+| `fallbackUsed` |  |
+| `generationStrategy` |  |
 | `locale` |  |
-| `meme_id` |  |
-| `meme_slug` |  |
+| `memeId` |  |
+| `memeSlug` |  |
 | `name` |  |
 | `ok` |  |
-| `option_count` |  |
-| `owner_token` |  |
-| `provider_id` |  |
-| `reference_caption` |  |
-| `rewrite_note` |  |
-| `scene_summary` |  |
-| `template_description` |  |
-| `template_name` |  |
-| `template_tag` |  |
+| `optionCount` |  |
+| `ownerToken` |  |
+| `providerId` |  |
+| `referenceCaptions` |  |
+| `rewriteNote` |  |
+| `sceneSummary` |  |
+| `templateDescription` |  |
+| `templateName` |  |
+| `templateTags` |  |
 | `tone` |  |
-| `tone_cue` |  |
-| `trend_keyword` |  |
-| `trend_reference` |  |
-| `trend_signal` |  |
-| `variation_offset` |  |
-| `voice_rule` |  |
+| `toneCues` |  |
+| `trendKeywords` |  |
+| `trendReferences` |  |
+| `trendSignals` |  |
+| `variationOffset` |  |
+| `voiceRules` |  |
 
 Operations: Create, Load.
 
@@ -372,47 +370,47 @@ API path: `/api/ai/captions/generate`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `actor_id` |  |
-| `after_state` |  |
-| `attempt` |  |
-| `before_state` |  |
-| `brush_edit` |  |
+| `actorId` |  |
+| `afterState` |  |
+| `attempts` |  |
+| `beforeState` |  |
+| `brushEdits` |  |
 | `capability` |  |
-| `celebrity_confidence` |  |
-| `consent_attested` |  |
-| `created_at` |  |
-| `detected_face_count` |  |
-| `edge_refinement` |  |
-| `estimated_cost_usd` |  |
-| `frame_time_m` |  |
+| `celebrityConfidence` |  |
+| `consentAttested` |  |
+| `createdAt` |  |
+| `detectedFaceCount` |  |
+| `edgeRefinement` |  |
+| `estimatedCostUsd` |  |
+| `frameTimeMs` |  |
 | `height` |  |
 | `id` |  |
 | `input` |  |
-| `layer_id` |  |
-| `layer_type` |  |
-| `max_attempt` |  |
-| `max_face` |  |
-| `media_type` |  |
+| `layerId` |  |
+| `layerType` |  |
+| `maxAttempts` |  |
+| `maxFaces` |  |
+| `mediaType` |  |
 | `metadata` |  |
-| `nsfw_score` |  |
+| `nsfwScore` |  |
 | `output` |  |
-| `project_id` |  |
-| `provider_id` |  |
+| `projectId` |  |
+| `providerId` |  |
 | `reason` |  |
-| `run_after_m` |  |
-| `source_asset_url` |  |
-| `source_face_index` |  |
-| `source_image_url` |  |
+| `runAfterMs` |  |
+| `sourceAssetUrl` |  |
+| `sourceFaceIndex` |  |
+| `sourceImageUrl` |  |
 | `status` |  |
-| `target_asset_url` |  |
-| `target_face_index` |  |
-| `timeout_m` |  |
-| `trace_id` |  |
-| `updated_at` |  |
-| `version_id` |  |
+| `targetAssetUrl` |  |
+| `targetFaceIndex` |  |
+| `timeoutMs` |  |
+| `traceId` |  |
+| `updatedAt` |  |
+| `versionId` |  |
 | `width` |  |
-| `worker_id` |  |
-| `workspace_id` |  |
+| `workerId` |  |
+| `workspaceId` |  |
 
 Operations: Create, Load.
 
@@ -422,27 +420,27 @@ API path: `/api/ai/jobs/{jobId}/cancel`
 
 | Field | Description |
 | --- | --- |
-| `allow_heuristic_fallback` |  |
-| `caption` |  |
-| `caption_source` |  |
-| `correlation_id` |  |
-| `degraded_from_async` |  |
-| `editable_caption` |  |
+| `allowHeuristicFallback` |  |
+| `captionSource` |  |
+| `captions` |  |
+| `correlationId` |  |
+| `degradedFromAsync` |  |
+| `editableCaptions` |  |
 | `flow` |  |
-| `image_url` |  |
+| `imageUrl` |  |
 | `mode` |  |
 | `ok` |  |
-| `preferred_provider_id` |  |
+| `preferredProviderId` |  |
 | `prompt` |  |
-| `rewrite_note` |  |
-| `run_id` |  |
+| `rewriteNote` |  |
+| `runId` |  |
 | `status` |  |
-| `template_id` |  |
+| `templateId` |  |
 | `tone` |  |
-| `tone_cue` |  |
-| `variant` |  |
-| `variant_count` |  |
-| `workspace_id` |  |
+| `toneCues` |  |
+| `variantCount` |  |
+| `variants` |  |
+| `workspaceId` |  |
 
 Operations: Create.
 
@@ -452,16 +450,16 @@ API path: `/api/ai/memes/generate`
 
 | Field | Description |
 | --- | --- |
-| `actor_id` |  |
-| `correlation_id` |  |
+| `actorId` |  |
+| `correlationId` |  |
 | `limit` |  |
-| `mapping_mode` |  |
-| `max_slot` |  |
+| `mappingMode` |  |
+| `maxSlots` |  |
 | `prompt` |  |
-| `source_image_url` |  |
-| `text` |  |
-| `trend_signal` |  |
-| `workspace_id` |  |
+| `sourceImageUrl` |  |
+| `texts` |  |
+| `trendSignals` |  |
+| `workspaceId` |  |
 
 Operations: Create, Load.
 
@@ -480,7 +478,7 @@ API path: `/api/analytics/experiments/templates`
 
 | Field | Description |
 | --- | --- |
-| `display_name` |  |
+| `displayName` |  |
 | `email` |  |
 | `password` |  |
 
@@ -501,9 +499,9 @@ API path: `/api/billing/usage`
 
 | Field | Description |
 | --- | --- |
-| `author_id` |  |
+| `authorId` |  |
 | `message` |  |
-| `project_id` |  |
+| `projectId` |  |
 
 Operations: Create, Load.
 
@@ -522,14 +520,14 @@ API path: `/api/compliance/content-policy`
 
 | Field | Description |
 | --- | --- |
-| `canva` |  |
-| `caption` |  |
-| `generation_run_id` |  |
-| `generation_variant_id` |  |
-| `image_data_url` |  |
-| `overlay` |  |
-| `source_image_url` |  |
-| `template_slug` |  |
+| `canvas` |  |
+| `captions` |  |
+| `generationRunId` |  |
+| `generationVariantId` |  |
+| `imageDataUrl` |  |
+| `overlays` |  |
+| `sourceImageUrl` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 | `watermark` |  |
@@ -544,7 +542,7 @@ API path: `/api/memes`
 | --- | --- |
 | `limit` |  |
 | `prompt` |  |
-| `trend_signal` |  |
+| `trendSignals` |  |
 
 Operations: Create, Load.
 
@@ -554,8 +552,8 @@ API path: `/api/v1/templates/ideas`
 
 | Field | Description |
 | --- | --- |
-| `caption` |  |
-| `template_slug` |  |
+| `captions` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 | `watermark` |  |
@@ -569,26 +567,26 @@ API path: `/api/free/memes/caption`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
-| `frame_count` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `quality_status` |  |
+| `posterImageUrl` |  |
+| `qualityStatus` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
 | `width` |  |
 
 Operations: List.
@@ -599,17 +597,26 @@ API path: `/api/free/templates`
 
 | Field | Description |
 | --- | --- |
-| `caption` |  |
-| `data` |  |
-| `duration_m` |  |
+| `base64` |  |
+| `byteLength` |  |
+| `captions` |  |
+| `dataUrl` |  |
+| `delayMs` |  |
+| `durationMs` |  |
+| `filename` |  |
 | `fps` |  |
-| `gif_slug` |  |
-| `ok` |  |
-| `return_base64` |  |
-| `start_m` |  |
-| `tag` |  |
+| `gifSlug` |  |
+| `height` |  |
+| `mimeType` |  |
+| `pages` |  |
+| `parameters` |  |
+| `returnBase64` |  |
+| `sourceDurationMs` |  |
+| `startMs` |  |
+| `tags` |  |
 | `title` |  |
-| `width_px` |  |
+| `width` |  |
+| `widthPx` |  |
 
 Operations: Create.
 
@@ -619,22 +626,22 @@ API path: `/api/v1/gifs/generate`
 
 | Field | Description |
 | --- | --- |
-| `account_id` |  |
+| `accountId` |  |
 | `action` |  |
-| `actor_id` |  |
+| `actorId` |  |
 | `caption` |  |
 | `code` |  |
-| `external_account_id` |  |
+| `externalAccountId` |  |
 | `handle` |  |
 | `limit` |  |
-| `log_exposure` |  |
-| `meme_slug` |  |
+| `logExposure` |  |
+| `memeSlug` |  |
 | `now` |  |
 | `platform` |  |
-| `profile` |  |
-| `share_slug` |  |
+| `profiles` |  |
+| `shareSlug` |  |
 | `surface` |  |
-| `week_start` |  |
+| `weekStart` |  |
 
 Operations: Create, Load.
 
@@ -644,17 +651,17 @@ API path: `/api/growth/experiments/decision`
 
 | Field | Description |
 | --- | --- |
-| `alt_text` |  |
-| `canonical_image_url` |  |
-| `created_at` |  |
-| `image_url` |  |
-| `nsfw_status` |  |
-| `share_slug` |  |
-| `share_url` |  |
-| `share_view` |  |
+| `altText` |  |
+| `canonicalImageUrl` |  |
+| `createdAt` |  |
+| `imageUrl` |  |
+| `nsfwStatus` |  |
+| `shareSlug` |  |
+| `shareUrl` |  |
+| `shareViews` |  |
 | `slug` |  |
-| `tag` |  |
-| `template_slug` |  |
+| `tags` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 
@@ -667,9 +674,9 @@ API path: `/api/memes`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `content_type` |  |
-| `expires_in_second` |  |
-| `owner_token` |  |
+| `contentType` |  |
+| `expiresInSeconds` |  |
+| `ownerToken` |  |
 | `path` |  |
 | `prefix` |  |
 
@@ -681,21 +688,21 @@ API path: `/api/media/signed-url`
 
 | Field | Description |
 | --- | --- |
-| `alt_text` |  |
-| `canonical_image_url` |  |
-| `canva` |  |
-| `caption` |  |
-| `created_at` |  |
-| `image_url` |  |
-| `nsfw_status` |  |
-| `overlay` |  |
-| `share_slug` |  |
-| `share_url` |  |
-| `share_view` |  |
+| `altText` |  |
+| `canonicalImageUrl` |  |
+| `canvas` |  |
+| `captions` |  |
+| `createdAt` |  |
+| `imageUrl` |  |
+| `nsfwStatus` |  |
+| `overlays` |  |
+| `shareSlug` |  |
+| `shareUrl` |  |
+| `shareViews` |  |
 | `slug` |  |
-| `source_image_url` |  |
-| `tag` |  |
-| `template_slug` |  |
+| `sourceImageUrl` |  |
+| `tags` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 | `watermark` |  |
@@ -709,28 +716,28 @@ API path: `/api/memes/{slug}`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
-| `category` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
-| `frame_count` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `preview_image_url` |  |
-| `quality_status` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
 | `width` |  |
 
 Operations: Load.
@@ -745,10 +752,10 @@ API path: `/api/templates/{slug}`
 | `handle` |  |
 | `locale` |  |
 | `name` |  |
-| `style_preset` |  |
-| `system_prompt` |  |
-| `watermark_text` |  |
-| `website_url` |  |
+| `stylePreset` |  |
+| `systemPrompt` |  |
+| `watermarkText` |  |
+| `websiteUrl` |  |
 
 Operations: Create.
 
@@ -759,35 +766,35 @@ API path: `/api/v1/agents/bootstrap`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
-| `category` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
 | `fps` |  |
-| `frame_count` |  |
-| `gif_slug` |  |
+| `frameCount` |  |
+| `gifSlug` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `preview_image_url` |  |
-| `quality_status` |  |
-| `return_base64` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
+| `returnBase64` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `start_m` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `startMs` |  |
+| `tags` |  |
 | `title` |  |
 | `width` |  |
-| `width_px` |  |
+| `widthPx` |  |
 
 Operations: Create, List.
 
@@ -798,28 +805,28 @@ API path: `/api/gifs/{slug}/generate`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
-| `category` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
-| `frame_count` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `preview_image_url` |  |
-| `quality_status` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
 | `width` |  |
 
 Operations: List.
@@ -831,17 +838,17 @@ API path: `/api/gifs`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `actor_id` |  |
+| `actorId` |  |
 | `aggressiveness` |  |
-| `alert_id` |  |
-| `channel` |  |
-| `deliver_all_alert` |  |
+| `alertId` |  |
+| `channels` |  |
+| `deliverAllAlerts` |  |
 | `event` |  |
-| `explicit_niche` |  |
-| `explicit_region` |  |
-| `explicit_source` |  |
-| `explicit_topic` |  |
-| `follower_count` |  |
+| `explicitNiches` |  |
+| `explicitRegions` |  |
+| `explicitSources` |  |
+| `explicitTopics` |  |
+| `followerCount` |  |
 | `niche` |  |
 | `region` |  |
 | `source` |  |
@@ -865,50 +872,50 @@ API path: `/api/v1/memes/caption-upload`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `asset_id` |  |
-| `at_m` |  |
-| `audio_asset_id` |  |
-| `beat_offset_m` |  |
-| `bitrate_kbp` |  |
+| `assetId` |  |
+| `atMs` |  |
+| `audioAssetId` |  |
+| `beatOffsetMs` |  |
+| `bitrateKbps` |  |
 | `bpm` |  |
 | `cancelled` |  |
 | `container` |  |
-| `duration_m` |  |
-| `duration_second` |  |
+| `durationMs` |  |
+| `durationSeconds` |  |
 | `easing` |  |
 | `error` |  |
-| `frame_rate` |  |
-| `input_format` |  |
+| `frameRate` |  |
+| `inputFormat` |  |
 | `intensity` |  |
-| `job_id` |  |
+| `jobId` |  |
 | `locale` |  |
-| `mime_type` |  |
+| `mimeType` |  |
 | `name` |  |
-| `offset_m` |  |
-| `output_preset_id` |  |
-| `output_url` |  |
-| `plan_tier` |  |
-| `preset_id` |  |
-| `progress_percent` |  |
+| `offsetMs` |  |
+| `outputPresetId` |  |
+| `outputUrl` |  |
+| `planTier` |  |
+| `presetId` |  |
+| `progressPercent` |  |
 | `project` |  |
-| `project_id` |  |
+| `projectId` |  |
 | `property` |  |
-| `source_device_id` |  |
-| `source_url` |  |
+| `sourceDeviceId` |  |
+| `sourceUrl` |  |
 | `stage` |  |
-| `start_m` |  |
-| `style_preset_id` |  |
-| `sync_to_beat_grid` |  |
+| `startMs` |  |
+| `stylePresetId` |  |
+| `syncToBeatGrid` |  |
 | `tone` |  |
-| `track_id` |  |
+| `trackId` |  |
 | `transcript` |  |
-| `trend_keyword` |  |
+| `trendKeywords` |  |
 | `type` |  |
-| `updated_at` |  |
+| `updatedAt` |  |
 | `value` |  |
-| `watermark_enabled` |  |
-| `watermark_text` |  |
-| `worker_id` |  |
+| `watermarkEnabled` |  |
+| `watermarkText` |  |
+| `workerId` |  |
 
 Operations: Create, Load.
 
@@ -940,15 +947,15 @@ Create an instance: `$agent = $client->Agent();`
 | `name` | `string` |  |
 | `slug` | `string` |  |
 | `status` | `string` |  |
-| `style_preset` | `string` |  |
-| `system_prompt` | `string` |  |
-| `watermark_text` | `string` |  |
-| `website_url` | `string` |  |
+| `stylePreset` | `string` |  |
+| `systemPrompt` | `string` |  |
+| `watermarkText` | `string` |  |
+| `websiteUrl` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Agent record (throws on error).
+// load() returns the ENTITY — call data_get() for the Agent record (throws on error).
 $agent = $client->Agent()->load(["id" => "agent_id"]);
 ```
 
@@ -978,23 +985,23 @@ Create an instance: `$agent_infra = $client->AgentInfra();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `chat_id` | `string` |  |
-| `meme_slug` | `string` |  |
+| `chatId` | `string` |  |
+| `memeSlug` | `string` |  |
 | `metadata` | `array` |  |
-| `payout_reference` | `string` |  |
-| `payout_status` | `string` |  |
-| `phone_or_chat_id` | `string` |  |
+| `payoutReference` | `string` |  |
+| `payoutStatus` | `string` |  |
+| `phoneOrChatId` | `string` |  |
 | `prompt` | `string` |  |
 | `proof` | `array` |  |
-| `quota_boost_per_day` | `int` |  |
-| `scope` | `array` |  |
-| `user_id` | `string` |  |
-| `week_start` | `string` |  |
+| `quotaBoostPerDay` | `int` |  |
+| `scopes` | `array` |  |
+| `userId` | `string` |  |
+| `weekStart` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare AgentInfra record (throws on error).
+// load() returns the ENTITY — call data_get() for the AgentInfra record (throws on error).
 $agent_infra = $client->AgentInfra()->load();
 ```
 
@@ -1002,6 +1009,11 @@ $agent_infra = $client->AgentInfra()->load();
 
 ```php
 $agent_infra = $client->AgentInfra()->create([
+    "action" => null, // string
+    "chatId" => null, // string
+    "memeSlug" => null, // string
+    "phoneOrChatId" => null, // string
+    "prompt" => null, // string
 ]);
 ```
 
@@ -1021,39 +1033,39 @@ Create an instance: `$ai_caption = $client->AiCaption();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `blocked_term` | `array` |  |
-| `canvas_text` | `array` |  |
-| `caption_count` | `int` |  |
-| `caption_set` | `array` |  |
-| `entity` | `array` |  |
-| `fallback_used` | `bool` |  |
-| `generation_strategy` | `string` |  |
+| `blockedTerms` | `array` |  |
+| `canvasText` | `array` |  |
+| `captionCount` | `int` |  |
+| `captionSets` | `array` |  |
+| `entities` | `array` |  |
+| `fallbackUsed` | `bool` |  |
+| `generationStrategy` | `string` |  |
 | `locale` | `string` |  |
-| `meme_id` | `string` |  |
-| `meme_slug` | `string` |  |
+| `memeId` | `string` |  |
+| `memeSlug` | `string` |  |
 | `name` | `string` |  |
 | `ok` | `bool` |  |
-| `option_count` | `int` |  |
-| `owner_token` | `string` |  |
-| `provider_id` | `string` |  |
-| `reference_caption` | `array` |  |
-| `rewrite_note` | `string` |  |
-| `scene_summary` | `string` |  |
-| `template_description` | `string` |  |
-| `template_name` | `string` |  |
-| `template_tag` | `array` |  |
+| `optionCount` | `int` |  |
+| `ownerToken` | `string` |  |
+| `providerId` | `string` |  |
+| `referenceCaptions` | `array` |  |
+| `rewriteNote` | `string` |  |
+| `sceneSummary` | `string` |  |
+| `templateDescription` | `string` |  |
+| `templateName` | `string` |  |
+| `templateTags` | `array` |  |
 | `tone` | `string` |  |
-| `tone_cue` | `array` |  |
-| `trend_keyword` | `array` |  |
-| `trend_reference` | `array` |  |
-| `trend_signal` | `array` |  |
-| `variation_offset` | `int` |  |
-| `voice_rule` | `array` |  |
+| `toneCues` | `array` |  |
+| `trendKeywords` | `array` |  |
+| `trendReferences` | `array` |  |
+| `trendSignals` | `array` |  |
+| `variationOffset` | `int` |  |
+| `voiceRules` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare AiCaption record (throws on error).
+// load() returns the ENTITY — call data_get() for the AiCaption record (throws on error).
 $ai_caption = $client->AiCaption()->load();
 ```
 
@@ -1061,7 +1073,7 @@ $ai_caption = $client->AiCaption()->load();
 
 ```php
 $ai_caption = $client->AiCaption()->create([
-    "canvas_text" => null, // array
+    "canvasText" => null, // array
     "name" => null, // string
     "tone" => null, // string
 ]);
@@ -1084,52 +1096,52 @@ Create an instance: `$ai_job = $client->AiJob();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `actor_id` | `string` |  |
-| `after_state` | `array` |  |
-| `attempt` | `int` |  |
-| `before_state` | `array` |  |
-| `brush_edit` | `array` |  |
+| `actorId` | `string` |  |
+| `afterState` | `array` |  |
+| `attempts` | `int` |  |
+| `beforeState` | `array` |  |
+| `brushEdits` | `array` |  |
 | `capability` | `string` |  |
-| `celebrity_confidence` | `float` |  |
-| `consent_attested` | `bool` |  |
-| `created_at` | `string` |  |
-| `detected_face_count` | `float` |  |
-| `edge_refinement` | `float` |  |
-| `estimated_cost_usd` | `float` |  |
-| `frame_time_m` | `float` |  |
+| `celebrityConfidence` | `float` |  |
+| `consentAttested` | `bool` |  |
+| `createdAt` | `string` |  |
+| `detectedFaceCount` | `float` |  |
+| `edgeRefinement` | `float` |  |
+| `estimatedCostUsd` | `float` |  |
+| `frameTimeMs` | `float` |  |
 | `height` | `float` |  |
 | `id` | `string` |  |
 | `input` | `array` |  |
-| `layer_id` | `string` |  |
-| `layer_type` | `string` |  |
-| `max_attempt` | `int` |  |
-| `max_face` | `float` |  |
-| `media_type` | `string` |  |
+| `layerId` | `string` |  |
+| `layerType` | `string` |  |
+| `maxAttempts` | `int` |  |
+| `maxFaces` | `float` |  |
+| `mediaType` | `string` |  |
 | `metadata` | `array` |  |
-| `nsfw_score` | `float` |  |
+| `nsfwScore` | `float` |  |
 | `output` | `array` |  |
-| `project_id` | `string` |  |
-| `provider_id` | `string` |  |
+| `projectId` | `string` |  |
+| `providerId` | `string` |  |
 | `reason` | `string` |  |
-| `run_after_m` | `int` |  |
-| `source_asset_url` | `string` |  |
-| `source_face_index` | `float` |  |
-| `source_image_url` | `string` |  |
+| `runAfterMs` | `int` |  |
+| `sourceAssetUrl` | `string` |  |
+| `sourceFaceIndex` | `float` |  |
+| `sourceImageUrl` | `string` |  |
 | `status` | `string` |  |
-| `target_asset_url` | `string` |  |
-| `target_face_index` | `float` |  |
-| `timeout_m` | `int` |  |
-| `trace_id` | `string` |  |
-| `updated_at` | `string` |  |
-| `version_id` | `string` |  |
+| `targetAssetUrl` | `string` |  |
+| `targetFaceIndex` | `float` |  |
+| `timeoutMs` | `int` |  |
+| `traceId` | `string` |  |
+| `updatedAt` | `string` |  |
+| `versionId` | `string` |  |
 | `width` | `float` |  |
-| `worker_id` | `string` |  |
-| `workspace_id` | `string` |  |
+| `workerId` | `string` |  |
+| `workspaceId` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare AiJob record (throws on error).
+// load() returns the ENTITY — call data_get() for the AiJob record (throws on error).
 $ai_job = $client->AiJob()->load(["id" => "ai_job_id"]);
 ```
 
@@ -1137,6 +1149,19 @@ $ai_job = $client->AiJob()->load(["id" => "ai_job_id"]);
 
 ```php
 $ai_job = $client->AiJob()->create([
+    "action" => null, // string
+    "capability" => null, // string
+    "detectedFaceCount" => null, // float
+    "height" => null, // float
+    "id" => null, // string
+    "layerId" => null, // string
+    "projectId" => null, // string
+    "sourceAssetUrl" => null, // string
+    "sourceImageUrl" => null, // string
+    "status" => null, // string
+    "targetAssetUrl" => null, // string
+    "width" => null, // float
+    "workerId" => null, // string
 ]);
 ```
 
@@ -1155,27 +1180,27 @@ Create an instance: `$ai_meme_generation_succeeded = $client->AiMemeGenerationSu
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allow_heuristic_fallback` | `bool` |  |
-| `caption` | `array` |  |
-| `caption_source` | `string` |  |
-| `correlation_id` | `string` |  |
-| `degraded_from_async` | `bool` |  |
-| `editable_caption` | `array` |  |
+| `allowHeuristicFallback` | `bool` |  |
+| `captionSource` | `string` |  |
+| `captions` | `array` |  |
+| `correlationId` | `string` |  |
+| `degradedFromAsync` | `bool` |  |
+| `editableCaptions` | `array` |  |
 | `flow` | `string` |  |
-| `image_url` | `string` |  |
+| `imageUrl` | `string` |  |
 | `mode` | `string` |  |
 | `ok` | `bool` |  |
-| `preferred_provider_id` | `string` |  |
+| `preferredProviderId` | `string` |  |
 | `prompt` | `string` |  |
-| `rewrite_note` | `string` |  |
-| `run_id` | `string` |  |
+| `rewriteNote` | `string` |  |
+| `runId` | `string` |  |
 | `status` | `string` |  |
-| `template_id` | `string` |  |
+| `templateId` | `string` |  |
 | `tone` | `string` |  |
-| `tone_cue` | `array` |  |
-| `variant` | `array` |  |
-| `variant_count` | `int` |  |
-| `workspace_id` | `string` |  |
+| `toneCues` | `array` |  |
+| `variantCount` | `int` |  |
+| `variants` | `array` |  |
+| `workspaceId` | `string` |  |
 
 #### Example: Create
 
@@ -1186,8 +1211,8 @@ $ai_meme_generation_succeeded = $client->AiMemeGenerationSucceeded()->create([
     "ok" => null, // bool
     "prompt" => null, // string
     "status" => null, // string
-    "variant" => null, // array
-    "variant_count" => null, // int
+    "variantCount" => null, // int
+    "variants" => null, // array
 ]);
 ```
 
@@ -1207,21 +1232,21 @@ Create an instance: `$ai_provider = $client->AiProvider();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `actor_id` | `string` |  |
-| `correlation_id` | `string` |  |
+| `actorId` | `string` |  |
+| `correlationId` | `string` |  |
 | `limit` | `float` |  |
-| `mapping_mode` | `string` |  |
-| `max_slot` | `int` |  |
+| `mappingMode` | `string` |  |
+| `maxSlots` | `int` |  |
 | `prompt` | `string` |  |
-| `source_image_url` | `string` |  |
-| `text` | `array` |  |
-| `trend_signal` | `array` |  |
-| `workspace_id` | `string` |  |
+| `sourceImageUrl` | `string` |  |
+| `texts` | `array` |  |
+| `trendSignals` | `array` |  |
+| `workspaceId` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare AiProvider record (throws on error).
+// load() returns the ENTITY — call data_get() for the AiProvider record (throws on error).
 $ai_provider = $client->AiProvider()->load();
 ```
 
@@ -1230,7 +1255,7 @@ $ai_provider = $client->AiProvider()->load();
 ```php
 $ai_provider = $client->AiProvider()->create([
     "prompt" => null, // string
-    "source_image_url" => null, // string
+    "sourceImageUrl" => null, // string
 ]);
 ```
 
@@ -1248,7 +1273,7 @@ Create an instance: `$analytics = $client->Analytics();`
 #### Example: Load
 
 ```php
-// load() returns the bare Analytics record (throws on error).
+// load() returns the ENTITY — call data_get() for the Analytics record (throws on error).
 $analytics = $client->Analytics()->load();
 ```
 
@@ -1267,7 +1292,7 @@ Create an instance: `$auth = $client->Auth();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `display_name` | `string` |  |
+| `displayName` | `string` |  |
 | `email` | `string` |  |
 | `password` | `string` |  |
 
@@ -1294,7 +1319,7 @@ Create an instance: `$billing = $client->Billing();`
 #### Example: Load
 
 ```php
-// load() returns the bare Billing record (throws on error).
+// load() returns the ENTITY — call data_get() for the Billing record (throws on error).
 $billing = $client->Billing()->load();
 ```
 
@@ -1314,14 +1339,14 @@ Create an instance: `$collaboration = $client->Collaboration();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author_id` | `string` |  |
+| `authorId` | `string` |  |
 | `message` | `string` |  |
-| `project_id` | `string` |  |
+| `projectId` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Collaboration record (throws on error).
+// load() returns the ENTITY — call data_get() for the Collaboration record (throws on error).
 $collaboration = $client->Collaboration()->load();
 ```
 
@@ -1330,7 +1355,7 @@ $collaboration = $client->Collaboration()->load();
 ```php
 $collaboration = $client->Collaboration()->create([
     "message" => null, // string
-    "project_id" => null, // string
+    "projectId" => null, // string
 ]);
 ```
 
@@ -1348,7 +1373,7 @@ Create an instance: `$compliance = $client->Compliance();`
 #### Example: Load
 
 ```php
-// load() returns the bare Compliance record (throws on error).
+// load() returns the ENTITY — call data_get() for the Compliance record (throws on error).
 $compliance = $client->Compliance()->load();
 ```
 
@@ -1367,14 +1392,14 @@ Create an instance: `$create_meme = $client->CreateMeme();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canva` | `array` |  |
-| `caption` | `array` |  |
-| `generation_run_id` | `mixed` |  |
-| `generation_variant_id` | `mixed` |  |
-| `image_data_url` | `string` |  |
-| `overlay` | `array` |  |
-| `source_image_url` | `string` |  |
-| `template_slug` | `string` |  |
+| `canvas` | `array` |  |
+| `captions` | `array` |  |
+| `generationRunId` | `mixed` |  |
+| `generationVariantId` | `mixed` |  |
+| `imageDataUrl` | `string` |  |
+| `overlays` | `array` |  |
+| `sourceImageUrl` | `string` |  |
+| `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
 | `watermark` | `array` |  |
@@ -1383,10 +1408,10 @@ Create an instance: `$create_meme = $client->CreateMeme();`
 
 ```php
 $create_meme = $client->CreateMeme()->create([
-    "canva" => null, // array
-    "caption" => null, // array
-    "image_data_url" => null, // string
-    "source_image_url" => null, // string
+    "canvas" => null, // array
+    "captions" => null, // array
+    "imageDataUrl" => null, // string
+    "sourceImageUrl" => null, // string
     "watermark" => null, // array
 ]);
 ```
@@ -1409,12 +1434,12 @@ Create an instance: `$developer_api = $client->DeveloperApi();`
 | --- | --- | --- |
 | `limit` | `float` |  |
 | `prompt` | `string` |  |
-| `trend_signal` | `array` |  |
+| `trendSignals` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare DeveloperApi record (throws on error).
+// load() returns the ENTITY — call data_get() for the DeveloperApi record (throws on error).
 $developer_api = $client->DeveloperApi()->load();
 ```
 
@@ -1441,8 +1466,8 @@ Create an instance: `$free_caption_meme_success = $client->FreeCaptionMemeSucces
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caption` | `array` |  |
-| `template_slug` | `string` |  |
+| `captions` | `array` |  |
+| `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
 | `watermark` | `array` |  |
@@ -1451,8 +1476,8 @@ Create an instance: `$free_caption_meme_success = $client->FreeCaptionMemeSucces
 
 ```php
 $free_caption_meme_success = $client->FreeCaptionMemeSuccess()->create([
-    "caption" => null, // array
-    "template_slug" => null, // string
+    "captions" => null, // array
+    "templateSlug" => null, // string
 ]);
 ```
 
@@ -1472,26 +1497,26 @@ Create an instance: `$free_template_search = $client->FreeTemplateSearch();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `bool` |  |
-| `asset_byte` | `mixed` |  |
-| `asset_content_type` | `string` |  |
-| `box_count` | `int` |  |
-| `caption` | `array` |  |
-| `caption_count` | `int` |  |
+| `assetBytes` | `mixed` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `int` |  |
+| `captionCount` | `int` |  |
+| `captions` | `array` |  |
 | `description` | `string` |  |
-| `duration_m` | `mixed` |  |
-| `example_image_url` | `mixed` |  |
-| `frame_count` | `mixed` |  |
+| `durationMs` | `mixed` |  |
+| `exampleImageUrl` | `mixed` |  |
+| `frameCount` | `mixed` |  |
 | `height` | `mixed` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
-| `media_type` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
 | `name` | `string` |  |
-| `poster_image_url` | `string` |  |
-| `quality_status` | `string` |  |
+| `posterImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
 | `slug` | `string` |  |
-| `source_template_id` | `mixed` |  |
-| `source_url` | `string` |  |
-| `tag` | `array` |  |
+| `sourceTemplateId` | `mixed` |  |
+| `sourceUrl` | `string` |  |
+| `tags` | `array` |  |
 | `width` | `mixed` |  |
 
 #### Example: List
@@ -1516,24 +1541,41 @@ Create an instance: `$generate = $client->Generate();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caption` | `array` |  |
-| `data` | `array` |  |
-| `duration_m` | `int` |  |
+| `base64` | `string` |  |
+| `byteLength` | `int` |  |
+| `captions` | `array` |  |
+| `dataUrl` | `string` |  |
+| `delayMs` | `int` |  |
+| `durationMs` | `int` |  |
+| `filename` | `string` |  |
 | `fps` | `int` |  |
-| `gif_slug` | `string` |  |
-| `ok` | `bool` |  |
-| `return_base64` | `bool` |  |
-| `start_m` | `int` |  |
-| `tag` | `array` |  |
+| `gifSlug` | `string` |  |
+| `height` | `int` |  |
+| `mimeType` | `string` |  |
+| `pages` | `int` |  |
+| `parameters` | `array` |  |
+| `returnBase64` | `bool` |  |
+| `sourceDurationMs` | `int` |  |
+| `startMs` | `int` |  |
+| `tags` | `array` |  |
 | `title` | `string` |  |
-| `width_px` | `int` |  |
+| `width` | `int` |  |
+| `widthPx` | `int` |  |
 
 #### Example: Create
 
 ```php
 $generate = $client->Generate()->create([
-    "data" => null, // array
-    "ok" => null, // bool
+    "byteLength" => null, // int
+    "delayMs" => null, // int
+    "filename" => null, // string
+    "gifSlug" => null, // string
+    "height" => null, // int
+    "mimeType" => null, // string
+    "pages" => null, // int
+    "parameters" => null, // array
+    "sourceDurationMs" => null, // int
+    "width" => null, // int
 ]);
 ```
 
@@ -1553,27 +1595,27 @@ Create an instance: `$growth = $client->Growth();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_id` | `string` |  |
+| `accountId` | `string` |  |
 | `action` | `string` |  |
-| `actor_id` | `string` |  |
+| `actorId` | `string` |  |
 | `caption` | `string` |  |
 | `code` | `string` |  |
-| `external_account_id` | `string` |  |
+| `externalAccountId` | `string` |  |
 | `handle` | `string` |  |
 | `limit` | `int` |  |
-| `log_exposure` | `bool` |  |
-| `meme_slug` | `string` |  |
+| `logExposure` | `bool` |  |
+| `memeSlug` | `string` |  |
 | `now` | `string` |  |
 | `platform` | `string` |  |
-| `profile` | `array` |  |
-| `share_slug` | `string` |  |
+| `profiles` | `array` |  |
+| `shareSlug` | `string` |  |
 | `surface` | `string` |  |
-| `week_start` | `string` |  |
+| `weekStart` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Growth record (throws on error).
+// load() returns the ENTITY — call data_get() for the Growth record (throws on error).
 $growth = $client->Growth()->load();
 ```
 
@@ -1600,17 +1642,17 @@ Create an instance: `$list_meme = $client->ListMeme();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | `string` |  |
-| `canonical_image_url` | `string` |  |
-| `created_at` | `string` |  |
-| `image_url` | `string` |  |
-| `nsfw_status` | `string` |  |
-| `share_slug` | `string` |  |
-| `share_url` | `string` |  |
-| `share_view` | `int` |  |
+| `altText` | `string` |  |
+| `canonicalImageUrl` | `string` |  |
+| `createdAt` | `string` |  |
+| `imageUrl` | `string` |  |
+| `nsfwStatus` | `string` |  |
+| `shareSlug` | `string` |  |
+| `shareUrl` | `string` |  |
+| `shareViews` | `int` |  |
 | `slug` | `string` |  |
-| `tag` | `array` |  |
-| `template_slug` | `string` |  |
+| `tags` | `array` |  |
+| `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
 
@@ -1637,9 +1679,9 @@ Create an instance: `$media = $client->Media();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `content_type` | `string` |  |
-| `expires_in_second` | `int` |  |
-| `owner_token` | `string` |  |
+| `contentType` | `string` |  |
+| `expiresInSeconds` | `int` |  |
+| `ownerToken` | `string` |  |
 | `path` | `string` |  |
 | `prefix` | `string` |  |
 
@@ -1667,21 +1709,21 @@ Create an instance: `$meme = $client->Meme();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | `string` |  |
-| `canonical_image_url` | `string` |  |
-| `canva` | `array` |  |
-| `caption` | `array` |  |
-| `created_at` | `string` |  |
-| `image_url` | `string` |  |
-| `nsfw_status` | `string` |  |
-| `overlay` | `array` |  |
-| `share_slug` | `string` |  |
-| `share_url` | `string` |  |
-| `share_view` | `int` |  |
+| `altText` | `string` |  |
+| `canonicalImageUrl` | `string` |  |
+| `canvas` | `array` |  |
+| `captions` | `array` |  |
+| `createdAt` | `string` |  |
+| `imageUrl` | `string` |  |
+| `nsfwStatus` | `string` |  |
+| `overlays` | `array` |  |
+| `shareSlug` | `string` |  |
+| `shareUrl` | `string` |  |
+| `shareViews` | `int` |  |
 | `slug` | `string` |  |
-| `source_image_url` | `string` |  |
-| `tag` | `array` |  |
-| `template_slug` | `string` |  |
+| `sourceImageUrl` | `string` |  |
+| `tags` | `array` |  |
+| `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
 | `watermark` | `array` |  |
@@ -1689,7 +1731,7 @@ Create an instance: `$meme = $client->Meme();`
 #### Example: Load
 
 ```php
-// load() returns the bare Meme record (throws on error).
+// load() returns the ENTITY — call data_get() for the Meme record (throws on error).
 $meme = $client->Meme()->load(["id" => "meme_id"]);
 ```
 
@@ -1709,34 +1751,34 @@ Create an instance: `$public_template_media_item = $client->PublicTemplateMediaI
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `bool` |  |
-| `asset_byte` | `mixed` |  |
-| `asset_content_type` | `string` |  |
-| `box_count` | `int` |  |
-| `caption` | `array` |  |
-| `caption_count` | `int` |  |
-| `category` | `array` |  |
+| `assetBytes` | `mixed` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `int` |  |
+| `captionCount` | `int` |  |
+| `captions` | `array` |  |
+| `categories` | `array` |  |
 | `description` | `string` |  |
-| `duration_m` | `mixed` |  |
-| `example_image_url` | `mixed` |  |
-| `frame_count` | `mixed` |  |
+| `durationMs` | `mixed` |  |
+| `exampleImageUrl` | `mixed` |  |
+| `frameCount` | `mixed` |  |
 | `height` | `mixed` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
-| `media_type` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
 | `name` | `string` |  |
-| `poster_image_url` | `string` |  |
-| `preview_image_url` | `string` |  |
-| `quality_status` | `string` |  |
+| `posterImageUrl` | `string` |  |
+| `previewImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
 | `slug` | `string` |  |
-| `source_template_id` | `mixed` |  |
-| `source_url` | `string` |  |
-| `tag` | `array` |  |
+| `sourceTemplateId` | `mixed` |  |
+| `sourceUrl` | `string` |  |
+| `tags` | `array` |  |
 | `width` | `mixed` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare PublicTemplateMediaItem record (throws on error).
+// load() returns the ENTITY — call data_get() for the PublicTemplateMediaItem record (throws on error).
 $public_template_media_item = $client->PublicTemplateMediaItem()->load(["slug" => "slug"]);
 ```
 
@@ -1759,10 +1801,10 @@ Create an instance: `$standalone_agent_bootstrap = $client->StandaloneAgentBoots
 | `handle` | `string` |  |
 | `locale` | `string` |  |
 | `name` | `string` |  |
-| `style_preset` | `string` |  |
-| `system_prompt` | `string` |  |
-| `watermark_text` | `string` |  |
-| `website_url` | `string` |  |
+| `stylePreset` | `string` |  |
+| `systemPrompt` | `string` |  |
+| `watermarkText` | `string` |  |
+| `websiteUrl` | `string` |  |
 
 #### Example: Create
 
@@ -1790,35 +1832,35 @@ Create an instance: `$template = $client->Template();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `bool` |  |
-| `asset_byte` | `mixed` |  |
-| `asset_content_type` | `string` |  |
-| `box_count` | `int` |  |
-| `caption` | `array` |  |
-| `caption_count` | `int` |  |
-| `category` | `array` |  |
+| `assetBytes` | `mixed` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `int` |  |
+| `captionCount` | `int` |  |
+| `captions` | `array` |  |
+| `categories` | `array` |  |
 | `description` | `string` |  |
-| `duration_m` | `int` |  |
-| `example_image_url` | `mixed` |  |
+| `durationMs` | `int` |  |
+| `exampleImageUrl` | `mixed` |  |
 | `fps` | `int` |  |
-| `frame_count` | `mixed` |  |
-| `gif_slug` | `string` |  |
+| `frameCount` | `mixed` |  |
+| `gifSlug` | `string` |  |
 | `height` | `mixed` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
-| `media_type` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
 | `name` | `string` |  |
-| `poster_image_url` | `string` |  |
-| `preview_image_url` | `string` |  |
-| `quality_status` | `string` |  |
-| `return_base64` | `bool` |  |
+| `posterImageUrl` | `string` |  |
+| `previewImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
+| `returnBase64` | `bool` |  |
 | `slug` | `string` |  |
-| `source_template_id` | `mixed` |  |
-| `source_url` | `string` |  |
-| `start_m` | `int` |  |
-| `tag` | `array` |  |
+| `sourceTemplateId` | `mixed` |  |
+| `sourceUrl` | `string` |  |
+| `startMs` | `int` |  |
+| `tags` | `array` |  |
 | `title` | `string` |  |
 | `width` | `mixed` |  |
-| `width_px` | `int` |  |
+| `widthPx` | `int` |  |
 
 #### Example: List
 
@@ -1832,6 +1874,14 @@ $templates = $client->Template()->list();
 ```php
 $template = $client->Template()->create([
     "slug" => null, // string
+    "description" => null, // string
+    "height" => null, // mixed
+    "id" => null, // string
+    "imageUrl" => null, // string
+    "mediaType" => null, // string
+    "name" => null, // string
+    "sourceTemplateId" => null, // mixed
+    "width" => null, // mixed
 ]);
 ```
 
@@ -1851,28 +1901,28 @@ Create an instance: `$template_search = $client->TemplateSearch();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `bool` |  |
-| `asset_byte` | `mixed` |  |
-| `asset_content_type` | `string` |  |
-| `box_count` | `int` |  |
-| `caption` | `array` |  |
-| `caption_count` | `int` |  |
-| `category` | `array` |  |
+| `assetBytes` | `mixed` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `int` |  |
+| `captionCount` | `int` |  |
+| `captions` | `array` |  |
+| `categories` | `array` |  |
 | `description` | `string` |  |
-| `duration_m` | `mixed` |  |
-| `example_image_url` | `mixed` |  |
-| `frame_count` | `mixed` |  |
+| `durationMs` | `mixed` |  |
+| `exampleImageUrl` | `mixed` |  |
+| `frameCount` | `mixed` |  |
 | `height` | `mixed` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
-| `media_type` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
 | `name` | `string` |  |
-| `poster_image_url` | `string` |  |
-| `preview_image_url` | `string` |  |
-| `quality_status` | `string` |  |
+| `posterImageUrl` | `string` |  |
+| `previewImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
 | `slug` | `string` |  |
-| `source_template_id` | `mixed` |  |
-| `source_url` | `string` |  |
-| `tag` | `array` |  |
+| `sourceTemplateId` | `mixed` |  |
+| `sourceUrl` | `string` |  |
+| `tags` | `array` |  |
 | `width` | `mixed` |  |
 
 #### Example: List
@@ -1899,17 +1949,17 @@ Create an instance: `$trend_alert = $client->TrendAlert();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `actor_id` | `string` |  |
+| `actorId` | `string` |  |
 | `aggressiveness` | `float` |  |
-| `alert_id` | `string` |  |
-| `channel` | `array` |  |
-| `deliver_all_alert` | `bool` |  |
+| `alertId` | `string` |  |
+| `channels` | `array` |  |
+| `deliverAllAlerts` | `bool` |  |
 | `event` | `array` |  |
-| `explicit_niche` | `array` |  |
-| `explicit_region` | `array` |  |
-| `explicit_source` | `array` |  |
-| `explicit_topic` | `array` |  |
-| `follower_count` | `int` |  |
+| `explicitNiches` | `array` |  |
+| `explicitRegions` | `array` |  |
+| `explicitSources` | `array` |  |
+| `explicitTopics` | `array` |  |
+| `followerCount` | `int` |  |
 | `niche` | `string` |  |
 | `region` | `string` |  |
 | `source` | `string` |  |
@@ -1918,7 +1968,7 @@ Create an instance: `$trend_alert = $client->TrendAlert();`
 #### Example: Load
 
 ```php
-// load() returns the bare TrendAlert record (throws on error).
+// load() returns the ENTITY — call data_get() for the TrendAlert record (throws on error).
 $trend_alert = $client->TrendAlert()->load();
 ```
 
@@ -1927,8 +1977,8 @@ $trend_alert = $client->TrendAlert()->load();
 ```php
 $trend_alert = $client->TrendAlert()->create([
     "action" => null, // string
-    "actor_id" => null, // string
-    "alert_id" => null, // string
+    "actorId" => null, // string
+    "alertId" => null, // string
     "topic" => null, // string
 ]);
 ```
@@ -1968,55 +2018,55 @@ Create an instance: `$video = $client->Video();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `asset_id` | `string` |  |
-| `at_m` | `float` |  |
-| `audio_asset_id` | `string` |  |
-| `beat_offset_m` | `int` |  |
-| `bitrate_kbp` | `float` |  |
+| `assetId` | `string` |  |
+| `atMs` | `float` |  |
+| `audioAssetId` | `string` |  |
+| `beatOffsetMs` | `int` |  |
+| `bitrateKbps` | `float` |  |
 | `bpm` | `int` |  |
 | `cancelled` | `bool` |  |
 | `container` | `string` |  |
-| `duration_m` | `float` |  |
-| `duration_second` | `float` |  |
+| `durationMs` | `float` |  |
+| `durationSeconds` | `float` |  |
 | `easing` | `string` |  |
 | `error` | `string` |  |
-| `frame_rate` | `float` |  |
-| `input_format` | `string` |  |
+| `frameRate` | `float` |  |
+| `inputFormat` | `string` |  |
 | `intensity` | `float` |  |
-| `job_id` | `string` |  |
+| `jobId` | `string` |  |
 | `locale` | `string` |  |
-| `mime_type` | `string` |  |
+| `mimeType` | `string` |  |
 | `name` | `string` |  |
-| `offset_m` | `float` |  |
-| `output_preset_id` | `string` |  |
-| `output_url` | `string` |  |
-| `plan_tier` | `string` |  |
-| `preset_id` | `string` |  |
-| `progress_percent` | `float` |  |
+| `offsetMs` | `float` |  |
+| `outputPresetId` | `string` |  |
+| `outputUrl` | `string` |  |
+| `planTier` | `string` |  |
+| `presetId` | `string` |  |
+| `progressPercent` | `float` |  |
 | `project` | `array` |  |
-| `project_id` | `string` |  |
+| `projectId` | `string` |  |
 | `property` | `string` |  |
-| `source_device_id` | `string` |  |
-| `source_url` | `string` |  |
+| `sourceDeviceId` | `string` |  |
+| `sourceUrl` | `string` |  |
 | `stage` | `string` |  |
-| `start_m` | `float` |  |
-| `style_preset_id` | `string` |  |
-| `sync_to_beat_grid` | `bool` |  |
+| `startMs` | `float` |  |
+| `stylePresetId` | `string` |  |
+| `syncToBeatGrid` | `bool` |  |
 | `tone` | `string` |  |
-| `track_id` | `string` |  |
+| `trackId` | `string` |  |
 | `transcript` | `string` |  |
-| `trend_keyword` | `array` |  |
+| `trendKeywords` | `array` |  |
 | `type` | `string` |  |
-| `updated_at` | `string` |  |
+| `updatedAt` | `string` |  |
 | `value` | `float` |  |
-| `watermark_enabled` | `bool` |  |
-| `watermark_text` | `string` |  |
-| `worker_id` | `string` |  |
+| `watermarkEnabled` | `bool` |  |
+| `watermarkText` | `string` |  |
+| `workerId` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Video record (throws on error).
+// load() returns the ENTITY — call data_get() for the Video record (throws on error).
 $video = $client->Video()->load();
 ```
 
@@ -2024,12 +2074,12 @@ $video = $client->Video()->load();
 
 ```php
 $video = $client->Video()->create([
-    "duration_second" => null, // float
-    "input_format" => null, // string
-    "mime_type" => null, // string
-    "output_preset_id" => null, // string
-    "plan_tier" => null, // string
-    "preset_id" => null, // string
+    "durationSeconds" => null, // float
+    "inputFormat" => null, // string
+    "mimeType" => null, // string
+    "outputPresetId" => null, // string
+    "planTier" => null, // string
+    "presetId" => null, // string
 ]);
 ```
 
@@ -2110,11 +2160,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$agent = $client->Agent();
-$agent->load(["id" => "example_id"]);
+$trendalert = $client->TrendAlert();
+$trendalert->load();
 
-// $agent->data_get() now returns the agent data from the last load
-// $agent->match_get() returns the last match criteria
+// $trendalert->data_get() now returns the trendalert data from the last load
+// $trendalert->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

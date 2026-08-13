@@ -11,7 +11,7 @@ main: kit: entity: public_template_media_item: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "asset_byte"
+      name: "assetBytes"
       req: false
       type: [
         "`$ONE`"
@@ -22,27 +22,27 @@ main: kit: entity: public_template_media_item: {
       ]
     }
     {
-      name: "asset_content_type"
+      name: "assetContentType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "box_count"
+      name: "boxCount"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "caption"
+      name: "captionCount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "captions"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "caption_count"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
-      name: "category"
+      name: "categories"
       req: false
       type: "`$ARRAY`"
     }
@@ -52,7 +52,7 @@ main: kit: entity: public_template_media_item: {
       type: "`$STRING`"
     }
     {
-      name: "duration_m"
+      name: "durationMs"
       req: false
       type: [
         "`$ONE`"
@@ -63,7 +63,7 @@ main: kit: entity: public_template_media_item: {
       ]
     }
     {
-      name: "example_image_url"
+      name: "exampleImageUrl"
       req: false
       type: [
         "`$ONE`"
@@ -74,7 +74,7 @@ main: kit: entity: public_template_media_item: {
       ]
     }
     {
-      name: "frame_count"
+      name: "frameCount"
       req: false
       type: [
         "`$ONE`"
@@ -101,12 +101,12 @@ main: kit: entity: public_template_media_item: {
       type: "`$STRING`"
     }
     {
-      name: "image_url"
+      name: "imageUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "media_type"
+      name: "mediaType"
       req: true
       type: "`$STRING`"
     }
@@ -116,17 +116,17 @@ main: kit: entity: public_template_media_item: {
       type: "`$STRING`"
     }
     {
-      name: "poster_image_url"
+      name: "posterImageUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "preview_image_url"
+      name: "previewImageUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "quality_status"
+      name: "qualityStatus"
       req: false
       type: "`$STRING`"
     }
@@ -136,7 +136,7 @@ main: kit: entity: public_template_media_item: {
       type: "`$STRING`"
     }
     {
-      name: "source_template_id"
+      name: "sourceTemplateId"
       req: true
       type: [
         "`$ONE`"
@@ -147,12 +147,12 @@ main: kit: entity: public_template_media_item: {
       ]
     }
     {
-      name: "source_url"
+      name: "sourceUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "tag"
+      name: "tags"
       req: true
       type: "`$ARRAY`"
     }

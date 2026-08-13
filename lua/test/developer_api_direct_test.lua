@@ -60,16 +60,16 @@ function developer_api_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["MEMESIOCONTENTCREATION_TEST_DEVELOPER_API_ENTID"] = {},
-    ["MEMESIOCONTENTCREATION_TEST_LIVE"] = "FALSE",
-    ["MEMESIOCONTENTCREATION_APIKEY"] = "NONE",
+    ["MEMESIO_CONTENT_CREATION_TEST_DEVELOPER_API_ENTID"] = {},
+    ["MEMESIO_CONTENT_CREATION_TEST_LIVE"] = "FALSE",
+    ["MEMESIO_CONTENT_CREATION_APIKEY"] = "NONE",
   })
 
-  local live = env["MEMESIOCONTENTCREATION_TEST_LIVE"] == "TRUE"
+  local live = env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["MEMESIOCONTENTCREATION_APIKEY"],
+      apikey = env["MEMESIO_CONTENT_CREATION_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

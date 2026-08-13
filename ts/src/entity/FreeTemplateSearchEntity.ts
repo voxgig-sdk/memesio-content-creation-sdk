@@ -37,7 +37,7 @@ class FreeTemplateSearchEntity extends MemesioContentCreationEntityBase<FreeTemp
 
 
 
-  async list(this: any, reqmatch?: FreeTemplateSearchListMatch, ctrl?: Control): Promise<FreeTemplateSearch[]> {
+  async list(this: any, reqmatch?: FreeTemplateSearchListMatch, ctrl?: Control): Promise<FreeTemplateSearchEntity[]> {
 
     const utility = this._utility
 

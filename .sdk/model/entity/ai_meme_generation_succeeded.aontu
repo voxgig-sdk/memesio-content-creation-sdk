@@ -6,32 +6,32 @@ main: kit: entity: ai_meme_generation_succeeded: {
 
   fields: [
     {
-      name: "allow_heuristic_fallback"
+      name: "allowHeuristicFallback"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "caption"
+      name: "captionSource"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "captions"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "caption_source"
+      name: "correlationId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "correlation_id"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "degraded_from_async"
+      name: "degradedFromAsync"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "editable_caption"
+      name: "editableCaptions"
       req: false
       type: "`$ARRAY`"
     }
@@ -47,7 +47,7 @@ main: kit: entity: ai_meme_generation_succeeded: {
       type: "`$STRING`"
     }
     {
-      name: "image_url"
+      name: "imageUrl"
       req: false
       type: "`$STRING`"
     }
@@ -68,7 +68,7 @@ main: kit: entity: ai_meme_generation_succeeded: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "preferred_provider_id"
+      name: "preferredProviderId"
       req: false
       type: "`$STRING`"
     }
@@ -78,12 +78,12 @@ main: kit: entity: ai_meme_generation_succeeded: {
       type: "`$STRING`"
     }
     {
-      name: "rewrite_note"
+      name: "rewriteNote"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "run_id"
+      name: "runId"
       req: false
       type: "`$STRING`"
     }
@@ -93,7 +93,7 @@ main: kit: entity: ai_meme_generation_succeeded: {
       type: "`$STRING`"
     }
     {
-      name: "template_id"
+      name: "templateId"
       req: false
       type: "`$STRING`"
     }
@@ -103,17 +103,12 @@ main: kit: entity: ai_meme_generation_succeeded: {
       type: "`$STRING`"
     }
     {
-      name: "tone_cue"
+      name: "toneCues"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "variant"
-      req: true
-      type: "`$ARRAY`"
-    }
-    {
-      name: "variant_count"
+      name: "variantCount"
       op: {
         create: {
           req: false
@@ -124,7 +119,12 @@ main: kit: entity: ai_meme_generation_succeeded: {
       type: "`$INTEGER`"
     }
     {
-      name: "workspace_id"
+      name: "variants"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "workspaceId"
       req: false
       type: "`$STRING`"
     }

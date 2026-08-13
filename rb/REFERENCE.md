@@ -203,10 +203,10 @@ agent = client.Agent
 | `name` | `String` | Yes |  |
 | `slug` | `String` | No |  |
 | `status` | `String` | No |  |
-| `style_preset` | `String` | No |  |
-| `system_prompt` | `String` | No |  |
-| `watermark_text` | `String` | No |  |
-| `website_url` | `String` | No |  |
+| `stylePreset` | `String` | No |  |
+| `systemPrompt` | `String` | No |  |
+| `watermarkText` | `String` | No |  |
+| `websiteUrl` | `String` | No |  |
 
 ### Field Usage by Operation
 
@@ -217,10 +217,10 @@ agent = client.Agent
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
 | `status` | - | - | - |
-| `style_preset` | - | - | - |
-| `system_prompt` | - | - | - |
-| `watermark_text` | - | - | - |
-| `website_url` | - | - | - |
+| `stylePreset` | - | - | - |
+| `systemPrompt` | - | - | - |
+| `watermarkText` | - | - | - |
+| `websiteUrl` | - | - | - |
 
 ### Operations
 
@@ -294,18 +294,18 @@ agent_infra = client.AgentInfra
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `String` | Yes |  |
-| `chat_id` | `String` | Yes |  |
-| `meme_slug` | `String` | Yes |  |
+| `chatId` | `String` | Yes |  |
+| `memeSlug` | `String` | Yes |  |
 | `metadata` | `Hash` | No |  |
-| `payout_reference` | `String` | No |  |
-| `payout_status` | `String` | No |  |
-| `phone_or_chat_id` | `String` | Yes |  |
+| `payoutReference` | `String` | No |  |
+| `payoutStatus` | `String` | No |  |
+| `phoneOrChatId` | `String` | Yes |  |
 | `prompt` | `String` | Yes |  |
 | `proof` | `Hash` | No |  |
-| `quota_boost_per_day` | `Integer` | No |  |
-| `scope` | `Array` | No |  |
-| `user_id` | `String` | No |  |
-| `week_start` | `String` | No |  |
+| `quotaBoostPerDay` | `Integer` | No |  |
+| `scopes` | `Array` | No |  |
+| `userId` | `String` | No |  |
+| `weekStart` | `String` | No |  |
 
 ### Operations
 
@@ -315,6 +315,11 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.AgentInfra.create({
+  "action" => "example_action", # String
+  "chatId" => "example_chatId", # String
+  "memeSlug" => "example_memeSlug", # String
+  "phoneOrChatId" => "example_phoneOrChatId", # String
+  "prompt" => "example_prompt", # String
 })
 ```
 
@@ -374,34 +379,34 @@ ai_caption = client.AiCaption
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `blocked_term` | `Array` | No |  |
-| `canvas_text` | `Array` | Yes |  |
-| `caption_count` | `Integer` | No |  |
-| `caption_set` | `Array` | No |  |
-| `entity` | `Array` | No |  |
-| `fallback_used` | `Boolean` | No |  |
-| `generation_strategy` | `String` | No |  |
+| `blockedTerms` | `Array` | No |  |
+| `canvasText` | `Array` | Yes |  |
+| `captionCount` | `Integer` | No |  |
+| `captionSets` | `Array` | No |  |
+| `entities` | `Array` | No |  |
+| `fallbackUsed` | `Boolean` | No |  |
+| `generationStrategy` | `String` | No |  |
 | `locale` | `String` | No |  |
-| `meme_id` | `String` | No |  |
-| `meme_slug` | `String` | No |  |
+| `memeId` | `String` | No |  |
+| `memeSlug` | `String` | No |  |
 | `name` | `String` | Yes |  |
 | `ok` | `Boolean` | No |  |
-| `option_count` | `Integer` | No |  |
-| `owner_token` | `String` | No |  |
-| `provider_id` | `String` | No |  |
-| `reference_caption` | `Array` | No |  |
-| `rewrite_note` | `String` | No |  |
-| `scene_summary` | `String` | No |  |
-| `template_description` | `String` | No |  |
-| `template_name` | `String` | No |  |
-| `template_tag` | `Array` | No |  |
+| `optionCount` | `Integer` | No |  |
+| `ownerToken` | `String` | No |  |
+| `providerId` | `String` | No |  |
+| `referenceCaptions` | `Array` | No |  |
+| `rewriteNote` | `String` | No |  |
+| `sceneSummary` | `String` | No |  |
+| `templateDescription` | `String` | No |  |
+| `templateName` | `String` | No |  |
+| `templateTags` | `Array` | No |  |
 | `tone` | `String` | Yes |  |
-| `tone_cue` | `Array` | No |  |
-| `trend_keyword` | `Array` | No |  |
-| `trend_reference` | `Array` | No |  |
-| `trend_signal` | `Array` | No |  |
-| `variation_offset` | `Integer` | No |  |
-| `voice_rule` | `Array` | No |  |
+| `toneCues` | `Array` | No |  |
+| `trendKeywords` | `Array` | No |  |
+| `trendReferences` | `Array` | No |  |
+| `trendSignals` | `Array` | No |  |
+| `variationOffset` | `Integer` | No |  |
+| `voiceRules` | `Array` | No |  |
 
 ### Operations
 
@@ -411,7 +416,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.AiCaption.create({
-  "canvas_text" => [], # Array
+  "canvasText" => [], # Array
   "name" => "example_name", # String
   "tone" => "example_tone", # String
 })
@@ -466,94 +471,94 @@ ai_job = client.AiJob
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `String` | Yes |  |
-| `actor_id` | `String` | No |  |
-| `after_state` | `Hash` | No |  |
-| `attempt` | `Integer` | No |  |
-| `before_state` | `Hash` | No |  |
-| `brush_edit` | `Array` | No |  |
+| `actorId` | `String` | No |  |
+| `afterState` | `Hash` | No |  |
+| `attempts` | `Integer` | No |  |
+| `beforeState` | `Hash` | No |  |
+| `brushEdits` | `Array` | No |  |
 | `capability` | `String` | Yes |  |
-| `celebrity_confidence` | `Float` | No |  |
-| `consent_attested` | `Boolean` | No |  |
-| `created_at` | `String` | No |  |
-| `detected_face_count` | `Float` | Yes |  |
-| `edge_refinement` | `Float` | No |  |
-| `estimated_cost_usd` | `Float` | No |  |
-| `frame_time_m` | `Float` | No |  |
+| `celebrityConfidence` | `Float` | No |  |
+| `consentAttested` | `Boolean` | No |  |
+| `createdAt` | `String` | No |  |
+| `detectedFaceCount` | `Float` | Yes |  |
+| `edgeRefinement` | `Float` | No |  |
+| `estimatedCostUsd` | `Float` | No |  |
+| `frameTimeMs` | `Float` | No |  |
 | `height` | `Float` | Yes |  |
 | `id` | `String` | Yes |  |
 | `input` | `Hash` | No |  |
-| `layer_id` | `String` | Yes |  |
-| `layer_type` | `String` | No |  |
-| `max_attempt` | `Integer` | No |  |
-| `max_face` | `Float` | No |  |
-| `media_type` | `String` | No |  |
+| `layerId` | `String` | Yes |  |
+| `layerType` | `String` | No |  |
+| `maxAttempts` | `Integer` | No |  |
+| `maxFaces` | `Float` | No |  |
+| `mediaType` | `String` | No |  |
 | `metadata` | `Hash` | No |  |
-| `nsfw_score` | `Float` | No |  |
+| `nsfwScore` | `Float` | No |  |
 | `output` | `Hash` | No |  |
-| `project_id` | `String` | Yes |  |
-| `provider_id` | `String` | No |  |
+| `projectId` | `String` | Yes |  |
+| `providerId` | `String` | No |  |
 | `reason` | `String` | No |  |
-| `run_after_m` | `Integer` | No |  |
-| `source_asset_url` | `String` | Yes |  |
-| `source_face_index` | `Float` | No |  |
-| `source_image_url` | `String` | Yes |  |
+| `runAfterMs` | `Integer` | No |  |
+| `sourceAssetUrl` | `String` | Yes |  |
+| `sourceFaceIndex` | `Float` | No |  |
+| `sourceImageUrl` | `String` | Yes |  |
 | `status` | `String` | Yes |  |
-| `target_asset_url` | `String` | Yes |  |
-| `target_face_index` | `Float` | No |  |
-| `timeout_m` | `Integer` | No |  |
-| `trace_id` | `String` | No |  |
-| `updated_at` | `String` | No |  |
-| `version_id` | `String` | No |  |
+| `targetAssetUrl` | `String` | Yes |  |
+| `targetFaceIndex` | `Float` | No |  |
+| `timeoutMs` | `Integer` | No |  |
+| `traceId` | `String` | No |  |
+| `updatedAt` | `String` | No |  |
+| `versionId` | `String` | No |  |
 | `width` | `Float` | Yes |  |
-| `worker_id` | `String` | Yes |  |
-| `workspace_id` | `String` | No |  |
+| `workerId` | `String` | Yes |  |
+| `workspaceId` | `String` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | - |
-| `actor_id` | - | - |
-| `after_state` | - | - |
-| `attempt` | - | - |
-| `before_state` | - | - |
-| `brush_edit` | - | - |
+| `actorId` | - | - |
+| `afterState` | - | - |
+| `attempts` | - | - |
+| `beforeState` | - | - |
+| `brushEdits` | - | - |
 | `capability` | - | - |
-| `celebrity_confidence` | - | - |
-| `consent_attested` | - | - |
-| `created_at` | - | - |
-| `detected_face_count` | - | - |
-| `edge_refinement` | - | - |
-| `estimated_cost_usd` | - | - |
-| `frame_time_m` | - | - |
+| `celebrityConfidence` | - | - |
+| `consentAttested` | - | - |
+| `createdAt` | - | - |
+| `detectedFaceCount` | - | - |
+| `edgeRefinement` | - | - |
+| `estimatedCostUsd` | - | - |
+| `frameTimeMs` | - | - |
 | `height` | - | - |
 | `id` | - | - |
 | `input` | - | - |
-| `layer_id` | - | - |
-| `layer_type` | - | - |
-| `max_attempt` | - | - |
-| `max_face` | - | - |
-| `media_type` | - | Yes |
+| `layerId` | - | - |
+| `layerType` | - | - |
+| `maxAttempts` | - | - |
+| `maxFaces` | - | - |
+| `mediaType` | - | Yes |
 | `metadata` | - | - |
-| `nsfw_score` | - | - |
+| `nsfwScore` | - | - |
 | `output` | - | - |
-| `project_id` | - | - |
-| `provider_id` | - | - |
+| `projectId` | - | - |
+| `providerId` | - | - |
 | `reason` | - | - |
-| `run_after_m` | - | - |
-| `source_asset_url` | - | - |
-| `source_face_index` | - | - |
-| `source_image_url` | - | - |
+| `runAfterMs` | - | - |
+| `sourceAssetUrl` | - | - |
+| `sourceFaceIndex` | - | - |
+| `sourceImageUrl` | - | - |
 | `status` | - | - |
-| `target_asset_url` | - | - |
-| `target_face_index` | - | - |
-| `timeout_m` | - | - |
-| `trace_id` | - | - |
-| `updated_at` | - | - |
-| `version_id` | - | - |
+| `targetAssetUrl` | - | - |
+| `targetFaceIndex` | - | - |
+| `timeoutMs` | - | - |
+| `traceId` | - | - |
+| `updatedAt` | - | - |
+| `versionId` | - | - |
 | `width` | - | - |
-| `worker_id` | - | - |
-| `workspace_id` | - | - |
+| `workerId` | - | - |
+| `workspaceId` | - | - |
 
 ### Operations
 
@@ -563,6 +568,19 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.AiJob.create({
+  "action" => "example_action", # String
+  "capability" => "example_capability", # String
+  "detectedFaceCount" => 1, # Float
+  "height" => 1, # Float
+  "id" => "example_id", # String
+  "layerId" => "example_layerId", # String
+  "projectId" => "example_projectId", # String
+  "sourceAssetUrl" => "example_sourceAssetUrl", # String
+  "sourceImageUrl" => "example_sourceImageUrl", # String
+  "status" => "example_status", # String
+  "targetAssetUrl" => "example_targetAssetUrl", # String
+  "width" => 1, # Float
+  "workerId" => "example_workerId", # String
 })
 ```
 
@@ -614,53 +632,53 @@ ai_meme_generation_succeeded = client.AiMemeGenerationSucceeded
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allow_heuristic_fallback` | `Boolean` | No |  |
-| `caption` | `Array` | No |  |
-| `caption_source` | `String` | No |  |
-| `correlation_id` | `String` | No |  |
-| `degraded_from_async` | `Boolean` | No |  |
-| `editable_caption` | `Array` | No |  |
+| `allowHeuristicFallback` | `Boolean` | No |  |
+| `captionSource` | `String` | No |  |
+| `captions` | `Array` | No |  |
+| `correlationId` | `String` | No |  |
+| `degradedFromAsync` | `Boolean` | No |  |
+| `editableCaptions` | `Array` | No |  |
 | `flow` | `String` | Yes |  |
-| `image_url` | `String` | No |  |
+| `imageUrl` | `String` | No |  |
 | `mode` | `String` | Yes |  |
 | `ok` | `Boolean` | Yes |  |
-| `preferred_provider_id` | `String` | No |  |
+| `preferredProviderId` | `String` | No |  |
 | `prompt` | `String` | Yes |  |
-| `rewrite_note` | `String` | No |  |
-| `run_id` | `String` | No |  |
+| `rewriteNote` | `String` | No |  |
+| `runId` | `String` | No |  |
 | `status` | `String` | Yes |  |
-| `template_id` | `String` | No |  |
+| `templateId` | `String` | No |  |
 | `tone` | `String` | No |  |
-| `tone_cue` | `Array` | No |  |
-| `variant` | `Array` | Yes |  |
-| `variant_count` | `Integer` | Yes |  |
-| `workspace_id` | `String` | No |  |
+| `toneCues` | `Array` | No |  |
+| `variantCount` | `Integer` | Yes |  |
+| `variants` | `Array` | Yes |  |
+| `workspaceId` | `String` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `allow_heuristic_fallback` | - |
-| `caption` | - |
-| `caption_source` | - |
-| `correlation_id` | - |
-| `degraded_from_async` | - |
-| `editable_caption` | - |
+| `allowHeuristicFallback` | - |
+| `captionSource` | - |
+| `captions` | - |
+| `correlationId` | - |
+| `degradedFromAsync` | - |
+| `editableCaptions` | - |
 | `flow` | Yes |
-| `image_url` | - |
+| `imageUrl` | - |
 | `mode` | Yes |
 | `ok` | - |
-| `preferred_provider_id` | - |
+| `preferredProviderId` | - |
 | `prompt` | - |
-| `rewrite_note` | - |
-| `run_id` | - |
+| `rewriteNote` | - |
+| `runId` | - |
 | `status` | - |
-| `template_id` | - |
+| `templateId` | - |
 | `tone` | - |
-| `tone_cue` | - |
-| `variant` | - |
-| `variant_count` | Yes |
-| `workspace_id` | - |
+| `toneCues` | - |
+| `variantCount` | Yes |
+| `variants` | - |
+| `workspaceId` | - |
 
 ### Operations
 
@@ -675,8 +693,8 @@ result = client.AiMemeGenerationSucceeded.create({
   "ok" => true, # Boolean
   "prompt" => "example_prompt", # String
   "status" => "example_status", # String
-  "variant" => [], # Array
-  "variant_count" => 1, # Integer
+  "variantCount" => 1, # Integer
+  "variants" => [], # Array
 })
 ```
 
@@ -720,16 +738,16 @@ ai_provider = client.AiProvider
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `actor_id` | `String` | No |  |
-| `correlation_id` | `String` | No |  |
+| `actorId` | `String` | No |  |
+| `correlationId` | `String` | No |  |
 | `limit` | `Float` | No |  |
-| `mapping_mode` | `String` | No |  |
-| `max_slot` | `Integer` | No |  |
+| `mappingMode` | `String` | No |  |
+| `maxSlots` | `Integer` | No |  |
 | `prompt` | `String` | Yes |  |
-| `source_image_url` | `String` | Yes |  |
-| `text` | `Array` | No |  |
-| `trend_signal` | `Array` | No |  |
-| `workspace_id` | `String` | No |  |
+| `sourceImageUrl` | `String` | Yes |  |
+| `texts` | `Array` | No |  |
+| `trendSignals` | `Array` | No |  |
+| `workspaceId` | `String` | No |  |
 
 ### Operations
 
@@ -740,7 +758,7 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.AiProvider.create({
   "prompt" => "example_prompt", # String
-  "source_image_url" => "example_source_image_url", # String
+  "sourceImageUrl" => "example_sourceImageUrl", # String
 })
 ```
 
@@ -838,7 +856,7 @@ auth = client.Auth
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `display_name` | `String` | No |  |
+| `displayName` | `String` | No |  |
 | `email` | `String` | Yes |  |
 | `password` | `String` | Yes |  |
 
@@ -941,9 +959,9 @@ collaboration = client.Collaboration
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author_id` | `String` | No |  |
+| `authorId` | `String` | No |  |
 | `message` | `String` | Yes |  |
-| `project_id` | `String` | Yes |  |
+| `projectId` | `String` | Yes |  |
 
 ### Operations
 
@@ -954,7 +972,7 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Collaboration.create({
   "message" => "example_message", # String
-  "project_id" => "example_project_id", # String
+  "projectId" => "example_projectId", # String
 })
 ```
 
@@ -1052,14 +1070,14 @@ create_meme = client.CreateMeme
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canva` | `Hash` | Yes |  |
-| `caption` | `Array` | Yes |  |
-| `generation_run_id` | `Object` | No |  |
-| `generation_variant_id` | `Object` | No |  |
-| `image_data_url` | `String` | Yes |  |
-| `overlay` | `Array` | No |  |
-| `source_image_url` | `String` | Yes |  |
-| `template_slug` | `String` | No |  |
+| `canvas` | `Hash` | Yes |  |
+| `captions` | `Array` | Yes |  |
+| `generationRunId` | `Object` | No |  |
+| `generationVariantId` | `Object` | No |  |
+| `imageDataUrl` | `String` | Yes |  |
+| `overlays` | `Array` | No |  |
+| `sourceImageUrl` | `String` | Yes |  |
+| `templateSlug` | `String` | No |  |
 | `title` | `String` | No |  |
 | `visibility` | `String` | No |  |
 | `watermark` | `Hash` | Yes |  |
@@ -1072,10 +1090,10 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.CreateMeme.create({
-  "canva" => {}, # Hash
-  "caption" => [], # Array
-  "image_data_url" => "example_image_data_url", # String
-  "source_image_url" => "example_source_image_url", # String
+  "canvas" => {}, # Hash
+  "captions" => [], # Array
+  "imageDataUrl" => "example_imageDataUrl", # String
+  "sourceImageUrl" => "example_sourceImageUrl", # String
   "watermark" => {}, # Hash
 })
 ```
@@ -1122,7 +1140,7 @@ developer_api = client.DeveloperApi
 | --- | --- | --- | --- |
 | `limit` | `Float` | No |  |
 | `prompt` | `String` | Yes |  |
-| `trend_signal` | `Array` | No |  |
+| `trendSignals` | `Array` | No |  |
 
 ### Operations
 
@@ -1184,8 +1202,8 @@ free_caption_meme_success = client.FreeCaptionMemeSuccess
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `Array` | Yes |  |
-| `template_slug` | `String` | Yes |  |
+| `captions` | `Array` | Yes |  |
+| `templateSlug` | `String` | Yes |  |
 | `title` | `String` | No |  |
 | `visibility` | `String` | No |  |
 | `watermark` | `Hash` | No |  |
@@ -1198,8 +1216,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.FreeCaptionMemeSuccess.create({
-  "caption" => [], # Array
-  "template_slug" => "example_template_slug", # String
+  "captions" => [], # Array
+  "templateSlug" => "example_templateSlug", # String
 })
 ```
 
@@ -1244,26 +1262,26 @@ free_template_search = client.FreeTemplateSearch
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `Boolean` | No |  |
-| `asset_byte` | `Object` | No |  |
-| `asset_content_type` | `String` | No |  |
-| `box_count` | `Integer` | Yes |  |
-| `caption` | `Array` | Yes |  |
-| `caption_count` | `Integer` | Yes |  |
+| `assetBytes` | `Object` | No |  |
+| `assetContentType` | `String` | No |  |
+| `boxCount` | `Integer` | Yes |  |
+| `captionCount` | `Integer` | Yes |  |
+| `captions` | `Array` | Yes |  |
 | `description` | `String` | Yes |  |
-| `duration_m` | `Object` | No |  |
-| `example_image_url` | `Object` | No |  |
-| `frame_count` | `Object` | No |  |
+| `durationMs` | `Object` | No |  |
+| `exampleImageUrl` | `Object` | No |  |
+| `frameCount` | `Object` | No |  |
 | `height` | `Object` | Yes |  |
 | `id` | `String` | Yes |  |
-| `image_url` | `String` | Yes |  |
-| `media_type` | `String` | Yes |  |
+| `imageUrl` | `String` | Yes |  |
+| `mediaType` | `String` | Yes |  |
 | `name` | `String` | Yes |  |
-| `poster_image_url` | `String` | No |  |
-| `quality_status` | `String` | No |  |
+| `posterImageUrl` | `String` | No |  |
+| `qualityStatus` | `String` | No |  |
 | `slug` | `String` | Yes |  |
-| `source_template_id` | `Object` | Yes |  |
-| `source_url` | `String` | No |  |
-| `tag` | `Array` | No |  |
+| `sourceTemplateId` | `Object` | Yes |  |
+| `sourceUrl` | `String` | No |  |
+| `tags` | `Array` | No |  |
 | `width` | `Object` | Yes |  |
 
 ### Operations
@@ -1316,17 +1334,51 @@ generate = client.Generate
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `Array` | No |  |
-| `data` | `Hash` | Yes |  |
-| `duration_m` | `Integer` | No |  |
+| `base64` | `String` | No |  |
+| `byteLength` | `Integer` | Yes |  |
+| `captions` | `Array` | No |  |
+| `dataUrl` | `String` | No |  |
+| `delayMs` | `Integer` | Yes |  |
+| `durationMs` | `Integer` | No |  |
+| `filename` | `String` | Yes |  |
 | `fps` | `Integer` | No |  |
-| `gif_slug` | `String` | No |  |
-| `ok` | `Boolean` | Yes |  |
-| `return_base64` | `Boolean` | No |  |
-| `start_m` | `Integer` | No |  |
-| `tag` | `Array` | No |  |
+| `gifSlug` | `String` | Yes |  |
+| `height` | `Integer` | Yes |  |
+| `mimeType` | `String` | Yes |  |
+| `pages` | `Integer` | Yes |  |
+| `parameters` | `Hash` | Yes |  |
+| `returnBase64` | `Boolean` | No |  |
+| `sourceDurationMs` | `Integer` | Yes |  |
+| `startMs` | `Integer` | No |  |
+| `tags` | `Array` | No |  |
 | `title` | `String` | No |  |
-| `width_px` | `Integer` | No |  |
+| `width` | `Integer` | Yes |  |
+| `widthPx` | `Integer` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `base64` | - |
+| `byteLength` | - |
+| `captions` | - |
+| `dataUrl` | - |
+| `delayMs` | - |
+| `durationMs` | - |
+| `filename` | - |
+| `fps` | - |
+| `gifSlug` | Yes |
+| `height` | - |
+| `mimeType` | - |
+| `pages` | - |
+| `parameters` | - |
+| `returnBase64` | - |
+| `sourceDurationMs` | - |
+| `startMs` | - |
+| `tags` | - |
+| `title` | - |
+| `width` | - |
+| `widthPx` | - |
 
 ### Operations
 
@@ -1336,8 +1388,16 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Generate.create({
-  "data" => {}, # Hash
-  "ok" => true, # Boolean
+  "byteLength" => 1, # Integer
+  "delayMs" => 1, # Integer
+  "filename" => "example_filename", # String
+  "gifSlug" => "example_gifSlug", # String
+  "height" => 1, # Integer
+  "mimeType" => "example_mimeType", # String
+  "pages" => 1, # Integer
+  "parameters" => {}, # Hash
+  "sourceDurationMs" => 1, # Integer
+  "width" => 1, # Integer
 })
 ```
 
@@ -1381,43 +1441,43 @@ growth = client.Growth
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_id` | `String` | No |  |
+| `accountId` | `String` | No |  |
 | `action` | `String` | Yes |  |
-| `actor_id` | `String` | No |  |
+| `actorId` | `String` | No |  |
 | `caption` | `String` | No |  |
 | `code` | `String` | No |  |
-| `external_account_id` | `String` | No |  |
+| `externalAccountId` | `String` | No |  |
 | `handle` | `String` | No |  |
 | `limit` | `Integer` | No |  |
-| `log_exposure` | `Boolean` | No |  |
-| `meme_slug` | `String` | No |  |
+| `logExposure` | `Boolean` | No |  |
+| `memeSlug` | `String` | No |  |
 | `now` | `String` | No |  |
 | `platform` | `String` | No |  |
-| `profile` | `Array` | No |  |
-| `share_slug` | `String` | No |  |
+| `profiles` | `Array` | No |  |
+| `shareSlug` | `String` | No |  |
 | `surface` | `String` | No |  |
-| `week_start` | `String` | No |  |
+| `weekStart` | `String` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
-| `account_id` | - | - |
+| `accountId` | - | - |
 | `action` | - | - |
-| `actor_id` | - | Yes |
+| `actorId` | - | Yes |
 | `caption` | - | - |
 | `code` | - | - |
-| `external_account_id` | - | - |
+| `externalAccountId` | - | - |
 | `handle` | - | - |
 | `limit` | - | - |
-| `log_exposure` | - | - |
-| `meme_slug` | - | - |
+| `logExposure` | - | - |
+| `memeSlug` | - | - |
 | `now` | - | - |
 | `platform` | - | - |
-| `profile` | - | - |
-| `share_slug` | - | - |
+| `profiles` | - | - |
+| `shareSlug` | - | - |
 | `surface` | - | - |
-| `week_start` | - | - |
+| `weekStart` | - | - |
 
 ### Operations
 
@@ -1479,17 +1539,17 @@ list_meme = client.ListMeme
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `String` | Yes |  |
-| `canonical_image_url` | `String` | Yes |  |
-| `created_at` | `String` | Yes |  |
-| `image_url` | `String` | Yes |  |
-| `nsfw_status` | `String` | Yes |  |
-| `share_slug` | `String` | Yes |  |
-| `share_url` | `String` | Yes |  |
-| `share_view` | `Integer` | Yes |  |
+| `altText` | `String` | Yes |  |
+| `canonicalImageUrl` | `String` | Yes |  |
+| `createdAt` | `String` | Yes |  |
+| `imageUrl` | `String` | Yes |  |
+| `nsfwStatus` | `String` | Yes |  |
+| `shareSlug` | `String` | Yes |  |
+| `shareUrl` | `String` | Yes |  |
+| `shareViews` | `Integer` | Yes |  |
 | `slug` | `String` | Yes |  |
-| `tag` | `Array` | Yes |  |
-| `template_slug` | `String` | Yes |  |
+| `tags` | `Array` | Yes |  |
+| `templateSlug` | `String` | Yes |  |
 | `title` | `String` | Yes |  |
 | `visibility` | `String` | Yes |  |
 
@@ -1544,9 +1604,9 @@ media = client.Media
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `String` | Yes |  |
-| `content_type` | `String` | No |  |
-| `expires_in_second` | `Integer` | No |  |
-| `owner_token` | `String` | No |  |
+| `contentType` | `String` | No |  |
+| `expiresInSeconds` | `Integer` | No |  |
+| `ownerToken` | `String` | No |  |
 | `path` | `String` | No |  |
 | `prefix` | `String` | No |  |
 
@@ -1602,21 +1662,21 @@ meme = client.Meme
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `String` | Yes |  |
-| `canonical_image_url` | `String` | Yes |  |
-| `canva` | `Hash` | Yes |  |
-| `caption` | `Array` | Yes |  |
-| `created_at` | `String` | Yes |  |
-| `image_url` | `String` | Yes |  |
-| `nsfw_status` | `String` | Yes |  |
-| `overlay` | `Array` | Yes |  |
-| `share_slug` | `String` | Yes |  |
-| `share_url` | `String` | Yes |  |
-| `share_view` | `Integer` | Yes |  |
+| `altText` | `String` | Yes |  |
+| `canonicalImageUrl` | `String` | Yes |  |
+| `canvas` | `Hash` | Yes |  |
+| `captions` | `Array` | Yes |  |
+| `createdAt` | `String` | Yes |  |
+| `imageUrl` | `String` | Yes |  |
+| `nsfwStatus` | `String` | Yes |  |
+| `overlays` | `Array` | Yes |  |
+| `shareSlug` | `String` | Yes |  |
+| `shareUrl` | `String` | Yes |  |
+| `shareViews` | `Integer` | Yes |  |
 | `slug` | `String` | Yes |  |
-| `source_image_url` | `String` | Yes |  |
-| `tag` | `Array` | Yes |  |
-| `template_slug` | `String` | Yes |  |
+| `sourceImageUrl` | `String` | Yes |  |
+| `tags` | `Array` | Yes |  |
+| `templateSlug` | `String` | Yes |  |
 | `title` | `String` | Yes |  |
 | `visibility` | `String` | Yes |  |
 | `watermark` | `Hash` | Yes |  |
@@ -1680,28 +1740,28 @@ public_template_media_item = client.PublicTemplateMediaItem
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `Boolean` | No |  |
-| `asset_byte` | `Object` | No |  |
-| `asset_content_type` | `String` | No |  |
-| `box_count` | `Integer` | No |  |
-| `caption` | `Array` | Yes |  |
-| `caption_count` | `Integer` | No |  |
-| `category` | `Array` | No |  |
+| `assetBytes` | `Object` | No |  |
+| `assetContentType` | `String` | No |  |
+| `boxCount` | `Integer` | No |  |
+| `captionCount` | `Integer` | No |  |
+| `captions` | `Array` | Yes |  |
+| `categories` | `Array` | No |  |
 | `description` | `String` | Yes |  |
-| `duration_m` | `Object` | No |  |
-| `example_image_url` | `Object` | No |  |
-| `frame_count` | `Object` | No |  |
+| `durationMs` | `Object` | No |  |
+| `exampleImageUrl` | `Object` | No |  |
+| `frameCount` | `Object` | No |  |
 | `height` | `Object` | Yes |  |
 | `id` | `String` | Yes |  |
-| `image_url` | `String` | Yes |  |
-| `media_type` | `String` | Yes |  |
+| `imageUrl` | `String` | Yes |  |
+| `mediaType` | `String` | Yes |  |
 | `name` | `String` | Yes |  |
-| `poster_image_url` | `String` | No |  |
-| `preview_image_url` | `String` | No |  |
-| `quality_status` | `String` | No |  |
+| `posterImageUrl` | `String` | No |  |
+| `previewImageUrl` | `String` | No |  |
+| `qualityStatus` | `String` | No |  |
 | `slug` | `String` | Yes |  |
-| `source_template_id` | `Object` | Yes |  |
-| `source_url` | `String` | No |  |
-| `tag` | `Array` | Yes |  |
+| `sourceTemplateId` | `Object` | Yes |  |
+| `sourceUrl` | `String` | No |  |
+| `tags` | `Array` | Yes |  |
 | `width` | `Object` | Yes |  |
 
 ### Operations
@@ -1758,10 +1818,10 @@ standalone_agent_bootstrap = client.StandaloneAgentBootstrap
 | `handle` | `String` | Yes |  |
 | `locale` | `String` | No |  |
 | `name` | `String` | Yes |  |
-| `style_preset` | `String` | No |  |
-| `system_prompt` | `String` | No |  |
-| `watermark_text` | `String` | No |  |
-| `website_url` | `String` | No |  |
+| `stylePreset` | `String` | No |  |
+| `systemPrompt` | `String` | No |  |
+| `watermarkText` | `String` | No |  |
+| `websiteUrl` | `String` | No |  |
 
 ### Operations
 
@@ -1817,70 +1877,70 @@ template = client.Template
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `Boolean` | No |  |
-| `asset_byte` | `Object` | No |  |
-| `asset_content_type` | `String` | No |  |
-| `box_count` | `Integer` | No |  |
-| `caption` | `Array` | No |  |
-| `caption_count` | `Integer` | No |  |
-| `category` | `Array` | No |  |
+| `assetBytes` | `Object` | No |  |
+| `assetContentType` | `String` | No |  |
+| `boxCount` | `Integer` | No |  |
+| `captionCount` | `Integer` | No |  |
+| `captions` | `Array` | No |  |
+| `categories` | `Array` | No |  |
 | `description` | `String` | Yes |  |
-| `duration_m` | `Integer` | No |  |
-| `example_image_url` | `Object` | No |  |
+| `durationMs` | `Integer` | No |  |
+| `exampleImageUrl` | `Object` | No |  |
 | `fps` | `Integer` | No |  |
-| `frame_count` | `Object` | No |  |
-| `gif_slug` | `String` | No |  |
+| `frameCount` | `Object` | No |  |
+| `gifSlug` | `String` | No |  |
 | `height` | `Object` | Yes |  |
 | `id` | `String` | Yes |  |
-| `image_url` | `String` | Yes |  |
-| `media_type` | `String` | Yes |  |
+| `imageUrl` | `String` | Yes |  |
+| `mediaType` | `String` | Yes |  |
 | `name` | `String` | Yes |  |
-| `poster_image_url` | `String` | No |  |
-| `preview_image_url` | `String` | No |  |
-| `quality_status` | `String` | No |  |
-| `return_base64` | `Boolean` | No |  |
+| `posterImageUrl` | `String` | No |  |
+| `previewImageUrl` | `String` | No |  |
+| `qualityStatus` | `String` | No |  |
+| `returnBase64` | `Boolean` | No |  |
 | `slug` | `String` | Yes |  |
-| `source_template_id` | `Object` | Yes |  |
-| `source_url` | `String` | No |  |
-| `start_m` | `Integer` | No |  |
-| `tag` | `Array` | No |  |
+| `sourceTemplateId` | `Object` | Yes |  |
+| `sourceUrl` | `String` | No |  |
+| `startMs` | `Integer` | No |  |
+| `tags` | `Array` | No |  |
 | `title` | `String` | No |  |
 | `width` | `Object` | Yes |  |
-| `width_px` | `Integer` | No |  |
+| `widthPx` | `Integer` | No |  |
 
 ### Field Usage by Operation
 
 | Field | list | create |
 | --- | --- | --- |
 | `animated` | - | - |
-| `asset_byte` | - | - |
-| `asset_content_type` | - | - |
-| `box_count` | - | - |
-| `caption` | Yes | - |
-| `caption_count` | - | - |
-| `category` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | Yes | - |
+| `categories` | - | - |
 | `description` | - | - |
-| `duration_m` | - | - |
-| `example_image_url` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
 | `fps` | - | - |
-| `frame_count` | - | - |
-| `gif_slug` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
 | `height` | - | - |
 | `id` | - | - |
-| `image_url` | - | - |
-| `media_type` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
 | `name` | - | - |
-| `poster_image_url` | - | - |
-| `preview_image_url` | - | - |
-| `quality_status` | - | - |
-| `return_base64` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
 | `slug` | - | - |
-| `source_template_id` | - | - |
-| `source_url` | - | - |
-| `start_m` | - | - |
-| `tag` | Yes | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | Yes | - |
 | `title` | - | - |
 | `width` | - | - |
-| `width_px` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
 
@@ -1891,6 +1951,14 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Template.create({
   "slug" => "example_slug", # String
+  "description" => "example_description", # String
+  "height" => "example_height", # Object
+  "id" => "example_id", # String
+  "imageUrl" => "example_imageUrl", # String
+  "mediaType" => "example_mediaType", # String
+  "name" => "example_name", # String
+  "sourceTemplateId" => "example_sourceTemplateId", # Object
+  "width" => "example_width", # Object
 })
 ```
 
@@ -1943,28 +2011,28 @@ template_search = client.TemplateSearch
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `Boolean` | No |  |
-| `asset_byte` | `Object` | No |  |
-| `asset_content_type` | `String` | No |  |
-| `box_count` | `Integer` | No |  |
-| `caption` | `Array` | Yes |  |
-| `caption_count` | `Integer` | No |  |
-| `category` | `Array` | No |  |
+| `assetBytes` | `Object` | No |  |
+| `assetContentType` | `String` | No |  |
+| `boxCount` | `Integer` | No |  |
+| `captionCount` | `Integer` | No |  |
+| `captions` | `Array` | Yes |  |
+| `categories` | `Array` | No |  |
 | `description` | `String` | Yes |  |
-| `duration_m` | `Object` | No |  |
-| `example_image_url` | `Object` | No |  |
-| `frame_count` | `Object` | No |  |
+| `durationMs` | `Object` | No |  |
+| `exampleImageUrl` | `Object` | No |  |
+| `frameCount` | `Object` | No |  |
 | `height` | `Object` | Yes |  |
 | `id` | `String` | Yes |  |
-| `image_url` | `String` | Yes |  |
-| `media_type` | `String` | Yes |  |
+| `imageUrl` | `String` | Yes |  |
+| `mediaType` | `String` | Yes |  |
 | `name` | `String` | Yes |  |
-| `poster_image_url` | `String` | No |  |
-| `preview_image_url` | `String` | No |  |
-| `quality_status` | `String` | No |  |
+| `posterImageUrl` | `String` | No |  |
+| `previewImageUrl` | `String` | No |  |
+| `qualityStatus` | `String` | No |  |
 | `slug` | `String` | Yes |  |
-| `source_template_id` | `Object` | Yes |  |
-| `source_url` | `String` | No |  |
-| `tag` | `Array` | Yes |  |
+| `sourceTemplateId` | `Object` | Yes |  |
+| `sourceUrl` | `String` | No |  |
+| `tags` | `Array` | Yes |  |
 | `width` | `Object` | Yes |  |
 
 ### Operations
@@ -2018,17 +2086,17 @@ trend_alert = client.TrendAlert
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `String` | Yes |  |
-| `actor_id` | `String` | Yes |  |
+| `actorId` | `String` | Yes |  |
 | `aggressiveness` | `Float` | No |  |
-| `alert_id` | `String` | Yes |  |
-| `channel` | `Array` | No |  |
-| `deliver_all_alert` | `Boolean` | No |  |
+| `alertId` | `String` | Yes |  |
+| `channels` | `Array` | No |  |
+| `deliverAllAlerts` | `Boolean` | No |  |
 | `event` | `Hash` | No |  |
-| `explicit_niche` | `Array` | No |  |
-| `explicit_region` | `Array` | No |  |
-| `explicit_source` | `Array` | No |  |
-| `explicit_topic` | `Array` | No |  |
-| `follower_count` | `Integer` | No |  |
+| `explicitNiches` | `Array` | No |  |
+| `explicitRegions` | `Array` | No |  |
+| `explicitSources` | `Array` | No |  |
+| `explicitTopics` | `Array` | No |  |
+| `followerCount` | `Integer` | No |  |
 | `niche` | `String` | No |  |
 | `region` | `String` | No |  |
 | `source` | `String` | No |  |
@@ -2043,8 +2111,8 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.TrendAlert.create({
   "action" => "example_action", # String
-  "actor_id" => "example_actor_id", # String
-  "alert_id" => "example_alert_id", # String
+  "actorId" => "example_actorId", # String
+  "alertId" => "example_alertId", # String
   "topic" => "example_topic", # String
 })
 ```
@@ -2145,100 +2213,100 @@ video = client.Video
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `String` | No |  |
-| `asset_id` | `String` | No |  |
-| `at_m` | `Float` | No |  |
-| `audio_asset_id` | `String` | No |  |
-| `beat_offset_m` | `Integer` | No |  |
-| `bitrate_kbp` | `Float` | No |  |
+| `assetId` | `String` | No |  |
+| `atMs` | `Float` | No |  |
+| `audioAssetId` | `String` | No |  |
+| `beatOffsetMs` | `Integer` | No |  |
+| `bitrateKbps` | `Float` | No |  |
 | `bpm` | `Integer` | No |  |
 | `cancelled` | `Boolean` | No |  |
 | `container` | `String` | No |  |
-| `duration_m` | `Float` | No |  |
-| `duration_second` | `Float` | Yes |  |
+| `durationMs` | `Float` | No |  |
+| `durationSeconds` | `Float` | Yes |  |
 | `easing` | `String` | No |  |
 | `error` | `String` | No |  |
-| `frame_rate` | `Float` | No |  |
-| `input_format` | `String` | Yes |  |
+| `frameRate` | `Float` | No |  |
+| `inputFormat` | `String` | Yes |  |
 | `intensity` | `Float` | No |  |
-| `job_id` | `String` | No |  |
+| `jobId` | `String` | No |  |
 | `locale` | `String` | No |  |
-| `mime_type` | `String` | Yes |  |
+| `mimeType` | `String` | Yes |  |
 | `name` | `String` | No |  |
-| `offset_m` | `Float` | No |  |
-| `output_preset_id` | `String` | Yes |  |
-| `output_url` | `String` | No |  |
-| `plan_tier` | `String` | Yes |  |
-| `preset_id` | `String` | Yes |  |
-| `progress_percent` | `Float` | No |  |
+| `offsetMs` | `Float` | No |  |
+| `outputPresetId` | `String` | Yes |  |
+| `outputUrl` | `String` | No |  |
+| `planTier` | `String` | Yes |  |
+| `presetId` | `String` | Yes |  |
+| `progressPercent` | `Float` | No |  |
 | `project` | `Hash` | No |  |
-| `project_id` | `String` | No |  |
+| `projectId` | `String` | No |  |
 | `property` | `String` | No |  |
-| `source_device_id` | `String` | No |  |
-| `source_url` | `String` | No |  |
+| `sourceDeviceId` | `String` | No |  |
+| `sourceUrl` | `String` | No |  |
 | `stage` | `String` | No |  |
-| `start_m` | `Float` | No |  |
-| `style_preset_id` | `String` | No |  |
-| `sync_to_beat_grid` | `Boolean` | No |  |
+| `startMs` | `Float` | No |  |
+| `stylePresetId` | `String` | No |  |
+| `syncToBeatGrid` | `Boolean` | No |  |
 | `tone` | `String` | No |  |
-| `track_id` | `String` | No |  |
+| `trackId` | `String` | No |  |
 | `transcript` | `String` | No |  |
-| `trend_keyword` | `Array` | No |  |
+| `trendKeywords` | `Array` | No |  |
 | `type` | `String` | No |  |
-| `updated_at` | `String` | No |  |
+| `updatedAt` | `String` | No |  |
 | `value` | `Float` | No |  |
-| `watermark_enabled` | `Boolean` | No |  |
-| `watermark_text` | `String` | No |  |
-| `worker_id` | `String` | No |  |
+| `watermarkEnabled` | `Boolean` | No |  |
+| `watermarkText` | `String` | No |  |
+| `workerId` | `String` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | Yes |
-| `asset_id` | - | - |
-| `at_m` | - | - |
-| `audio_asset_id` | - | - |
-| `beat_offset_m` | - | - |
-| `bitrate_kbp` | - | - |
+| `assetId` | - | - |
+| `atMs` | - | - |
+| `audioAssetId` | - | - |
+| `beatOffsetMs` | - | - |
+| `bitrateKbps` | - | - |
 | `bpm` | - | - |
 | `cancelled` | - | - |
 | `container` | - | - |
-| `duration_m` | - | - |
-| `duration_second` | - | Yes |
+| `durationMs` | - | - |
+| `durationSeconds` | - | Yes |
 | `easing` | - | - |
 | `error` | - | - |
-| `frame_rate` | - | - |
-| `input_format` | - | - |
+| `frameRate` | - | - |
+| `inputFormat` | - | - |
 | `intensity` | - | - |
-| `job_id` | - | - |
+| `jobId` | - | - |
 | `locale` | - | - |
-| `mime_type` | - | - |
+| `mimeType` | - | - |
 | `name` | - | - |
-| `offset_m` | - | - |
-| `output_preset_id` | - | Yes |
-| `output_url` | - | - |
-| `plan_tier` | - | Yes |
-| `preset_id` | - | - |
-| `progress_percent` | - | - |
+| `offsetMs` | - | - |
+| `outputPresetId` | - | Yes |
+| `outputUrl` | - | - |
+| `planTier` | - | Yes |
+| `presetId` | - | - |
+| `progressPercent` | - | - |
 | `project` | - | - |
-| `project_id` | - | - |
+| `projectId` | - | - |
 | `property` | - | - |
-| `source_device_id` | - | - |
-| `source_url` | - | - |
+| `sourceDeviceId` | - | - |
+| `sourceUrl` | - | - |
 | `stage` | - | - |
-| `start_m` | - | - |
-| `style_preset_id` | - | - |
-| `sync_to_beat_grid` | - | - |
+| `startMs` | - | - |
+| `stylePresetId` | - | - |
+| `syncToBeatGrid` | - | - |
 | `tone` | - | - |
-| `track_id` | - | - |
+| `trackId` | - | - |
 | `transcript` | - | - |
-| `trend_keyword` | - | - |
+| `trendKeywords` | - | - |
 | `type` | - | - |
-| `updated_at` | - | - |
+| `updatedAt` | - | - |
 | `value` | - | - |
-| `watermark_enabled` | - | - |
-| `watermark_text` | - | - |
-| `worker_id` | - | - |
+| `watermarkEnabled` | - | - |
+| `watermarkText` | - | - |
+| `workerId` | - | - |
 
 ### Operations
 
@@ -2248,12 +2316,12 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Video.create({
-  "duration_second" => 1, # Float
-  "input_format" => "example_input_format", # String
-  "mime_type" => "example_mime_type", # String
-  "output_preset_id" => "example_output_preset_id", # String
-  "plan_tier" => "example_plan_tier", # String
-  "preset_id" => "example_preset_id", # String
+  "durationSeconds" => 1, # Float
+  "inputFormat" => "example_inputFormat", # String
+  "mimeType" => "example_mimeType", # String
+  "outputPresetId" => "example_outputPresetId", # String
+  "planTier" => "example_planTier", # String
+  "presetId" => "example_presetId", # String
 })
 ```
 

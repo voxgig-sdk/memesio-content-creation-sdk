@@ -2,24 +2,24 @@
   "existing": {
     "free_caption_meme_success": {
       "FREE_CAPTION_MEME_SUCCESS00": {
-        "caption": [],
-        "template_slug": "s33",
+        "captions": [],
+        "templateSlug": "s33",
         "title": "s34",
         "visibility": "s35",
         "watermark": {},
         "id": "FREE_CAPTION_MEME_SUCCESS00"
       },
       "FREE_CAPTION_MEME_SUCCESS01": {
-        "caption": [],
-        "template_slug": "s65",
+        "captions": [],
+        "templateSlug": "s65",
         "title": "s66",
         "visibility": "s67",
         "watermark": {},
         "id": "FREE_CAPTION_MEME_SUCCESS01"
       },
       "FREE_CAPTION_MEME_SUCCESS02": {
-        "caption": [],
-        "template_slug": "s97",
+        "captions": [],
+        "templateSlug": "s97",
         "title": "s98",
         "visibility": "s99",
         "watermark": {},
@@ -30,8 +30,8 @@
   "new": {
     "free_caption_meme_success": {
       "free_caption_meme_success_ref01": {
-        "caption": [],
-        "template_slug": "sc9",
+        "captions": [],
+        "templateSlug": "sc9",
         "title": "sca",
         "visibility": "scb",
         "watermark": {}

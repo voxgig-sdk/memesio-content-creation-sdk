@@ -11,27 +11,27 @@ main: kit: entity: ai_job: {
       type: "`$STRING`"
     }
     {
-      name: "actor_id"
+      name: "actorId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "after_state"
+      name: "afterState"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "attempt"
+      name: "attempts"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "before_state"
+      name: "beforeState"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "brush_edit"
+      name: "brushEdits"
       req: false
       type: "`$ARRAY`"
     }
@@ -41,37 +41,37 @@ main: kit: entity: ai_job: {
       type: "`$STRING`"
     }
     {
-      name: "celebrity_confidence"
+      name: "celebrityConfidence"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "consent_attested"
+      name: "consentAttested"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "created_at"
+      name: "createdAt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "detected_face_count"
+      name: "detectedFaceCount"
       req: true
       type: "`$NUMBER`"
     }
     {
-      name: "edge_refinement"
+      name: "edgeRefinement"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "estimated_cost_usd"
+      name: "estimatedCostUsd"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "frame_time_m"
+      name: "frameTimeMs"
       req: false
       type: "`$NUMBER`"
     }
@@ -91,27 +91,27 @@ main: kit: entity: ai_job: {
       type: "`$OBJECT`"
     }
     {
-      name: "layer_id"
+      name: "layerId"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "layer_type"
+      name: "layerType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "max_attempt"
+      name: "maxAttempts"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "max_face"
+      name: "maxFaces"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "media_type"
+      name: "mediaType"
       op: {
         create: {
           req: true
@@ -127,7 +127,7 @@ main: kit: entity: ai_job: {
       type: "`$OBJECT`"
     }
     {
-      name: "nsfw_score"
+      name: "nsfwScore"
       req: false
       type: "`$NUMBER`"
     }
@@ -137,12 +137,12 @@ main: kit: entity: ai_job: {
       type: "`$OBJECT`"
     }
     {
-      name: "project_id"
+      name: "projectId"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "provider_id"
+      name: "providerId"
       req: false
       type: "`$STRING`"
     }
@@ -152,22 +152,22 @@ main: kit: entity: ai_job: {
       type: "`$STRING`"
     }
     {
-      name: "run_after_m"
+      name: "runAfterMs"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "source_asset_url"
+      name: "sourceAssetUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "source_face_index"
+      name: "sourceFaceIndex"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "source_image_url"
+      name: "sourceImageUrl"
       req: true
       type: "`$STRING`"
     }
@@ -177,32 +177,32 @@ main: kit: entity: ai_job: {
       type: "`$STRING`"
     }
     {
-      name: "target_asset_url"
+      name: "targetAssetUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "target_face_index"
+      name: "targetFaceIndex"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "timeout_m"
+      name: "timeoutMs"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "trace_id"
+      name: "traceId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "updated_at"
+      name: "updatedAt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "version_id"
+      name: "versionId"
       req: false
       type: "`$STRING`"
     }
@@ -212,12 +212,12 @@ main: kit: entity: ai_job: {
       type: "`$NUMBER`"
     }
     {
-      name: "worker_id"
+      name: "workerId"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "workspace_id"
+      name: "workspaceId"
       req: false
       type: "`$STRING`"
     }

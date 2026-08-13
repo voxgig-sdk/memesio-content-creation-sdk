@@ -11,7 +11,7 @@ main: kit: entity: template: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "asset_byte"
+      name: "assetBytes"
       req: false
       type: [
         "`$ONE`"
@@ -22,17 +22,22 @@ main: kit: entity: template: {
       ]
     }
     {
-      name: "asset_content_type"
+      name: "assetContentType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "box_count"
+      name: "boxCount"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "caption"
+      name: "captionCount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "captions"
       op: {
         list: {
           req: true
@@ -43,12 +48,7 @@ main: kit: entity: template: {
       type: "`$ARRAY`"
     }
     {
-      name: "caption_count"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
-      name: "category"
+      name: "categories"
       req: false
       type: "`$ARRAY`"
     }
@@ -58,12 +58,12 @@ main: kit: entity: template: {
       type: "`$STRING`"
     }
     {
-      name: "duration_m"
+      name: "durationMs"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "example_image_url"
+      name: "exampleImageUrl"
       req: false
       type: [
         "`$ONE`"
@@ -79,7 +79,7 @@ main: kit: entity: template: {
       type: "`$INTEGER`"
     }
     {
-      name: "frame_count"
+      name: "frameCount"
       req: false
       type: [
         "`$ONE`"
@@ -90,7 +90,7 @@ main: kit: entity: template: {
       ]
     }
     {
-      name: "gif_slug"
+      name: "gifSlug"
       req: false
       type: "`$STRING`"
     }
@@ -111,12 +111,12 @@ main: kit: entity: template: {
       type: "`$STRING`"
     }
     {
-      name: "image_url"
+      name: "imageUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "media_type"
+      name: "mediaType"
       req: true
       type: "`$STRING`"
     }
@@ -126,22 +126,22 @@ main: kit: entity: template: {
       type: "`$STRING`"
     }
     {
-      name: "poster_image_url"
+      name: "posterImageUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "preview_image_url"
+      name: "previewImageUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "quality_status"
+      name: "qualityStatus"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "return_base64"
+      name: "returnBase64"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -151,7 +151,7 @@ main: kit: entity: template: {
       type: "`$STRING`"
     }
     {
-      name: "source_template_id"
+      name: "sourceTemplateId"
       req: true
       type: [
         "`$ONE`"
@@ -162,17 +162,17 @@ main: kit: entity: template: {
       ]
     }
     {
-      name: "source_url"
+      name: "sourceUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "start_m"
+      name: "startMs"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "tag"
+      name: "tags"
       op: {
         list: {
           req: true
@@ -199,7 +199,7 @@ main: kit: entity: template: {
       ]
     }
     {
-      name: "width_px"
+      name: "widthPx"
       req: false
       type: "`$INTEGER`"
     }
@@ -332,7 +332,7 @@ main: kit: entity: template: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]

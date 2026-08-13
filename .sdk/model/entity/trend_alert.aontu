@@ -11,7 +11,7 @@ main: kit: entity: trend_alert: {
       type: "`$STRING`"
     }
     {
-      name: "actor_id"
+      name: "actorId"
       req: true
       type: "`$STRING`"
     }
@@ -21,17 +21,17 @@ main: kit: entity: trend_alert: {
       type: "`$NUMBER`"
     }
     {
-      name: "alert_id"
+      name: "alertId"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "channel"
+      name: "channels"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "deliver_all_alert"
+      name: "deliverAllAlerts"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -41,27 +41,27 @@ main: kit: entity: trend_alert: {
       type: "`$OBJECT`"
     }
     {
-      name: "explicit_niche"
+      name: "explicitNiches"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "explicit_region"
+      name: "explicitRegions"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "explicit_source"
+      name: "explicitSources"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "explicit_topic"
+      name: "explicitTopics"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "follower_count"
+      name: "followerCount"
       req: false
       type: "`$INTEGER`"
     }

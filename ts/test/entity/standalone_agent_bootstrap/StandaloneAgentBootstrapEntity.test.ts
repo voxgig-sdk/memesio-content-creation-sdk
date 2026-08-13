@@ -26,8 +26,8 @@ import {
 describe('StandaloneAgentBootstrapEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,7 +62,7 @@ describe('StandaloneAgentBootstrapEntity', async () => {
     const standalone_agent_bootstrap_ref01_ent = client.StandaloneAgentBootstrap()
     let standalone_agent_bootstrap_ref01_data = setup.data.new.standalone_agent_bootstrap['standalone_agent_bootstrap_ref01']
 
-    standalone_agent_bootstrap_ref01_data = await standalone_agent_bootstrap_ref01_ent.create(standalone_agent_bootstrap_ref01_data)
+    standalone_agent_bootstrap_ref01_data = (await standalone_agent_bootstrap_ref01_ent.create(standalone_agent_bootstrap_ref01_data)).data()
     assert(null != standalone_agent_bootstrap_ref01_data)
 
 

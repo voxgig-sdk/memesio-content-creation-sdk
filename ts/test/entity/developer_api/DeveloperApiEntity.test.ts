@@ -26,8 +26,8 @@ import {
 describe('DeveloperApiEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,13 +62,13 @@ describe('DeveloperApiEntity', async () => {
     const developer_api_ref01_ent = client.DeveloperApi()
     let developer_api_ref01_data = setup.data.new.developer_api['developer_api_ref01']
 
-    developer_api_ref01_data = await developer_api_ref01_ent.create(developer_api_ref01_data)
+    developer_api_ref01_data = (await developer_api_ref01_ent.create(developer_api_ref01_data)).data()
     assert(null != developer_api_ref01_data)
 
 
     // LOAD
     const developer_api_ref01_match_dt0: any = {}
-    const developer_api_ref01_data_dt0 = await developer_api_ref01_ent.load(developer_api_ref01_match_dt0)
+    const developer_api_ref01_data_dt0 = (await developer_api_ref01_ent.load(developer_api_ref01_match_dt0)).data()
     assert(null != developer_api_ref01_data_dt0)
 
 

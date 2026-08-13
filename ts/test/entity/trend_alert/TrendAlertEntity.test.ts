@@ -26,8 +26,8 @@ import {
 describe('TrendAlertEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,13 +62,13 @@ describe('TrendAlertEntity', async () => {
     const trend_alert_ref01_ent = client.TrendAlert()
     let trend_alert_ref01_data = setup.data.new.trend_alert['trend_alert_ref01']
 
-    trend_alert_ref01_data = await trend_alert_ref01_ent.create(trend_alert_ref01_data)
+    trend_alert_ref01_data = (await trend_alert_ref01_ent.create(trend_alert_ref01_data)).data()
     assert(null != trend_alert_ref01_data)
 
 
     // LOAD
     const trend_alert_ref01_match_dt0: any = {}
-    const trend_alert_ref01_data_dt0 = await trend_alert_ref01_ent.load(trend_alert_ref01_match_dt0)
+    const trend_alert_ref01_data_dt0 = (await trend_alert_ref01_ent.load(trend_alert_ref01_match_dt0)).data()
     assert(null != trend_alert_ref01_data_dt0)
 
 

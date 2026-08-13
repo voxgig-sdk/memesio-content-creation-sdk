@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from memesiocontentcreation_sdk.utility.voxgig_struct import voxgig_struct as vs
 from memesiocontentcreation_sdk import MemesioContentCreationSDK
-from core import helpers
+from memesiocontentcreation_sdk.core import helpers
 from test import runner
 
 
@@ -66,16 +66,16 @@ def _agent_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "MEMESIOCONTENTCREATION_TEST_AGENT_ENTID": {},
-        "MEMESIOCONTENTCREATION_TEST_LIVE": "FALSE",
-        "MEMESIOCONTENTCREATION_APIKEY": "NONE",
+        "MEMESIO_CONTENT_CREATION_TEST_AGENT_ENTID": {},
+        "MEMESIO_CONTENT_CREATION_TEST_LIVE": "FALSE",
+        "MEMESIO_CONTENT_CREATION_APIKEY": "NONE",
     })
 
-    live = env.get("MEMESIOCONTENTCREATION_TEST_LIVE") == "TRUE"
+    live = env.get("MEMESIO_CONTENT_CREATION_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("MEMESIOCONTENTCREATION_APIKEY"),
+            "apikey": env.get("MEMESIO_CONTENT_CREATION_APIKEY"),
         }
         client = MemesioContentCreationSDK(merged_opts)
         return {

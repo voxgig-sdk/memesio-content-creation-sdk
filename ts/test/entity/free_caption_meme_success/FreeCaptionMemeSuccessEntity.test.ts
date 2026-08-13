@@ -26,8 +26,8 @@ import {
 describe('FreeCaptionMemeSuccessEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,7 +62,7 @@ describe('FreeCaptionMemeSuccessEntity', async () => {
     const free_caption_meme_success_ref01_ent = client.FreeCaptionMemeSuccess()
     let free_caption_meme_success_ref01_data = setup.data.new.free_caption_meme_success['free_caption_meme_success_ref01']
 
-    free_caption_meme_success_ref01_data = await free_caption_meme_success_ref01_ent.create(free_caption_meme_success_ref01_data)
+    free_caption_meme_success_ref01_data = (await free_caption_meme_success_ref01_ent.create(free_caption_meme_success_ref01_data)).data()
     assert(null != free_caption_meme_success_ref01_data)
 
 

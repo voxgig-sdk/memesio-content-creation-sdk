@@ -35,7 +35,8 @@ func TestGrowthDirect(t *testing.T) {
 		if setup.live {
 			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
 			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap.
+			// the IDs we can construct from setup.idmap — unless the model
+			// sets main.kit.test.live.strict.
 			if err != nil {
 				t.Skipf("load call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -97,21 +98,21 @@ func growthDirectSetup(mockres any) *growthDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"MEMESIOCONTENTCREATION_TEST_GROWTH_ENTID": map[string]any{},
-		"MEMESIOCONTENTCREATION_TEST_LIVE":    "FALSE",
-		"MEMESIOCONTENTCREATION_APIKEY":       "NONE",
+		"MEMESIO_CONTENT_CREATION_TEST_GROWTH_ENTID": map[string]any{},
+		"MEMESIO_CONTENT_CREATION_TEST_LIVE":    "FALSE",
+		"MEMESIO_CONTENT_CREATION_APIKEY":       "NONE",
 	})
 
-	live := env["MEMESIOCONTENTCREATION_TEST_LIVE"] == "TRUE"
+	live := env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["MEMESIOCONTENTCREATION_APIKEY"],
+			"apikey": env["MEMESIO_CONTENT_CREATION_APIKEY"],
 		}
 		client := sdk.NewMemesioContentCreationSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["MEMESIOCONTENTCREATION_TEST_GROWTH_ENTID"]; ok {
+		if entidRaw, ok := env["MEMESIO_CONTENT_CREATION_TEST_GROWTH_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

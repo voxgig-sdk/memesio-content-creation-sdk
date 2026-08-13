@@ -23,8 +23,8 @@ module MemesioContentCreationTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("MEMESIOCONTENTCREATION_TEST_LIVE")
-    override = getenv("MEMESIOCONTENTCREATION_TEST_OVERRIDE")
+    live = getenv("MEMESIO_CONTENT_CREATION_TEST_LIVE")
+    override = getenv("MEMESIO_CONTENT_CREATION_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module MemesioContentCreationTestRunner
       end
     end
 
-    explain = getenv("MEMESIOCONTENTCREATION_TEST_EXPLAIN")
-    m["MEMESIOCONTENTCREATION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("MEMESIO_CONTENT_CREATION_TEST_EXPLAIN")
+    m["MEMESIO_CONTENT_CREATION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

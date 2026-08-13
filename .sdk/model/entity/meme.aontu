@@ -6,57 +6,57 @@ main: kit: entity: meme: {
 
   fields: [
     {
-      name: "alt_text"
+      name: "altText"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "canonical_image_url"
+      name: "canonicalImageUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "canva"
+      name: "canvas"
       req: true
       type: "`$OBJECT`"
     }
     {
-      name: "caption"
+      name: "captions"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "created_at"
+      name: "createdAt"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "image_url"
+      name: "imageUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "nsfw_status"
+      name: "nsfwStatus"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "overlay"
+      name: "overlays"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "share_slug"
+      name: "shareSlug"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "share_url"
+      name: "shareUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "share_view"
+      name: "shareViews"
       req: true
       type: "`$INTEGER`"
     }
@@ -66,17 +66,17 @@ main: kit: entity: meme: {
       type: "`$STRING`"
     }
     {
-      name: "source_image_url"
+      name: "sourceImageUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "tag"
+      name: "tags"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "template_slug"
+      name: "templateSlug"
       req: true
       type: "`$STRING`"
     }

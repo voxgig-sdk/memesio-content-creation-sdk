@@ -65,16 +65,16 @@ function ai_caption_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "MEMESIOCONTENTCREATION_TEST_AI_CAPTION_ENTID" => [],
-        "MEMESIOCONTENTCREATION_TEST_LIVE" => "FALSE",
-        "MEMESIOCONTENTCREATION_APIKEY" => "NONE",
+        "MEMESIO_CONTENT_CREATION_TEST_AI_CAPTION_ENTID" => [],
+        "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
+        "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
     ]);
 
-    $live = $env["MEMESIOCONTENTCREATION_TEST_LIVE"] === "TRUE";
+    $live = $env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["MEMESIOCONTENTCREATION_APIKEY"],
+            "apikey" => $env["MEMESIO_CONTENT_CREATION_APIKEY"],
         ];
         $client = new MemesioContentCreationSDK($merged_opts);
         return [

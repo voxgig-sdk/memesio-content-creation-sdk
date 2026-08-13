@@ -434,10 +434,10 @@ const agent = client.Agent()
 | `name` | `string` | Yes |  |
 | `slug` | `string` | No |  |
 | `status` | `string` | No |  |
-| `style_preset` | `string` | No |  |
-| `system_prompt` | `string` | No |  |
-| `watermark_text` | `string` | No |  |
-| `website_url` | `string` | No |  |
+| `stylePreset` | `string` | No |  |
+| `systemPrompt` | `string` | No |  |
+| `watermarkText` | `string` | No |  |
+| `websiteUrl` | `string` | No |  |
 
 ### Field Usage by Operation
 
@@ -448,10 +448,10 @@ const agent = client.Agent()
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
 | `status` | - | - | - |
-| `style_preset` | - | - | - |
-| `system_prompt` | - | - | - |
-| `watermark_text` | - | - | - |
-| `website_url` | - | - | - |
+| `stylePreset` | - | - | - |
+| `systemPrompt` | - | - | - |
+| `watermarkText` | - | - | - |
+| `websiteUrl` | - | - | - |
 
 ### Operations
 
@@ -523,18 +523,39 @@ const agent_infra = client.AgentInfra()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `chat_id` | `string` | Yes |  |
-| `meme_slug` | `string` | Yes |  |
+| `chatId` | `string` | Yes |  |
+| `memeSlug` | `string` | Yes |  |
 | `metadata` | `Record<string, any>` | No |  |
-| `payout_reference` | `string` | No |  |
-| `payout_status` | `string` | No |  |
-| `phone_or_chat_id` | `string` | Yes |  |
+| `payoutReference` | `string` | No |  |
+| `payoutStatus` | `string` | No |  |
+| `phoneOrChatId` | `string` | Yes |  |
 | `prompt` | `string` | Yes |  |
 | `proof` | `Record<string, any>` | No |  |
-| `quota_boost_per_day` | `number` | No |  |
-| `scope` | `any[]` | No |  |
-| `user_id` | `string` | No |  |
-| `week_start` | `string` | No |  |
+| `quotaBoostPerDay` | `number` | No |  |
+| `scopes` | `any[]` | No |  |
+| `userId` | `string` | No |  |
+| `weekStart` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `keys` | `/api/v1/agents/{agentId}/keys` | `client.AgentInfra().create({ $action: 'keys', ... })` |
+| `keys` | `/api/v1/agents/{agentId}/keys` | `client.AgentInfra().load({ $action: 'keys', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+AgentInfra record — check the API definition for its shape.
+
+```ts
+const result = await client.AgentInfra().create({
+  $action: 'keys',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -544,6 +565,11 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.AgentInfra().create({
+  action: 'example_action',
+  chatId: 'example_chatId',
+  memeSlug: 'example_memeSlug',
+  phoneOrChatId: 'example_phoneOrChatId',
+  prompt: 'example_prompt',
 })
 ```
 
@@ -601,34 +627,34 @@ const ai_caption = client.AiCaption()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `blocked_term` | `any[]` | No |  |
-| `canvas_text` | `any[]` | Yes |  |
-| `caption_count` | `number` | No |  |
-| `caption_set` | `any[]` | No |  |
-| `entity` | `any[]` | No |  |
-| `fallback_used` | `boolean` | No |  |
-| `generation_strategy` | `string` | No |  |
+| `blockedTerms` | `any[]` | No |  |
+| `canvasText` | `any[]` | Yes |  |
+| `captionCount` | `number` | No |  |
+| `captionSets` | `any[]` | No |  |
+| `entities` | `any[]` | No |  |
+| `fallbackUsed` | `boolean` | No |  |
+| `generationStrategy` | `string` | No |  |
 | `locale` | `string` | No |  |
-| `meme_id` | `string` | No |  |
-| `meme_slug` | `string` | No |  |
+| `memeId` | `string` | No |  |
+| `memeSlug` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `ok` | `boolean` | No |  |
-| `option_count` | `number` | No |  |
-| `owner_token` | `string` | No |  |
-| `provider_id` | `string` | No |  |
-| `reference_caption` | `any[]` | No |  |
-| `rewrite_note` | `string` | No |  |
-| `scene_summary` | `string` | No |  |
-| `template_description` | `string` | No |  |
-| `template_name` | `string` | No |  |
-| `template_tag` | `any[]` | No |  |
+| `optionCount` | `number` | No |  |
+| `ownerToken` | `string` | No |  |
+| `providerId` | `string` | No |  |
+| `referenceCaptions` | `any[]` | No |  |
+| `rewriteNote` | `string` | No |  |
+| `sceneSummary` | `string` | No |  |
+| `templateDescription` | `string` | No |  |
+| `templateName` | `string` | No |  |
+| `templateTags` | `any[]` | No |  |
 | `tone` | `string` | Yes |  |
-| `tone_cue` | `any[]` | No |  |
-| `trend_keyword` | `any[]` | No |  |
-| `trend_reference` | `any[]` | No |  |
-| `trend_signal` | `any[]` | No |  |
-| `variation_offset` | `number` | No |  |
-| `voice_rule` | `any[]` | No |  |
+| `toneCues` | `any[]` | No |  |
+| `trendKeywords` | `any[]` | No |  |
+| `trendReferences` | `any[]` | No |  |
+| `trendSignals` | `any[]` | No |  |
+| `variationOffset` | `number` | No |  |
+| `voiceRules` | `any[]` | No |  |
 
 ### Operations
 
@@ -638,7 +664,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.AiCaption().create({
-  canvas_text: [],
+  canvasText: [],
   name: 'example_name',
   tone: 'example_tone',
 })
@@ -691,94 +717,94 @@ const ai_job = client.AiJob()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `actor_id` | `string` | No |  |
-| `after_state` | `Record<string, any>` | No |  |
-| `attempt` | `number` | No |  |
-| `before_state` | `Record<string, any>` | No |  |
-| `brush_edit` | `any[]` | No |  |
+| `actorId` | `string` | No |  |
+| `afterState` | `Record<string, any>` | No |  |
+| `attempts` | `number` | No |  |
+| `beforeState` | `Record<string, any>` | No |  |
+| `brushEdits` | `any[]` | No |  |
 | `capability` | `string` | Yes |  |
-| `celebrity_confidence` | `number` | No |  |
-| `consent_attested` | `boolean` | No |  |
-| `created_at` | `string` | No |  |
-| `detected_face_count` | `number` | Yes |  |
-| `edge_refinement` | `number` | No |  |
-| `estimated_cost_usd` | `number` | No |  |
-| `frame_time_m` | `number` | No |  |
+| `celebrityConfidence` | `number` | No |  |
+| `consentAttested` | `boolean` | No |  |
+| `createdAt` | `string` | No |  |
+| `detectedFaceCount` | `number` | Yes |  |
+| `edgeRefinement` | `number` | No |  |
+| `estimatedCostUsd` | `number` | No |  |
+| `frameTimeMs` | `number` | No |  |
 | `height` | `number` | Yes |  |
 | `id` | `string` | Yes |  |
 | `input` | `Record<string, any>` | No |  |
-| `layer_id` | `string` | Yes |  |
-| `layer_type` | `string` | No |  |
-| `max_attempt` | `number` | No |  |
-| `max_face` | `number` | No |  |
-| `media_type` | `string` | No |  |
+| `layerId` | `string` | Yes |  |
+| `layerType` | `string` | No |  |
+| `maxAttempts` | `number` | No |  |
+| `maxFaces` | `number` | No |  |
+| `mediaType` | `string` | No |  |
 | `metadata` | `Record<string, any>` | No |  |
-| `nsfw_score` | `number` | No |  |
+| `nsfwScore` | `number` | No |  |
 | `output` | `Record<string, any>` | No |  |
-| `project_id` | `string` | Yes |  |
-| `provider_id` | `string` | No |  |
+| `projectId` | `string` | Yes |  |
+| `providerId` | `string` | No |  |
 | `reason` | `string` | No |  |
-| `run_after_m` | `number` | No |  |
-| `source_asset_url` | `string` | Yes |  |
-| `source_face_index` | `number` | No |  |
-| `source_image_url` | `string` | Yes |  |
+| `runAfterMs` | `number` | No |  |
+| `sourceAssetUrl` | `string` | Yes |  |
+| `sourceFaceIndex` | `number` | No |  |
+| `sourceImageUrl` | `string` | Yes |  |
 | `status` | `string` | Yes |  |
-| `target_asset_url` | `string` | Yes |  |
-| `target_face_index` | `number` | No |  |
-| `timeout_m` | `number` | No |  |
-| `trace_id` | `string` | No |  |
-| `updated_at` | `string` | No |  |
-| `version_id` | `string` | No |  |
+| `targetAssetUrl` | `string` | Yes |  |
+| `targetFaceIndex` | `number` | No |  |
+| `timeoutMs` | `number` | No |  |
+| `traceId` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
+| `versionId` | `string` | No |  |
 | `width` | `number` | Yes |  |
-| `worker_id` | `string` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workerId` | `string` | Yes |  |
+| `workspaceId` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | - |
-| `actor_id` | - | - |
-| `after_state` | - | - |
-| `attempt` | - | - |
-| `before_state` | - | - |
-| `brush_edit` | - | - |
+| `actorId` | - | - |
+| `afterState` | - | - |
+| `attempts` | - | - |
+| `beforeState` | - | - |
+| `brushEdits` | - | - |
 | `capability` | - | - |
-| `celebrity_confidence` | - | - |
-| `consent_attested` | - | - |
-| `created_at` | - | - |
-| `detected_face_count` | - | - |
-| `edge_refinement` | - | - |
-| `estimated_cost_usd` | - | - |
-| `frame_time_m` | - | - |
+| `celebrityConfidence` | - | - |
+| `consentAttested` | - | - |
+| `createdAt` | - | - |
+| `detectedFaceCount` | - | - |
+| `edgeRefinement` | - | - |
+| `estimatedCostUsd` | - | - |
+| `frameTimeMs` | - | - |
 | `height` | - | - |
 | `id` | - | - |
 | `input` | - | - |
-| `layer_id` | - | - |
-| `layer_type` | - | - |
-| `max_attempt` | - | - |
-| `max_face` | - | - |
-| `media_type` | - | Yes |
+| `layerId` | - | - |
+| `layerType` | - | - |
+| `maxAttempts` | - | - |
+| `maxFaces` | - | - |
+| `mediaType` | - | Yes |
 | `metadata` | - | - |
-| `nsfw_score` | - | - |
+| `nsfwScore` | - | - |
 | `output` | - | - |
-| `project_id` | - | - |
-| `provider_id` | - | - |
+| `projectId` | - | - |
+| `providerId` | - | - |
 | `reason` | - | - |
-| `run_after_m` | - | - |
-| `source_asset_url` | - | - |
-| `source_face_index` | - | - |
-| `source_image_url` | - | - |
+| `runAfterMs` | - | - |
+| `sourceAssetUrl` | - | - |
+| `sourceFaceIndex` | - | - |
+| `sourceImageUrl` | - | - |
 | `status` | - | - |
-| `target_asset_url` | - | - |
-| `target_face_index` | - | - |
-| `timeout_m` | - | - |
-| `trace_id` | - | - |
-| `updated_at` | - | - |
-| `version_id` | - | - |
+| `targetAssetUrl` | - | - |
+| `targetFaceIndex` | - | - |
+| `timeoutMs` | - | - |
+| `traceId` | - | - |
+| `updatedAt` | - | - |
+| `versionId` | - | - |
 | `width` | - | - |
-| `worker_id` | - | - |
-| `workspace_id` | - | - |
+| `workerId` | - | - |
+| `workspaceId` | - | - |
 
 ### Operations
 
@@ -788,6 +814,19 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.AiJob().create({
+  action: 'example_action',
+  capability: 'example_capability',
+  detectedFaceCount: 1,
+  height: 1,
+  id: 'example_id',
+  layerId: 'example_layerId',
+  projectId: 'example_projectId',
+  sourceAssetUrl: 'example_sourceAssetUrl',
+  sourceImageUrl: 'example_sourceImageUrl',
+  status: 'example_status',
+  targetAssetUrl: 'example_targetAssetUrl',
+  width: 1,
+  workerId: 'example_workerId',
 })
 ```
 
@@ -837,53 +876,53 @@ const ai_meme_generation_succeeded = client.AiMemeGenerationSucceeded()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allow_heuristic_fallback` | `boolean` | No |  |
-| `caption` | `any[]` | No |  |
-| `caption_source` | `string` | No |  |
-| `correlation_id` | `string` | No |  |
-| `degraded_from_async` | `boolean` | No |  |
-| `editable_caption` | `any[]` | No |  |
+| `allowHeuristicFallback` | `boolean` | No |  |
+| `captionSource` | `string` | No |  |
+| `captions` | `any[]` | No |  |
+| `correlationId` | `string` | No |  |
+| `degradedFromAsync` | `boolean` | No |  |
+| `editableCaptions` | `any[]` | No |  |
 | `flow` | `string` | Yes |  |
-| `image_url` | `string` | No |  |
+| `imageUrl` | `string` | No |  |
 | `mode` | `string` | Yes |  |
 | `ok` | `boolean` | Yes |  |
-| `preferred_provider_id` | `string` | No |  |
+| `preferredProviderId` | `string` | No |  |
 | `prompt` | `string` | Yes |  |
-| `rewrite_note` | `string` | No |  |
-| `run_id` | `string` | No |  |
+| `rewriteNote` | `string` | No |  |
+| `runId` | `string` | No |  |
 | `status` | `string` | Yes |  |
-| `template_id` | `string` | No |  |
+| `templateId` | `string` | No |  |
 | `tone` | `string` | No |  |
-| `tone_cue` | `any[]` | No |  |
-| `variant` | `any[]` | Yes |  |
-| `variant_count` | `number` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `toneCues` | `any[]` | No |  |
+| `variantCount` | `number` | Yes |  |
+| `variants` | `any[]` | Yes |  |
+| `workspaceId` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `allow_heuristic_fallback` | - |
-| `caption` | - |
-| `caption_source` | - |
-| `correlation_id` | - |
-| `degraded_from_async` | - |
-| `editable_caption` | - |
+| `allowHeuristicFallback` | - |
+| `captionSource` | - |
+| `captions` | - |
+| `correlationId` | - |
+| `degradedFromAsync` | - |
+| `editableCaptions` | - |
 | `flow` | Yes |
-| `image_url` | - |
+| `imageUrl` | - |
 | `mode` | Yes |
 | `ok` | - |
-| `preferred_provider_id` | - |
+| `preferredProviderId` | - |
 | `prompt` | - |
-| `rewrite_note` | - |
-| `run_id` | - |
+| `rewriteNote` | - |
+| `runId` | - |
 | `status` | - |
-| `template_id` | - |
+| `templateId` | - |
 | `tone` | - |
-| `tone_cue` | - |
-| `variant` | - |
-| `variant_count` | Yes |
-| `workspace_id` | - |
+| `toneCues` | - |
+| `variantCount` | Yes |
+| `variants` | - |
+| `workspaceId` | - |
 
 ### Operations
 
@@ -898,8 +937,8 @@ const result = await client.AiMemeGenerationSucceeded().create({
   ok: true,
   prompt: 'example_prompt',
   status: 'example_status',
-  variant: [],
-  variant_count: 1,
+  variantCount: 1,
+  variants: [],
 })
 ```
 
@@ -941,16 +980,16 @@ const ai_provider = client.AiProvider()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `actor_id` | `string` | No |  |
-| `correlation_id` | `string` | No |  |
+| `actorId` | `string` | No |  |
+| `correlationId` | `string` | No |  |
 | `limit` | `number` | No |  |
-| `mapping_mode` | `string` | No |  |
-| `max_slot` | `number` | No |  |
+| `mappingMode` | `string` | No |  |
+| `maxSlots` | `number` | No |  |
 | `prompt` | `string` | Yes |  |
-| `source_image_url` | `string` | Yes |  |
-| `text` | `any[]` | No |  |
-| `trend_signal` | `any[]` | No |  |
-| `workspace_id` | `string` | No |  |
+| `sourceImageUrl` | `string` | Yes |  |
+| `texts` | `any[]` | No |  |
+| `trendSignals` | `any[]` | No |  |
+| `workspaceId` | `string` | No |  |
 
 ### Operations
 
@@ -961,7 +1000,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.AiProvider().create({
   prompt: 'example_prompt',
-  source_image_url: 'example_source_image_url',
+  sourceImageUrl: 'example_sourceImageUrl',
 })
 ```
 
@@ -1005,6 +1044,26 @@ Return a copy of the entity options.
 
 ```ts
 const analytics = client.Analytics()
+```
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `metric_dictionary` | `/api/analytics/metric-dictionary` | `client.Analytics().load({ $action: 'metric_dictionary', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Analytics record — check the API definition for its shape.
+
+```ts
+const result = await client.Analytics().load({
+  $action: 'metric_dictionary',
+  /* ...the action's own arguments */
+})
 ```
 
 ### Operations
@@ -1055,9 +1114,30 @@ const auth = client.Auth()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `display_name` | `string` | No |  |
+| `displayName` | `string` | No |  |
 | `email` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `resend_verification` | `/api/auth/resend-verification` | `client.Auth().create({ $action: 'resend_verification', ... })` |
+| `signup` | `/api/auth/signup` | `client.Auth().create({ $action: 'signup', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Auth record — check the API definition for its shape.
+
+```ts
+const result = await client.Auth().create({
+  $action: 'resend_verification',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -1104,6 +1184,26 @@ Return a copy of the entity options.
 
 ```ts
 const billing = client.Billing()
+```
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `usage` | `/api/billing/usage` | `client.Billing().load({ $action: 'usage', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Billing record — check the API definition for its shape.
+
+```ts
+const result = await client.Billing().load({
+  $action: 'usage',
+  /* ...the action's own arguments */
+})
 ```
 
 ### Operations
@@ -1154,9 +1254,9 @@ const collaboration = client.Collaboration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author_id` | `string` | No |  |
+| `authorId` | `string` | No |  |
 | `message` | `string` | Yes |  |
-| `project_id` | `string` | Yes |  |
+| `projectId` | `string` | Yes |  |
 
 ### Operations
 
@@ -1167,7 +1267,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Collaboration().create({
   message: 'example_message',
-  project_id: 'example_project_id',
+  projectId: 'example_projectId',
 })
 ```
 
@@ -1211,6 +1311,26 @@ Return a copy of the entity options.
 
 ```ts
 const compliance = client.Compliance()
+```
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `content_policy` | `/api/compliance/content-policy` | `client.Compliance().load({ $action: 'content_policy', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Compliance record — check the API definition for its shape.
+
+```ts
+const result = await client.Compliance().load({
+  $action: 'content_policy',
+  /* ...the action's own arguments */
+})
 ```
 
 ### Operations
@@ -1261,14 +1381,14 @@ const create_meme = client.CreateMeme()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canva` | `Record<string, any>` | Yes |  |
-| `caption` | `any[]` | Yes |  |
-| `generation_run_id` | `any` | No |  |
-| `generation_variant_id` | `any` | No |  |
-| `image_data_url` | `string` | Yes |  |
-| `overlay` | `any[]` | No |  |
-| `source_image_url` | `string` | Yes |  |
-| `template_slug` | `string` | No |  |
+| `canvas` | `Record<string, any>` | Yes |  |
+| `captions` | `any[]` | Yes |  |
+| `generationRunId` | `string | null` | No |  |
+| `generationVariantId` | `string | null` | No |  |
+| `imageDataUrl` | `string` | Yes |  |
+| `overlays` | `any[]` | No |  |
+| `sourceImageUrl` | `string` | Yes |  |
+| `templateSlug` | `string` | No |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `watermark` | `Record<string, any>` | Yes |  |
@@ -1281,10 +1401,10 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.CreateMeme().create({
-  canva: {},
-  caption: [],
-  image_data_url: 'example_image_data_url',
-  source_image_url: 'example_source_image_url',
+  canvas: {},
+  captions: [],
+  imageDataUrl: 'example_imageDataUrl',
+  sourceImageUrl: 'example_sourceImageUrl',
   watermark: {},
 })
 ```
@@ -1329,7 +1449,7 @@ const developer_api = client.DeveloperApi()
 | --- | --- | --- | --- |
 | `limit` | `number` | No |  |
 | `prompt` | `string` | Yes |  |
-| `trend_signal` | `any[]` | No |  |
+| `trendSignals` | `any[]` | No |  |
 
 ### Operations
 
@@ -1389,8 +1509,8 @@ const free_caption_meme_success = client.FreeCaptionMemeSuccess()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `any[]` | Yes |  |
-| `template_slug` | `string` | Yes |  |
+| `captions` | `any[]` | Yes |  |
+| `templateSlug` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `watermark` | `Record<string, any>` | No |  |
@@ -1403,8 +1523,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.FreeCaptionMemeSuccess().create({
-  caption: [],
-  template_slug: 'example_template_slug',
+  captions: [],
+  templateSlug: 'example_templateSlug',
 })
 ```
 
@@ -1447,27 +1567,27 @@ const free_template_search = client.FreeTemplateSearch()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `boolean` | No |  |
-| `asset_byte` | `any` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `number` | Yes |  |
-| `caption` | `any[]` | Yes |  |
-| `caption_count` | `number` | Yes |  |
+| `assetBytes` | `number | null` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `number` | Yes |  |
+| `captionCount` | `number` | Yes |  |
+| `captions` | `any[]` | Yes |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `any` | No |  |
-| `example_image_url` | `any` | No |  |
-| `frame_count` | `any` | No |  |
-| `height` | `any` | Yes |  |
+| `durationMs` | `number | null` | No |  |
+| `exampleImageUrl` | `string | null` | No |  |
+| `frameCount` | `number | null` | No |  |
+| `height` | `number | null` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `any` | Yes |  |
-| `source_url` | `string` | No |  |
-| `tag` | `any[]` | No |  |
-| `width` | `any` | Yes |  |
+| `sourceTemplateId` | `string | null` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `any[]` | No |  |
+| `width` | `number | null` | Yes |  |
 
 ### Operations
 
@@ -1517,17 +1637,51 @@ const generate = client.Generate()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `any[]` | No |  |
-| `data` | `Record<string, any>` | Yes |  |
-| `duration_m` | `number` | No |  |
+| `base64` | `string` | No |  |
+| `byteLength` | `number` | Yes |  |
+| `captions` | `any[]` | No |  |
+| `dataUrl` | `string` | No |  |
+| `delayMs` | `number` | Yes |  |
+| `durationMs` | `number` | No |  |
+| `filename` | `string` | Yes |  |
 | `fps` | `number` | No |  |
-| `gif_slug` | `string` | No |  |
-| `ok` | `boolean` | Yes |  |
-| `return_base64` | `boolean` | No |  |
-| `start_m` | `number` | No |  |
-| `tag` | `any[]` | No |  |
+| `gifSlug` | `string` | Yes |  |
+| `height` | `number` | Yes |  |
+| `mimeType` | `string` | Yes |  |
+| `pages` | `number` | Yes |  |
+| `parameters` | `Record<string, any>` | Yes |  |
+| `returnBase64` | `boolean` | No |  |
+| `sourceDurationMs` | `number` | Yes |  |
+| `startMs` | `number` | No |  |
+| `tags` | `any[]` | No |  |
 | `title` | `string` | No |  |
-| `width_px` | `number` | No |  |
+| `width` | `number` | Yes |  |
+| `widthPx` | `number` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `base64` | - |
+| `byteLength` | - |
+| `captions` | - |
+| `dataUrl` | - |
+| `delayMs` | - |
+| `durationMs` | - |
+| `filename` | - |
+| `fps` | - |
+| `gifSlug` | Yes |
+| `height` | - |
+| `mimeType` | - |
+| `pages` | - |
+| `parameters` | - |
+| `returnBase64` | - |
+| `sourceDurationMs` | - |
+| `startMs` | - |
+| `tags` | - |
+| `title` | - |
+| `width` | - |
+| `widthPx` | - |
 
 ### Operations
 
@@ -1537,8 +1691,16 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Generate().create({
-  data: {},
-  ok: true,
+  byteLength: 1,
+  delayMs: 1,
+  filename: 'example_filename',
+  gifSlug: 'example_gifSlug',
+  height: 1,
+  mimeType: 'example_mimeType',
+  pages: 1,
+  parameters: {},
+  sourceDurationMs: 1,
+  width: 1,
 })
 ```
 
@@ -1580,43 +1742,71 @@ const growth = client.Growth()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_id` | `string` | No |  |
+| `accountId` | `string` | No |  |
 | `action` | `string` | Yes |  |
-| `actor_id` | `string` | No |  |
+| `actorId` | `string` | No |  |
 | `caption` | `string` | No |  |
 | `code` | `string` | No |  |
-| `external_account_id` | `string` | No |  |
+| `externalAccountId` | `string` | No |  |
 | `handle` | `string` | No |  |
 | `limit` | `number` | No |  |
-| `log_exposure` | `boolean` | No |  |
-| `meme_slug` | `string` | No |  |
+| `logExposure` | `boolean` | No |  |
+| `memeSlug` | `string` | No |  |
 | `now` | `string` | No |  |
 | `platform` | `string` | No |  |
-| `profile` | `any[]` | No |  |
-| `share_slug` | `string` | No |  |
+| `profiles` | `any[]` | No |  |
+| `shareSlug` | `string` | No |  |
 | `surface` | `string` | No |  |
-| `week_start` | `string` | No |  |
+| `weekStart` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
-| `account_id` | - | - |
+| `accountId` | - | - |
 | `action` | - | - |
-| `actor_id` | - | Yes |
+| `actorId` | - | Yes |
 | `caption` | - | - |
 | `code` | - | - |
-| `external_account_id` | - | - |
+| `externalAccountId` | - | - |
 | `handle` | - | - |
 | `limit` | - | - |
-| `log_exposure` | - | - |
-| `meme_slug` | - | - |
+| `logExposure` | - | - |
+| `memeSlug` | - | - |
 | `now` | - | - |
 | `platform` | - | - |
-| `profile` | - | - |
-| `share_slug` | - | - |
+| `profiles` | - | - |
+| `shareSlug` | - | - |
 | `surface` | - | - |
-| `week_start` | - | - |
+| `weekStart` | - | - |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `lifecycle_messaging` | `/api/growth/lifecycle-messaging` | `client.Growth().create({ $action: 'lifecycle_messaging', ... })` |
+| `referral` | `/api/growth/referrals` | `client.Growth().create({ $action: 'referral', ... })` |
+| `social_publish` | `/api/growth/social-publish` | `client.Growth().create({ $action: 'social_publish', ... })` |
+| `trend_campaign` | `/api/growth/trend-campaigns` | `client.Growth().create({ $action: 'trend_campaign', ... })` |
+| `lifecycle_messaging` | `/api/growth/lifecycle-messaging` | `client.Growth().load({ $action: 'lifecycle_messaging', ... })` |
+| `referral` | `/api/growth/referrals` | `client.Growth().load({ $action: 'referral', ... })` |
+| `social_publish` | `/api/growth/social-publish` | `client.Growth().load({ $action: 'social_publish', ... })` |
+| `trend_campaign` | `/api/growth/trend-campaigns` | `client.Growth().load({ $action: 'trend_campaign', ... })` |
+| `viral_trigger` | `/api/growth/viral-triggers` | `client.Growth().load({ $action: 'viral_trigger', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Growth record — check the API definition for its shape.
+
+```ts
+const result = await client.Growth().create({
+  $action: 'lifecycle_messaging',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -1676,17 +1866,17 @@ const list_meme = client.ListMeme()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `string` | Yes |  |
-| `canonical_image_url` | `string` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `nsfw_status` | `string` | Yes |  |
-| `share_slug` | `string` | Yes |  |
-| `share_url` | `string` | Yes |  |
-| `share_view` | `number` | Yes |  |
+| `altText` | `string` | Yes |  |
+| `canonicalImageUrl` | `string` | Yes |  |
+| `createdAt` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `nsfwStatus` | `string` | Yes |  |
+| `shareSlug` | `string` | Yes |  |
+| `shareUrl` | `string` | Yes |  |
+| `shareViews` | `number` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `tag` | `any[]` | Yes |  |
-| `template_slug` | `string` | Yes |  |
+| `tags` | `any[]` | Yes |  |
+| `templateSlug` | `string` | Yes |  |
 | `title` | `string` | Yes |  |
 | `visibility` | `string` | Yes |  |
 
@@ -1739,11 +1929,31 @@ const media = client.Media()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `content_type` | `string` | No |  |
-| `expires_in_second` | `number` | No |  |
-| `owner_token` | `string` | No |  |
+| `contentType` | `string` | No |  |
+| `expiresInSeconds` | `number` | No |  |
+| `ownerToken` | `string` | No |  |
 | `path` | `string` | No |  |
 | `prefix` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `signed_url` | `/api/media/signed-url` | `client.Media().create({ $action: 'signed_url', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Media record — check the API definition for its shape.
+
+```ts
+const result = await client.Media().create({
+  $action: 'signed_url',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -1795,21 +2005,21 @@ const meme = client.Meme()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `string` | Yes |  |
-| `canonical_image_url` | `string` | Yes |  |
-| `canva` | `Record<string, any>` | Yes |  |
-| `caption` | `any[]` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `nsfw_status` | `string` | Yes |  |
-| `overlay` | `any[]` | Yes |  |
-| `share_slug` | `string` | Yes |  |
-| `share_url` | `string` | Yes |  |
-| `share_view` | `number` | Yes |  |
+| `altText` | `string` | Yes |  |
+| `canonicalImageUrl` | `string` | Yes |  |
+| `canvas` | `Record<string, any>` | Yes |  |
+| `captions` | `any[]` | Yes |  |
+| `createdAt` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `nsfwStatus` | `string` | Yes |  |
+| `overlays` | `any[]` | Yes |  |
+| `shareSlug` | `string` | Yes |  |
+| `shareUrl` | `string` | Yes |  |
+| `shareViews` | `number` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `source_image_url` | `string` | Yes |  |
-| `tag` | `any[]` | Yes |  |
-| `template_slug` | `string` | Yes |  |
+| `sourceImageUrl` | `string` | Yes |  |
+| `tags` | `any[]` | Yes |  |
+| `templateSlug` | `string` | Yes |  |
 | `title` | `string` | Yes |  |
 | `visibility` | `string` | Yes |  |
 | `watermark` | `Record<string, any>` | Yes |  |
@@ -1871,29 +2081,29 @@ const public_template_media_item = client.PublicTemplateMediaItem()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `boolean` | No |  |
-| `asset_byte` | `any` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `number` | No |  |
-| `caption` | `any[]` | Yes |  |
-| `caption_count` | `number` | No |  |
-| `category` | `any[]` | No |  |
+| `assetBytes` | `number | null` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `number` | No |  |
+| `captionCount` | `number` | No |  |
+| `captions` | `any[]` | Yes |  |
+| `categories` | `any[]` | No |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `any` | No |  |
-| `example_image_url` | `any` | No |  |
-| `frame_count` | `any` | No |  |
-| `height` | `any` | Yes |  |
+| `durationMs` | `number | null` | No |  |
+| `exampleImageUrl` | `string | null` | No |  |
+| `frameCount` | `number | null` | No |  |
+| `height` | `number | null` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `preview_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `any` | Yes |  |
-| `source_url` | `string` | No |  |
-| `tag` | `any[]` | Yes |  |
-| `width` | `any` | Yes |  |
+| `sourceTemplateId` | `string | null` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `any[]` | Yes |  |
+| `width` | `number | null` | Yes |  |
 
 ### Operations
 
@@ -1947,10 +2157,10 @@ const standalone_agent_bootstrap = client.StandaloneAgentBootstrap()
 | `handle` | `string` | Yes |  |
 | `locale` | `string` | No |  |
 | `name` | `string` | Yes |  |
-| `style_preset` | `string` | No |  |
-| `system_prompt` | `string` | No |  |
-| `watermark_text` | `string` | No |  |
-| `website_url` | `string` | No |  |
+| `stylePreset` | `string` | No |  |
+| `systemPrompt` | `string` | No |  |
+| `watermarkText` | `string` | No |  |
+| `websiteUrl` | `string` | No |  |
 
 ### Operations
 
@@ -2004,70 +2214,70 @@ const template = client.Template()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `boolean` | No |  |
-| `asset_byte` | `any` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `number` | No |  |
-| `caption` | `any[]` | No |  |
-| `caption_count` | `number` | No |  |
-| `category` | `any[]` | No |  |
+| `assetBytes` | `number | null` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `number` | No |  |
+| `captionCount` | `number` | No |  |
+| `captions` | `any[]` | No |  |
+| `categories` | `any[]` | No |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `number` | No |  |
-| `example_image_url` | `any` | No |  |
+| `durationMs` | `number` | No |  |
+| `exampleImageUrl` | `string | null` | No |  |
 | `fps` | `number` | No |  |
-| `frame_count` | `any` | No |  |
-| `gif_slug` | `string` | No |  |
-| `height` | `any` | Yes |  |
+| `frameCount` | `number | null` | No |  |
+| `gifSlug` | `string` | No |  |
+| `height` | `number | null` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `preview_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
-| `return_base64` | `boolean` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
+| `returnBase64` | `boolean` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `any` | Yes |  |
-| `source_url` | `string` | No |  |
-| `start_m` | `number` | No |  |
-| `tag` | `any[]` | No |  |
+| `sourceTemplateId` | `string | null` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `startMs` | `number` | No |  |
+| `tags` | `any[]` | No |  |
 | `title` | `string` | No |  |
-| `width` | `any` | Yes |  |
-| `width_px` | `number` | No |  |
+| `width` | `number | null` | Yes |  |
+| `widthPx` | `number` | No |  |
 
 ### Field Usage by Operation
 
 | Field | list | create |
 | --- | --- | --- |
 | `animated` | - | - |
-| `asset_byte` | - | - |
-| `asset_content_type` | - | - |
-| `box_count` | - | - |
-| `caption` | Yes | - |
-| `caption_count` | - | - |
-| `category` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | Yes | - |
+| `categories` | - | - |
 | `description` | - | - |
-| `duration_m` | - | - |
-| `example_image_url` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
 | `fps` | - | - |
-| `frame_count` | - | - |
-| `gif_slug` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
 | `height` | - | - |
 | `id` | - | - |
-| `image_url` | - | - |
-| `media_type` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
 | `name` | - | - |
-| `poster_image_url` | - | - |
-| `preview_image_url` | - | - |
-| `quality_status` | - | - |
-| `return_base64` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
 | `slug` | - | - |
-| `source_template_id` | - | - |
-| `source_url` | - | - |
-| `start_m` | - | - |
-| `tag` | Yes | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | Yes | - |
 | `title` | - | - |
 | `width` | - | - |
-| `width_px` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
 
@@ -2078,6 +2288,14 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Template().create({
   slug: 'example_slug',
+  description: 'example_description',
+  height: 'example_height',
+  id: 'example_id',
+  imageUrl: 'example_imageUrl',
+  mediaType: 'example_mediaType',
+  name: 'example_name',
+  sourceTemplateId: 'example_sourceTemplateId',
+  width: 'example_width',
 })
 ```
 
@@ -2128,29 +2346,29 @@ const template_search = client.TemplateSearch()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `boolean` | No |  |
-| `asset_byte` | `any` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `number` | No |  |
-| `caption` | `any[]` | Yes |  |
-| `caption_count` | `number` | No |  |
-| `category` | `any[]` | No |  |
+| `assetBytes` | `number | null` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `number` | No |  |
+| `captionCount` | `number` | No |  |
+| `captions` | `any[]` | Yes |  |
+| `categories` | `any[]` | No |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `any` | No |  |
-| `example_image_url` | `any` | No |  |
-| `frame_count` | `any` | No |  |
-| `height` | `any` | Yes |  |
+| `durationMs` | `number | null` | No |  |
+| `exampleImageUrl` | `string | null` | No |  |
+| `frameCount` | `number | null` | No |  |
+| `height` | `number | null` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `preview_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `any` | Yes |  |
-| `source_url` | `string` | No |  |
-| `tag` | `any[]` | Yes |  |
-| `width` | `any` | Yes |  |
+| `sourceTemplateId` | `string | null` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `any[]` | Yes |  |
+| `width` | `number | null` | Yes |  |
 
 ### Operations
 
@@ -2201,17 +2419,17 @@ const trend_alert = client.TrendAlert()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `actor_id` | `string` | Yes |  |
+| `actorId` | `string` | Yes |  |
 | `aggressiveness` | `number` | No |  |
-| `alert_id` | `string` | Yes |  |
-| `channel` | `any[]` | No |  |
-| `deliver_all_alert` | `boolean` | No |  |
+| `alertId` | `string` | Yes |  |
+| `channels` | `any[]` | No |  |
+| `deliverAllAlerts` | `boolean` | No |  |
 | `event` | `Record<string, any>` | No |  |
-| `explicit_niche` | `any[]` | No |  |
-| `explicit_region` | `any[]` | No |  |
-| `explicit_source` | `any[]` | No |  |
-| `explicit_topic` | `any[]` | No |  |
-| `follower_count` | `number` | No |  |
+| `explicitNiches` | `any[]` | No |  |
+| `explicitRegions` | `any[]` | No |  |
+| `explicitSources` | `any[]` | No |  |
+| `explicitTopics` | `any[]` | No |  |
+| `followerCount` | `number` | No |  |
 | `niche` | `string` | No |  |
 | `region` | `string` | No |  |
 | `source` | `string` | No |  |
@@ -2226,8 +2444,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.TrendAlert().create({
   action: 'example_action',
-  actor_id: 'example_actor_id',
-  alert_id: 'example_alert_id',
+  actorId: 'example_actorId',
+  alertId: 'example_alertId',
   topic: 'example_topic',
 })
 ```
@@ -2324,100 +2542,135 @@ const video = client.Video()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | No |  |
-| `asset_id` | `string` | No |  |
-| `at_m` | `number` | No |  |
-| `audio_asset_id` | `string` | No |  |
-| `beat_offset_m` | `number` | No |  |
-| `bitrate_kbp` | `number` | No |  |
+| `assetId` | `string` | No |  |
+| `atMs` | `number` | No |  |
+| `audioAssetId` | `string` | No |  |
+| `beatOffsetMs` | `number` | No |  |
+| `bitrateKbps` | `number` | No |  |
 | `bpm` | `number` | No |  |
 | `cancelled` | `boolean` | No |  |
 | `container` | `string` | No |  |
-| `duration_m` | `number` | No |  |
-| `duration_second` | `number` | Yes |  |
+| `durationMs` | `number` | No |  |
+| `durationSeconds` | `number` | Yes |  |
 | `easing` | `string` | No |  |
 | `error` | `string` | No |  |
-| `frame_rate` | `number` | No |  |
-| `input_format` | `string` | Yes |  |
+| `frameRate` | `number` | No |  |
+| `inputFormat` | `string` | Yes |  |
 | `intensity` | `number` | No |  |
-| `job_id` | `string` | No |  |
+| `jobId` | `string` | No |  |
 | `locale` | `string` | No |  |
-| `mime_type` | `string` | Yes |  |
+| `mimeType` | `string` | Yes |  |
 | `name` | `string` | No |  |
-| `offset_m` | `number` | No |  |
-| `output_preset_id` | `string` | Yes |  |
-| `output_url` | `string` | No |  |
-| `plan_tier` | `string` | Yes |  |
-| `preset_id` | `string` | Yes |  |
-| `progress_percent` | `number` | No |  |
+| `offsetMs` | `number` | No |  |
+| `outputPresetId` | `string` | Yes |  |
+| `outputUrl` | `string` | No |  |
+| `planTier` | `string` | Yes |  |
+| `presetId` | `string` | Yes |  |
+| `progressPercent` | `number` | No |  |
 | `project` | `Record<string, any>` | No |  |
-| `project_id` | `string` | No |  |
+| `projectId` | `string` | No |  |
 | `property` | `string` | No |  |
-| `source_device_id` | `string` | No |  |
-| `source_url` | `string` | No |  |
+| `sourceDeviceId` | `string` | No |  |
+| `sourceUrl` | `string` | No |  |
 | `stage` | `string` | No |  |
-| `start_m` | `number` | No |  |
-| `style_preset_id` | `string` | No |  |
-| `sync_to_beat_grid` | `boolean` | No |  |
+| `startMs` | `number` | No |  |
+| `stylePresetId` | `string` | No |  |
+| `syncToBeatGrid` | `boolean` | No |  |
 | `tone` | `string` | No |  |
-| `track_id` | `string` | No |  |
+| `trackId` | `string` | No |  |
 | `transcript` | `string` | No |  |
-| `trend_keyword` | `any[]` | No |  |
+| `trendKeywords` | `any[]` | No |  |
 | `type` | `string` | No |  |
-| `updated_at` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 | `value` | `number` | No |  |
-| `watermark_enabled` | `boolean` | No |  |
-| `watermark_text` | `string` | No |  |
-| `worker_id` | `string` | No |  |
+| `watermarkEnabled` | `boolean` | No |  |
+| `watermarkText` | `string` | No |  |
+| `workerId` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | Yes |
-| `asset_id` | - | - |
-| `at_m` | - | - |
-| `audio_asset_id` | - | - |
-| `beat_offset_m` | - | - |
-| `bitrate_kbp` | - | - |
+| `assetId` | - | - |
+| `atMs` | - | - |
+| `audioAssetId` | - | - |
+| `beatOffsetMs` | - | - |
+| `bitrateKbps` | - | - |
 | `bpm` | - | - |
 | `cancelled` | - | - |
 | `container` | - | - |
-| `duration_m` | - | - |
-| `duration_second` | - | Yes |
+| `durationMs` | - | - |
+| `durationSeconds` | - | Yes |
 | `easing` | - | - |
 | `error` | - | - |
-| `frame_rate` | - | - |
-| `input_format` | - | - |
+| `frameRate` | - | - |
+| `inputFormat` | - | - |
 | `intensity` | - | - |
-| `job_id` | - | - |
+| `jobId` | - | - |
 | `locale` | - | - |
-| `mime_type` | - | - |
+| `mimeType` | - | - |
 | `name` | - | - |
-| `offset_m` | - | - |
-| `output_preset_id` | - | Yes |
-| `output_url` | - | - |
-| `plan_tier` | - | Yes |
-| `preset_id` | - | - |
-| `progress_percent` | - | - |
+| `offsetMs` | - | - |
+| `outputPresetId` | - | Yes |
+| `outputUrl` | - | - |
+| `planTier` | - | Yes |
+| `presetId` | - | - |
+| `progressPercent` | - | - |
 | `project` | - | - |
-| `project_id` | - | - |
+| `projectId` | - | - |
 | `property` | - | - |
-| `source_device_id` | - | - |
-| `source_url` | - | - |
+| `sourceDeviceId` | - | - |
+| `sourceUrl` | - | - |
 | `stage` | - | - |
-| `start_m` | - | - |
-| `style_preset_id` | - | - |
-| `sync_to_beat_grid` | - | - |
+| `startMs` | - | - |
+| `stylePresetId` | - | - |
+| `syncToBeatGrid` | - | - |
 | `tone` | - | - |
-| `track_id` | - | - |
+| `trackId` | - | - |
 | `transcript` | - | - |
-| `trend_keyword` | - | - |
+| `trendKeywords` | - | - |
 | `type` | - | - |
-| `updated_at` | - | - |
+| `updatedAt` | - | - |
 | `value` | - | - |
-| `watermark_enabled` | - | - |
-| `watermark_text` | - | - |
-| `worker_id` | - | - |
+| `watermarkEnabled` | - | - |
+| `watermarkText` | - | - |
+| `workerId` | - | - |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `draft` | `/api/video/drafts` | `client.Video().create({ $action: 'draft', ... })` |
+| `export_setting` | `/api/video/export-settings` | `client.Video().create({ $action: 'export_setting', ... })` |
+| `format` | `/api/video/formats` | `client.Video().create({ $action: 'format', ... })` |
+| `render_queue` | `/api/video/render-queue` | `client.Video().create({ $action: 'render_queue', ... })` |
+| `subtitle` | `/api/video/subtitles` | `client.Video().create({ $action: 'subtitle', ... })` |
+| `text_animation` | `/api/video/text-animations` | `client.Video().create({ $action: 'text_animation', ... })` |
+| `timeline` | `/api/video/timeline` | `client.Video().create({ $action: 'timeline', ... })` |
+| `audio_library` | `/api/video/audio-library` | `client.Video().load({ $action: 'audio_library', ... })` |
+| `draft` | `/api/video/drafts` | `client.Video().load({ $action: 'draft', ... })` |
+| `export_setting` | `/api/video/export-settings` | `client.Video().load({ $action: 'export_setting', ... })` |
+| `format` | `/api/video/formats` | `client.Video().load({ $action: 'format', ... })` |
+| `render_performance` | `/api/video/render-performance` | `client.Video().load({ $action: 'render_performance', ... })` |
+| `render_queue` | `/api/video/render-queue` | `client.Video().load({ $action: 'render_queue', ... })` |
+| `subtitle` | `/api/video/subtitles` | `client.Video().load({ $action: 'subtitle', ... })` |
+| `text_animation` | `/api/video/text-animations` | `client.Video().load({ $action: 'text_animation', ... })` |
+| `timeline` | `/api/video/timeline` | `client.Video().load({ $action: 'timeline', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Video record — check the API definition for its shape.
+
+```ts
+const result = await client.Video().create({
+  $action: 'draft',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -2427,12 +2680,12 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Video().create({
-  duration_second: 1,
-  input_format: 'example_input_format',
-  mime_type: 'example_mime_type',
-  output_preset_id: 'example_output_preset_id',
-  plan_tier: 'example_plan_tier',
-  preset_id: 'example_preset_id',
+  durationSeconds: 1,
+  inputFormat: 'example_inputFormat',
+  mimeType: 'example_mimeType',
+  outputPresetId: 'example_outputPresetId',
+  planTier: 'example_planTier',
+  presetId: 'example_presetId',
 })
 ```
 

@@ -11,17 +11,17 @@ main: kit: entity: media: {
       type: "`$STRING`"
     }
     {
-      name: "content_type"
+      name: "contentType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "expires_in_second"
+      name: "expiresInSeconds"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "owner_token"
+      name: "ownerToken"
       req: false
       type: "`$STRING`"
     }

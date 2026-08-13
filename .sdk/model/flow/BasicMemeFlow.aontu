@@ -27,19 +27,6 @@ main: kit: flow: BasicMemeFlow:
         }
       ]
     }
-
-    {
-      input: {
-        ref: "meme_ref01",
-        suffix: "_rm0"
-      }
-
-      match: {
-        id: "meme01"
-      }
-
-      op: "remove"
-    }
   ],
   "key$": "BasicMemeFlow"
 }

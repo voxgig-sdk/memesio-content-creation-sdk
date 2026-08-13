@@ -200,10 +200,10 @@ local agent = client:Agent(nil)
 | `name` | `string` | Yes |  |
 | `slug` | `string` | No |  |
 | `status` | `string` | No |  |
-| `style_preset` | `string` | No |  |
-| `system_prompt` | `string` | No |  |
-| `watermark_text` | `string` | No |  |
-| `website_url` | `string` | No |  |
+| `stylePreset` | `string` | No |  |
+| `systemPrompt` | `string` | No |  |
+| `watermarkText` | `string` | No |  |
+| `websiteUrl` | `string` | No |  |
 
 ### Field Usage by Operation
 
@@ -214,10 +214,10 @@ local agent = client:Agent(nil)
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
 | `status` | - | - | - |
-| `style_preset` | - | - | - |
-| `system_prompt` | - | - | - |
-| `watermark_text` | - | - | - |
-| `website_url` | - | - | - |
+| `stylePreset` | - | - | - |
+| `systemPrompt` | - | - | - |
+| `watermarkText` | - | - | - |
+| `websiteUrl` | - | - | - |
 
 ### Operations
 
@@ -291,18 +291,18 @@ local agent_infra = client:AgentInfra(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `chat_id` | `string` | Yes |  |
-| `meme_slug` | `string` | Yes |  |
+| `chatId` | `string` | Yes |  |
+| `memeSlug` | `string` | Yes |  |
 | `metadata` | `table` | No |  |
-| `payout_reference` | `string` | No |  |
-| `payout_status` | `string` | No |  |
-| `phone_or_chat_id` | `string` | Yes |  |
+| `payoutReference` | `string` | No |  |
+| `payoutStatus` | `string` | No |  |
+| `phoneOrChatId` | `string` | Yes |  |
 | `prompt` | `string` | Yes |  |
 | `proof` | `table` | No |  |
-| `quota_boost_per_day` | `number` | No |  |
-| `scope` | `table` | No |  |
-| `user_id` | `string` | No |  |
-| `week_start` | `string` | No |  |
+| `quotaBoostPerDay` | `number` | No |  |
+| `scopes` | `table` | No |  |
+| `userId` | `string` | No |  |
+| `weekStart` | `string` | No |  |
 
 ### Operations
 
@@ -312,6 +312,11 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:AgentInfra():create({
+  action = --[[ string ]],
+  chatId = --[[ string ]],
+  memeSlug = --[[ string ]],
+  phoneOrChatId = --[[ string ]],
+  prompt = --[[ string ]],
 })
 ```
 
@@ -371,34 +376,34 @@ local ai_caption = client:AiCaption(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `blocked_term` | `table` | No |  |
-| `canvas_text` | `table` | Yes |  |
-| `caption_count` | `number` | No |  |
-| `caption_set` | `table` | No |  |
-| `entity` | `table` | No |  |
-| `fallback_used` | `boolean` | No |  |
-| `generation_strategy` | `string` | No |  |
+| `blockedTerms` | `table` | No |  |
+| `canvasText` | `table` | Yes |  |
+| `captionCount` | `number` | No |  |
+| `captionSets` | `table` | No |  |
+| `entities` | `table` | No |  |
+| `fallbackUsed` | `boolean` | No |  |
+| `generationStrategy` | `string` | No |  |
 | `locale` | `string` | No |  |
-| `meme_id` | `string` | No |  |
-| `meme_slug` | `string` | No |  |
+| `memeId` | `string` | No |  |
+| `memeSlug` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `ok` | `boolean` | No |  |
-| `option_count` | `number` | No |  |
-| `owner_token` | `string` | No |  |
-| `provider_id` | `string` | No |  |
-| `reference_caption` | `table` | No |  |
-| `rewrite_note` | `string` | No |  |
-| `scene_summary` | `string` | No |  |
-| `template_description` | `string` | No |  |
-| `template_name` | `string` | No |  |
-| `template_tag` | `table` | No |  |
+| `optionCount` | `number` | No |  |
+| `ownerToken` | `string` | No |  |
+| `providerId` | `string` | No |  |
+| `referenceCaptions` | `table` | No |  |
+| `rewriteNote` | `string` | No |  |
+| `sceneSummary` | `string` | No |  |
+| `templateDescription` | `string` | No |  |
+| `templateName` | `string` | No |  |
+| `templateTags` | `table` | No |  |
 | `tone` | `string` | Yes |  |
-| `tone_cue` | `table` | No |  |
-| `trend_keyword` | `table` | No |  |
-| `trend_reference` | `table` | No |  |
-| `trend_signal` | `table` | No |  |
-| `variation_offset` | `number` | No |  |
-| `voice_rule` | `table` | No |  |
+| `toneCues` | `table` | No |  |
+| `trendKeywords` | `table` | No |  |
+| `trendReferences` | `table` | No |  |
+| `trendSignals` | `table` | No |  |
+| `variationOffset` | `number` | No |  |
+| `voiceRules` | `table` | No |  |
 
 ### Operations
 
@@ -408,7 +413,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:AiCaption():create({
-  canvas_text = --[[ table ]],
+  canvasText = --[[ table ]],
   name = --[[ string ]],
   tone = --[[ string ]],
 })
@@ -463,94 +468,94 @@ local ai_job = client:AiJob(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `actor_id` | `string` | No |  |
-| `after_state` | `table` | No |  |
-| `attempt` | `number` | No |  |
-| `before_state` | `table` | No |  |
-| `brush_edit` | `table` | No |  |
+| `actorId` | `string` | No |  |
+| `afterState` | `table` | No |  |
+| `attempts` | `number` | No |  |
+| `beforeState` | `table` | No |  |
+| `brushEdits` | `table` | No |  |
 | `capability` | `string` | Yes |  |
-| `celebrity_confidence` | `number` | No |  |
-| `consent_attested` | `boolean` | No |  |
-| `created_at` | `string` | No |  |
-| `detected_face_count` | `number` | Yes |  |
-| `edge_refinement` | `number` | No |  |
-| `estimated_cost_usd` | `number` | No |  |
-| `frame_time_m` | `number` | No |  |
+| `celebrityConfidence` | `number` | No |  |
+| `consentAttested` | `boolean` | No |  |
+| `createdAt` | `string` | No |  |
+| `detectedFaceCount` | `number` | Yes |  |
+| `edgeRefinement` | `number` | No |  |
+| `estimatedCostUsd` | `number` | No |  |
+| `frameTimeMs` | `number` | No |  |
 | `height` | `number` | Yes |  |
 | `id` | `string` | Yes |  |
 | `input` | `table` | No |  |
-| `layer_id` | `string` | Yes |  |
-| `layer_type` | `string` | No |  |
-| `max_attempt` | `number` | No |  |
-| `max_face` | `number` | No |  |
-| `media_type` | `string` | No |  |
+| `layerId` | `string` | Yes |  |
+| `layerType` | `string` | No |  |
+| `maxAttempts` | `number` | No |  |
+| `maxFaces` | `number` | No |  |
+| `mediaType` | `string` | No |  |
 | `metadata` | `table` | No |  |
-| `nsfw_score` | `number` | No |  |
+| `nsfwScore` | `number` | No |  |
 | `output` | `table` | No |  |
-| `project_id` | `string` | Yes |  |
-| `provider_id` | `string` | No |  |
+| `projectId` | `string` | Yes |  |
+| `providerId` | `string` | No |  |
 | `reason` | `string` | No |  |
-| `run_after_m` | `number` | No |  |
-| `source_asset_url` | `string` | Yes |  |
-| `source_face_index` | `number` | No |  |
-| `source_image_url` | `string` | Yes |  |
+| `runAfterMs` | `number` | No |  |
+| `sourceAssetUrl` | `string` | Yes |  |
+| `sourceFaceIndex` | `number` | No |  |
+| `sourceImageUrl` | `string` | Yes |  |
 | `status` | `string` | Yes |  |
-| `target_asset_url` | `string` | Yes |  |
-| `target_face_index` | `number` | No |  |
-| `timeout_m` | `number` | No |  |
-| `trace_id` | `string` | No |  |
-| `updated_at` | `string` | No |  |
-| `version_id` | `string` | No |  |
+| `targetAssetUrl` | `string` | Yes |  |
+| `targetFaceIndex` | `number` | No |  |
+| `timeoutMs` | `number` | No |  |
+| `traceId` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
+| `versionId` | `string` | No |  |
 | `width` | `number` | Yes |  |
-| `worker_id` | `string` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workerId` | `string` | Yes |  |
+| `workspaceId` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | - |
-| `actor_id` | - | - |
-| `after_state` | - | - |
-| `attempt` | - | - |
-| `before_state` | - | - |
-| `brush_edit` | - | - |
+| `actorId` | - | - |
+| `afterState` | - | - |
+| `attempts` | - | - |
+| `beforeState` | - | - |
+| `brushEdits` | - | - |
 | `capability` | - | - |
-| `celebrity_confidence` | - | - |
-| `consent_attested` | - | - |
-| `created_at` | - | - |
-| `detected_face_count` | - | - |
-| `edge_refinement` | - | - |
-| `estimated_cost_usd` | - | - |
-| `frame_time_m` | - | - |
+| `celebrityConfidence` | - | - |
+| `consentAttested` | - | - |
+| `createdAt` | - | - |
+| `detectedFaceCount` | - | - |
+| `edgeRefinement` | - | - |
+| `estimatedCostUsd` | - | - |
+| `frameTimeMs` | - | - |
 | `height` | - | - |
 | `id` | - | - |
 | `input` | - | - |
-| `layer_id` | - | - |
-| `layer_type` | - | - |
-| `max_attempt` | - | - |
-| `max_face` | - | - |
-| `media_type` | - | Yes |
+| `layerId` | - | - |
+| `layerType` | - | - |
+| `maxAttempts` | - | - |
+| `maxFaces` | - | - |
+| `mediaType` | - | Yes |
 | `metadata` | - | - |
-| `nsfw_score` | - | - |
+| `nsfwScore` | - | - |
 | `output` | - | - |
-| `project_id` | - | - |
-| `provider_id` | - | - |
+| `projectId` | - | - |
+| `providerId` | - | - |
 | `reason` | - | - |
-| `run_after_m` | - | - |
-| `source_asset_url` | - | - |
-| `source_face_index` | - | - |
-| `source_image_url` | - | - |
+| `runAfterMs` | - | - |
+| `sourceAssetUrl` | - | - |
+| `sourceFaceIndex` | - | - |
+| `sourceImageUrl` | - | - |
 | `status` | - | - |
-| `target_asset_url` | - | - |
-| `target_face_index` | - | - |
-| `timeout_m` | - | - |
-| `trace_id` | - | - |
-| `updated_at` | - | - |
-| `version_id` | - | - |
+| `targetAssetUrl` | - | - |
+| `targetFaceIndex` | - | - |
+| `timeoutMs` | - | - |
+| `traceId` | - | - |
+| `updatedAt` | - | - |
+| `versionId` | - | - |
 | `width` | - | - |
-| `worker_id` | - | - |
-| `workspace_id` | - | - |
+| `workerId` | - | - |
+| `workspaceId` | - | - |
 
 ### Operations
 
@@ -560,6 +565,19 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:AiJob():create({
+  action = --[[ string ]],
+  capability = --[[ string ]],
+  detectedFaceCount = --[[ number ]],
+  height = --[[ number ]],
+  id = --[[ string ]],
+  layerId = --[[ string ]],
+  projectId = --[[ string ]],
+  sourceAssetUrl = --[[ string ]],
+  sourceImageUrl = --[[ string ]],
+  status = --[[ string ]],
+  targetAssetUrl = --[[ string ]],
+  width = --[[ number ]],
+  workerId = --[[ string ]],
 })
 ```
 
@@ -611,53 +629,53 @@ local ai_meme_generation_succeeded = client:AiMemeGenerationSucceeded(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allow_heuristic_fallback` | `boolean` | No |  |
-| `caption` | `table` | No |  |
-| `caption_source` | `string` | No |  |
-| `correlation_id` | `string` | No |  |
-| `degraded_from_async` | `boolean` | No |  |
-| `editable_caption` | `table` | No |  |
+| `allowHeuristicFallback` | `boolean` | No |  |
+| `captionSource` | `string` | No |  |
+| `captions` | `table` | No |  |
+| `correlationId` | `string` | No |  |
+| `degradedFromAsync` | `boolean` | No |  |
+| `editableCaptions` | `table` | No |  |
 | `flow` | `string` | Yes |  |
-| `image_url` | `string` | No |  |
+| `imageUrl` | `string` | No |  |
 | `mode` | `string` | Yes |  |
 | `ok` | `boolean` | Yes |  |
-| `preferred_provider_id` | `string` | No |  |
+| `preferredProviderId` | `string` | No |  |
 | `prompt` | `string` | Yes |  |
-| `rewrite_note` | `string` | No |  |
-| `run_id` | `string` | No |  |
+| `rewriteNote` | `string` | No |  |
+| `runId` | `string` | No |  |
 | `status` | `string` | Yes |  |
-| `template_id` | `string` | No |  |
+| `templateId` | `string` | No |  |
 | `tone` | `string` | No |  |
-| `tone_cue` | `table` | No |  |
-| `variant` | `table` | Yes |  |
-| `variant_count` | `number` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `toneCues` | `table` | No |  |
+| `variantCount` | `number` | Yes |  |
+| `variants` | `table` | Yes |  |
+| `workspaceId` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `allow_heuristic_fallback` | - |
-| `caption` | - |
-| `caption_source` | - |
-| `correlation_id` | - |
-| `degraded_from_async` | - |
-| `editable_caption` | - |
+| `allowHeuristicFallback` | - |
+| `captionSource` | - |
+| `captions` | - |
+| `correlationId` | - |
+| `degradedFromAsync` | - |
+| `editableCaptions` | - |
 | `flow` | Yes |
-| `image_url` | - |
+| `imageUrl` | - |
 | `mode` | Yes |
 | `ok` | - |
-| `preferred_provider_id` | - |
+| `preferredProviderId` | - |
 | `prompt` | - |
-| `rewrite_note` | - |
-| `run_id` | - |
+| `rewriteNote` | - |
+| `runId` | - |
 | `status` | - |
-| `template_id` | - |
+| `templateId` | - |
 | `tone` | - |
-| `tone_cue` | - |
-| `variant` | - |
-| `variant_count` | Yes |
-| `workspace_id` | - |
+| `toneCues` | - |
+| `variantCount` | Yes |
+| `variants` | - |
+| `workspaceId` | - |
 
 ### Operations
 
@@ -672,8 +690,8 @@ local result, err = client:AiMemeGenerationSucceeded():create({
   ok = --[[ boolean ]],
   prompt = --[[ string ]],
   status = --[[ string ]],
-  variant = --[[ table ]],
-  variant_count = --[[ number ]],
+  variantCount = --[[ number ]],
+  variants = --[[ table ]],
 })
 ```
 
@@ -717,16 +735,16 @@ local ai_provider = client:AiProvider(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `actor_id` | `string` | No |  |
-| `correlation_id` | `string` | No |  |
+| `actorId` | `string` | No |  |
+| `correlationId` | `string` | No |  |
 | `limit` | `number` | No |  |
-| `mapping_mode` | `string` | No |  |
-| `max_slot` | `number` | No |  |
+| `mappingMode` | `string` | No |  |
+| `maxSlots` | `number` | No |  |
 | `prompt` | `string` | Yes |  |
-| `source_image_url` | `string` | Yes |  |
-| `text` | `table` | No |  |
-| `trend_signal` | `table` | No |  |
-| `workspace_id` | `string` | No |  |
+| `sourceImageUrl` | `string` | Yes |  |
+| `texts` | `table` | No |  |
+| `trendSignals` | `table` | No |  |
+| `workspaceId` | `string` | No |  |
 
 ### Operations
 
@@ -737,7 +755,7 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:AiProvider():create({
   prompt = --[[ string ]],
-  source_image_url = --[[ string ]],
+  sourceImageUrl = --[[ string ]],
 })
 ```
 
@@ -835,7 +853,7 @@ local auth = client:Auth(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `display_name` | `string` | No |  |
+| `displayName` | `string` | No |  |
 | `email` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
 
@@ -938,9 +956,9 @@ local collaboration = client:Collaboration(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author_id` | `string` | No |  |
+| `authorId` | `string` | No |  |
 | `message` | `string` | Yes |  |
-| `project_id` | `string` | Yes |  |
+| `projectId` | `string` | Yes |  |
 
 ### Operations
 
@@ -951,7 +969,7 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:Collaboration():create({
   message = --[[ string ]],
-  project_id = --[[ string ]],
+  projectId = --[[ string ]],
 })
 ```
 
@@ -1049,14 +1067,14 @@ local create_meme = client:CreateMeme(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canva` | `table` | Yes |  |
-| `caption` | `table` | Yes |  |
-| `generation_run_id` | `any` | No |  |
-| `generation_variant_id` | `any` | No |  |
-| `image_data_url` | `string` | Yes |  |
-| `overlay` | `table` | No |  |
-| `source_image_url` | `string` | Yes |  |
-| `template_slug` | `string` | No |  |
+| `canvas` | `table` | Yes |  |
+| `captions` | `table` | Yes |  |
+| `generationRunId` | `string|nil` | No |  |
+| `generationVariantId` | `string|nil` | No |  |
+| `imageDataUrl` | `string` | Yes |  |
+| `overlays` | `table` | No |  |
+| `sourceImageUrl` | `string` | Yes |  |
+| `templateSlug` | `string` | No |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `watermark` | `table` | Yes |  |
@@ -1069,10 +1087,10 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:CreateMeme():create({
-  canva = --[[ table ]],
-  caption = --[[ table ]],
-  image_data_url = --[[ string ]],
-  source_image_url = --[[ string ]],
+  canvas = --[[ table ]],
+  captions = --[[ table ]],
+  imageDataUrl = --[[ string ]],
+  sourceImageUrl = --[[ string ]],
   watermark = --[[ table ]],
 })
 ```
@@ -1119,7 +1137,7 @@ local developer_api = client:DeveloperApi(nil)
 | --- | --- | --- | --- |
 | `limit` | `number` | No |  |
 | `prompt` | `string` | Yes |  |
-| `trend_signal` | `table` | No |  |
+| `trendSignals` | `table` | No |  |
 
 ### Operations
 
@@ -1181,8 +1199,8 @@ local free_caption_meme_success = client:FreeCaptionMemeSuccess(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `table` | Yes |  |
-| `template_slug` | `string` | Yes |  |
+| `captions` | `table` | Yes |  |
+| `templateSlug` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `watermark` | `table` | No |  |
@@ -1195,8 +1213,8 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:FreeCaptionMemeSuccess():create({
-  caption = --[[ table ]],
-  template_slug = --[[ string ]],
+  captions = --[[ table ]],
+  templateSlug = --[[ string ]],
 })
 ```
 
@@ -1241,27 +1259,27 @@ local free_template_search = client:FreeTemplateSearch(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `boolean` | No |  |
-| `asset_byte` | `any` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `number` | Yes |  |
-| `caption` | `table` | Yes |  |
-| `caption_count` | `number` | Yes |  |
+| `assetBytes` | `number|nil` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `number` | Yes |  |
+| `captionCount` | `number` | Yes |  |
+| `captions` | `table` | Yes |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `any` | No |  |
-| `example_image_url` | `any` | No |  |
-| `frame_count` | `any` | No |  |
-| `height` | `any` | Yes |  |
+| `durationMs` | `number|nil` | No |  |
+| `exampleImageUrl` | `string|nil` | No |  |
+| `frameCount` | `number|nil` | No |  |
+| `height` | `number|nil` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `any` | Yes |  |
-| `source_url` | `string` | No |  |
-| `tag` | `table` | No |  |
-| `width` | `any` | Yes |  |
+| `sourceTemplateId` | `string|nil` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `table` | No |  |
+| `width` | `number|nil` | Yes |  |
 
 ### Operations
 
@@ -1313,17 +1331,51 @@ local generate = client:Generate(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `table` | No |  |
-| `data` | `table` | Yes |  |
-| `duration_m` | `number` | No |  |
+| `base64` | `string` | No |  |
+| `byteLength` | `number` | Yes |  |
+| `captions` | `table` | No |  |
+| `dataUrl` | `string` | No |  |
+| `delayMs` | `number` | Yes |  |
+| `durationMs` | `number` | No |  |
+| `filename` | `string` | Yes |  |
 | `fps` | `number` | No |  |
-| `gif_slug` | `string` | No |  |
-| `ok` | `boolean` | Yes |  |
-| `return_base64` | `boolean` | No |  |
-| `start_m` | `number` | No |  |
-| `tag` | `table` | No |  |
+| `gifSlug` | `string` | Yes |  |
+| `height` | `number` | Yes |  |
+| `mimeType` | `string` | Yes |  |
+| `pages` | `number` | Yes |  |
+| `parameters` | `table` | Yes |  |
+| `returnBase64` | `boolean` | No |  |
+| `sourceDurationMs` | `number` | Yes |  |
+| `startMs` | `number` | No |  |
+| `tags` | `table` | No |  |
 | `title` | `string` | No |  |
-| `width_px` | `number` | No |  |
+| `width` | `number` | Yes |  |
+| `widthPx` | `number` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `base64` | - |
+| `byteLength` | - |
+| `captions` | - |
+| `dataUrl` | - |
+| `delayMs` | - |
+| `durationMs` | - |
+| `filename` | - |
+| `fps` | - |
+| `gifSlug` | Yes |
+| `height` | - |
+| `mimeType` | - |
+| `pages` | - |
+| `parameters` | - |
+| `returnBase64` | - |
+| `sourceDurationMs` | - |
+| `startMs` | - |
+| `tags` | - |
+| `title` | - |
+| `width` | - |
+| `widthPx` | - |
 
 ### Operations
 
@@ -1333,8 +1385,16 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Generate():create({
-  data = --[[ table ]],
-  ok = --[[ boolean ]],
+  byteLength = --[[ number ]],
+  delayMs = --[[ number ]],
+  filename = --[[ string ]],
+  gifSlug = --[[ string ]],
+  height = --[[ number ]],
+  mimeType = --[[ string ]],
+  pages = --[[ number ]],
+  parameters = --[[ table ]],
+  sourceDurationMs = --[[ number ]],
+  width = --[[ number ]],
 })
 ```
 
@@ -1378,43 +1438,43 @@ local growth = client:Growth(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_id` | `string` | No |  |
+| `accountId` | `string` | No |  |
 | `action` | `string` | Yes |  |
-| `actor_id` | `string` | No |  |
+| `actorId` | `string` | No |  |
 | `caption` | `string` | No |  |
 | `code` | `string` | No |  |
-| `external_account_id` | `string` | No |  |
+| `externalAccountId` | `string` | No |  |
 | `handle` | `string` | No |  |
 | `limit` | `number` | No |  |
-| `log_exposure` | `boolean` | No |  |
-| `meme_slug` | `string` | No |  |
+| `logExposure` | `boolean` | No |  |
+| `memeSlug` | `string` | No |  |
 | `now` | `string` | No |  |
 | `platform` | `string` | No |  |
-| `profile` | `table` | No |  |
-| `share_slug` | `string` | No |  |
+| `profiles` | `table` | No |  |
+| `shareSlug` | `string` | No |  |
 | `surface` | `string` | No |  |
-| `week_start` | `string` | No |  |
+| `weekStart` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
-| `account_id` | - | - |
+| `accountId` | - | - |
 | `action` | - | - |
-| `actor_id` | - | Yes |
+| `actorId` | - | Yes |
 | `caption` | - | - |
 | `code` | - | - |
-| `external_account_id` | - | - |
+| `externalAccountId` | - | - |
 | `handle` | - | - |
 | `limit` | - | - |
-| `log_exposure` | - | - |
-| `meme_slug` | - | - |
+| `logExposure` | - | - |
+| `memeSlug` | - | - |
 | `now` | - | - |
 | `platform` | - | - |
-| `profile` | - | - |
-| `share_slug` | - | - |
+| `profiles` | - | - |
+| `shareSlug` | - | - |
 | `surface` | - | - |
-| `week_start` | - | - |
+| `weekStart` | - | - |
 
 ### Operations
 
@@ -1476,17 +1536,17 @@ local list_meme = client:ListMeme(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `string` | Yes |  |
-| `canonical_image_url` | `string` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `nsfw_status` | `string` | Yes |  |
-| `share_slug` | `string` | Yes |  |
-| `share_url` | `string` | Yes |  |
-| `share_view` | `number` | Yes |  |
+| `altText` | `string` | Yes |  |
+| `canonicalImageUrl` | `string` | Yes |  |
+| `createdAt` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `nsfwStatus` | `string` | Yes |  |
+| `shareSlug` | `string` | Yes |  |
+| `shareUrl` | `string` | Yes |  |
+| `shareViews` | `number` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `tag` | `table` | Yes |  |
-| `template_slug` | `string` | Yes |  |
+| `tags` | `table` | Yes |  |
+| `templateSlug` | `string` | Yes |  |
 | `title` | `string` | Yes |  |
 | `visibility` | `string` | Yes |  |
 
@@ -1541,9 +1601,9 @@ local media = client:Media(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `content_type` | `string` | No |  |
-| `expires_in_second` | `number` | No |  |
-| `owner_token` | `string` | No |  |
+| `contentType` | `string` | No |  |
+| `expiresInSeconds` | `number` | No |  |
+| `ownerToken` | `string` | No |  |
 | `path` | `string` | No |  |
 | `prefix` | `string` | No |  |
 
@@ -1599,21 +1659,21 @@ local meme = client:Meme(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `string` | Yes |  |
-| `canonical_image_url` | `string` | Yes |  |
-| `canva` | `table` | Yes |  |
-| `caption` | `table` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `nsfw_status` | `string` | Yes |  |
-| `overlay` | `table` | Yes |  |
-| `share_slug` | `string` | Yes |  |
-| `share_url` | `string` | Yes |  |
-| `share_view` | `number` | Yes |  |
+| `altText` | `string` | Yes |  |
+| `canonicalImageUrl` | `string` | Yes |  |
+| `canvas` | `table` | Yes |  |
+| `captions` | `table` | Yes |  |
+| `createdAt` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `nsfwStatus` | `string` | Yes |  |
+| `overlays` | `table` | Yes |  |
+| `shareSlug` | `string` | Yes |  |
+| `shareUrl` | `string` | Yes |  |
+| `shareViews` | `number` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `source_image_url` | `string` | Yes |  |
-| `tag` | `table` | Yes |  |
-| `template_slug` | `string` | Yes |  |
+| `sourceImageUrl` | `string` | Yes |  |
+| `tags` | `table` | Yes |  |
+| `templateSlug` | `string` | Yes |  |
 | `title` | `string` | Yes |  |
 | `visibility` | `string` | Yes |  |
 | `watermark` | `table` | Yes |  |
@@ -1677,29 +1737,29 @@ local public_template_media_item = client:PublicTemplateMediaItem(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `boolean` | No |  |
-| `asset_byte` | `any` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `number` | No |  |
-| `caption` | `table` | Yes |  |
-| `caption_count` | `number` | No |  |
-| `category` | `table` | No |  |
+| `assetBytes` | `number|nil` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `number` | No |  |
+| `captionCount` | `number` | No |  |
+| `captions` | `table` | Yes |  |
+| `categories` | `table` | No |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `any` | No |  |
-| `example_image_url` | `any` | No |  |
-| `frame_count` | `any` | No |  |
-| `height` | `any` | Yes |  |
+| `durationMs` | `number|nil` | No |  |
+| `exampleImageUrl` | `string|nil` | No |  |
+| `frameCount` | `number|nil` | No |  |
+| `height` | `number|nil` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `preview_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `any` | Yes |  |
-| `source_url` | `string` | No |  |
-| `tag` | `table` | Yes |  |
-| `width` | `any` | Yes |  |
+| `sourceTemplateId` | `string|nil` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `table` | Yes |  |
+| `width` | `number|nil` | Yes |  |
 
 ### Operations
 
@@ -1755,10 +1815,10 @@ local standalone_agent_bootstrap = client:StandaloneAgentBootstrap(nil)
 | `handle` | `string` | Yes |  |
 | `locale` | `string` | No |  |
 | `name` | `string` | Yes |  |
-| `style_preset` | `string` | No |  |
-| `system_prompt` | `string` | No |  |
-| `watermark_text` | `string` | No |  |
-| `website_url` | `string` | No |  |
+| `stylePreset` | `string` | No |  |
+| `systemPrompt` | `string` | No |  |
+| `watermarkText` | `string` | No |  |
+| `websiteUrl` | `string` | No |  |
 
 ### Operations
 
@@ -1814,70 +1874,70 @@ local template = client:Template(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `boolean` | No |  |
-| `asset_byte` | `any` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `number` | No |  |
-| `caption` | `table` | No |  |
-| `caption_count` | `number` | No |  |
-| `category` | `table` | No |  |
+| `assetBytes` | `number|nil` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `number` | No |  |
+| `captionCount` | `number` | No |  |
+| `captions` | `table` | No |  |
+| `categories` | `table` | No |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `number` | No |  |
-| `example_image_url` | `any` | No |  |
+| `durationMs` | `number` | No |  |
+| `exampleImageUrl` | `string|nil` | No |  |
 | `fps` | `number` | No |  |
-| `frame_count` | `any` | No |  |
-| `gif_slug` | `string` | No |  |
-| `height` | `any` | Yes |  |
+| `frameCount` | `number|nil` | No |  |
+| `gifSlug` | `string` | No |  |
+| `height` | `number|nil` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `preview_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
-| `return_base64` | `boolean` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
+| `returnBase64` | `boolean` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `any` | Yes |  |
-| `source_url` | `string` | No |  |
-| `start_m` | `number` | No |  |
-| `tag` | `table` | No |  |
+| `sourceTemplateId` | `string|nil` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `startMs` | `number` | No |  |
+| `tags` | `table` | No |  |
 | `title` | `string` | No |  |
-| `width` | `any` | Yes |  |
-| `width_px` | `number` | No |  |
+| `width` | `number|nil` | Yes |  |
+| `widthPx` | `number` | No |  |
 
 ### Field Usage by Operation
 
 | Field | list | create |
 | --- | --- | --- |
 | `animated` | - | - |
-| `asset_byte` | - | - |
-| `asset_content_type` | - | - |
-| `box_count` | - | - |
-| `caption` | Yes | - |
-| `caption_count` | - | - |
-| `category` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | Yes | - |
+| `categories` | - | - |
 | `description` | - | - |
-| `duration_m` | - | - |
-| `example_image_url` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
 | `fps` | - | - |
-| `frame_count` | - | - |
-| `gif_slug` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
 | `height` | - | - |
 | `id` | - | - |
-| `image_url` | - | - |
-| `media_type` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
 | `name` | - | - |
-| `poster_image_url` | - | - |
-| `preview_image_url` | - | - |
-| `quality_status` | - | - |
-| `return_base64` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
 | `slug` | - | - |
-| `source_template_id` | - | - |
-| `source_url` | - | - |
-| `start_m` | - | - |
-| `tag` | Yes | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | Yes | - |
 | `title` | - | - |
 | `width` | - | - |
-| `width_px` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
 
@@ -1888,6 +1948,14 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:Template():create({
   slug = --[[ string ]],
+  description = --[[ string ]],
+  height = --[[ number|nil ]],
+  id = --[[ string ]],
+  imageUrl = --[[ string ]],
+  mediaType = --[[ string ]],
+  name = --[[ string ]],
+  sourceTemplateId = --[[ string|nil ]],
+  width = --[[ number|nil ]],
 })
 ```
 
@@ -1940,29 +2008,29 @@ local template_search = client:TemplateSearch(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `boolean` | No |  |
-| `asset_byte` | `any` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `number` | No |  |
-| `caption` | `table` | Yes |  |
-| `caption_count` | `number` | No |  |
-| `category` | `table` | No |  |
+| `assetBytes` | `number|nil` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `number` | No |  |
+| `captionCount` | `number` | No |  |
+| `captions` | `table` | Yes |  |
+| `categories` | `table` | No |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `any` | No |  |
-| `example_image_url` | `any` | No |  |
-| `frame_count` | `any` | No |  |
-| `height` | `any` | Yes |  |
+| `durationMs` | `number|nil` | No |  |
+| `exampleImageUrl` | `string|nil` | No |  |
+| `frameCount` | `number|nil` | No |  |
+| `height` | `number|nil` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `preview_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `any` | Yes |  |
-| `source_url` | `string` | No |  |
-| `tag` | `table` | Yes |  |
-| `width` | `any` | Yes |  |
+| `sourceTemplateId` | `string|nil` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `table` | Yes |  |
+| `width` | `number|nil` | Yes |  |
 
 ### Operations
 
@@ -2015,17 +2083,17 @@ local trend_alert = client:TrendAlert(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `actor_id` | `string` | Yes |  |
+| `actorId` | `string` | Yes |  |
 | `aggressiveness` | `number` | No |  |
-| `alert_id` | `string` | Yes |  |
-| `channel` | `table` | No |  |
-| `deliver_all_alert` | `boolean` | No |  |
+| `alertId` | `string` | Yes |  |
+| `channels` | `table` | No |  |
+| `deliverAllAlerts` | `boolean` | No |  |
 | `event` | `table` | No |  |
-| `explicit_niche` | `table` | No |  |
-| `explicit_region` | `table` | No |  |
-| `explicit_source` | `table` | No |  |
-| `explicit_topic` | `table` | No |  |
-| `follower_count` | `number` | No |  |
+| `explicitNiches` | `table` | No |  |
+| `explicitRegions` | `table` | No |  |
+| `explicitSources` | `table` | No |  |
+| `explicitTopics` | `table` | No |  |
+| `followerCount` | `number` | No |  |
 | `niche` | `string` | No |  |
 | `region` | `string` | No |  |
 | `source` | `string` | No |  |
@@ -2040,8 +2108,8 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:TrendAlert():create({
   action = --[[ string ]],
-  actor_id = --[[ string ]],
-  alert_id = --[[ string ]],
+  actorId = --[[ string ]],
+  alertId = --[[ string ]],
   topic = --[[ string ]],
 })
 ```
@@ -2142,100 +2210,100 @@ local video = client:Video(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | No |  |
-| `asset_id` | `string` | No |  |
-| `at_m` | `number` | No |  |
-| `audio_asset_id` | `string` | No |  |
-| `beat_offset_m` | `number` | No |  |
-| `bitrate_kbp` | `number` | No |  |
+| `assetId` | `string` | No |  |
+| `atMs` | `number` | No |  |
+| `audioAssetId` | `string` | No |  |
+| `beatOffsetMs` | `number` | No |  |
+| `bitrateKbps` | `number` | No |  |
 | `bpm` | `number` | No |  |
 | `cancelled` | `boolean` | No |  |
 | `container` | `string` | No |  |
-| `duration_m` | `number` | No |  |
-| `duration_second` | `number` | Yes |  |
+| `durationMs` | `number` | No |  |
+| `durationSeconds` | `number` | Yes |  |
 | `easing` | `string` | No |  |
 | `error` | `string` | No |  |
-| `frame_rate` | `number` | No |  |
-| `input_format` | `string` | Yes |  |
+| `frameRate` | `number` | No |  |
+| `inputFormat` | `string` | Yes |  |
 | `intensity` | `number` | No |  |
-| `job_id` | `string` | No |  |
+| `jobId` | `string` | No |  |
 | `locale` | `string` | No |  |
-| `mime_type` | `string` | Yes |  |
+| `mimeType` | `string` | Yes |  |
 | `name` | `string` | No |  |
-| `offset_m` | `number` | No |  |
-| `output_preset_id` | `string` | Yes |  |
-| `output_url` | `string` | No |  |
-| `plan_tier` | `string` | Yes |  |
-| `preset_id` | `string` | Yes |  |
-| `progress_percent` | `number` | No |  |
+| `offsetMs` | `number` | No |  |
+| `outputPresetId` | `string` | Yes |  |
+| `outputUrl` | `string` | No |  |
+| `planTier` | `string` | Yes |  |
+| `presetId` | `string` | Yes |  |
+| `progressPercent` | `number` | No |  |
 | `project` | `table` | No |  |
-| `project_id` | `string` | No |  |
+| `projectId` | `string` | No |  |
 | `property` | `string` | No |  |
-| `source_device_id` | `string` | No |  |
-| `source_url` | `string` | No |  |
+| `sourceDeviceId` | `string` | No |  |
+| `sourceUrl` | `string` | No |  |
 | `stage` | `string` | No |  |
-| `start_m` | `number` | No |  |
-| `style_preset_id` | `string` | No |  |
-| `sync_to_beat_grid` | `boolean` | No |  |
+| `startMs` | `number` | No |  |
+| `stylePresetId` | `string` | No |  |
+| `syncToBeatGrid` | `boolean` | No |  |
 | `tone` | `string` | No |  |
-| `track_id` | `string` | No |  |
+| `trackId` | `string` | No |  |
 | `transcript` | `string` | No |  |
-| `trend_keyword` | `table` | No |  |
+| `trendKeywords` | `table` | No |  |
 | `type` | `string` | No |  |
-| `updated_at` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 | `value` | `number` | No |  |
-| `watermark_enabled` | `boolean` | No |  |
-| `watermark_text` | `string` | No |  |
-| `worker_id` | `string` | No |  |
+| `watermarkEnabled` | `boolean` | No |  |
+| `watermarkText` | `string` | No |  |
+| `workerId` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | Yes |
-| `asset_id` | - | - |
-| `at_m` | - | - |
-| `audio_asset_id` | - | - |
-| `beat_offset_m` | - | - |
-| `bitrate_kbp` | - | - |
+| `assetId` | - | - |
+| `atMs` | - | - |
+| `audioAssetId` | - | - |
+| `beatOffsetMs` | - | - |
+| `bitrateKbps` | - | - |
 | `bpm` | - | - |
 | `cancelled` | - | - |
 | `container` | - | - |
-| `duration_m` | - | - |
-| `duration_second` | - | Yes |
+| `durationMs` | - | - |
+| `durationSeconds` | - | Yes |
 | `easing` | - | - |
 | `error` | - | - |
-| `frame_rate` | - | - |
-| `input_format` | - | - |
+| `frameRate` | - | - |
+| `inputFormat` | - | - |
 | `intensity` | - | - |
-| `job_id` | - | - |
+| `jobId` | - | - |
 | `locale` | - | - |
-| `mime_type` | - | - |
+| `mimeType` | - | - |
 | `name` | - | - |
-| `offset_m` | - | - |
-| `output_preset_id` | - | Yes |
-| `output_url` | - | - |
-| `plan_tier` | - | Yes |
-| `preset_id` | - | - |
-| `progress_percent` | - | - |
+| `offsetMs` | - | - |
+| `outputPresetId` | - | Yes |
+| `outputUrl` | - | - |
+| `planTier` | - | Yes |
+| `presetId` | - | - |
+| `progressPercent` | - | - |
 | `project` | - | - |
-| `project_id` | - | - |
+| `projectId` | - | - |
 | `property` | - | - |
-| `source_device_id` | - | - |
-| `source_url` | - | - |
+| `sourceDeviceId` | - | - |
+| `sourceUrl` | - | - |
 | `stage` | - | - |
-| `start_m` | - | - |
-| `style_preset_id` | - | - |
-| `sync_to_beat_grid` | - | - |
+| `startMs` | - | - |
+| `stylePresetId` | - | - |
+| `syncToBeatGrid` | - | - |
 | `tone` | - | - |
-| `track_id` | - | - |
+| `trackId` | - | - |
 | `transcript` | - | - |
-| `trend_keyword` | - | - |
+| `trendKeywords` | - | - |
 | `type` | - | - |
-| `updated_at` | - | - |
+| `updatedAt` | - | - |
 | `value` | - | - |
-| `watermark_enabled` | - | - |
-| `watermark_text` | - | - |
-| `worker_id` | - | - |
+| `watermarkEnabled` | - | - |
+| `watermarkText` | - | - |
+| `workerId` | - | - |
 
 ### Operations
 
@@ -2245,12 +2313,12 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Video():create({
-  duration_second = --[[ number ]],
-  input_format = --[[ string ]],
-  mime_type = --[[ string ]],
-  output_preset_id = --[[ string ]],
-  plan_tier = --[[ string ]],
-  preset_id = --[[ string ]],
+  durationSeconds = --[[ number ]],
+  inputFormat = --[[ string ]],
+  mimeType = --[[ string ]],
+  outputPresetId = --[[ string ]],
+  planTier = --[[ string ]],
+  presetId = --[[ string ]],
 })
 ```
 

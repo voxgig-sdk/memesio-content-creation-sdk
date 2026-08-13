@@ -6,42 +6,42 @@ main: kit: entity: list_meme: {
 
   fields: [
     {
-      name: "alt_text"
+      name: "altText"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "canonical_image_url"
+      name: "canonicalImageUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "created_at"
+      name: "createdAt"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "image_url"
+      name: "imageUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "nsfw_status"
+      name: "nsfwStatus"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "share_slug"
+      name: "shareSlug"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "share_url"
+      name: "shareUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "share_view"
+      name: "shareViews"
       req: true
       type: "`$INTEGER`"
     }
@@ -51,12 +51,12 @@ main: kit: entity: list_meme: {
       type: "`$STRING`"
     }
     {
-      name: "tag"
+      name: "tags"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "template_slug"
+      name: "templateSlug"
       req: true
       type: "`$STRING`"
     }
@@ -166,7 +166,7 @@ main: kit: entity: list_meme: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]

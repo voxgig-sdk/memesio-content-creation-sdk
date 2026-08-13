@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# MemesioContentCreation SDK exists test
 
 import pytest
 from memesiocontentcreation_sdk import MemesioContentCreationSDK

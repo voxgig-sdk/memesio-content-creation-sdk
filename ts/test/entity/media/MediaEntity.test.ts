@@ -26,8 +26,8 @@ import {
 describe('MediaEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,7 +62,7 @@ describe('MediaEntity', async () => {
     const media_ref01_ent = client.Media()
     let media_ref01_data = setup.data.new.media['media_ref01']
 
-    media_ref01_data = await media_ref01_ent.create(media_ref01_data)
+    media_ref01_data = (await media_ref01_ent.create(media_ref01_data)).data()
     assert(null != media_ref01_data)
 
 

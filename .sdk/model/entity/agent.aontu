@@ -37,22 +37,22 @@ main: kit: entity: agent: {
       type: "`$STRING`"
     }
     {
-      name: "style_preset"
+      name: "stylePreset"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "system_prompt"
+      name: "systemPrompt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "watermark_text"
+      name: "watermarkText"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "website_url"
+      name: "websiteUrl"
       req: false
       type: "`$STRING`"
     }

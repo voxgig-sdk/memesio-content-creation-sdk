@@ -26,8 +26,8 @@ import {
 describe('AuthEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,7 +62,7 @@ describe('AuthEntity', async () => {
     const auth_ref01_ent = client.Auth()
     let auth_ref01_data = setup.data.new.auth['auth_ref01']
 
-    auth_ref01_data = await auth_ref01_ent.create(auth_ref01_data)
+    auth_ref01_data = (await auth_ref01_ent.create(auth_ref01_data)).data()
     assert(null != auth_ref01_data)
 
 

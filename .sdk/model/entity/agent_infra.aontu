@@ -11,12 +11,12 @@ main: kit: entity: agent_infra: {
       type: "`$STRING`"
     }
     {
-      name: "chat_id"
+      name: "chatId"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "meme_slug"
+      name: "memeSlug"
       req: true
       type: "`$STRING`"
     }
@@ -26,17 +26,17 @@ main: kit: entity: agent_infra: {
       type: "`$OBJECT`"
     }
     {
-      name: "payout_reference"
+      name: "payoutReference"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "payout_status"
+      name: "payoutStatus"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "phone_or_chat_id"
+      name: "phoneOrChatId"
       req: true
       type: "`$STRING`"
     }
@@ -51,22 +51,22 @@ main: kit: entity: agent_infra: {
       type: "`$OBJECT`"
     }
     {
-      name: "quota_boost_per_day"
+      name: "quotaBoostPerDay"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "scope"
+      name: "scopes"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "user_id"
+      name: "userId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "week_start"
+      name: "weekStart"
       req: false
       type: "`$STRING`"
     }

@@ -26,8 +26,8 @@ import {
 describe('GrowthEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,13 +62,13 @@ describe('GrowthEntity', async () => {
     const growth_ref01_ent = client.Growth()
     let growth_ref01_data = setup.data.new.growth['growth_ref01']
 
-    growth_ref01_data = await growth_ref01_ent.create(growth_ref01_data)
+    growth_ref01_data = (await growth_ref01_ent.create(growth_ref01_data)).data()
     assert(null != growth_ref01_data)
 
 
     // LOAD
     const growth_ref01_match_dt0: any = {}
-    const growth_ref01_data_dt0 = await growth_ref01_ent.load(growth_ref01_match_dt0)
+    const growth_ref01_data_dt0 = (await growth_ref01_ent.load(growth_ref01_match_dt0)).data()
     assert(null != growth_ref01_data_dt0)
 
 

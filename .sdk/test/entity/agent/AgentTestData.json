@@ -7,10 +7,10 @@
         "name": "s5c",
         "slug": "s5d",
         "status": "s5e",
-        "style_preset": "s5f",
-        "system_prompt": "s60",
-        "watermark_text": "s61",
-        "website_url": "s62",
+        "stylePreset": "s5f",
+        "systemPrompt": "s60",
+        "watermarkText": "s61",
+        "websiteUrl": "s62",
         "id": "AGENT00"
       },
       "AGENT01": {
@@ -19,10 +19,10 @@
         "name": "sb6",
         "slug": "sb7",
         "status": "sb8",
-        "style_preset": "sb9",
-        "system_prompt": "sba",
-        "watermark_text": "sbb",
-        "website_url": "sbc",
+        "stylePreset": "sb9",
+        "systemPrompt": "sba",
+        "watermarkText": "sbb",
+        "websiteUrl": "sbc",
         "id": "AGENT01"
       },
       "AGENT02": {
@@ -31,10 +31,10 @@
         "name": "s110",
         "slug": "s111",
         "status": "s112",
-        "style_preset": "s113",
-        "system_prompt": "s114",
-        "watermark_text": "s115",
-        "website_url": "s116",
+        "stylePreset": "s113",
+        "systemPrompt": "s114",
+        "watermarkText": "s115",
+        "websiteUrl": "s116",
         "id": "AGENT02"
       }
     }
@@ -47,10 +47,10 @@
         "name": "s16a",
         "slug": "s16b",
         "status": "s16c",
-        "style_preset": "s16d",
-        "system_prompt": "s16e",
-        "watermark_text": "s16f",
-        "website_url": "s170"
+        "stylePreset": "s16d",
+        "systemPrompt": "s16e",
+        "watermarkText": "s16f",
+        "websiteUrl": "s170"
       }
     }
   }

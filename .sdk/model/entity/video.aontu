@@ -17,27 +17,27 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "asset_id"
+      name: "assetId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "at_m"
+      name: "atMs"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "audio_asset_id"
+      name: "audioAssetId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "beat_offset_m"
+      name: "beatOffsetMs"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "bitrate_kbp"
+      name: "bitrateKbps"
       req: false
       type: "`$NUMBER`"
     }
@@ -57,12 +57,12 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "duration_m"
+      name: "durationMs"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "duration_second"
+      name: "durationSeconds"
       op: {
         create: {
           req: false
@@ -83,12 +83,12 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "frame_rate"
+      name: "frameRate"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "input_format"
+      name: "inputFormat"
       req: true
       type: "`$STRING`"
     }
@@ -98,7 +98,7 @@ main: kit: entity: video: {
       type: "`$NUMBER`"
     }
     {
-      name: "job_id"
+      name: "jobId"
       req: false
       type: "`$STRING`"
     }
@@ -108,7 +108,7 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "mime_type"
+      name: "mimeType"
       req: true
       type: "`$STRING`"
     }
@@ -118,12 +118,12 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "offset_m"
+      name: "offsetMs"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "output_preset_id"
+      name: "outputPresetId"
       op: {
         create: {
           req: false
@@ -134,12 +134,12 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "output_url"
+      name: "outputUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "plan_tier"
+      name: "planTier"
       op: {
         create: {
           req: false
@@ -150,12 +150,12 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "preset_id"
+      name: "presetId"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "progress_percent"
+      name: "progressPercent"
       req: false
       type: "`$NUMBER`"
     }
@@ -165,7 +165,7 @@ main: kit: entity: video: {
       type: "`$OBJECT`"
     }
     {
-      name: "project_id"
+      name: "projectId"
       req: false
       type: "`$STRING`"
     }
@@ -175,12 +175,12 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "source_device_id"
+      name: "sourceDeviceId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "source_url"
+      name: "sourceUrl"
       req: false
       type: "`$STRING`"
     }
@@ -190,17 +190,17 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "start_m"
+      name: "startMs"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "style_preset_id"
+      name: "stylePresetId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "sync_to_beat_grid"
+      name: "syncToBeatGrid"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -210,7 +210,7 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "track_id"
+      name: "trackId"
       req: false
       type: "`$STRING`"
     }
@@ -220,7 +220,7 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "trend_keyword"
+      name: "trendKeywords"
       req: false
       type: "`$ARRAY`"
     }
@@ -230,7 +230,7 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "updated_at"
+      name: "updatedAt"
       req: false
       type: "`$STRING`"
     }
@@ -240,17 +240,17 @@ main: kit: entity: video: {
       type: "`$NUMBER`"
     }
     {
-      name: "watermark_enabled"
+      name: "watermarkEnabled"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "watermark_text"
+      name: "watermarkText"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "worker_id"
+      name: "workerId"
       req: false
       type: "`$STRING`"
     }

@@ -36,9 +36,10 @@ func TestListMemeDirect(t *testing.T) {
 			"params": map[string]any{},
 		})
 		if setup.live {
-			// Live mode is lenient: synthetic IDs frequently 4xx and the
-			// list-response shape varies wildly across public APIs. Skip
-			// rather than fail when the call doesn't return a usable list.
+			// Live-mode leniency is a model decision
+			// (main.kit.test.live.strict): synthetic IDs 4xx constantly
+			// against an arbitrary public API, so the default SKIPS here.
+			// A project that owns its test server sets strict and FAILS.
 			if err != nil {
 				t.Skipf("list call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -91,21 +92,21 @@ func list_memeDirectSetup(mockres any) *list_memeDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"MEMESIOCONTENTCREATION_TEST_LIST_MEME_ENTID": map[string]any{},
-		"MEMESIOCONTENTCREATION_TEST_LIVE":    "FALSE",
-		"MEMESIOCONTENTCREATION_APIKEY":       "NONE",
+		"MEMESIO_CONTENT_CREATION_TEST_LIST_MEME_ENTID": map[string]any{},
+		"MEMESIO_CONTENT_CREATION_TEST_LIVE":    "FALSE",
+		"MEMESIO_CONTENT_CREATION_APIKEY":       "NONE",
 	})
 
-	live := env["MEMESIOCONTENTCREATION_TEST_LIVE"] == "TRUE"
+	live := env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["MEMESIOCONTENTCREATION_APIKEY"],
+			"apikey": env["MEMESIO_CONTENT_CREATION_APIKEY"],
 		}
 		client := sdk.NewMemesioContentCreationSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["MEMESIOCONTENTCREATION_TEST_LIST_MEME_ENTID"]; ok {
+		if entidRaw, ok := env["MEMESIO_CONTENT_CREATION_TEST_LIST_MEME_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

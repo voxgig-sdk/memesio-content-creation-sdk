@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ MemesioContentCreationUtility.registrar = ->(u) {
   u.prepare_params = MemesioContentCreationUtilities::PrepareParams
   u.prepare_path = MemesioContentCreationUtilities::PreparePath
   u.prepare_query = MemesioContentCreationUtilities::PrepareQuery
+  u.graphql_body = MemesioContentCreationUtilities::GraphqlBody
+  u.graphql_errors = MemesioContentCreationUtilities::GraphqlErrors
   u.result_basic = MemesioContentCreationUtilities::ResultBasic
   u.result_body = MemesioContentCreationUtilities::ResultBody
   u.result_headers = MemesioContentCreationUtilities::ResultHeaders

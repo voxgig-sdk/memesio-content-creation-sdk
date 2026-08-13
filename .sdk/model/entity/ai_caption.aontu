@@ -6,37 +6,37 @@ main: kit: entity: ai_caption: {
 
   fields: [
     {
-      name: "blocked_term"
+      name: "blockedTerms"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "canvas_text"
+      name: "canvasText"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "caption_count"
+      name: "captionCount"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "caption_set"
+      name: "captionSets"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "entity"
+      name: "entities"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "fallback_used"
+      name: "fallbackUsed"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "generation_strategy"
+      name: "generationStrategy"
       req: false
       type: "`$STRING`"
     }
@@ -46,12 +46,12 @@ main: kit: entity: ai_caption: {
       type: "`$STRING`"
     }
     {
-      name: "meme_id"
+      name: "memeId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "meme_slug"
+      name: "memeSlug"
       req: false
       type: "`$STRING`"
     }
@@ -66,47 +66,47 @@ main: kit: entity: ai_caption: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "option_count"
+      name: "optionCount"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "owner_token"
+      name: "ownerToken"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "provider_id"
+      name: "providerId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "reference_caption"
+      name: "referenceCaptions"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "rewrite_note"
+      name: "rewriteNote"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "scene_summary"
+      name: "sceneSummary"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "template_description"
+      name: "templateDescription"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "template_name"
+      name: "templateName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "template_tag"
+      name: "templateTags"
       req: false
       type: "`$ARRAY`"
     }
@@ -116,32 +116,32 @@ main: kit: entity: ai_caption: {
       type: "`$STRING`"
     }
     {
-      name: "tone_cue"
+      name: "toneCues"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "trend_keyword"
+      name: "trendKeywords"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "trend_reference"
+      name: "trendReferences"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "trend_signal"
+      name: "trendSignals"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "variation_offset"
+      name: "variationOffset"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "voice_rule"
+      name: "voiceRules"
       req: false
       type: "`$ARRAY`"
     }

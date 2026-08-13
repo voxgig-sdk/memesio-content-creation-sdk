@@ -26,8 +26,8 @@ import {
 describe('MemeEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -39,7 +39,7 @@ describe('MemeEntity', async () => {
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE
-    for (const op of ['load', 'remove']) {
+    for (const op of ['load']) {
       if (maybeSkipControl(t, 'entityOp', 'meme.' + op, live)) return
     }
 

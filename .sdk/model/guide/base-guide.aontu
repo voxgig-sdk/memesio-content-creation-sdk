@@ -226,21 +226,25 @@ guide: {
   entity: free_caption_meme_success: {
     path: "/api/free/memes/caption": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
     path: "/api/v1/memes/caption-template": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 
   entity: free_template_search: {
     path: "/api/free/templates": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
   entity: generate: {
     path: "/api/v1/gifs/generate": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 
@@ -278,6 +282,7 @@ guide: {
   entity: list_meme: {
     path: "/api/memes": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
@@ -320,12 +325,14 @@ guide: {
     }
     path: "/api/templates": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
   entity: template_search: {
     path: "/api/gifs": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
@@ -369,6 +376,7 @@ guide: {
   entity: upload_caption_meme_success: {
     path: "/api/v1/memes/caption-upload": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 

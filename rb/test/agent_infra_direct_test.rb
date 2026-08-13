@@ -59,16 +59,16 @@ def agent_infra_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "MEMESIOCONTENTCREATION_TEST_AGENT_INFRA_ENTID" => {},
-    "MEMESIOCONTENTCREATION_TEST_LIVE" => "FALSE",
-    "MEMESIOCONTENTCREATION_APIKEY" => "NONE",
+    "MEMESIO_CONTENT_CREATION_TEST_AGENT_INFRA_ENTID" => {},
+    "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
+    "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
   })
 
-  live = env["MEMESIOCONTENTCREATION_TEST_LIVE"] == "TRUE"
+  live = env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["MEMESIOCONTENTCREATION_APIKEY"],
+      "apikey" => env["MEMESIO_CONTENT_CREATION_APIKEY"],
     }
     client = MemesioContentCreationSDK.new(merged_opts)
     return {

@@ -11,7 +11,7 @@ main: kit: entity: free_template_search: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "asset_byte"
+      name: "assetBytes"
       req: false
       type: [
         "`$ONE`"
@@ -22,24 +22,24 @@ main: kit: entity: free_template_search: {
       ]
     }
     {
-      name: "asset_content_type"
+      name: "assetContentType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "box_count"
+      name: "boxCount"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "caption"
+      name: "captionCount"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "captions"
       req: true
       type: "`$ARRAY`"
-    }
-    {
-      name: "caption_count"
-      req: true
-      type: "`$INTEGER`"
     }
     {
       name: "description"
@@ -47,7 +47,7 @@ main: kit: entity: free_template_search: {
       type: "`$STRING`"
     }
     {
-      name: "duration_m"
+      name: "durationMs"
       req: false
       type: [
         "`$ONE`"
@@ -58,7 +58,7 @@ main: kit: entity: free_template_search: {
       ]
     }
     {
-      name: "example_image_url"
+      name: "exampleImageUrl"
       req: false
       type: [
         "`$ONE`"
@@ -69,7 +69,7 @@ main: kit: entity: free_template_search: {
       ]
     }
     {
-      name: "frame_count"
+      name: "frameCount"
       req: false
       type: [
         "`$ONE`"
@@ -96,12 +96,12 @@ main: kit: entity: free_template_search: {
       type: "`$STRING`"
     }
     {
-      name: "image_url"
+      name: "imageUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "media_type"
+      name: "mediaType"
       req: true
       type: "`$STRING`"
     }
@@ -111,12 +111,12 @@ main: kit: entity: free_template_search: {
       type: "`$STRING`"
     }
     {
-      name: "poster_image_url"
+      name: "posterImageUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "quality_status"
+      name: "qualityStatus"
       req: false
       type: "`$STRING`"
     }
@@ -126,7 +126,7 @@ main: kit: entity: free_template_search: {
       type: "`$STRING`"
     }
     {
-      name: "source_template_id"
+      name: "sourceTemplateId"
       req: true
       type: [
         "`$ONE`"
@@ -137,12 +137,12 @@ main: kit: entity: free_template_search: {
       ]
     }
     {
-      name: "source_url"
+      name: "sourceUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "tag"
+      name: "tags"
       req: false
       type: "`$ARRAY`"
     }
@@ -252,7 +252,7 @@ main: kit: entity: free_template_search: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]

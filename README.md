@@ -36,18 +36,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = MemesioContentCreationSDK.test()
-const agent = await client.Agent().load({ id: 'test01' })
-// agent is a bare Agent populated with mock data
-console.log(agent)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = MemesioContentCreationSDK.test({
+  entity: {
+    trend_alert: {
+      test01: { id: 'test01', action: 'example_action', actorId: 'example_actorId', alertId: 'example_alertId' },
+    },
+  },
+})
+const trendalert = await client.TrendAlert().load()
+// trendalert is the TrendAlert entity, populated with mock data
+// — call trendalert.data() for the record itself
+console.log(trendalert)
 ```
 
 ### Python
 
 ```python
 client = MemesioContentCreationSDK.test()
-agent = client.Agent().load({"id": "test01"})
-print(agent)
+trendalert = client.TrendAlert().load()
+print(trendalert)
 ```
 
 ### PHP
@@ -55,17 +64,17 @@ print(agent)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = MemesioContentCreationSDK::test([
-    "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["trendalert" => ["test01" => []]],
 ]);
-$agent = $client->Agent()->load(["id" => "test01"]);
+$trendalert = $client->TrendAlert()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Agent(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+result, err := client.TrendAlert(nil).Load(
+    nil, nil,
 )
 ```
 
@@ -74,16 +83,16 @@ result, err := client.Agent(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = MemesioContentCreationSDK.test({
-  "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "trendalert" => { "test01" => {} } },
 })
-agent = client.Agent.load({ "id" => "test01" })
+trendalert = client.TrendAlert.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Agent():load({ id = "test01" })
+local result, err = client:TrendAlert():load()
 ```
 
 ## Packages
@@ -156,19 +165,19 @@ The API exposes 27 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Agent** | The Agent entity (create, load, update). | `/api/v1/agents` |
-| **AgentInfra** | The AgentInfra entity (create, load, remove). | `/api/v1/agents/{agentId}/channels/telegram/bind` |
-| **AiCaption** | The AiCaption entity (create, load). | `/api/ai/captions/generate` |
-| **AiJob** | The AiJob entity (create, load). | `/api/ai/jobs/{jobId}/cancel` |
+| **Agent** | The Agent entity (create, load, update). | `/api/v1/agents/{agentId}` |
+| **AgentInfra** | The AgentInfra entity (create, load, remove). | `/api/v1/agents/rewards/leaderboard` |
+| **AiCaption** | The AiCaption entity (create, load). | `/api/ai/captions/tone-presets` |
+| **AiJob** | The AiJob entity (create, load). | `/api/ai/edit-history` |
 | **AiMemeGenerationSucceeded** | The AiMemeGenerationSucceeded entity (create). | `/api/ai/memes/generate` |
-| **AiProvider** | The AiProvider entity (create, load). | `/api/ai/templates/detect` |
+| **AiProvider** | The AiProvider entity (create, load). | `/api/ai/providers/background-remove-benchmark` |
 | **Analytics** | The Analytics entity (load). | `/api/analytics/experiments/templates` |
 | **Auth** | The Auth entity (create). | `/api/auth/resend-verification` |
 | **Billing** | The Billing entity (load). | `/api/billing/usage` |
 | **Collaboration** | The Collaboration entity (create, load). | `/api/collab/comments` |
 | **Compliance** | The Compliance entity (load). | `/api/compliance/content-policy` |
 | **CreateMeme** | The CreateMeme entity (create). | `/api/memes` |
-| **DeveloperApi** | The DeveloperApi entity (create, load). | `/api/v1/templates/ideas` |
+| **DeveloperApi** | The DeveloperApi entity (create, load). | `/api/v1/memes/generate` |
 | **FreeCaptionMemeSuccess** | The FreeCaptionMemeSuccess entity (create). | `/api/free/memes/caption` |
 | **FreeTemplateSearch** | The FreeTemplateSearch entity (list). | `/api/free/templates` |
 | **Generate** | The Generate entity (create). | `/api/v1/gifs/generate` |
@@ -178,11 +187,11 @@ The API exposes 27 entities:
 | **Meme** | The Meme entity (load, remove). | `/api/memes/{slug}` |
 | **PublicTemplateMediaItem** | The PublicTemplateMediaItem entity (load). | `/api/templates/{slug}` |
 | **StandaloneAgentBootstrap** | The StandaloneAgentBootstrap entity (create). | `/api/v1/agents/bootstrap` |
-| **Template** | The Template entity (create, list). | `/api/gifs/{slug}/generate` |
+| **Template** | The Template entity (create, list). | `/api/templates` |
 | **TemplateSearch** | The TemplateSearch entity (list). | `/api/gifs` |
-| **TrendAlert** | The TrendAlert entity (create, load). | `/api/alerts/delivery` |
+| **TrendAlert** | The TrendAlert entity (create, load). | `/api/alerts` |
 | **UploadCaptionMemeSuccess** | The UploadCaptionMemeSuccess entity (create). | `/api/v1/memes/caption-upload` |
-| **Video** | The Video entity (create, load). | `/api/video/drafts` |
+| **Video** | The Video entity (create, load). | `/api/video/subtitles` |
 
 The operations available across these entities are **load**, **list**, **create**, **update**, **remove** — see each entity's
 own list above for exactly which it supports.
@@ -216,7 +225,7 @@ $client = new MemesioContentCreationSDK([
 ]);
 
 
-// Load a specific agent (returns the bare record; throws on error)
+// Load a specific agent (returns the ENTITY; call data_get() for the record; throws on error)
 $agent = $client->Agent()->load(["id" => "example_id"]);
 print_r($agent);
 ```
@@ -251,7 +260,7 @@ client = MemesioContentCreationSDK.new({
 })
 
 
-# Load a specific agent (returns the bare record; raises on error)
+# Load a specific agent (returns the ENTITY; call data_get for the record)
 agent = client.Agent.load({ "id" => "example_id" })
 puts agent
 ```
@@ -387,6 +396,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [/](/)
 

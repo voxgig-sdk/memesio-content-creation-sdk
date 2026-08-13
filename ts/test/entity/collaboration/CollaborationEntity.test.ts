@@ -26,8 +26,8 @@ import {
 describe('CollaborationEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,13 +62,13 @@ describe('CollaborationEntity', async () => {
     const collaboration_ref01_ent = client.Collaboration()
     let collaboration_ref01_data = setup.data.new.collaboration['collaboration_ref01']
 
-    collaboration_ref01_data = await collaboration_ref01_ent.create(collaboration_ref01_data)
+    collaboration_ref01_data = (await collaboration_ref01_ent.create(collaboration_ref01_data)).data()
     assert(null != collaboration_ref01_data)
 
 
     // LOAD
     const collaboration_ref01_match_dt0: any = {}
-    const collaboration_ref01_data_dt0 = await collaboration_ref01_ent.load(collaboration_ref01_match_dt0)
+    const collaboration_ref01_data_dt0 = (await collaboration_ref01_ent.load(collaboration_ref01_match_dt0)).data()
     assert(null != collaboration_ref01_data_dt0)
 
 

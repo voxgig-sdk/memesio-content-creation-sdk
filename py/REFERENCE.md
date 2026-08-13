@@ -197,10 +197,10 @@ agent = client.Agent()
 | `name` | `str` | Yes |  |
 | `slug` | `str` | No |  |
 | `status` | `str` | No |  |
-| `style_preset` | `str` | No |  |
-| `system_prompt` | `str` | No |  |
-| `watermark_text` | `str` | No |  |
-| `website_url` | `str` | No |  |
+| `stylePreset` | `str` | No |  |
+| `systemPrompt` | `str` | No |  |
+| `watermarkText` | `str` | No |  |
+| `websiteUrl` | `str` | No |  |
 
 ### Field Usage by Operation
 
@@ -211,10 +211,10 @@ agent = client.Agent()
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
 | `status` | - | - | - |
-| `style_preset` | - | - | - |
-| `system_prompt` | - | - | - |
-| `watermark_text` | - | - | - |
-| `website_url` | - | - | - |
+| `stylePreset` | - | - | - |
+| `systemPrompt` | - | - | - |
+| `watermarkText` | - | - | - |
+| `websiteUrl` | - | - | - |
 
 ### Operations
 
@@ -287,18 +287,18 @@ agent_infra = client.AgentInfra()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `str` | Yes |  |
-| `chat_id` | `str` | Yes |  |
-| `meme_slug` | `str` | Yes |  |
+| `chatId` | `str` | Yes |  |
+| `memeSlug` | `str` | Yes |  |
 | `metadata` | `dict` | No |  |
-| `payout_reference` | `str` | No |  |
-| `payout_status` | `str` | No |  |
-| `phone_or_chat_id` | `str` | Yes |  |
+| `payoutReference` | `str` | No |  |
+| `payoutStatus` | `str` | No |  |
+| `phoneOrChatId` | `str` | Yes |  |
 | `prompt` | `str` | Yes |  |
 | `proof` | `dict` | No |  |
-| `quota_boost_per_day` | `int` | No |  |
-| `scope` | `list` | No |  |
-| `user_id` | `str` | No |  |
-| `week_start` | `str` | No |  |
+| `quotaBoostPerDay` | `int` | No |  |
+| `scopes` | `list` | No |  |
+| `userId` | `str` | No |  |
+| `weekStart` | `str` | No |  |
 
 ### Operations
 
@@ -308,6 +308,11 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.AgentInfra().create({
+    "action": "example_action",  # str
+    "chatId": "example_chatId",  # str
+    "memeSlug": "example_memeSlug",  # str
+    "phoneOrChatId": "example_phoneOrChatId",  # str
+    "prompt": "example_prompt",  # str
 })
 ```
 
@@ -366,34 +371,34 @@ ai_caption = client.AiCaption()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `blocked_term` | `list` | No |  |
-| `canvas_text` | `list` | Yes |  |
-| `caption_count` | `int` | No |  |
-| `caption_set` | `list` | No |  |
-| `entity` | `list` | No |  |
-| `fallback_used` | `bool` | No |  |
-| `generation_strategy` | `str` | No |  |
+| `blockedTerms` | `list` | No |  |
+| `canvasText` | `list` | Yes |  |
+| `captionCount` | `int` | No |  |
+| `captionSets` | `list` | No |  |
+| `entities` | `list` | No |  |
+| `fallbackUsed` | `bool` | No |  |
+| `generationStrategy` | `str` | No |  |
 | `locale` | `str` | No |  |
-| `meme_id` | `str` | No |  |
-| `meme_slug` | `str` | No |  |
+| `memeId` | `str` | No |  |
+| `memeSlug` | `str` | No |  |
 | `name` | `str` | Yes |  |
 | `ok` | `bool` | No |  |
-| `option_count` | `int` | No |  |
-| `owner_token` | `str` | No |  |
-| `provider_id` | `str` | No |  |
-| `reference_caption` | `list` | No |  |
-| `rewrite_note` | `str` | No |  |
-| `scene_summary` | `str` | No |  |
-| `template_description` | `str` | No |  |
-| `template_name` | `str` | No |  |
-| `template_tag` | `list` | No |  |
+| `optionCount` | `int` | No |  |
+| `ownerToken` | `str` | No |  |
+| `providerId` | `str` | No |  |
+| `referenceCaptions` | `list` | No |  |
+| `rewriteNote` | `str` | No |  |
+| `sceneSummary` | `str` | No |  |
+| `templateDescription` | `str` | No |  |
+| `templateName` | `str` | No |  |
+| `templateTags` | `list` | No |  |
 | `tone` | `str` | Yes |  |
-| `tone_cue` | `list` | No |  |
-| `trend_keyword` | `list` | No |  |
-| `trend_reference` | `list` | No |  |
-| `trend_signal` | `list` | No |  |
-| `variation_offset` | `int` | No |  |
-| `voice_rule` | `list` | No |  |
+| `toneCues` | `list` | No |  |
+| `trendKeywords` | `list` | No |  |
+| `trendReferences` | `list` | No |  |
+| `trendSignals` | `list` | No |  |
+| `variationOffset` | `int` | No |  |
+| `voiceRules` | `list` | No |  |
 
 ### Operations
 
@@ -403,7 +408,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.AiCaption().create({
-    "canvas_text": [],  # list
+    "canvasText": [],  # list
     "name": "example_name",  # str
     "tone": "example_tone",  # str
 })
@@ -457,94 +462,94 @@ ai_job = client.AiJob()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `str` | Yes |  |
-| `actor_id` | `str` | No |  |
-| `after_state` | `dict` | No |  |
-| `attempt` | `int` | No |  |
-| `before_state` | `dict` | No |  |
-| `brush_edit` | `list` | No |  |
+| `actorId` | `str` | No |  |
+| `afterState` | `dict` | No |  |
+| `attempts` | `int` | No |  |
+| `beforeState` | `dict` | No |  |
+| `brushEdits` | `list` | No |  |
 | `capability` | `str` | Yes |  |
-| `celebrity_confidence` | `float` | No |  |
-| `consent_attested` | `bool` | No |  |
-| `created_at` | `str` | No |  |
-| `detected_face_count` | `float` | Yes |  |
-| `edge_refinement` | `float` | No |  |
-| `estimated_cost_usd` | `float` | No |  |
-| `frame_time_m` | `float` | No |  |
+| `celebrityConfidence` | `float` | No |  |
+| `consentAttested` | `bool` | No |  |
+| `createdAt` | `str` | No |  |
+| `detectedFaceCount` | `float` | Yes |  |
+| `edgeRefinement` | `float` | No |  |
+| `estimatedCostUsd` | `float` | No |  |
+| `frameTimeMs` | `float` | No |  |
 | `height` | `float` | Yes |  |
 | `id` | `str` | Yes |  |
 | `input` | `dict` | No |  |
-| `layer_id` | `str` | Yes |  |
-| `layer_type` | `str` | No |  |
-| `max_attempt` | `int` | No |  |
-| `max_face` | `float` | No |  |
-| `media_type` | `str` | No |  |
+| `layerId` | `str` | Yes |  |
+| `layerType` | `str` | No |  |
+| `maxAttempts` | `int` | No |  |
+| `maxFaces` | `float` | No |  |
+| `mediaType` | `str` | No |  |
 | `metadata` | `dict` | No |  |
-| `nsfw_score` | `float` | No |  |
+| `nsfwScore` | `float` | No |  |
 | `output` | `dict` | No |  |
-| `project_id` | `str` | Yes |  |
-| `provider_id` | `str` | No |  |
+| `projectId` | `str` | Yes |  |
+| `providerId` | `str` | No |  |
 | `reason` | `str` | No |  |
-| `run_after_m` | `int` | No |  |
-| `source_asset_url` | `str` | Yes |  |
-| `source_face_index` | `float` | No |  |
-| `source_image_url` | `str` | Yes |  |
+| `runAfterMs` | `int` | No |  |
+| `sourceAssetUrl` | `str` | Yes |  |
+| `sourceFaceIndex` | `float` | No |  |
+| `sourceImageUrl` | `str` | Yes |  |
 | `status` | `str` | Yes |  |
-| `target_asset_url` | `str` | Yes |  |
-| `target_face_index` | `float` | No |  |
-| `timeout_m` | `int` | No |  |
-| `trace_id` | `str` | No |  |
-| `updated_at` | `str` | No |  |
-| `version_id` | `str` | No |  |
+| `targetAssetUrl` | `str` | Yes |  |
+| `targetFaceIndex` | `float` | No |  |
+| `timeoutMs` | `int` | No |  |
+| `traceId` | `str` | No |  |
+| `updatedAt` | `str` | No |  |
+| `versionId` | `str` | No |  |
 | `width` | `float` | Yes |  |
-| `worker_id` | `str` | Yes |  |
-| `workspace_id` | `str` | No |  |
+| `workerId` | `str` | Yes |  |
+| `workspaceId` | `str` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | - |
-| `actor_id` | - | - |
-| `after_state` | - | - |
-| `attempt` | - | - |
-| `before_state` | - | - |
-| `brush_edit` | - | - |
+| `actorId` | - | - |
+| `afterState` | - | - |
+| `attempts` | - | - |
+| `beforeState` | - | - |
+| `brushEdits` | - | - |
 | `capability` | - | - |
-| `celebrity_confidence` | - | - |
-| `consent_attested` | - | - |
-| `created_at` | - | - |
-| `detected_face_count` | - | - |
-| `edge_refinement` | - | - |
-| `estimated_cost_usd` | - | - |
-| `frame_time_m` | - | - |
+| `celebrityConfidence` | - | - |
+| `consentAttested` | - | - |
+| `createdAt` | - | - |
+| `detectedFaceCount` | - | - |
+| `edgeRefinement` | - | - |
+| `estimatedCostUsd` | - | - |
+| `frameTimeMs` | - | - |
 | `height` | - | - |
 | `id` | - | - |
 | `input` | - | - |
-| `layer_id` | - | - |
-| `layer_type` | - | - |
-| `max_attempt` | - | - |
-| `max_face` | - | - |
-| `media_type` | - | Yes |
+| `layerId` | - | - |
+| `layerType` | - | - |
+| `maxAttempts` | - | - |
+| `maxFaces` | - | - |
+| `mediaType` | - | Yes |
 | `metadata` | - | - |
-| `nsfw_score` | - | - |
+| `nsfwScore` | - | - |
 | `output` | - | - |
-| `project_id` | - | - |
-| `provider_id` | - | - |
+| `projectId` | - | - |
+| `providerId` | - | - |
 | `reason` | - | - |
-| `run_after_m` | - | - |
-| `source_asset_url` | - | - |
-| `source_face_index` | - | - |
-| `source_image_url` | - | - |
+| `runAfterMs` | - | - |
+| `sourceAssetUrl` | - | - |
+| `sourceFaceIndex` | - | - |
+| `sourceImageUrl` | - | - |
 | `status` | - | - |
-| `target_asset_url` | - | - |
-| `target_face_index` | - | - |
-| `timeout_m` | - | - |
-| `trace_id` | - | - |
-| `updated_at` | - | - |
-| `version_id` | - | - |
+| `targetAssetUrl` | - | - |
+| `targetFaceIndex` | - | - |
+| `timeoutMs` | - | - |
+| `traceId` | - | - |
+| `updatedAt` | - | - |
+| `versionId` | - | - |
 | `width` | - | - |
-| `worker_id` | - | - |
-| `workspace_id` | - | - |
+| `workerId` | - | - |
+| `workspaceId` | - | - |
 
 ### Operations
 
@@ -554,6 +559,19 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.AiJob().create({
+    "action": "example_action",  # str
+    "capability": "example_capability",  # str
+    "detectedFaceCount": 1,  # float
+    "height": 1,  # float
+    "id": "example_id",  # str
+    "layerId": "example_layerId",  # str
+    "projectId": "example_projectId",  # str
+    "sourceAssetUrl": "example_sourceAssetUrl",  # str
+    "sourceImageUrl": "example_sourceImageUrl",  # str
+    "status": "example_status",  # str
+    "targetAssetUrl": "example_targetAssetUrl",  # str
+    "width": 1,  # float
+    "workerId": "example_workerId",  # str
 })
 ```
 
@@ -604,53 +622,53 @@ ai_meme_generation_succeeded = client.AiMemeGenerationSucceeded()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allow_heuristic_fallback` | `bool` | No |  |
-| `caption` | `list` | No |  |
-| `caption_source` | `str` | No |  |
-| `correlation_id` | `str` | No |  |
-| `degraded_from_async` | `bool` | No |  |
-| `editable_caption` | `list` | No |  |
+| `allowHeuristicFallback` | `bool` | No |  |
+| `captionSource` | `str` | No |  |
+| `captions` | `list` | No |  |
+| `correlationId` | `str` | No |  |
+| `degradedFromAsync` | `bool` | No |  |
+| `editableCaptions` | `list` | No |  |
 | `flow` | `str` | Yes |  |
-| `image_url` | `str` | No |  |
+| `imageUrl` | `str` | No |  |
 | `mode` | `str` | Yes |  |
 | `ok` | `bool` | Yes |  |
-| `preferred_provider_id` | `str` | No |  |
+| `preferredProviderId` | `str` | No |  |
 | `prompt` | `str` | Yes |  |
-| `rewrite_note` | `str` | No |  |
-| `run_id` | `str` | No |  |
+| `rewriteNote` | `str` | No |  |
+| `runId` | `str` | No |  |
 | `status` | `str` | Yes |  |
-| `template_id` | `str` | No |  |
+| `templateId` | `str` | No |  |
 | `tone` | `str` | No |  |
-| `tone_cue` | `list` | No |  |
-| `variant` | `list` | Yes |  |
-| `variant_count` | `int` | Yes |  |
-| `workspace_id` | `str` | No |  |
+| `toneCues` | `list` | No |  |
+| `variantCount` | `int` | Yes |  |
+| `variants` | `list` | Yes |  |
+| `workspaceId` | `str` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `allow_heuristic_fallback` | - |
-| `caption` | - |
-| `caption_source` | - |
-| `correlation_id` | - |
-| `degraded_from_async` | - |
-| `editable_caption` | - |
+| `allowHeuristicFallback` | - |
+| `captionSource` | - |
+| `captions` | - |
+| `correlationId` | - |
+| `degradedFromAsync` | - |
+| `editableCaptions` | - |
 | `flow` | Yes |
-| `image_url` | - |
+| `imageUrl` | - |
 | `mode` | Yes |
 | `ok` | - |
-| `preferred_provider_id` | - |
+| `preferredProviderId` | - |
 | `prompt` | - |
-| `rewrite_note` | - |
-| `run_id` | - |
+| `rewriteNote` | - |
+| `runId` | - |
 | `status` | - |
-| `template_id` | - |
+| `templateId` | - |
 | `tone` | - |
-| `tone_cue` | - |
-| `variant` | - |
-| `variant_count` | Yes |
-| `workspace_id` | - |
+| `toneCues` | - |
+| `variantCount` | Yes |
+| `variants` | - |
+| `workspaceId` | - |
 
 ### Operations
 
@@ -665,8 +683,8 @@ result = client.AiMemeGenerationSucceeded().create({
     "ok": True,  # bool
     "prompt": "example_prompt",  # str
     "status": "example_status",  # str
-    "variant": [],  # list
-    "variant_count": 1,  # int
+    "variantCount": 1,  # int
+    "variants": [],  # list
 })
 ```
 
@@ -709,16 +727,16 @@ ai_provider = client.AiProvider()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `actor_id` | `str` | No |  |
-| `correlation_id` | `str` | No |  |
+| `actorId` | `str` | No |  |
+| `correlationId` | `str` | No |  |
 | `limit` | `float` | No |  |
-| `mapping_mode` | `str` | No |  |
-| `max_slot` | `int` | No |  |
+| `mappingMode` | `str` | No |  |
+| `maxSlots` | `int` | No |  |
 | `prompt` | `str` | Yes |  |
-| `source_image_url` | `str` | Yes |  |
-| `text` | `list` | No |  |
-| `trend_signal` | `list` | No |  |
-| `workspace_id` | `str` | No |  |
+| `sourceImageUrl` | `str` | Yes |  |
+| `texts` | `list` | No |  |
+| `trendSignals` | `list` | No |  |
+| `workspaceId` | `str` | No |  |
 
 ### Operations
 
@@ -729,7 +747,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.AiProvider().create({
     "prompt": "example_prompt",  # str
-    "source_image_url": "example_source_image_url",  # str
+    "sourceImageUrl": "example_sourceImageUrl",  # str
 })
 ```
 
@@ -825,7 +843,7 @@ auth = client.Auth()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `display_name` | `str` | No |  |
+| `displayName` | `str` | No |  |
 | `email` | `str` | Yes |  |
 | `password` | `str` | Yes |  |
 
@@ -926,9 +944,9 @@ collaboration = client.Collaboration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author_id` | `str` | No |  |
+| `authorId` | `str` | No |  |
 | `message` | `str` | Yes |  |
-| `project_id` | `str` | Yes |  |
+| `projectId` | `str` | Yes |  |
 
 ### Operations
 
@@ -939,7 +957,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Collaboration().create({
     "message": "example_message",  # str
-    "project_id": "example_project_id",  # str
+    "projectId": "example_projectId",  # str
 })
 ```
 
@@ -1035,14 +1053,14 @@ create_meme = client.CreateMeme()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canva` | `dict` | Yes |  |
-| `caption` | `list` | Yes |  |
-| `generation_run_id` | `Any` | No |  |
-| `generation_variant_id` | `Any` | No |  |
-| `image_data_url` | `str` | Yes |  |
-| `overlay` | `list` | No |  |
-| `source_image_url` | `str` | Yes |  |
-| `template_slug` | `str` | No |  |
+| `canvas` | `dict` | Yes |  |
+| `captions` | `list` | Yes |  |
+| `generationRunId` | `str | None` | No |  |
+| `generationVariantId` | `str | None` | No |  |
+| `imageDataUrl` | `str` | Yes |  |
+| `overlays` | `list` | No |  |
+| `sourceImageUrl` | `str` | Yes |  |
+| `templateSlug` | `str` | No |  |
 | `title` | `str` | No |  |
 | `visibility` | `str` | No |  |
 | `watermark` | `dict` | Yes |  |
@@ -1055,10 +1073,10 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.CreateMeme().create({
-    "canva": {},  # dict
-    "caption": [],  # list
-    "image_data_url": "example_image_data_url",  # str
-    "source_image_url": "example_source_image_url",  # str
+    "canvas": {},  # dict
+    "captions": [],  # list
+    "imageDataUrl": "example_imageDataUrl",  # str
+    "sourceImageUrl": "example_sourceImageUrl",  # str
     "watermark": {},  # dict
 })
 ```
@@ -1104,7 +1122,7 @@ developer_api = client.DeveloperApi()
 | --- | --- | --- | --- |
 | `limit` | `float` | No |  |
 | `prompt` | `str` | Yes |  |
-| `trend_signal` | `list` | No |  |
+| `trendSignals` | `list` | No |  |
 
 ### Operations
 
@@ -1165,8 +1183,8 @@ free_caption_meme_success = client.FreeCaptionMemeSuccess()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `list` | Yes |  |
-| `template_slug` | `str` | Yes |  |
+| `captions` | `list` | Yes |  |
+| `templateSlug` | `str` | Yes |  |
 | `title` | `str` | No |  |
 | `visibility` | `str` | No |  |
 | `watermark` | `dict` | No |  |
@@ -1179,8 +1197,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.FreeCaptionMemeSuccess().create({
-    "caption": [],  # list
-    "template_slug": "example_template_slug",  # str
+    "captions": [],  # list
+    "templateSlug": "example_templateSlug",  # str
 })
 ```
 
@@ -1224,27 +1242,27 @@ free_template_search = client.FreeTemplateSearch()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `bool` | No |  |
-| `asset_byte` | `Any` | No |  |
-| `asset_content_type` | `str` | No |  |
-| `box_count` | `int` | Yes |  |
-| `caption` | `list` | Yes |  |
-| `caption_count` | `int` | Yes |  |
+| `assetBytes` | `int | None` | No |  |
+| `assetContentType` | `str` | No |  |
+| `boxCount` | `int` | Yes |  |
+| `captionCount` | `int` | Yes |  |
+| `captions` | `list` | Yes |  |
 | `description` | `str` | Yes |  |
-| `duration_m` | `Any` | No |  |
-| `example_image_url` | `Any` | No |  |
-| `frame_count` | `Any` | No |  |
-| `height` | `Any` | Yes |  |
+| `durationMs` | `int | None` | No |  |
+| `exampleImageUrl` | `str | None` | No |  |
+| `frameCount` | `int | None` | No |  |
+| `height` | `float | None` | Yes |  |
 | `id` | `str` | Yes |  |
-| `image_url` | `str` | Yes |  |
-| `media_type` | `str` | Yes |  |
+| `imageUrl` | `str` | Yes |  |
+| `mediaType` | `str` | Yes |  |
 | `name` | `str` | Yes |  |
-| `poster_image_url` | `str` | No |  |
-| `quality_status` | `str` | No |  |
+| `posterImageUrl` | `str` | No |  |
+| `qualityStatus` | `str` | No |  |
 | `slug` | `str` | Yes |  |
-| `source_template_id` | `Any` | Yes |  |
-| `source_url` | `str` | No |  |
-| `tag` | `list` | No |  |
-| `width` | `Any` | Yes |  |
+| `sourceTemplateId` | `str | None` | Yes |  |
+| `sourceUrl` | `str` | No |  |
+| `tags` | `list` | No |  |
+| `width` | `float | None` | Yes |  |
 
 ### Operations
 
@@ -1297,17 +1315,51 @@ generate = client.Generate()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `list` | No |  |
-| `data` | `dict` | Yes |  |
-| `duration_m` | `int` | No |  |
+| `base64` | `str` | No |  |
+| `byteLength` | `int` | Yes |  |
+| `captions` | `list` | No |  |
+| `dataUrl` | `str` | No |  |
+| `delayMs` | `int` | Yes |  |
+| `durationMs` | `int` | No |  |
+| `filename` | `str` | Yes |  |
 | `fps` | `int` | No |  |
-| `gif_slug` | `str` | No |  |
-| `ok` | `bool` | Yes |  |
-| `return_base64` | `bool` | No |  |
-| `start_m` | `int` | No |  |
-| `tag` | `list` | No |  |
+| `gifSlug` | `str` | Yes |  |
+| `height` | `int` | Yes |  |
+| `mimeType` | `str` | Yes |  |
+| `pages` | `int` | Yes |  |
+| `parameters` | `dict` | Yes |  |
+| `returnBase64` | `bool` | No |  |
+| `sourceDurationMs` | `int` | Yes |  |
+| `startMs` | `int` | No |  |
+| `tags` | `list` | No |  |
 | `title` | `str` | No |  |
-| `width_px` | `int` | No |  |
+| `width` | `int` | Yes |  |
+| `widthPx` | `int` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `base64` | - |
+| `byteLength` | - |
+| `captions` | - |
+| `dataUrl` | - |
+| `delayMs` | - |
+| `durationMs` | - |
+| `filename` | - |
+| `fps` | - |
+| `gifSlug` | Yes |
+| `height` | - |
+| `mimeType` | - |
+| `pages` | - |
+| `parameters` | - |
+| `returnBase64` | - |
+| `sourceDurationMs` | - |
+| `startMs` | - |
+| `tags` | - |
+| `title` | - |
+| `width` | - |
+| `widthPx` | - |
 
 ### Operations
 
@@ -1317,8 +1369,16 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Generate().create({
-    "data": {},  # dict
-    "ok": True,  # bool
+    "byteLength": 1,  # int
+    "delayMs": 1,  # int
+    "filename": "example_filename",  # str
+    "gifSlug": "example_gifSlug",  # str
+    "height": 1,  # int
+    "mimeType": "example_mimeType",  # str
+    "pages": 1,  # int
+    "parameters": {},  # dict
+    "sourceDurationMs": 1,  # int
+    "width": 1,  # int
 })
 ```
 
@@ -1361,43 +1421,43 @@ growth = client.Growth()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_id` | `str` | No |  |
+| `accountId` | `str` | No |  |
 | `action` | `str` | Yes |  |
-| `actor_id` | `str` | No |  |
+| `actorId` | `str` | No |  |
 | `caption` | `str` | No |  |
 | `code` | `str` | No |  |
-| `external_account_id` | `str` | No |  |
+| `externalAccountId` | `str` | No |  |
 | `handle` | `str` | No |  |
 | `limit` | `int` | No |  |
-| `log_exposure` | `bool` | No |  |
-| `meme_slug` | `str` | No |  |
+| `logExposure` | `bool` | No |  |
+| `memeSlug` | `str` | No |  |
 | `now` | `str` | No |  |
 | `platform` | `str` | No |  |
-| `profile` | `list` | No |  |
-| `share_slug` | `str` | No |  |
+| `profiles` | `list` | No |  |
+| `shareSlug` | `str` | No |  |
 | `surface` | `str` | No |  |
-| `week_start` | `str` | No |  |
+| `weekStart` | `str` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
-| `account_id` | - | - |
+| `accountId` | - | - |
 | `action` | - | - |
-| `actor_id` | - | Yes |
+| `actorId` | - | Yes |
 | `caption` | - | - |
 | `code` | - | - |
-| `external_account_id` | - | - |
+| `externalAccountId` | - | - |
 | `handle` | - | - |
 | `limit` | - | - |
-| `log_exposure` | - | - |
-| `meme_slug` | - | - |
+| `logExposure` | - | - |
+| `memeSlug` | - | - |
 | `now` | - | - |
 | `platform` | - | - |
-| `profile` | - | - |
-| `share_slug` | - | - |
+| `profiles` | - | - |
+| `shareSlug` | - | - |
 | `surface` | - | - |
-| `week_start` | - | - |
+| `weekStart` | - | - |
 
 ### Operations
 
@@ -1458,17 +1518,17 @@ list_meme = client.ListMeme()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `str` | Yes |  |
-| `canonical_image_url` | `str` | Yes |  |
-| `created_at` | `str` | Yes |  |
-| `image_url` | `str` | Yes |  |
-| `nsfw_status` | `str` | Yes |  |
-| `share_slug` | `str` | Yes |  |
-| `share_url` | `str` | Yes |  |
-| `share_view` | `int` | Yes |  |
+| `altText` | `str` | Yes |  |
+| `canonicalImageUrl` | `str` | Yes |  |
+| `createdAt` | `str` | Yes |  |
+| `imageUrl` | `str` | Yes |  |
+| `nsfwStatus` | `str` | Yes |  |
+| `shareSlug` | `str` | Yes |  |
+| `shareUrl` | `str` | Yes |  |
+| `shareViews` | `int` | Yes |  |
 | `slug` | `str` | Yes |  |
-| `tag` | `list` | Yes |  |
-| `template_slug` | `str` | Yes |  |
+| `tags` | `list` | Yes |  |
+| `templateSlug` | `str` | Yes |  |
 | `title` | `str` | Yes |  |
 | `visibility` | `str` | Yes |  |
 
@@ -1524,9 +1584,9 @@ media = client.Media()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `str` | Yes |  |
-| `content_type` | `str` | No |  |
-| `expires_in_second` | `int` | No |  |
-| `owner_token` | `str` | No |  |
+| `contentType` | `str` | No |  |
+| `expiresInSeconds` | `int` | No |  |
+| `ownerToken` | `str` | No |  |
 | `path` | `str` | No |  |
 | `prefix` | `str` | No |  |
 
@@ -1581,21 +1641,21 @@ meme = client.Meme()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `str` | Yes |  |
-| `canonical_image_url` | `str` | Yes |  |
-| `canva` | `dict` | Yes |  |
-| `caption` | `list` | Yes |  |
-| `created_at` | `str` | Yes |  |
-| `image_url` | `str` | Yes |  |
-| `nsfw_status` | `str` | Yes |  |
-| `overlay` | `list` | Yes |  |
-| `share_slug` | `str` | Yes |  |
-| `share_url` | `str` | Yes |  |
-| `share_view` | `int` | Yes |  |
+| `altText` | `str` | Yes |  |
+| `canonicalImageUrl` | `str` | Yes |  |
+| `canvas` | `dict` | Yes |  |
+| `captions` | `list` | Yes |  |
+| `createdAt` | `str` | Yes |  |
+| `imageUrl` | `str` | Yes |  |
+| `nsfwStatus` | `str` | Yes |  |
+| `overlays` | `list` | Yes |  |
+| `shareSlug` | `str` | Yes |  |
+| `shareUrl` | `str` | Yes |  |
+| `shareViews` | `int` | Yes |  |
 | `slug` | `str` | Yes |  |
-| `source_image_url` | `str` | Yes |  |
-| `tag` | `list` | Yes |  |
-| `template_slug` | `str` | Yes |  |
+| `sourceImageUrl` | `str` | Yes |  |
+| `tags` | `list` | Yes |  |
+| `templateSlug` | `str` | Yes |  |
 | `title` | `str` | Yes |  |
 | `visibility` | `str` | Yes |  |
 | `watermark` | `dict` | Yes |  |
@@ -1658,29 +1718,29 @@ public_template_media_item = client.PublicTemplateMediaItem()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `bool` | No |  |
-| `asset_byte` | `Any` | No |  |
-| `asset_content_type` | `str` | No |  |
-| `box_count` | `int` | No |  |
-| `caption` | `list` | Yes |  |
-| `caption_count` | `int` | No |  |
-| `category` | `list` | No |  |
+| `assetBytes` | `int | None` | No |  |
+| `assetContentType` | `str` | No |  |
+| `boxCount` | `int` | No |  |
+| `captionCount` | `int` | No |  |
+| `captions` | `list` | Yes |  |
+| `categories` | `list` | No |  |
 | `description` | `str` | Yes |  |
-| `duration_m` | `Any` | No |  |
-| `example_image_url` | `Any` | No |  |
-| `frame_count` | `Any` | No |  |
-| `height` | `Any` | Yes |  |
+| `durationMs` | `int | None` | No |  |
+| `exampleImageUrl` | `str | None` | No |  |
+| `frameCount` | `int | None` | No |  |
+| `height` | `float | None` | Yes |  |
 | `id` | `str` | Yes |  |
-| `image_url` | `str` | Yes |  |
-| `media_type` | `str` | Yes |  |
+| `imageUrl` | `str` | Yes |  |
+| `mediaType` | `str` | Yes |  |
 | `name` | `str` | Yes |  |
-| `poster_image_url` | `str` | No |  |
-| `preview_image_url` | `str` | No |  |
-| `quality_status` | `str` | No |  |
+| `posterImageUrl` | `str` | No |  |
+| `previewImageUrl` | `str` | No |  |
+| `qualityStatus` | `str` | No |  |
 | `slug` | `str` | Yes |  |
-| `source_template_id` | `Any` | Yes |  |
-| `source_url` | `str` | No |  |
-| `tag` | `list` | Yes |  |
-| `width` | `Any` | Yes |  |
+| `sourceTemplateId` | `str | None` | Yes |  |
+| `sourceUrl` | `str` | No |  |
+| `tags` | `list` | Yes |  |
+| `width` | `float | None` | Yes |  |
 
 ### Operations
 
@@ -1735,10 +1795,10 @@ standalone_agent_bootstrap = client.StandaloneAgentBootstrap()
 | `handle` | `str` | Yes |  |
 | `locale` | `str` | No |  |
 | `name` | `str` | Yes |  |
-| `style_preset` | `str` | No |  |
-| `system_prompt` | `str` | No |  |
-| `watermark_text` | `str` | No |  |
-| `website_url` | `str` | No |  |
+| `stylePreset` | `str` | No |  |
+| `systemPrompt` | `str` | No |  |
+| `watermarkText` | `str` | No |  |
+| `websiteUrl` | `str` | No |  |
 
 ### Operations
 
@@ -1793,70 +1853,70 @@ template = client.Template()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `bool` | No |  |
-| `asset_byte` | `Any` | No |  |
-| `asset_content_type` | `str` | No |  |
-| `box_count` | `int` | No |  |
-| `caption` | `list` | No |  |
-| `caption_count` | `int` | No |  |
-| `category` | `list` | No |  |
+| `assetBytes` | `int | None` | No |  |
+| `assetContentType` | `str` | No |  |
+| `boxCount` | `int` | No |  |
+| `captionCount` | `int` | No |  |
+| `captions` | `list` | No |  |
+| `categories` | `list` | No |  |
 | `description` | `str` | Yes |  |
-| `duration_m` | `int` | No |  |
-| `example_image_url` | `Any` | No |  |
+| `durationMs` | `int` | No |  |
+| `exampleImageUrl` | `str | None` | No |  |
 | `fps` | `int` | No |  |
-| `frame_count` | `Any` | No |  |
-| `gif_slug` | `str` | No |  |
-| `height` | `Any` | Yes |  |
+| `frameCount` | `int | None` | No |  |
+| `gifSlug` | `str` | No |  |
+| `height` | `float | None` | Yes |  |
 | `id` | `str` | Yes |  |
-| `image_url` | `str` | Yes |  |
-| `media_type` | `str` | Yes |  |
+| `imageUrl` | `str` | Yes |  |
+| `mediaType` | `str` | Yes |  |
 | `name` | `str` | Yes |  |
-| `poster_image_url` | `str` | No |  |
-| `preview_image_url` | `str` | No |  |
-| `quality_status` | `str` | No |  |
-| `return_base64` | `bool` | No |  |
+| `posterImageUrl` | `str` | No |  |
+| `previewImageUrl` | `str` | No |  |
+| `qualityStatus` | `str` | No |  |
+| `returnBase64` | `bool` | No |  |
 | `slug` | `str` | Yes |  |
-| `source_template_id` | `Any` | Yes |  |
-| `source_url` | `str` | No |  |
-| `start_m` | `int` | No |  |
-| `tag` | `list` | No |  |
+| `sourceTemplateId` | `str | None` | Yes |  |
+| `sourceUrl` | `str` | No |  |
+| `startMs` | `int` | No |  |
+| `tags` | `list` | No |  |
 | `title` | `str` | No |  |
-| `width` | `Any` | Yes |  |
-| `width_px` | `int` | No |  |
+| `width` | `float | None` | Yes |  |
+| `widthPx` | `int` | No |  |
 
 ### Field Usage by Operation
 
 | Field | list | create |
 | --- | --- | --- |
 | `animated` | - | - |
-| `asset_byte` | - | - |
-| `asset_content_type` | - | - |
-| `box_count` | - | - |
-| `caption` | Yes | - |
-| `caption_count` | - | - |
-| `category` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | Yes | - |
+| `categories` | - | - |
 | `description` | - | - |
-| `duration_m` | - | - |
-| `example_image_url` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
 | `fps` | - | - |
-| `frame_count` | - | - |
-| `gif_slug` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
 | `height` | - | - |
 | `id` | - | - |
-| `image_url` | - | - |
-| `media_type` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
 | `name` | - | - |
-| `poster_image_url` | - | - |
-| `preview_image_url` | - | - |
-| `quality_status` | - | - |
-| `return_base64` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
 | `slug` | - | - |
-| `source_template_id` | - | - |
-| `source_url` | - | - |
-| `start_m` | - | - |
-| `tag` | Yes | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | Yes | - |
 | `title` | - | - |
 | `width` | - | - |
-| `width_px` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
 
@@ -1867,6 +1927,14 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Template().create({
     "slug": "example_slug",  # str
+    "description": "example_description",  # str
+    "height": "example_height",  # float | None
+    "id": "example_id",  # str
+    "imageUrl": "example_imageUrl",  # str
+    "mediaType": "example_mediaType",  # str
+    "name": "example_name",  # str
+    "sourceTemplateId": "example_sourceTemplateId",  # str | None
+    "width": "example_width",  # float | None
 })
 ```
 
@@ -1920,29 +1988,29 @@ template_search = client.TemplateSearch()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `bool` | No |  |
-| `asset_byte` | `Any` | No |  |
-| `asset_content_type` | `str` | No |  |
-| `box_count` | `int` | No |  |
-| `caption` | `list` | Yes |  |
-| `caption_count` | `int` | No |  |
-| `category` | `list` | No |  |
+| `assetBytes` | `int | None` | No |  |
+| `assetContentType` | `str` | No |  |
+| `boxCount` | `int` | No |  |
+| `captionCount` | `int` | No |  |
+| `captions` | `list` | Yes |  |
+| `categories` | `list` | No |  |
 | `description` | `str` | Yes |  |
-| `duration_m` | `Any` | No |  |
-| `example_image_url` | `Any` | No |  |
-| `frame_count` | `Any` | No |  |
-| `height` | `Any` | Yes |  |
+| `durationMs` | `int | None` | No |  |
+| `exampleImageUrl` | `str | None` | No |  |
+| `frameCount` | `int | None` | No |  |
+| `height` | `float | None` | Yes |  |
 | `id` | `str` | Yes |  |
-| `image_url` | `str` | Yes |  |
-| `media_type` | `str` | Yes |  |
+| `imageUrl` | `str` | Yes |  |
+| `mediaType` | `str` | Yes |  |
 | `name` | `str` | Yes |  |
-| `poster_image_url` | `str` | No |  |
-| `preview_image_url` | `str` | No |  |
-| `quality_status` | `str` | No |  |
+| `posterImageUrl` | `str` | No |  |
+| `previewImageUrl` | `str` | No |  |
+| `qualityStatus` | `str` | No |  |
 | `slug` | `str` | Yes |  |
-| `source_template_id` | `Any` | Yes |  |
-| `source_url` | `str` | No |  |
-| `tag` | `list` | Yes |  |
-| `width` | `Any` | Yes |  |
+| `sourceTemplateId` | `str | None` | Yes |  |
+| `sourceUrl` | `str` | No |  |
+| `tags` | `list` | Yes |  |
+| `width` | `float | None` | Yes |  |
 
 ### Operations
 
@@ -1996,17 +2064,17 @@ trend_alert = client.TrendAlert()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `str` | Yes |  |
-| `actor_id` | `str` | Yes |  |
+| `actorId` | `str` | Yes |  |
 | `aggressiveness` | `float` | No |  |
-| `alert_id` | `str` | Yes |  |
-| `channel` | `list` | No |  |
-| `deliver_all_alert` | `bool` | No |  |
+| `alertId` | `str` | Yes |  |
+| `channels` | `list` | No |  |
+| `deliverAllAlerts` | `bool` | No |  |
 | `event` | `dict` | No |  |
-| `explicit_niche` | `list` | No |  |
-| `explicit_region` | `list` | No |  |
-| `explicit_source` | `list` | No |  |
-| `explicit_topic` | `list` | No |  |
-| `follower_count` | `int` | No |  |
+| `explicitNiches` | `list` | No |  |
+| `explicitRegions` | `list` | No |  |
+| `explicitSources` | `list` | No |  |
+| `explicitTopics` | `list` | No |  |
+| `followerCount` | `int` | No |  |
 | `niche` | `str` | No |  |
 | `region` | `str` | No |  |
 | `source` | `str` | No |  |
@@ -2021,8 +2089,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.TrendAlert().create({
     "action": "example_action",  # str
-    "actor_id": "example_actor_id",  # str
-    "alert_id": "example_alert_id",  # str
+    "actorId": "example_actorId",  # str
+    "alertId": "example_alertId",  # str
     "topic": "example_topic",  # str
 })
 ```
@@ -2121,100 +2189,100 @@ video = client.Video()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `str` | No |  |
-| `asset_id` | `str` | No |  |
-| `at_m` | `float` | No |  |
-| `audio_asset_id` | `str` | No |  |
-| `beat_offset_m` | `int` | No |  |
-| `bitrate_kbp` | `float` | No |  |
+| `assetId` | `str` | No |  |
+| `atMs` | `float` | No |  |
+| `audioAssetId` | `str` | No |  |
+| `beatOffsetMs` | `int` | No |  |
+| `bitrateKbps` | `float` | No |  |
 | `bpm` | `int` | No |  |
 | `cancelled` | `bool` | No |  |
 | `container` | `str` | No |  |
-| `duration_m` | `float` | No |  |
-| `duration_second` | `float` | Yes |  |
+| `durationMs` | `float` | No |  |
+| `durationSeconds` | `float` | Yes |  |
 | `easing` | `str` | No |  |
 | `error` | `str` | No |  |
-| `frame_rate` | `float` | No |  |
-| `input_format` | `str` | Yes |  |
+| `frameRate` | `float` | No |  |
+| `inputFormat` | `str` | Yes |  |
 | `intensity` | `float` | No |  |
-| `job_id` | `str` | No |  |
+| `jobId` | `str` | No |  |
 | `locale` | `str` | No |  |
-| `mime_type` | `str` | Yes |  |
+| `mimeType` | `str` | Yes |  |
 | `name` | `str` | No |  |
-| `offset_m` | `float` | No |  |
-| `output_preset_id` | `str` | Yes |  |
-| `output_url` | `str` | No |  |
-| `plan_tier` | `str` | Yes |  |
-| `preset_id` | `str` | Yes |  |
-| `progress_percent` | `float` | No |  |
+| `offsetMs` | `float` | No |  |
+| `outputPresetId` | `str` | Yes |  |
+| `outputUrl` | `str` | No |  |
+| `planTier` | `str` | Yes |  |
+| `presetId` | `str` | Yes |  |
+| `progressPercent` | `float` | No |  |
 | `project` | `dict` | No |  |
-| `project_id` | `str` | No |  |
+| `projectId` | `str` | No |  |
 | `property` | `str` | No |  |
-| `source_device_id` | `str` | No |  |
-| `source_url` | `str` | No |  |
+| `sourceDeviceId` | `str` | No |  |
+| `sourceUrl` | `str` | No |  |
 | `stage` | `str` | No |  |
-| `start_m` | `float` | No |  |
-| `style_preset_id` | `str` | No |  |
-| `sync_to_beat_grid` | `bool` | No |  |
+| `startMs` | `float` | No |  |
+| `stylePresetId` | `str` | No |  |
+| `syncToBeatGrid` | `bool` | No |  |
 | `tone` | `str` | No |  |
-| `track_id` | `str` | No |  |
+| `trackId` | `str` | No |  |
 | `transcript` | `str` | No |  |
-| `trend_keyword` | `list` | No |  |
+| `trendKeywords` | `list` | No |  |
 | `type` | `str` | No |  |
-| `updated_at` | `str` | No |  |
+| `updatedAt` | `str` | No |  |
 | `value` | `float` | No |  |
-| `watermark_enabled` | `bool` | No |  |
-| `watermark_text` | `str` | No |  |
-| `worker_id` | `str` | No |  |
+| `watermarkEnabled` | `bool` | No |  |
+| `watermarkText` | `str` | No |  |
+| `workerId` | `str` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | Yes |
-| `asset_id` | - | - |
-| `at_m` | - | - |
-| `audio_asset_id` | - | - |
-| `beat_offset_m` | - | - |
-| `bitrate_kbp` | - | - |
+| `assetId` | - | - |
+| `atMs` | - | - |
+| `audioAssetId` | - | - |
+| `beatOffsetMs` | - | - |
+| `bitrateKbps` | - | - |
 | `bpm` | - | - |
 | `cancelled` | - | - |
 | `container` | - | - |
-| `duration_m` | - | - |
-| `duration_second` | - | Yes |
+| `durationMs` | - | - |
+| `durationSeconds` | - | Yes |
 | `easing` | - | - |
 | `error` | - | - |
-| `frame_rate` | - | - |
-| `input_format` | - | - |
+| `frameRate` | - | - |
+| `inputFormat` | - | - |
 | `intensity` | - | - |
-| `job_id` | - | - |
+| `jobId` | - | - |
 | `locale` | - | - |
-| `mime_type` | - | - |
+| `mimeType` | - | - |
 | `name` | - | - |
-| `offset_m` | - | - |
-| `output_preset_id` | - | Yes |
-| `output_url` | - | - |
-| `plan_tier` | - | Yes |
-| `preset_id` | - | - |
-| `progress_percent` | - | - |
+| `offsetMs` | - | - |
+| `outputPresetId` | - | Yes |
+| `outputUrl` | - | - |
+| `planTier` | - | Yes |
+| `presetId` | - | - |
+| `progressPercent` | - | - |
 | `project` | - | - |
-| `project_id` | - | - |
+| `projectId` | - | - |
 | `property` | - | - |
-| `source_device_id` | - | - |
-| `source_url` | - | - |
+| `sourceDeviceId` | - | - |
+| `sourceUrl` | - | - |
 | `stage` | - | - |
-| `start_m` | - | - |
-| `style_preset_id` | - | - |
-| `sync_to_beat_grid` | - | - |
+| `startMs` | - | - |
+| `stylePresetId` | - | - |
+| `syncToBeatGrid` | - | - |
 | `tone` | - | - |
-| `track_id` | - | - |
+| `trackId` | - | - |
 | `transcript` | - | - |
-| `trend_keyword` | - | - |
+| `trendKeywords` | - | - |
 | `type` | - | - |
-| `updated_at` | - | - |
+| `updatedAt` | - | - |
 | `value` | - | - |
-| `watermark_enabled` | - | - |
-| `watermark_text` | - | - |
-| `worker_id` | - | - |
+| `watermarkEnabled` | - | - |
+| `watermarkText` | - | - |
+| `workerId` | - | - |
 
 ### Operations
 
@@ -2224,12 +2292,12 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Video().create({
-    "duration_second": 1,  # float
-    "input_format": "example_input_format",  # str
-    "mime_type": "example_mime_type",  # str
-    "output_preset_id": "example_output_preset_id",  # str
-    "plan_tier": "example_plan_tier",  # str
-    "preset_id": "example_preset_id",  # str
+    "durationSeconds": 1,  # float
+    "inputFormat": "example_inputFormat",  # str
+    "mimeType": "example_mimeType",  # str
+    "outputPresetId": "example_outputPresetId",  # str
+    "planTier": "example_planTier",  # str
+    "presetId": "example_presetId",  # str
 })
 ```
 

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import MemesioContentCreationControl
-from core.error import MemesioContentCreationError
-from core.result import MemesioContentCreationResult
-from core.spec import MemesioContentCreationSpec
+from memesiocontentcreation_sdk.config import make_config
+from memesiocontentcreation_sdk.features import _make_feature
+from memesiocontentcreation_sdk.core.control import MemesioContentCreationControl
+from memesiocontentcreation_sdk.core.error import MemesioContentCreationError
+from memesiocontentcreation_sdk.core.result import MemesioContentCreationResult
+from memesiocontentcreation_sdk.core.spec import MemesioContentCreationSpec
 
 
 # True when this SDK was generated with the named feature.

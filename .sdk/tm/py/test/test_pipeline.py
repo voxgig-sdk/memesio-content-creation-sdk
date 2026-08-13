@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import MemesioContentCreationSDK
-from core.error import MemesioContentCreationError
-from core.result import MemesioContentCreationResult
-from core.response import MemesioContentCreationResponse
-from core.spec import MemesioContentCreationSpec
-from feature.base_feature import MemesioContentCreationBaseFeature
+from projectname_sdk.core.error import MemesioContentCreationError
+from projectname_sdk.core.result import MemesioContentCreationResult
+from projectname_sdk.core.response import MemesioContentCreationResponse
+from projectname_sdk.core.spec import MemesioContentCreationSpec
+from projectname_sdk.feature.base_feature import MemesioContentCreationBaseFeature
 
 
 def _client():

@@ -43,8 +43,8 @@ class MemesioContentCreationTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('MEMESIOCONTENTCREATION_TEST_LIVE');
-        $override = self::getenv('MEMESIOCONTENTCREATION_TEST_OVERRIDE');
+        $live = self::getenv('MEMESIO_CONTENT_CREATION_TEST_LIVE');
+        $override = self::getenv('MEMESIO_CONTENT_CREATION_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class MemesioContentCreationTestRunner
             }
         }
 
-        $explain = self::getenv('MEMESIOCONTENTCREATION_TEST_EXPLAIN');
+        $explain = self::getenv('MEMESIO_CONTENT_CREATION_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['MEMESIOCONTENTCREATION_TEST_EXPLAIN'] = $explain;
+            $m['MEMESIO_CONTENT_CREATION_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

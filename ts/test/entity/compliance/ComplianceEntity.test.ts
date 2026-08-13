@@ -26,8 +26,8 @@ import {
 describe('ComplianceEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,7 +62,7 @@ describe('ComplianceEntity', async () => {
     // LOAD
     const compliance_ref01_ent = client.Compliance()
     const compliance_ref01_match_dt0: any = {}
-    const compliance_ref01_data_dt0 = await compliance_ref01_ent.load(compliance_ref01_match_dt0)
+    const compliance_ref01_data_dt0 = (await compliance_ref01_ent.load(compliance_ref01_match_dt0)).data()
     assert(null != compliance_ref01_data_dt0)
 
 

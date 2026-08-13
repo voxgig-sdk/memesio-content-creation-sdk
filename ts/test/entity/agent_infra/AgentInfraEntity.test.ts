@@ -26,8 +26,8 @@ import {
 describe('AgentInfraEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -63,20 +63,16 @@ describe('AgentInfraEntity', async () => {
     let agent_infra_ref01_data = setup.data.new.agent_infra['agent_infra_ref01']
     agent_infra_ref01_data['agent_id'] = setup.idmap['agent01']
 
-    agent_infra_ref01_data = await agent_infra_ref01_ent.create(agent_infra_ref01_data)
+    agent_infra_ref01_data = (await agent_infra_ref01_ent.create(agent_infra_ref01_data)).data()
     assert(null != agent_infra_ref01_data)
 
 
     // LOAD
     const agent_infra_ref01_match_dt0: any = {}
-    const agent_infra_ref01_data_dt0 = await agent_infra_ref01_ent.load(agent_infra_ref01_match_dt0)
+    const agent_infra_ref01_data_dt0 = (await agent_infra_ref01_ent.load(agent_infra_ref01_match_dt0)).data()
     assert(null != agent_infra_ref01_data_dt0)
 
 
-    // REMOVE
-    const agent_infra_ref01_match_rm0: any = { id: agent_infra_ref01_data.id }
-    await agent_infra_ref01_ent.remove(agent_infra_ref01_match_rm0)
-  
 
   })
 })

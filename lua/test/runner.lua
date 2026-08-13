@@ -35,8 +35,8 @@ end
 
 
 function runner.env_override(m)
-  local live = runner.getenv("MEMESIOCONTENTCREATION_TEST_LIVE")
-  local override = runner.getenv("MEMESIOCONTENTCREATION_TEST_OVERRIDE")
+  local live = runner.getenv("MEMESIO_CONTENT_CREATION_TEST_LIVE")
+  local override = runner.getenv("MEMESIO_CONTENT_CREATION_TEST_OVERRIDE")
 
   if live == "TRUE" or override == "TRUE" then
     for key, _ in pairs(m) do
@@ -56,9 +56,9 @@ function runner.env_override(m)
     end
   end
 
-  local explain = runner.getenv("MEMESIOCONTENTCREATION_TEST_EXPLAIN")
+  local explain = runner.getenv("MEMESIO_CONTENT_CREATION_TEST_EXPLAIN")
   if explain ~= nil and explain ~= "" then
-    m["MEMESIOCONTENTCREATION_TEST_EXPLAIN"] = explain
+    m["MEMESIO_CONTENT_CREATION_TEST_EXPLAIN"] = explain
   end
 
   return m

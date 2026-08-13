@@ -26,8 +26,8 @@ import {
 describe('AiJobEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,14 +62,14 @@ describe('AiJobEntity', async () => {
     const ai_job_ref01_ent = client.AiJob()
     let ai_job_ref01_data = setup.data.new.ai_job['ai_job_ref01']
 
-    ai_job_ref01_data = await ai_job_ref01_ent.create(ai_job_ref01_data)
+    ai_job_ref01_data = (await ai_job_ref01_ent.create(ai_job_ref01_data)).data()
     assert(null != ai_job_ref01_data.id)
 
 
     // LOAD
     const ai_job_ref01_match_dt0: any = {}
     ai_job_ref01_match_dt0.id = ai_job_ref01_data.id
-    const ai_job_ref01_data_dt0 = await ai_job_ref01_ent.load(ai_job_ref01_match_dt0)
+    const ai_job_ref01_data_dt0 = (await ai_job_ref01_ent.load(ai_job_ref01_match_dt0)).data()
     assert(ai_job_ref01_data_dt0.id === ai_job_ref01_data.id)
 
 

@@ -25,16 +25,16 @@
 # @!attribute [rw] status
 #   @return [String, nil]
 #
-# @!attribute [rw] style_preset
+# @!attribute [rw] stylePreset
 #   @return [String, nil]
 #
-# @!attribute [rw] system_prompt
+# @!attribute [rw] systemPrompt
 #   @return [String, nil]
 #
-# @!attribute [rw] watermark_text
+# @!attribute [rw] watermarkText
 #   @return [String, nil]
 #
-# @!attribute [rw] website_url
+# @!attribute [rw] websiteUrl
 #   @return [String, nil]
 Agent = Struct.new(
   :description,
@@ -42,10 +42,10 @@ Agent = Struct.new(
   :name,
   :slug,
   :status,
-  :style_preset,
-  :system_prompt,
-  :watermark_text,
-  :website_url,
+  :stylePreset,
+  :systemPrompt,
+  :watermarkText,
+  :websiteUrl,
   keyword_init: true
 )
 
@@ -75,16 +75,16 @@ AgentLoadMatch = Struct.new(
 # @!attribute [rw] status
 #   @return [String, nil]
 #
-# @!attribute [rw] style_preset
+# @!attribute [rw] stylePreset
 #   @return [String, nil]
 #
-# @!attribute [rw] system_prompt
+# @!attribute [rw] systemPrompt
 #   @return [String, nil]
 #
-# @!attribute [rw] watermark_text
+# @!attribute [rw] watermarkText
 #   @return [String, nil]
 #
-# @!attribute [rw] website_url
+# @!attribute [rw] websiteUrl
 #   @return [String, nil]
 AgentCreateData = Struct.new(
   :description,
@@ -92,10 +92,10 @@ AgentCreateData = Struct.new(
   :name,
   :slug,
   :status,
-  :style_preset,
-  :system_prompt,
-  :watermark_text,
-  :website_url,
+  :stylePreset,
+  :systemPrompt,
+  :watermarkText,
+  :websiteUrl,
   keyword_init: true
 )
 
@@ -103,8 +103,44 @@ AgentCreateData = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] description
+#   @return [String, nil]
+#
+# @!attribute [rw] locale
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] slug
+#   @return [String, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
+#
+# @!attribute [rw] stylePreset
+#   @return [String, nil]
+#
+# @!attribute [rw] systemPrompt
+#   @return [String, nil]
+#
+# @!attribute [rw] watermarkText
+#   @return [String, nil]
+#
+# @!attribute [rw] websiteUrl
+#   @return [String, nil]
 AgentUpdateData = Struct.new(
   :id,
+  :description,
+  :locale,
+  :name,
+  :slug,
+  :status,
+  :stylePreset,
+  :systemPrompt,
+  :watermarkText,
+  :websiteUrl,
   keyword_init: true
 )
 
@@ -113,22 +149,22 @@ AgentUpdateData = Struct.new(
 # @!attribute [rw] action
 #   @return [String]
 #
-# @!attribute [rw] chat_id
+# @!attribute [rw] chatId
 #   @return [String]
 #
-# @!attribute [rw] meme_slug
+# @!attribute [rw] memeSlug
 #   @return [String]
 #
 # @!attribute [rw] metadata
 #   @return [Hash, nil]
 #
-# @!attribute [rw] payout_reference
+# @!attribute [rw] payoutReference
 #   @return [String, nil]
 #
-# @!attribute [rw] payout_status
+# @!attribute [rw] payoutStatus
 #   @return [String, nil]
 #
-# @!attribute [rw] phone_or_chat_id
+# @!attribute [rw] phoneOrChatId
 #   @return [String]
 #
 # @!attribute [rw] prompt
@@ -137,31 +173,31 @@ AgentUpdateData = Struct.new(
 # @!attribute [rw] proof
 #   @return [Hash, nil]
 #
-# @!attribute [rw] quota_boost_per_day
+# @!attribute [rw] quotaBoostPerDay
 #   @return [Integer, nil]
 #
-# @!attribute [rw] scope
+# @!attribute [rw] scopes
 #   @return [Array, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [String, nil]
 #
-# @!attribute [rw] week_start
+# @!attribute [rw] weekStart
 #   @return [String, nil]
 AgentInfra = Struct.new(
   :action,
-  :chat_id,
-  :meme_slug,
+  :chatId,
+  :memeSlug,
   :metadata,
-  :payout_reference,
-  :payout_status,
-  :phone_or_chat_id,
+  :payoutReference,
+  :payoutStatus,
+  :phoneOrChatId,
   :prompt,
   :proof,
-  :quota_boost_per_day,
-  :scope,
-  :user_id,
-  :week_start,
+  :quotaBoostPerDay,
+  :scopes,
+  :userId,
+  :weekStart,
   keyword_init: true
 )
 
@@ -170,22 +206,22 @@ AgentInfra = Struct.new(
 # @!attribute [rw] action
 #   @return [String, nil]
 #
-# @!attribute [rw] chat_id
+# @!attribute [rw] chatId
 #   @return [String, nil]
 #
-# @!attribute [rw] meme_slug
+# @!attribute [rw] memeSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] metadata
 #   @return [Hash, nil]
 #
-# @!attribute [rw] payout_reference
+# @!attribute [rw] payoutReference
 #   @return [String, nil]
 #
-# @!attribute [rw] payout_status
+# @!attribute [rw] payoutStatus
 #   @return [String, nil]
 #
-# @!attribute [rw] phone_or_chat_id
+# @!attribute [rw] phoneOrChatId
 #   @return [String, nil]
 #
 # @!attribute [rw] prompt
@@ -194,31 +230,31 @@ AgentInfra = Struct.new(
 # @!attribute [rw] proof
 #   @return [Hash, nil]
 #
-# @!attribute [rw] quota_boost_per_day
+# @!attribute [rw] quotaBoostPerDay
 #   @return [Integer, nil]
 #
-# @!attribute [rw] scope
+# @!attribute [rw] scopes
 #   @return [Array, nil]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] userId
 #   @return [String, nil]
 #
-# @!attribute [rw] week_start
+# @!attribute [rw] weekStart
 #   @return [String, nil]
 AgentInfraLoadMatch = Struct.new(
   :action,
-  :chat_id,
-  :meme_slug,
+  :chatId,
+  :memeSlug,
   :metadata,
-  :payout_reference,
-  :payout_status,
-  :phone_or_chat_id,
+  :payoutReference,
+  :payoutStatus,
+  :phoneOrChatId,
   :prompt,
   :proof,
-  :quota_boost_per_day,
-  :scope,
-  :user_id,
-  :week_start,
+  :quotaBoostPerDay,
+  :scopes,
+  :userId,
+  :weekStart,
   keyword_init: true
 )
 
@@ -229,9 +265,61 @@ AgentInfraLoadMatch = Struct.new(
 #
 # @!attribute [rw] unlock_id
 #   @return [String, nil]
+#
+# @!attribute [rw] action
+#   @return [String]
+#
+# @!attribute [rw] chatId
+#   @return [String]
+#
+# @!attribute [rw] memeSlug
+#   @return [String]
+#
+# @!attribute [rw] metadata
+#   @return [Hash, nil]
+#
+# @!attribute [rw] payoutReference
+#   @return [String, nil]
+#
+# @!attribute [rw] payoutStatus
+#   @return [String, nil]
+#
+# @!attribute [rw] phoneOrChatId
+#   @return [String]
+#
+# @!attribute [rw] prompt
+#   @return [String]
+#
+# @!attribute [rw] proof
+#   @return [Hash, nil]
+#
+# @!attribute [rw] quotaBoostPerDay
+#   @return [Integer, nil]
+#
+# @!attribute [rw] scopes
+#   @return [Array, nil]
+#
+# @!attribute [rw] userId
+#   @return [String, nil]
+#
+# @!attribute [rw] weekStart
+#   @return [String, nil]
 AgentInfraCreateData = Struct.new(
   :agent_id,
   :unlock_id,
+  :action,
+  :chatId,
+  :memeSlug,
+  :metadata,
+  :payoutReference,
+  :payoutStatus,
+  :phoneOrChatId,
+  :prompt,
+  :proof,
+  :quotaBoostPerDay,
+  :scopes,
+  :userId,
+  :weekStart,
   keyword_init: true
 )
 
@@ -250,34 +338,34 @@ AgentInfraRemoveMatch = Struct.new(
 
 # AiCaption entity data model.
 #
-# @!attribute [rw] blocked_term
+# @!attribute [rw] blockedTerms
 #   @return [Array, nil]
 #
-# @!attribute [rw] canvas_text
+# @!attribute [rw] canvasText
 #   @return [Array]
 #
-# @!attribute [rw] caption_count
+# @!attribute [rw] captionCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] caption_set
+# @!attribute [rw] captionSets
 #   @return [Array, nil]
 #
-# @!attribute [rw] entity
+# @!attribute [rw] entities
 #   @return [Array, nil]
 #
-# @!attribute [rw] fallback_used
+# @!attribute [rw] fallbackUsed
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] generation_strategy
+# @!attribute [rw] generationStrategy
 #   @return [String, nil]
 #
 # @!attribute [rw] locale
 #   @return [String, nil]
 #
-# @!attribute [rw] meme_id
+# @!attribute [rw] memeId
 #   @return [String, nil]
 #
-# @!attribute [rw] meme_slug
+# @!attribute [rw] memeSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] name
@@ -286,115 +374,115 @@ AgentInfraRemoveMatch = Struct.new(
 # @!attribute [rw] ok
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] option_count
+# @!attribute [rw] optionCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] owner_token
+# @!attribute [rw] ownerToken
 #   @return [String, nil]
 #
-# @!attribute [rw] provider_id
+# @!attribute [rw] providerId
 #   @return [String, nil]
 #
-# @!attribute [rw] reference_caption
+# @!attribute [rw] referenceCaptions
 #   @return [Array, nil]
 #
-# @!attribute [rw] rewrite_note
+# @!attribute [rw] rewriteNote
 #   @return [String, nil]
 #
-# @!attribute [rw] scene_summary
+# @!attribute [rw] sceneSummary
 #   @return [String, nil]
 #
-# @!attribute [rw] template_description
+# @!attribute [rw] templateDescription
 #   @return [String, nil]
 #
-# @!attribute [rw] template_name
+# @!attribute [rw] templateName
 #   @return [String, nil]
 #
-# @!attribute [rw] template_tag
+# @!attribute [rw] templateTags
 #   @return [Array, nil]
 #
 # @!attribute [rw] tone
 #   @return [String]
 #
-# @!attribute [rw] tone_cue
+# @!attribute [rw] toneCues
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_keyword
+# @!attribute [rw] trendKeywords
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_reference
+# @!attribute [rw] trendReferences
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_signal
+# @!attribute [rw] trendSignals
 #   @return [Array, nil]
 #
-# @!attribute [rw] variation_offset
+# @!attribute [rw] variationOffset
 #   @return [Integer, nil]
 #
-# @!attribute [rw] voice_rule
+# @!attribute [rw] voiceRules
 #   @return [Array, nil]
 AiCaption = Struct.new(
-  :blocked_term,
-  :canvas_text,
-  :caption_count,
-  :caption_set,
-  :entity,
-  :fallback_used,
-  :generation_strategy,
+  :blockedTerms,
+  :canvasText,
+  :captionCount,
+  :captionSets,
+  :entities,
+  :fallbackUsed,
+  :generationStrategy,
   :locale,
-  :meme_id,
-  :meme_slug,
+  :memeId,
+  :memeSlug,
   :name,
   :ok,
-  :option_count,
-  :owner_token,
-  :provider_id,
-  :reference_caption,
-  :rewrite_note,
-  :scene_summary,
-  :template_description,
-  :template_name,
-  :template_tag,
+  :optionCount,
+  :ownerToken,
+  :providerId,
+  :referenceCaptions,
+  :rewriteNote,
+  :sceneSummary,
+  :templateDescription,
+  :templateName,
+  :templateTags,
   :tone,
-  :tone_cue,
-  :trend_keyword,
-  :trend_reference,
-  :trend_signal,
-  :variation_offset,
-  :voice_rule,
+  :toneCues,
+  :trendKeywords,
+  :trendReferences,
+  :trendSignals,
+  :variationOffset,
+  :voiceRules,
   keyword_init: true
 )
 
 # Request payload for AiCaption#load.
 #
-# @!attribute [rw] blocked_term
+# @!attribute [rw] blockedTerms
 #   @return [Array, nil]
 #
-# @!attribute [rw] canvas_text
+# @!attribute [rw] canvasText
 #   @return [Array, nil]
 #
-# @!attribute [rw] caption_count
+# @!attribute [rw] captionCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] caption_set
+# @!attribute [rw] captionSets
 #   @return [Array, nil]
 #
-# @!attribute [rw] entity
+# @!attribute [rw] entities
 #   @return [Array, nil]
 #
-# @!attribute [rw] fallback_used
+# @!attribute [rw] fallbackUsed
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] generation_strategy
+# @!attribute [rw] generationStrategy
 #   @return [String, nil]
 #
 # @!attribute [rw] locale
 #   @return [String, nil]
 #
-# @!attribute [rw] meme_id
+# @!attribute [rw] memeId
 #   @return [String, nil]
 #
-# @!attribute [rw] meme_slug
+# @!attribute [rw] memeSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] name
@@ -403,115 +491,115 @@ AiCaption = Struct.new(
 # @!attribute [rw] ok
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] option_count
+# @!attribute [rw] optionCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] owner_token
+# @!attribute [rw] ownerToken
 #   @return [String, nil]
 #
-# @!attribute [rw] provider_id
+# @!attribute [rw] providerId
 #   @return [String, nil]
 #
-# @!attribute [rw] reference_caption
+# @!attribute [rw] referenceCaptions
 #   @return [Array, nil]
 #
-# @!attribute [rw] rewrite_note
+# @!attribute [rw] rewriteNote
 #   @return [String, nil]
 #
-# @!attribute [rw] scene_summary
+# @!attribute [rw] sceneSummary
 #   @return [String, nil]
 #
-# @!attribute [rw] template_description
+# @!attribute [rw] templateDescription
 #   @return [String, nil]
 #
-# @!attribute [rw] template_name
+# @!attribute [rw] templateName
 #   @return [String, nil]
 #
-# @!attribute [rw] template_tag
+# @!attribute [rw] templateTags
 #   @return [Array, nil]
 #
 # @!attribute [rw] tone
 #   @return [String, nil]
 #
-# @!attribute [rw] tone_cue
+# @!attribute [rw] toneCues
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_keyword
+# @!attribute [rw] trendKeywords
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_reference
+# @!attribute [rw] trendReferences
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_signal
+# @!attribute [rw] trendSignals
 #   @return [Array, nil]
 #
-# @!attribute [rw] variation_offset
+# @!attribute [rw] variationOffset
 #   @return [Integer, nil]
 #
-# @!attribute [rw] voice_rule
+# @!attribute [rw] voiceRules
 #   @return [Array, nil]
 AiCaptionLoadMatch = Struct.new(
-  :blocked_term,
-  :canvas_text,
-  :caption_count,
-  :caption_set,
-  :entity,
-  :fallback_used,
-  :generation_strategy,
+  :blockedTerms,
+  :canvasText,
+  :captionCount,
+  :captionSets,
+  :entities,
+  :fallbackUsed,
+  :generationStrategy,
   :locale,
-  :meme_id,
-  :meme_slug,
+  :memeId,
+  :memeSlug,
   :name,
   :ok,
-  :option_count,
-  :owner_token,
-  :provider_id,
-  :reference_caption,
-  :rewrite_note,
-  :scene_summary,
-  :template_description,
-  :template_name,
-  :template_tag,
+  :optionCount,
+  :ownerToken,
+  :providerId,
+  :referenceCaptions,
+  :rewriteNote,
+  :sceneSummary,
+  :templateDescription,
+  :templateName,
+  :templateTags,
   :tone,
-  :tone_cue,
-  :trend_keyword,
-  :trend_reference,
-  :trend_signal,
-  :variation_offset,
-  :voice_rule,
+  :toneCues,
+  :trendKeywords,
+  :trendReferences,
+  :trendSignals,
+  :variationOffset,
+  :voiceRules,
   keyword_init: true
 )
 
 # Request payload for AiCaption#create.
 #
-# @!attribute [rw] blocked_term
+# @!attribute [rw] blockedTerms
 #   @return [Array, nil]
 #
-# @!attribute [rw] canvas_text
+# @!attribute [rw] canvasText
 #   @return [Array]
 #
-# @!attribute [rw] caption_count
+# @!attribute [rw] captionCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] caption_set
+# @!attribute [rw] captionSets
 #   @return [Array, nil]
 #
-# @!attribute [rw] entity
+# @!attribute [rw] entities
 #   @return [Array, nil]
 #
-# @!attribute [rw] fallback_used
+# @!attribute [rw] fallbackUsed
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] generation_strategy
+# @!attribute [rw] generationStrategy
 #   @return [String, nil]
 #
 # @!attribute [rw] locale
 #   @return [String, nil]
 #
-# @!attribute [rw] meme_id
+# @!attribute [rw] memeId
 #   @return [String, nil]
 #
-# @!attribute [rw] meme_slug
+# @!attribute [rw] memeSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] name
@@ -520,82 +608,82 @@ AiCaptionLoadMatch = Struct.new(
 # @!attribute [rw] ok
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] option_count
+# @!attribute [rw] optionCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] owner_token
+# @!attribute [rw] ownerToken
 #   @return [String, nil]
 #
-# @!attribute [rw] provider_id
+# @!attribute [rw] providerId
 #   @return [String, nil]
 #
-# @!attribute [rw] reference_caption
+# @!attribute [rw] referenceCaptions
 #   @return [Array, nil]
 #
-# @!attribute [rw] rewrite_note
+# @!attribute [rw] rewriteNote
 #   @return [String, nil]
 #
-# @!attribute [rw] scene_summary
+# @!attribute [rw] sceneSummary
 #   @return [String, nil]
 #
-# @!attribute [rw] template_description
+# @!attribute [rw] templateDescription
 #   @return [String, nil]
 #
-# @!attribute [rw] template_name
+# @!attribute [rw] templateName
 #   @return [String, nil]
 #
-# @!attribute [rw] template_tag
+# @!attribute [rw] templateTags
 #   @return [Array, nil]
 #
 # @!attribute [rw] tone
 #   @return [String]
 #
-# @!attribute [rw] tone_cue
+# @!attribute [rw] toneCues
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_keyword
+# @!attribute [rw] trendKeywords
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_reference
+# @!attribute [rw] trendReferences
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_signal
+# @!attribute [rw] trendSignals
 #   @return [Array, nil]
 #
-# @!attribute [rw] variation_offset
+# @!attribute [rw] variationOffset
 #   @return [Integer, nil]
 #
-# @!attribute [rw] voice_rule
+# @!attribute [rw] voiceRules
 #   @return [Array, nil]
 AiCaptionCreateData = Struct.new(
-  :blocked_term,
-  :canvas_text,
-  :caption_count,
-  :caption_set,
-  :entity,
-  :fallback_used,
-  :generation_strategy,
+  :blockedTerms,
+  :canvasText,
+  :captionCount,
+  :captionSets,
+  :entities,
+  :fallbackUsed,
+  :generationStrategy,
   :locale,
-  :meme_id,
-  :meme_slug,
+  :memeId,
+  :memeSlug,
   :name,
   :ok,
-  :option_count,
-  :owner_token,
-  :provider_id,
-  :reference_caption,
-  :rewrite_note,
-  :scene_summary,
-  :template_description,
-  :template_name,
-  :template_tag,
+  :optionCount,
+  :ownerToken,
+  :providerId,
+  :referenceCaptions,
+  :rewriteNote,
+  :sceneSummary,
+  :templateDescription,
+  :templateName,
+  :templateTags,
   :tone,
-  :tone_cue,
-  :trend_keyword,
-  :trend_reference,
-  :trend_signal,
-  :variation_offset,
-  :voice_rule,
+  :toneCues,
+  :trendKeywords,
+  :trendReferences,
+  :trendSignals,
+  :variationOffset,
+  :voiceRules,
   keyword_init: true
 )
 
@@ -604,43 +692,43 @@ AiCaptionCreateData = Struct.new(
 # @!attribute [rw] action
 #   @return [String]
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String, nil]
 #
-# @!attribute [rw] after_state
+# @!attribute [rw] afterState
 #   @return [Hash, nil]
 #
-# @!attribute [rw] attempt
+# @!attribute [rw] attempts
 #   @return [Integer, nil]
 #
-# @!attribute [rw] before_state
+# @!attribute [rw] beforeState
 #   @return [Hash, nil]
 #
-# @!attribute [rw] brush_edit
+# @!attribute [rw] brushEdits
 #   @return [Array, nil]
 #
 # @!attribute [rw] capability
 #   @return [String]
 #
-# @!attribute [rw] celebrity_confidence
+# @!attribute [rw] celebrityConfidence
 #   @return [Float, nil]
 #
-# @!attribute [rw] consent_attested
+# @!attribute [rw] consentAttested
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
-# @!attribute [rw] detected_face_count
+# @!attribute [rw] detectedFaceCount
 #   @return [Float]
 #
-# @!attribute [rw] edge_refinement
+# @!attribute [rw] edgeRefinement
 #   @return [Float, nil]
 #
-# @!attribute [rw] estimated_cost_usd
+# @!attribute [rw] estimatedCostUsd
 #   @return [Float, nil]
 #
-# @!attribute [rw] frame_time_m
+# @!attribute [rw] frameTimeMs
 #   @return [Float, nil]
 #
 # @!attribute [rw] height
@@ -652,123 +740,123 @@ AiCaptionCreateData = Struct.new(
 # @!attribute [rw] input
 #   @return [Hash, nil]
 #
-# @!attribute [rw] layer_id
+# @!attribute [rw] layerId
 #   @return [String]
 #
-# @!attribute [rw] layer_type
+# @!attribute [rw] layerType
 #   @return [String, nil]
 #
-# @!attribute [rw] max_attempt
+# @!attribute [rw] maxAttempts
 #   @return [Integer, nil]
 #
-# @!attribute [rw] max_face
+# @!attribute [rw] maxFaces
 #   @return [Float, nil]
 #
-# @!attribute [rw] media_type
+# @!attribute [rw] mediaType
 #   @return [String, nil]
 #
 # @!attribute [rw] metadata
 #   @return [Hash, nil]
 #
-# @!attribute [rw] nsfw_score
+# @!attribute [rw] nsfwScore
 #   @return [Float, nil]
 #
 # @!attribute [rw] output
 #   @return [Hash, nil]
 #
-# @!attribute [rw] project_id
+# @!attribute [rw] projectId
 #   @return [String]
 #
-# @!attribute [rw] provider_id
+# @!attribute [rw] providerId
 #   @return [String, nil]
 #
 # @!attribute [rw] reason
 #   @return [String, nil]
 #
-# @!attribute [rw] run_after_m
+# @!attribute [rw] runAfterMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] source_asset_url
+# @!attribute [rw] sourceAssetUrl
 #   @return [String]
 #
-# @!attribute [rw] source_face_index
+# @!attribute [rw] sourceFaceIndex
 #   @return [Float, nil]
 #
-# @!attribute [rw] source_image_url
+# @!attribute [rw] sourceImageUrl
 #   @return [String]
 #
 # @!attribute [rw] status
 #   @return [String]
 #
-# @!attribute [rw] target_asset_url
+# @!attribute [rw] targetAssetUrl
 #   @return [String]
 #
-# @!attribute [rw] target_face_index
+# @!attribute [rw] targetFaceIndex
 #   @return [Float, nil]
 #
-# @!attribute [rw] timeout_m
+# @!attribute [rw] timeoutMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] trace_id
+# @!attribute [rw] traceId
 #   @return [String, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] version_id
+# @!attribute [rw] versionId
 #   @return [String, nil]
 #
 # @!attribute [rw] width
 #   @return [Float]
 #
-# @!attribute [rw] worker_id
+# @!attribute [rw] workerId
 #   @return [String]
 #
-# @!attribute [rw] workspace_id
+# @!attribute [rw] workspaceId
 #   @return [String, nil]
 AiJob = Struct.new(
   :action,
-  :actor_id,
-  :after_state,
-  :attempt,
-  :before_state,
-  :brush_edit,
+  :actorId,
+  :afterState,
+  :attempts,
+  :beforeState,
+  :brushEdits,
   :capability,
-  :celebrity_confidence,
-  :consent_attested,
-  :created_at,
-  :detected_face_count,
-  :edge_refinement,
-  :estimated_cost_usd,
-  :frame_time_m,
+  :celebrityConfidence,
+  :consentAttested,
+  :createdAt,
+  :detectedFaceCount,
+  :edgeRefinement,
+  :estimatedCostUsd,
+  :frameTimeMs,
   :height,
   :id,
   :input,
-  :layer_id,
-  :layer_type,
-  :max_attempt,
-  :max_face,
-  :media_type,
+  :layerId,
+  :layerType,
+  :maxAttempts,
+  :maxFaces,
+  :mediaType,
   :metadata,
-  :nsfw_score,
+  :nsfwScore,
   :output,
-  :project_id,
-  :provider_id,
+  :projectId,
+  :providerId,
   :reason,
-  :run_after_m,
-  :source_asset_url,
-  :source_face_index,
-  :source_image_url,
+  :runAfterMs,
+  :sourceAssetUrl,
+  :sourceFaceIndex,
+  :sourceImageUrl,
   :status,
-  :target_asset_url,
-  :target_face_index,
-  :timeout_m,
-  :trace_id,
-  :updated_at,
-  :version_id,
+  :targetAssetUrl,
+  :targetFaceIndex,
+  :timeoutMs,
+  :traceId,
+  :updatedAt,
+  :versionId,
   :width,
-  :worker_id,
-  :workspace_id,
+  :workerId,
+  :workspaceId,
   keyword_init: true
 )
 
@@ -785,35 +873,203 @@ AiJobLoadMatch = Struct.new(
 #
 # @!attribute [rw] job_id
 #   @return [String, nil]
+#
+# @!attribute [rw] action
+#   @return [String]
+#
+# @!attribute [rw] actorId
+#   @return [String, nil]
+#
+# @!attribute [rw] afterState
+#   @return [Hash, nil]
+#
+# @!attribute [rw] attempts
+#   @return [Integer, nil]
+#
+# @!attribute [rw] beforeState
+#   @return [Hash, nil]
+#
+# @!attribute [rw] brushEdits
+#   @return [Array, nil]
+#
+# @!attribute [rw] capability
+#   @return [String]
+#
+# @!attribute [rw] celebrityConfidence
+#   @return [Float, nil]
+#
+# @!attribute [rw] consentAttested
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] createdAt
+#   @return [String, nil]
+#
+# @!attribute [rw] detectedFaceCount
+#   @return [Float]
+#
+# @!attribute [rw] edgeRefinement
+#   @return [Float, nil]
+#
+# @!attribute [rw] estimatedCostUsd
+#   @return [Float, nil]
+#
+# @!attribute [rw] frameTimeMs
+#   @return [Float, nil]
+#
+# @!attribute [rw] height
+#   @return [Float]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] input
+#   @return [Hash, nil]
+#
+# @!attribute [rw] layerId
+#   @return [String]
+#
+# @!attribute [rw] layerType
+#   @return [String, nil]
+#
+# @!attribute [rw] maxAttempts
+#   @return [Integer, nil]
+#
+# @!attribute [rw] maxFaces
+#   @return [Float, nil]
+#
+# @!attribute [rw] mediaType
+#   @return [String, nil]
+#
+# @!attribute [rw] metadata
+#   @return [Hash, nil]
+#
+# @!attribute [rw] nsfwScore
+#   @return [Float, nil]
+#
+# @!attribute [rw] output
+#   @return [Hash, nil]
+#
+# @!attribute [rw] projectId
+#   @return [String]
+#
+# @!attribute [rw] providerId
+#   @return [String, nil]
+#
+# @!attribute [rw] reason
+#   @return [String, nil]
+#
+# @!attribute [rw] runAfterMs
+#   @return [Integer, nil]
+#
+# @!attribute [rw] sourceAssetUrl
+#   @return [String]
+#
+# @!attribute [rw] sourceFaceIndex
+#   @return [Float, nil]
+#
+# @!attribute [rw] sourceImageUrl
+#   @return [String]
+#
+# @!attribute [rw] status
+#   @return [String]
+#
+# @!attribute [rw] targetAssetUrl
+#   @return [String]
+#
+# @!attribute [rw] targetFaceIndex
+#   @return [Float, nil]
+#
+# @!attribute [rw] timeoutMs
+#   @return [Integer, nil]
+#
+# @!attribute [rw] traceId
+#   @return [String, nil]
+#
+# @!attribute [rw] updatedAt
+#   @return [String, nil]
+#
+# @!attribute [rw] versionId
+#   @return [String, nil]
+#
+# @!attribute [rw] width
+#   @return [Float]
+#
+# @!attribute [rw] workerId
+#   @return [String]
+#
+# @!attribute [rw] workspaceId
+#   @return [String, nil]
 AiJobCreateData = Struct.new(
   :job_id,
+  :action,
+  :actorId,
+  :afterState,
+  :attempts,
+  :beforeState,
+  :brushEdits,
+  :capability,
+  :celebrityConfidence,
+  :consentAttested,
+  :createdAt,
+  :detectedFaceCount,
+  :edgeRefinement,
+  :estimatedCostUsd,
+  :frameTimeMs,
+  :height,
+  :id,
+  :input,
+  :layerId,
+  :layerType,
+  :maxAttempts,
+  :maxFaces,
+  :mediaType,
+  :metadata,
+  :nsfwScore,
+  :output,
+  :projectId,
+  :providerId,
+  :reason,
+  :runAfterMs,
+  :sourceAssetUrl,
+  :sourceFaceIndex,
+  :sourceImageUrl,
+  :status,
+  :targetAssetUrl,
+  :targetFaceIndex,
+  :timeoutMs,
+  :traceId,
+  :updatedAt,
+  :versionId,
+  :width,
+  :workerId,
+  :workspaceId,
   keyword_init: true
 )
 
 # AiMemeGenerationSucceeded entity data model.
 #
-# @!attribute [rw] allow_heuristic_fallback
+# @!attribute [rw] allowHeuristicFallback
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captionSource
+#   @return [String, nil]
+#
+# @!attribute [rw] captions
 #   @return [Array, nil]
 #
-# @!attribute [rw] caption_source
+# @!attribute [rw] correlationId
 #   @return [String, nil]
 #
-# @!attribute [rw] correlation_id
-#   @return [String, nil]
-#
-# @!attribute [rw] degraded_from_async
+# @!attribute [rw] degradedFromAsync
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] editable_caption
+# @!attribute [rw] editableCaptions
 #   @return [Array, nil]
 #
 # @!attribute [rw] flow
 #   @return [String]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] mode
@@ -822,87 +1078,87 @@ AiJobCreateData = Struct.new(
 # @!attribute [rw] ok
 #   @return [Boolean]
 #
-# @!attribute [rw] preferred_provider_id
+# @!attribute [rw] preferredProviderId
 #   @return [String, nil]
 #
 # @!attribute [rw] prompt
 #   @return [String]
 #
-# @!attribute [rw] rewrite_note
+# @!attribute [rw] rewriteNote
 #   @return [String, nil]
 #
-# @!attribute [rw] run_id
+# @!attribute [rw] runId
 #   @return [String, nil]
 #
 # @!attribute [rw] status
 #   @return [String]
 #
-# @!attribute [rw] template_id
+# @!attribute [rw] templateId
 #   @return [String, nil]
 #
 # @!attribute [rw] tone
 #   @return [String, nil]
 #
-# @!attribute [rw] tone_cue
+# @!attribute [rw] toneCues
 #   @return [Array, nil]
 #
-# @!attribute [rw] variant
-#   @return [Array]
-#
-# @!attribute [rw] variant_count
+# @!attribute [rw] variantCount
 #   @return [Integer]
 #
-# @!attribute [rw] workspace_id
+# @!attribute [rw] variants
+#   @return [Array]
+#
+# @!attribute [rw] workspaceId
 #   @return [String, nil]
 AiMemeGenerationSucceeded = Struct.new(
-  :allow_heuristic_fallback,
-  :caption,
-  :caption_source,
-  :correlation_id,
-  :degraded_from_async,
-  :editable_caption,
+  :allowHeuristicFallback,
+  :captionSource,
+  :captions,
+  :correlationId,
+  :degradedFromAsync,
+  :editableCaptions,
   :flow,
-  :image_url,
+  :imageUrl,
   :mode,
   :ok,
-  :preferred_provider_id,
+  :preferredProviderId,
   :prompt,
-  :rewrite_note,
-  :run_id,
+  :rewriteNote,
+  :runId,
   :status,
-  :template_id,
+  :templateId,
   :tone,
-  :tone_cue,
-  :variant,
-  :variant_count,
-  :workspace_id,
+  :toneCues,
+  :variantCount,
+  :variants,
+  :workspaceId,
   keyword_init: true
 )
 
 # Request payload for AiMemeGenerationSucceeded#create.
 #
-# @!attribute [rw] allow_heuristic_fallback
+# @!attribute [rw] allowHeuristicFallback
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captionSource
+#   @return [String, nil]
+#
+# @!attribute [rw] captions
 #   @return [Array, nil]
 #
-# @!attribute [rw] caption_source
+# @!attribute [rw] correlationId
 #   @return [String, nil]
 #
-# @!attribute [rw] correlation_id
-#   @return [String, nil]
-#
-# @!attribute [rw] degraded_from_async
+# @!attribute [rw] degradedFromAsync
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] editable_caption
+# @!attribute [rw] editableCaptions
 #   @return [Array, nil]
 #
 # @!attribute [rw] flow
 #   @return [String]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] mode
@@ -911,195 +1167,195 @@ AiMemeGenerationSucceeded = Struct.new(
 # @!attribute [rw] ok
 #   @return [Boolean]
 #
-# @!attribute [rw] preferred_provider_id
+# @!attribute [rw] preferredProviderId
 #   @return [String, nil]
 #
 # @!attribute [rw] prompt
 #   @return [String]
 #
-# @!attribute [rw] rewrite_note
+# @!attribute [rw] rewriteNote
 #   @return [String, nil]
 #
-# @!attribute [rw] run_id
+# @!attribute [rw] runId
 #   @return [String, nil]
 #
 # @!attribute [rw] status
 #   @return [String]
 #
-# @!attribute [rw] template_id
+# @!attribute [rw] templateId
 #   @return [String, nil]
 #
 # @!attribute [rw] tone
 #   @return [String, nil]
 #
-# @!attribute [rw] tone_cue
+# @!attribute [rw] toneCues
 #   @return [Array, nil]
 #
-# @!attribute [rw] variant
-#   @return [Array]
-#
-# @!attribute [rw] variant_count
+# @!attribute [rw] variantCount
 #   @return [Integer]
 #
-# @!attribute [rw] workspace_id
+# @!attribute [rw] variants
+#   @return [Array]
+#
+# @!attribute [rw] workspaceId
 #   @return [String, nil]
 AiMemeGenerationSucceededCreateData = Struct.new(
-  :allow_heuristic_fallback,
-  :caption,
-  :caption_source,
-  :correlation_id,
-  :degraded_from_async,
-  :editable_caption,
+  :allowHeuristicFallback,
+  :captionSource,
+  :captions,
+  :correlationId,
+  :degradedFromAsync,
+  :editableCaptions,
   :flow,
-  :image_url,
+  :imageUrl,
   :mode,
   :ok,
-  :preferred_provider_id,
+  :preferredProviderId,
   :prompt,
-  :rewrite_note,
-  :run_id,
+  :rewriteNote,
+  :runId,
   :status,
-  :template_id,
+  :templateId,
   :tone,
-  :tone_cue,
-  :variant,
-  :variant_count,
-  :workspace_id,
+  :toneCues,
+  :variantCount,
+  :variants,
+  :workspaceId,
   keyword_init: true
 )
 
 # AiProvider entity data model.
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String, nil]
 #
-# @!attribute [rw] correlation_id
+# @!attribute [rw] correlationId
 #   @return [String, nil]
 #
 # @!attribute [rw] limit
 #   @return [Float, nil]
 #
-# @!attribute [rw] mapping_mode
+# @!attribute [rw] mappingMode
 #   @return [String, nil]
 #
-# @!attribute [rw] max_slot
+# @!attribute [rw] maxSlots
 #   @return [Integer, nil]
 #
 # @!attribute [rw] prompt
 #   @return [String]
 #
-# @!attribute [rw] source_image_url
+# @!attribute [rw] sourceImageUrl
 #   @return [String]
 #
-# @!attribute [rw] text
+# @!attribute [rw] texts
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_signal
+# @!attribute [rw] trendSignals
 #   @return [Array, nil]
 #
-# @!attribute [rw] workspace_id
+# @!attribute [rw] workspaceId
 #   @return [String, nil]
 AiProvider = Struct.new(
-  :actor_id,
-  :correlation_id,
+  :actorId,
+  :correlationId,
   :limit,
-  :mapping_mode,
-  :max_slot,
+  :mappingMode,
+  :maxSlots,
   :prompt,
-  :source_image_url,
-  :text,
-  :trend_signal,
-  :workspace_id,
+  :sourceImageUrl,
+  :texts,
+  :trendSignals,
+  :workspaceId,
   keyword_init: true
 )
 
 # Request payload for AiProvider#load.
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String, nil]
 #
-# @!attribute [rw] correlation_id
+# @!attribute [rw] correlationId
 #   @return [String, nil]
 #
 # @!attribute [rw] limit
 #   @return [Float, nil]
 #
-# @!attribute [rw] mapping_mode
+# @!attribute [rw] mappingMode
 #   @return [String, nil]
 #
-# @!attribute [rw] max_slot
+# @!attribute [rw] maxSlots
 #   @return [Integer, nil]
 #
 # @!attribute [rw] prompt
 #   @return [String, nil]
 #
-# @!attribute [rw] source_image_url
+# @!attribute [rw] sourceImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] text
+# @!attribute [rw] texts
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_signal
+# @!attribute [rw] trendSignals
 #   @return [Array, nil]
 #
-# @!attribute [rw] workspace_id
+# @!attribute [rw] workspaceId
 #   @return [String, nil]
 AiProviderLoadMatch = Struct.new(
-  :actor_id,
-  :correlation_id,
+  :actorId,
+  :correlationId,
   :limit,
-  :mapping_mode,
-  :max_slot,
+  :mappingMode,
+  :maxSlots,
   :prompt,
-  :source_image_url,
-  :text,
-  :trend_signal,
-  :workspace_id,
+  :sourceImageUrl,
+  :texts,
+  :trendSignals,
+  :workspaceId,
   keyword_init: true
 )
 
 # Request payload for AiProvider#create.
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String, nil]
 #
-# @!attribute [rw] correlation_id
+# @!attribute [rw] correlationId
 #   @return [String, nil]
 #
 # @!attribute [rw] limit
 #   @return [Float, nil]
 #
-# @!attribute [rw] mapping_mode
+# @!attribute [rw] mappingMode
 #   @return [String, nil]
 #
-# @!attribute [rw] max_slot
+# @!attribute [rw] maxSlots
 #   @return [Integer, nil]
 #
 # @!attribute [rw] prompt
 #   @return [String]
 #
-# @!attribute [rw] source_image_url
+# @!attribute [rw] sourceImageUrl
 #   @return [String]
 #
-# @!attribute [rw] text
+# @!attribute [rw] texts
 #   @return [Array, nil]
 #
-# @!attribute [rw] trend_signal
+# @!attribute [rw] trendSignals
 #   @return [Array, nil]
 #
-# @!attribute [rw] workspace_id
+# @!attribute [rw] workspaceId
 #   @return [String, nil]
 AiProviderCreateData = Struct.new(
-  :actor_id,
-  :correlation_id,
+  :actorId,
+  :correlationId,
   :limit,
-  :mapping_mode,
-  :max_slot,
+  :mappingMode,
+  :maxSlots,
   :prompt,
-  :source_image_url,
-  :text,
-  :trend_signal,
-  :workspace_id,
+  :sourceImageUrl,
+  :texts,
+  :trendSignals,
+  :workspaceId,
   keyword_init: true
 )
 
@@ -1113,7 +1369,7 @@ end
 
 # Auth entity data model.
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
 # @!attribute [rw] email
@@ -1122,7 +1378,7 @@ end
 # @!attribute [rw] password
 #   @return [String]
 Auth = Struct.new(
-  :display_name,
+  :displayName,
   :email,
   :password,
   keyword_init: true
@@ -1130,7 +1386,7 @@ Auth = Struct.new(
 
 # Request payload for Auth#create.
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
 # @!attribute [rw] email
@@ -1139,7 +1395,7 @@ Auth = Struct.new(
 # @!attribute [rw] password
 #   @return [String]
 AuthCreateData = Struct.new(
-  :display_name,
+  :displayName,
   :email,
   :password,
   keyword_init: true
@@ -1155,52 +1411,52 @@ end
 
 # Collaboration entity data model.
 #
-# @!attribute [rw] author_id
+# @!attribute [rw] authorId
 #   @return [String, nil]
 #
 # @!attribute [rw] message
 #   @return [String]
 #
-# @!attribute [rw] project_id
+# @!attribute [rw] projectId
 #   @return [String]
 Collaboration = Struct.new(
-  :author_id,
+  :authorId,
   :message,
-  :project_id,
+  :projectId,
   keyword_init: true
 )
 
 # Request payload for Collaboration#load.
 #
-# @!attribute [rw] author_id
+# @!attribute [rw] authorId
 #   @return [String, nil]
 #
 # @!attribute [rw] message
 #   @return [String, nil]
 #
-# @!attribute [rw] project_id
+# @!attribute [rw] projectId
 #   @return [String, nil]
 CollaborationLoadMatch = Struct.new(
-  :author_id,
+  :authorId,
   :message,
-  :project_id,
+  :projectId,
   keyword_init: true
 )
 
 # Request payload for Collaboration#create.
 #
-# @!attribute [rw] author_id
+# @!attribute [rw] authorId
 #   @return [String, nil]
 #
 # @!attribute [rw] message
 #   @return [String]
 #
-# @!attribute [rw] project_id
+# @!attribute [rw] projectId
 #   @return [String]
 CollaborationCreateData = Struct.new(
-  :author_id,
+  :authorId,
   :message,
-  :project_id,
+  :projectId,
   keyword_init: true
 )
 
@@ -1214,28 +1470,28 @@ end
 
 # CreateMeme entity data model.
 #
-# @!attribute [rw] canva
+# @!attribute [rw] canvas
 #   @return [Hash]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captions
 #   @return [Array]
 #
-# @!attribute [rw] generation_run_id
+# @!attribute [rw] generationRunId
 #   @return [Object, nil]
 #
-# @!attribute [rw] generation_variant_id
+# @!attribute [rw] generationVariantId
 #   @return [Object, nil]
 #
-# @!attribute [rw] image_data_url
+# @!attribute [rw] imageDataUrl
 #   @return [String]
 #
-# @!attribute [rw] overlay
+# @!attribute [rw] overlays
 #   @return [Array, nil]
 #
-# @!attribute [rw] source_image_url
+# @!attribute [rw] sourceImageUrl
 #   @return [String]
 #
-# @!attribute [rw] template_slug
+# @!attribute [rw] templateSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] title
@@ -1247,14 +1503,14 @@ end
 # @!attribute [rw] watermark
 #   @return [Hash]
 CreateMeme = Struct.new(
-  :canva,
-  :caption,
-  :generation_run_id,
-  :generation_variant_id,
-  :image_data_url,
-  :overlay,
-  :source_image_url,
-  :template_slug,
+  :canvas,
+  :captions,
+  :generationRunId,
+  :generationVariantId,
+  :imageDataUrl,
+  :overlays,
+  :sourceImageUrl,
+  :templateSlug,
   :title,
   :visibility,
   :watermark,
@@ -1263,28 +1519,28 @@ CreateMeme = Struct.new(
 
 # Request payload for CreateMeme#create.
 #
-# @!attribute [rw] canva
+# @!attribute [rw] canvas
 #   @return [Hash]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captions
 #   @return [Array]
 #
-# @!attribute [rw] generation_run_id
+# @!attribute [rw] generationRunId
 #   @return [Object, nil]
 #
-# @!attribute [rw] generation_variant_id
+# @!attribute [rw] generationVariantId
 #   @return [Object, nil]
 #
-# @!attribute [rw] image_data_url
+# @!attribute [rw] imageDataUrl
 #   @return [String]
 #
-# @!attribute [rw] overlay
+# @!attribute [rw] overlays
 #   @return [Array, nil]
 #
-# @!attribute [rw] source_image_url
+# @!attribute [rw] sourceImageUrl
 #   @return [String]
 #
-# @!attribute [rw] template_slug
+# @!attribute [rw] templateSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] title
@@ -1296,14 +1552,14 @@ CreateMeme = Struct.new(
 # @!attribute [rw] watermark
 #   @return [Hash]
 CreateMemeCreateData = Struct.new(
-  :canva,
-  :caption,
-  :generation_run_id,
-  :generation_variant_id,
-  :image_data_url,
-  :overlay,
-  :source_image_url,
-  :template_slug,
+  :canvas,
+  :captions,
+  :generationRunId,
+  :generationVariantId,
+  :imageDataUrl,
+  :overlays,
+  :sourceImageUrl,
+  :templateSlug,
   :title,
   :visibility,
   :watermark,
@@ -1318,12 +1574,12 @@ CreateMemeCreateData = Struct.new(
 # @!attribute [rw] prompt
 #   @return [String]
 #
-# @!attribute [rw] trend_signal
+# @!attribute [rw] trendSignals
 #   @return [Array, nil]
 DeveloperApi = Struct.new(
   :limit,
   :prompt,
-  :trend_signal,
+  :trendSignals,
   keyword_init: true
 )
 
@@ -1335,12 +1591,12 @@ DeveloperApi = Struct.new(
 # @!attribute [rw] prompt
 #   @return [String, nil]
 #
-# @!attribute [rw] trend_signal
+# @!attribute [rw] trendSignals
 #   @return [Array, nil]
 DeveloperApiLoadMatch = Struct.new(
   :limit,
   :prompt,
-  :trend_signal,
+  :trendSignals,
   keyword_init: true
 )
 
@@ -1352,21 +1608,21 @@ DeveloperApiLoadMatch = Struct.new(
 # @!attribute [rw] prompt
 #   @return [String]
 #
-# @!attribute [rw] trend_signal
+# @!attribute [rw] trendSignals
 #   @return [Array, nil]
 DeveloperApiCreateData = Struct.new(
   :limit,
   :prompt,
-  :trend_signal,
+  :trendSignals,
   keyword_init: true
 )
 
 # FreeCaptionMemeSuccess entity data model.
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captions
 #   @return [Array]
 #
-# @!attribute [rw] template_slug
+# @!attribute [rw] templateSlug
 #   @return [String]
 #
 # @!attribute [rw] title
@@ -1378,8 +1634,8 @@ DeveloperApiCreateData = Struct.new(
 # @!attribute [rw] watermark
 #   @return [Hash, nil]
 FreeCaptionMemeSuccess = Struct.new(
-  :caption,
-  :template_slug,
+  :captions,
+  :templateSlug,
   :title,
   :visibility,
   :watermark,
@@ -1388,10 +1644,10 @@ FreeCaptionMemeSuccess = Struct.new(
 
 # Request payload for FreeCaptionMemeSuccess#create.
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captions
 #   @return [Array]
 #
-# @!attribute [rw] template_slug
+# @!attribute [rw] templateSlug
 #   @return [String]
 #
 # @!attribute [rw] title
@@ -1403,8 +1659,8 @@ FreeCaptionMemeSuccess = Struct.new(
 # @!attribute [rw] watermark
 #   @return [Hash, nil]
 FreeCaptionMemeSuccessCreateData = Struct.new(
-  :caption,
-  :template_slug,
+  :captions,
+  :templateSlug,
   :title,
   :visibility,
   :watermark,
@@ -1416,31 +1672,31 @@ FreeCaptionMemeSuccessCreateData = Struct.new(
 # @!attribute [rw] animated
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] asset_byte
+# @!attribute [rw] assetBytes
 #   @return [Object, nil]
 #
-# @!attribute [rw] asset_content_type
+# @!attribute [rw] assetContentType
 #   @return [String, nil]
 #
-# @!attribute [rw] box_count
+# @!attribute [rw] boxCount
 #   @return [Integer]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captionCount
+#   @return [Integer]
+#
+# @!attribute [rw] captions
 #   @return [Array]
-#
-# @!attribute [rw] caption_count
-#   @return [Integer]
 #
 # @!attribute [rw] description
 #   @return [String]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Object, nil]
 #
-# @!attribute [rw] example_image_url
+# @!attribute [rw] exampleImageUrl
 #   @return [Object, nil]
 #
-# @!attribute [rw] frame_count
+# @!attribute [rw] frameCount
 #   @return [Object, nil]
 #
 # @!attribute [rw] height
@@ -1449,57 +1705,57 @@ FreeCaptionMemeSuccessCreateData = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String]
 #
-# @!attribute [rw] media_type
+# @!attribute [rw] mediaType
 #   @return [String]
 #
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] poster_image_url
+# @!attribute [rw] posterImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] quality_status
+# @!attribute [rw] qualityStatus
 #   @return [String, nil]
 #
 # @!attribute [rw] slug
 #   @return [String]
 #
-# @!attribute [rw] source_template_id
+# @!attribute [rw] sourceTemplateId
 #   @return [Object]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] width
 #   @return [Object]
 FreeTemplateSearch = Struct.new(
   :animated,
-  :asset_byte,
-  :asset_content_type,
-  :box_count,
-  :caption,
-  :caption_count,
+  :assetBytes,
+  :assetContentType,
+  :boxCount,
+  :captionCount,
+  :captions,
   :description,
-  :duration_m,
-  :example_image_url,
-  :frame_count,
+  :durationMs,
+  :exampleImageUrl,
+  :frameCount,
   :height,
   :id,
-  :image_url,
-  :media_type,
+  :imageUrl,
+  :mediaType,
   :name,
-  :poster_image_url,
-  :quality_status,
+  :posterImageUrl,
+  :qualityStatus,
   :slug,
-  :source_template_id,
-  :source_url,
-  :tag,
+  :sourceTemplateId,
+  :sourceUrl,
+  :tags,
   :width,
   keyword_init: true
 )
@@ -1509,31 +1765,31 @@ FreeTemplateSearch = Struct.new(
 # @!attribute [rw] animated
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] asset_byte
+# @!attribute [rw] assetBytes
 #   @return [Object, nil]
 #
-# @!attribute [rw] asset_content_type
+# @!attribute [rw] assetContentType
 #   @return [String, nil]
 #
-# @!attribute [rw] box_count
+# @!attribute [rw] boxCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captions
 #   @return [Array, nil]
-#
-# @!attribute [rw] caption_count
-#   @return [Integer, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Object, nil]
 #
-# @!attribute [rw] example_image_url
+# @!attribute [rw] exampleImageUrl
 #   @return [Object, nil]
 #
-# @!attribute [rw] frame_count
+# @!attribute [rw] frameCount
 #   @return [Object, nil]
 #
 # @!attribute [rw] height
@@ -1542,168 +1798,240 @@ FreeTemplateSearch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] media_type
+# @!attribute [rw] mediaType
 #   @return [String, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] poster_image_url
+# @!attribute [rw] posterImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] quality_status
+# @!attribute [rw] qualityStatus
 #   @return [String, nil]
 #
 # @!attribute [rw] slug
 #   @return [String, nil]
 #
-# @!attribute [rw] source_template_id
+# @!attribute [rw] sourceTemplateId
 #   @return [Object, nil]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] width
 #   @return [Object, nil]
 FreeTemplateSearchListMatch = Struct.new(
   :animated,
-  :asset_byte,
-  :asset_content_type,
-  :box_count,
-  :caption,
-  :caption_count,
+  :assetBytes,
+  :assetContentType,
+  :boxCount,
+  :captionCount,
+  :captions,
   :description,
-  :duration_m,
-  :example_image_url,
-  :frame_count,
+  :durationMs,
+  :exampleImageUrl,
+  :frameCount,
   :height,
   :id,
-  :image_url,
-  :media_type,
+  :imageUrl,
+  :mediaType,
   :name,
-  :poster_image_url,
-  :quality_status,
+  :posterImageUrl,
+  :qualityStatus,
   :slug,
-  :source_template_id,
-  :source_url,
-  :tag,
+  :sourceTemplateId,
+  :sourceUrl,
+  :tags,
   :width,
   keyword_init: true
 )
 
 # Generate entity data model.
 #
-# @!attribute [rw] caption
+# @!attribute [rw] base64
+#   @return [String, nil]
+#
+# @!attribute [rw] byteLength
+#   @return [Integer]
+#
+# @!attribute [rw] captions
 #   @return [Array, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash]
+# @!attribute [rw] dataUrl
+#   @return [String, nil]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] delayMs
+#   @return [Integer]
+#
+# @!attribute [rw] durationMs
 #   @return [Integer, nil]
+#
+# @!attribute [rw] filename
+#   @return [String]
 #
 # @!attribute [rw] fps
 #   @return [Integer, nil]
 #
-# @!attribute [rw] gif_slug
-#   @return [String, nil]
+# @!attribute [rw] gifSlug
+#   @return [String]
 #
-# @!attribute [rw] ok
-#   @return [Boolean]
+# @!attribute [rw] height
+#   @return [Integer]
 #
-# @!attribute [rw] return_base64
+# @!attribute [rw] mimeType
+#   @return [String]
+#
+# @!attribute [rw] pages
+#   @return [Integer]
+#
+# @!attribute [rw] parameters
+#   @return [Hash]
+#
+# @!attribute [rw] returnBase64
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] start_m
+# @!attribute [rw] sourceDurationMs
+#   @return [Integer]
+#
+# @!attribute [rw] startMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] width_px
+# @!attribute [rw] width
+#   @return [Integer]
+#
+# @!attribute [rw] widthPx
 #   @return [Integer, nil]
 Generate = Struct.new(
-  :caption,
-  :data,
-  :duration_m,
+  :base64,
+  :byteLength,
+  :captions,
+  :dataUrl,
+  :delayMs,
+  :durationMs,
+  :filename,
   :fps,
-  :gif_slug,
-  :ok,
-  :return_base64,
-  :start_m,
-  :tag,
+  :gifSlug,
+  :height,
+  :mimeType,
+  :pages,
+  :parameters,
+  :returnBase64,
+  :sourceDurationMs,
+  :startMs,
+  :tags,
   :title,
-  :width_px,
+  :width,
+  :widthPx,
   keyword_init: true
 )
 
 # Request payload for Generate#create.
 #
-# @!attribute [rw] caption
+# @!attribute [rw] base64
+#   @return [String, nil]
+#
+# @!attribute [rw] byteLength
+#   @return [Integer]
+#
+# @!attribute [rw] captions
 #   @return [Array, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash]
+# @!attribute [rw] dataUrl
+#   @return [String, nil]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] delayMs
+#   @return [Integer]
+#
+# @!attribute [rw] durationMs
 #   @return [Integer, nil]
+#
+# @!attribute [rw] filename
+#   @return [String]
 #
 # @!attribute [rw] fps
 #   @return [Integer, nil]
 #
-# @!attribute [rw] gif_slug
-#   @return [String, nil]
+# @!attribute [rw] gifSlug
+#   @return [String]
 #
-# @!attribute [rw] ok
-#   @return [Boolean]
+# @!attribute [rw] height
+#   @return [Integer]
 #
-# @!attribute [rw] return_base64
+# @!attribute [rw] mimeType
+#   @return [String]
+#
+# @!attribute [rw] pages
+#   @return [Integer]
+#
+# @!attribute [rw] parameters
+#   @return [Hash]
+#
+# @!attribute [rw] returnBase64
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] start_m
+# @!attribute [rw] sourceDurationMs
+#   @return [Integer]
+#
+# @!attribute [rw] startMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] width_px
+# @!attribute [rw] width
+#   @return [Integer]
+#
+# @!attribute [rw] widthPx
 #   @return [Integer, nil]
 GenerateCreateData = Struct.new(
-  :caption,
-  :data,
-  :duration_m,
+  :base64,
+  :byteLength,
+  :captions,
+  :dataUrl,
+  :delayMs,
+  :durationMs,
+  :filename,
   :fps,
-  :gif_slug,
-  :ok,
-  :return_base64,
-  :start_m,
-  :tag,
+  :gifSlug,
+  :height,
+  :mimeType,
+  :pages,
+  :parameters,
+  :returnBase64,
+  :sourceDurationMs,
+  :startMs,
+  :tags,
   :title,
-  :width_px,
+  :width,
+  :widthPx,
   keyword_init: true
 )
 
 # Growth entity data model.
 #
-# @!attribute [rw] account_id
+# @!attribute [rw] accountId
 #   @return [String, nil]
 #
 # @!attribute [rw] action
 #   @return [String]
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String, nil]
 #
 # @!attribute [rw] caption
@@ -1712,7 +2040,7 @@ GenerateCreateData = Struct.new(
 # @!attribute [rw] code
 #   @return [String, nil]
 #
-# @!attribute [rw] external_account_id
+# @!attribute [rw] externalAccountId
 #   @return [String, nil]
 #
 # @!attribute [rw] handle
@@ -1721,10 +2049,10 @@ GenerateCreateData = Struct.new(
 # @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] log_exposure
+# @!attribute [rw] logExposure
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] meme_slug
+# @!attribute [rw] memeSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] now
@@ -1733,46 +2061,46 @@ GenerateCreateData = Struct.new(
 # @!attribute [rw] platform
 #   @return [String, nil]
 #
-# @!attribute [rw] profile
+# @!attribute [rw] profiles
 #   @return [Array, nil]
 #
-# @!attribute [rw] share_slug
+# @!attribute [rw] shareSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] surface
 #   @return [String, nil]
 #
-# @!attribute [rw] week_start
+# @!attribute [rw] weekStart
 #   @return [String, nil]
 Growth = Struct.new(
-  :account_id,
+  :accountId,
   :action,
-  :actor_id,
+  :actorId,
   :caption,
   :code,
-  :external_account_id,
+  :externalAccountId,
   :handle,
   :limit,
-  :log_exposure,
-  :meme_slug,
+  :logExposure,
+  :memeSlug,
   :now,
   :platform,
-  :profile,
-  :share_slug,
+  :profiles,
+  :shareSlug,
   :surface,
-  :week_start,
+  :weekStart,
   keyword_init: true
 )
 
 # Request payload for Growth#load.
 #
-# @!attribute [rw] account_id
+# @!attribute [rw] accountId
 #   @return [String, nil]
 #
 # @!attribute [rw] action
 #   @return [String, nil]
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String, nil]
 #
 # @!attribute [rw] caption
@@ -1781,7 +2109,7 @@ Growth = Struct.new(
 # @!attribute [rw] code
 #   @return [String, nil]
 #
-# @!attribute [rw] external_account_id
+# @!attribute [rw] externalAccountId
 #   @return [String, nil]
 #
 # @!attribute [rw] handle
@@ -1790,10 +2118,10 @@ Growth = Struct.new(
 # @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] log_exposure
+# @!attribute [rw] logExposure
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] meme_slug
+# @!attribute [rw] memeSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] now
@@ -1802,46 +2130,46 @@ Growth = Struct.new(
 # @!attribute [rw] platform
 #   @return [String, nil]
 #
-# @!attribute [rw] profile
+# @!attribute [rw] profiles
 #   @return [Array, nil]
 #
-# @!attribute [rw] share_slug
+# @!attribute [rw] shareSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] surface
 #   @return [String, nil]
 #
-# @!attribute [rw] week_start
+# @!attribute [rw] weekStart
 #   @return [String, nil]
 GrowthLoadMatch = Struct.new(
-  :account_id,
+  :accountId,
   :action,
-  :actor_id,
+  :actorId,
   :caption,
   :code,
-  :external_account_id,
+  :externalAccountId,
   :handle,
   :limit,
-  :log_exposure,
-  :meme_slug,
+  :logExposure,
+  :memeSlug,
   :now,
   :platform,
-  :profile,
-  :share_slug,
+  :profiles,
+  :shareSlug,
   :surface,
-  :week_start,
+  :weekStart,
   keyword_init: true
 )
 
 # Request payload for Growth#create.
 #
-# @!attribute [rw] account_id
+# @!attribute [rw] accountId
 #   @return [String, nil]
 #
 # @!attribute [rw] action
 #   @return [String]
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String, nil]
 #
 # @!attribute [rw] caption
@@ -1850,7 +2178,7 @@ GrowthLoadMatch = Struct.new(
 # @!attribute [rw] code
 #   @return [String, nil]
 #
-# @!attribute [rw] external_account_id
+# @!attribute [rw] externalAccountId
 #   @return [String, nil]
 #
 # @!attribute [rw] handle
@@ -1859,10 +2187,10 @@ GrowthLoadMatch = Struct.new(
 # @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] log_exposure
+# @!attribute [rw] logExposure
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] meme_slug
+# @!attribute [rw] memeSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] now
@@ -1871,70 +2199,70 @@ GrowthLoadMatch = Struct.new(
 # @!attribute [rw] platform
 #   @return [String, nil]
 #
-# @!attribute [rw] profile
+# @!attribute [rw] profiles
 #   @return [Array, nil]
 #
-# @!attribute [rw] share_slug
+# @!attribute [rw] shareSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] surface
 #   @return [String, nil]
 #
-# @!attribute [rw] week_start
+# @!attribute [rw] weekStart
 #   @return [String, nil]
 GrowthCreateData = Struct.new(
-  :account_id,
+  :accountId,
   :action,
-  :actor_id,
+  :actorId,
   :caption,
   :code,
-  :external_account_id,
+  :externalAccountId,
   :handle,
   :limit,
-  :log_exposure,
-  :meme_slug,
+  :logExposure,
+  :memeSlug,
   :now,
   :platform,
-  :profile,
-  :share_slug,
+  :profiles,
+  :shareSlug,
   :surface,
-  :week_start,
+  :weekStart,
   keyword_init: true
 )
 
 # ListMeme entity data model.
 #
-# @!attribute [rw] alt_text
+# @!attribute [rw] altText
 #   @return [String]
 #
-# @!attribute [rw] canonical_image_url
+# @!attribute [rw] canonicalImageUrl
 #   @return [String]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String]
 #
-# @!attribute [rw] nsfw_status
+# @!attribute [rw] nsfwStatus
 #   @return [String]
 #
-# @!attribute [rw] share_slug
+# @!attribute [rw] shareSlug
 #   @return [String]
 #
-# @!attribute [rw] share_url
+# @!attribute [rw] shareUrl
 #   @return [String]
 #
-# @!attribute [rw] share_view
+# @!attribute [rw] shareViews
 #   @return [Integer]
 #
 # @!attribute [rw] slug
 #   @return [String]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array]
 #
-# @!attribute [rw] template_slug
+# @!attribute [rw] templateSlug
 #   @return [String]
 #
 # @!attribute [rw] title
@@ -1943,17 +2271,17 @@ GrowthCreateData = Struct.new(
 # @!attribute [rw] visibility
 #   @return [String]
 ListMeme = Struct.new(
-  :alt_text,
-  :canonical_image_url,
-  :created_at,
-  :image_url,
-  :nsfw_status,
-  :share_slug,
-  :share_url,
-  :share_view,
+  :altText,
+  :canonicalImageUrl,
+  :createdAt,
+  :imageUrl,
+  :nsfwStatus,
+  :shareSlug,
+  :shareUrl,
+  :shareViews,
   :slug,
-  :tag,
-  :template_slug,
+  :tags,
+  :templateSlug,
   :title,
   :visibility,
   keyword_init: true
@@ -1961,37 +2289,37 @@ ListMeme = Struct.new(
 
 # Request payload for ListMeme#list.
 #
-# @!attribute [rw] alt_text
+# @!attribute [rw] altText
 #   @return [String, nil]
 #
-# @!attribute [rw] canonical_image_url
+# @!attribute [rw] canonicalImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] nsfw_status
+# @!attribute [rw] nsfwStatus
 #   @return [String, nil]
 #
-# @!attribute [rw] share_slug
+# @!attribute [rw] shareSlug
 #   @return [String, nil]
 #
-# @!attribute [rw] share_url
+# @!attribute [rw] shareUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] share_view
+# @!attribute [rw] shareViews
 #   @return [Integer, nil]
 #
 # @!attribute [rw] slug
 #   @return [String, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
-# @!attribute [rw] template_slug
+# @!attribute [rw] templateSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] title
@@ -2000,17 +2328,17 @@ ListMeme = Struct.new(
 # @!attribute [rw] visibility
 #   @return [String, nil]
 ListMemeListMatch = Struct.new(
-  :alt_text,
-  :canonical_image_url,
-  :created_at,
-  :image_url,
-  :nsfw_status,
-  :share_slug,
-  :share_url,
-  :share_view,
+  :altText,
+  :canonicalImageUrl,
+  :createdAt,
+  :imageUrl,
+  :nsfwStatus,
+  :shareSlug,
+  :shareUrl,
+  :shareViews,
   :slug,
-  :tag,
-  :template_slug,
+  :tags,
+  :templateSlug,
   :title,
   :visibility,
   keyword_init: true
@@ -2021,13 +2349,13 @@ ListMemeListMatch = Struct.new(
 # @!attribute [rw] action
 #   @return [String]
 #
-# @!attribute [rw] content_type
+# @!attribute [rw] contentType
 #   @return [String, nil]
 #
-# @!attribute [rw] expires_in_second
+# @!attribute [rw] expiresInSeconds
 #   @return [Integer, nil]
 #
-# @!attribute [rw] owner_token
+# @!attribute [rw] ownerToken
 #   @return [String, nil]
 #
 # @!attribute [rw] path
@@ -2037,9 +2365,9 @@ ListMemeListMatch = Struct.new(
 #   @return [String, nil]
 Media = Struct.new(
   :action,
-  :content_type,
-  :expires_in_second,
-  :owner_token,
+  :contentType,
+  :expiresInSeconds,
+  :ownerToken,
   :path,
   :prefix,
   keyword_init: true
@@ -2050,13 +2378,13 @@ Media = Struct.new(
 # @!attribute [rw] action
 #   @return [String]
 #
-# @!attribute [rw] content_type
+# @!attribute [rw] contentType
 #   @return [String, nil]
 #
-# @!attribute [rw] expires_in_second
+# @!attribute [rw] expiresInSeconds
 #   @return [Integer, nil]
 #
-# @!attribute [rw] owner_token
+# @!attribute [rw] ownerToken
 #   @return [String, nil]
 #
 # @!attribute [rw] path
@@ -2066,9 +2394,9 @@ Media = Struct.new(
 #   @return [String, nil]
 MediaCreateData = Struct.new(
   :action,
-  :content_type,
-  :expires_in_second,
-  :owner_token,
+  :contentType,
+  :expiresInSeconds,
+  :ownerToken,
   :path,
   :prefix,
   keyword_init: true
@@ -2076,49 +2404,49 @@ MediaCreateData = Struct.new(
 
 # Meme entity data model.
 #
-# @!attribute [rw] alt_text
+# @!attribute [rw] altText
 #   @return [String]
 #
-# @!attribute [rw] canonical_image_url
+# @!attribute [rw] canonicalImageUrl
 #   @return [String]
 #
-# @!attribute [rw] canva
+# @!attribute [rw] canvas
 #   @return [Hash]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captions
 #   @return [Array]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String]
 #
-# @!attribute [rw] nsfw_status
+# @!attribute [rw] nsfwStatus
 #   @return [String]
 #
-# @!attribute [rw] overlay
+# @!attribute [rw] overlays
 #   @return [Array]
 #
-# @!attribute [rw] share_slug
+# @!attribute [rw] shareSlug
 #   @return [String]
 #
-# @!attribute [rw] share_url
+# @!attribute [rw] shareUrl
 #   @return [String]
 #
-# @!attribute [rw] share_view
+# @!attribute [rw] shareViews
 #   @return [Integer]
 #
 # @!attribute [rw] slug
 #   @return [String]
 #
-# @!attribute [rw] source_image_url
+# @!attribute [rw] sourceImageUrl
 #   @return [String]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array]
 #
-# @!attribute [rw] template_slug
+# @!attribute [rw] templateSlug
 #   @return [String]
 #
 # @!attribute [rw] title
@@ -2130,21 +2458,21 @@ MediaCreateData = Struct.new(
 # @!attribute [rw] watermark
 #   @return [Hash]
 Meme = Struct.new(
-  :alt_text,
-  :canonical_image_url,
-  :canva,
-  :caption,
-  :created_at,
-  :image_url,
-  :nsfw_status,
-  :overlay,
-  :share_slug,
-  :share_url,
-  :share_view,
+  :altText,
+  :canonicalImageUrl,
+  :canvas,
+  :captions,
+  :createdAt,
+  :imageUrl,
+  :nsfwStatus,
+  :overlays,
+  :shareSlug,
+  :shareUrl,
+  :shareViews,
   :slug,
-  :source_image_url,
-  :tag,
-  :template_slug,
+  :sourceImageUrl,
+  :tags,
+  :templateSlug,
   :title,
   :visibility,
   :watermark,
@@ -2174,34 +2502,34 @@ MemeRemoveMatch = Struct.new(
 # @!attribute [rw] animated
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] asset_byte
+# @!attribute [rw] assetBytes
 #   @return [Object, nil]
 #
-# @!attribute [rw] asset_content_type
+# @!attribute [rw] assetContentType
 #   @return [String, nil]
 #
-# @!attribute [rw] box_count
+# @!attribute [rw] boxCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captions
 #   @return [Array]
 #
-# @!attribute [rw] caption_count
-#   @return [Integer, nil]
-#
-# @!attribute [rw] category
+# @!attribute [rw] categories
 #   @return [Array, nil]
 #
 # @!attribute [rw] description
 #   @return [String]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Object, nil]
 #
-# @!attribute [rw] example_image_url
+# @!attribute [rw] exampleImageUrl
 #   @return [Object, nil]
 #
-# @!attribute [rw] frame_count
+# @!attribute [rw] frameCount
 #   @return [Object, nil]
 #
 # @!attribute [rw] height
@@ -2210,62 +2538,62 @@ MemeRemoveMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String]
 #
-# @!attribute [rw] media_type
+# @!attribute [rw] mediaType
 #   @return [String]
 #
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] poster_image_url
+# @!attribute [rw] posterImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] preview_image_url
+# @!attribute [rw] previewImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] quality_status
+# @!attribute [rw] qualityStatus
 #   @return [String, nil]
 #
 # @!attribute [rw] slug
 #   @return [String]
 #
-# @!attribute [rw] source_template_id
+# @!attribute [rw] sourceTemplateId
 #   @return [Object]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array]
 #
 # @!attribute [rw] width
 #   @return [Object]
 PublicTemplateMediaItem = Struct.new(
   :animated,
-  :asset_byte,
-  :asset_content_type,
-  :box_count,
-  :caption,
-  :caption_count,
-  :category,
+  :assetBytes,
+  :assetContentType,
+  :boxCount,
+  :captionCount,
+  :captions,
+  :categories,
   :description,
-  :duration_m,
-  :example_image_url,
-  :frame_count,
+  :durationMs,
+  :exampleImageUrl,
+  :frameCount,
   :height,
   :id,
-  :image_url,
-  :media_type,
+  :imageUrl,
+  :mediaType,
   :name,
-  :poster_image_url,
-  :preview_image_url,
-  :quality_status,
+  :posterImageUrl,
+  :previewImageUrl,
+  :qualityStatus,
   :slug,
-  :source_template_id,
-  :source_url,
-  :tag,
+  :sourceTemplateId,
+  :sourceUrl,
+  :tags,
   :width,
   keyword_init: true
 )
@@ -2293,26 +2621,26 @@ PublicTemplateMediaItemLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] style_preset
+# @!attribute [rw] stylePreset
 #   @return [String, nil]
 #
-# @!attribute [rw] system_prompt
+# @!attribute [rw] systemPrompt
 #   @return [String, nil]
 #
-# @!attribute [rw] watermark_text
+# @!attribute [rw] watermarkText
 #   @return [String, nil]
 #
-# @!attribute [rw] website_url
+# @!attribute [rw] websiteUrl
 #   @return [String, nil]
 StandaloneAgentBootstrap = Struct.new(
   :description,
   :handle,
   :locale,
   :name,
-  :style_preset,
-  :system_prompt,
-  :watermark_text,
-  :website_url,
+  :stylePreset,
+  :systemPrompt,
+  :watermarkText,
+  :websiteUrl,
   keyword_init: true
 )
 
@@ -2330,26 +2658,26 @@ StandaloneAgentBootstrap = Struct.new(
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] style_preset
+# @!attribute [rw] stylePreset
 #   @return [String, nil]
 #
-# @!attribute [rw] system_prompt
+# @!attribute [rw] systemPrompt
 #   @return [String, nil]
 #
-# @!attribute [rw] watermark_text
+# @!attribute [rw] watermarkText
 #   @return [String, nil]
 #
-# @!attribute [rw] website_url
+# @!attribute [rw] websiteUrl
 #   @return [String, nil]
 StandaloneAgentBootstrapCreateData = Struct.new(
   :description,
   :handle,
   :locale,
   :name,
-  :style_preset,
-  :system_prompt,
-  :watermark_text,
-  :website_url,
+  :stylePreset,
+  :systemPrompt,
+  :watermarkText,
+  :websiteUrl,
   keyword_init: true
 )
 
@@ -2358,40 +2686,40 @@ StandaloneAgentBootstrapCreateData = Struct.new(
 # @!attribute [rw] animated
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] asset_byte
+# @!attribute [rw] assetBytes
 #   @return [Object, nil]
 #
-# @!attribute [rw] asset_content_type
+# @!attribute [rw] assetContentType
 #   @return [String, nil]
 #
-# @!attribute [rw] box_count
+# @!attribute [rw] boxCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captions
 #   @return [Array, nil]
 #
-# @!attribute [rw] caption_count
-#   @return [Integer, nil]
-#
-# @!attribute [rw] category
+# @!attribute [rw] categories
 #   @return [Array, nil]
 #
 # @!attribute [rw] description
 #   @return [String]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] example_image_url
+# @!attribute [rw] exampleImageUrl
 #   @return [Object, nil]
 #
 # @!attribute [rw] fps
 #   @return [Integer, nil]
 #
-# @!attribute [rw] frame_count
+# @!attribute [rw] frameCount
 #   @return [Object, nil]
 #
-# @!attribute [rw] gif_slug
+# @!attribute [rw] gifSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] height
@@ -2400,40 +2728,40 @@ StandaloneAgentBootstrapCreateData = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String]
 #
-# @!attribute [rw] media_type
+# @!attribute [rw] mediaType
 #   @return [String]
 #
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] poster_image_url
+# @!attribute [rw] posterImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] preview_image_url
+# @!attribute [rw] previewImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] quality_status
+# @!attribute [rw] qualityStatus
 #   @return [String, nil]
 #
-# @!attribute [rw] return_base64
+# @!attribute [rw] returnBase64
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] slug
 #   @return [String]
 #
-# @!attribute [rw] source_template_id
+# @!attribute [rw] sourceTemplateId
 #   @return [Object]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] start_m
+# @!attribute [rw] startMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] title
@@ -2442,39 +2770,39 @@ StandaloneAgentBootstrapCreateData = Struct.new(
 # @!attribute [rw] width
 #   @return [Object]
 #
-# @!attribute [rw] width_px
+# @!attribute [rw] widthPx
 #   @return [Integer, nil]
 Template = Struct.new(
   :animated,
-  :asset_byte,
-  :asset_content_type,
-  :box_count,
-  :caption,
-  :caption_count,
-  :category,
+  :assetBytes,
+  :assetContentType,
+  :boxCount,
+  :captionCount,
+  :captions,
+  :categories,
   :description,
-  :duration_m,
-  :example_image_url,
+  :durationMs,
+  :exampleImageUrl,
   :fps,
-  :frame_count,
-  :gif_slug,
+  :frameCount,
+  :gifSlug,
   :height,
   :id,
-  :image_url,
-  :media_type,
+  :imageUrl,
+  :mediaType,
   :name,
-  :poster_image_url,
-  :preview_image_url,
-  :quality_status,
-  :return_base64,
+  :posterImageUrl,
+  :previewImageUrl,
+  :qualityStatus,
+  :returnBase64,
   :slug,
-  :source_template_id,
-  :source_url,
-  :start_m,
-  :tag,
+  :sourceTemplateId,
+  :sourceUrl,
+  :startMs,
+  :tags,
   :title,
   :width,
-  :width_px,
+  :widthPx,
   keyword_init: true
 )
 
@@ -2483,40 +2811,40 @@ Template = Struct.new(
 # @!attribute [rw] animated
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] asset_byte
+# @!attribute [rw] assetBytes
 #   @return [Object, nil]
 #
-# @!attribute [rw] asset_content_type
+# @!attribute [rw] assetContentType
 #   @return [String, nil]
 #
-# @!attribute [rw] box_count
+# @!attribute [rw] boxCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captions
 #   @return [Array, nil]
 #
-# @!attribute [rw] caption_count
-#   @return [Integer, nil]
-#
-# @!attribute [rw] category
+# @!attribute [rw] categories
 #   @return [Array, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] example_image_url
+# @!attribute [rw] exampleImageUrl
 #   @return [Object, nil]
 #
 # @!attribute [rw] fps
 #   @return [Integer, nil]
 #
-# @!attribute [rw] frame_count
+# @!attribute [rw] frameCount
 #   @return [Object, nil]
 #
-# @!attribute [rw] gif_slug
+# @!attribute [rw] gifSlug
 #   @return [String, nil]
 #
 # @!attribute [rw] height
@@ -2525,40 +2853,40 @@ Template = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] media_type
+# @!attribute [rw] mediaType
 #   @return [String, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] poster_image_url
+# @!attribute [rw] posterImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] preview_image_url
+# @!attribute [rw] previewImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] quality_status
+# @!attribute [rw] qualityStatus
 #   @return [String, nil]
 #
-# @!attribute [rw] return_base64
+# @!attribute [rw] returnBase64
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] slug
 #   @return [String, nil]
 #
-# @!attribute [rw] source_template_id
+# @!attribute [rw] sourceTemplateId
 #   @return [Object, nil]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] start_m
+# @!attribute [rw] startMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] title
@@ -2567,39 +2895,39 @@ Template = Struct.new(
 # @!attribute [rw] width
 #   @return [Object, nil]
 #
-# @!attribute [rw] width_px
+# @!attribute [rw] widthPx
 #   @return [Integer, nil]
 TemplateListMatch = Struct.new(
   :animated,
-  :asset_byte,
-  :asset_content_type,
-  :box_count,
-  :caption,
-  :caption_count,
-  :category,
+  :assetBytes,
+  :assetContentType,
+  :boxCount,
+  :captionCount,
+  :captions,
+  :categories,
   :description,
-  :duration_m,
-  :example_image_url,
+  :durationMs,
+  :exampleImageUrl,
   :fps,
-  :frame_count,
-  :gif_slug,
+  :frameCount,
+  :gifSlug,
   :height,
   :id,
-  :image_url,
-  :media_type,
+  :imageUrl,
+  :mediaType,
   :name,
-  :poster_image_url,
-  :preview_image_url,
-  :quality_status,
-  :return_base64,
+  :posterImageUrl,
+  :previewImageUrl,
+  :qualityStatus,
+  :returnBase64,
   :slug,
-  :source_template_id,
-  :source_url,
-  :start_m,
-  :tag,
+  :sourceTemplateId,
+  :sourceUrl,
+  :startMs,
+  :tags,
   :title,
   :width,
-  :width_px,
+  :widthPx,
   keyword_init: true
 )
 
@@ -2607,8 +2935,124 @@ TemplateListMatch = Struct.new(
 #
 # @!attribute [rw] slug
 #   @return [String]
+#
+# @!attribute [rw] animated
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] assetBytes
+#   @return [Object, nil]
+#
+# @!attribute [rw] assetContentType
+#   @return [String, nil]
+#
+# @!attribute [rw] boxCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captions
+#   @return [Array, nil]
+#
+# @!attribute [rw] categories
+#   @return [Array, nil]
+#
+# @!attribute [rw] description
+#   @return [String]
+#
+# @!attribute [rw] durationMs
+#   @return [Integer, nil]
+#
+# @!attribute [rw] exampleImageUrl
+#   @return [Object, nil]
+#
+# @!attribute [rw] fps
+#   @return [Integer, nil]
+#
+# @!attribute [rw] frameCount
+#   @return [Object, nil]
+#
+# @!attribute [rw] gifSlug
+#   @return [String, nil]
+#
+# @!attribute [rw] height
+#   @return [Object]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] imageUrl
+#   @return [String]
+#
+# @!attribute [rw] mediaType
+#   @return [String]
+#
+# @!attribute [rw] name
+#   @return [String]
+#
+# @!attribute [rw] posterImageUrl
+#   @return [String, nil]
+#
+# @!attribute [rw] previewImageUrl
+#   @return [String, nil]
+#
+# @!attribute [rw] qualityStatus
+#   @return [String, nil]
+#
+# @!attribute [rw] returnBase64
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] sourceTemplateId
+#   @return [Object]
+#
+# @!attribute [rw] sourceUrl
+#   @return [String, nil]
+#
+# @!attribute [rw] startMs
+#   @return [Integer, nil]
+#
+# @!attribute [rw] tags
+#   @return [Array, nil]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] width
+#   @return [Object]
+#
+# @!attribute [rw] widthPx
+#   @return [Integer, nil]
 TemplateCreateData = Struct.new(
   :slug,
+  :animated,
+  :assetBytes,
+  :assetContentType,
+  :boxCount,
+  :captionCount,
+  :captions,
+  :categories,
+  :description,
+  :durationMs,
+  :exampleImageUrl,
+  :fps,
+  :frameCount,
+  :gifSlug,
+  :height,
+  :id,
+  :imageUrl,
+  :mediaType,
+  :name,
+  :posterImageUrl,
+  :previewImageUrl,
+  :qualityStatus,
+  :returnBase64,
+  :sourceTemplateId,
+  :sourceUrl,
+  :startMs,
+  :tags,
+  :title,
+  :width,
+  :widthPx,
   keyword_init: true
 )
 
@@ -2617,34 +3061,34 @@ TemplateCreateData = Struct.new(
 # @!attribute [rw] animated
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] asset_byte
+# @!attribute [rw] assetBytes
 #   @return [Object, nil]
 #
-# @!attribute [rw] asset_content_type
+# @!attribute [rw] assetContentType
 #   @return [String, nil]
 #
-# @!attribute [rw] box_count
+# @!attribute [rw] boxCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captions
 #   @return [Array]
 #
-# @!attribute [rw] caption_count
-#   @return [Integer, nil]
-#
-# @!attribute [rw] category
+# @!attribute [rw] categories
 #   @return [Array, nil]
 #
 # @!attribute [rw] description
 #   @return [String]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Object, nil]
 #
-# @!attribute [rw] example_image_url
+# @!attribute [rw] exampleImageUrl
 #   @return [Object, nil]
 #
-# @!attribute [rw] frame_count
+# @!attribute [rw] frameCount
 #   @return [Object, nil]
 #
 # @!attribute [rw] height
@@ -2653,62 +3097,62 @@ TemplateCreateData = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String]
 #
-# @!attribute [rw] media_type
+# @!attribute [rw] mediaType
 #   @return [String]
 #
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] poster_image_url
+# @!attribute [rw] posterImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] preview_image_url
+# @!attribute [rw] previewImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] quality_status
+# @!attribute [rw] qualityStatus
 #   @return [String, nil]
 #
 # @!attribute [rw] slug
 #   @return [String]
 #
-# @!attribute [rw] source_template_id
+# @!attribute [rw] sourceTemplateId
 #   @return [Object]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array]
 #
 # @!attribute [rw] width
 #   @return [Object]
 TemplateSearch = Struct.new(
   :animated,
-  :asset_byte,
-  :asset_content_type,
-  :box_count,
-  :caption,
-  :caption_count,
-  :category,
+  :assetBytes,
+  :assetContentType,
+  :boxCount,
+  :captionCount,
+  :captions,
+  :categories,
   :description,
-  :duration_m,
-  :example_image_url,
-  :frame_count,
+  :durationMs,
+  :exampleImageUrl,
+  :frameCount,
   :height,
   :id,
-  :image_url,
-  :media_type,
+  :imageUrl,
+  :mediaType,
   :name,
-  :poster_image_url,
-  :preview_image_url,
-  :quality_status,
+  :posterImageUrl,
+  :previewImageUrl,
+  :qualityStatus,
   :slug,
-  :source_template_id,
-  :source_url,
-  :tag,
+  :sourceTemplateId,
+  :sourceUrl,
+  :tags,
   :width,
   keyword_init: true
 )
@@ -2718,34 +3162,34 @@ TemplateSearch = Struct.new(
 # @!attribute [rw] animated
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] asset_byte
+# @!attribute [rw] assetBytes
 #   @return [Object, nil]
 #
-# @!attribute [rw] asset_content_type
+# @!attribute [rw] assetContentType
 #   @return [String, nil]
 #
-# @!attribute [rw] box_count
+# @!attribute [rw] boxCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] caption
+# @!attribute [rw] captionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captions
 #   @return [Array, nil]
 #
-# @!attribute [rw] caption_count
-#   @return [Integer, nil]
-#
-# @!attribute [rw] category
+# @!attribute [rw] categories
 #   @return [Array, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Object, nil]
 #
-# @!attribute [rw] example_image_url
+# @!attribute [rw] exampleImageUrl
 #   @return [Object, nil]
 #
-# @!attribute [rw] frame_count
+# @!attribute [rw] frameCount
 #   @return [Object, nil]
 #
 # @!attribute [rw] height
@@ -2754,62 +3198,62 @@ TemplateSearch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] media_type
+# @!attribute [rw] mediaType
 #   @return [String, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] poster_image_url
+# @!attribute [rw] posterImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] preview_image_url
+# @!attribute [rw] previewImageUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] quality_status
+# @!attribute [rw] qualityStatus
 #   @return [String, nil]
 #
 # @!attribute [rw] slug
 #   @return [String, nil]
 #
-# @!attribute [rw] source_template_id
+# @!attribute [rw] sourceTemplateId
 #   @return [Object, nil]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] width
 #   @return [Object, nil]
 TemplateSearchListMatch = Struct.new(
   :animated,
-  :asset_byte,
-  :asset_content_type,
-  :box_count,
-  :caption,
-  :caption_count,
-  :category,
+  :assetBytes,
+  :assetContentType,
+  :boxCount,
+  :captionCount,
+  :captions,
+  :categories,
   :description,
-  :duration_m,
-  :example_image_url,
-  :frame_count,
+  :durationMs,
+  :exampleImageUrl,
+  :frameCount,
   :height,
   :id,
-  :image_url,
-  :media_type,
+  :imageUrl,
+  :mediaType,
   :name,
-  :poster_image_url,
-  :preview_image_url,
-  :quality_status,
+  :posterImageUrl,
+  :previewImageUrl,
+  :qualityStatus,
   :slug,
-  :source_template_id,
-  :source_url,
-  :tag,
+  :sourceTemplateId,
+  :sourceUrl,
+  :tags,
   :width,
   keyword_init: true
 )
@@ -2819,37 +3263,37 @@ TemplateSearchListMatch = Struct.new(
 # @!attribute [rw] action
 #   @return [String]
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String]
 #
 # @!attribute [rw] aggressiveness
 #   @return [Float, nil]
 #
-# @!attribute [rw] alert_id
+# @!attribute [rw] alertId
 #   @return [String]
 #
-# @!attribute [rw] channel
+# @!attribute [rw] channels
 #   @return [Array, nil]
 #
-# @!attribute [rw] deliver_all_alert
+# @!attribute [rw] deliverAllAlerts
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] event
 #   @return [Hash, nil]
 #
-# @!attribute [rw] explicit_niche
+# @!attribute [rw] explicitNiches
 #   @return [Array, nil]
 #
-# @!attribute [rw] explicit_region
+# @!attribute [rw] explicitRegions
 #   @return [Array, nil]
 #
-# @!attribute [rw] explicit_source
+# @!attribute [rw] explicitSources
 #   @return [Array, nil]
 #
-# @!attribute [rw] explicit_topic
+# @!attribute [rw] explicitTopics
 #   @return [Array, nil]
 #
-# @!attribute [rw] follower_count
+# @!attribute [rw] followerCount
 #   @return [Integer, nil]
 #
 # @!attribute [rw] niche
@@ -2865,17 +3309,17 @@ TemplateSearchListMatch = Struct.new(
 #   @return [String]
 TrendAlert = Struct.new(
   :action,
-  :actor_id,
+  :actorId,
   :aggressiveness,
-  :alert_id,
-  :channel,
-  :deliver_all_alert,
+  :alertId,
+  :channels,
+  :deliverAllAlerts,
   :event,
-  :explicit_niche,
-  :explicit_region,
-  :explicit_source,
-  :explicit_topic,
-  :follower_count,
+  :explicitNiches,
+  :explicitRegions,
+  :explicitSources,
+  :explicitTopics,
+  :followerCount,
   :niche,
   :region,
   :source,
@@ -2888,37 +3332,37 @@ TrendAlert = Struct.new(
 # @!attribute [rw] action
 #   @return [String, nil]
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String, nil]
 #
 # @!attribute [rw] aggressiveness
 #   @return [Float, nil]
 #
-# @!attribute [rw] alert_id
+# @!attribute [rw] alertId
 #   @return [String, nil]
 #
-# @!attribute [rw] channel
+# @!attribute [rw] channels
 #   @return [Array, nil]
 #
-# @!attribute [rw] deliver_all_alert
+# @!attribute [rw] deliverAllAlerts
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] event
 #   @return [Hash, nil]
 #
-# @!attribute [rw] explicit_niche
+# @!attribute [rw] explicitNiches
 #   @return [Array, nil]
 #
-# @!attribute [rw] explicit_region
+# @!attribute [rw] explicitRegions
 #   @return [Array, nil]
 #
-# @!attribute [rw] explicit_source
+# @!attribute [rw] explicitSources
 #   @return [Array, nil]
 #
-# @!attribute [rw] explicit_topic
+# @!attribute [rw] explicitTopics
 #   @return [Array, nil]
 #
-# @!attribute [rw] follower_count
+# @!attribute [rw] followerCount
 #   @return [Integer, nil]
 #
 # @!attribute [rw] niche
@@ -2934,17 +3378,17 @@ TrendAlert = Struct.new(
 #   @return [String, nil]
 TrendAlertLoadMatch = Struct.new(
   :action,
-  :actor_id,
+  :actorId,
   :aggressiveness,
-  :alert_id,
-  :channel,
-  :deliver_all_alert,
+  :alertId,
+  :channels,
+  :deliverAllAlerts,
   :event,
-  :explicit_niche,
-  :explicit_region,
-  :explicit_source,
-  :explicit_topic,
-  :follower_count,
+  :explicitNiches,
+  :explicitRegions,
+  :explicitSources,
+  :explicitTopics,
+  :followerCount,
   :niche,
   :region,
   :source,
@@ -2957,37 +3401,37 @@ TrendAlertLoadMatch = Struct.new(
 # @!attribute [rw] action
 #   @return [String]
 #
-# @!attribute [rw] actor_id
+# @!attribute [rw] actorId
 #   @return [String]
 #
 # @!attribute [rw] aggressiveness
 #   @return [Float, nil]
 #
-# @!attribute [rw] alert_id
+# @!attribute [rw] alertId
 #   @return [String]
 #
-# @!attribute [rw] channel
+# @!attribute [rw] channels
 #   @return [Array, nil]
 #
-# @!attribute [rw] deliver_all_alert
+# @!attribute [rw] deliverAllAlerts
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] event
 #   @return [Hash, nil]
 #
-# @!attribute [rw] explicit_niche
+# @!attribute [rw] explicitNiches
 #   @return [Array, nil]
 #
-# @!attribute [rw] explicit_region
+# @!attribute [rw] explicitRegions
 #   @return [Array, nil]
 #
-# @!attribute [rw] explicit_source
+# @!attribute [rw] explicitSources
 #   @return [Array, nil]
 #
-# @!attribute [rw] explicit_topic
+# @!attribute [rw] explicitTopics
 #   @return [Array, nil]
 #
-# @!attribute [rw] follower_count
+# @!attribute [rw] followerCount
 #   @return [Integer, nil]
 #
 # @!attribute [rw] niche
@@ -3003,17 +3447,17 @@ TrendAlertLoadMatch = Struct.new(
 #   @return [String]
 TrendAlertCreateData = Struct.new(
   :action,
-  :actor_id,
+  :actorId,
   :aggressiveness,
-  :alert_id,
-  :channel,
-  :deliver_all_alert,
+  :alertId,
+  :channels,
+  :deliverAllAlerts,
   :event,
-  :explicit_niche,
-  :explicit_region,
-  :explicit_source,
-  :explicit_topic,
-  :follower_count,
+  :explicitNiches,
+  :explicitRegions,
+  :explicitSources,
+  :explicitTopics,
+  :followerCount,
   :niche,
   :region,
   :source,
@@ -3034,19 +3478,19 @@ end
 # @!attribute [rw] action
 #   @return [String, nil]
 #
-# @!attribute [rw] asset_id
+# @!attribute [rw] assetId
 #   @return [String, nil]
 #
-# @!attribute [rw] at_m
+# @!attribute [rw] atMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] audio_asset_id
+# @!attribute [rw] audioAssetId
 #   @return [String, nil]
 #
-# @!attribute [rw] beat_offset_m
+# @!attribute [rw] beatOffsetMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] bitrate_kbp
+# @!attribute [rw] bitrateKbps
 #   @return [Float, nil]
 #
 # @!attribute [rw] bpm
@@ -3058,10 +3502,10 @@ end
 # @!attribute [rw] container
 #   @return [String, nil]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] duration_second
+# @!attribute [rw] durationSeconds
 #   @return [Float]
 #
 # @!attribute [rw] easing
@@ -3070,147 +3514,147 @@ end
 # @!attribute [rw] error
 #   @return [String, nil]
 #
-# @!attribute [rw] frame_rate
+# @!attribute [rw] frameRate
 #   @return [Float, nil]
 #
-# @!attribute [rw] input_format
+# @!attribute [rw] inputFormat
 #   @return [String]
 #
 # @!attribute [rw] intensity
 #   @return [Float, nil]
 #
-# @!attribute [rw] job_id
+# @!attribute [rw] jobId
 #   @return [String, nil]
 #
 # @!attribute [rw] locale
 #   @return [String, nil]
 #
-# @!attribute [rw] mime_type
+# @!attribute [rw] mimeType
 #   @return [String]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] offset_m
+# @!attribute [rw] offsetMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] output_preset_id
+# @!attribute [rw] outputPresetId
 #   @return [String]
 #
-# @!attribute [rw] output_url
+# @!attribute [rw] outputUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] plan_tier
+# @!attribute [rw] planTier
 #   @return [String]
 #
-# @!attribute [rw] preset_id
+# @!attribute [rw] presetId
 #   @return [String]
 #
-# @!attribute [rw] progress_percent
+# @!attribute [rw] progressPercent
 #   @return [Float, nil]
 #
 # @!attribute [rw] project
 #   @return [Hash, nil]
 #
-# @!attribute [rw] project_id
+# @!attribute [rw] projectId
 #   @return [String, nil]
 #
 # @!attribute [rw] property
 #   @return [String, nil]
 #
-# @!attribute [rw] source_device_id
+# @!attribute [rw] sourceDeviceId
 #   @return [String, nil]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] stage
 #   @return [String, nil]
 #
-# @!attribute [rw] start_m
+# @!attribute [rw] startMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] style_preset_id
+# @!attribute [rw] stylePresetId
 #   @return [String, nil]
 #
-# @!attribute [rw] sync_to_beat_grid
+# @!attribute [rw] syncToBeatGrid
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] tone
 #   @return [String, nil]
 #
-# @!attribute [rw] track_id
+# @!attribute [rw] trackId
 #   @return [String, nil]
 #
 # @!attribute [rw] transcript
 #   @return [String, nil]
 #
-# @!attribute [rw] trend_keyword
+# @!attribute [rw] trendKeywords
 #   @return [Array, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
 # @!attribute [rw] value
 #   @return [Float, nil]
 #
-# @!attribute [rw] watermark_enabled
+# @!attribute [rw] watermarkEnabled
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] watermark_text
+# @!attribute [rw] watermarkText
 #   @return [String, nil]
 #
-# @!attribute [rw] worker_id
+# @!attribute [rw] workerId
 #   @return [String, nil]
 Video = Struct.new(
   :action,
-  :asset_id,
-  :at_m,
-  :audio_asset_id,
-  :beat_offset_m,
-  :bitrate_kbp,
+  :assetId,
+  :atMs,
+  :audioAssetId,
+  :beatOffsetMs,
+  :bitrateKbps,
   :bpm,
   :cancelled,
   :container,
-  :duration_m,
-  :duration_second,
+  :durationMs,
+  :durationSeconds,
   :easing,
   :error,
-  :frame_rate,
-  :input_format,
+  :frameRate,
+  :inputFormat,
   :intensity,
-  :job_id,
+  :jobId,
   :locale,
-  :mime_type,
+  :mimeType,
   :name,
-  :offset_m,
-  :output_preset_id,
-  :output_url,
-  :plan_tier,
-  :preset_id,
-  :progress_percent,
+  :offsetMs,
+  :outputPresetId,
+  :outputUrl,
+  :planTier,
+  :presetId,
+  :progressPercent,
   :project,
-  :project_id,
+  :projectId,
   :property,
-  :source_device_id,
-  :source_url,
+  :sourceDeviceId,
+  :sourceUrl,
   :stage,
-  :start_m,
-  :style_preset_id,
-  :sync_to_beat_grid,
+  :startMs,
+  :stylePresetId,
+  :syncToBeatGrid,
   :tone,
-  :track_id,
+  :trackId,
   :transcript,
-  :trend_keyword,
+  :trendKeywords,
   :type,
-  :updated_at,
+  :updatedAt,
   :value,
-  :watermark_enabled,
-  :watermark_text,
-  :worker_id,
+  :watermarkEnabled,
+  :watermarkText,
+  :workerId,
   keyword_init: true
 )
 
@@ -3219,19 +3663,19 @@ Video = Struct.new(
 # @!attribute [rw] action
 #   @return [String, nil]
 #
-# @!attribute [rw] asset_id
+# @!attribute [rw] assetId
 #   @return [String, nil]
 #
-# @!attribute [rw] at_m
+# @!attribute [rw] atMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] audio_asset_id
+# @!attribute [rw] audioAssetId
 #   @return [String, nil]
 #
-# @!attribute [rw] beat_offset_m
+# @!attribute [rw] beatOffsetMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] bitrate_kbp
+# @!attribute [rw] bitrateKbps
 #   @return [Float, nil]
 #
 # @!attribute [rw] bpm
@@ -3243,10 +3687,10 @@ Video = Struct.new(
 # @!attribute [rw] container
 #   @return [String, nil]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] duration_second
+# @!attribute [rw] durationSeconds
 #   @return [Float, nil]
 #
 # @!attribute [rw] easing
@@ -3255,147 +3699,147 @@ Video = Struct.new(
 # @!attribute [rw] error
 #   @return [String, nil]
 #
-# @!attribute [rw] frame_rate
+# @!attribute [rw] frameRate
 #   @return [Float, nil]
 #
-# @!attribute [rw] input_format
+# @!attribute [rw] inputFormat
 #   @return [String, nil]
 #
 # @!attribute [rw] intensity
 #   @return [Float, nil]
 #
-# @!attribute [rw] job_id
+# @!attribute [rw] jobId
 #   @return [String, nil]
 #
 # @!attribute [rw] locale
 #   @return [String, nil]
 #
-# @!attribute [rw] mime_type
+# @!attribute [rw] mimeType
 #   @return [String, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] offset_m
+# @!attribute [rw] offsetMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] output_preset_id
+# @!attribute [rw] outputPresetId
 #   @return [String, nil]
 #
-# @!attribute [rw] output_url
+# @!attribute [rw] outputUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] plan_tier
+# @!attribute [rw] planTier
 #   @return [String, nil]
 #
-# @!attribute [rw] preset_id
+# @!attribute [rw] presetId
 #   @return [String, nil]
 #
-# @!attribute [rw] progress_percent
+# @!attribute [rw] progressPercent
 #   @return [Float, nil]
 #
 # @!attribute [rw] project
 #   @return [Hash, nil]
 #
-# @!attribute [rw] project_id
+# @!attribute [rw] projectId
 #   @return [String, nil]
 #
 # @!attribute [rw] property
 #   @return [String, nil]
 #
-# @!attribute [rw] source_device_id
+# @!attribute [rw] sourceDeviceId
 #   @return [String, nil]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] stage
 #   @return [String, nil]
 #
-# @!attribute [rw] start_m
+# @!attribute [rw] startMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] style_preset_id
+# @!attribute [rw] stylePresetId
 #   @return [String, nil]
 #
-# @!attribute [rw] sync_to_beat_grid
+# @!attribute [rw] syncToBeatGrid
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] tone
 #   @return [String, nil]
 #
-# @!attribute [rw] track_id
+# @!attribute [rw] trackId
 #   @return [String, nil]
 #
 # @!attribute [rw] transcript
 #   @return [String, nil]
 #
-# @!attribute [rw] trend_keyword
+# @!attribute [rw] trendKeywords
 #   @return [Array, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
 # @!attribute [rw] value
 #   @return [Float, nil]
 #
-# @!attribute [rw] watermark_enabled
+# @!attribute [rw] watermarkEnabled
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] watermark_text
+# @!attribute [rw] watermarkText
 #   @return [String, nil]
 #
-# @!attribute [rw] worker_id
+# @!attribute [rw] workerId
 #   @return [String, nil]
 VideoLoadMatch = Struct.new(
   :action,
-  :asset_id,
-  :at_m,
-  :audio_asset_id,
-  :beat_offset_m,
-  :bitrate_kbp,
+  :assetId,
+  :atMs,
+  :audioAssetId,
+  :beatOffsetMs,
+  :bitrateKbps,
   :bpm,
   :cancelled,
   :container,
-  :duration_m,
-  :duration_second,
+  :durationMs,
+  :durationSeconds,
   :easing,
   :error,
-  :frame_rate,
-  :input_format,
+  :frameRate,
+  :inputFormat,
   :intensity,
-  :job_id,
+  :jobId,
   :locale,
-  :mime_type,
+  :mimeType,
   :name,
-  :offset_m,
-  :output_preset_id,
-  :output_url,
-  :plan_tier,
-  :preset_id,
-  :progress_percent,
+  :offsetMs,
+  :outputPresetId,
+  :outputUrl,
+  :planTier,
+  :presetId,
+  :progressPercent,
   :project,
-  :project_id,
+  :projectId,
   :property,
-  :source_device_id,
-  :source_url,
+  :sourceDeviceId,
+  :sourceUrl,
   :stage,
-  :start_m,
-  :style_preset_id,
-  :sync_to_beat_grid,
+  :startMs,
+  :stylePresetId,
+  :syncToBeatGrid,
   :tone,
-  :track_id,
+  :trackId,
   :transcript,
-  :trend_keyword,
+  :trendKeywords,
   :type,
-  :updated_at,
+  :updatedAt,
   :value,
-  :watermark_enabled,
-  :watermark_text,
-  :worker_id,
+  :watermarkEnabled,
+  :watermarkText,
+  :workerId,
   keyword_init: true
 )
 
@@ -3404,19 +3848,19 @@ VideoLoadMatch = Struct.new(
 # @!attribute [rw] action
 #   @return [String, nil]
 #
-# @!attribute [rw] asset_id
+# @!attribute [rw] assetId
 #   @return [String, nil]
 #
-# @!attribute [rw] at_m
+# @!attribute [rw] atMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] audio_asset_id
+# @!attribute [rw] audioAssetId
 #   @return [String, nil]
 #
-# @!attribute [rw] beat_offset_m
+# @!attribute [rw] beatOffsetMs
 #   @return [Integer, nil]
 #
-# @!attribute [rw] bitrate_kbp
+# @!attribute [rw] bitrateKbps
 #   @return [Float, nil]
 #
 # @!attribute [rw] bpm
@@ -3428,10 +3872,10 @@ VideoLoadMatch = Struct.new(
 # @!attribute [rw] container
 #   @return [String, nil]
 #
-# @!attribute [rw] duration_m
+# @!attribute [rw] durationMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] duration_second
+# @!attribute [rw] durationSeconds
 #   @return [Float]
 #
 # @!attribute [rw] easing
@@ -3440,147 +3884,147 @@ VideoLoadMatch = Struct.new(
 # @!attribute [rw] error
 #   @return [String, nil]
 #
-# @!attribute [rw] frame_rate
+# @!attribute [rw] frameRate
 #   @return [Float, nil]
 #
-# @!attribute [rw] input_format
+# @!attribute [rw] inputFormat
 #   @return [String]
 #
 # @!attribute [rw] intensity
 #   @return [Float, nil]
 #
-# @!attribute [rw] job_id
+# @!attribute [rw] jobId
 #   @return [String, nil]
 #
 # @!attribute [rw] locale
 #   @return [String, nil]
 #
-# @!attribute [rw] mime_type
+# @!attribute [rw] mimeType
 #   @return [String]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] offset_m
+# @!attribute [rw] offsetMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] output_preset_id
+# @!attribute [rw] outputPresetId
 #   @return [String]
 #
-# @!attribute [rw] output_url
+# @!attribute [rw] outputUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] plan_tier
+# @!attribute [rw] planTier
 #   @return [String]
 #
-# @!attribute [rw] preset_id
+# @!attribute [rw] presetId
 #   @return [String]
 #
-# @!attribute [rw] progress_percent
+# @!attribute [rw] progressPercent
 #   @return [Float, nil]
 #
 # @!attribute [rw] project
 #   @return [Hash, nil]
 #
-# @!attribute [rw] project_id
+# @!attribute [rw] projectId
 #   @return [String, nil]
 #
 # @!attribute [rw] property
 #   @return [String, nil]
 #
-# @!attribute [rw] source_device_id
+# @!attribute [rw] sourceDeviceId
 #   @return [String, nil]
 #
-# @!attribute [rw] source_url
+# @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] stage
 #   @return [String, nil]
 #
-# @!attribute [rw] start_m
+# @!attribute [rw] startMs
 #   @return [Float, nil]
 #
-# @!attribute [rw] style_preset_id
+# @!attribute [rw] stylePresetId
 #   @return [String, nil]
 #
-# @!attribute [rw] sync_to_beat_grid
+# @!attribute [rw] syncToBeatGrid
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] tone
 #   @return [String, nil]
 #
-# @!attribute [rw] track_id
+# @!attribute [rw] trackId
 #   @return [String, nil]
 #
 # @!attribute [rw] transcript
 #   @return [String, nil]
 #
-# @!attribute [rw] trend_keyword
+# @!attribute [rw] trendKeywords
 #   @return [Array, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
 # @!attribute [rw] value
 #   @return [Float, nil]
 #
-# @!attribute [rw] watermark_enabled
+# @!attribute [rw] watermarkEnabled
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] watermark_text
+# @!attribute [rw] watermarkText
 #   @return [String, nil]
 #
-# @!attribute [rw] worker_id
+# @!attribute [rw] workerId
 #   @return [String, nil]
 VideoCreateData = Struct.new(
   :action,
-  :asset_id,
-  :at_m,
-  :audio_asset_id,
-  :beat_offset_m,
-  :bitrate_kbp,
+  :assetId,
+  :atMs,
+  :audioAssetId,
+  :beatOffsetMs,
+  :bitrateKbps,
   :bpm,
   :cancelled,
   :container,
-  :duration_m,
-  :duration_second,
+  :durationMs,
+  :durationSeconds,
   :easing,
   :error,
-  :frame_rate,
-  :input_format,
+  :frameRate,
+  :inputFormat,
   :intensity,
-  :job_id,
+  :jobId,
   :locale,
-  :mime_type,
+  :mimeType,
   :name,
-  :offset_m,
-  :output_preset_id,
-  :output_url,
-  :plan_tier,
-  :preset_id,
-  :progress_percent,
+  :offsetMs,
+  :outputPresetId,
+  :outputUrl,
+  :planTier,
+  :presetId,
+  :progressPercent,
   :project,
-  :project_id,
+  :projectId,
   :property,
-  :source_device_id,
-  :source_url,
+  :sourceDeviceId,
+  :sourceUrl,
   :stage,
-  :start_m,
-  :style_preset_id,
-  :sync_to_beat_grid,
+  :startMs,
+  :stylePresetId,
+  :syncToBeatGrid,
   :tone,
-  :track_id,
+  :trackId,
   :transcript,
-  :trend_keyword,
+  :trendKeywords,
   :type,
-  :updated_at,
+  :updatedAt,
   :value,
-  :watermark_enabled,
-  :watermark_text,
-  :worker_id,
+  :watermarkEnabled,
+  :watermarkText,
+  :workerId,
   keyword_init: true
 )
 

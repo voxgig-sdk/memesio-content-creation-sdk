@@ -2,21 +2,21 @@
   "existing": {
     "collaboration": {
       "COLLABORATION00": {
-        "author_id": "AUTHOR01",
+        "authorId": "s1e",
         "message": "s1f",
-        "project_id": "PROJECT01",
+        "projectId": "s20",
         "id": "COLLABORATION00"
       },
       "COLLABORATION01": {
-        "author_id": "AUTHOR01",
+        "authorId": "s3c",
         "message": "s3d",
-        "project_id": "PROJECT01",
+        "projectId": "s3e",
         "id": "COLLABORATION01"
       },
       "COLLABORATION02": {
-        "author_id": "AUTHOR01",
+        "authorId": "s5a",
         "message": "s5b",
-        "project_id": "PROJECT01",
+        "projectId": "s5c",
         "id": "COLLABORATION02"
       }
     }
@@ -24,9 +24,9 @@
   "new": {
     "collaboration": {
       "collaboration_ref01": {
-        "author_id": "AUTHOR01",
+        "authorId": "s78",
         "message": "s79",
-        "project_id": "PROJECT01"
+        "projectId": "s7a"
       }
     }
   }

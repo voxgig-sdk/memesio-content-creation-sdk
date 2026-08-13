@@ -26,8 +26,8 @@ import {
 describe('ListMemeEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -63,7 +63,7 @@ describe('ListMemeEntity', async () => {
     const list_meme_ref01_ent = client.ListMeme()
     const list_meme_ref01_match: any = {}
 
-    const list_meme_ref01_list = await list_meme_ref01_ent.list(list_meme_ref01_match)
+    const list_meme_ref01_list = (await list_meme_ref01_ent.list(list_meme_ref01_match)).map((e: any) => e.data())
 
 
   })

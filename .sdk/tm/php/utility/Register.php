@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ MemesioContentCreationUtility::setRegistrar(function (MemesioContentCreationUtil
     $u->prepare_params = [MemesioContentCreationPrepareParams::class, 'call'];
     $u->prepare_path = [MemesioContentCreationPreparePath::class, 'call'];
     $u->prepare_query = [MemesioContentCreationPrepareQuery::class, 'call'];
+    $u->graphql_body = [MemesioContentCreationGraphql::class, 'body'];
+    $u->graphql_errors = [MemesioContentCreationGraphql::class, 'errors'];
     $u->result_basic = [MemesioContentCreationResultBasic::class, 'call'];
     $u->result_body = [MemesioContentCreationResultBody::class, 'call'];
     $u->result_headers = [MemesioContentCreationResultHeaders::class, 'call'];

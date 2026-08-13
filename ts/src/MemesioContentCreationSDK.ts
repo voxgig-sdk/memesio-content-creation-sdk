@@ -172,8 +172,29 @@ class MemesioContentCreationSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('MemesioContentCreationSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -234,192 +255,300 @@ class MemesioContentCreationSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('MemesioContentCreationSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('MemesioContentCreationSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Agent().list()` / `client.Agent().load({ id })`.
-  Agent(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Agent(entopts?: Record<string, any>) {
     const self = this
-    return new AgentEntity(self,data)
+    return new AgentEntity(self, entopts)
   }
 
 
   // Entity access: `client.AgentInfra().list()` / `client.AgentInfra().load({ id })`.
-  AgentInfra(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AgentInfra(entopts?: Record<string, any>) {
     const self = this
-    return new AgentInfraEntity(self,data)
+    return new AgentInfraEntity(self, entopts)
   }
 
 
   // Entity access: `client.AiCaption().list()` / `client.AiCaption().load({ id })`.
-  AiCaption(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AiCaption(entopts?: Record<string, any>) {
     const self = this
-    return new AiCaptionEntity(self,data)
+    return new AiCaptionEntity(self, entopts)
   }
 
 
   // Entity access: `client.AiJob().list()` / `client.AiJob().load({ id })`.
-  AiJob(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AiJob(entopts?: Record<string, any>) {
     const self = this
-    return new AiJobEntity(self,data)
+    return new AiJobEntity(self, entopts)
   }
 
 
   // Entity access: `client.AiMemeGenerationSucceeded().list()` / `client.AiMemeGenerationSucceeded().load({ id })`.
-  AiMemeGenerationSucceeded(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AiMemeGenerationSucceeded(entopts?: Record<string, any>) {
     const self = this
-    return new AiMemeGenerationSucceededEntity(self,data)
+    return new AiMemeGenerationSucceededEntity(self, entopts)
   }
 
 
   // Entity access: `client.AiProvider().list()` / `client.AiProvider().load({ id })`.
-  AiProvider(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AiProvider(entopts?: Record<string, any>) {
     const self = this
-    return new AiProviderEntity(self,data)
+    return new AiProviderEntity(self, entopts)
   }
 
 
   // Entity access: `client.Analytics().list()` / `client.Analytics().load({ id })`.
-  Analytics(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Analytics(entopts?: Record<string, any>) {
     const self = this
-    return new AnalyticsEntity(self,data)
+    return new AnalyticsEntity(self, entopts)
   }
 
 
   // Entity access: `client.Auth().list()` / `client.Auth().load({ id })`.
-  Auth(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Auth(entopts?: Record<string, any>) {
     const self = this
-    return new AuthEntity(self,data)
+    return new AuthEntity(self, entopts)
   }
 
 
   // Entity access: `client.Billing().list()` / `client.Billing().load({ id })`.
-  Billing(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Billing(entopts?: Record<string, any>) {
     const self = this
-    return new BillingEntity(self,data)
+    return new BillingEntity(self, entopts)
   }
 
 
   // Entity access: `client.Collaboration().list()` / `client.Collaboration().load({ id })`.
-  Collaboration(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Collaboration(entopts?: Record<string, any>) {
     const self = this
-    return new CollaborationEntity(self,data)
+    return new CollaborationEntity(self, entopts)
   }
 
 
   // Entity access: `client.Compliance().list()` / `client.Compliance().load({ id })`.
-  Compliance(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Compliance(entopts?: Record<string, any>) {
     const self = this
-    return new ComplianceEntity(self,data)
+    return new ComplianceEntity(self, entopts)
   }
 
 
   // Entity access: `client.CreateMeme().list()` / `client.CreateMeme().load({ id })`.
-  CreateMeme(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CreateMeme(entopts?: Record<string, any>) {
     const self = this
-    return new CreateMemeEntity(self,data)
+    return new CreateMemeEntity(self, entopts)
   }
 
 
   // Entity access: `client.DeveloperApi().list()` / `client.DeveloperApi().load({ id })`.
-  DeveloperApi(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DeveloperApi(entopts?: Record<string, any>) {
     const self = this
-    return new DeveloperApiEntity(self,data)
+    return new DeveloperApiEntity(self, entopts)
   }
 
 
   // Entity access: `client.FreeCaptionMemeSuccess().list()` / `client.FreeCaptionMemeSuccess().load({ id })`.
-  FreeCaptionMemeSuccess(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  FreeCaptionMemeSuccess(entopts?: Record<string, any>) {
     const self = this
-    return new FreeCaptionMemeSuccessEntity(self,data)
+    return new FreeCaptionMemeSuccessEntity(self, entopts)
   }
 
 
   // Entity access: `client.FreeTemplateSearch().list()` / `client.FreeTemplateSearch().load({ id })`.
-  FreeTemplateSearch(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  FreeTemplateSearch(entopts?: Record<string, any>) {
     const self = this
-    return new FreeTemplateSearchEntity(self,data)
+    return new FreeTemplateSearchEntity(self, entopts)
   }
 
 
   // Entity access: `client.Generate().list()` / `client.Generate().load({ id })`.
-  Generate(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Generate(entopts?: Record<string, any>) {
     const self = this
-    return new GenerateEntity(self,data)
+    return new GenerateEntity(self, entopts)
   }
 
 
   // Entity access: `client.Growth().list()` / `client.Growth().load({ id })`.
-  Growth(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Growth(entopts?: Record<string, any>) {
     const self = this
-    return new GrowthEntity(self,data)
+    return new GrowthEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListMeme().list()` / `client.ListMeme().load({ id })`.
-  ListMeme(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListMeme(entopts?: Record<string, any>) {
     const self = this
-    return new ListMemeEntity(self,data)
+    return new ListMemeEntity(self, entopts)
   }
 
 
   // Entity access: `client.Media().list()` / `client.Media().load({ id })`.
-  Media(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Media(entopts?: Record<string, any>) {
     const self = this
-    return new MediaEntity(self,data)
+    return new MediaEntity(self, entopts)
   }
 
 
   // Entity access: `client.Meme().list()` / `client.Meme().load({ id })`.
-  Meme(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Meme(entopts?: Record<string, any>) {
     const self = this
-    return new MemeEntity(self,data)
+    return new MemeEntity(self, entopts)
   }
 
 
   // Entity access: `client.PublicTemplateMediaItem().list()` / `client.PublicTemplateMediaItem().load({ id })`.
-  PublicTemplateMediaItem(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PublicTemplateMediaItem(entopts?: Record<string, any>) {
     const self = this
-    return new PublicTemplateMediaItemEntity(self,data)
+    return new PublicTemplateMediaItemEntity(self, entopts)
   }
 
 
   // Entity access: `client.StandaloneAgentBootstrap().list()` / `client.StandaloneAgentBootstrap().load({ id })`.
-  StandaloneAgentBootstrap(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  StandaloneAgentBootstrap(entopts?: Record<string, any>) {
     const self = this
-    return new StandaloneAgentBootstrapEntity(self,data)
+    return new StandaloneAgentBootstrapEntity(self, entopts)
   }
 
 
   // Entity access: `client.Template().list()` / `client.Template().load({ id })`.
-  Template(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Template(entopts?: Record<string, any>) {
     const self = this
-    return new TemplateEntity(self,data)
+    return new TemplateEntity(self, entopts)
   }
 
 
   // Entity access: `client.TemplateSearch().list()` / `client.TemplateSearch().load({ id })`.
-  TemplateSearch(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  TemplateSearch(entopts?: Record<string, any>) {
     const self = this
-    return new TemplateSearchEntity(self,data)
+    return new TemplateSearchEntity(self, entopts)
   }
 
 
   // Entity access: `client.TrendAlert().list()` / `client.TrendAlert().load({ id })`.
-  TrendAlert(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  TrendAlert(entopts?: Record<string, any>) {
     const self = this
-    return new TrendAlertEntity(self,data)
+    return new TrendAlertEntity(self, entopts)
   }
 
 
   // Entity access: `client.UploadCaptionMemeSuccess().list()` / `client.UploadCaptionMemeSuccess().load({ id })`.
-  UploadCaptionMemeSuccess(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  UploadCaptionMemeSuccess(entopts?: Record<string, any>) {
     const self = this
-    return new UploadCaptionMemeSuccessEntity(self,data)
+    return new UploadCaptionMemeSuccessEntity(self, entopts)
   }
 
 
   // Entity access: `client.Video().list()` / `client.Video().load({ id })`.
-  Video(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Video(entopts?: Record<string, any>) {
     const self = this
-    return new VideoEntity(self,data)
+    return new VideoEntity(self, entopts)
   }
 
 

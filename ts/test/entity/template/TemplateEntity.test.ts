@@ -26,8 +26,8 @@ import {
 describe('TemplateEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -63,14 +63,14 @@ describe('TemplateEntity', async () => {
     let template_ref01_data = setup.data.new.template['template_ref01']
     template_ref01_data['slug'] = setup.idmap['slug01']
 
-    template_ref01_data = await template_ref01_ent.create(template_ref01_data)
+    template_ref01_data = (await template_ref01_ent.create(template_ref01_data)).data()
     assert(null != template_ref01_data.id)
 
 
     // LIST
     const template_ref01_match: any = {}
 
-    const template_ref01_list = await template_ref01_ent.list(template_ref01_match)
+    const template_ref01_list = (await template_ref01_ent.list(template_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(template_ref01_list, { id: template_ref01_data.id })))
 

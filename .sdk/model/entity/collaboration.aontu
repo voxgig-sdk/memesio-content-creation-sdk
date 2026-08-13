@@ -6,7 +6,7 @@ main: kit: entity: collaboration: {
 
   fields: [
     {
-      name: "author_id"
+      name: "authorId"
       req: false
       type: "`$STRING`"
     }
@@ -16,7 +16,7 @@ main: kit: entity: collaboration: {
       type: "`$STRING`"
     }
     {
-      name: "project_id"
+      name: "projectId"
       req: true
       type: "`$STRING`"
     }

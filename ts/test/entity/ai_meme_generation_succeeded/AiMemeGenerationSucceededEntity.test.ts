@@ -26,8 +26,8 @@ import {
 describe('AiMemeGenerationSucceededEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,7 +62,7 @@ describe('AiMemeGenerationSucceededEntity', async () => {
     const ai_meme_generation_succeeded_ref01_ent = client.AiMemeGenerationSucceeded()
     let ai_meme_generation_succeeded_ref01_data = setup.data.new.ai_meme_generation_succeeded['ai_meme_generation_succeeded_ref01']
 
-    ai_meme_generation_succeeded_ref01_data = await ai_meme_generation_succeeded_ref01_ent.create(ai_meme_generation_succeeded_ref01_data)
+    ai_meme_generation_succeeded_ref01_data = (await ai_meme_generation_succeeded_ref01_ent.create(ai_meme_generation_succeeded_ref01_data)).data()
     assert(null != ai_meme_generation_succeeded_ref01_data)
 
 

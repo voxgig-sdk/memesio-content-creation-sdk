@@ -96,28 +96,28 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "style_preset",
+            ["name"] = "stylePreset",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "system_prompt",
+            ["name"] = "systemPrompt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "watermark_text",
+            ["name"] = "watermarkText",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 7,
           },
           {
             ["active"] = true,
-            ["name"] = "website_url",
+            ["name"] = "websiteUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 8,
@@ -132,6 +132,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents",
                 ["parts"] = {
@@ -168,6 +169,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/agents/{agentId}",
                 ["parts"] = {
@@ -195,6 +197,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/agents",
                 ["parts"] = {
@@ -231,6 +234,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PATCH",
                 ["orig"] = "/api/v1/agents/{agentId}",
                 ["parts"] = {
@@ -274,14 +278,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "chat_id",
+            ["name"] = "chatId",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "meme_slug",
+            ["name"] = "memeSlug",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
@@ -295,21 +299,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "payout_reference",
+            ["name"] = "payoutReference",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "payout_status",
+            ["name"] = "payoutStatus",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "phone_or_chat_id",
+            ["name"] = "phoneOrChatId",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 6,
@@ -330,28 +334,28 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "quota_boost_per_day",
+            ["name"] = "quotaBoostPerDay",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 9,
           },
           {
             ["active"] = true,
-            ["name"] = "scope",
+            ["name"] = "scopes",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 10,
           },
           {
             ["active"] = true,
-            ["name"] = "user_id",
+            ["name"] = "userId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 11,
           },
           {
             ["active"] = true,
-            ["name"] = "week_start",
+            ["name"] = "weekStart",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 12,
@@ -378,6 +382,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/{agentId}/channels/telegram/bind",
                 ["parts"] = {
@@ -420,6 +425,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/{agentId}/channels/whatsapp/bind",
                 ["parts"] = {
@@ -462,6 +468,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/{agentId}/unlocks/social-action",
                 ["parts"] = {
@@ -499,9 +506,11 @@ local function make_config()
                       ["orig"] = "agent_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/{agentId}/keys",
                 ["parts"] = {
@@ -543,6 +552,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/unlocks/{unlockId}/approve",
                 ["parts"] = {
@@ -572,6 +582,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/names:generate",
                 ["parts"] = {
@@ -590,6 +601,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/rewards/votes",
                 ["parts"] = {
@@ -609,6 +621,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/rewards/winner:close",
                 ["parts"] = {
@@ -628,6 +641,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/webhooks/telegram",
                 ["parts"] = {
@@ -647,6 +661,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/webhooks/whatsapp",
                 ["parts"] = {
@@ -692,6 +707,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/agents/rewards/leaderboard",
                 ["parts"] = {
@@ -727,6 +743,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/agents/{agentId}/keys",
                 ["parts"] = {
@@ -756,6 +773,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/agents/webhooks/whatsapp",
                 ["parts"] = {
@@ -803,6 +821,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/api/v1/agents/{agentId}/keys/{keyId}",
                 ["parts"] = {
@@ -854,49 +873,49 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "blocked_term",
+            ["name"] = "blockedTerms",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "canvas_text",
+            ["name"] = "canvasText",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "caption_count",
+            ["name"] = "captionCount",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "caption_set",
+            ["name"] = "captionSets",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "entity",
+            ["name"] = "entities",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "fallback_used",
+            ["name"] = "fallbackUsed",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "generation_strategy",
+            ["name"] = "generationStrategy",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 6,
@@ -910,14 +929,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "meme_id",
+            ["name"] = "memeId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "meme_slug",
+            ["name"] = "memeSlug",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 9,
@@ -938,63 +957,63 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "option_count",
+            ["name"] = "optionCount",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 12,
           },
           {
             ["active"] = true,
-            ["name"] = "owner_token",
+            ["name"] = "ownerToken",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 13,
           },
           {
             ["active"] = true,
-            ["name"] = "provider_id",
+            ["name"] = "providerId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 14,
           },
           {
             ["active"] = true,
-            ["name"] = "reference_caption",
+            ["name"] = "referenceCaptions",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 15,
           },
           {
             ["active"] = true,
-            ["name"] = "rewrite_note",
+            ["name"] = "rewriteNote",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 16,
           },
           {
             ["active"] = true,
-            ["name"] = "scene_summary",
+            ["name"] = "sceneSummary",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 17,
           },
           {
             ["active"] = true,
-            ["name"] = "template_description",
+            ["name"] = "templateDescription",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 18,
           },
           {
             ["active"] = true,
-            ["name"] = "template_name",
+            ["name"] = "templateName",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 19,
           },
           {
             ["active"] = true,
-            ["name"] = "template_tag",
+            ["name"] = "templateTags",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 20,
@@ -1008,42 +1027,42 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "tone_cue",
+            ["name"] = "toneCues",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 22,
           },
           {
             ["active"] = true,
-            ["name"] = "trend_keyword",
+            ["name"] = "trendKeywords",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 23,
           },
           {
             ["active"] = true,
-            ["name"] = "trend_reference",
+            ["name"] = "trendReferences",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 24,
           },
           {
             ["active"] = true,
-            ["name"] = "trend_signal",
+            ["name"] = "trendSignals",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 25,
           },
           {
             ["active"] = true,
-            ["name"] = "variation_offset",
+            ["name"] = "variationOffset",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 26,
           },
           {
             ["active"] = true,
-            ["name"] = "voice_rule",
+            ["name"] = "voiceRules",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 27,
@@ -1058,6 +1077,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/captions/generate",
                 ["parts"] = {
@@ -1076,6 +1096,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/captions/moderate",
                 ["parts"] = {
@@ -1094,6 +1115,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/captions/prompt",
                 ["parts"] = {
@@ -1112,6 +1134,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/captions/rank",
                 ["parts"] = {
@@ -1130,6 +1153,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/captions/rewrite",
                 ["parts"] = {
@@ -1148,6 +1172,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/captions/scene",
                 ["parts"] = {
@@ -1166,6 +1191,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/captions/tone-presets",
                 ["parts"] = {
@@ -1202,6 +1228,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/ai/captions/tone-presets",
                 ["parts"] = {
@@ -1224,6 +1251,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/ai/captions/generate",
                 ["parts"] = {
@@ -1258,35 +1286,35 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "actor_id",
+            ["name"] = "actorId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "after_state",
+            ["name"] = "afterState",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "attempt",
+            ["name"] = "attempts",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "before_state",
+            ["name"] = "beforeState",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "brush_edit",
+            ["name"] = "brushEdits",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 5,
@@ -1300,49 +1328,49 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "celebrity_confidence",
+            ["name"] = "celebrityConfidence",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 7,
           },
           {
             ["active"] = true,
-            ["name"] = "consent_attested",
+            ["name"] = "consentAttested",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "created_at",
+            ["name"] = "createdAt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 9,
           },
           {
             ["active"] = true,
-            ["name"] = "detected_face_count",
+            ["name"] = "detectedFaceCount",
             ["req"] = true,
             ["type"] = "`$NUMBER`",
             ["index$"] = 10,
           },
           {
             ["active"] = true,
-            ["name"] = "edge_refinement",
+            ["name"] = "edgeRefinement",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 11,
           },
           {
             ["active"] = true,
-            ["name"] = "estimated_cost_usd",
+            ["name"] = "estimatedCostUsd",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 12,
           },
           {
             ["active"] = true,
-            ["name"] = "frame_time_m",
+            ["name"] = "frameTimeMs",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 13,
@@ -1370,35 +1398,35 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "layer_id",
+            ["name"] = "layerId",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 17,
           },
           {
             ["active"] = true,
-            ["name"] = "layer_type",
+            ["name"] = "layerType",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 18,
           },
           {
             ["active"] = true,
-            ["name"] = "max_attempt",
+            ["name"] = "maxAttempts",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 19,
           },
           {
             ["active"] = true,
-            ["name"] = "max_face",
+            ["name"] = "maxFaces",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 20,
           },
           {
             ["active"] = true,
-            ["name"] = "media_type",
+            ["name"] = "mediaType",
             ["op"] = {
               ["create"] = {
                 ["req"] = true,
@@ -1418,7 +1446,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "nsfw_score",
+            ["name"] = "nsfwScore",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 23,
@@ -1432,14 +1460,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "project_id",
+            ["name"] = "projectId",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 25,
           },
           {
             ["active"] = true,
-            ["name"] = "provider_id",
+            ["name"] = "providerId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 26,
@@ -1453,28 +1481,28 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "run_after_m",
+            ["name"] = "runAfterMs",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 28,
           },
           {
             ["active"] = true,
-            ["name"] = "source_asset_url",
+            ["name"] = "sourceAssetUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 29,
           },
           {
             ["active"] = true,
-            ["name"] = "source_face_index",
+            ["name"] = "sourceFaceIndex",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 30,
           },
           {
             ["active"] = true,
-            ["name"] = "source_image_url",
+            ["name"] = "sourceImageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 31,
@@ -1488,42 +1516,42 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "target_asset_url",
+            ["name"] = "targetAssetUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 33,
           },
           {
             ["active"] = true,
-            ["name"] = "target_face_index",
+            ["name"] = "targetFaceIndex",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 34,
           },
           {
             ["active"] = true,
-            ["name"] = "timeout_m",
+            ["name"] = "timeoutMs",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 35,
           },
           {
             ["active"] = true,
-            ["name"] = "trace_id",
+            ["name"] = "traceId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 36,
           },
           {
             ["active"] = true,
-            ["name"] = "updated_at",
+            ["name"] = "updatedAt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 37,
           },
           {
             ["active"] = true,
-            ["name"] = "version_id",
+            ["name"] = "versionId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 38,
@@ -1537,14 +1565,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "worker_id",
+            ["name"] = "workerId",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 40,
           },
           {
             ["active"] = true,
-            ["name"] = "workspace_id",
+            ["name"] = "workspaceId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 41,
@@ -1571,6 +1599,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/jobs/{jobId}/cancel",
                 ["parts"] = {
@@ -1611,6 +1640,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/jobs/{jobId}/complete",
                 ["parts"] = {
@@ -1639,6 +1669,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/background-remove",
                 ["parts"] = {
@@ -1656,6 +1687,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/edit-history",
                 ["parts"] = {
@@ -1673,6 +1705,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/face-swap",
                 ["parts"] = {
@@ -1690,6 +1723,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/face-targets",
                 ["parts"] = {
@@ -1707,6 +1741,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/jobs",
                 ["parts"] = {
@@ -1782,6 +1817,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/ai/edit-history",
                 ["parts"] = {
@@ -1835,6 +1871,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/ai/jobs",
                 ["parts"] = {
@@ -1870,6 +1907,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/ai/jobs/{jobId}",
                 ["parts"] = {
@@ -1910,42 +1948,42 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "allow_heuristic_fallback",
+            ["name"] = "allowHeuristicFallback",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "caption",
+            ["name"] = "captionSource",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "caption_source",
+            ["name"] = "captions",
             ["req"] = false,
-            ["type"] = "`$STRING`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "correlation_id",
+            ["name"] = "correlationId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "degraded_from_async",
+            ["name"] = "degradedFromAsync",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "editable_caption",
+            ["name"] = "editableCaptions",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 5,
@@ -1965,7 +2003,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "image_url",
+            ["name"] = "imageUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 7,
@@ -1992,7 +2030,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "preferred_provider_id",
+            ["name"] = "preferredProviderId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 10,
@@ -2006,14 +2044,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "rewrite_note",
+            ["name"] = "rewriteNote",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 12,
           },
           {
             ["active"] = true,
-            ["name"] = "run_id",
+            ["name"] = "runId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 13,
@@ -2027,7 +2065,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "template_id",
+            ["name"] = "templateId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 15,
@@ -2041,21 +2079,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "tone_cue",
+            ["name"] = "toneCues",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 17,
           },
           {
             ["active"] = true,
-            ["name"] = "variant",
-            ["req"] = true,
-            ["type"] = "`$ARRAY`",
-            ["index$"] = 18,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "variant_count",
+            ["name"] = "variantCount",
             ["op"] = {
               ["create"] = {
                 ["req"] = false,
@@ -2064,11 +2095,18 @@ local function make_config()
             },
             ["req"] = true,
             ["type"] = "`$INTEGER`",
+            ["index$"] = 18,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "variants",
+            ["req"] = true,
+            ["type"] = "`$ARRAY`",
             ["index$"] = 19,
           },
           {
             ["active"] = true,
-            ["name"] = "workspace_id",
+            ["name"] = "workspaceId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 20,
@@ -2083,6 +2121,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/memes/generate",
                 ["parts"] = {
@@ -2101,6 +2140,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/memes/generate",
                 ["parts"] = {
@@ -2128,14 +2168,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "actor_id",
+            ["name"] = "actorId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "correlation_id",
+            ["name"] = "correlationId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -2149,14 +2189,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "mapping_mode",
+            ["name"] = "mappingMode",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "max_slot",
+            ["name"] = "maxSlots",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 4,
@@ -2170,28 +2210,28 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_image_url",
+            ["name"] = "sourceImageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "text",
+            ["name"] = "texts",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 7,
           },
           {
             ["active"] = true,
-            ["name"] = "trend_signal",
+            ["name"] = "trendSignals",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "workspace_id",
+            ["name"] = "workspaceId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 9,
@@ -2206,6 +2246,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/templates/detect",
                 ["parts"] = {
@@ -2224,6 +2265,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/ai/templates/suggest",
                 ["parts"] = {
@@ -2260,6 +2302,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/ai/providers/background-remove-benchmark",
                 ["parts"] = {
@@ -2293,6 +2336,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/ai/providers/face-swap-benchmark",
                 ["parts"] = {
@@ -2315,6 +2359,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/ai/memes/generate",
                 ["parts"] = {
@@ -2360,6 +2405,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/analytics/experiments/templates",
                 ["parts"] = {
@@ -2393,6 +2439,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/analytics/dashboards/backend-reliability",
                 ["parts"] = {
@@ -2415,6 +2462,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/analytics/alerts/backend",
                 ["parts"] = {
@@ -2433,6 +2481,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/analytics/anomalies/ai",
                 ["parts"] = {
@@ -2451,6 +2500,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/analytics/dashboards/activation-retention",
                 ["parts"] = {
@@ -2469,6 +2519,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/analytics/dashboards/feature-adoption",
                 ["parts"] = {
@@ -2487,6 +2538,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/analytics/metric-dictionary",
                 ["parts"] = {
@@ -2515,7 +2567,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "display_name",
+            ["name"] = "displayName",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
@@ -2544,6 +2596,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/auth/resend-verification",
                 ["parts"] = {
@@ -2563,6 +2616,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/auth/signup",
                 ["parts"] = {
@@ -2617,6 +2671,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/billing/usage",
                 ["parts"] = {
@@ -2649,7 +2704,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "author_id",
+            ["name"] = "authorId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
@@ -2663,7 +2718,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "project_id",
+            ["name"] = "projectId",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
@@ -2678,6 +2733,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/collab/comments",
                 ["parts"] = {
@@ -2729,6 +2785,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/collab/comments",
                 ["parts"] = {
@@ -2768,6 +2825,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/compliance/content-policy",
                 ["parts"] = {
@@ -2796,21 +2854,21 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "canva",
+            ["name"] = "canvas",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "caption",
+            ["name"] = "captions",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "generation_run_id",
+            ["name"] = "generationRunId",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -2823,7 +2881,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "generation_variant_id",
+            ["name"] = "generationVariantId",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -2836,28 +2894,28 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "image_data_url",
+            ["name"] = "imageDataUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "overlay",
+            ["name"] = "overlays",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "source_image_url",
+            ["name"] = "sourceImageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "template_slug",
+            ["name"] = "templateSlug",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 7,
@@ -2893,6 +2951,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/memes",
                 ["parts"] = {
@@ -2932,7 +2991,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "trend_signal",
+            ["name"] = "trendSignals",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -2947,6 +3006,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/templates/ideas",
                 ["parts"] = {
@@ -2972,6 +3032,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/memes/generate",
                 ["parts"] = {
@@ -2999,14 +3060,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "caption",
+            ["name"] = "captions",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "template_slug",
+            ["name"] = "templateSlug",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -3042,6 +3103,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/free/memes/caption",
                 ["parts"] = {
@@ -3053,13 +3115,14 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/memes/caption-template",
                 ["parts"] = {
@@ -3071,7 +3134,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 1,
               },
@@ -3094,7 +3157,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "asset_byte",
+            ["name"] = "assetBytes",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3107,30 +3170,30 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "asset_content_type",
+            ["name"] = "assetContentType",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "box_count",
+            ["name"] = "boxCount",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "caption",
+            ["name"] = "captionCount",
             ["req"] = true,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "caption_count",
+            ["name"] = "captions",
             ["req"] = true,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 5,
           },
           {
@@ -3142,7 +3205,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "duration_m",
+            ["name"] = "durationMs",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3155,7 +3218,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "example_image_url",
+            ["name"] = "exampleImageUrl",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3168,7 +3231,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "frame_count",
+            ["name"] = "frameCount",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3201,14 +3264,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "image_url",
+            ["name"] = "imageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 12,
           },
           {
             ["active"] = true,
-            ["name"] = "media_type",
+            ["name"] = "mediaType",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 13,
@@ -3222,14 +3285,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "poster_image_url",
+            ["name"] = "posterImageUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 15,
           },
           {
             ["active"] = true,
-            ["name"] = "quality_status",
+            ["name"] = "qualityStatus",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 16,
@@ -3243,7 +3306,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_template_id",
+            ["name"] = "sourceTemplateId",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -3256,14 +3319,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_url",
+            ["name"] = "sourceUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 19,
           },
           {
             ["active"] = true,
-            ["name"] = "tag",
+            ["name"] = "tags",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 20,
@@ -3359,6 +3422,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/free/templates",
                 ["parts"] = {
@@ -3380,7 +3444,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.items`",
                 },
                 ["index$"] = 0,
               },
@@ -3396,80 +3460,149 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "caption",
+            ["name"] = "base64",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "byteLength",
             ["req"] = true,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "duration_m",
+            ["name"] = "captions",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 2,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "dataUrl",
+            ["req"] = false,
+            ["type"] = "`$STRING`",
+            ["index$"] = 3,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "delayMs",
+            ["req"] = true,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 4,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "durationMs",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 2,
+            ["index$"] = 5,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "filename",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
             ["name"] = "fps",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 3,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "gif_slug",
-            ["req"] = false,
-            ["type"] = "`$STRING`",
-            ["index$"] = 4,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "ok",
-            ["req"] = true,
-            ["type"] = "`$BOOLEAN`",
-            ["index$"] = 5,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "return_base64",
-            ["req"] = false,
-            ["type"] = "`$BOOLEAN`",
-            ["index$"] = 6,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "start_m",
-            ["req"] = false,
-            ["type"] = "`$INTEGER`",
             ["index$"] = 7,
           },
           {
             ["active"] = true,
-            ["name"] = "tag",
+            ["name"] = "gifSlug",
+            ["op"] = {
+              ["create"] = {
+                ["req"] = false,
+                ["type"] = "`$STRING`",
+              },
+            },
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 8,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "height",
+            ["req"] = true,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 9,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "mimeType",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 10,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "pages",
+            ["req"] = true,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 11,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "parameters",
+            ["req"] = true,
+            ["type"] = "`$OBJECT`",
+            ["index$"] = 12,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "returnBase64",
+            ["req"] = false,
+            ["type"] = "`$BOOLEAN`",
+            ["index$"] = 13,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "sourceDurationMs",
+            ["req"] = true,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 14,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "startMs",
+            ["req"] = false,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 15,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "tags",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 8,
+            ["index$"] = 16,
           },
           {
             ["active"] = true,
             ["name"] = "title",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 9,
+            ["index$"] = 17,
           },
           {
             ["active"] = true,
-            ["name"] = "width_px",
+            ["name"] = "width",
+            ["req"] = true,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 18,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "widthPx",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 10,
+            ["index$"] = 19,
           },
         },
         ["name"] = "generate",
@@ -3481,6 +3614,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/gifs/generate",
                 ["parts"] = {
@@ -3492,7 +3626,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -3508,7 +3642,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "account_id",
+            ["name"] = "accountId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
@@ -3522,7 +3656,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "actor_id",
+            ["name"] = "actorId",
             ["op"] = {
               ["create"] = {
                 ["req"] = true,
@@ -3549,7 +3683,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "external_account_id",
+            ["name"] = "externalAccountId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 5,
@@ -3570,14 +3704,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "log_exposure",
+            ["name"] = "logExposure",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "meme_slug",
+            ["name"] = "memeSlug",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 9,
@@ -3598,14 +3732,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "profile",
+            ["name"] = "profiles",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 12,
           },
           {
             ["active"] = true,
-            ["name"] = "share_slug",
+            ["name"] = "shareSlug",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 13,
@@ -3619,7 +3753,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "week_start",
+            ["name"] = "weekStart",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 15,
@@ -3634,6 +3768,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/growth/experiments/decision",
                 ["parts"] = {
@@ -3652,6 +3787,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/growth/lifecycle-messaging",
                 ["parts"] = {
@@ -3671,6 +3807,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/growth/referrals",
                 ["parts"] = {
@@ -3690,6 +3827,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/growth/social-publish",
                 ["parts"] = {
@@ -3709,6 +3847,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/growth/trend-campaigns",
                 ["parts"] = {
@@ -3762,6 +3901,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/growth/experiments/decision",
                 ["parts"] = {
@@ -3813,6 +3953,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/growth/trend-campaigns",
                 ["parts"] = {
@@ -3856,6 +3997,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/growth/social-publish",
                 ["parts"] = {
@@ -3890,6 +4032,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/growth/referrals",
                 ["parts"] = {
@@ -3912,6 +4055,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/growth/lifecycle-messaging",
                 ["parts"] = {
@@ -3931,6 +4075,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/growth/viral-triggers",
                 ["parts"] = {
@@ -3959,56 +4104,56 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "alt_text",
+            ["name"] = "altText",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "canonical_image_url",
+            ["name"] = "canonicalImageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "created_at",
+            ["name"] = "createdAt",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "image_url",
+            ["name"] = "imageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "nsfw_status",
+            ["name"] = "nsfwStatus",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "share_slug",
+            ["name"] = "shareSlug",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "share_url",
+            ["name"] = "shareUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "share_view",
+            ["name"] = "shareViews",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 7,
@@ -4022,14 +4167,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "tag",
+            ["name"] = "tags",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 9,
           },
           {
             ["active"] = true,
-            ["name"] = "template_slug",
+            ["name"] = "templateSlug",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 10,
@@ -4133,6 +4278,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/memes",
                 ["parts"] = {
@@ -4154,7 +4300,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.items`",
                 },
                 ["index$"] = 0,
               },
@@ -4177,21 +4323,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "content_type",
+            ["name"] = "contentType",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "expires_in_second",
+            ["name"] = "expiresInSeconds",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "owner_token",
+            ["name"] = "ownerToken",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
@@ -4220,6 +4366,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/media/signed-url",
                 ["parts"] = {
@@ -4248,77 +4395,77 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "alt_text",
+            ["name"] = "altText",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "canonical_image_url",
+            ["name"] = "canonicalImageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "canva",
+            ["name"] = "canvas",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "caption",
+            ["name"] = "captions",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "created_at",
+            ["name"] = "createdAt",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "image_url",
+            ["name"] = "imageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "nsfw_status",
+            ["name"] = "nsfwStatus",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "overlay",
+            ["name"] = "overlays",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 7,
           },
           {
             ["active"] = true,
-            ["name"] = "share_slug",
+            ["name"] = "shareSlug",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "share_url",
+            ["name"] = "shareUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 9,
           },
           {
             ["active"] = true,
-            ["name"] = "share_view",
+            ["name"] = "shareViews",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 10,
@@ -4332,21 +4479,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_image_url",
+            ["name"] = "sourceImageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 12,
           },
           {
             ["active"] = true,
-            ["name"] = "tag",
+            ["name"] = "tags",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 13,
           },
           {
             ["active"] = true,
-            ["name"] = "template_slug",
+            ["name"] = "templateSlug",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 14,
@@ -4404,6 +4551,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/memes/{slug}",
                 ["parts"] = {
@@ -4450,6 +4598,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/api/memes/{slug}",
                 ["parts"] = {
@@ -4492,7 +4641,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "asset_byte",
+            ["name"] = "assetBytes",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -4505,35 +4654,35 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "asset_content_type",
+            ["name"] = "assetContentType",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "box_count",
+            ["name"] = "boxCount",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "caption",
-            ["req"] = true,
-            ["type"] = "`$ARRAY`",
+            ["name"] = "captionCount",
+            ["req"] = false,
+            ["type"] = "`$INTEGER`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "caption_count",
-            ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["name"] = "captions",
+            ["req"] = true,
+            ["type"] = "`$ARRAY`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "category",
+            ["name"] = "categories",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 6,
@@ -4547,7 +4696,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "duration_m",
+            ["name"] = "durationMs",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -4560,7 +4709,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "example_image_url",
+            ["name"] = "exampleImageUrl",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -4573,7 +4722,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "frame_count",
+            ["name"] = "frameCount",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -4606,14 +4755,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "image_url",
+            ["name"] = "imageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 13,
           },
           {
             ["active"] = true,
-            ["name"] = "media_type",
+            ["name"] = "mediaType",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 14,
@@ -4627,21 +4776,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "poster_image_url",
+            ["name"] = "posterImageUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 16,
           },
           {
             ["active"] = true,
-            ["name"] = "preview_image_url",
+            ["name"] = "previewImageUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 17,
           },
           {
             ["active"] = true,
-            ["name"] = "quality_status",
+            ["name"] = "qualityStatus",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 18,
@@ -4655,7 +4804,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_template_id",
+            ["name"] = "sourceTemplateId",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -4668,14 +4817,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_url",
+            ["name"] = "sourceUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 21,
           },
           {
             ["active"] = true,
-            ["name"] = "tag",
+            ["name"] = "tags",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 22,
@@ -4726,6 +4875,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/templates/{slug}",
                 ["parts"] = {
@@ -4760,6 +4910,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/gifs/{slug}",
                 ["parts"] = {
@@ -4825,28 +4976,28 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "style_preset",
+            ["name"] = "stylePreset",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "system_prompt",
+            ["name"] = "systemPrompt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "watermark_text",
+            ["name"] = "watermarkText",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "website_url",
+            ["name"] = "websiteUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 7,
@@ -4861,6 +5012,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/bootstrap",
                 ["parts"] = {
@@ -4879,6 +5031,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/agents/create-agent",
                 ["parts"] = {
@@ -4913,7 +5066,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "asset_byte",
+            ["name"] = "assetBytes",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -4926,21 +5079,28 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "asset_content_type",
+            ["name"] = "assetContentType",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "box_count",
+            ["name"] = "boxCount",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "caption",
+            ["name"] = "captionCount",
+            ["req"] = false,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 4,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "captions",
             ["op"] = {
               ["list"] = {
                 ["req"] = true,
@@ -4949,18 +5109,11 @@ local function make_config()
             },
             ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 4,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "caption_count",
-            ["req"] = false,
-            ["type"] = "`$INTEGER`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "category",
+            ["name"] = "categories",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 6,
@@ -4974,14 +5127,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "duration_m",
+            ["name"] = "durationMs",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "example_image_url",
+            ["name"] = "exampleImageUrl",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5001,7 +5154,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "frame_count",
+            ["name"] = "frameCount",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5014,7 +5167,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "gif_slug",
+            ["name"] = "gifSlug",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 12,
@@ -5041,14 +5194,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "image_url",
+            ["name"] = "imageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 15,
           },
           {
             ["active"] = true,
-            ["name"] = "media_type",
+            ["name"] = "mediaType",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 16,
@@ -5062,28 +5215,28 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "poster_image_url",
+            ["name"] = "posterImageUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 18,
           },
           {
             ["active"] = true,
-            ["name"] = "preview_image_url",
+            ["name"] = "previewImageUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 19,
           },
           {
             ["active"] = true,
-            ["name"] = "quality_status",
+            ["name"] = "qualityStatus",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 20,
           },
           {
             ["active"] = true,
-            ["name"] = "return_base64",
+            ["name"] = "returnBase64",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 21,
@@ -5097,7 +5250,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_template_id",
+            ["name"] = "sourceTemplateId",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -5110,21 +5263,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_url",
+            ["name"] = "sourceUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 24,
           },
           {
             ["active"] = true,
-            ["name"] = "start_m",
+            ["name"] = "startMs",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 25,
           },
           {
             ["active"] = true,
-            ["name"] = "tag",
+            ["name"] = "tags",
             ["op"] = {
               ["list"] = {
                 ["req"] = true,
@@ -5157,7 +5310,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "width_px",
+            ["name"] = "widthPx",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 29,
@@ -5184,6 +5337,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/gifs/{slug}/generate",
                 ["parts"] = {
@@ -5281,6 +5435,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/templates",
                 ["parts"] = {
@@ -5301,7 +5456,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.items`",
                 },
                 ["index$"] = 0,
               },
@@ -5328,7 +5483,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "asset_byte",
+            ["name"] = "assetBytes",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5341,35 +5496,35 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "asset_content_type",
+            ["name"] = "assetContentType",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "box_count",
+            ["name"] = "boxCount",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "caption",
-            ["req"] = true,
-            ["type"] = "`$ARRAY`",
+            ["name"] = "captionCount",
+            ["req"] = false,
+            ["type"] = "`$INTEGER`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "caption_count",
-            ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["name"] = "captions",
+            ["req"] = true,
+            ["type"] = "`$ARRAY`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "category",
+            ["name"] = "categories",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 6,
@@ -5383,7 +5538,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "duration_m",
+            ["name"] = "durationMs",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5396,7 +5551,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "example_image_url",
+            ["name"] = "exampleImageUrl",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5409,7 +5564,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "frame_count",
+            ["name"] = "frameCount",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5442,14 +5597,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "image_url",
+            ["name"] = "imageUrl",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 13,
           },
           {
             ["active"] = true,
-            ["name"] = "media_type",
+            ["name"] = "mediaType",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 14,
@@ -5463,21 +5618,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "poster_image_url",
+            ["name"] = "posterImageUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 16,
           },
           {
             ["active"] = true,
-            ["name"] = "preview_image_url",
+            ["name"] = "previewImageUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 17,
           },
           {
             ["active"] = true,
-            ["name"] = "quality_status",
+            ["name"] = "qualityStatus",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 18,
@@ -5491,7 +5646,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_template_id",
+            ["name"] = "sourceTemplateId",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -5504,14 +5659,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_url",
+            ["name"] = "sourceUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 21,
           },
           {
             ["active"] = true,
-            ["name"] = "tag",
+            ["name"] = "tags",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 22,
@@ -5590,6 +5745,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/gifs",
                 ["parts"] = {
@@ -5608,7 +5764,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.items`",
                 },
                 ["index$"] = 0,
               },
@@ -5631,7 +5787,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "actor_id",
+            ["name"] = "actorId",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -5645,21 +5801,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "alert_id",
+            ["name"] = "alertId",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "channel",
+            ["name"] = "channels",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "deliver_all_alert",
+            ["name"] = "deliverAllAlerts",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 5,
@@ -5673,35 +5829,35 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "explicit_niche",
+            ["name"] = "explicitNiches",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 7,
           },
           {
             ["active"] = true,
-            ["name"] = "explicit_region",
+            ["name"] = "explicitRegions",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "explicit_source",
+            ["name"] = "explicitSources",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 9,
           },
           {
             ["active"] = true,
-            ["name"] = "explicit_topic",
+            ["name"] = "explicitTopics",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 10,
           },
           {
             ["active"] = true,
-            ["name"] = "follower_count",
+            ["name"] = "followerCount",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 11,
@@ -5744,6 +5900,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/alerts/delivery",
                 ["parts"] = {
@@ -5761,6 +5918,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/alerts/feedback",
                 ["parts"] = {
@@ -5778,6 +5936,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/alerts/preferences",
                 ["parts"] = {
@@ -5795,6 +5954,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/alerts/triggers",
                 ["parts"] = {
@@ -5926,6 +6086,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts",
                 ["parts"] = {
@@ -6017,6 +6178,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts/ranking",
                 ["parts"] = {
@@ -6063,6 +6225,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts/feedback",
                 ["parts"] = {
@@ -6096,6 +6259,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts/preferences",
                 ["parts"] = {
@@ -6128,6 +6292,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts/delivery",
                 ["parts"] = {
@@ -6160,6 +6325,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts/ingestion",
                 ["parts"] = {
@@ -6192,6 +6358,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts/quality-report",
                 ["parts"] = {
@@ -6224,6 +6391,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts/message-templates",
                 ["parts"] = {
@@ -6245,6 +6413,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts/connectors",
                 ["parts"] = {
@@ -6262,6 +6431,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/alerts/triggers",
                 ["parts"] = {
@@ -6295,6 +6465,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/memes/caption-upload",
                 ["parts"] = {
@@ -6306,7 +6477,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -6335,35 +6506,35 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "asset_id",
+            ["name"] = "assetId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "at_m",
+            ["name"] = "atMs",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "audio_asset_id",
+            ["name"] = "audioAssetId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "beat_offset_m",
+            ["name"] = "beatOffsetMs",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "bitrate_kbp",
+            ["name"] = "bitrateKbps",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 5,
@@ -6391,14 +6562,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "duration_m",
+            ["name"] = "durationMs",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 9,
           },
           {
             ["active"] = true,
-            ["name"] = "duration_second",
+            ["name"] = "durationSeconds",
             ["op"] = {
               ["create"] = {
                 ["req"] = false,
@@ -6425,14 +6596,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "frame_rate",
+            ["name"] = "frameRate",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 13,
           },
           {
             ["active"] = true,
-            ["name"] = "input_format",
+            ["name"] = "inputFormat",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 14,
@@ -6446,7 +6617,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "job_id",
+            ["name"] = "jobId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 16,
@@ -6460,7 +6631,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "mime_type",
+            ["name"] = "mimeType",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 18,
@@ -6474,14 +6645,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "offset_m",
+            ["name"] = "offsetMs",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 20,
           },
           {
             ["active"] = true,
-            ["name"] = "output_preset_id",
+            ["name"] = "outputPresetId",
             ["op"] = {
               ["create"] = {
                 ["req"] = false,
@@ -6494,14 +6665,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "output_url",
+            ["name"] = "outputUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 22,
           },
           {
             ["active"] = true,
-            ["name"] = "plan_tier",
+            ["name"] = "planTier",
             ["op"] = {
               ["create"] = {
                 ["req"] = false,
@@ -6514,14 +6685,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "preset_id",
+            ["name"] = "presetId",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 24,
           },
           {
             ["active"] = true,
-            ["name"] = "progress_percent",
+            ["name"] = "progressPercent",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 25,
@@ -6535,7 +6706,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "project_id",
+            ["name"] = "projectId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 27,
@@ -6549,14 +6720,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "source_device_id",
+            ["name"] = "sourceDeviceId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 29,
           },
           {
             ["active"] = true,
-            ["name"] = "source_url",
+            ["name"] = "sourceUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 30,
@@ -6570,21 +6741,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "start_m",
+            ["name"] = "startMs",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
             ["index$"] = 32,
           },
           {
             ["active"] = true,
-            ["name"] = "style_preset_id",
+            ["name"] = "stylePresetId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 33,
           },
           {
             ["active"] = true,
-            ["name"] = "sync_to_beat_grid",
+            ["name"] = "syncToBeatGrid",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 34,
@@ -6598,7 +6769,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "track_id",
+            ["name"] = "trackId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 36,
@@ -6612,7 +6783,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "trend_keyword",
+            ["name"] = "trendKeywords",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 38,
@@ -6626,7 +6797,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "updated_at",
+            ["name"] = "updatedAt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 40,
@@ -6640,21 +6811,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "watermark_enabled",
+            ["name"] = "watermarkEnabled",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 42,
           },
           {
             ["active"] = true,
-            ["name"] = "watermark_text",
+            ["name"] = "watermarkText",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 43,
           },
           {
             ["active"] = true,
-            ["name"] = "worker_id",
+            ["name"] = "workerId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 44,
@@ -6669,6 +6840,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/video/drafts",
                 ["parts"] = {
@@ -6688,6 +6860,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/video/export-settings",
                 ["parts"] = {
@@ -6707,6 +6880,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/video/formats",
                 ["parts"] = {
@@ -6726,6 +6900,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/video/render-queue",
                 ["parts"] = {
@@ -6745,6 +6920,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/video/subtitles",
                 ["parts"] = {
@@ -6764,6 +6940,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/video/text-animations",
                 ["parts"] = {
@@ -6783,6 +6960,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/video/timeline",
                 ["parts"] = {
@@ -6876,6 +7054,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/video/subtitles",
                 ["parts"] = {
@@ -6956,6 +7135,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/video/audio-library",
                 ["parts"] = {
@@ -7034,6 +7214,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/video/export-settings",
                 ["parts"] = {
@@ -7104,6 +7285,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/video/formats",
                 ["parts"] = {
@@ -7165,6 +7347,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/video/render-queue",
                 ["parts"] = {
@@ -7225,6 +7408,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/video/text-animations",
                 ["parts"] = {
@@ -7269,6 +7453,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/video/drafts",
                 ["parts"] = {
@@ -7311,6 +7496,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/video/timeline",
                 ["parts"] = {
@@ -7345,6 +7531,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/video/render-performance",
                 ["parts"] = {

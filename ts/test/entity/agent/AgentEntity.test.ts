@@ -26,8 +26,8 @@ import {
 describe('AgentEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,7 +62,7 @@ describe('AgentEntity', async () => {
     const agent_ref01_ent = client.Agent()
     let agent_ref01_data = setup.data.new.agent['agent_ref01']
 
-    agent_ref01_data = await agent_ref01_ent.create(agent_ref01_data)
+    agent_ref01_data = (await agent_ref01_ent.create(agent_ref01_data)).data()
     assert(null != agent_ref01_data)
 
 
@@ -72,7 +72,7 @@ describe('AgentEntity', async () => {
     const agent_ref01_markdef_up0 = { name: 'description', value: 'Mark01-agent_ref01_' + setup.now }
     ;(agent_ref01_data_up0 as any)[agent_ref01_markdef_up0.name] = agent_ref01_markdef_up0.value
 
-    const agent_ref01_resdata_up0 = await agent_ref01_ent.update(agent_ref01_data_up0)
+    const agent_ref01_resdata_up0 = (await agent_ref01_ent.update(agent_ref01_data_up0)).data()
     assert(null != agent_ref01_resdata_up0)
 
     assert((agent_ref01_resdata_up0 as any)[agent_ref01_markdef_up0.name] === agent_ref01_markdef_up0.value)

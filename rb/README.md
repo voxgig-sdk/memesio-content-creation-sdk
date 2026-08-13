@@ -38,7 +38,7 @@ PublicTemplateMediaItem is nested under slug, so provide the `slug`.
 
 ```ruby
 begin
-  # load returns the bare PublicTemplateMediaItem record (raises on error).
+  # load returns the ENTITY — call data_get for the PublicTemplateMediaItem record (raises on error).
   publictemplatemediaitem = client.PublicTemplateMediaItem.load({ "slug" => "example_slug" })
   puts publictemplatemediaitem
 rescue => err
@@ -49,11 +49,11 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Agent record.
+# create returns the ENTITY — call data_get for the created Agent record.
 created = client.Agent.create({ "name" => "example_name" })
 
 # Update
-client.Agent.update({ "id" => "example_id" })
+client.Agent.update({ "id" => "example_id", "description" => "example_description", "locale" => "example_locale" })
 
 ```
 
@@ -64,7 +64,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  agent = client.Agent.load({ "id" => "example_id" })
+  trendalert = client.TrendAlert.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -127,17 +127,15 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = MemesioContentCreationSDK.test({
-  "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
-})
+client = MemesioContentCreationSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-agent = client.Agent.load({ "id" => "test01" })
-puts agent
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+trendalert = client.TrendAlert.load()
+puts trendalert
 ```
 
 ### Use a custom fetch function
@@ -289,10 +287,10 @@ returns a result `Hash` with these keys:
 | `name` |  |
 | `slug` |  |
 | `status` |  |
-| `style_preset` |  |
-| `system_prompt` |  |
-| `watermark_text` |  |
-| `website_url` |  |
+| `stylePreset` |  |
+| `systemPrompt` |  |
+| `watermarkText` |  |
+| `websiteUrl` |  |
 
 Operations: Create, Load, Update.
 
@@ -303,18 +301,18 @@ API path: `/api/v1/agents`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `chat_id` |  |
-| `meme_slug` |  |
+| `chatId` |  |
+| `memeSlug` |  |
 | `metadata` |  |
-| `payout_reference` |  |
-| `payout_status` |  |
-| `phone_or_chat_id` |  |
+| `payoutReference` |  |
+| `payoutStatus` |  |
+| `phoneOrChatId` |  |
 | `prompt` |  |
 | `proof` |  |
-| `quota_boost_per_day` |  |
-| `scope` |  |
-| `user_id` |  |
-| `week_start` |  |
+| `quotaBoostPerDay` |  |
+| `scopes` |  |
+| `userId` |  |
+| `weekStart` |  |
 
 Operations: Create, Load, Remove.
 
@@ -324,34 +322,34 @@ API path: `/api/v1/agents/{agentId}/channels/telegram/bind`
 
 | Field | Description |
 | --- | --- |
-| `blocked_term` |  |
-| `canvas_text` |  |
-| `caption_count` |  |
-| `caption_set` |  |
-| `entity` |  |
-| `fallback_used` |  |
-| `generation_strategy` |  |
+| `blockedTerms` |  |
+| `canvasText` |  |
+| `captionCount` |  |
+| `captionSets` |  |
+| `entities` |  |
+| `fallbackUsed` |  |
+| `generationStrategy` |  |
 | `locale` |  |
-| `meme_id` |  |
-| `meme_slug` |  |
+| `memeId` |  |
+| `memeSlug` |  |
 | `name` |  |
 | `ok` |  |
-| `option_count` |  |
-| `owner_token` |  |
-| `provider_id` |  |
-| `reference_caption` |  |
-| `rewrite_note` |  |
-| `scene_summary` |  |
-| `template_description` |  |
-| `template_name` |  |
-| `template_tag` |  |
+| `optionCount` |  |
+| `ownerToken` |  |
+| `providerId` |  |
+| `referenceCaptions` |  |
+| `rewriteNote` |  |
+| `sceneSummary` |  |
+| `templateDescription` |  |
+| `templateName` |  |
+| `templateTags` |  |
 | `tone` |  |
-| `tone_cue` |  |
-| `trend_keyword` |  |
-| `trend_reference` |  |
-| `trend_signal` |  |
-| `variation_offset` |  |
-| `voice_rule` |  |
+| `toneCues` |  |
+| `trendKeywords` |  |
+| `trendReferences` |  |
+| `trendSignals` |  |
+| `variationOffset` |  |
+| `voiceRules` |  |
 
 Operations: Create, Load.
 
@@ -362,47 +360,47 @@ API path: `/api/ai/captions/generate`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `actor_id` |  |
-| `after_state` |  |
-| `attempt` |  |
-| `before_state` |  |
-| `brush_edit` |  |
+| `actorId` |  |
+| `afterState` |  |
+| `attempts` |  |
+| `beforeState` |  |
+| `brushEdits` |  |
 | `capability` |  |
-| `celebrity_confidence` |  |
-| `consent_attested` |  |
-| `created_at` |  |
-| `detected_face_count` |  |
-| `edge_refinement` |  |
-| `estimated_cost_usd` |  |
-| `frame_time_m` |  |
+| `celebrityConfidence` |  |
+| `consentAttested` |  |
+| `createdAt` |  |
+| `detectedFaceCount` |  |
+| `edgeRefinement` |  |
+| `estimatedCostUsd` |  |
+| `frameTimeMs` |  |
 | `height` |  |
 | `id` |  |
 | `input` |  |
-| `layer_id` |  |
-| `layer_type` |  |
-| `max_attempt` |  |
-| `max_face` |  |
-| `media_type` |  |
+| `layerId` |  |
+| `layerType` |  |
+| `maxAttempts` |  |
+| `maxFaces` |  |
+| `mediaType` |  |
 | `metadata` |  |
-| `nsfw_score` |  |
+| `nsfwScore` |  |
 | `output` |  |
-| `project_id` |  |
-| `provider_id` |  |
+| `projectId` |  |
+| `providerId` |  |
 | `reason` |  |
-| `run_after_m` |  |
-| `source_asset_url` |  |
-| `source_face_index` |  |
-| `source_image_url` |  |
+| `runAfterMs` |  |
+| `sourceAssetUrl` |  |
+| `sourceFaceIndex` |  |
+| `sourceImageUrl` |  |
 | `status` |  |
-| `target_asset_url` |  |
-| `target_face_index` |  |
-| `timeout_m` |  |
-| `trace_id` |  |
-| `updated_at` |  |
-| `version_id` |  |
+| `targetAssetUrl` |  |
+| `targetFaceIndex` |  |
+| `timeoutMs` |  |
+| `traceId` |  |
+| `updatedAt` |  |
+| `versionId` |  |
 | `width` |  |
-| `worker_id` |  |
-| `workspace_id` |  |
+| `workerId` |  |
+| `workspaceId` |  |
 
 Operations: Create, Load.
 
@@ -412,27 +410,27 @@ API path: `/api/ai/jobs/{jobId}/cancel`
 
 | Field | Description |
 | --- | --- |
-| `allow_heuristic_fallback` |  |
-| `caption` |  |
-| `caption_source` |  |
-| `correlation_id` |  |
-| `degraded_from_async` |  |
-| `editable_caption` |  |
+| `allowHeuristicFallback` |  |
+| `captionSource` |  |
+| `captions` |  |
+| `correlationId` |  |
+| `degradedFromAsync` |  |
+| `editableCaptions` |  |
 | `flow` |  |
-| `image_url` |  |
+| `imageUrl` |  |
 | `mode` |  |
 | `ok` |  |
-| `preferred_provider_id` |  |
+| `preferredProviderId` |  |
 | `prompt` |  |
-| `rewrite_note` |  |
-| `run_id` |  |
+| `rewriteNote` |  |
+| `runId` |  |
 | `status` |  |
-| `template_id` |  |
+| `templateId` |  |
 | `tone` |  |
-| `tone_cue` |  |
-| `variant` |  |
-| `variant_count` |  |
-| `workspace_id` |  |
+| `toneCues` |  |
+| `variantCount` |  |
+| `variants` |  |
+| `workspaceId` |  |
 
 Operations: Create.
 
@@ -442,16 +440,16 @@ API path: `/api/ai/memes/generate`
 
 | Field | Description |
 | --- | --- |
-| `actor_id` |  |
-| `correlation_id` |  |
+| `actorId` |  |
+| `correlationId` |  |
 | `limit` |  |
-| `mapping_mode` |  |
-| `max_slot` |  |
+| `mappingMode` |  |
+| `maxSlots` |  |
 | `prompt` |  |
-| `source_image_url` |  |
-| `text` |  |
-| `trend_signal` |  |
-| `workspace_id` |  |
+| `sourceImageUrl` |  |
+| `texts` |  |
+| `trendSignals` |  |
+| `workspaceId` |  |
 
 Operations: Create, Load.
 
@@ -470,7 +468,7 @@ API path: `/api/analytics/experiments/templates`
 
 | Field | Description |
 | --- | --- |
-| `display_name` |  |
+| `displayName` |  |
 | `email` |  |
 | `password` |  |
 
@@ -491,9 +489,9 @@ API path: `/api/billing/usage`
 
 | Field | Description |
 | --- | --- |
-| `author_id` |  |
+| `authorId` |  |
 | `message` |  |
-| `project_id` |  |
+| `projectId` |  |
 
 Operations: Create, Load.
 
@@ -512,14 +510,14 @@ API path: `/api/compliance/content-policy`
 
 | Field | Description |
 | --- | --- |
-| `canva` |  |
-| `caption` |  |
-| `generation_run_id` |  |
-| `generation_variant_id` |  |
-| `image_data_url` |  |
-| `overlay` |  |
-| `source_image_url` |  |
-| `template_slug` |  |
+| `canvas` |  |
+| `captions` |  |
+| `generationRunId` |  |
+| `generationVariantId` |  |
+| `imageDataUrl` |  |
+| `overlays` |  |
+| `sourceImageUrl` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 | `watermark` |  |
@@ -534,7 +532,7 @@ API path: `/api/memes`
 | --- | --- |
 | `limit` |  |
 | `prompt` |  |
-| `trend_signal` |  |
+| `trendSignals` |  |
 
 Operations: Create, Load.
 
@@ -544,8 +542,8 @@ API path: `/api/v1/templates/ideas`
 
 | Field | Description |
 | --- | --- |
-| `caption` |  |
-| `template_slug` |  |
+| `captions` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 | `watermark` |  |
@@ -559,26 +557,26 @@ API path: `/api/free/memes/caption`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
-| `frame_count` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `quality_status` |  |
+| `posterImageUrl` |  |
+| `qualityStatus` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
 | `width` |  |
 
 Operations: List.
@@ -589,17 +587,26 @@ API path: `/api/free/templates`
 
 | Field | Description |
 | --- | --- |
-| `caption` |  |
-| `data` |  |
-| `duration_m` |  |
+| `base64` |  |
+| `byteLength` |  |
+| `captions` |  |
+| `dataUrl` |  |
+| `delayMs` |  |
+| `durationMs` |  |
+| `filename` |  |
 | `fps` |  |
-| `gif_slug` |  |
-| `ok` |  |
-| `return_base64` |  |
-| `start_m` |  |
-| `tag` |  |
+| `gifSlug` |  |
+| `height` |  |
+| `mimeType` |  |
+| `pages` |  |
+| `parameters` |  |
+| `returnBase64` |  |
+| `sourceDurationMs` |  |
+| `startMs` |  |
+| `tags` |  |
 | `title` |  |
-| `width_px` |  |
+| `width` |  |
+| `widthPx` |  |
 
 Operations: Create.
 
@@ -609,22 +616,22 @@ API path: `/api/v1/gifs/generate`
 
 | Field | Description |
 | --- | --- |
-| `account_id` |  |
+| `accountId` |  |
 | `action` |  |
-| `actor_id` |  |
+| `actorId` |  |
 | `caption` |  |
 | `code` |  |
-| `external_account_id` |  |
+| `externalAccountId` |  |
 | `handle` |  |
 | `limit` |  |
-| `log_exposure` |  |
-| `meme_slug` |  |
+| `logExposure` |  |
+| `memeSlug` |  |
 | `now` |  |
 | `platform` |  |
-| `profile` |  |
-| `share_slug` |  |
+| `profiles` |  |
+| `shareSlug` |  |
 | `surface` |  |
-| `week_start` |  |
+| `weekStart` |  |
 
 Operations: Create, Load.
 
@@ -634,17 +641,17 @@ API path: `/api/growth/experiments/decision`
 
 | Field | Description |
 | --- | --- |
-| `alt_text` |  |
-| `canonical_image_url` |  |
-| `created_at` |  |
-| `image_url` |  |
-| `nsfw_status` |  |
-| `share_slug` |  |
-| `share_url` |  |
-| `share_view` |  |
+| `altText` |  |
+| `canonicalImageUrl` |  |
+| `createdAt` |  |
+| `imageUrl` |  |
+| `nsfwStatus` |  |
+| `shareSlug` |  |
+| `shareUrl` |  |
+| `shareViews` |  |
 | `slug` |  |
-| `tag` |  |
-| `template_slug` |  |
+| `tags` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 
@@ -657,9 +664,9 @@ API path: `/api/memes`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `content_type` |  |
-| `expires_in_second` |  |
-| `owner_token` |  |
+| `contentType` |  |
+| `expiresInSeconds` |  |
+| `ownerToken` |  |
 | `path` |  |
 | `prefix` |  |
 
@@ -671,21 +678,21 @@ API path: `/api/media/signed-url`
 
 | Field | Description |
 | --- | --- |
-| `alt_text` |  |
-| `canonical_image_url` |  |
-| `canva` |  |
-| `caption` |  |
-| `created_at` |  |
-| `image_url` |  |
-| `nsfw_status` |  |
-| `overlay` |  |
-| `share_slug` |  |
-| `share_url` |  |
-| `share_view` |  |
+| `altText` |  |
+| `canonicalImageUrl` |  |
+| `canvas` |  |
+| `captions` |  |
+| `createdAt` |  |
+| `imageUrl` |  |
+| `nsfwStatus` |  |
+| `overlays` |  |
+| `shareSlug` |  |
+| `shareUrl` |  |
+| `shareViews` |  |
 | `slug` |  |
-| `source_image_url` |  |
-| `tag` |  |
-| `template_slug` |  |
+| `sourceImageUrl` |  |
+| `tags` |  |
+| `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
 | `watermark` |  |
@@ -699,28 +706,28 @@ API path: `/api/memes/{slug}`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
-| `category` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
-| `frame_count` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `preview_image_url` |  |
-| `quality_status` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
 | `width` |  |
 
 Operations: Load.
@@ -735,10 +742,10 @@ API path: `/api/templates/{slug}`
 | `handle` |  |
 | `locale` |  |
 | `name` |  |
-| `style_preset` |  |
-| `system_prompt` |  |
-| `watermark_text` |  |
-| `website_url` |  |
+| `stylePreset` |  |
+| `systemPrompt` |  |
+| `watermarkText` |  |
+| `websiteUrl` |  |
 
 Operations: Create.
 
@@ -749,35 +756,35 @@ API path: `/api/v1/agents/bootstrap`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
-| `category` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
 | `fps` |  |
-| `frame_count` |  |
-| `gif_slug` |  |
+| `frameCount` |  |
+| `gifSlug` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `preview_image_url` |  |
-| `quality_status` |  |
-| `return_base64` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
+| `returnBase64` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `start_m` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `startMs` |  |
+| `tags` |  |
 | `title` |  |
 | `width` |  |
-| `width_px` |  |
+| `widthPx` |  |
 
 Operations: Create, List.
 
@@ -788,28 +795,28 @@ API path: `/api/gifs/{slug}/generate`
 | Field | Description |
 | --- | --- |
 | `animated` |  |
-| `asset_byte` |  |
-| `asset_content_type` |  |
-| `box_count` |  |
-| `caption` |  |
-| `caption_count` |  |
-| `category` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
 | `description` |  |
-| `duration_m` |  |
-| `example_image_url` |  |
-| `frame_count` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
 | `height` |  |
 | `id` |  |
-| `image_url` |  |
-| `media_type` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
 | `name` |  |
-| `poster_image_url` |  |
-| `preview_image_url` |  |
-| `quality_status` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
 | `slug` |  |
-| `source_template_id` |  |
-| `source_url` |  |
-| `tag` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
 | `width` |  |
 
 Operations: List.
@@ -821,17 +828,17 @@ API path: `/api/gifs`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `actor_id` |  |
+| `actorId` |  |
 | `aggressiveness` |  |
-| `alert_id` |  |
-| `channel` |  |
-| `deliver_all_alert` |  |
+| `alertId` |  |
+| `channels` |  |
+| `deliverAllAlerts` |  |
 | `event` |  |
-| `explicit_niche` |  |
-| `explicit_region` |  |
-| `explicit_source` |  |
-| `explicit_topic` |  |
-| `follower_count` |  |
+| `explicitNiches` |  |
+| `explicitRegions` |  |
+| `explicitSources` |  |
+| `explicitTopics` |  |
+| `followerCount` |  |
 | `niche` |  |
 | `region` |  |
 | `source` |  |
@@ -855,50 +862,50 @@ API path: `/api/v1/memes/caption-upload`
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `asset_id` |  |
-| `at_m` |  |
-| `audio_asset_id` |  |
-| `beat_offset_m` |  |
-| `bitrate_kbp` |  |
+| `assetId` |  |
+| `atMs` |  |
+| `audioAssetId` |  |
+| `beatOffsetMs` |  |
+| `bitrateKbps` |  |
 | `bpm` |  |
 | `cancelled` |  |
 | `container` |  |
-| `duration_m` |  |
-| `duration_second` |  |
+| `durationMs` |  |
+| `durationSeconds` |  |
 | `easing` |  |
 | `error` |  |
-| `frame_rate` |  |
-| `input_format` |  |
+| `frameRate` |  |
+| `inputFormat` |  |
 | `intensity` |  |
-| `job_id` |  |
+| `jobId` |  |
 | `locale` |  |
-| `mime_type` |  |
+| `mimeType` |  |
 | `name` |  |
-| `offset_m` |  |
-| `output_preset_id` |  |
-| `output_url` |  |
-| `plan_tier` |  |
-| `preset_id` |  |
-| `progress_percent` |  |
+| `offsetMs` |  |
+| `outputPresetId` |  |
+| `outputUrl` |  |
+| `planTier` |  |
+| `presetId` |  |
+| `progressPercent` |  |
 | `project` |  |
-| `project_id` |  |
+| `projectId` |  |
 | `property` |  |
-| `source_device_id` |  |
-| `source_url` |  |
+| `sourceDeviceId` |  |
+| `sourceUrl` |  |
 | `stage` |  |
-| `start_m` |  |
-| `style_preset_id` |  |
-| `sync_to_beat_grid` |  |
+| `startMs` |  |
+| `stylePresetId` |  |
+| `syncToBeatGrid` |  |
 | `tone` |  |
-| `track_id` |  |
+| `trackId` |  |
 | `transcript` |  |
-| `trend_keyword` |  |
+| `trendKeywords` |  |
 | `type` |  |
-| `updated_at` |  |
+| `updatedAt` |  |
 | `value` |  |
-| `watermark_enabled` |  |
-| `watermark_text` |  |
-| `worker_id` |  |
+| `watermarkEnabled` |  |
+| `watermarkText` |  |
+| `workerId` |  |
 
 Operations: Create, Load.
 
@@ -930,15 +937,15 @@ Create an instance: `agent = client.Agent`
 | `name` | `String` |  |
 | `slug` | `String` |  |
 | `status` | `String` |  |
-| `style_preset` | `String` |  |
-| `system_prompt` | `String` |  |
-| `watermark_text` | `String` |  |
-| `website_url` | `String` |  |
+| `stylePreset` | `String` |  |
+| `systemPrompt` | `String` |  |
+| `watermarkText` | `String` |  |
+| `websiteUrl` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Agent record (raises on error).
+# load returns the ENTITY — call data_get for the Agent record (raises on error).
 agent = client.Agent.load({ "id" => "agent_id" })
 ```
 
@@ -968,23 +975,23 @@ Create an instance: `agent_infra = client.AgentInfra`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `String` |  |
-| `chat_id` | `String` |  |
-| `meme_slug` | `String` |  |
+| `chatId` | `String` |  |
+| `memeSlug` | `String` |  |
 | `metadata` | `Hash` |  |
-| `payout_reference` | `String` |  |
-| `payout_status` | `String` |  |
-| `phone_or_chat_id` | `String` |  |
+| `payoutReference` | `String` |  |
+| `payoutStatus` | `String` |  |
+| `phoneOrChatId` | `String` |  |
 | `prompt` | `String` |  |
 | `proof` | `Hash` |  |
-| `quota_boost_per_day` | `Integer` |  |
-| `scope` | `Array` |  |
-| `user_id` | `String` |  |
-| `week_start` | `String` |  |
+| `quotaBoostPerDay` | `Integer` |  |
+| `scopes` | `Array` |  |
+| `userId` | `String` |  |
+| `weekStart` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare AgentInfra record (raises on error).
+# load returns the ENTITY — call data_get for the AgentInfra record (raises on error).
 agent_infra = client.AgentInfra.load()
 ```
 
@@ -992,6 +999,11 @@ agent_infra = client.AgentInfra.load()
 
 ```ruby
 agent_infra = client.AgentInfra.create({
+  "action" => "example_action", # String
+  "chatId" => "example_chatId", # String
+  "memeSlug" => "example_memeSlug", # String
+  "phoneOrChatId" => "example_phoneOrChatId", # String
+  "prompt" => "example_prompt", # String
 })
 ```
 
@@ -1011,39 +1023,39 @@ Create an instance: `ai_caption = client.AiCaption`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `blocked_term` | `Array` |  |
-| `canvas_text` | `Array` |  |
-| `caption_count` | `Integer` |  |
-| `caption_set` | `Array` |  |
-| `entity` | `Array` |  |
-| `fallback_used` | `Boolean` |  |
-| `generation_strategy` | `String` |  |
+| `blockedTerms` | `Array` |  |
+| `canvasText` | `Array` |  |
+| `captionCount` | `Integer` |  |
+| `captionSets` | `Array` |  |
+| `entities` | `Array` |  |
+| `fallbackUsed` | `Boolean` |  |
+| `generationStrategy` | `String` |  |
 | `locale` | `String` |  |
-| `meme_id` | `String` |  |
-| `meme_slug` | `String` |  |
+| `memeId` | `String` |  |
+| `memeSlug` | `String` |  |
 | `name` | `String` |  |
 | `ok` | `Boolean` |  |
-| `option_count` | `Integer` |  |
-| `owner_token` | `String` |  |
-| `provider_id` | `String` |  |
-| `reference_caption` | `Array` |  |
-| `rewrite_note` | `String` |  |
-| `scene_summary` | `String` |  |
-| `template_description` | `String` |  |
-| `template_name` | `String` |  |
-| `template_tag` | `Array` |  |
+| `optionCount` | `Integer` |  |
+| `ownerToken` | `String` |  |
+| `providerId` | `String` |  |
+| `referenceCaptions` | `Array` |  |
+| `rewriteNote` | `String` |  |
+| `sceneSummary` | `String` |  |
+| `templateDescription` | `String` |  |
+| `templateName` | `String` |  |
+| `templateTags` | `Array` |  |
 | `tone` | `String` |  |
-| `tone_cue` | `Array` |  |
-| `trend_keyword` | `Array` |  |
-| `trend_reference` | `Array` |  |
-| `trend_signal` | `Array` |  |
-| `variation_offset` | `Integer` |  |
-| `voice_rule` | `Array` |  |
+| `toneCues` | `Array` |  |
+| `trendKeywords` | `Array` |  |
+| `trendReferences` | `Array` |  |
+| `trendSignals` | `Array` |  |
+| `variationOffset` | `Integer` |  |
+| `voiceRules` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare AiCaption record (raises on error).
+# load returns the ENTITY — call data_get for the AiCaption record (raises on error).
 ai_caption = client.AiCaption.load()
 ```
 
@@ -1051,7 +1063,7 @@ ai_caption = client.AiCaption.load()
 
 ```ruby
 ai_caption = client.AiCaption.create({
-  "canvas_text" => [], # Array
+  "canvasText" => [], # Array
   "name" => "example_name", # String
   "tone" => "example_tone", # String
 })
@@ -1074,52 +1086,52 @@ Create an instance: `ai_job = client.AiJob`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `String` |  |
-| `actor_id` | `String` |  |
-| `after_state` | `Hash` |  |
-| `attempt` | `Integer` |  |
-| `before_state` | `Hash` |  |
-| `brush_edit` | `Array` |  |
+| `actorId` | `String` |  |
+| `afterState` | `Hash` |  |
+| `attempts` | `Integer` |  |
+| `beforeState` | `Hash` |  |
+| `brushEdits` | `Array` |  |
 | `capability` | `String` |  |
-| `celebrity_confidence` | `Float` |  |
-| `consent_attested` | `Boolean` |  |
-| `created_at` | `String` |  |
-| `detected_face_count` | `Float` |  |
-| `edge_refinement` | `Float` |  |
-| `estimated_cost_usd` | `Float` |  |
-| `frame_time_m` | `Float` |  |
+| `celebrityConfidence` | `Float` |  |
+| `consentAttested` | `Boolean` |  |
+| `createdAt` | `String` |  |
+| `detectedFaceCount` | `Float` |  |
+| `edgeRefinement` | `Float` |  |
+| `estimatedCostUsd` | `Float` |  |
+| `frameTimeMs` | `Float` |  |
 | `height` | `Float` |  |
 | `id` | `String` |  |
 | `input` | `Hash` |  |
-| `layer_id` | `String` |  |
-| `layer_type` | `String` |  |
-| `max_attempt` | `Integer` |  |
-| `max_face` | `Float` |  |
-| `media_type` | `String` |  |
+| `layerId` | `String` |  |
+| `layerType` | `String` |  |
+| `maxAttempts` | `Integer` |  |
+| `maxFaces` | `Float` |  |
+| `mediaType` | `String` |  |
 | `metadata` | `Hash` |  |
-| `nsfw_score` | `Float` |  |
+| `nsfwScore` | `Float` |  |
 | `output` | `Hash` |  |
-| `project_id` | `String` |  |
-| `provider_id` | `String` |  |
+| `projectId` | `String` |  |
+| `providerId` | `String` |  |
 | `reason` | `String` |  |
-| `run_after_m` | `Integer` |  |
-| `source_asset_url` | `String` |  |
-| `source_face_index` | `Float` |  |
-| `source_image_url` | `String` |  |
+| `runAfterMs` | `Integer` |  |
+| `sourceAssetUrl` | `String` |  |
+| `sourceFaceIndex` | `Float` |  |
+| `sourceImageUrl` | `String` |  |
 | `status` | `String` |  |
-| `target_asset_url` | `String` |  |
-| `target_face_index` | `Float` |  |
-| `timeout_m` | `Integer` |  |
-| `trace_id` | `String` |  |
-| `updated_at` | `String` |  |
-| `version_id` | `String` |  |
+| `targetAssetUrl` | `String` |  |
+| `targetFaceIndex` | `Float` |  |
+| `timeoutMs` | `Integer` |  |
+| `traceId` | `String` |  |
+| `updatedAt` | `String` |  |
+| `versionId` | `String` |  |
 | `width` | `Float` |  |
-| `worker_id` | `String` |  |
-| `workspace_id` | `String` |  |
+| `workerId` | `String` |  |
+| `workspaceId` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare AiJob record (raises on error).
+# load returns the ENTITY — call data_get for the AiJob record (raises on error).
 ai_job = client.AiJob.load({ "id" => "ai_job_id" })
 ```
 
@@ -1127,6 +1139,19 @@ ai_job = client.AiJob.load({ "id" => "ai_job_id" })
 
 ```ruby
 ai_job = client.AiJob.create({
+  "action" => "example_action", # String
+  "capability" => "example_capability", # String
+  "detectedFaceCount" => 1, # Float
+  "height" => 1, # Float
+  "id" => "example_id", # String
+  "layerId" => "example_layerId", # String
+  "projectId" => "example_projectId", # String
+  "sourceAssetUrl" => "example_sourceAssetUrl", # String
+  "sourceImageUrl" => "example_sourceImageUrl", # String
+  "status" => "example_status", # String
+  "targetAssetUrl" => "example_targetAssetUrl", # String
+  "width" => 1, # Float
+  "workerId" => "example_workerId", # String
 })
 ```
 
@@ -1145,27 +1170,27 @@ Create an instance: `ai_meme_generation_succeeded = client.AiMemeGenerationSucce
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allow_heuristic_fallback` | `Boolean` |  |
-| `caption` | `Array` |  |
-| `caption_source` | `String` |  |
-| `correlation_id` | `String` |  |
-| `degraded_from_async` | `Boolean` |  |
-| `editable_caption` | `Array` |  |
+| `allowHeuristicFallback` | `Boolean` |  |
+| `captionSource` | `String` |  |
+| `captions` | `Array` |  |
+| `correlationId` | `String` |  |
+| `degradedFromAsync` | `Boolean` |  |
+| `editableCaptions` | `Array` |  |
 | `flow` | `String` |  |
-| `image_url` | `String` |  |
+| `imageUrl` | `String` |  |
 | `mode` | `String` |  |
 | `ok` | `Boolean` |  |
-| `preferred_provider_id` | `String` |  |
+| `preferredProviderId` | `String` |  |
 | `prompt` | `String` |  |
-| `rewrite_note` | `String` |  |
-| `run_id` | `String` |  |
+| `rewriteNote` | `String` |  |
+| `runId` | `String` |  |
 | `status` | `String` |  |
-| `template_id` | `String` |  |
+| `templateId` | `String` |  |
 | `tone` | `String` |  |
-| `tone_cue` | `Array` |  |
-| `variant` | `Array` |  |
-| `variant_count` | `Integer` |  |
-| `workspace_id` | `String` |  |
+| `toneCues` | `Array` |  |
+| `variantCount` | `Integer` |  |
+| `variants` | `Array` |  |
+| `workspaceId` | `String` |  |
 
 #### Example: Create
 
@@ -1176,8 +1201,8 @@ ai_meme_generation_succeeded = client.AiMemeGenerationSucceeded.create({
   "ok" => true, # Boolean
   "prompt" => "example_prompt", # String
   "status" => "example_status", # String
-  "variant" => [], # Array
-  "variant_count" => 1, # Integer
+  "variantCount" => 1, # Integer
+  "variants" => [], # Array
 })
 ```
 
@@ -1197,21 +1222,21 @@ Create an instance: `ai_provider = client.AiProvider`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `actor_id` | `String` |  |
-| `correlation_id` | `String` |  |
+| `actorId` | `String` |  |
+| `correlationId` | `String` |  |
 | `limit` | `Float` |  |
-| `mapping_mode` | `String` |  |
-| `max_slot` | `Integer` |  |
+| `mappingMode` | `String` |  |
+| `maxSlots` | `Integer` |  |
 | `prompt` | `String` |  |
-| `source_image_url` | `String` |  |
-| `text` | `Array` |  |
-| `trend_signal` | `Array` |  |
-| `workspace_id` | `String` |  |
+| `sourceImageUrl` | `String` |  |
+| `texts` | `Array` |  |
+| `trendSignals` | `Array` |  |
+| `workspaceId` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare AiProvider record (raises on error).
+# load returns the ENTITY — call data_get for the AiProvider record (raises on error).
 ai_provider = client.AiProvider.load()
 ```
 
@@ -1220,7 +1245,7 @@ ai_provider = client.AiProvider.load()
 ```ruby
 ai_provider = client.AiProvider.create({
   "prompt" => "example_prompt", # String
-  "source_image_url" => "example_source_image_url", # String
+  "sourceImageUrl" => "example_sourceImageUrl", # String
 })
 ```
 
@@ -1238,7 +1263,7 @@ Create an instance: `analytics = client.Analytics`
 #### Example: Load
 
 ```ruby
-# load returns the bare Analytics record (raises on error).
+# load returns the ENTITY — call data_get for the Analytics record (raises on error).
 analytics = client.Analytics.load()
 ```
 
@@ -1257,7 +1282,7 @@ Create an instance: `auth = client.Auth`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `display_name` | `String` |  |
+| `displayName` | `String` |  |
 | `email` | `String` |  |
 | `password` | `String` |  |
 
@@ -1284,7 +1309,7 @@ Create an instance: `billing = client.Billing`
 #### Example: Load
 
 ```ruby
-# load returns the bare Billing record (raises on error).
+# load returns the ENTITY — call data_get for the Billing record (raises on error).
 billing = client.Billing.load()
 ```
 
@@ -1304,14 +1329,14 @@ Create an instance: `collaboration = client.Collaboration`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author_id` | `String` |  |
+| `authorId` | `String` |  |
 | `message` | `String` |  |
-| `project_id` | `String` |  |
+| `projectId` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Collaboration record (raises on error).
+# load returns the ENTITY — call data_get for the Collaboration record (raises on error).
 collaboration = client.Collaboration.load()
 ```
 
@@ -1320,7 +1345,7 @@ collaboration = client.Collaboration.load()
 ```ruby
 collaboration = client.Collaboration.create({
   "message" => "example_message", # String
-  "project_id" => "example_project_id", # String
+  "projectId" => "example_projectId", # String
 })
 ```
 
@@ -1338,7 +1363,7 @@ Create an instance: `compliance = client.Compliance`
 #### Example: Load
 
 ```ruby
-# load returns the bare Compliance record (raises on error).
+# load returns the ENTITY — call data_get for the Compliance record (raises on error).
 compliance = client.Compliance.load()
 ```
 
@@ -1357,14 +1382,14 @@ Create an instance: `create_meme = client.CreateMeme`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canva` | `Hash` |  |
-| `caption` | `Array` |  |
-| `generation_run_id` | `Object` |  |
-| `generation_variant_id` | `Object` |  |
-| `image_data_url` | `String` |  |
-| `overlay` | `Array` |  |
-| `source_image_url` | `String` |  |
-| `template_slug` | `String` |  |
+| `canvas` | `Hash` |  |
+| `captions` | `Array` |  |
+| `generationRunId` | `Object` |  |
+| `generationVariantId` | `Object` |  |
+| `imageDataUrl` | `String` |  |
+| `overlays` | `Array` |  |
+| `sourceImageUrl` | `String` |  |
+| `templateSlug` | `String` |  |
 | `title` | `String` |  |
 | `visibility` | `String` |  |
 | `watermark` | `Hash` |  |
@@ -1373,10 +1398,10 @@ Create an instance: `create_meme = client.CreateMeme`
 
 ```ruby
 create_meme = client.CreateMeme.create({
-  "canva" => {}, # Hash
-  "caption" => [], # Array
-  "image_data_url" => "example_image_data_url", # String
-  "source_image_url" => "example_source_image_url", # String
+  "canvas" => {}, # Hash
+  "captions" => [], # Array
+  "imageDataUrl" => "example_imageDataUrl", # String
+  "sourceImageUrl" => "example_sourceImageUrl", # String
   "watermark" => {}, # Hash
 })
 ```
@@ -1399,12 +1424,12 @@ Create an instance: `developer_api = client.DeveloperApi`
 | --- | --- | --- |
 | `limit` | `Float` |  |
 | `prompt` | `String` |  |
-| `trend_signal` | `Array` |  |
+| `trendSignals` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare DeveloperApi record (raises on error).
+# load returns the ENTITY — call data_get for the DeveloperApi record (raises on error).
 developer_api = client.DeveloperApi.load()
 ```
 
@@ -1431,8 +1456,8 @@ Create an instance: `free_caption_meme_success = client.FreeCaptionMemeSuccess`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caption` | `Array` |  |
-| `template_slug` | `String` |  |
+| `captions` | `Array` |  |
+| `templateSlug` | `String` |  |
 | `title` | `String` |  |
 | `visibility` | `String` |  |
 | `watermark` | `Hash` |  |
@@ -1441,8 +1466,8 @@ Create an instance: `free_caption_meme_success = client.FreeCaptionMemeSuccess`
 
 ```ruby
 free_caption_meme_success = client.FreeCaptionMemeSuccess.create({
-  "caption" => [], # Array
-  "template_slug" => "example_template_slug", # String
+  "captions" => [], # Array
+  "templateSlug" => "example_templateSlug", # String
 })
 ```
 
@@ -1462,26 +1487,26 @@ Create an instance: `free_template_search = client.FreeTemplateSearch`
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `Boolean` |  |
-| `asset_byte` | `Object` |  |
-| `asset_content_type` | `String` |  |
-| `box_count` | `Integer` |  |
-| `caption` | `Array` |  |
-| `caption_count` | `Integer` |  |
+| `assetBytes` | `Object` |  |
+| `assetContentType` | `String` |  |
+| `boxCount` | `Integer` |  |
+| `captionCount` | `Integer` |  |
+| `captions` | `Array` |  |
 | `description` | `String` |  |
-| `duration_m` | `Object` |  |
-| `example_image_url` | `Object` |  |
-| `frame_count` | `Object` |  |
+| `durationMs` | `Object` |  |
+| `exampleImageUrl` | `Object` |  |
+| `frameCount` | `Object` |  |
 | `height` | `Object` |  |
 | `id` | `String` |  |
-| `image_url` | `String` |  |
-| `media_type` | `String` |  |
+| `imageUrl` | `String` |  |
+| `mediaType` | `String` |  |
 | `name` | `String` |  |
-| `poster_image_url` | `String` |  |
-| `quality_status` | `String` |  |
+| `posterImageUrl` | `String` |  |
+| `qualityStatus` | `String` |  |
 | `slug` | `String` |  |
-| `source_template_id` | `Object` |  |
-| `source_url` | `String` |  |
-| `tag` | `Array` |  |
+| `sourceTemplateId` | `Object` |  |
+| `sourceUrl` | `String` |  |
+| `tags` | `Array` |  |
 | `width` | `Object` |  |
 
 #### Example: List
@@ -1506,24 +1531,41 @@ Create an instance: `generate = client.Generate`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caption` | `Array` |  |
-| `data` | `Hash` |  |
-| `duration_m` | `Integer` |  |
+| `base64` | `String` |  |
+| `byteLength` | `Integer` |  |
+| `captions` | `Array` |  |
+| `dataUrl` | `String` |  |
+| `delayMs` | `Integer` |  |
+| `durationMs` | `Integer` |  |
+| `filename` | `String` |  |
 | `fps` | `Integer` |  |
-| `gif_slug` | `String` |  |
-| `ok` | `Boolean` |  |
-| `return_base64` | `Boolean` |  |
-| `start_m` | `Integer` |  |
-| `tag` | `Array` |  |
+| `gifSlug` | `String` |  |
+| `height` | `Integer` |  |
+| `mimeType` | `String` |  |
+| `pages` | `Integer` |  |
+| `parameters` | `Hash` |  |
+| `returnBase64` | `Boolean` |  |
+| `sourceDurationMs` | `Integer` |  |
+| `startMs` | `Integer` |  |
+| `tags` | `Array` |  |
 | `title` | `String` |  |
-| `width_px` | `Integer` |  |
+| `width` | `Integer` |  |
+| `widthPx` | `Integer` |  |
 
 #### Example: Create
 
 ```ruby
 generate = client.Generate.create({
-  "data" => {}, # Hash
-  "ok" => true, # Boolean
+  "byteLength" => 1, # Integer
+  "delayMs" => 1, # Integer
+  "filename" => "example_filename", # String
+  "gifSlug" => "example_gifSlug", # String
+  "height" => 1, # Integer
+  "mimeType" => "example_mimeType", # String
+  "pages" => 1, # Integer
+  "parameters" => {}, # Hash
+  "sourceDurationMs" => 1, # Integer
+  "width" => 1, # Integer
 })
 ```
 
@@ -1543,27 +1585,27 @@ Create an instance: `growth = client.Growth`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_id` | `String` |  |
+| `accountId` | `String` |  |
 | `action` | `String` |  |
-| `actor_id` | `String` |  |
+| `actorId` | `String` |  |
 | `caption` | `String` |  |
 | `code` | `String` |  |
-| `external_account_id` | `String` |  |
+| `externalAccountId` | `String` |  |
 | `handle` | `String` |  |
 | `limit` | `Integer` |  |
-| `log_exposure` | `Boolean` |  |
-| `meme_slug` | `String` |  |
+| `logExposure` | `Boolean` |  |
+| `memeSlug` | `String` |  |
 | `now` | `String` |  |
 | `platform` | `String` |  |
-| `profile` | `Array` |  |
-| `share_slug` | `String` |  |
+| `profiles` | `Array` |  |
+| `shareSlug` | `String` |  |
 | `surface` | `String` |  |
-| `week_start` | `String` |  |
+| `weekStart` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Growth record (raises on error).
+# load returns the ENTITY — call data_get for the Growth record (raises on error).
 growth = client.Growth.load()
 ```
 
@@ -1590,17 +1632,17 @@ Create an instance: `list_meme = client.ListMeme`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | `String` |  |
-| `canonical_image_url` | `String` |  |
-| `created_at` | `String` |  |
-| `image_url` | `String` |  |
-| `nsfw_status` | `String` |  |
-| `share_slug` | `String` |  |
-| `share_url` | `String` |  |
-| `share_view` | `Integer` |  |
+| `altText` | `String` |  |
+| `canonicalImageUrl` | `String` |  |
+| `createdAt` | `String` |  |
+| `imageUrl` | `String` |  |
+| `nsfwStatus` | `String` |  |
+| `shareSlug` | `String` |  |
+| `shareUrl` | `String` |  |
+| `shareViews` | `Integer` |  |
 | `slug` | `String` |  |
-| `tag` | `Array` |  |
-| `template_slug` | `String` |  |
+| `tags` | `Array` |  |
+| `templateSlug` | `String` |  |
 | `title` | `String` |  |
 | `visibility` | `String` |  |
 
@@ -1627,9 +1669,9 @@ Create an instance: `media = client.Media`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `String` |  |
-| `content_type` | `String` |  |
-| `expires_in_second` | `Integer` |  |
-| `owner_token` | `String` |  |
+| `contentType` | `String` |  |
+| `expiresInSeconds` | `Integer` |  |
+| `ownerToken` | `String` |  |
 | `path` | `String` |  |
 | `prefix` | `String` |  |
 
@@ -1657,21 +1699,21 @@ Create an instance: `meme = client.Meme`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | `String` |  |
-| `canonical_image_url` | `String` |  |
-| `canva` | `Hash` |  |
-| `caption` | `Array` |  |
-| `created_at` | `String` |  |
-| `image_url` | `String` |  |
-| `nsfw_status` | `String` |  |
-| `overlay` | `Array` |  |
-| `share_slug` | `String` |  |
-| `share_url` | `String` |  |
-| `share_view` | `Integer` |  |
+| `altText` | `String` |  |
+| `canonicalImageUrl` | `String` |  |
+| `canvas` | `Hash` |  |
+| `captions` | `Array` |  |
+| `createdAt` | `String` |  |
+| `imageUrl` | `String` |  |
+| `nsfwStatus` | `String` |  |
+| `overlays` | `Array` |  |
+| `shareSlug` | `String` |  |
+| `shareUrl` | `String` |  |
+| `shareViews` | `Integer` |  |
 | `slug` | `String` |  |
-| `source_image_url` | `String` |  |
-| `tag` | `Array` |  |
-| `template_slug` | `String` |  |
+| `sourceImageUrl` | `String` |  |
+| `tags` | `Array` |  |
+| `templateSlug` | `String` |  |
 | `title` | `String` |  |
 | `visibility` | `String` |  |
 | `watermark` | `Hash` |  |
@@ -1679,7 +1721,7 @@ Create an instance: `meme = client.Meme`
 #### Example: Load
 
 ```ruby
-# load returns the bare Meme record (raises on error).
+# load returns the ENTITY — call data_get for the Meme record (raises on error).
 meme = client.Meme.load({ "id" => "meme_id" })
 ```
 
@@ -1699,34 +1741,34 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `Boolean` |  |
-| `asset_byte` | `Object` |  |
-| `asset_content_type` | `String` |  |
-| `box_count` | `Integer` |  |
-| `caption` | `Array` |  |
-| `caption_count` | `Integer` |  |
-| `category` | `Array` |  |
+| `assetBytes` | `Object` |  |
+| `assetContentType` | `String` |  |
+| `boxCount` | `Integer` |  |
+| `captionCount` | `Integer` |  |
+| `captions` | `Array` |  |
+| `categories` | `Array` |  |
 | `description` | `String` |  |
-| `duration_m` | `Object` |  |
-| `example_image_url` | `Object` |  |
-| `frame_count` | `Object` |  |
+| `durationMs` | `Object` |  |
+| `exampleImageUrl` | `Object` |  |
+| `frameCount` | `Object` |  |
 | `height` | `Object` |  |
 | `id` | `String` |  |
-| `image_url` | `String` |  |
-| `media_type` | `String` |  |
+| `imageUrl` | `String` |  |
+| `mediaType` | `String` |  |
 | `name` | `String` |  |
-| `poster_image_url` | `String` |  |
-| `preview_image_url` | `String` |  |
-| `quality_status` | `String` |  |
+| `posterImageUrl` | `String` |  |
+| `previewImageUrl` | `String` |  |
+| `qualityStatus` | `String` |  |
 | `slug` | `String` |  |
-| `source_template_id` | `Object` |  |
-| `source_url` | `String` |  |
-| `tag` | `Array` |  |
+| `sourceTemplateId` | `Object` |  |
+| `sourceUrl` | `String` |  |
+| `tags` | `Array` |  |
 | `width` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare PublicTemplateMediaItem record (raises on error).
+# load returns the ENTITY — call data_get for the PublicTemplateMediaItem record (raises on error).
 public_template_media_item = client.PublicTemplateMediaItem.load({ "slug" => "slug" })
 ```
 
@@ -1749,10 +1791,10 @@ Create an instance: `standalone_agent_bootstrap = client.StandaloneAgentBootstra
 | `handle` | `String` |  |
 | `locale` | `String` |  |
 | `name` | `String` |  |
-| `style_preset` | `String` |  |
-| `system_prompt` | `String` |  |
-| `watermark_text` | `String` |  |
-| `website_url` | `String` |  |
+| `stylePreset` | `String` |  |
+| `systemPrompt` | `String` |  |
+| `watermarkText` | `String` |  |
+| `websiteUrl` | `String` |  |
 
 #### Example: Create
 
@@ -1780,35 +1822,35 @@ Create an instance: `template = client.Template`
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `Boolean` |  |
-| `asset_byte` | `Object` |  |
-| `asset_content_type` | `String` |  |
-| `box_count` | `Integer` |  |
-| `caption` | `Array` |  |
-| `caption_count` | `Integer` |  |
-| `category` | `Array` |  |
+| `assetBytes` | `Object` |  |
+| `assetContentType` | `String` |  |
+| `boxCount` | `Integer` |  |
+| `captionCount` | `Integer` |  |
+| `captions` | `Array` |  |
+| `categories` | `Array` |  |
 | `description` | `String` |  |
-| `duration_m` | `Integer` |  |
-| `example_image_url` | `Object` |  |
+| `durationMs` | `Integer` |  |
+| `exampleImageUrl` | `Object` |  |
 | `fps` | `Integer` |  |
-| `frame_count` | `Object` |  |
-| `gif_slug` | `String` |  |
+| `frameCount` | `Object` |  |
+| `gifSlug` | `String` |  |
 | `height` | `Object` |  |
 | `id` | `String` |  |
-| `image_url` | `String` |  |
-| `media_type` | `String` |  |
+| `imageUrl` | `String` |  |
+| `mediaType` | `String` |  |
 | `name` | `String` |  |
-| `poster_image_url` | `String` |  |
-| `preview_image_url` | `String` |  |
-| `quality_status` | `String` |  |
-| `return_base64` | `Boolean` |  |
+| `posterImageUrl` | `String` |  |
+| `previewImageUrl` | `String` |  |
+| `qualityStatus` | `String` |  |
+| `returnBase64` | `Boolean` |  |
 | `slug` | `String` |  |
-| `source_template_id` | `Object` |  |
-| `source_url` | `String` |  |
-| `start_m` | `Integer` |  |
-| `tag` | `Array` |  |
+| `sourceTemplateId` | `Object` |  |
+| `sourceUrl` | `String` |  |
+| `startMs` | `Integer` |  |
+| `tags` | `Array` |  |
 | `title` | `String` |  |
 | `width` | `Object` |  |
-| `width_px` | `Integer` |  |
+| `widthPx` | `Integer` |  |
 
 #### Example: List
 
@@ -1822,6 +1864,14 @@ templates = client.Template.list
 ```ruby
 template = client.Template.create({
   "slug" => "example_slug", # String
+  "description" => "example_description", # String
+  "height" => "example_height", # Object
+  "id" => "example_id", # String
+  "imageUrl" => "example_imageUrl", # String
+  "mediaType" => "example_mediaType", # String
+  "name" => "example_name", # String
+  "sourceTemplateId" => "example_sourceTemplateId", # Object
+  "width" => "example_width", # Object
 })
 ```
 
@@ -1841,28 +1891,28 @@ Create an instance: `template_search = client.TemplateSearch`
 | Field | Type | Description |
 | --- | --- | --- |
 | `animated` | `Boolean` |  |
-| `asset_byte` | `Object` |  |
-| `asset_content_type` | `String` |  |
-| `box_count` | `Integer` |  |
-| `caption` | `Array` |  |
-| `caption_count` | `Integer` |  |
-| `category` | `Array` |  |
+| `assetBytes` | `Object` |  |
+| `assetContentType` | `String` |  |
+| `boxCount` | `Integer` |  |
+| `captionCount` | `Integer` |  |
+| `captions` | `Array` |  |
+| `categories` | `Array` |  |
 | `description` | `String` |  |
-| `duration_m` | `Object` |  |
-| `example_image_url` | `Object` |  |
-| `frame_count` | `Object` |  |
+| `durationMs` | `Object` |  |
+| `exampleImageUrl` | `Object` |  |
+| `frameCount` | `Object` |  |
 | `height` | `Object` |  |
 | `id` | `String` |  |
-| `image_url` | `String` |  |
-| `media_type` | `String` |  |
+| `imageUrl` | `String` |  |
+| `mediaType` | `String` |  |
 | `name` | `String` |  |
-| `poster_image_url` | `String` |  |
-| `preview_image_url` | `String` |  |
-| `quality_status` | `String` |  |
+| `posterImageUrl` | `String` |  |
+| `previewImageUrl` | `String` |  |
+| `qualityStatus` | `String` |  |
 | `slug` | `String` |  |
-| `source_template_id` | `Object` |  |
-| `source_url` | `String` |  |
-| `tag` | `Array` |  |
+| `sourceTemplateId` | `Object` |  |
+| `sourceUrl` | `String` |  |
+| `tags` | `Array` |  |
 | `width` | `Object` |  |
 
 #### Example: List
@@ -1889,17 +1939,17 @@ Create an instance: `trend_alert = client.TrendAlert`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `String` |  |
-| `actor_id` | `String` |  |
+| `actorId` | `String` |  |
 | `aggressiveness` | `Float` |  |
-| `alert_id` | `String` |  |
-| `channel` | `Array` |  |
-| `deliver_all_alert` | `Boolean` |  |
+| `alertId` | `String` |  |
+| `channels` | `Array` |  |
+| `deliverAllAlerts` | `Boolean` |  |
 | `event` | `Hash` |  |
-| `explicit_niche` | `Array` |  |
-| `explicit_region` | `Array` |  |
-| `explicit_source` | `Array` |  |
-| `explicit_topic` | `Array` |  |
-| `follower_count` | `Integer` |  |
+| `explicitNiches` | `Array` |  |
+| `explicitRegions` | `Array` |  |
+| `explicitSources` | `Array` |  |
+| `explicitTopics` | `Array` |  |
+| `followerCount` | `Integer` |  |
 | `niche` | `String` |  |
 | `region` | `String` |  |
 | `source` | `String` |  |
@@ -1908,7 +1958,7 @@ Create an instance: `trend_alert = client.TrendAlert`
 #### Example: Load
 
 ```ruby
-# load returns the bare TrendAlert record (raises on error).
+# load returns the ENTITY — call data_get for the TrendAlert record (raises on error).
 trend_alert = client.TrendAlert.load()
 ```
 
@@ -1917,8 +1967,8 @@ trend_alert = client.TrendAlert.load()
 ```ruby
 trend_alert = client.TrendAlert.create({
   "action" => "example_action", # String
-  "actor_id" => "example_actor_id", # String
-  "alert_id" => "example_alert_id", # String
+  "actorId" => "example_actorId", # String
+  "alertId" => "example_alertId", # String
   "topic" => "example_topic", # String
 })
 ```
@@ -1958,55 +2008,55 @@ Create an instance: `video = client.Video`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `String` |  |
-| `asset_id` | `String` |  |
-| `at_m` | `Float` |  |
-| `audio_asset_id` | `String` |  |
-| `beat_offset_m` | `Integer` |  |
-| `bitrate_kbp` | `Float` |  |
+| `assetId` | `String` |  |
+| `atMs` | `Float` |  |
+| `audioAssetId` | `String` |  |
+| `beatOffsetMs` | `Integer` |  |
+| `bitrateKbps` | `Float` |  |
 | `bpm` | `Integer` |  |
 | `cancelled` | `Boolean` |  |
 | `container` | `String` |  |
-| `duration_m` | `Float` |  |
-| `duration_second` | `Float` |  |
+| `durationMs` | `Float` |  |
+| `durationSeconds` | `Float` |  |
 | `easing` | `String` |  |
 | `error` | `String` |  |
-| `frame_rate` | `Float` |  |
-| `input_format` | `String` |  |
+| `frameRate` | `Float` |  |
+| `inputFormat` | `String` |  |
 | `intensity` | `Float` |  |
-| `job_id` | `String` |  |
+| `jobId` | `String` |  |
 | `locale` | `String` |  |
-| `mime_type` | `String` |  |
+| `mimeType` | `String` |  |
 | `name` | `String` |  |
-| `offset_m` | `Float` |  |
-| `output_preset_id` | `String` |  |
-| `output_url` | `String` |  |
-| `plan_tier` | `String` |  |
-| `preset_id` | `String` |  |
-| `progress_percent` | `Float` |  |
+| `offsetMs` | `Float` |  |
+| `outputPresetId` | `String` |  |
+| `outputUrl` | `String` |  |
+| `planTier` | `String` |  |
+| `presetId` | `String` |  |
+| `progressPercent` | `Float` |  |
 | `project` | `Hash` |  |
-| `project_id` | `String` |  |
+| `projectId` | `String` |  |
 | `property` | `String` |  |
-| `source_device_id` | `String` |  |
-| `source_url` | `String` |  |
+| `sourceDeviceId` | `String` |  |
+| `sourceUrl` | `String` |  |
 | `stage` | `String` |  |
-| `start_m` | `Float` |  |
-| `style_preset_id` | `String` |  |
-| `sync_to_beat_grid` | `Boolean` |  |
+| `startMs` | `Float` |  |
+| `stylePresetId` | `String` |  |
+| `syncToBeatGrid` | `Boolean` |  |
 | `tone` | `String` |  |
-| `track_id` | `String` |  |
+| `trackId` | `String` |  |
 | `transcript` | `String` |  |
-| `trend_keyword` | `Array` |  |
+| `trendKeywords` | `Array` |  |
 | `type` | `String` |  |
-| `updated_at` | `String` |  |
+| `updatedAt` | `String` |  |
 | `value` | `Float` |  |
-| `watermark_enabled` | `Boolean` |  |
-| `watermark_text` | `String` |  |
-| `worker_id` | `String` |  |
+| `watermarkEnabled` | `Boolean` |  |
+| `watermarkText` | `String` |  |
+| `workerId` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Video record (raises on error).
+# load returns the ENTITY — call data_get for the Video record (raises on error).
 video = client.Video.load()
 ```
 
@@ -2014,12 +2064,12 @@ video = client.Video.load()
 
 ```ruby
 video = client.Video.create({
-  "duration_second" => 1, # Float
-  "input_format" => "example_input_format", # String
-  "mime_type" => "example_mime_type", # String
-  "output_preset_id" => "example_output_preset_id", # String
-  "plan_tier" => "example_plan_tier", # String
-  "preset_id" => "example_preset_id", # String
+  "durationSeconds" => 1, # Float
+  "inputFormat" => "example_inputFormat", # String
+  "mimeType" => "example_mimeType", # String
+  "outputPresetId" => "example_outputPresetId", # String
+  "planTier" => "example_planTier", # String
+  "presetId" => "example_presetId", # String
 })
 ```
 
@@ -2100,11 +2150,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-agent = client.Agent
-agent.load({ "id" => "example_id" })
+trendalert = client.TrendAlert
+trendalert.load()
 
-# agent.data_get now returns the agent data from the last load
-# agent.match_get returns the last match criteria
+# trendalert.data_get now returns the trendalert data from the last load
+# trendalert.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

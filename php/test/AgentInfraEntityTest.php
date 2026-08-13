@@ -33,7 +33,7 @@ class AgentInfraEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set MEMESIOCONTENTCREATION_TEST_AGENT_INFRA_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set MEMESIO_CONTENT_CREATION_TEST_AGENT_INFRA_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -45,7 +45,7 @@ class AgentInfraEntityTest extends TestCase
         $agent_infra_ref01_data["agent_id"] = $setup["idmap"]["agent01"];
 
         $agent_infra_ref01_data_result = $agent_infra_ref01_ent->create($agent_infra_ref01_data, null);
-        $agent_infra_ref01_data = Helpers::to_map($agent_infra_ref01_data_result);
+        $agent_infra_ref01_data = Helpers::to_map(is_object($agent_infra_ref01_data_result) && method_exists($agent_infra_ref01_data_result, 'data_get') ? $agent_infra_ref01_data_result->data_get() : $agent_infra_ref01_data_result);
         $this->assertNotNull($agent_infra_ref01_data);
 
         // LOAD
@@ -53,11 +53,6 @@ class AgentInfraEntityTest extends TestCase
         $agent_infra_ref01_data_dt0_loaded = $agent_infra_ref01_ent->load($agent_infra_ref01_match_dt0, null);
         $this->assertNotNull($agent_infra_ref01_data_dt0_loaded);
 
-        // REMOVE
-        $agent_infra_ref01_match_rm0 = [
-            "id" => $agent_infra_ref01_data["id"],
-        ];
-        $agent_infra_ref01_ent->remove($agent_infra_ref01_match_rm0, null);
 
     }
 }
@@ -84,39 +79,39 @@ function agent_infra_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("MEMESIOCONTENTCREATION_TEST_AGENT_INFRA_ENTID");
+    $entid_env_raw = getenv("MEMESIO_CONTENT_CREATION_TEST_AGENT_INFRA_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "MEMESIOCONTENTCREATION_TEST_AGENT_INFRA_ENTID" => $idmap,
-        "MEMESIOCONTENTCREATION_TEST_LIVE" => "FALSE",
-        "MEMESIOCONTENTCREATION_TEST_EXPLAIN" => "FALSE",
-        "MEMESIOCONTENTCREATION_APIKEY" => "NONE",
+        "MEMESIO_CONTENT_CREATION_TEST_AGENT_INFRA_ENTID" => $idmap,
+        "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
+        "MEMESIO_CONTENT_CREATION_TEST_EXPLAIN" => "FALSE",
+        "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["MEMESIOCONTENTCREATION_TEST_AGENT_INFRA_ENTID"]);
+        $env["MEMESIO_CONTENT_CREATION_TEST_AGENT_INFRA_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["MEMESIOCONTENTCREATION_TEST_LIVE"] === "TRUE") {
+    if ($env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["MEMESIOCONTENTCREATION_APIKEY"],
+                "apikey" => $env["MEMESIO_CONTENT_CREATION_APIKEY"],
             ],
             $extra ?? [],
         ]);
         $client = new MemesioContentCreationSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["MEMESIOCONTENTCREATION_TEST_LIVE"] === "TRUE";
+    $live = $env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["MEMESIOCONTENTCREATION_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["MEMESIO_CONTENT_CREATION_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

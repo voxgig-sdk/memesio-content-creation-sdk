@@ -2,42 +2,42 @@
   "existing": {
     "ai_provider": {
       "AI_PROVIDER00": {
-        "actor_id": "ACTOR01",
-        "correlation_id": "CORRELATION01",
+        "actorId": "s64",
+        "correlationId": "s65",
         "limit": 102,
-        "mapping_mode": "s67",
-        "max_slot": "s68",
+        "mappingMode": "s67",
+        "maxSlots": "s68",
         "prompt": "s69",
-        "source_image_url": "s6a",
-        "text": [],
-        "trend_signal": [],
-        "workspace_id": "WORKSPACE01",
+        "sourceImageUrl": "s6a",
+        "texts": [],
+        "trendSignals": [],
+        "workspaceId": "s6d",
         "id": "AI_PROVIDER00"
       },
       "AI_PROVIDER01": {
-        "actor_id": "ACTOR01",
-        "correlation_id": "CORRELATION01",
+        "actorId": "sc8",
+        "correlationId": "sc9",
         "limit": 202,
-        "mapping_mode": "scb",
-        "max_slot": "scc",
+        "mappingMode": "scb",
+        "maxSlots": "scc",
         "prompt": "scd",
-        "source_image_url": "sce",
-        "text": [],
-        "trend_signal": [],
-        "workspace_id": "WORKSPACE01",
+        "sourceImageUrl": "sce",
+        "texts": [],
+        "trendSignals": [],
+        "workspaceId": "sd1",
         "id": "AI_PROVIDER01"
       },
       "AI_PROVIDER02": {
-        "actor_id": "ACTOR01",
-        "correlation_id": "CORRELATION01",
+        "actorId": "s12c",
+        "correlationId": "s12d",
         "limit": 302,
-        "mapping_mode": "s12f",
-        "max_slot": "s130",
+        "mappingMode": "s12f",
+        "maxSlots": "s130",
         "prompt": "s131",
-        "source_image_url": "s132",
-        "text": [],
-        "trend_signal": [],
-        "workspace_id": "WORKSPACE01",
+        "sourceImageUrl": "s132",
+        "texts": [],
+        "trendSignals": [],
+        "workspaceId": "s135",
         "id": "AI_PROVIDER02"
       }
     }
@@ -45,16 +45,16 @@
   "new": {
     "ai_provider": {
       "ai_provider_ref01": {
-        "actor_id": "ACTOR01",
-        "correlation_id": "CORRELATION01",
+        "actorId": "s190",
+        "correlationId": "s191",
         "limit": 402,
-        "mapping_mode": "s193",
-        "max_slot": "s194",
+        "mappingMode": "s193",
+        "maxSlots": "s194",
         "prompt": "s195",
-        "source_image_url": "s196",
-        "text": [],
-        "trend_signal": [],
-        "workspace_id": "WORKSPACE01"
+        "sourceImageUrl": "s196",
+        "texts": [],
+        "trendSignals": [],
+        "workspaceId": "s199"
       }
     }
   }

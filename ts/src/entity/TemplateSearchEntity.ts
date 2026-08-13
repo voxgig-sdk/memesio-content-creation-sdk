@@ -37,7 +37,7 @@ class TemplateSearchEntity extends MemesioContentCreationEntityBase<TemplateSear
 
 
 
-  async list(this: any, reqmatch?: TemplateSearchListMatch, ctrl?: Control): Promise<TemplateSearch[]> {
+  async list(this: any, reqmatch?: TemplateSearchListMatch, ctrl?: Control): Promise<TemplateSearchEntity[]> {
 
     const utility = this._utility
 

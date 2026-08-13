@@ -202,10 +202,10 @@ $agent = $client->Agent();
 | `name` | `string` | Yes |  |
 | `slug` | `string` | No |  |
 | `status` | `string` | No |  |
-| `style_preset` | `string` | No |  |
-| `system_prompt` | `string` | No |  |
-| `watermark_text` | `string` | No |  |
-| `website_url` | `string` | No |  |
+| `stylePreset` | `string` | No |  |
+| `systemPrompt` | `string` | No |  |
+| `watermarkText` | `string` | No |  |
+| `websiteUrl` | `string` | No |  |
 
 ### Field Usage by Operation
 
@@ -216,10 +216,10 @@ $agent = $client->Agent();
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
 | `status` | - | - | - |
-| `style_preset` | - | - | - |
-| `system_prompt` | - | - | - |
-| `watermark_text` | - | - | - |
-| `website_url` | - | - | - |
+| `stylePreset` | - | - | - |
+| `systemPrompt` | - | - | - |
+| `watermarkText` | - | - | - |
+| `websiteUrl` | - | - | - |
 
 ### Operations
 
@@ -293,18 +293,18 @@ $agent_infra = $client->AgentInfra();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `chat_id` | `string` | Yes |  |
-| `meme_slug` | `string` | Yes |  |
+| `chatId` | `string` | Yes |  |
+| `memeSlug` | `string` | Yes |  |
 | `metadata` | `array` | No |  |
-| `payout_reference` | `string` | No |  |
-| `payout_status` | `string` | No |  |
-| `phone_or_chat_id` | `string` | Yes |  |
+| `payoutReference` | `string` | No |  |
+| `payoutStatus` | `string` | No |  |
+| `phoneOrChatId` | `string` | Yes |  |
 | `prompt` | `string` | Yes |  |
 | `proof` | `array` | No |  |
-| `quota_boost_per_day` | `int` | No |  |
-| `scope` | `array` | No |  |
-| `user_id` | `string` | No |  |
-| `week_start` | `string` | No |  |
+| `quotaBoostPerDay` | `int` | No |  |
+| `scopes` | `array` | No |  |
+| `userId` | `string` | No |  |
+| `weekStart` | `string` | No |  |
 
 ### Operations
 
@@ -314,6 +314,11 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->AgentInfra()->create([
+  "action" => null, // string
+  "chatId" => null, // string
+  "memeSlug" => null, // string
+  "phoneOrChatId" => null, // string
+  "prompt" => null, // string
 ]);
 ```
 
@@ -373,34 +378,34 @@ $ai_caption = $client->AiCaption();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `blocked_term` | `array` | No |  |
-| `canvas_text` | `array` | Yes |  |
-| `caption_count` | `int` | No |  |
-| `caption_set` | `array` | No |  |
-| `entity` | `array` | No |  |
-| `fallback_used` | `bool` | No |  |
-| `generation_strategy` | `string` | No |  |
+| `blockedTerms` | `array` | No |  |
+| `canvasText` | `array` | Yes |  |
+| `captionCount` | `int` | No |  |
+| `captionSets` | `array` | No |  |
+| `entities` | `array` | No |  |
+| `fallbackUsed` | `bool` | No |  |
+| `generationStrategy` | `string` | No |  |
 | `locale` | `string` | No |  |
-| `meme_id` | `string` | No |  |
-| `meme_slug` | `string` | No |  |
+| `memeId` | `string` | No |  |
+| `memeSlug` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `ok` | `bool` | No |  |
-| `option_count` | `int` | No |  |
-| `owner_token` | `string` | No |  |
-| `provider_id` | `string` | No |  |
-| `reference_caption` | `array` | No |  |
-| `rewrite_note` | `string` | No |  |
-| `scene_summary` | `string` | No |  |
-| `template_description` | `string` | No |  |
-| `template_name` | `string` | No |  |
-| `template_tag` | `array` | No |  |
+| `optionCount` | `int` | No |  |
+| `ownerToken` | `string` | No |  |
+| `providerId` | `string` | No |  |
+| `referenceCaptions` | `array` | No |  |
+| `rewriteNote` | `string` | No |  |
+| `sceneSummary` | `string` | No |  |
+| `templateDescription` | `string` | No |  |
+| `templateName` | `string` | No |  |
+| `templateTags` | `array` | No |  |
 | `tone` | `string` | Yes |  |
-| `tone_cue` | `array` | No |  |
-| `trend_keyword` | `array` | No |  |
-| `trend_reference` | `array` | No |  |
-| `trend_signal` | `array` | No |  |
-| `variation_offset` | `int` | No |  |
-| `voice_rule` | `array` | No |  |
+| `toneCues` | `array` | No |  |
+| `trendKeywords` | `array` | No |  |
+| `trendReferences` | `array` | No |  |
+| `trendSignals` | `array` | No |  |
+| `variationOffset` | `int` | No |  |
+| `voiceRules` | `array` | No |  |
 
 ### Operations
 
@@ -410,7 +415,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->AiCaption()->create([
-  "canvas_text" => null, // array
+  "canvasText" => null, // array
   "name" => null, // string
   "tone" => null, // string
 ]);
@@ -465,94 +470,94 @@ $ai_job = $client->AiJob();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `actor_id` | `string` | No |  |
-| `after_state` | `array` | No |  |
-| `attempt` | `int` | No |  |
-| `before_state` | `array` | No |  |
-| `brush_edit` | `array` | No |  |
+| `actorId` | `string` | No |  |
+| `afterState` | `array` | No |  |
+| `attempts` | `int` | No |  |
+| `beforeState` | `array` | No |  |
+| `brushEdits` | `array` | No |  |
 | `capability` | `string` | Yes |  |
-| `celebrity_confidence` | `float` | No |  |
-| `consent_attested` | `bool` | No |  |
-| `created_at` | `string` | No |  |
-| `detected_face_count` | `float` | Yes |  |
-| `edge_refinement` | `float` | No |  |
-| `estimated_cost_usd` | `float` | No |  |
-| `frame_time_m` | `float` | No |  |
+| `celebrityConfidence` | `float` | No |  |
+| `consentAttested` | `bool` | No |  |
+| `createdAt` | `string` | No |  |
+| `detectedFaceCount` | `float` | Yes |  |
+| `edgeRefinement` | `float` | No |  |
+| `estimatedCostUsd` | `float` | No |  |
+| `frameTimeMs` | `float` | No |  |
 | `height` | `float` | Yes |  |
 | `id` | `string` | Yes |  |
 | `input` | `array` | No |  |
-| `layer_id` | `string` | Yes |  |
-| `layer_type` | `string` | No |  |
-| `max_attempt` | `int` | No |  |
-| `max_face` | `float` | No |  |
-| `media_type` | `string` | No |  |
+| `layerId` | `string` | Yes |  |
+| `layerType` | `string` | No |  |
+| `maxAttempts` | `int` | No |  |
+| `maxFaces` | `float` | No |  |
+| `mediaType` | `string` | No |  |
 | `metadata` | `array` | No |  |
-| `nsfw_score` | `float` | No |  |
+| `nsfwScore` | `float` | No |  |
 | `output` | `array` | No |  |
-| `project_id` | `string` | Yes |  |
-| `provider_id` | `string` | No |  |
+| `projectId` | `string` | Yes |  |
+| `providerId` | `string` | No |  |
 | `reason` | `string` | No |  |
-| `run_after_m` | `int` | No |  |
-| `source_asset_url` | `string` | Yes |  |
-| `source_face_index` | `float` | No |  |
-| `source_image_url` | `string` | Yes |  |
+| `runAfterMs` | `int` | No |  |
+| `sourceAssetUrl` | `string` | Yes |  |
+| `sourceFaceIndex` | `float` | No |  |
+| `sourceImageUrl` | `string` | Yes |  |
 | `status` | `string` | Yes |  |
-| `target_asset_url` | `string` | Yes |  |
-| `target_face_index` | `float` | No |  |
-| `timeout_m` | `int` | No |  |
-| `trace_id` | `string` | No |  |
-| `updated_at` | `string` | No |  |
-| `version_id` | `string` | No |  |
+| `targetAssetUrl` | `string` | Yes |  |
+| `targetFaceIndex` | `float` | No |  |
+| `timeoutMs` | `int` | No |  |
+| `traceId` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
+| `versionId` | `string` | No |  |
 | `width` | `float` | Yes |  |
-| `worker_id` | `string` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workerId` | `string` | Yes |  |
+| `workspaceId` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | - |
-| `actor_id` | - | - |
-| `after_state` | - | - |
-| `attempt` | - | - |
-| `before_state` | - | - |
-| `brush_edit` | - | - |
+| `actorId` | - | - |
+| `afterState` | - | - |
+| `attempts` | - | - |
+| `beforeState` | - | - |
+| `brushEdits` | - | - |
 | `capability` | - | - |
-| `celebrity_confidence` | - | - |
-| `consent_attested` | - | - |
-| `created_at` | - | - |
-| `detected_face_count` | - | - |
-| `edge_refinement` | - | - |
-| `estimated_cost_usd` | - | - |
-| `frame_time_m` | - | - |
+| `celebrityConfidence` | - | - |
+| `consentAttested` | - | - |
+| `createdAt` | - | - |
+| `detectedFaceCount` | - | - |
+| `edgeRefinement` | - | - |
+| `estimatedCostUsd` | - | - |
+| `frameTimeMs` | - | - |
 | `height` | - | - |
 | `id` | - | - |
 | `input` | - | - |
-| `layer_id` | - | - |
-| `layer_type` | - | - |
-| `max_attempt` | - | - |
-| `max_face` | - | - |
-| `media_type` | - | Yes |
+| `layerId` | - | - |
+| `layerType` | - | - |
+| `maxAttempts` | - | - |
+| `maxFaces` | - | - |
+| `mediaType` | - | Yes |
 | `metadata` | - | - |
-| `nsfw_score` | - | - |
+| `nsfwScore` | - | - |
 | `output` | - | - |
-| `project_id` | - | - |
-| `provider_id` | - | - |
+| `projectId` | - | - |
+| `providerId` | - | - |
 | `reason` | - | - |
-| `run_after_m` | - | - |
-| `source_asset_url` | - | - |
-| `source_face_index` | - | - |
-| `source_image_url` | - | - |
+| `runAfterMs` | - | - |
+| `sourceAssetUrl` | - | - |
+| `sourceFaceIndex` | - | - |
+| `sourceImageUrl` | - | - |
 | `status` | - | - |
-| `target_asset_url` | - | - |
-| `target_face_index` | - | - |
-| `timeout_m` | - | - |
-| `trace_id` | - | - |
-| `updated_at` | - | - |
-| `version_id` | - | - |
+| `targetAssetUrl` | - | - |
+| `targetFaceIndex` | - | - |
+| `timeoutMs` | - | - |
+| `traceId` | - | - |
+| `updatedAt` | - | - |
+| `versionId` | - | - |
 | `width` | - | - |
-| `worker_id` | - | - |
-| `workspace_id` | - | - |
+| `workerId` | - | - |
+| `workspaceId` | - | - |
 
 ### Operations
 
@@ -562,6 +567,19 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->AiJob()->create([
+  "action" => null, // string
+  "capability" => null, // string
+  "detectedFaceCount" => null, // float
+  "height" => null, // float
+  "id" => null, // string
+  "layerId" => null, // string
+  "projectId" => null, // string
+  "sourceAssetUrl" => null, // string
+  "sourceImageUrl" => null, // string
+  "status" => null, // string
+  "targetAssetUrl" => null, // string
+  "width" => null, // float
+  "workerId" => null, // string
 ]);
 ```
 
@@ -613,53 +631,53 @@ $ai_meme_generation_succeeded = $client->AiMemeGenerationSucceeded();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allow_heuristic_fallback` | `bool` | No |  |
-| `caption` | `array` | No |  |
-| `caption_source` | `string` | No |  |
-| `correlation_id` | `string` | No |  |
-| `degraded_from_async` | `bool` | No |  |
-| `editable_caption` | `array` | No |  |
+| `allowHeuristicFallback` | `bool` | No |  |
+| `captionSource` | `string` | No |  |
+| `captions` | `array` | No |  |
+| `correlationId` | `string` | No |  |
+| `degradedFromAsync` | `bool` | No |  |
+| `editableCaptions` | `array` | No |  |
 | `flow` | `string` | Yes |  |
-| `image_url` | `string` | No |  |
+| `imageUrl` | `string` | No |  |
 | `mode` | `string` | Yes |  |
 | `ok` | `bool` | Yes |  |
-| `preferred_provider_id` | `string` | No |  |
+| `preferredProviderId` | `string` | No |  |
 | `prompt` | `string` | Yes |  |
-| `rewrite_note` | `string` | No |  |
-| `run_id` | `string` | No |  |
+| `rewriteNote` | `string` | No |  |
+| `runId` | `string` | No |  |
 | `status` | `string` | Yes |  |
-| `template_id` | `string` | No |  |
+| `templateId` | `string` | No |  |
 | `tone` | `string` | No |  |
-| `tone_cue` | `array` | No |  |
-| `variant` | `array` | Yes |  |
-| `variant_count` | `int` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `toneCues` | `array` | No |  |
+| `variantCount` | `int` | Yes |  |
+| `variants` | `array` | Yes |  |
+| `workspaceId` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `allow_heuristic_fallback` | - |
-| `caption` | - |
-| `caption_source` | - |
-| `correlation_id` | - |
-| `degraded_from_async` | - |
-| `editable_caption` | - |
+| `allowHeuristicFallback` | - |
+| `captionSource` | - |
+| `captions` | - |
+| `correlationId` | - |
+| `degradedFromAsync` | - |
+| `editableCaptions` | - |
 | `flow` | Yes |
-| `image_url` | - |
+| `imageUrl` | - |
 | `mode` | Yes |
 | `ok` | - |
-| `preferred_provider_id` | - |
+| `preferredProviderId` | - |
 | `prompt` | - |
-| `rewrite_note` | - |
-| `run_id` | - |
+| `rewriteNote` | - |
+| `runId` | - |
 | `status` | - |
-| `template_id` | - |
+| `templateId` | - |
 | `tone` | - |
-| `tone_cue` | - |
-| `variant` | - |
-| `variant_count` | Yes |
-| `workspace_id` | - |
+| `toneCues` | - |
+| `variantCount` | Yes |
+| `variants` | - |
+| `workspaceId` | - |
 
 ### Operations
 
@@ -674,8 +692,8 @@ $result = $client->AiMemeGenerationSucceeded()->create([
   "ok" => null, // bool
   "prompt" => null, // string
   "status" => null, // string
-  "variant" => null, // array
-  "variant_count" => null, // int
+  "variantCount" => null, // int
+  "variants" => null, // array
 ]);
 ```
 
@@ -719,16 +737,16 @@ $ai_provider = $client->AiProvider();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `actor_id` | `string` | No |  |
-| `correlation_id` | `string` | No |  |
+| `actorId` | `string` | No |  |
+| `correlationId` | `string` | No |  |
 | `limit` | `float` | No |  |
-| `mapping_mode` | `string` | No |  |
-| `max_slot` | `int` | No |  |
+| `mappingMode` | `string` | No |  |
+| `maxSlots` | `int` | No |  |
 | `prompt` | `string` | Yes |  |
-| `source_image_url` | `string` | Yes |  |
-| `text` | `array` | No |  |
-| `trend_signal` | `array` | No |  |
-| `workspace_id` | `string` | No |  |
+| `sourceImageUrl` | `string` | Yes |  |
+| `texts` | `array` | No |  |
+| `trendSignals` | `array` | No |  |
+| `workspaceId` | `string` | No |  |
 
 ### Operations
 
@@ -739,7 +757,7 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->AiProvider()->create([
   "prompt" => null, // string
-  "source_image_url" => null, // string
+  "sourceImageUrl" => null, // string
 ]);
 ```
 
@@ -837,7 +855,7 @@ $auth = $client->Auth();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `display_name` | `string` | No |  |
+| `displayName` | `string` | No |  |
 | `email` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
 
@@ -940,9 +958,9 @@ $collaboration = $client->Collaboration();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author_id` | `string` | No |  |
+| `authorId` | `string` | No |  |
 | `message` | `string` | Yes |  |
-| `project_id` | `string` | Yes |  |
+| `projectId` | `string` | Yes |  |
 
 ### Operations
 
@@ -953,7 +971,7 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->Collaboration()->create([
   "message" => null, // string
-  "project_id" => null, // string
+  "projectId" => null, // string
 ]);
 ```
 
@@ -1051,14 +1069,14 @@ $create_meme = $client->CreateMeme();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canva` | `array` | Yes |  |
-| `caption` | `array` | Yes |  |
-| `generation_run_id` | `mixed` | No |  |
-| `generation_variant_id` | `mixed` | No |  |
-| `image_data_url` | `string` | Yes |  |
-| `overlay` | `array` | No |  |
-| `source_image_url` | `string` | Yes |  |
-| `template_slug` | `string` | No |  |
+| `canvas` | `array` | Yes |  |
+| `captions` | `array` | Yes |  |
+| `generationRunId` | `mixed` | No |  |
+| `generationVariantId` | `mixed` | No |  |
+| `imageDataUrl` | `string` | Yes |  |
+| `overlays` | `array` | No |  |
+| `sourceImageUrl` | `string` | Yes |  |
+| `templateSlug` | `string` | No |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `watermark` | `array` | Yes |  |
@@ -1071,10 +1089,10 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->CreateMeme()->create([
-  "canva" => null, // array
-  "caption" => null, // array
-  "image_data_url" => null, // string
-  "source_image_url" => null, // string
+  "canvas" => null, // array
+  "captions" => null, // array
+  "imageDataUrl" => null, // string
+  "sourceImageUrl" => null, // string
   "watermark" => null, // array
 ]);
 ```
@@ -1121,7 +1139,7 @@ $developer_api = $client->DeveloperApi();
 | --- | --- | --- | --- |
 | `limit` | `float` | No |  |
 | `prompt` | `string` | Yes |  |
-| `trend_signal` | `array` | No |  |
+| `trendSignals` | `array` | No |  |
 
 ### Operations
 
@@ -1183,8 +1201,8 @@ $free_caption_meme_success = $client->FreeCaptionMemeSuccess();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `array` | Yes |  |
-| `template_slug` | `string` | Yes |  |
+| `captions` | `array` | Yes |  |
+| `templateSlug` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `watermark` | `array` | No |  |
@@ -1197,8 +1215,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->FreeCaptionMemeSuccess()->create([
-  "caption" => null, // array
-  "template_slug" => null, // string
+  "captions" => null, // array
+  "templateSlug" => null, // string
 ]);
 ```
 
@@ -1243,26 +1261,26 @@ $free_template_search = $client->FreeTemplateSearch();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `bool` | No |  |
-| `asset_byte` | `mixed` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `int` | Yes |  |
-| `caption` | `array` | Yes |  |
-| `caption_count` | `int` | Yes |  |
+| `assetBytes` | `mixed` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `int` | Yes |  |
+| `captionCount` | `int` | Yes |  |
+| `captions` | `array` | Yes |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `mixed` | No |  |
-| `example_image_url` | `mixed` | No |  |
-| `frame_count` | `mixed` | No |  |
+| `durationMs` | `mixed` | No |  |
+| `exampleImageUrl` | `mixed` | No |  |
+| `frameCount` | `mixed` | No |  |
 | `height` | `mixed` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `mixed` | Yes |  |
-| `source_url` | `string` | No |  |
-| `tag` | `array` | No |  |
+| `sourceTemplateId` | `mixed` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `array` | No |  |
 | `width` | `mixed` | Yes |  |
 
 ### Operations
@@ -1315,17 +1333,51 @@ $generate = $client->Generate();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caption` | `array` | No |  |
-| `data` | `array` | Yes |  |
-| `duration_m` | `int` | No |  |
+| `base64` | `string` | No |  |
+| `byteLength` | `int` | Yes |  |
+| `captions` | `array` | No |  |
+| `dataUrl` | `string` | No |  |
+| `delayMs` | `int` | Yes |  |
+| `durationMs` | `int` | No |  |
+| `filename` | `string` | Yes |  |
 | `fps` | `int` | No |  |
-| `gif_slug` | `string` | No |  |
-| `ok` | `bool` | Yes |  |
-| `return_base64` | `bool` | No |  |
-| `start_m` | `int` | No |  |
-| `tag` | `array` | No |  |
+| `gifSlug` | `string` | Yes |  |
+| `height` | `int` | Yes |  |
+| `mimeType` | `string` | Yes |  |
+| `pages` | `int` | Yes |  |
+| `parameters` | `array` | Yes |  |
+| `returnBase64` | `bool` | No |  |
+| `sourceDurationMs` | `int` | Yes |  |
+| `startMs` | `int` | No |  |
+| `tags` | `array` | No |  |
 | `title` | `string` | No |  |
-| `width_px` | `int` | No |  |
+| `width` | `int` | Yes |  |
+| `widthPx` | `int` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `base64` | - |
+| `byteLength` | - |
+| `captions` | - |
+| `dataUrl` | - |
+| `delayMs` | - |
+| `durationMs` | - |
+| `filename` | - |
+| `fps` | - |
+| `gifSlug` | Yes |
+| `height` | - |
+| `mimeType` | - |
+| `pages` | - |
+| `parameters` | - |
+| `returnBase64` | - |
+| `sourceDurationMs` | - |
+| `startMs` | - |
+| `tags` | - |
+| `title` | - |
+| `width` | - |
+| `widthPx` | - |
 
 ### Operations
 
@@ -1335,8 +1387,16 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Generate()->create([
-  "data" => null, // array
-  "ok" => null, // bool
+  "byteLength" => null, // int
+  "delayMs" => null, // int
+  "filename" => null, // string
+  "gifSlug" => null, // string
+  "height" => null, // int
+  "mimeType" => null, // string
+  "pages" => null, // int
+  "parameters" => null, // array
+  "sourceDurationMs" => null, // int
+  "width" => null, // int
 ]);
 ```
 
@@ -1380,43 +1440,43 @@ $growth = $client->Growth();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_id` | `string` | No |  |
+| `accountId` | `string` | No |  |
 | `action` | `string` | Yes |  |
-| `actor_id` | `string` | No |  |
+| `actorId` | `string` | No |  |
 | `caption` | `string` | No |  |
 | `code` | `string` | No |  |
-| `external_account_id` | `string` | No |  |
+| `externalAccountId` | `string` | No |  |
 | `handle` | `string` | No |  |
 | `limit` | `int` | No |  |
-| `log_exposure` | `bool` | No |  |
-| `meme_slug` | `string` | No |  |
+| `logExposure` | `bool` | No |  |
+| `memeSlug` | `string` | No |  |
 | `now` | `string` | No |  |
 | `platform` | `string` | No |  |
-| `profile` | `array` | No |  |
-| `share_slug` | `string` | No |  |
+| `profiles` | `array` | No |  |
+| `shareSlug` | `string` | No |  |
 | `surface` | `string` | No |  |
-| `week_start` | `string` | No |  |
+| `weekStart` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
-| `account_id` | - | - |
+| `accountId` | - | - |
 | `action` | - | - |
-| `actor_id` | - | Yes |
+| `actorId` | - | Yes |
 | `caption` | - | - |
 | `code` | - | - |
-| `external_account_id` | - | - |
+| `externalAccountId` | - | - |
 | `handle` | - | - |
 | `limit` | - | - |
-| `log_exposure` | - | - |
-| `meme_slug` | - | - |
+| `logExposure` | - | - |
+| `memeSlug` | - | - |
 | `now` | - | - |
 | `platform` | - | - |
-| `profile` | - | - |
-| `share_slug` | - | - |
+| `profiles` | - | - |
+| `shareSlug` | - | - |
 | `surface` | - | - |
-| `week_start` | - | - |
+| `weekStart` | - | - |
 
 ### Operations
 
@@ -1478,17 +1538,17 @@ $list_meme = $client->ListMeme();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `string` | Yes |  |
-| `canonical_image_url` | `string` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `nsfw_status` | `string` | Yes |  |
-| `share_slug` | `string` | Yes |  |
-| `share_url` | `string` | Yes |  |
-| `share_view` | `int` | Yes |  |
+| `altText` | `string` | Yes |  |
+| `canonicalImageUrl` | `string` | Yes |  |
+| `createdAt` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `nsfwStatus` | `string` | Yes |  |
+| `shareSlug` | `string` | Yes |  |
+| `shareUrl` | `string` | Yes |  |
+| `shareViews` | `int` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `tag` | `array` | Yes |  |
-| `template_slug` | `string` | Yes |  |
+| `tags` | `array` | Yes |  |
+| `templateSlug` | `string` | Yes |  |
 | `title` | `string` | Yes |  |
 | `visibility` | `string` | Yes |  |
 
@@ -1543,9 +1603,9 @@ $media = $client->Media();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `content_type` | `string` | No |  |
-| `expires_in_second` | `int` | No |  |
-| `owner_token` | `string` | No |  |
+| `contentType` | `string` | No |  |
+| `expiresInSeconds` | `int` | No |  |
+| `ownerToken` | `string` | No |  |
 | `path` | `string` | No |  |
 | `prefix` | `string` | No |  |
 
@@ -1601,21 +1661,21 @@ $meme = $client->Meme();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `string` | Yes |  |
-| `canonical_image_url` | `string` | Yes |  |
-| `canva` | `array` | Yes |  |
-| `caption` | `array` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `nsfw_status` | `string` | Yes |  |
-| `overlay` | `array` | Yes |  |
-| `share_slug` | `string` | Yes |  |
-| `share_url` | `string` | Yes |  |
-| `share_view` | `int` | Yes |  |
+| `altText` | `string` | Yes |  |
+| `canonicalImageUrl` | `string` | Yes |  |
+| `canvas` | `array` | Yes |  |
+| `captions` | `array` | Yes |  |
+| `createdAt` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `nsfwStatus` | `string` | Yes |  |
+| `overlays` | `array` | Yes |  |
+| `shareSlug` | `string` | Yes |  |
+| `shareUrl` | `string` | Yes |  |
+| `shareViews` | `int` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `source_image_url` | `string` | Yes |  |
-| `tag` | `array` | Yes |  |
-| `template_slug` | `string` | Yes |  |
+| `sourceImageUrl` | `string` | Yes |  |
+| `tags` | `array` | Yes |  |
+| `templateSlug` | `string` | Yes |  |
 | `title` | `string` | Yes |  |
 | `visibility` | `string` | Yes |  |
 | `watermark` | `array` | Yes |  |
@@ -1679,28 +1739,28 @@ $public_template_media_item = $client->PublicTemplateMediaItem();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `bool` | No |  |
-| `asset_byte` | `mixed` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `int` | No |  |
-| `caption` | `array` | Yes |  |
-| `caption_count` | `int` | No |  |
-| `category` | `array` | No |  |
+| `assetBytes` | `mixed` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `int` | No |  |
+| `captionCount` | `int` | No |  |
+| `captions` | `array` | Yes |  |
+| `categories` | `array` | No |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `mixed` | No |  |
-| `example_image_url` | `mixed` | No |  |
-| `frame_count` | `mixed` | No |  |
+| `durationMs` | `mixed` | No |  |
+| `exampleImageUrl` | `mixed` | No |  |
+| `frameCount` | `mixed` | No |  |
 | `height` | `mixed` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `preview_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `mixed` | Yes |  |
-| `source_url` | `string` | No |  |
-| `tag` | `array` | Yes |  |
+| `sourceTemplateId` | `mixed` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `array` | Yes |  |
 | `width` | `mixed` | Yes |  |
 
 ### Operations
@@ -1757,10 +1817,10 @@ $standalone_agent_bootstrap = $client->StandaloneAgentBootstrap();
 | `handle` | `string` | Yes |  |
 | `locale` | `string` | No |  |
 | `name` | `string` | Yes |  |
-| `style_preset` | `string` | No |  |
-| `system_prompt` | `string` | No |  |
-| `watermark_text` | `string` | No |  |
-| `website_url` | `string` | No |  |
+| `stylePreset` | `string` | No |  |
+| `systemPrompt` | `string` | No |  |
+| `watermarkText` | `string` | No |  |
+| `websiteUrl` | `string` | No |  |
 
 ### Operations
 
@@ -1816,70 +1876,70 @@ $template = $client->Template();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `bool` | No |  |
-| `asset_byte` | `mixed` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `int` | No |  |
-| `caption` | `array` | No |  |
-| `caption_count` | `int` | No |  |
-| `category` | `array` | No |  |
+| `assetBytes` | `mixed` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `int` | No |  |
+| `captionCount` | `int` | No |  |
+| `captions` | `array` | No |  |
+| `categories` | `array` | No |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `int` | No |  |
-| `example_image_url` | `mixed` | No |  |
+| `durationMs` | `int` | No |  |
+| `exampleImageUrl` | `mixed` | No |  |
 | `fps` | `int` | No |  |
-| `frame_count` | `mixed` | No |  |
-| `gif_slug` | `string` | No |  |
+| `frameCount` | `mixed` | No |  |
+| `gifSlug` | `string` | No |  |
 | `height` | `mixed` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `preview_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
-| `return_base64` | `bool` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
+| `returnBase64` | `bool` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `mixed` | Yes |  |
-| `source_url` | `string` | No |  |
-| `start_m` | `int` | No |  |
-| `tag` | `array` | No |  |
+| `sourceTemplateId` | `mixed` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `startMs` | `int` | No |  |
+| `tags` | `array` | No |  |
 | `title` | `string` | No |  |
 | `width` | `mixed` | Yes |  |
-| `width_px` | `int` | No |  |
+| `widthPx` | `int` | No |  |
 
 ### Field Usage by Operation
 
 | Field | list | create |
 | --- | --- | --- |
 | `animated` | - | - |
-| `asset_byte` | - | - |
-| `asset_content_type` | - | - |
-| `box_count` | - | - |
-| `caption` | Yes | - |
-| `caption_count` | - | - |
-| `category` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | Yes | - |
+| `categories` | - | - |
 | `description` | - | - |
-| `duration_m` | - | - |
-| `example_image_url` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
 | `fps` | - | - |
-| `frame_count` | - | - |
-| `gif_slug` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
 | `height` | - | - |
 | `id` | - | - |
-| `image_url` | - | - |
-| `media_type` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
 | `name` | - | - |
-| `poster_image_url` | - | - |
-| `preview_image_url` | - | - |
-| `quality_status` | - | - |
-| `return_base64` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
 | `slug` | - | - |
-| `source_template_id` | - | - |
-| `source_url` | - | - |
-| `start_m` | - | - |
-| `tag` | Yes | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | Yes | - |
 | `title` | - | - |
 | `width` | - | - |
-| `width_px` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
 
@@ -1890,6 +1950,14 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->Template()->create([
   "slug" => null, // string
+  "description" => null, // string
+  "height" => null, // mixed
+  "id" => null, // string
+  "imageUrl" => null, // string
+  "mediaType" => null, // string
+  "name" => null, // string
+  "sourceTemplateId" => null, // mixed
+  "width" => null, // mixed
 ]);
 ```
 
@@ -1942,28 +2010,28 @@ $template_search = $client->TemplateSearch();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `animated` | `bool` | No |  |
-| `asset_byte` | `mixed` | No |  |
-| `asset_content_type` | `string` | No |  |
-| `box_count` | `int` | No |  |
-| `caption` | `array` | Yes |  |
-| `caption_count` | `int` | No |  |
-| `category` | `array` | No |  |
+| `assetBytes` | `mixed` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `int` | No |  |
+| `captionCount` | `int` | No |  |
+| `captions` | `array` | Yes |  |
+| `categories` | `array` | No |  |
 | `description` | `string` | Yes |  |
-| `duration_m` | `mixed` | No |  |
-| `example_image_url` | `mixed` | No |  |
-| `frame_count` | `mixed` | No |  |
+| `durationMs` | `mixed` | No |  |
+| `exampleImageUrl` | `mixed` | No |  |
+| `frameCount` | `mixed` | No |  |
 | `height` | `mixed` | Yes |  |
 | `id` | `string` | Yes |  |
-| `image_url` | `string` | Yes |  |
-| `media_type` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `poster_image_url` | `string` | No |  |
-| `preview_image_url` | `string` | No |  |
-| `quality_status` | `string` | No |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
 | `slug` | `string` | Yes |  |
-| `source_template_id` | `mixed` | Yes |  |
-| `source_url` | `string` | No |  |
-| `tag` | `array` | Yes |  |
+| `sourceTemplateId` | `mixed` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `array` | Yes |  |
 | `width` | `mixed` | Yes |  |
 
 ### Operations
@@ -2017,17 +2085,17 @@ $trend_alert = $client->TrendAlert();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
-| `actor_id` | `string` | Yes |  |
+| `actorId` | `string` | Yes |  |
 | `aggressiveness` | `float` | No |  |
-| `alert_id` | `string` | Yes |  |
-| `channel` | `array` | No |  |
-| `deliver_all_alert` | `bool` | No |  |
+| `alertId` | `string` | Yes |  |
+| `channels` | `array` | No |  |
+| `deliverAllAlerts` | `bool` | No |  |
 | `event` | `array` | No |  |
-| `explicit_niche` | `array` | No |  |
-| `explicit_region` | `array` | No |  |
-| `explicit_source` | `array` | No |  |
-| `explicit_topic` | `array` | No |  |
-| `follower_count` | `int` | No |  |
+| `explicitNiches` | `array` | No |  |
+| `explicitRegions` | `array` | No |  |
+| `explicitSources` | `array` | No |  |
+| `explicitTopics` | `array` | No |  |
+| `followerCount` | `int` | No |  |
 | `niche` | `string` | No |  |
 | `region` | `string` | No |  |
 | `source` | `string` | No |  |
@@ -2042,8 +2110,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->TrendAlert()->create([
   "action" => null, // string
-  "actor_id" => null, // string
-  "alert_id" => null, // string
+  "actorId" => null, // string
+  "alertId" => null, // string
   "topic" => null, // string
 ]);
 ```
@@ -2144,100 +2212,100 @@ $video = $client->Video();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `action` | `string` | No |  |
-| `asset_id` | `string` | No |  |
-| `at_m` | `float` | No |  |
-| `audio_asset_id` | `string` | No |  |
-| `beat_offset_m` | `int` | No |  |
-| `bitrate_kbp` | `float` | No |  |
+| `assetId` | `string` | No |  |
+| `atMs` | `float` | No |  |
+| `audioAssetId` | `string` | No |  |
+| `beatOffsetMs` | `int` | No |  |
+| `bitrateKbps` | `float` | No |  |
 | `bpm` | `int` | No |  |
 | `cancelled` | `bool` | No |  |
 | `container` | `string` | No |  |
-| `duration_m` | `float` | No |  |
-| `duration_second` | `float` | Yes |  |
+| `durationMs` | `float` | No |  |
+| `durationSeconds` | `float` | Yes |  |
 | `easing` | `string` | No |  |
 | `error` | `string` | No |  |
-| `frame_rate` | `float` | No |  |
-| `input_format` | `string` | Yes |  |
+| `frameRate` | `float` | No |  |
+| `inputFormat` | `string` | Yes |  |
 | `intensity` | `float` | No |  |
-| `job_id` | `string` | No |  |
+| `jobId` | `string` | No |  |
 | `locale` | `string` | No |  |
-| `mime_type` | `string` | Yes |  |
+| `mimeType` | `string` | Yes |  |
 | `name` | `string` | No |  |
-| `offset_m` | `float` | No |  |
-| `output_preset_id` | `string` | Yes |  |
-| `output_url` | `string` | No |  |
-| `plan_tier` | `string` | Yes |  |
-| `preset_id` | `string` | Yes |  |
-| `progress_percent` | `float` | No |  |
+| `offsetMs` | `float` | No |  |
+| `outputPresetId` | `string` | Yes |  |
+| `outputUrl` | `string` | No |  |
+| `planTier` | `string` | Yes |  |
+| `presetId` | `string` | Yes |  |
+| `progressPercent` | `float` | No |  |
 | `project` | `array` | No |  |
-| `project_id` | `string` | No |  |
+| `projectId` | `string` | No |  |
 | `property` | `string` | No |  |
-| `source_device_id` | `string` | No |  |
-| `source_url` | `string` | No |  |
+| `sourceDeviceId` | `string` | No |  |
+| `sourceUrl` | `string` | No |  |
 | `stage` | `string` | No |  |
-| `start_m` | `float` | No |  |
-| `style_preset_id` | `string` | No |  |
-| `sync_to_beat_grid` | `bool` | No |  |
+| `startMs` | `float` | No |  |
+| `stylePresetId` | `string` | No |  |
+| `syncToBeatGrid` | `bool` | No |  |
 | `tone` | `string` | No |  |
-| `track_id` | `string` | No |  |
+| `trackId` | `string` | No |  |
 | `transcript` | `string` | No |  |
-| `trend_keyword` | `array` | No |  |
+| `trendKeywords` | `array` | No |  |
 | `type` | `string` | No |  |
-| `updated_at` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 | `value` | `float` | No |  |
-| `watermark_enabled` | `bool` | No |  |
-| `watermark_text` | `string` | No |  |
-| `worker_id` | `string` | No |  |
+| `watermarkEnabled` | `bool` | No |  |
+| `watermarkText` | `string` | No |  |
+| `workerId` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | load | create |
 | --- | --- | --- |
 | `action` | - | Yes |
-| `asset_id` | - | - |
-| `at_m` | - | - |
-| `audio_asset_id` | - | - |
-| `beat_offset_m` | - | - |
-| `bitrate_kbp` | - | - |
+| `assetId` | - | - |
+| `atMs` | - | - |
+| `audioAssetId` | - | - |
+| `beatOffsetMs` | - | - |
+| `bitrateKbps` | - | - |
 | `bpm` | - | - |
 | `cancelled` | - | - |
 | `container` | - | - |
-| `duration_m` | - | - |
-| `duration_second` | - | Yes |
+| `durationMs` | - | - |
+| `durationSeconds` | - | Yes |
 | `easing` | - | - |
 | `error` | - | - |
-| `frame_rate` | - | - |
-| `input_format` | - | - |
+| `frameRate` | - | - |
+| `inputFormat` | - | - |
 | `intensity` | - | - |
-| `job_id` | - | - |
+| `jobId` | - | - |
 | `locale` | - | - |
-| `mime_type` | - | - |
+| `mimeType` | - | - |
 | `name` | - | - |
-| `offset_m` | - | - |
-| `output_preset_id` | - | Yes |
-| `output_url` | - | - |
-| `plan_tier` | - | Yes |
-| `preset_id` | - | - |
-| `progress_percent` | - | - |
+| `offsetMs` | - | - |
+| `outputPresetId` | - | Yes |
+| `outputUrl` | - | - |
+| `planTier` | - | Yes |
+| `presetId` | - | - |
+| `progressPercent` | - | - |
 | `project` | - | - |
-| `project_id` | - | - |
+| `projectId` | - | - |
 | `property` | - | - |
-| `source_device_id` | - | - |
-| `source_url` | - | - |
+| `sourceDeviceId` | - | - |
+| `sourceUrl` | - | - |
 | `stage` | - | - |
-| `start_m` | - | - |
-| `style_preset_id` | - | - |
-| `sync_to_beat_grid` | - | - |
+| `startMs` | - | - |
+| `stylePresetId` | - | - |
+| `syncToBeatGrid` | - | - |
 | `tone` | - | - |
-| `track_id` | - | - |
+| `trackId` | - | - |
 | `transcript` | - | - |
-| `trend_keyword` | - | - |
+| `trendKeywords` | - | - |
 | `type` | - | - |
-| `updated_at` | - | - |
+| `updatedAt` | - | - |
 | `value` | - | - |
-| `watermark_enabled` | - | - |
-| `watermark_text` | - | - |
-| `worker_id` | - | - |
+| `watermarkEnabled` | - | - |
+| `watermarkText` | - | - |
+| `workerId` | - | - |
 
 ### Operations
 
@@ -2247,12 +2315,12 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Video()->create([
-  "duration_second" => null, // float
-  "input_format" => null, // string
-  "mime_type" => null, // string
-  "output_preset_id" => null, // string
-  "plan_tier" => null, // string
-  "preset_id" => null, // string
+  "durationSeconds" => null, // float
+  "inputFormat" => null, // string
+  "mimeType" => null, // string
+  "outputPresetId" => null, // string
+  "planTier" => null, // string
+  "presetId" => null, // string
 ]);
 ```
 

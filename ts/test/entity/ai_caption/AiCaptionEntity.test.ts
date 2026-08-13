@@ -26,8 +26,8 @@ import {
 describe('AiCaptionEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,13 +62,13 @@ describe('AiCaptionEntity', async () => {
     const ai_caption_ref01_ent = client.AiCaption()
     let ai_caption_ref01_data = setup.data.new.ai_caption['ai_caption_ref01']
 
-    ai_caption_ref01_data = await ai_caption_ref01_ent.create(ai_caption_ref01_data)
+    ai_caption_ref01_data = (await ai_caption_ref01_ent.create(ai_caption_ref01_data)).data()
     assert(null != ai_caption_ref01_data)
 
 
     // LOAD
     const ai_caption_ref01_match_dt0: any = {}
-    const ai_caption_ref01_data_dt0 = await ai_caption_ref01_ent.load(ai_caption_ref01_match_dt0)
+    const ai_caption_ref01_data_dt0 = (await ai_caption_ref01_ent.load(ai_caption_ref01_match_dt0)).data()
     assert(null != ai_caption_ref01_data_dt0)
 
 

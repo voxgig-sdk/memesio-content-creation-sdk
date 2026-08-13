@@ -26,8 +26,8 @@ import {
 describe('CreateMemeEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEMESIOCONTENTCREATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEMESIOCONTENTCREATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEMESIO_CONTENT_CREATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEMESIO_CONTENT_CREATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MemesioContentCreationSDK.test()
@@ -62,7 +62,7 @@ describe('CreateMemeEntity', async () => {
     const create_meme_ref01_ent = client.CreateMeme()
     let create_meme_ref01_data = setup.data.new.create_meme['create_meme_ref01']
 
-    create_meme_ref01_data = await create_meme_ref01_ent.create(create_meme_ref01_data)
+    create_meme_ref01_data = (await create_meme_ref01_ent.create(create_meme_ref01_data)).data()
     assert(null != create_meme_ref01_data)
 
 

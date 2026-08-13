@@ -6,17 +6,17 @@ main: kit: entity: create_meme: {
 
   fields: [
     {
-      name: "canva"
+      name: "canvas"
       req: true
       type: "`$OBJECT`"
     }
     {
-      name: "caption"
+      name: "captions"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "generation_run_id"
+      name: "generationRunId"
       req: false
       type: [
         "`$ONE`"
@@ -27,7 +27,7 @@ main: kit: entity: create_meme: {
       ]
     }
     {
-      name: "generation_variant_id"
+      name: "generationVariantId"
       req: false
       type: [
         "`$ONE`"
@@ -38,22 +38,22 @@ main: kit: entity: create_meme: {
       ]
     }
     {
-      name: "image_data_url"
+      name: "imageDataUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "overlay"
+      name: "overlays"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "source_image_url"
+      name: "sourceImageUrl"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "template_slug"
+      name: "templateSlug"
       req: false
       type: "`$STRING`"
     }

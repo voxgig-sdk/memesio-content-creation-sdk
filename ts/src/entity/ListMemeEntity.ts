@@ -37,7 +37,7 @@ class ListMemeEntity extends MemesioContentCreationEntityBase<ListMeme> {
 
 
 
-  async list(this: any, reqmatch?: ListMemeListMatch, ctrl?: Control): Promise<ListMeme[]> {
+  async list(this: any, reqmatch?: ListMemeListMatch, ctrl?: Control): Promise<ListMemeEntity[]> {
 
     const utility = this._utility
 

@@ -6,10 +6,10 @@
         "handle": "s51",
         "locale": "s52",
         "name": "s53",
-        "style_preset": "s54",
-        "system_prompt": "s55",
-        "watermark_text": "s56",
-        "website_url": "s57",
+        "stylePreset": "s54",
+        "systemPrompt": "s55",
+        "watermarkText": "s56",
+        "websiteUrl": "s57",
         "id": "STANDALONE_AGENT_BOOTSTRAP00"
       },
       "STANDALONE_AGENT_BOOTSTRAP01": {
@@ -17,10 +17,10 @@
         "handle": "sa1",
         "locale": "sa2",
         "name": "sa3",
-        "style_preset": "sa4",
-        "system_prompt": "sa5",
-        "watermark_text": "sa6",
-        "website_url": "sa7",
+        "stylePreset": "sa4",
+        "systemPrompt": "sa5",
+        "watermarkText": "sa6",
+        "websiteUrl": "sa7",
         "id": "STANDALONE_AGENT_BOOTSTRAP01"
       },
       "STANDALONE_AGENT_BOOTSTRAP02": {
@@ -28,10 +28,10 @@
         "handle": "sf1",
         "locale": "sf2",
         "name": "sf3",
-        "style_preset": "sf4",
-        "system_prompt": "sf5",
-        "watermark_text": "sf6",
-        "website_url": "sf7",
+        "stylePreset": "sf4",
+        "systemPrompt": "sf5",
+        "watermarkText": "sf6",
+        "websiteUrl": "sf7",
         "id": "STANDALONE_AGENT_BOOTSTRAP02"
       }
     }
@@ -43,10 +43,10 @@
         "handle": "s141",
         "locale": "s142",
         "name": "s143",
-        "style_preset": "s144",
-        "system_prompt": "s145",
-        "watermark_text": "s146",
-        "website_url": "s147"
+        "stylePreset": "s144",
+        "systemPrompt": "s145",
+        "watermarkText": "s146",
+        "websiteUrl": "s147"
       }
     }
   }

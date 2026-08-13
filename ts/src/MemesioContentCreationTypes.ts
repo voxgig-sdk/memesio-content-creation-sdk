@@ -11,10 +11,10 @@ export interface Agent {
   name: string
   slug?: string
   status?: string
-  style_preset?: string
-  system_prompt?: string
-  watermark_text?: string
-  website_url?: string
+  stylePreset?: string
+  systemPrompt?: string
+  watermarkText?: string
+  websiteUrl?: string
 }
 
 export interface AgentLoadMatch {
@@ -27,51 +27,85 @@ export interface AgentCreateData {
   name: string
   slug?: string
   status?: string
-  style_preset?: string
-  system_prompt?: string
-  watermark_text?: string
-  website_url?: string
+  stylePreset?: string
+  systemPrompt?: string
+  watermarkText?: string
+  websiteUrl?: string
 }
 
 export interface AgentUpdateData {
   id: string
+  description?: string
+  locale?: string
+  name?: string
+  slug?: string
+  status?: string
+  stylePreset?: string
+  systemPrompt?: string
+  watermarkText?: string
+  websiteUrl?: string
 }
 
 export interface AgentInfra {
   action: string
-  chat_id: string
-  meme_slug: string
+  chatId: string
+  memeSlug: string
   metadata?: Record<string, any>
-  payout_reference?: string
-  payout_status?: string
-  phone_or_chat_id: string
+  payoutReference?: string
+  payoutStatus?: string
+  phoneOrChatId: string
   prompt: string
   proof?: Record<string, any>
-  quota_boost_per_day?: number
-  scope?: any[]
-  user_id?: string
-  week_start?: string
+  quotaBoostPerDay?: number
+  scopes?: any[]
+  userId?: string
+  weekStart?: string
 }
 
 export interface AgentInfraLoadMatch {
   action?: string
-  chat_id?: string
-  meme_slug?: string
+  chatId?: string
+  memeSlug?: string
   metadata?: Record<string, any>
-  payout_reference?: string
-  payout_status?: string
-  phone_or_chat_id?: string
+  payoutReference?: string
+  payoutStatus?: string
+  phoneOrChatId?: string
   prompt?: string
   proof?: Record<string, any>
-  quota_boost_per_day?: number
-  scope?: any[]
-  user_id?: string
-  week_start?: string
+  quotaBoostPerDay?: number
+  scopes?: any[]
+  userId?: string
+  weekStart?: string
+
+  // Selects a custom action instead of the plain load:
+  //   'keys'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface AgentInfraCreateData {
   agent_id?: string
   unlock_id?: string
+  action: string
+  chatId: string
+  memeSlug: string
+  metadata?: Record<string, any>
+  payoutReference?: string
+  payoutStatus?: string
+  phoneOrChatId: string
+  prompt: string
+  proof?: Record<string, any>
+  quotaBoostPerDay?: number
+  scopes?: any[]
+  userId?: string
+  weekStart?: string
+
+  // Selects a custom action instead of the plain create:
+  //   'keys'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface AgentInfraRemoveMatch {
@@ -80,141 +114,141 @@ export interface AgentInfraRemoveMatch {
 }
 
 export interface AiCaption {
-  blocked_term?: any[]
-  canvas_text: any[]
-  caption_count?: number
-  caption_set?: any[]
-  entity?: any[]
-  fallback_used?: boolean
-  generation_strategy?: string
+  blockedTerms?: any[]
+  canvasText: any[]
+  captionCount?: number
+  captionSets?: any[]
+  entities?: any[]
+  fallbackUsed?: boolean
+  generationStrategy?: string
   locale?: string
-  meme_id?: string
-  meme_slug?: string
+  memeId?: string
+  memeSlug?: string
   name: string
   ok?: boolean
-  option_count?: number
-  owner_token?: string
-  provider_id?: string
-  reference_caption?: any[]
-  rewrite_note?: string
-  scene_summary?: string
-  template_description?: string
-  template_name?: string
-  template_tag?: any[]
+  optionCount?: number
+  ownerToken?: string
+  providerId?: string
+  referenceCaptions?: any[]
+  rewriteNote?: string
+  sceneSummary?: string
+  templateDescription?: string
+  templateName?: string
+  templateTags?: any[]
   tone: string
-  tone_cue?: any[]
-  trend_keyword?: any[]
-  trend_reference?: any[]
-  trend_signal?: any[]
-  variation_offset?: number
-  voice_rule?: any[]
+  toneCues?: any[]
+  trendKeywords?: any[]
+  trendReferences?: any[]
+  trendSignals?: any[]
+  variationOffset?: number
+  voiceRules?: any[]
 }
 
 export interface AiCaptionLoadMatch {
-  blocked_term?: any[]
-  canvas_text?: any[]
-  caption_count?: number
-  caption_set?: any[]
-  entity?: any[]
-  fallback_used?: boolean
-  generation_strategy?: string
+  blockedTerms?: any[]
+  canvasText?: any[]
+  captionCount?: number
+  captionSets?: any[]
+  entities?: any[]
+  fallbackUsed?: boolean
+  generationStrategy?: string
   locale?: string
-  meme_id?: string
-  meme_slug?: string
+  memeId?: string
+  memeSlug?: string
   name?: string
   ok?: boolean
-  option_count?: number
-  owner_token?: string
-  provider_id?: string
-  reference_caption?: any[]
-  rewrite_note?: string
-  scene_summary?: string
-  template_description?: string
-  template_name?: string
-  template_tag?: any[]
+  optionCount?: number
+  ownerToken?: string
+  providerId?: string
+  referenceCaptions?: any[]
+  rewriteNote?: string
+  sceneSummary?: string
+  templateDescription?: string
+  templateName?: string
+  templateTags?: any[]
   tone?: string
-  tone_cue?: any[]
-  trend_keyword?: any[]
-  trend_reference?: any[]
-  trend_signal?: any[]
-  variation_offset?: number
-  voice_rule?: any[]
+  toneCues?: any[]
+  trendKeywords?: any[]
+  trendReferences?: any[]
+  trendSignals?: any[]
+  variationOffset?: number
+  voiceRules?: any[]
 }
 
 export interface AiCaptionCreateData {
-  blocked_term?: any[]
-  canvas_text: any[]
-  caption_count?: number
-  caption_set?: any[]
-  entity?: any[]
-  fallback_used?: boolean
-  generation_strategy?: string
+  blockedTerms?: any[]
+  canvasText: any[]
+  captionCount?: number
+  captionSets?: any[]
+  entities?: any[]
+  fallbackUsed?: boolean
+  generationStrategy?: string
   locale?: string
-  meme_id?: string
-  meme_slug?: string
+  memeId?: string
+  memeSlug?: string
   name: string
   ok?: boolean
-  option_count?: number
-  owner_token?: string
-  provider_id?: string
-  reference_caption?: any[]
-  rewrite_note?: string
-  scene_summary?: string
-  template_description?: string
-  template_name?: string
-  template_tag?: any[]
+  optionCount?: number
+  ownerToken?: string
+  providerId?: string
+  referenceCaptions?: any[]
+  rewriteNote?: string
+  sceneSummary?: string
+  templateDescription?: string
+  templateName?: string
+  templateTags?: any[]
   tone: string
-  tone_cue?: any[]
-  trend_keyword?: any[]
-  trend_reference?: any[]
-  trend_signal?: any[]
-  variation_offset?: number
-  voice_rule?: any[]
+  toneCues?: any[]
+  trendKeywords?: any[]
+  trendReferences?: any[]
+  trendSignals?: any[]
+  variationOffset?: number
+  voiceRules?: any[]
 }
 
 export interface AiJob {
   action: string
-  actor_id?: string
-  after_state?: Record<string, any>
-  attempt?: number
-  before_state?: Record<string, any>
-  brush_edit?: any[]
+  actorId?: string
+  afterState?: Record<string, any>
+  attempts?: number
+  beforeState?: Record<string, any>
+  brushEdits?: any[]
   capability: string
-  celebrity_confidence?: number
-  consent_attested?: boolean
-  created_at?: string
-  detected_face_count: number
-  edge_refinement?: number
-  estimated_cost_usd?: number
-  frame_time_m?: number
+  celebrityConfidence?: number
+  consentAttested?: boolean
+  createdAt?: string
+  detectedFaceCount: number
+  edgeRefinement?: number
+  estimatedCostUsd?: number
+  frameTimeMs?: number
   height: number
   id: string
   input?: Record<string, any>
-  layer_id: string
-  layer_type?: string
-  max_attempt?: number
-  max_face?: number
-  media_type?: string
+  layerId: string
+  layerType?: string
+  maxAttempts?: number
+  maxFaces?: number
+  mediaType?: string
   metadata?: Record<string, any>
-  nsfw_score?: number
+  nsfwScore?: number
   output?: Record<string, any>
-  project_id: string
-  provider_id?: string
+  projectId: string
+  providerId?: string
   reason?: string
-  run_after_m?: number
-  source_asset_url: string
-  source_face_index?: number
-  source_image_url: string
+  runAfterMs?: number
+  sourceAssetUrl: string
+  sourceFaceIndex?: number
+  sourceImageUrl: string
   status: string
-  target_asset_url: string
-  target_face_index?: number
-  timeout_m?: number
-  trace_id?: string
-  updated_at?: string
-  version_id?: string
+  targetAssetUrl: string
+  targetFaceIndex?: number
+  timeoutMs?: number
+  traceId?: string
+  updatedAt?: string
+  versionId?: string
   width: number
-  worker_id: string
-  workspace_id?: string
+  workerId: string
+  workspaceId?: string
 }
 
 export interface AiJobLoadMatch {
@@ -223,166 +257,232 @@ export interface AiJobLoadMatch {
 
 export interface AiJobCreateData {
   job_id?: string
+  action: string
+  actorId?: string
+  afterState?: Record<string, any>
+  attempts?: number
+  beforeState?: Record<string, any>
+  brushEdits?: any[]
+  capability: string
+  celebrityConfidence?: number
+  consentAttested?: boolean
+  createdAt?: string
+  detectedFaceCount: number
+  edgeRefinement?: number
+  estimatedCostUsd?: number
+  frameTimeMs?: number
+  height: number
+  id: string
+  input?: Record<string, any>
+  layerId: string
+  layerType?: string
+  maxAttempts?: number
+  maxFaces?: number
+  mediaType?: string
+  metadata?: Record<string, any>
+  nsfwScore?: number
+  output?: Record<string, any>
+  projectId: string
+  providerId?: string
+  reason?: string
+  runAfterMs?: number
+  sourceAssetUrl: string
+  sourceFaceIndex?: number
+  sourceImageUrl: string
+  status: string
+  targetAssetUrl: string
+  targetFaceIndex?: number
+  timeoutMs?: number
+  traceId?: string
+  updatedAt?: string
+  versionId?: string
+  width: number
+  workerId: string
+  workspaceId?: string
 }
 
 export interface AiMemeGenerationSucceeded {
-  allow_heuristic_fallback?: boolean
-  caption?: any[]
-  caption_source?: string
-  correlation_id?: string
-  degraded_from_async?: boolean
-  editable_caption?: any[]
+  allowHeuristicFallback?: boolean
+  captionSource?: string
+  captions?: any[]
+  correlationId?: string
+  degradedFromAsync?: boolean
+  editableCaptions?: any[]
   flow: string
-  image_url?: string
+  imageUrl?: string
   mode: string
   ok: boolean
-  preferred_provider_id?: string
+  preferredProviderId?: string
   prompt: string
-  rewrite_note?: string
-  run_id?: string
+  rewriteNote?: string
+  runId?: string
   status: string
-  template_id?: string
+  templateId?: string
   tone?: string
-  tone_cue?: any[]
-  variant: any[]
-  variant_count: number
-  workspace_id?: string
+  toneCues?: any[]
+  variantCount: number
+  variants: any[]
+  workspaceId?: string
 }
 
 export interface AiMemeGenerationSucceededCreateData {
-  allow_heuristic_fallback?: boolean
-  caption?: any[]
-  caption_source?: string
-  correlation_id?: string
-  degraded_from_async?: boolean
-  editable_caption?: any[]
+  allowHeuristicFallback?: boolean
+  captionSource?: string
+  captions?: any[]
+  correlationId?: string
+  degradedFromAsync?: boolean
+  editableCaptions?: any[]
   flow: string
-  image_url?: string
+  imageUrl?: string
   mode: string
   ok: boolean
-  preferred_provider_id?: string
+  preferredProviderId?: string
   prompt: string
-  rewrite_note?: string
-  run_id?: string
+  rewriteNote?: string
+  runId?: string
   status: string
-  template_id?: string
+  templateId?: string
   tone?: string
-  tone_cue?: any[]
-  variant: any[]
-  variant_count: number
-  workspace_id?: string
+  toneCues?: any[]
+  variantCount: number
+  variants: any[]
+  workspaceId?: string
 }
 
 export interface AiProvider {
-  actor_id?: string
-  correlation_id?: string
+  actorId?: string
+  correlationId?: string
   limit?: number
-  mapping_mode?: string
-  max_slot?: number
+  mappingMode?: string
+  maxSlots?: number
   prompt: string
-  source_image_url: string
-  text?: any[]
-  trend_signal?: any[]
-  workspace_id?: string
+  sourceImageUrl: string
+  texts?: any[]
+  trendSignals?: any[]
+  workspaceId?: string
 }
 
 export interface AiProviderLoadMatch {
-  actor_id?: string
-  correlation_id?: string
+  actorId?: string
+  correlationId?: string
   limit?: number
-  mapping_mode?: string
-  max_slot?: number
+  mappingMode?: string
+  maxSlots?: number
   prompt?: string
-  source_image_url?: string
-  text?: any[]
-  trend_signal?: any[]
-  workspace_id?: string
+  sourceImageUrl?: string
+  texts?: any[]
+  trendSignals?: any[]
+  workspaceId?: string
 }
 
 export interface AiProviderCreateData {
-  actor_id?: string
-  correlation_id?: string
+  actorId?: string
+  correlationId?: string
   limit?: number
-  mapping_mode?: string
-  max_slot?: number
+  mappingMode?: string
+  maxSlots?: number
   prompt: string
-  source_image_url: string
-  text?: any[]
-  trend_signal?: any[]
-  workspace_id?: string
+  sourceImageUrl: string
+  texts?: any[]
+  trendSignals?: any[]
+  workspaceId?: string
 }
 
 export interface Analytics {
 }
 
 export interface AnalyticsLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'metric_dictionary'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Auth {
-  display_name?: string
+  displayName?: string
   email: string
   password: string
 }
 
 export interface AuthCreateData {
-  display_name?: string
+  displayName?: string
   email: string
   password: string
+
+  // Selects a custom action instead of the plain create:
+  //   'resend_verification' | 'signup'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Billing {
 }
 
 export interface BillingLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'usage'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Collaboration {
-  author_id?: string
+  authorId?: string
   message: string
-  project_id: string
+  projectId: string
 }
 
 export interface CollaborationLoadMatch {
-  author_id?: string
+  authorId?: string
   message?: string
-  project_id?: string
+  projectId?: string
 }
 
 export interface CollaborationCreateData {
-  author_id?: string
+  authorId?: string
   message: string
-  project_id: string
+  projectId: string
 }
 
 export interface Compliance {
 }
 
 export interface ComplianceLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'content_policy'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface CreateMeme {
-  canva: Record<string, any>
-  caption: any[]
-  generation_run_id?: any
-  generation_variant_id?: any
-  image_data_url: string
-  overlay?: any[]
-  source_image_url: string
-  template_slug?: string
+  canvas: Record<string, any>
+  captions: any[]
+  generationRunId?: string | null
+  generationVariantId?: string | null
+  imageDataUrl: string
+  overlays?: any[]
+  sourceImageUrl: string
+  templateSlug?: string
   title?: string
   visibility?: string
   watermark: Record<string, any>
 }
 
 export interface CreateMemeCreateData {
-  canva: Record<string, any>
-  caption: any[]
-  generation_run_id?: any
-  generation_variant_id?: any
-  image_data_url: string
-  overlay?: any[]
-  source_image_url: string
-  template_slug?: string
+  canvas: Record<string, any>
+  captions: any[]
+  generationRunId?: string | null
+  generationVariantId?: string | null
+  imageDataUrl: string
+  overlays?: any[]
+  sourceImageUrl: string
+  templateSlug?: string
   title?: string
   visibility?: string
   watermark: Record<string, any>
@@ -391,32 +491,32 @@ export interface CreateMemeCreateData {
 export interface DeveloperApi {
   limit?: number
   prompt: string
-  trend_signal?: any[]
+  trendSignals?: any[]
 }
 
 export interface DeveloperApiLoadMatch {
   limit?: number
   prompt?: string
-  trend_signal?: any[]
+  trendSignals?: any[]
 }
 
 export interface DeveloperApiCreateData {
   limit?: number
   prompt: string
-  trend_signal?: any[]
+  trendSignals?: any[]
 }
 
 export interface FreeCaptionMemeSuccess {
-  caption: any[]
-  template_slug: string
+  captions: any[]
+  templateSlug: string
   title?: string
   visibility?: string
   watermark?: Record<string, any>
 }
 
 export interface FreeCaptionMemeSuccessCreateData {
-  caption: any[]
-  template_slug: string
+  captions: any[]
+  templateSlug: string
   title?: string
   visibility?: string
   watermark?: Record<string, any>
@@ -424,205 +524,241 @@ export interface FreeCaptionMemeSuccessCreateData {
 
 export interface FreeTemplateSearch {
   animated?: boolean
-  asset_byte?: any
-  asset_content_type?: string
-  box_count: number
-  caption: any[]
-  caption_count: number
+  assetBytes?: number | null
+  assetContentType?: string
+  boxCount: number
+  captionCount: number
+  captions: any[]
   description: string
-  duration_m?: any
-  example_image_url?: any
-  frame_count?: any
-  height: any
+  durationMs?: number | null
+  exampleImageUrl?: string | null
+  frameCount?: number | null
+  height: number | null
   id: string
-  image_url: string
-  media_type: string
+  imageUrl: string
+  mediaType: string
   name: string
-  poster_image_url?: string
-  quality_status?: string
+  posterImageUrl?: string
+  qualityStatus?: string
   slug: string
-  source_template_id: any
-  source_url?: string
-  tag?: any[]
-  width: any
+  sourceTemplateId: string | null
+  sourceUrl?: string
+  tags?: any[]
+  width: number | null
 }
 
 export interface FreeTemplateSearchListMatch {
   animated?: boolean
-  asset_byte?: any
-  asset_content_type?: string
-  box_count?: number
-  caption?: any[]
-  caption_count?: number
+  assetBytes?: number | null
+  assetContentType?: string
+  boxCount?: number
+  captionCount?: number
+  captions?: any[]
   description?: string
-  duration_m?: any
-  example_image_url?: any
-  frame_count?: any
-  height?: any
+  durationMs?: number | null
+  exampleImageUrl?: string | null
+  frameCount?: number | null
+  height?: number | null
   id?: string
-  image_url?: string
-  media_type?: string
+  imageUrl?: string
+  mediaType?: string
   name?: string
-  poster_image_url?: string
-  quality_status?: string
+  posterImageUrl?: string
+  qualityStatus?: string
   slug?: string
-  source_template_id?: any
-  source_url?: string
-  tag?: any[]
-  width?: any
+  sourceTemplateId?: string | null
+  sourceUrl?: string
+  tags?: any[]
+  width?: number | null
 }
 
 export interface Generate {
-  caption?: any[]
-  data: Record<string, any>
-  duration_m?: number
+  base64?: string
+  byteLength: number
+  captions?: any[]
+  dataUrl?: string
+  delayMs: number
+  durationMs?: number
+  filename: string
   fps?: number
-  gif_slug?: string
-  ok: boolean
-  return_base64?: boolean
-  start_m?: number
-  tag?: any[]
+  gifSlug: string
+  height: number
+  mimeType: string
+  pages: number
+  parameters: Record<string, any>
+  returnBase64?: boolean
+  sourceDurationMs: number
+  startMs?: number
+  tags?: any[]
   title?: string
-  width_px?: number
+  width: number
+  widthPx?: number
 }
 
 export interface GenerateCreateData {
-  caption?: any[]
-  data: Record<string, any>
-  duration_m?: number
+  base64?: string
+  byteLength: number
+  captions?: any[]
+  dataUrl?: string
+  delayMs: number
+  durationMs?: number
+  filename: string
   fps?: number
-  gif_slug?: string
-  ok: boolean
-  return_base64?: boolean
-  start_m?: number
-  tag?: any[]
+  gifSlug: string
+  height: number
+  mimeType: string
+  pages: number
+  parameters: Record<string, any>
+  returnBase64?: boolean
+  sourceDurationMs: number
+  startMs?: number
+  tags?: any[]
   title?: string
-  width_px?: number
+  width: number
+  widthPx?: number
 }
 
 export interface Growth {
-  account_id?: string
+  accountId?: string
   action: string
-  actor_id?: string
+  actorId?: string
   caption?: string
   code?: string
-  external_account_id?: string
+  externalAccountId?: string
   handle?: string
   limit?: number
-  log_exposure?: boolean
-  meme_slug?: string
+  logExposure?: boolean
+  memeSlug?: string
   now?: string
   platform?: string
-  profile?: any[]
-  share_slug?: string
+  profiles?: any[]
+  shareSlug?: string
   surface?: string
-  week_start?: string
+  weekStart?: string
 }
 
 export interface GrowthLoadMatch {
-  account_id?: string
+  accountId?: string
   action?: string
-  actor_id?: string
+  actorId?: string
   caption?: string
   code?: string
-  external_account_id?: string
+  externalAccountId?: string
   handle?: string
   limit?: number
-  log_exposure?: boolean
-  meme_slug?: string
+  logExposure?: boolean
+  memeSlug?: string
   now?: string
   platform?: string
-  profile?: any[]
-  share_slug?: string
+  profiles?: any[]
+  shareSlug?: string
   surface?: string
-  week_start?: string
+  weekStart?: string
+
+  // Selects a custom action instead of the plain load:
+  //   'lifecycle_messaging' | 'referral' | 'social_publish' | 'trend_campaign' | 'viral_trigger'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface GrowthCreateData {
-  account_id?: string
+  accountId?: string
   action: string
-  actor_id?: string
+  actorId?: string
   caption?: string
   code?: string
-  external_account_id?: string
+  externalAccountId?: string
   handle?: string
   limit?: number
-  log_exposure?: boolean
-  meme_slug?: string
+  logExposure?: boolean
+  memeSlug?: string
   now?: string
   platform?: string
-  profile?: any[]
-  share_slug?: string
+  profiles?: any[]
+  shareSlug?: string
   surface?: string
-  week_start?: string
+  weekStart?: string
+
+  // Selects a custom action instead of the plain create:
+  //   'lifecycle_messaging' | 'referral' | 'social_publish' | 'trend_campaign'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface ListMeme {
-  alt_text: string
-  canonical_image_url: string
-  created_at: string
-  image_url: string
-  nsfw_status: string
-  share_slug: string
-  share_url: string
-  share_view: number
+  altText: string
+  canonicalImageUrl: string
+  createdAt: string
+  imageUrl: string
+  nsfwStatus: string
+  shareSlug: string
+  shareUrl: string
+  shareViews: number
   slug: string
-  tag: any[]
-  template_slug: string
+  tags: any[]
+  templateSlug: string
   title: string
   visibility: string
 }
 
 export interface ListMemeListMatch {
-  alt_text?: string
-  canonical_image_url?: string
-  created_at?: string
-  image_url?: string
-  nsfw_status?: string
-  share_slug?: string
-  share_url?: string
-  share_view?: number
+  altText?: string
+  canonicalImageUrl?: string
+  createdAt?: string
+  imageUrl?: string
+  nsfwStatus?: string
+  shareSlug?: string
+  shareUrl?: string
+  shareViews?: number
   slug?: string
-  tag?: any[]
-  template_slug?: string
+  tags?: any[]
+  templateSlug?: string
   title?: string
   visibility?: string
 }
 
 export interface Media {
   action: string
-  content_type?: string
-  expires_in_second?: number
-  owner_token?: string
+  contentType?: string
+  expiresInSeconds?: number
+  ownerToken?: string
   path?: string
   prefix?: string
 }
 
 export interface MediaCreateData {
   action: string
-  content_type?: string
-  expires_in_second?: number
-  owner_token?: string
+  contentType?: string
+  expiresInSeconds?: number
+  ownerToken?: string
   path?: string
   prefix?: string
+
+  // Selects a custom action instead of the plain create:
+  //   'signed_url'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Meme {
-  alt_text: string
-  canonical_image_url: string
-  canva: Record<string, any>
-  caption: any[]
-  created_at: string
-  image_url: string
-  nsfw_status: string
-  overlay: any[]
-  share_slug: string
-  share_url: string
-  share_view: number
+  altText: string
+  canonicalImageUrl: string
+  canvas: Record<string, any>
+  captions: any[]
+  createdAt: string
+  imageUrl: string
+  nsfwStatus: string
+  overlays: any[]
+  shareSlug: string
+  shareUrl: string
+  shareViews: number
   slug: string
-  source_image_url: string
-  tag: any[]
-  template_slug: string
+  sourceImageUrl: string
+  tags: any[]
+  templateSlug: string
   title: string
   visibility: string
   watermark: Record<string, any>
@@ -638,29 +774,29 @@ export interface MemeRemoveMatch {
 
 export interface PublicTemplateMediaItem {
   animated?: boolean
-  asset_byte?: any
-  asset_content_type?: string
-  box_count?: number
-  caption: any[]
-  caption_count?: number
-  category?: any[]
+  assetBytes?: number | null
+  assetContentType?: string
+  boxCount?: number
+  captionCount?: number
+  captions: any[]
+  categories?: any[]
   description: string
-  duration_m?: any
-  example_image_url?: any
-  frame_count?: any
-  height: any
+  durationMs?: number | null
+  exampleImageUrl?: string | null
+  frameCount?: number | null
+  height: number | null
   id: string
-  image_url: string
-  media_type: string
+  imageUrl: string
+  mediaType: string
   name: string
-  poster_image_url?: string
-  preview_image_url?: string
-  quality_status?: string
+  posterImageUrl?: string
+  previewImageUrl?: string
+  qualityStatus?: string
   slug: string
-  source_template_id: any
-  source_url?: string
-  tag: any[]
-  width: any
+  sourceTemplateId: string | null
+  sourceUrl?: string
+  tags: any[]
+  width: number | null
 }
 
 export interface PublicTemplateMediaItemLoadMatch {
@@ -672,10 +808,10 @@ export interface StandaloneAgentBootstrap {
   handle: string
   locale?: string
   name: string
-  style_preset?: string
-  system_prompt?: string
-  watermark_text?: string
-  website_url?: string
+  stylePreset?: string
+  systemPrompt?: string
+  watermarkText?: string
+  websiteUrl?: string
 }
 
 export interface StandaloneAgentBootstrapCreateData {
@@ -683,149 +819,178 @@ export interface StandaloneAgentBootstrapCreateData {
   handle: string
   locale?: string
   name: string
-  style_preset?: string
-  system_prompt?: string
-  watermark_text?: string
-  website_url?: string
+  stylePreset?: string
+  systemPrompt?: string
+  watermarkText?: string
+  websiteUrl?: string
 }
 
 export interface Template {
   animated?: boolean
-  asset_byte?: any
-  asset_content_type?: string
-  box_count?: number
-  caption?: any[]
-  caption_count?: number
-  category?: any[]
+  assetBytes?: number | null
+  assetContentType?: string
+  boxCount?: number
+  captionCount?: number
+  captions?: any[]
+  categories?: any[]
   description: string
-  duration_m?: number
-  example_image_url?: any
+  durationMs?: number
+  exampleImageUrl?: string | null
   fps?: number
-  frame_count?: any
-  gif_slug?: string
-  height: any
+  frameCount?: number | null
+  gifSlug?: string
+  height: number | null
   id: string
-  image_url: string
-  media_type: string
+  imageUrl: string
+  mediaType: string
   name: string
-  poster_image_url?: string
-  preview_image_url?: string
-  quality_status?: string
-  return_base64?: boolean
+  posterImageUrl?: string
+  previewImageUrl?: string
+  qualityStatus?: string
+  returnBase64?: boolean
   slug: string
-  source_template_id: any
-  source_url?: string
-  start_m?: number
-  tag?: any[]
+  sourceTemplateId: string | null
+  sourceUrl?: string
+  startMs?: number
+  tags?: any[]
   title?: string
-  width: any
-  width_px?: number
+  width: number | null
+  widthPx?: number
 }
 
 export interface TemplateListMatch {
   animated?: boolean
-  asset_byte?: any
-  asset_content_type?: string
-  box_count?: number
-  caption?: any[]
-  caption_count?: number
-  category?: any[]
+  assetBytes?: number | null
+  assetContentType?: string
+  boxCount?: number
+  captionCount?: number
+  captions?: any[]
+  categories?: any[]
   description?: string
-  duration_m?: number
-  example_image_url?: any
+  durationMs?: number
+  exampleImageUrl?: string | null
   fps?: number
-  frame_count?: any
-  gif_slug?: string
-  height?: any
+  frameCount?: number | null
+  gifSlug?: string
+  height?: number | null
   id?: string
-  image_url?: string
-  media_type?: string
+  imageUrl?: string
+  mediaType?: string
   name?: string
-  poster_image_url?: string
-  preview_image_url?: string
-  quality_status?: string
-  return_base64?: boolean
+  posterImageUrl?: string
+  previewImageUrl?: string
+  qualityStatus?: string
+  returnBase64?: boolean
   slug?: string
-  source_template_id?: any
-  source_url?: string
-  start_m?: number
-  tag?: any[]
+  sourceTemplateId?: string | null
+  sourceUrl?: string
+  startMs?: number
+  tags?: any[]
   title?: string
-  width?: any
-  width_px?: number
+  width?: number | null
+  widthPx?: number
 }
 
 export interface TemplateCreateData {
   slug: string
+  animated?: boolean
+  assetBytes?: number | null
+  assetContentType?: string
+  boxCount?: number
+  captionCount?: number
+  captions?: any[]
+  categories?: any[]
+  description: string
+  durationMs?: number
+  exampleImageUrl?: string | null
+  fps?: number
+  frameCount?: number | null
+  gifSlug?: string
+  height: number | null
+  id: string
+  imageUrl: string
+  mediaType: string
+  name: string
+  posterImageUrl?: string
+  previewImageUrl?: string
+  qualityStatus?: string
+  returnBase64?: boolean
+  sourceTemplateId: string | null
+  sourceUrl?: string
+  startMs?: number
+  tags?: any[]
+  title?: string
+  width: number | null
+  widthPx?: number
 }
 
 export interface TemplateSearch {
   animated?: boolean
-  asset_byte?: any
-  asset_content_type?: string
-  box_count?: number
-  caption: any[]
-  caption_count?: number
-  category?: any[]
+  assetBytes?: number | null
+  assetContentType?: string
+  boxCount?: number
+  captionCount?: number
+  captions: any[]
+  categories?: any[]
   description: string
-  duration_m?: any
-  example_image_url?: any
-  frame_count?: any
-  height: any
+  durationMs?: number | null
+  exampleImageUrl?: string | null
+  frameCount?: number | null
+  height: number | null
   id: string
-  image_url: string
-  media_type: string
+  imageUrl: string
+  mediaType: string
   name: string
-  poster_image_url?: string
-  preview_image_url?: string
-  quality_status?: string
+  posterImageUrl?: string
+  previewImageUrl?: string
+  qualityStatus?: string
   slug: string
-  source_template_id: any
-  source_url?: string
-  tag: any[]
-  width: any
+  sourceTemplateId: string | null
+  sourceUrl?: string
+  tags: any[]
+  width: number | null
 }
 
 export interface TemplateSearchListMatch {
   animated?: boolean
-  asset_byte?: any
-  asset_content_type?: string
-  box_count?: number
-  caption?: any[]
-  caption_count?: number
-  category?: any[]
+  assetBytes?: number | null
+  assetContentType?: string
+  boxCount?: number
+  captionCount?: number
+  captions?: any[]
+  categories?: any[]
   description?: string
-  duration_m?: any
-  example_image_url?: any
-  frame_count?: any
-  height?: any
+  durationMs?: number | null
+  exampleImageUrl?: string | null
+  frameCount?: number | null
+  height?: number | null
   id?: string
-  image_url?: string
-  media_type?: string
+  imageUrl?: string
+  mediaType?: string
   name?: string
-  poster_image_url?: string
-  preview_image_url?: string
-  quality_status?: string
+  posterImageUrl?: string
+  previewImageUrl?: string
+  qualityStatus?: string
   slug?: string
-  source_template_id?: any
-  source_url?: string
-  tag?: any[]
-  width?: any
+  sourceTemplateId?: string | null
+  sourceUrl?: string
+  tags?: any[]
+  width?: number | null
 }
 
 export interface TrendAlert {
   action: string
-  actor_id: string
+  actorId: string
   aggressiveness?: number
-  alert_id: string
-  channel?: any[]
-  deliver_all_alert?: boolean
+  alertId: string
+  channels?: any[]
+  deliverAllAlerts?: boolean
   event?: Record<string, any>
-  explicit_niche?: any[]
-  explicit_region?: any[]
-  explicit_source?: any[]
-  explicit_topic?: any[]
-  follower_count?: number
+  explicitNiches?: any[]
+  explicitRegions?: any[]
+  explicitSources?: any[]
+  explicitTopics?: any[]
+  followerCount?: number
   niche?: string
   region?: string
   source?: string
@@ -834,17 +999,17 @@ export interface TrendAlert {
 
 export interface TrendAlertLoadMatch {
   action?: string
-  actor_id?: string
+  actorId?: string
   aggressiveness?: number
-  alert_id?: string
-  channel?: any[]
-  deliver_all_alert?: boolean
+  alertId?: string
+  channels?: any[]
+  deliverAllAlerts?: boolean
   event?: Record<string, any>
-  explicit_niche?: any[]
-  explicit_region?: any[]
-  explicit_source?: any[]
-  explicit_topic?: any[]
-  follower_count?: number
+  explicitNiches?: any[]
+  explicitRegions?: any[]
+  explicitSources?: any[]
+  explicitTopics?: any[]
+  followerCount?: number
   niche?: string
   region?: string
   source?: string
@@ -853,17 +1018,17 @@ export interface TrendAlertLoadMatch {
 
 export interface TrendAlertCreateData {
   action: string
-  actor_id: string
+  actorId: string
   aggressiveness?: number
-  alert_id: string
-  channel?: any[]
-  deliver_all_alert?: boolean
+  alertId: string
+  channels?: any[]
+  deliverAllAlerts?: boolean
   event?: Record<string, any>
-  explicit_niche?: any[]
-  explicit_region?: any[]
-  explicit_source?: any[]
-  explicit_topic?: any[]
-  follower_count?: number
+  explicitNiches?: any[]
+  explicitRegions?: any[]
+  explicitSources?: any[]
+  explicitTopics?: any[]
+  followerCount?: number
   niche?: string
   region?: string
   source?: string
@@ -878,145 +1043,157 @@ export interface UploadCaptionMemeSuccessCreateData {
 
 export interface Video {
   action?: string
-  asset_id?: string
-  at_m?: number
-  audio_asset_id?: string
-  beat_offset_m?: number
-  bitrate_kbp?: number
+  assetId?: string
+  atMs?: number
+  audioAssetId?: string
+  beatOffsetMs?: number
+  bitrateKbps?: number
   bpm?: number
   cancelled?: boolean
   container?: string
-  duration_m?: number
-  duration_second: number
+  durationMs?: number
+  durationSeconds: number
   easing?: string
   error?: string
-  frame_rate?: number
-  input_format: string
+  frameRate?: number
+  inputFormat: string
   intensity?: number
-  job_id?: string
+  jobId?: string
   locale?: string
-  mime_type: string
+  mimeType: string
   name?: string
-  offset_m?: number
-  output_preset_id: string
-  output_url?: string
-  plan_tier: string
-  preset_id: string
-  progress_percent?: number
+  offsetMs?: number
+  outputPresetId: string
+  outputUrl?: string
+  planTier: string
+  presetId: string
+  progressPercent?: number
   project?: Record<string, any>
-  project_id?: string
+  projectId?: string
   property?: string
-  source_device_id?: string
-  source_url?: string
+  sourceDeviceId?: string
+  sourceUrl?: string
   stage?: string
-  start_m?: number
-  style_preset_id?: string
-  sync_to_beat_grid?: boolean
+  startMs?: number
+  stylePresetId?: string
+  syncToBeatGrid?: boolean
   tone?: string
-  track_id?: string
+  trackId?: string
   transcript?: string
-  trend_keyword?: any[]
+  trendKeywords?: any[]
   type?: string
-  updated_at?: string
+  updatedAt?: string
   value?: number
-  watermark_enabled?: boolean
-  watermark_text?: string
-  worker_id?: string
+  watermarkEnabled?: boolean
+  watermarkText?: string
+  workerId?: string
 }
 
 export interface VideoLoadMatch {
   action?: string
-  asset_id?: string
-  at_m?: number
-  audio_asset_id?: string
-  beat_offset_m?: number
-  bitrate_kbp?: number
+  assetId?: string
+  atMs?: number
+  audioAssetId?: string
+  beatOffsetMs?: number
+  bitrateKbps?: number
   bpm?: number
   cancelled?: boolean
   container?: string
-  duration_m?: number
-  duration_second?: number
+  durationMs?: number
+  durationSeconds?: number
   easing?: string
   error?: string
-  frame_rate?: number
-  input_format?: string
+  frameRate?: number
+  inputFormat?: string
   intensity?: number
-  job_id?: string
+  jobId?: string
   locale?: string
-  mime_type?: string
+  mimeType?: string
   name?: string
-  offset_m?: number
-  output_preset_id?: string
-  output_url?: string
-  plan_tier?: string
-  preset_id?: string
-  progress_percent?: number
+  offsetMs?: number
+  outputPresetId?: string
+  outputUrl?: string
+  planTier?: string
+  presetId?: string
+  progressPercent?: number
   project?: Record<string, any>
-  project_id?: string
+  projectId?: string
   property?: string
-  source_device_id?: string
-  source_url?: string
+  sourceDeviceId?: string
+  sourceUrl?: string
   stage?: string
-  start_m?: number
-  style_preset_id?: string
-  sync_to_beat_grid?: boolean
+  startMs?: number
+  stylePresetId?: string
+  syncToBeatGrid?: boolean
   tone?: string
-  track_id?: string
+  trackId?: string
   transcript?: string
-  trend_keyword?: any[]
+  trendKeywords?: any[]
   type?: string
-  updated_at?: string
+  updatedAt?: string
   value?: number
-  watermark_enabled?: boolean
-  watermark_text?: string
-  worker_id?: string
+  watermarkEnabled?: boolean
+  watermarkText?: string
+  workerId?: string
+
+  // Selects a custom action instead of the plain load:
+  //   'audio_library' | 'draft' | 'export_setting' | 'format' | 'render_performance' | 'render_queue' | 'subtitle' | 'text_animation' | 'timeline'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface VideoCreateData {
   action?: string
-  asset_id?: string
-  at_m?: number
-  audio_asset_id?: string
-  beat_offset_m?: number
-  bitrate_kbp?: number
+  assetId?: string
+  atMs?: number
+  audioAssetId?: string
+  beatOffsetMs?: number
+  bitrateKbps?: number
   bpm?: number
   cancelled?: boolean
   container?: string
-  duration_m?: number
-  duration_second: number
+  durationMs?: number
+  durationSeconds: number
   easing?: string
   error?: string
-  frame_rate?: number
-  input_format: string
+  frameRate?: number
+  inputFormat: string
   intensity?: number
-  job_id?: string
+  jobId?: string
   locale?: string
-  mime_type: string
+  mimeType: string
   name?: string
-  offset_m?: number
-  output_preset_id: string
-  output_url?: string
-  plan_tier: string
-  preset_id: string
-  progress_percent?: number
+  offsetMs?: number
+  outputPresetId: string
+  outputUrl?: string
+  planTier: string
+  presetId: string
+  progressPercent?: number
   project?: Record<string, any>
-  project_id?: string
+  projectId?: string
   property?: string
-  source_device_id?: string
-  source_url?: string
+  sourceDeviceId?: string
+  sourceUrl?: string
   stage?: string
-  start_m?: number
-  style_preset_id?: string
-  sync_to_beat_grid?: boolean
+  startMs?: number
+  stylePresetId?: string
+  syncToBeatGrid?: boolean
   tone?: string
-  track_id?: string
+  trackId?: string
   transcript?: string
-  trend_keyword?: any[]
+  trendKeywords?: any[]
   type?: string
-  updated_at?: string
+  updatedAt?: string
   value?: number
-  watermark_enabled?: boolean
-  watermark_text?: string
-  worker_id?: string
+  watermarkEnabled?: boolean
+  watermarkText?: string
+  workerId?: string
+
+  // Selects a custom action instead of the plain create:
+  //   'draft' | 'export_setting' | 'format' | 'render_queue' | 'subtitle' | 'text_animation' | 'timeline'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 

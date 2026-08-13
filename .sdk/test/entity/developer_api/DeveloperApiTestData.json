@@ -4,19 +4,19 @@
       "DEVELOPER_API00": {
         "limit": 30,
         "prompt": "s1f",
-        "trend_signal": [],
+        "trendSignals": [],
         "id": "DEVELOPER_API00"
       },
       "DEVELOPER_API01": {
         "limit": 60,
         "prompt": "s3d",
-        "trend_signal": [],
+        "trendSignals": [],
         "id": "DEVELOPER_API01"
       },
       "DEVELOPER_API02": {
         "limit": 90,
         "prompt": "s5b",
-        "trend_signal": [],
+        "trendSignals": [],
         "id": "DEVELOPER_API02"
       }
     }
@@ -26,7 +26,7 @@
       "developer_api_ref01": {
         "limit": 120,
         "prompt": "s79",
-        "trend_signal": []
+        "trendSignals": []
       }
     }
   }

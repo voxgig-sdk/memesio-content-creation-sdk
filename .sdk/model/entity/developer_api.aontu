@@ -16,7 +16,7 @@ main: kit: entity: developer_api: {
       type: "`$STRING`"
     }
     {
-      name: "trend_signal"
+      name: "trendSignals"
       req: false
       type: "`$ARRAY`"
     }
