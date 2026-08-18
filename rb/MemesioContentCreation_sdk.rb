@@ -28,7 +28,7 @@ class MemesioContentCreationSDK
     utility = MemesioContentCreationUtility.new
     @_utility = utility
 
-    config = MemesioContentCreationConfig.make_config
+    config = MemesioContentCreationConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

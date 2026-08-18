@@ -40,7 +40,7 @@ class MemesioContentCreationSDK
         $utility = new MemesioContentCreationUtility();
         $this->_utility = $utility;
 
-        $config = MemesioContentCreationConfig::make_config();
+        $config = MemesioContentCreationConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

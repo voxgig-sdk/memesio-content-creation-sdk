@@ -27,7 +27,7 @@ type Agent struct {
 
 // AgentLoadMatch is the typed request payload for Agent.LoadTyped.
 type AgentLoadMatch struct {
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 }
 
 // AgentCreateData is the typed request payload for Agent.CreateTyped.
@@ -93,8 +93,6 @@ type AgentInfraLoadMatch struct {
 
 // AgentInfraCreateData is the typed request payload for AgentInfra.CreateTyped.
 type AgentInfraCreateData struct {
-	AgentId *string `json:"agent_id,omitempty"`
-	UnlockId *string `json:"unlock_id,omitempty"`
 	Action string `json:"action"`
 	ChatId string `json:"chatId"`
 	MemeSlug string `json:"memeSlug"`
@@ -260,12 +258,11 @@ type AiJob struct {
 
 // AiJobLoadMatch is the typed request payload for AiJob.LoadTyped.
 type AiJobLoadMatch struct {
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 }
 
 // AiJobCreateData is the typed request payload for AiJob.CreateTyped.
 type AiJobCreateData struct {
-	JobId *string `json:"job_id,omitempty"`
 	Action string `json:"action"`
 	ActorId *string `json:"actorId,omitempty"`
 	AfterState *map[string]any `json:"afterState,omitempty"`

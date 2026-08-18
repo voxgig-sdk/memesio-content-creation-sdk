@@ -18,7 +18,7 @@ export interface Agent {
 }
 
 export interface AgentLoadMatch {
-  id?: string
+  id: string
 }
 
 export interface AgentCreateData {
@@ -85,8 +85,6 @@ export interface AgentInfraLoadMatch {
 }
 
 export interface AgentInfraCreateData {
-  agent_id?: string
-  unlock_id?: string
   action: string
   chatId: string
   memeSlug: string
@@ -252,11 +250,10 @@ export interface AiJob {
 }
 
 export interface AiJobLoadMatch {
-  id?: string
+  id: string
 }
 
 export interface AiJobCreateData {
-  job_id?: string
   action: string
   actorId?: string
   afterState?: Record<string, any>

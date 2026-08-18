@@ -31,7 +31,7 @@ class Agent(AgentRequired, total=False):
     websiteUrl: str
 
 
-class AgentLoadMatch(TypedDict, total=False):
+class AgentLoadMatch(TypedDict):
     id: str
 
 
@@ -110,8 +110,6 @@ class AgentInfraCreateDataRequired(TypedDict):
 
 
 class AgentInfraCreateData(AgentInfraCreateDataRequired, total=False):
-    agent_id: str
-    unlock_id: str
     metadata: dict
     payoutReference: str
     payoutStatus: str
@@ -274,7 +272,7 @@ class AiJob(AiJobRequired, total=False):
     workspaceId: str
 
 
-class AiJobLoadMatch(TypedDict, total=False):
+class AiJobLoadMatch(TypedDict):
     id: str
 
 
@@ -295,7 +293,6 @@ class AiJobCreateDataRequired(TypedDict):
 
 
 class AiJobCreateData(AiJobCreateDataRequired, total=False):
-    job_id: str
     actorId: str
     afterState: dict
     attempts: int

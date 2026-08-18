@@ -1,6 +1,20 @@
 # MemesioContentCreation SDK configuration
 
 module MemesioContentCreationConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -55,73 +69,46 @@ module MemesioContentCreationConfig
         "agent" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "description",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "locale",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "name",
               "op" => {
                 "update" => {
-                  "req" => false,
                   "type" => "`$STRING`",
                 },
               },
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "slug",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "status",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "stylePreset",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "systemPrompt",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "watermarkText",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "websiteUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
           ],
           "name" => "agent",
@@ -131,7 +118,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -146,27 +132,22 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "agent_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -193,10 +174,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -211,27 +190,22 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "load",
             },
             "update" => {
               "input" => "data",
               "name" => "update",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "agent_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -258,10 +232,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "update",
             },
           },
           "relations" => {
@@ -271,95 +243,61 @@ module MemesioContentCreationConfig
         "agent_infra" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "action",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "chatId",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "memeSlug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "metadata",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "payoutReference",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "payoutStatus",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "phoneOrChatId",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "prompt",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "proof",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "quotaBoostPerDay",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "scopes",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "userId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "weekStart",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
           ],
           "name" => "agent_infra",
@@ -369,17 +307,14 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "agent_id",
                         "orig" => "agent_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -409,20 +344,16 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "agent_id",
                         "orig" => "agent_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -452,20 +383,16 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "agent_id",
                         "orig" => "agent_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -494,20 +421,16 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "agent_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -536,20 +459,16 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "unlock_id",
                         "orig" => "unlock_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -578,10 +497,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 4,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -597,10 +514,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 5,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -617,10 +532,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 6,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -637,10 +550,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 7,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -657,10 +568,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 8,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -677,33 +586,26 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 9,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "week_start",
                         "orig" => "week_start",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -728,14 +630,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "agent_id",
@@ -769,10 +668,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -789,36 +686,29 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
               ],
-              "key$" => "load",
             },
             "remove" => {
               "input" => "data",
               "name" => "remove",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "agent_id",
                         "orig" => "agent_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "key_id",
                         "orig" => "key_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -849,10 +739,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "remove",
             },
           },
           "relations" => {
@@ -873,200 +761,119 @@ module MemesioContentCreationConfig
         "ai_caption" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "blockedTerms",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "canvasText",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "captionCount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "captionSets",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "entities",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "fallbackUsed",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "generationStrategy",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "locale",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "memeId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "memeSlug",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "name",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "ok",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "optionCount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "ownerToken",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "providerId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "referenceCaptions",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "rewriteNote",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "sceneSummary",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 17,
             },
             {
-              "active" => true,
               "name" => "templateDescription",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 18,
             },
             {
-              "active" => true,
               "name" => "templateName",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 19,
             },
             {
-              "active" => true,
               "name" => "templateTags",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 20,
             },
             {
-              "active" => true,
               "name" => "tone",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 21,
             },
             {
-              "active" => true,
               "name" => "toneCues",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 22,
             },
             {
-              "active" => true,
               "name" => "trendKeywords",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 23,
             },
             {
-              "active" => true,
               "name" => "trendReferences",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 24,
             },
             {
-              "active" => true,
               "name" => "trendSignals",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 25,
             },
             {
-              "active" => true,
               "name" => "variationOffset",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 26,
             },
             {
-              "active" => true,
               "name" => "voiceRules",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 27,
             },
           ],
           "name" => "ai_caption",
@@ -1076,7 +883,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1092,10 +898,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1111,10 +915,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1130,10 +932,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1149,10 +949,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1168,10 +966,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 4,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1187,10 +983,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 5,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1206,25 +1000,20 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 6,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "locale",
                         "orig" => "locale",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -1247,10 +1036,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -1266,10 +1053,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -1279,154 +1064,96 @@ module MemesioContentCreationConfig
         "ai_job" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "action",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "actorId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "afterState",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "attempts",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "beforeState",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "brushEdits",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "capability",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "celebrityConfidence",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "consentAttested",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "createdAt",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "detectedFaceCount",
               "req" => true,
               "type" => "`$NUMBER`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "edgeRefinement",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "estimatedCostUsd",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "frameTimeMs",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "height",
               "req" => true,
               "type" => "`$NUMBER`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "id",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "input",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "layerId",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 17,
             },
             {
-              "active" => true,
               "name" => "layerType",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 18,
             },
             {
-              "active" => true,
               "name" => "maxAttempts",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 19,
             },
             {
-              "active" => true,
               "name" => "maxFaces",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 20,
             },
             {
-              "active" => true,
               "name" => "mediaType",
               "op" => {
                 "create" => {
@@ -1434,149 +1161,94 @@ module MemesioContentCreationConfig
                   "type" => "`$STRING`",
                 },
               },
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 21,
             },
             {
-              "active" => true,
               "name" => "metadata",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 22,
             },
             {
-              "active" => true,
               "name" => "nsfwScore",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 23,
             },
             {
-              "active" => true,
               "name" => "output",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 24,
             },
             {
-              "active" => true,
               "name" => "projectId",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 25,
             },
             {
-              "active" => true,
               "name" => "providerId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 26,
             },
             {
-              "active" => true,
               "name" => "reason",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 27,
             },
             {
-              "active" => true,
               "name" => "runAfterMs",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 28,
             },
             {
-              "active" => true,
               "name" => "sourceAssetUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 29,
             },
             {
-              "active" => true,
               "name" => "sourceFaceIndex",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 30,
             },
             {
-              "active" => true,
               "name" => "sourceImageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 31,
             },
             {
-              "active" => true,
               "name" => "status",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 32,
             },
             {
-              "active" => true,
               "name" => "targetAssetUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 33,
             },
             {
-              "active" => true,
               "name" => "targetFaceIndex",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 34,
             },
             {
-              "active" => true,
               "name" => "timeoutMs",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 35,
             },
             {
-              "active" => true,
               "name" => "traceId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 36,
             },
             {
-              "active" => true,
               "name" => "updatedAt",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 37,
             },
             {
-              "active" => true,
               "name" => "versionId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 38,
             },
             {
-              "active" => true,
               "name" => "width",
               "req" => true,
               "type" => "`$NUMBER`",
-              "index$" => 39,
             },
             {
-              "active" => true,
               "name" => "workerId",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 40,
             },
             {
-              "active" => true,
               "name" => "workspaceId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 41,
             },
           ],
           "name" => "ai_job",
@@ -1586,17 +1258,14 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "job_id",
                         "orig" => "job_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -1624,20 +1293,16 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "job_id",
                         "orig" => "job_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -1665,10 +1330,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1683,10 +1346,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1701,10 +1362,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1719,10 +1378,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 4,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1737,10 +1394,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 5,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -1755,29 +1410,23 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 6,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "from_version_id",
                         "orig" => "from_version_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "layer_id",
                         "orig" => "layer_id",
@@ -1785,23 +1434,18 @@ module MemesioContentCreationConfig
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "mode",
                         "orig" => "mode",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "project_id",
                         "orig" => "project_id",
@@ -1809,11 +1453,9 @@ module MemesioContentCreationConfig
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "to_version_id",
                         "orig" => "to_version_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -1840,34 +1482,26 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page",
                         "orig" => "page",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page_size",
                         "orig" => "page_size",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "status",
                         "orig" => "status",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -1891,20 +1525,16 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "job_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -1931,10 +1561,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -1948,169 +1576,110 @@ module MemesioContentCreationConfig
         "ai_meme_generation_succeeded" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "allowHeuristicFallback",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "captionSource",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "captions",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "correlationId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "degradedFromAsync",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "editableCaptions",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "flow",
               "op" => {
                 "create" => {
-                  "req" => false,
                   "type" => "`$STRING`",
                 },
               },
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "imageUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "mode",
               "op" => {
                 "create" => {
-                  "req" => false,
                   "type" => "`$STRING`",
                 },
               },
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "ok",
               "req" => true,
               "type" => "`$BOOLEAN`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "preferredProviderId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "prompt",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "rewriteNote",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "runId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "status",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "templateId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "tone",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "toneCues",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 17,
             },
             {
-              "active" => true,
               "name" => "variantCount",
               "op" => {
                 "create" => {
-                  "req" => false,
                   "type" => "`$NUMBER`",
                 },
               },
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 18,
             },
             {
-              "active" => true,
               "name" => "variants",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 19,
             },
             {
-              "active" => true,
               "name" => "workspaceId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 20,
             },
           ],
           "name" => "ai_meme_generation_succeeded",
@@ -2120,7 +1689,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -2136,10 +1704,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -2155,10 +1721,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {
@@ -2168,74 +1732,46 @@ module MemesioContentCreationConfig
         "ai_provider" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "actorId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "correlationId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "limit",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "mappingMode",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "maxSlots",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "prompt",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "sourceImageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "texts",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "trendSignals",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "workspaceId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 9,
             },
           ],
           "name" => "ai_provider",
@@ -2245,7 +1781,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -2261,10 +1796,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -2280,25 +1813,20 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "refresh",
                         "orig" => "refresh",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -2321,18 +1849,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "refresh",
                         "orig" => "refresh",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -2355,10 +1879,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -2374,10 +1896,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -2393,15 +1913,12 @@ module MemesioContentCreationConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "template_id",
                         "orig" => "template_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -2424,18 +1941,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "window_hour",
                         "orig" => "window_hour",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -2458,10 +1971,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -2477,10 +1988,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -2496,10 +2005,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -2515,10 +2022,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 4,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -2534,10 +2039,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 5,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -2554,10 +2057,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 6,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -2567,25 +2068,18 @@ module MemesioContentCreationConfig
         "auth" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "displayName",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "email",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "password",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
           ],
           "name" => "auth",
@@ -2595,7 +2089,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -2612,10 +2105,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -2632,10 +2123,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {
@@ -2651,23 +2140,18 @@ module MemesioContentCreationConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "window_day",
                         "orig" => "window_day",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "workspace_id",
                         "orig" => "workspace_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -2691,10 +2175,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -2704,25 +2186,18 @@ module MemesioContentCreationConfig
         "collaboration" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "authorId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "message",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "projectId",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
           ],
           "name" => "collaboration",
@@ -2732,7 +2207,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -2747,37 +2221,29 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page",
                         "orig" => "page",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page_size",
                         "orig" => "page_size",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "project_id",
                         "orig" => "project_id",
@@ -2805,10 +2271,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -2824,7 +2288,6 @@ module MemesioContentCreationConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -2841,10 +2304,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -2854,23 +2315,17 @@ module MemesioContentCreationConfig
         "create_meme" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "canvas",
               "req" => true,
               "type" => "`$OBJECT`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "captions",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "generationRunId",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -2878,12 +2333,9 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "generationVariantId",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -2891,56 +2343,37 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "imageDataUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "overlays",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "sourceImageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "templateSlug",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "visibility",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "watermark",
               "req" => true,
               "type" => "`$OBJECT`",
-              "index$" => 10,
             },
           ],
           "name" => "create_meme",
@@ -2950,7 +2383,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -2964,10 +2396,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {
@@ -2977,25 +2407,17 @@ module MemesioContentCreationConfig
         "developer_api" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "limit",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "prompt",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "trendSignals",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
           ],
           "name" => "developer_api",
@@ -3005,7 +2427,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -3021,17 +2442,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -3047,10 +2465,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -3060,39 +2476,31 @@ module MemesioContentCreationConfig
         "free_caption_meme_success" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "captions",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 0,
+              "union" => {
+                "branches" => 2,
+                "count" => 1,
+                "depth" => 1,
+              },
             },
             {
-              "active" => true,
               "name" => "templateSlug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "visibility",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "watermark",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 4,
             },
           ],
           "name" => "free_caption_meme_success",
@@ -3102,7 +2510,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -3118,10 +2525,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -3137,10 +2542,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {
@@ -3150,16 +2553,11 @@ module MemesioContentCreationConfig
         "free_template_search" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "animated",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "assetBytes",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -3167,47 +2565,33 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "assetContentType",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "boxCount",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "captionCount",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "captions",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "description",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "durationMs",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -3215,12 +2599,9 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "exampleImageUrl",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -3228,12 +2609,9 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "frameCount",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -3241,10 +2619,8 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "height",
               "req" => true,
               "type" => [
@@ -3254,59 +2630,41 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "id",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "imageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "mediaType",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "name",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "posterImageUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "qualityStatus",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "slug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 17,
             },
             {
-              "active" => true,
               "name" => "sourceTemplateId",
               "req" => true,
               "type" => [
@@ -3316,24 +2674,16 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 18,
             },
             {
-              "active" => true,
               "name" => "sourceUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 19,
             },
             {
-              "active" => true,
               "name" => "tags",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 20,
             },
             {
-              "active" => true,
               "name" => "width",
               "req" => true,
               "type" => [
@@ -3343,7 +2693,6 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 21,
             },
           ],
           "name" => "free_template_search",
@@ -3353,72 +2702,55 @@ module MemesioContentCreationConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "image",
                         "kind" => "query",
                         "name" => "media_type",
                         "orig" => "media_type",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "mode",
                         "orig" => "mode",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page",
                         "orig" => "page",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page_size",
                         "orig" => "page_size",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "q",
                         "orig" => "q",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "query",
                         "orig" => "query",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "sort",
                         "orig" => "sort",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "tag",
                         "orig" => "tag",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -3447,10 +2779,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.items`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -3460,150 +2790,99 @@ module MemesioContentCreationConfig
         "generate" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "base64",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "byteLength",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "captions",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "dataUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "delayMs",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "durationMs",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "filename",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "fps",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "gifSlug",
               "op" => {
                 "create" => {
-                  "req" => false,
                   "type" => "`$STRING`",
                 },
               },
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "height",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "mimeType",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "pages",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "parameters",
               "req" => true,
               "type" => "`$OBJECT`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "returnBase64",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "sourceDurationMs",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "startMs",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "tags",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 17,
             },
             {
-              "active" => true,
               "name" => "width",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 18,
             },
             {
-              "active" => true,
               "name" => "widthPx",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 19,
             },
           ],
           "name" => "generate",
@@ -3613,7 +2892,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -3629,10 +2907,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {
@@ -3642,21 +2918,15 @@ module MemesioContentCreationConfig
         "growth" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "accountId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "action",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "actorId",
               "op" => {
                 "create" => {
@@ -3664,100 +2934,59 @@ module MemesioContentCreationConfig
                   "type" => "`$STRING`",
                 },
               },
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "caption",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "code",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "externalAccountId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "handle",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "limit",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "logExposure",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "memeSlug",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "now",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "platform",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "profiles",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "shareSlug",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "surface",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "weekStart",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
           ],
           "name" => "growth",
@@ -3767,7 +2996,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -3783,10 +3011,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -3803,10 +3029,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -3823,10 +3047,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -3843,10 +3065,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -3863,21 +3083,17 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 4,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "actor_id",
                         "orig" => "actor_id",
@@ -3885,19 +3101,15 @@ module MemesioContentCreationConfig
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "log_exposure",
                         "orig" => "log_exposure",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "surface",
                         "orig" => "surface",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -3922,34 +3134,26 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "published_only",
                         "orig" => "published_only",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "week_start",
                         "orig" => "week_start",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -3974,14 +3178,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "actor_id",
                         "orig" => "actor_id",
@@ -3989,11 +3190,9 @@ module MemesioContentCreationConfig
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "publish_limit",
                         "orig" => "publish_limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -4017,18 +3216,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "actor_id",
                         "orig" => "actor_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -4051,10 +3246,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -4071,10 +3264,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 4,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -4091,10 +3282,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 5,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -4104,95 +3293,69 @@ module MemesioContentCreationConfig
         "list_meme" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "altText",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "canonicalImageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "createdAt",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "imageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "nsfwStatus",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "shareSlug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "shareUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "shareViews",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "slug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "tags",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "templateSlug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "title",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "visibility",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
           ],
           "name" => "list_meme",
@@ -4202,79 +3365,60 @@ module MemesioContentCreationConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "exclude_template_clone",
                         "orig" => "exclude_template_clone",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "include_nsfw",
                         "orig" => "include_nsfw",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "official_only",
                         "orig" => "official_only",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "owner_token",
                         "orig" => "owner_token",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page",
                         "orig" => "page",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page_size",
                         "orig" => "page_size",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "query",
                         "orig" => "query",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "template_slug",
                         "orig" => "template_slug",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "visibility",
                         "orig" => "visibility",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -4303,10 +3447,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.items`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -4316,46 +3458,29 @@ module MemesioContentCreationConfig
         "media" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "action",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "contentType",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "expiresInSeconds",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "ownerToken",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "path",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "prefix",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
           ],
           "name" => "media",
@@ -4365,7 +3490,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -4382,10 +3506,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {
@@ -4395,130 +3517,94 @@ module MemesioContentCreationConfig
         "meme" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "altText",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "canonicalImageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "canvas",
               "req" => true,
               "type" => "`$OBJECT`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "captions",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "createdAt",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "imageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "nsfwStatus",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "overlays",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "shareSlug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "shareUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "shareViews",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "slug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "sourceImageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "tags",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "templateSlug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "title",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "visibility",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "watermark",
               "req" => true,
               "type" => "`$OBJECT`",
-              "index$" => 17,
             },
           ],
           "name" => "meme",
@@ -4528,26 +3614,21 @@ module MemesioContentCreationConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "slug",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "owner_token",
                         "orig" => "owner_token",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -4575,27 +3656,22 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
             "remove" => {
               "input" => "data",
               "name" => "remove",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "slug",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -4621,10 +3697,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "remove",
             },
           },
           "relations" => {
@@ -4634,16 +3708,11 @@ module MemesioContentCreationConfig
         "public_template_media_item" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "animated",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "assetBytes",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -4651,54 +3720,35 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "assetContentType",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "boxCount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "captionCount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "captions",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "categories",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "description",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "durationMs",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -4706,12 +3756,9 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "exampleImageUrl",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -4719,12 +3766,9 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "frameCount",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -4732,10 +3776,8 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "height",
               "req" => true,
               "type" => [
@@ -4745,66 +3787,45 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "id",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "imageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "mediaType",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "name",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "posterImageUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "previewImageUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 17,
             },
             {
-              "active" => true,
               "name" => "qualityStatus",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 18,
             },
             {
-              "active" => true,
               "name" => "slug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 19,
             },
             {
-              "active" => true,
               "name" => "sourceTemplateId",
               "req" => true,
               "type" => [
@@ -4814,24 +3835,17 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 20,
             },
             {
-              "active" => true,
               "name" => "sourceUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 21,
             },
             {
-              "active" => true,
               "name" => "tags",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 22,
             },
             {
-              "active" => true,
               "name" => "width",
               "req" => true,
               "type" => [
@@ -4841,7 +3855,6 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 23,
             },
           ],
           "name" => "public_template_media_item",
@@ -4851,27 +3864,22 @@ module MemesioContentCreationConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "slug",
                         "orig" => "slug",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "image",
                         "kind" => "query",
                         "name" => "media_type",
                         "orig" => "media_type",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -4894,20 +3902,16 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "slug",
                         "orig" => "slug",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -4928,10 +3932,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -4948,60 +3950,38 @@ module MemesioContentCreationConfig
         "standalone_agent_bootstrap" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "description",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "handle",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "locale",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "name",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "stylePreset",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "systemPrompt",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "watermarkText",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "websiteUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
           ],
           "name" => "standalone_agent_bootstrap",
@@ -5011,7 +3991,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -5027,10 +4006,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -5046,10 +4023,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {
@@ -5059,16 +4034,11 @@ module MemesioContentCreationConfig
         "template" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "animated",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "assetBytes",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -5076,31 +4046,20 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "assetContentType",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "boxCount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "captionCount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "captions",
               "op" => {
                 "list" => {
@@ -5108,35 +4067,23 @@ module MemesioContentCreationConfig
                   "type" => "`$ARRAY`",
                 },
               },
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "categories",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "description",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "durationMs",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "exampleImageUrl",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -5144,19 +4091,13 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "fps",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "frameCount",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -5164,17 +4105,12 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "gifSlug",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "height",
               "req" => true,
               "type" => [
@@ -5184,73 +4120,49 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "id",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "imageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "mediaType",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "name",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 17,
             },
             {
-              "active" => true,
               "name" => "posterImageUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 18,
             },
             {
-              "active" => true,
               "name" => "previewImageUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 19,
             },
             {
-              "active" => true,
               "name" => "qualityStatus",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 20,
             },
             {
-              "active" => true,
               "name" => "returnBase64",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 21,
             },
             {
-              "active" => true,
               "name" => "slug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 22,
             },
             {
-              "active" => true,
               "name" => "sourceTemplateId",
               "req" => true,
               "type" => [
@@ -5260,24 +4172,16 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 23,
             },
             {
-              "active" => true,
               "name" => "sourceUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 24,
             },
             {
-              "active" => true,
               "name" => "startMs",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 25,
             },
             {
-              "active" => true,
               "name" => "tags",
               "op" => {
                 "list" => {
@@ -5285,19 +4189,13 @@ module MemesioContentCreationConfig
                   "type" => "`$ARRAY`",
                 },
               },
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 26,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 27,
             },
             {
-              "active" => true,
               "name" => "width",
               "req" => true,
               "type" => [
@@ -5307,14 +4205,10 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 28,
             },
             {
-              "active" => true,
               "name" => "widthPx",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 29,
             },
           ],
           "name" => "template",
@@ -5324,17 +4218,14 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "slug",
                         "orig" => "slug",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -5356,82 +4247,63 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
             "list" => {
               "input" => "data",
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "image",
                         "kind" => "query",
                         "name" => "media_type",
                         "orig" => "media_type",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "mode",
                         "orig" => "mode",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page",
                         "orig" => "page",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page_size",
                         "orig" => "page_size",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "q",
                         "orig" => "q",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "query",
                         "orig" => "query",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "sort",
                         "orig" => "sort",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "tag",
                         "orig" => "tag",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -5459,10 +4331,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.items`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -5476,16 +4346,11 @@ module MemesioContentCreationConfig
         "template_search" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "animated",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "assetBytes",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -5493,54 +4358,35 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "assetContentType",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "boxCount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "captionCount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "captions",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "categories",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "description",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "durationMs",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -5548,12 +4394,9 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "exampleImageUrl",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -5561,12 +4404,9 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "frameCount",
-              "req" => false,
               "type" => [
                 "`$ONE`",
                 [
@@ -5574,10 +4414,8 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "height",
               "req" => true,
               "type" => [
@@ -5587,66 +4425,45 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "id",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "imageUrl",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "mediaType",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "name",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "posterImageUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "previewImageUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 17,
             },
             {
-              "active" => true,
               "name" => "qualityStatus",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 18,
             },
             {
-              "active" => true,
               "name" => "slug",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 19,
             },
             {
-              "active" => true,
               "name" => "sourceTemplateId",
               "req" => true,
               "type" => [
@@ -5656,24 +4473,17 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 20,
             },
             {
-              "active" => true,
               "name" => "sourceUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 21,
             },
             {
-              "active" => true,
               "name" => "tags",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 22,
             },
             {
-              "active" => true,
               "name" => "width",
               "req" => true,
               "type" => [
@@ -5683,7 +4493,6 @@ module MemesioContentCreationConfig
                   "`$NULL`",
                 ],
               ],
-              "index$" => 23,
             },
           ],
           "name" => "template_search",
@@ -5693,55 +4502,42 @@ module MemesioContentCreationConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page",
                         "orig" => "page",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page_size",
                         "orig" => "page_size",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "q",
                         "orig" => "q",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "query",
                         "orig" => "query",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "sort",
                         "orig" => "sort",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "tag",
                         "orig" => "tag",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -5767,10 +4563,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.items`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -5780,116 +4574,72 @@ module MemesioContentCreationConfig
         "trend_alert" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "action",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "actorId",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "aggressiveness",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "alertId",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "channels",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "deliverAllAlerts",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "event",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "explicitNiches",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "explicitRegions",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "explicitSources",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "explicitTopics",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "followerCount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "niche",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "region",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "source",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "topic",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
           ],
           "name" => "trend_alert",
@@ -5899,7 +4649,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -5914,10 +4663,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -5932,10 +4679,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -5950,10 +4695,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -5968,121 +4711,92 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "actor_id",
                         "orig" => "actor_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "aggressiveness",
                         "orig" => "aggressiveness",
-                        "reqd" => false,
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "follower_count",
                         "orig" => "follower_count",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "niche",
                         "orig" => "niche",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page",
                         "orig" => "page",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page_size",
                         "orig" => "page_size",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "preferred_niche",
                         "orig" => "preferred_niche",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "preferred_region",
                         "orig" => "preferred_region",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "query",
                         "orig" => "query",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "region",
                         "orig" => "region",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "source",
                         "orig" => "source",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "status",
                         "orig" => "status",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "topic",
                         "orig" => "topic",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -6115,66 +4829,50 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "actor_id",
                         "orig" => "actor_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "aggressiveness",
                         "orig" => "aggressiveness",
-                        "reqd" => false,
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "follower_count",
                         "orig" => "follower_count",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "preferred_niche",
                         "orig" => "preferred_niche",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "preferred_region",
                         "orig" => "preferred_region",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "topic",
                         "orig" => "topic",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -6202,26 +4900,20 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "actor_id",
                         "orig" => "actor_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -6244,14 +4936,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "actor_id",
                         "orig" => "actor_id",
@@ -6277,18 +4966,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "refresh",
                         "orig" => "refresh",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -6310,18 +4995,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 4,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "refresh",
                         "orig" => "refresh",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -6343,18 +5024,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 5,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "refresh",
                         "orig" => "refresh",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -6376,18 +5053,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 6,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "template_id",
                         "orig" => "template_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -6409,10 +5082,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 7,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -6427,10 +5098,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 8,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -6445,10 +5114,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 9,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -6464,7 +5131,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -6480,10 +5146,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {
@@ -6493,7 +5157,6 @@ module MemesioContentCreationConfig
         "video" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "action",
               "op" => {
                 "create" => {
@@ -6501,335 +5164,204 @@ module MemesioContentCreationConfig
                   "type" => "`$STRING`",
                 },
               },
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "assetId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "atMs",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "audioAssetId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "beatOffsetMs",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "bitrateKbps",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "bpm",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "cancelled",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "container",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "durationMs",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "durationSeconds",
               "op" => {
                 "create" => {
-                  "req" => false,
                   "type" => "`$NUMBER`",
                 },
               },
               "req" => true,
               "type" => "`$NUMBER`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "easing",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "error",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "frameRate",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "inputFormat",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "intensity",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "jobId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 16,
             },
             {
-              "active" => true,
               "name" => "locale",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 17,
             },
             {
-              "active" => true,
               "name" => "mimeType",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 18,
             },
             {
-              "active" => true,
               "name" => "name",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 19,
             },
             {
-              "active" => true,
               "name" => "offsetMs",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 20,
             },
             {
-              "active" => true,
               "name" => "outputPresetId",
               "op" => {
                 "create" => {
-                  "req" => false,
                   "type" => "`$STRING`",
                 },
               },
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 21,
             },
             {
-              "active" => true,
               "name" => "outputUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 22,
             },
             {
-              "active" => true,
               "name" => "planTier",
               "op" => {
                 "create" => {
-                  "req" => false,
                   "type" => "`$STRING`",
                 },
               },
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 23,
             },
             {
-              "active" => true,
               "name" => "presetId",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 24,
             },
             {
-              "active" => true,
               "name" => "progressPercent",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 25,
             },
             {
-              "active" => true,
               "name" => "project",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 26,
             },
             {
-              "active" => true,
               "name" => "projectId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 27,
             },
             {
-              "active" => true,
               "name" => "property",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 28,
             },
             {
-              "active" => true,
               "name" => "sourceDeviceId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 29,
             },
             {
-              "active" => true,
               "name" => "sourceUrl",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 30,
             },
             {
-              "active" => true,
               "name" => "stage",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 31,
             },
             {
-              "active" => true,
               "name" => "startMs",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 32,
             },
             {
-              "active" => true,
               "name" => "stylePresetId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 33,
             },
             {
-              "active" => true,
               "name" => "syncToBeatGrid",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 34,
             },
             {
-              "active" => true,
               "name" => "tone",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 35,
             },
             {
-              "active" => true,
               "name" => "trackId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 36,
             },
             {
-              "active" => true,
               "name" => "transcript",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 37,
             },
             {
-              "active" => true,
               "name" => "trendKeywords",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 38,
             },
             {
-              "active" => true,
               "name" => "type",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 39,
             },
             {
-              "active" => true,
               "name" => "updatedAt",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 40,
             },
             {
-              "active" => true,
               "name" => "value",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 41,
             },
             {
-              "active" => true,
               "name" => "watermarkEnabled",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 42,
             },
             {
-              "active" => true,
               "name" => "watermarkText",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 43,
             },
             {
-              "active" => true,
               "name" => "workerId",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 44,
             },
           ],
           "name" => "video",
@@ -6839,7 +5371,6 @@ module MemesioContentCreationConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -6856,10 +5387,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -6876,10 +5405,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -6896,10 +5423,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -6916,10 +5441,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -6936,10 +5459,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 4,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -6956,10 +5477,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 5,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -6976,81 +5495,62 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 6,
                 },
               ],
-              "key$" => "create",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "beat_offset_m",
                         "orig" => "beat_offset_m",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "bpm",
                         "orig" => "bpm",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "locale",
                         "orig" => "locale",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "style_preset_id",
                         "orig" => "style_preset_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "sync_to_beat_grid",
                         "orig" => "sync_to_beat_grid",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "tone",
                         "orig" => "tone",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "transcript",
                         "orig" => "transcript",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "trend_keyword",
                         "orig" => "trend_keyword",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -7080,58 +5580,44 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "kind",
                         "orig" => "kind",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "query",
                         "orig" => "query",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "tag",
                         "orig" => "tag",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "target_bpm",
                         "orig" => "target_bpm",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "tolerance_bpm",
                         "orig" => "tolerance_bpm",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -7159,58 +5645,44 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "bitrate_kbp",
                         "orig" => "bitrate_kbp",
-                        "reqd" => false,
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "container",
                         "orig" => "container",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "plan_tier",
                         "orig" => "plan_tier",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "preset_id",
                         "orig" => "preset_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "watermark_enabled",
                         "orig" => "watermark_enabled",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "watermark_text",
                         "orig" => "watermark_text",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -7238,50 +5710,38 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "duration_second",
                         "orig" => "duration_second",
-                        "reqd" => false,
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "input_format",
                         "orig" => "input_format",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "mime_type",
                         "orig" => "mime_type",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "output_preset_id",
                         "orig" => "output_preset_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "plan_tier",
                         "orig" => "plan_tier",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -7308,42 +5768,32 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 3,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "mode",
                         "orig" => "mode",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "plan_tier",
                         "orig" => "plan_tier",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "status",
                         "orig" => "status",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -7369,42 +5819,32 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 4,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "duration_m",
                         "orig" => "duration_m",
-                        "reqd" => false,
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "intensity",
                         "orig" => "intensity",
-                        "reqd" => false,
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "preset_id",
                         "orig" => "preset_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "start_m",
                         "orig" => "start_m",
-                        "reqd" => false,
                         "type" => "`$NUMBER`",
                       },
                     ],
@@ -7430,26 +5870,20 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 5,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "project_id",
                         "orig" => "project_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -7473,26 +5907,20 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 6,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "project_id",
                         "orig" => "project_id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -7516,18 +5944,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 7,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "refresh",
                         "orig" => "refresh",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -7550,10 +5974,8 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 8,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {

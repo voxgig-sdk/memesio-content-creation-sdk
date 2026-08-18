@@ -21,7 +21,7 @@ support (`list`, `load`, `create`, `update`, `remove`):
 
 ```ts
 const client = new MemesioContentCreationSDK()
-const agent = await client.Agent().load()
+const agent = await client.Agent().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —

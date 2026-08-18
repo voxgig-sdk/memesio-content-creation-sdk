@@ -15,7 +15,7 @@ require_relative "../MemesioContentCreation_sdk"
 module MemesioContentCreationFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = MemesioContentCreationConfig.make_config["feature"]
+    f = MemesioContentCreationConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

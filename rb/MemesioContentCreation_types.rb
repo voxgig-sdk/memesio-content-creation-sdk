@@ -52,7 +52,7 @@ Agent = Struct.new(
 # Request payload for Agent#load.
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 AgentLoadMatch = Struct.new(
   :id,
   keyword_init: true
@@ -260,12 +260,6 @@ AgentInfraLoadMatch = Struct.new(
 
 # Request payload for AgentInfra#create.
 #
-# @!attribute [rw] agent_id
-#   @return [String, nil]
-#
-# @!attribute [rw] unlock_id
-#   @return [String, nil]
-#
 # @!attribute [rw] action
 #   @return [String]
 #
@@ -305,8 +299,6 @@ AgentInfraLoadMatch = Struct.new(
 # @!attribute [rw] weekStart
 #   @return [String, nil]
 AgentInfraCreateData = Struct.new(
-  :agent_id,
-  :unlock_id,
   :action,
   :chatId,
   :memeSlug,
@@ -863,16 +855,13 @@ AiJob = Struct.new(
 # Request payload for AiJob#load.
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 AiJobLoadMatch = Struct.new(
   :id,
   keyword_init: true
 )
 
 # Request payload for AiJob#create.
-#
-# @!attribute [rw] job_id
-#   @return [String, nil]
 #
 # @!attribute [rw] action
 #   @return [String]
@@ -1000,7 +989,6 @@ AiJobLoadMatch = Struct.new(
 # @!attribute [rw] workspaceId
 #   @return [String, nil]
 AiJobCreateData = Struct.new(
-  :job_id,
   :action,
   :actorId,
   :afterState,

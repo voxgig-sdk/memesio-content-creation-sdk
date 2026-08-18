@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: '/',
+    base: "/",
 
     auth: {
       prefix: '',
@@ -137,73 +137,46 @@ class Config {
     "agent": {
       "fields": [
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "locale",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "op": {
             "update": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "slug",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "status",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "stylePreset",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "systemPrompt",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "watermarkText",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "websiteUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         }
       ],
       "name": "agent",
@@ -213,7 +186,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -227,28 +199,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "agent_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -274,11 +241,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -292,28 +257,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "load"
+          ]
         },
         "update": {
           "input": "data",
           "name": "update",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "agent_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -339,11 +299,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "update"
+          ]
         }
       },
       "relations": {
@@ -353,95 +311,61 @@ class Config {
     "agent_infra": {
       "fields": [
         {
-          "active": true,
           "name": "action",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "chatId",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "memeSlug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "metadata",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 3
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "payoutReference",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "payoutStatus",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "phoneOrChatId",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "prompt",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "proof",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 8
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "quotaBoostPerDay",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 9
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "scopes",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 10
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "userId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "weekStart",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         }
       ],
       "name": "agent_infra",
@@ -451,17 +375,14 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "agent_id",
                     "orig": "agent_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -490,21 +411,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "agent_id",
                     "orig": "agent_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -533,21 +450,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "agent_id",
                     "orig": "agent_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -575,21 +488,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "agent_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -617,21 +526,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "unlock_id",
                     "orig": "unlock_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -659,11 +564,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -678,11 +581,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -698,11 +599,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 6
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -718,11 +617,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 7
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -738,11 +635,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 8
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -758,34 +653,27 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 9
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "week_start",
                     "orig": "week_start",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -809,15 +697,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "agent_id",
@@ -850,11 +735,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -870,37 +753,30 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             }
-          ],
-          "key$": "load"
+          ]
         },
         "remove": {
           "input": "data",
           "name": "remove",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "agent_id",
                     "orig": "agent_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "key_id",
                     "orig": "key_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 1
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -930,11 +806,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "remove"
+          ]
         }
       },
       "relations": {
@@ -955,200 +829,119 @@ class Config {
     "ai_caption": {
       "fields": [
         {
-          "active": true,
           "name": "blockedTerms",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "canvasText",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "captionCount",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captionSets",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 3
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "entities",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "fallbackUsed",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 5
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "generationStrategy",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "locale",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "memeId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "memeSlug",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "ok",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 11
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "optionCount",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 12
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "ownerToken",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "providerId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "referenceCaptions",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 15
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "rewriteNote",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sceneSummary",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "templateDescription",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 18
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "templateName",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 19
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "templateTags",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 20
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "tone",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 21
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "toneCues",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 22
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "trendKeywords",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 23
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "trendReferences",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 24
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "trendSignals",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 25
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "variationOffset",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 26
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "voiceRules",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 27
+          "type": "`$ARRAY`"
         }
       ],
       "name": "ai_caption",
@@ -1158,7 +951,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1173,11 +965,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1192,11 +982,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1211,11 +999,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1230,11 +1016,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1249,11 +1033,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1268,11 +1050,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1287,26 +1067,21 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 6
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "locale",
                     "orig": "locale",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1328,11 +1103,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -1347,11 +1120,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -1361,154 +1132,96 @@ class Config {
     "ai_job": {
       "fields": [
         {
-          "active": true,
           "name": "action",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "actorId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "afterState",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 2
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "attempts",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "beforeState",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 4
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "brushEdits",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "capability",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "celebrityConfidence",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 7
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "consentAttested",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 8
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "createdAt",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "detectedFaceCount",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 10
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "edgeRefinement",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 11
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "estimatedCostUsd",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 12
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "frameTimeMs",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 13
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "height",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 14
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "input",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 16
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "layerId",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "layerType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 18
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "maxAttempts",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 19
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "maxFaces",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 20
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "mediaType",
           "op": {
             "create": {
@@ -1516,149 +1229,94 @@ class Config {
               "type": "`$STRING`"
             }
           },
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 21
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "metadata",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 22
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "nsfwScore",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 23
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "output",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 24
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "projectId",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 25
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "providerId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 26
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "reason",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 27
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "runAfterMs",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 28
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "sourceAssetUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 29
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sourceFaceIndex",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 30
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "sourceImageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 31
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "status",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 32
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "targetAssetUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 33
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "targetFaceIndex",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 34
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "timeoutMs",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 35
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "traceId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 36
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updatedAt",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 37
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "versionId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 38
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "width",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 39
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "workerId",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 40
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "workspaceId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 41
+          "type": "`$STRING`"
         }
       ],
       "name": "ai_job",
@@ -1668,17 +1326,14 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "job_id",
                     "orig": "job_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1705,21 +1360,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "job_id",
                     "orig": "job_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1746,11 +1397,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1764,11 +1413,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1782,11 +1429,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1800,11 +1445,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1818,11 +1461,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -1836,30 +1477,24 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 6
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from_version_id",
                     "orig": "from_version_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "layer_id",
                     "orig": "layer_id",
@@ -1867,23 +1502,18 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "mode",
                     "orig": "mode",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "project_id",
                     "orig": "project_id",
@@ -1891,11 +1521,9 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "to_version_id",
                     "orig": "to_version_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1921,35 +1549,27 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page",
                     "orig": "page",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page_size",
                     "orig": "page_size",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "status",
                     "orig": "status",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1972,21 +1592,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "job_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2012,11 +1628,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2030,169 +1644,110 @@ class Config {
     "ai_meme_generation_succeeded": {
       "fields": [
         {
-          "active": true,
           "name": "allowHeuristicFallback",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "captionSource",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "captions",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 2
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "correlationId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "degradedFromAsync",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 4
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "editableCaptions",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "flow",
           "op": {
             "create": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "imageUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "mode",
           "op": {
             "create": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "ok",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 9
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "preferredProviderId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "prompt",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "rewriteNote",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "runId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "status",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "templateId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "tone",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "toneCues",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 17
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "variantCount",
           "op": {
             "create": {
-              "req": false,
               "type": "`$NUMBER`"
             }
           },
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 18
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "variants",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 19
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "workspaceId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 20
+          "type": "`$STRING`"
         }
       ],
       "name": "ai_meme_generation_succeeded",
@@ -2202,7 +1757,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -2217,11 +1771,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -2236,11 +1788,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -2250,74 +1800,46 @@ class Config {
     "ai_provider": {
       "fields": [
         {
-          "active": true,
           "name": "actorId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "correlationId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "limit",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 2
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "mappingMode",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "maxSlots",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "prompt",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sourceImageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "texts",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 7
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "trendSignals",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 8
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "workspaceId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         }
       ],
       "name": "ai_provider",
@@ -2327,7 +1849,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -2342,11 +1863,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -2361,26 +1880,21 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "refresh",
                     "orig": "refresh",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   }
                 ]
@@ -2402,19 +1916,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "refresh",
                     "orig": "refresh",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   }
                 ]
@@ -2436,11 +1946,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2455,11 +1963,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2475,15 +1981,12 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "template_id",
                     "orig": "template_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -2505,19 +2008,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "window_hour",
                     "orig": "window_hour",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -2539,11 +2038,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2558,11 +2055,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2577,11 +2072,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2596,11 +2089,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2615,11 +2106,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2635,11 +2124,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 6
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2649,25 +2136,18 @@ class Config {
     "auth": {
       "fields": [
         {
-          "active": true,
           "name": "displayName",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "email",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "password",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         }
       ],
       "name": "auth",
@@ -2677,7 +2157,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -2693,11 +2172,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -2713,11 +2190,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -2733,23 +2208,18 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "window_day",
                     "orig": "window_day",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -2772,11 +2242,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2786,25 +2254,18 @@ class Config {
     "collaboration": {
       "fields": [
         {
-          "active": true,
           "name": "authorId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "message",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "projectId",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         }
       ],
       "name": "collaboration",
@@ -2814,7 +2275,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -2828,38 +2288,30 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page",
                     "orig": "page",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page_size",
                     "orig": "page_size",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "project_id",
                     "orig": "project_id",
@@ -2886,11 +2338,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2906,7 +2356,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2922,11 +2371,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2936,93 +2383,65 @@ class Config {
     "create_meme": {
       "fields": [
         {
-          "active": true,
           "name": "canvas",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "captions",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "generationRunId",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 2
+          ]
         },
         {
-          "active": true,
           "name": "generationVariantId",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "imageDataUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "overlays",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "sourceImageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "templateSlug",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "visibility",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "watermark",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 10
+          "type": "`$OBJECT`"
         }
       ],
       "name": "create_meme",
@@ -3032,7 +2451,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3045,11 +2463,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -3059,25 +2475,17 @@ class Config {
     "developer_api": {
       "fields": [
         {
-          "active": true,
           "name": "limit",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 0
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "prompt",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "trendSignals",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 2
+          "type": "`$ARRAY`"
         }
       ],
       "name": "developer_api",
@@ -3087,7 +2495,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3102,18 +2509,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -3128,11 +2532,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -3142,39 +2544,31 @@ class Config {
     "free_caption_meme_success": {
       "fields": [
         {
-          "active": true,
           "name": "captions",
           "req": true,
           "type": "`$ARRAY`",
-          "index$": 0
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 1
+          }
         },
         {
-          "active": true,
           "name": "templateSlug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "visibility",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "watermark",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 4
+          "type": "`$OBJECT`"
         }
       ],
       "name": "free_caption_meme_success",
@@ -3184,7 +2578,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3199,11 +2592,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3218,11 +2609,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -3232,101 +2621,74 @@ class Config {
     "free_template_search": {
       "fields": [
         {
-          "active": true,
           "name": "animated",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "assetBytes",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "assetContentType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "boxCount",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captionCount",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captions",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "description",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "durationMs",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "exampleImageUrl",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "frameCount",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "height",
           "req": true,
           "type": [
@@ -3335,60 +2697,42 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "imageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "mediaType",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "posterImageUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "qualityStatus",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sourceTemplateId",
           "req": true,
           "type": [
@@ -3397,25 +2741,17 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 18
+          ]
         },
         {
-          "active": true,
           "name": "sourceUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 19
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "tags",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 20
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "width",
           "req": true,
           "type": [
@@ -3424,8 +2760,7 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 21
+          ]
         }
       ],
       "name": "free_template_search",
@@ -3435,72 +2770,55 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "image",
                     "kind": "query",
                     "name": "media_type",
                     "orig": "media_type",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "mode",
                     "orig": "mode",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page",
                     "orig": "page",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page_size",
                     "orig": "page_size",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "tag",
                     "orig": "tag",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -3528,11 +2846,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.items`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -3542,150 +2858,99 @@ class Config {
     "generate": {
       "fields": [
         {
-          "active": true,
           "name": "base64",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "byteLength",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captions",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 2
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "dataUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "delayMs",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "durationMs",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 5
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "filename",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "fps",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 7
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "gifSlug",
           "op": {
             "create": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "height",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 9
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "mimeType",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "pages",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 11
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "parameters",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 12
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "returnBase64",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 13
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "sourceDurationMs",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 14
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "startMs",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 15
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "tags",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 16
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "width",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 18
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "widthPx",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 19
+          "type": "`$INTEGER`"
         }
       ],
       "name": "generate",
@@ -3695,7 +2960,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3710,11 +2974,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -3724,21 +2986,15 @@ class Config {
     "growth": {
       "fields": [
         {
-          "active": true,
           "name": "accountId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "action",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "actorId",
           "op": {
             "create": {
@@ -3746,100 +3002,59 @@ class Config {
               "type": "`$STRING`"
             }
           },
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "caption",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "code",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "externalAccountId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "handle",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "limit",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 7
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "logExposure",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 8
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "memeSlug",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "now",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "platform",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "profiles",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 12
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "shareSlug",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "surface",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "weekStart",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         }
       ],
       "name": "growth",
@@ -3849,7 +3064,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3864,11 +3078,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3884,11 +3096,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3904,11 +3114,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3924,11 +3132,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -3944,22 +3150,18 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "actor_id",
                     "orig": "actor_id",
@@ -3967,19 +3169,15 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "log_exposure",
                     "orig": "log_exposure",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "surface",
                     "orig": "surface",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -4003,35 +3201,27 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "published_only",
                     "orig": "published_only",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "week_start",
                     "orig": "week_start",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -4055,15 +3245,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "actor_id",
                     "orig": "actor_id",
@@ -4071,11 +3258,9 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "publish_limit",
                     "orig": "publish_limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -4098,19 +3283,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "actor_id",
                     "orig": "actor_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -4132,11 +3313,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -4152,11 +3331,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -4172,11 +3349,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -4186,95 +3361,69 @@ class Config {
     "list_meme": {
       "fields": [
         {
-          "active": true,
           "name": "altText",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "canonicalImageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "createdAt",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "imageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "nsfwStatus",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "shareSlug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "shareUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "shareViews",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 7
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "tags",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 9
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "templateSlug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "title",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "visibility",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         }
       ],
       "name": "list_meme",
@@ -4284,79 +3433,60 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "exclude_template_clone",
                     "orig": "exclude_template_clone",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "include_nsfw",
                     "orig": "include_nsfw",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "official_only",
                     "orig": "official_only",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "owner_token",
                     "orig": "owner_token",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page",
                     "orig": "page",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page_size",
                     "orig": "page_size",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "template_slug",
                     "orig": "template_slug",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "visibility",
                     "orig": "visibility",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -4384,11 +3514,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.items`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -4398,46 +3526,29 @@ class Config {
     "media": {
       "fields": [
         {
-          "active": true,
           "name": "action",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "contentType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "expiresInSeconds",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "ownerToken",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "path",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "prefix",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         }
       ],
       "name": "media",
@@ -4447,7 +3558,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -4463,11 +3573,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -4477,130 +3585,94 @@ class Config {
     "meme": {
       "fields": [
         {
-          "active": true,
           "name": "altText",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "canonicalImageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "canvas",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 2
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "captions",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 3
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "createdAt",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "imageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "nsfwStatus",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "overlays",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 7
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "shareSlug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "shareUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "shareViews",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 10
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sourceImageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "tags",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 13
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "templateSlug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "title",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "visibility",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "watermark",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 17
+          "type": "`$OBJECT`"
         }
       ],
       "name": "meme",
@@ -4610,26 +3682,21 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "owner_token",
                     "orig": "owner_token",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -4656,28 +3723,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         },
         "remove": {
           "input": "data",
           "name": "remove",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -4702,11 +3764,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "remove"
+          ]
         }
       },
       "relations": {
@@ -4716,108 +3776,76 @@ class Config {
     "public_template_media_item": {
       "fields": [
         {
-          "active": true,
           "name": "animated",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "assetBytes",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "assetContentType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "boxCount",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captionCount",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captions",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "categories",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 6
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "description",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "durationMs",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "exampleImageUrl",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "frameCount",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "height",
           "req": true,
           "type": [
@@ -4826,67 +3854,46 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "imageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "mediaType",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "posterImageUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "previewImageUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "qualityStatus",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 18
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 19
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sourceTemplateId",
           "req": true,
           "type": [
@@ -4895,25 +3902,18 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 20
+          ]
         },
         {
-          "active": true,
           "name": "sourceUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 21
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "tags",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 22
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "width",
           "req": true,
           "type": [
@@ -4922,8 +3922,7 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 23
+          ]
         }
       ],
       "name": "public_template_media_item",
@@ -4933,27 +3932,22 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "image",
                     "kind": "query",
                     "name": "media_type",
                     "orig": "media_type",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -4975,21 +3969,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -5009,11 +3999,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -5030,60 +4018,38 @@ class Config {
     "standalone_agent_bootstrap": {
       "fields": [
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "handle",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "locale",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "stylePreset",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "systemPrompt",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "watermarkText",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "websiteUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         }
       ],
       "name": "standalone_agent_bootstrap",
@@ -5093,7 +4059,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -5108,11 +4073,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -5127,11 +4090,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -5141,48 +4102,32 @@ class Config {
     "template": {
       "fields": [
         {
-          "active": true,
           "name": "animated",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "assetBytes",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "assetContentType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "boxCount",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captionCount",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captions",
           "op": {
             "list": {
@@ -5190,73 +4135,50 @@ class Config {
               "type": "`$ARRAY`"
             }
           },
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "categories",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 6
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "description",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "durationMs",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 8
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "exampleImageUrl",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "fps",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 10
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "frameCount",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         },
         {
-          "active": true,
           "name": "gifSlug",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "height",
           "req": true,
           "type": [
@@ -5265,74 +4187,50 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 13
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "imageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "mediaType",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "posterImageUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 18
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "previewImageUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 19
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "qualityStatus",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 20
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "returnBase64",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 21
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 22
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sourceTemplateId",
           "req": true,
           "type": [
@@ -5341,25 +4239,17 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 23
+          ]
         },
         {
-          "active": true,
           "name": "sourceUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 24
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "startMs",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 25
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "tags",
           "op": {
             "list": {
@@ -5367,19 +4257,13 @@ class Config {
               "type": "`$ARRAY`"
             }
           },
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 26
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 27
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "width",
           "req": true,
           "type": [
@@ -5388,15 +4272,11 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 28
+          ]
         },
         {
-          "active": true,
           "name": "widthPx",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 29
+          "type": "`$INTEGER`"
         }
       ],
       "name": "template",
@@ -5406,17 +4286,14 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -5437,83 +4314,64 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "list": {
           "input": "data",
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "image",
                     "kind": "query",
                     "name": "media_type",
                     "orig": "media_type",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "mode",
                     "orig": "mode",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page",
                     "orig": "page",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page_size",
                     "orig": "page_size",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "tag",
                     "orig": "tag",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -5540,11 +4398,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.items`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -5558,108 +4414,76 @@ class Config {
     "template_search": {
       "fields": [
         {
-          "active": true,
           "name": "animated",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "assetBytes",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "assetContentType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "boxCount",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captionCount",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "captions",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "categories",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 6
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "description",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "durationMs",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "exampleImageUrl",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "frameCount",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "height",
           "req": true,
           "type": [
@@ -5668,67 +4492,46 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "imageUrl",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "mediaType",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "posterImageUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "previewImageUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "qualityStatus",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 18
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 19
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sourceTemplateId",
           "req": true,
           "type": [
@@ -5737,25 +4540,18 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 20
+          ]
         },
         {
-          "active": true,
           "name": "sourceUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 21
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "tags",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 22
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "width",
           "req": true,
           "type": [
@@ -5764,8 +4560,7 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 23
+          ]
         }
       ],
       "name": "template_search",
@@ -5775,55 +4570,42 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page",
                     "orig": "page",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page_size",
                     "orig": "page_size",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "tag",
                     "orig": "tag",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -5848,11 +4630,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.items`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -5862,116 +4642,72 @@ class Config {
     "trend_alert": {
       "fields": [
         {
-          "active": true,
           "name": "action",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "actorId",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "aggressiveness",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 2
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "alertId",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "channels",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "deliverAllAlerts",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 5
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "event",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 6
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "explicitNiches",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 7
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "explicitRegions",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 8
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "explicitSources",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 9
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "explicitTopics",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 10
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "followerCount",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 11
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "niche",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "region",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "topic",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         }
       ],
       "name": "trend_alert",
@@ -5981,7 +4717,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -5995,11 +4730,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -6013,11 +4746,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -6031,11 +4762,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -6049,122 +4778,93 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "actor_id",
                     "orig": "actor_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "aggressiveness",
                     "orig": "aggressiveness",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "follower_count",
                     "orig": "follower_count",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "niche",
                     "orig": "niche",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page",
                     "orig": "page",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "page_size",
                     "orig": "page_size",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "preferred_niche",
                     "orig": "preferred_niche",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "preferred_region",
                     "orig": "preferred_region",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "region",
                     "orig": "region",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "source",
                     "orig": "source",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "status",
                     "orig": "status",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "topic",
                     "orig": "topic",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6196,67 +4896,51 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "actor_id",
                     "orig": "actor_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "aggressiveness",
                     "orig": "aggressiveness",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "follower_count",
                     "orig": "follower_count",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "preferred_niche",
                     "orig": "preferred_niche",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "preferred_region",
                     "orig": "preferred_region",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "topic",
                     "orig": "topic",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6283,27 +4967,21 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "actor_id",
                     "orig": "actor_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -6325,15 +5003,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "actor_id",
                     "orig": "actor_id",
@@ -6358,19 +5033,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "refresh",
                     "orig": "refresh",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   }
                 ]
@@ -6391,19 +5062,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "refresh",
                     "orig": "refresh",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   }
                 ]
@@ -6424,19 +5091,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "refresh",
                     "orig": "refresh",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   }
                 ]
@@ -6457,19 +5120,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 6
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "template_id",
                     "orig": "template_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6490,11 +5149,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 7
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -6508,11 +5165,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 8
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -6526,11 +5181,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 9
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -6546,7 +5199,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -6561,11 +5213,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -6575,7 +5225,6 @@ class Config {
     "video": {
       "fields": [
         {
-          "active": true,
           "name": "action",
           "op": {
             "create": {
@@ -6583,335 +5232,204 @@ class Config {
               "type": "`$STRING`"
             }
           },
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "assetId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "atMs",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 2
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "audioAssetId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "beatOffsetMs",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "bitrateKbps",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 5
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "bpm",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 6
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "cancelled",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 7
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "container",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "durationMs",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 9
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "durationSeconds",
           "op": {
             "create": {
-              "req": false,
               "type": "`$NUMBER`"
             }
           },
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 10
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "easing",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "error",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "frameRate",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 13
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "inputFormat",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "intensity",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 15
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "jobId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "locale",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "mimeType",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 18
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 19
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "offsetMs",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 20
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "outputPresetId",
           "op": {
             "create": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 21
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "outputUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 22
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "planTier",
           "op": {
             "create": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 23
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "presetId",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 24
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "progressPercent",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 25
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "project",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 26
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "projectId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 27
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "property",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 28
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sourceDeviceId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 29
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sourceUrl",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 30
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "stage",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 31
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "startMs",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 32
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "stylePresetId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 33
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "syncToBeatGrid",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 34
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "tone",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 35
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "trackId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 36
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "transcript",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 37
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "trendKeywords",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 38
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "type",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 39
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updatedAt",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 40
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "value",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 41
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "watermarkEnabled",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 42
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "watermarkText",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 43
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "workerId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 44
+          "type": "`$STRING`"
         }
       ],
       "name": "video",
@@ -6921,7 +5439,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -6937,11 +5454,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -6957,11 +5472,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -6977,11 +5490,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -6997,11 +5508,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -7017,11 +5526,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -7037,11 +5544,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -7057,82 +5562,63 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 6
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "beat_offset_m",
                     "orig": "beat_offset_m",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "bpm",
                     "orig": "bpm",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "locale",
                     "orig": "locale",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "style_preset_id",
                     "orig": "style_preset_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sync_to_beat_grid",
                     "orig": "sync_to_beat_grid",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "tone",
                     "orig": "tone",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "transcript",
                     "orig": "transcript",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "trend_keyword",
                     "orig": "trend_keyword",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7161,59 +5647,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "kind",
                     "orig": "kind",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "tag",
                     "orig": "tag",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "target_bpm",
                     "orig": "target_bpm",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "tolerance_bpm",
                     "orig": "tolerance_bpm",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -7240,59 +5712,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "bitrate_kbp",
                     "orig": "bitrate_kbp",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "container",
                     "orig": "container",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "plan_tier",
                     "orig": "plan_tier",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "preset_id",
                     "orig": "preset_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "watermark_enabled",
                     "orig": "watermark_enabled",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "watermark_text",
                     "orig": "watermark_text",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7319,51 +5777,39 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "duration_second",
                     "orig": "duration_second",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "input_format",
                     "orig": "input_format",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "mime_type",
                     "orig": "mime_type",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "output_preset_id",
                     "orig": "output_preset_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "plan_tier",
                     "orig": "plan_tier",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7389,43 +5835,33 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "mode",
                     "orig": "mode",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "plan_tier",
                     "orig": "plan_tier",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "status",
                     "orig": "status",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7450,43 +5886,33 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "duration_m",
                     "orig": "duration_m",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "intensity",
                     "orig": "intensity",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "preset_id",
                     "orig": "preset_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "start_m",
                     "orig": "start_m",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   }
                 ]
@@ -7511,27 +5937,21 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "project_id",
                     "orig": "project_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7554,27 +5974,21 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 6
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "project_id",
                     "orig": "project_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7597,19 +6011,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 7
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "refresh",
                     "orig": "refresh",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   }
                 ]
@@ -7631,11 +6041,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 8
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {

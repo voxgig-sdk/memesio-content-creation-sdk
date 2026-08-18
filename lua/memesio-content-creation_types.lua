@@ -18,7 +18,7 @@
 ---@field websiteUrl? string
 
 ---@class AgentLoadMatch
----@field id? string
+---@field id string
 
 ---@class AgentCreateData
 ---@field description? string
@@ -74,8 +74,6 @@
 ---@field weekStart? string
 
 ---@class AgentInfraCreateData
----@field agent_id? string
----@field unlock_id? string
 ---@field action string
 ---@field chatId string
 ---@field memeSlug string
@@ -229,10 +227,9 @@
 ---@field workspaceId? string
 
 ---@class AiJobLoadMatch
----@field id? string
+---@field id string
 
 ---@class AiJobCreateData
----@field job_id? string
 ---@field action string
 ---@field actorId? string
 ---@field afterState? table

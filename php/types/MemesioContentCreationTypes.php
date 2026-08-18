@@ -29,7 +29,7 @@ class Agent
 /** Request payload for Agent#load. */
 class AgentLoadMatch
 {
-    public ?string $id = null;
+    public string $id;
 }
 
 /** Request payload for Agent#create. */
@@ -100,8 +100,6 @@ class AgentInfraLoadMatch
 /** Request payload for AgentInfra#create. */
 class AgentInfraCreateData
 {
-    public ?string $agent_id = null;
-    public ?string $unlock_id = null;
     public string $action;
     public string $chatId;
     public string $memeSlug;
@@ -273,13 +271,12 @@ class AiJob
 /** Request payload for AiJob#load. */
 class AiJobLoadMatch
 {
-    public ?string $id = null;
+    public string $id;
 }
 
 /** Request payload for AiJob#create. */
 class AiJobCreateData
 {
-    public ?string $job_id = null;
     public string $action;
     public ?string $actorId = null;
     public ?array $afterState = null;

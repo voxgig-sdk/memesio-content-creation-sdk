@@ -9,6 +9,11 @@ main: kit: entity: free_caption_meme_success: {
       name: "captions"
       req: true
       type: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
     }
     {
       name: "templateSlug"
