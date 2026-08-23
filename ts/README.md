@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -608,7 +608,7 @@ API path: `/api/v1/templates/ideas`
 | `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
-| `watermark` |  |
+| `watermark` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 Operations: create.
 
@@ -657,12 +657,12 @@ API path: `/api/free/templates`
 | `durationMs` |  |
 | `filename` |  |
 | `fps` |  |
-| `gifSlug` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `mimeType` |  |
 | `pages` |  |
 | `parameters` |  |
-| `returnBase64` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` |  |
 | `startMs` |  |
 | `tags` |  |
@@ -829,7 +829,7 @@ API path: `/api/v1/agents/bootstrap`
 | `exampleImageUrl` |  |
 | `fps` |  |
 | `frameCount` |  |
-| `gifSlug` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -838,7 +838,7 @@ API path: `/api/v1/agents/bootstrap`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
@@ -1512,7 +1512,7 @@ Create an instance: `const free_caption_meme_success = client.FreeCaptionMemeSuc
 | `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
-| `watermark` | `Record<string, any>` |  |
+| `watermark` | `Record<string, any>` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 #### Example: Create
 
@@ -1590,12 +1590,12 @@ Create an instance: `const generate = client.Generate()`
 | `durationMs` | `number` |  |
 | `filename` | `string` |  |
 | `fps` | `number` |  |
-| `gifSlug` | `string` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number` |  |
 | `mimeType` | `string` |  |
 | `pages` | `number` |  |
 | `parameters` | `Record<string, any>` |  |
-| `returnBase64` | `boolean` |  |
+| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `number` |  |
 | `startMs` | `number` |  |
 | `tags` | `any[]` |  |
@@ -1880,7 +1880,7 @@ Create an instance: `const template = client.Template()`
 | `exampleImageUrl` | `string | null` |  |
 | `fps` | `number` |  |
 | `frameCount` | `number | null` |  |
-| `gifSlug` | `string` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number | null` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1889,7 +1889,7 @@ Create an instance: `const template = client.Template()`
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `boolean` |  |
+| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `string | null` |  |
 | `sourceUrl` | `string` |  |

@@ -92,6 +92,7 @@ main: kit: entity: template: {
     {
       name: "gifSlug"
       req: false
+      short: "Required for /api/v1/gifs/generate."
       type: "`$STRING`"
     }
     {
@@ -143,6 +144,7 @@ main: kit: entity: template: {
     {
       name: "returnBase64"
       req: false
+      short: "Only used by /api/v1/gifs/generate."
       type: "`$BOOLEAN`"
     }
     {

@@ -33,6 +33,9 @@ class MemesioContentCreationConfig
         return [
             "main" => [
                 "name" => "MemesioContentCreation",
+                "slug" => "memesio-content-creation",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -2514,6 +2517,7 @@ class MemesioContentCreationConfig
             ],
             [
               'name' => 'watermark',
+              'short' => 'Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark.',
               'type' => '`$OBJECT`',
             ],
           ],
@@ -2846,6 +2850,7 @@ class MemesioContentCreationConfig
                 ],
               ],
               'req' => true,
+              'short' => 'Required for /api/v1/gifs/generate.',
               'type' => '`$STRING`',
             ],
             [
@@ -2870,6 +2875,7 @@ class MemesioContentCreationConfig
             ],
             [
               'name' => 'returnBase64',
+              'short' => 'Only used by /api/v1/gifs/generate.',
               'type' => '`$BOOLEAN`',
             ],
             [
@@ -4122,6 +4128,7 @@ class MemesioContentCreationConfig
             ],
             [
               'name' => 'gifSlug',
+              'short' => 'Required for /api/v1/gifs/generate.',
               'type' => '`$STRING`',
             ],
             [
@@ -4169,6 +4176,7 @@ class MemesioContentCreationConfig
             ],
             [
               'name' => 'returnBase64',
+              'short' => 'Only used by /api/v1/gifs/generate.',
               'type' => '`$BOOLEAN`',
             ],
             [

@@ -2889,6 +2889,7 @@
               "active": true,
               "name": "watermark",
               "req": false,
+              "short": "Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark.",
               "type": "`$OBJECT`"
             }
           ],
@@ -3299,6 +3300,7 @@
                 }
               },
               "req": true,
+              "short": "Required for /api/v1/gifs/generate.",
               "type": "`$STRING`"
             },
             {
@@ -3329,6 +3331,7 @@
               "active": true,
               "name": "returnBase64",
               "req": false,
+              "short": "Only used by /api/v1/gifs/generate.",
               "type": "`$BOOLEAN`"
             },
             {
@@ -4834,6 +4837,7 @@
               "active": true,
               "name": "gifSlug",
               "req": false,
+              "short": "Required for /api/v1/gifs/generate.",
               "type": "`$STRING`"
             },
             {
@@ -4894,6 +4898,7 @@
               "active": true,
               "name": "returnBase64",
               "req": false,
+              "short": "Only used by /api/v1/gifs/generate.",
               "type": "`$BOOLEAN`"
             },
             {

@@ -1203,7 +1203,7 @@ local free_caption_meme_success = client:FreeCaptionMemeSuccess(nil)
 | `templateSlug` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
-| `watermark` | `table` | No |  |
+| `watermark` | `table` | No | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 ### Operations
 
@@ -1339,12 +1339,12 @@ local generate = client:Generate(nil)
 | `durationMs` | `number` | No |  |
 | `filename` | `string` | Yes |  |
 | `fps` | `number` | No |  |
-| `gifSlug` | `string` | Yes |  |
+| `gifSlug` | `string` | Yes | Required for /api/v1/gifs/generate. |
 | `height` | `number` | Yes |  |
 | `mimeType` | `string` | Yes |  |
 | `pages` | `number` | Yes |  |
 | `parameters` | `table` | Yes |  |
-| `returnBase64` | `boolean` | No |  |
+| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `number` | Yes |  |
 | `startMs` | `number` | No |  |
 | `tags` | `table` | No |  |
@@ -1885,7 +1885,7 @@ local template = client:Template(nil)
 | `exampleImageUrl` | `string|nil` | No |  |
 | `fps` | `number` | No |  |
 | `frameCount` | `number|nil` | No |  |
-| `gifSlug` | `string` | No |  |
+| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `number|nil` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1894,7 +1894,7 @@ local template = client:Template(nil)
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `boolean` | No |  |
+| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `string|nil` | Yes |  |
 | `sourceUrl` | `string` | No |  |

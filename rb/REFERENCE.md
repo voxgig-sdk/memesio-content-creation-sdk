@@ -1206,7 +1206,7 @@ free_caption_meme_success = client.FreeCaptionMemeSuccess
 | `templateSlug` | `String` | Yes |  |
 | `title` | `String` | No |  |
 | `visibility` | `String` | No |  |
-| `watermark` | `Hash` | No |  |
+| `watermark` | `Hash` | No | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 ### Operations
 
@@ -1342,12 +1342,12 @@ generate = client.Generate
 | `durationMs` | `Integer` | No |  |
 | `filename` | `String` | Yes |  |
 | `fps` | `Integer` | No |  |
-| `gifSlug` | `String` | Yes |  |
+| `gifSlug` | `String` | Yes | Required for /api/v1/gifs/generate. |
 | `height` | `Integer` | Yes |  |
 | `mimeType` | `String` | Yes |  |
 | `pages` | `Integer` | Yes |  |
 | `parameters` | `Hash` | Yes |  |
-| `returnBase64` | `Boolean` | No |  |
+| `returnBase64` | `Boolean` | No | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `Integer` | Yes |  |
 | `startMs` | `Integer` | No |  |
 | `tags` | `Array` | No |  |
@@ -1888,7 +1888,7 @@ template = client.Template
 | `exampleImageUrl` | `Object` | No |  |
 | `fps` | `Integer` | No |  |
 | `frameCount` | `Object` | No |  |
-| `gifSlug` | `String` | No |  |
+| `gifSlug` | `String` | No | Required for /api/v1/gifs/generate. |
 | `height` | `Object` | Yes |  |
 | `id` | `String` | Yes |  |
 | `imageUrl` | `String` | Yes |  |
@@ -1897,7 +1897,7 @@ template = client.Template
 | `posterImageUrl` | `String` | No |  |
 | `previewImageUrl` | `String` | No |  |
 | `qualityStatus` | `String` | No |  |
-| `returnBase64` | `Boolean` | No |  |
+| `returnBase64` | `Boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `String` | Yes |  |
 | `sourceTemplateId` | `Object` | Yes |  |
 | `sourceUrl` | `String` | No |  |

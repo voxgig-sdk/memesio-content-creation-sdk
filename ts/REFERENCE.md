@@ -1513,7 +1513,7 @@ const free_caption_meme_success = client.FreeCaptionMemeSuccess()
 | `templateSlug` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
-| `watermark` | `Record<string, any>` | No |  |
+| `watermark` | `Record<string, any>` | No | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 ### Operations
 
@@ -1645,12 +1645,12 @@ const generate = client.Generate()
 | `durationMs` | `number` | No |  |
 | `filename` | `string` | Yes |  |
 | `fps` | `number` | No |  |
-| `gifSlug` | `string` | Yes |  |
+| `gifSlug` | `string` | Yes | Required for /api/v1/gifs/generate. |
 | `height` | `number` | Yes |  |
 | `mimeType` | `string` | Yes |  |
 | `pages` | `number` | Yes |  |
 | `parameters` | `Record<string, any>` | Yes |  |
-| `returnBase64` | `boolean` | No |  |
+| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `number` | Yes |  |
 | `startMs` | `number` | No |  |
 | `tags` | `any[]` | No |  |
@@ -2225,7 +2225,7 @@ const template = client.Template()
 | `exampleImageUrl` | `string | null` | No |  |
 | `fps` | `number` | No |  |
 | `frameCount` | `number | null` | No |  |
-| `gifSlug` | `string` | No |  |
+| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `number | null` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -2234,7 +2234,7 @@ const template = client.Template()
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `boolean` | No |  |
+| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `string | null` | Yes |  |
 | `sourceUrl` | `string` | No |  |

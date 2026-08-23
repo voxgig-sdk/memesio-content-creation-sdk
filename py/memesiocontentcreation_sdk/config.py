@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "MemesioContentCreation",
+            "slug": "memesio-content-creation",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -2509,6 +2512,7 @@ def make_config():
           },
           {
             "name": "watermark",
+            "short": "Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark.",
             "type": "`$OBJECT`",
           },
         ],
@@ -2841,6 +2845,7 @@ def make_config():
               },
             },
             "req": True,
+            "short": "Required for /api/v1/gifs/generate.",
             "type": "`$STRING`",
           },
           {
@@ -2865,6 +2870,7 @@ def make_config():
           },
           {
             "name": "returnBase64",
+            "short": "Only used by /api/v1/gifs/generate.",
             "type": "`$BOOLEAN`",
           },
           {
@@ -4117,6 +4123,7 @@ def make_config():
           },
           {
             "name": "gifSlug",
+            "short": "Required for /api/v1/gifs/generate.",
             "type": "`$STRING`",
           },
           {
@@ -4164,6 +4171,7 @@ def make_config():
           },
           {
             "name": "returnBase64",
+            "short": "Only used by /api/v1/gifs/generate.",
             "type": "`$BOOLEAN`",
           },
           {

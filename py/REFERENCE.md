@@ -1187,7 +1187,7 @@ free_caption_meme_success = client.FreeCaptionMemeSuccess()
 | `templateSlug` | `str` | Yes |  |
 | `title` | `str` | No |  |
 | `visibility` | `str` | No |  |
-| `watermark` | `dict` | No |  |
+| `watermark` | `dict` | No | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 ### Operations
 
@@ -1323,12 +1323,12 @@ generate = client.Generate()
 | `durationMs` | `int` | No |  |
 | `filename` | `str` | Yes |  |
 | `fps` | `int` | No |  |
-| `gifSlug` | `str` | Yes |  |
+| `gifSlug` | `str` | Yes | Required for /api/v1/gifs/generate. |
 | `height` | `int` | Yes |  |
 | `mimeType` | `str` | Yes |  |
 | `pages` | `int` | Yes |  |
 | `parameters` | `dict` | Yes |  |
-| `returnBase64` | `bool` | No |  |
+| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `int` | Yes |  |
 | `startMs` | `int` | No |  |
 | `tags` | `list` | No |  |
@@ -1864,7 +1864,7 @@ template = client.Template()
 | `exampleImageUrl` | `str | None` | No |  |
 | `fps` | `int` | No |  |
 | `frameCount` | `int | None` | No |  |
-| `gifSlug` | `str` | No |  |
+| `gifSlug` | `str` | No | Required for /api/v1/gifs/generate. |
 | `height` | `float | None` | Yes |  |
 | `id` | `str` | Yes |  |
 | `imageUrl` | `str` | Yes |  |
@@ -1873,7 +1873,7 @@ template = client.Template()
 | `posterImageUrl` | `str` | No |  |
 | `previewImageUrl` | `str` | No |  |
 | `qualityStatus` | `str` | No |  |
-| `returnBase64` | `bool` | No |  |
+| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `str` | Yes |  |
 | `sourceTemplateId` | `str | None` | Yes |  |
 | `sourceUrl` | `str` | No |  |

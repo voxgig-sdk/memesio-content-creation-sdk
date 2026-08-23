@@ -552,7 +552,7 @@ API path: `/api/v1/templates/ideas`
 | `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
-| `watermark` |  |
+| `watermark` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 Operations: Create.
 
@@ -601,12 +601,12 @@ API path: `/api/free/templates`
 | `durationMs` |  |
 | `filename` |  |
 | `fps` |  |
-| `gifSlug` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `mimeType` |  |
 | `pages` |  |
 | `parameters` |  |
-| `returnBase64` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` |  |
 | `startMs` |  |
 | `tags` |  |
@@ -773,7 +773,7 @@ API path: `/api/v1/agents/bootstrap`
 | `exampleImageUrl` |  |
 | `fps` |  |
 | `frameCount` |  |
-| `gifSlug` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -782,7 +782,7 @@ API path: `/api/v1/agents/bootstrap`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
@@ -1456,7 +1456,7 @@ Create an instance: `free_caption_meme_success = client.FreeCaptionMemeSuccess()
 | `templateSlug` | `str` |  |
 | `title` | `str` |  |
 | `visibility` | `str` |  |
-| `watermark` | `dict` |  |
+| `watermark` | `dict` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 #### Example: Create
 
@@ -1534,12 +1534,12 @@ Create an instance: `generate = client.Generate()`
 | `durationMs` | `int` |  |
 | `filename` | `str` |  |
 | `fps` | `int` |  |
-| `gifSlug` | `str` |  |
+| `gifSlug` | `str` | Required for /api/v1/gifs/generate. |
 | `height` | `int` |  |
 | `mimeType` | `str` |  |
 | `pages` | `int` |  |
 | `parameters` | `dict` |  |
-| `returnBase64` | `bool` |  |
+| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `int` |  |
 | `startMs` | `int` |  |
 | `tags` | `list` |  |
@@ -1824,7 +1824,7 @@ Create an instance: `template = client.Template()`
 | `exampleImageUrl` | `str | None` |  |
 | `fps` | `int` |  |
 | `frameCount` | `int | None` |  |
-| `gifSlug` | `str` |  |
+| `gifSlug` | `str` | Required for /api/v1/gifs/generate. |
 | `height` | `float | None` |  |
 | `id` | `str` |  |
 | `imageUrl` | `str` |  |
@@ -1833,7 +1833,7 @@ Create an instance: `template = client.Template()`
 | `posterImageUrl` | `str` |  |
 | `previewImageUrl` | `str` |  |
 | `qualityStatus` | `str` |  |
-| `returnBase64` | `bool` |  |
+| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `str` |  |
 | `sourceTemplateId` | `str | None` |  |
 | `sourceUrl` | `str` |  |

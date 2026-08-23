@@ -33,6 +33,7 @@ main: kit: entity: free_caption_meme_success: {
     {
       name: "watermark"
       req: false
+      short: "Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark."
       type: "`$OBJECT`"
     }
   ]

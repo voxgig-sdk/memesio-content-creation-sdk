@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "MemesioContentCreation",
+			"slug": "memesio-content-creation",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -2492,6 +2495,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "watermark",
+						"short": "Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark.",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -2824,6 +2828,7 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"req": true,
+						"short": "Required for /api/v1/gifs/generate.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -2848,6 +2853,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "returnBase64",
+						"short": "Only used by /api/v1/gifs/generate.",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
@@ -4100,6 +4106,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "gifSlug",
+						"short": "Required for /api/v1/gifs/generate.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -4147,6 +4154,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "returnBase64",
+						"short": "Only used by /api/v1/gifs/generate.",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{

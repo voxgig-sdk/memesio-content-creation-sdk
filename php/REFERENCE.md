@@ -1205,7 +1205,7 @@ $free_caption_meme_success = $client->FreeCaptionMemeSuccess();
 | `templateSlug` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
-| `watermark` | `array` | No |  |
+| `watermark` | `array` | No | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 ### Operations
 
@@ -1341,12 +1341,12 @@ $generate = $client->Generate();
 | `durationMs` | `int` | No |  |
 | `filename` | `string` | Yes |  |
 | `fps` | `int` | No |  |
-| `gifSlug` | `string` | Yes |  |
+| `gifSlug` | `string` | Yes | Required for /api/v1/gifs/generate. |
 | `height` | `int` | Yes |  |
 | `mimeType` | `string` | Yes |  |
 | `pages` | `int` | Yes |  |
 | `parameters` | `array` | Yes |  |
-| `returnBase64` | `bool` | No |  |
+| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `int` | Yes |  |
 | `startMs` | `int` | No |  |
 | `tags` | `array` | No |  |
@@ -1887,7 +1887,7 @@ $template = $client->Template();
 | `exampleImageUrl` | `mixed` | No |  |
 | `fps` | `int` | No |  |
 | `frameCount` | `mixed` | No |  |
-| `gifSlug` | `string` | No |  |
+| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `mixed` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1896,7 +1896,7 @@ $template = $client->Template();
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `bool` | No |  |
+| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `mixed` | Yes |  |
 | `sourceUrl` | `string` | No |  |

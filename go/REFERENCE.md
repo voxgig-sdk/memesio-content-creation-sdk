@@ -1234,7 +1234,7 @@ fmt.Println(freeCaptionMemeSuccess.GetName()) // "free_caption_meme_success"
 | `templateSlug` | `string` | Yes |  |
 | `title` | `string` | No |  |
 | `visibility` | `string` | No |  |
-| `watermark` | `map[string]any` | No |  |
+| `watermark` | `map[string]any` | No | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 ### Operations
 
@@ -1368,12 +1368,12 @@ fmt.Println(generate.GetName()) // "generate"
 | `durationMs` | `int` | No |  |
 | `filename` | `string` | Yes |  |
 | `fps` | `int` | No |  |
-| `gifSlug` | `string` | Yes |  |
+| `gifSlug` | `string` | Yes | Required for /api/v1/gifs/generate. |
 | `height` | `int` | Yes |  |
 | `mimeType` | `string` | Yes |  |
 | `pages` | `int` | Yes |  |
 | `parameters` | `map[string]any` | Yes |  |
-| `returnBase64` | `bool` | No |  |
+| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `int` | Yes |  |
 | `startMs` | `int` | No |  |
 | `tags` | `[]any` | No |  |
@@ -1915,7 +1915,7 @@ fmt.Println(template.GetName()) // "template"
 | `exampleImageUrl` | `any` | No |  |
 | `fps` | `int` | No |  |
 | `frameCount` | `any` | No |  |
-| `gifSlug` | `string` | No |  |
+| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `any` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1924,7 +1924,7 @@ fmt.Println(template.GetName()) // "template"
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `bool` | No |  |
+| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `any` | Yes |  |
 | `sourceUrl` | `string` | No |  |

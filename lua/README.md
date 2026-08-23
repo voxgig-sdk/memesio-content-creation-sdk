@@ -538,7 +538,7 @@ API path: `/api/v1/templates/ideas`
 | `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
-| `watermark` |  |
+| `watermark` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 Operations: Create.
 
@@ -587,12 +587,12 @@ API path: `/api/free/templates`
 | `durationMs` |  |
 | `filename` |  |
 | `fps` |  |
-| `gifSlug` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `mimeType` |  |
 | `pages` |  |
 | `parameters` |  |
-| `returnBase64` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` |  |
 | `startMs` |  |
 | `tags` |  |
@@ -759,7 +759,7 @@ API path: `/api/v1/agents/bootstrap`
 | `exampleImageUrl` |  |
 | `fps` |  |
 | `frameCount` |  |
-| `gifSlug` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -768,7 +768,7 @@ API path: `/api/v1/agents/bootstrap`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
@@ -1442,7 +1442,7 @@ Create an instance: `local free_caption_meme_success = client:FreeCaptionMemeSuc
 | `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
-| `watermark` | `table` |  |
+| `watermark` | `table` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 #### Example: Create
 
@@ -1520,12 +1520,12 @@ Create an instance: `local generate = client:Generate(nil)`
 | `durationMs` | `number` |  |
 | `filename` | `string` |  |
 | `fps` | `number` |  |
-| `gifSlug` | `string` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number` |  |
 | `mimeType` | `string` |  |
 | `pages` | `number` |  |
 | `parameters` | `table` |  |
-| `returnBase64` | `boolean` |  |
+| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `number` |  |
 | `startMs` | `number` |  |
 | `tags` | `table` |  |
@@ -1810,7 +1810,7 @@ Create an instance: `local template = client:Template(nil)`
 | `exampleImageUrl` | `string|nil` |  |
 | `fps` | `number` |  |
 | `frameCount` | `number|nil` |  |
-| `gifSlug` | `string` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number|nil` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1819,7 +1819,7 @@ Create an instance: `local template = client:Template(nil)`
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `boolean` |  |
+| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `string|nil` |  |
 | `sourceUrl` | `string` |  |

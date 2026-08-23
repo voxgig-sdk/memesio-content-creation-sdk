@@ -54,6 +54,7 @@ main: kit: entity: generate: {
         }
       }
       req: true
+      short: "Required for /api/v1/gifs/generate."
       type: "`$STRING`"
     }
     {
@@ -79,6 +80,7 @@ main: kit: entity: generate: {
     {
       name: "returnBase64"
       req: false
+      short: "Only used by /api/v1/gifs/generate."
       type: "`$BOOLEAN`"
     }
     {

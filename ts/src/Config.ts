@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'MemesioContentCreation',
+        slug: "memesio-content-creation",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -2568,6 +2579,7 @@ class Config {
         },
         {
           "name": "watermark",
+          "short": "Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark.",
           "type": "`$OBJECT`"
         }
       ],
@@ -2900,6 +2912,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "Required for /api/v1/gifs/generate.",
           "type": "`$STRING`"
         },
         {
@@ -2924,6 +2937,7 @@ class Config {
         },
         {
           "name": "returnBase64",
+          "short": "Only used by /api/v1/gifs/generate.",
           "type": "`$BOOLEAN`"
         },
         {
@@ -4176,6 +4190,7 @@ class Config {
         },
         {
           "name": "gifSlug",
+          "short": "Required for /api/v1/gifs/generate.",
           "type": "`$STRING`"
         },
         {
@@ -4223,6 +4238,7 @@ class Config {
         },
         {
           "name": "returnBase64",
+          "short": "Only used by /api/v1/gifs/generate.",
           "type": "`$BOOLEAN`"
         },
         {

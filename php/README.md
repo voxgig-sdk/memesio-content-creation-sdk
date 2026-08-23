@@ -556,7 +556,7 @@ API path: `/api/v1/templates/ideas`
 | `templateSlug` |  |
 | `title` |  |
 | `visibility` |  |
-| `watermark` |  |
+| `watermark` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 Operations: Create.
 
@@ -605,12 +605,12 @@ API path: `/api/free/templates`
 | `durationMs` |  |
 | `filename` |  |
 | `fps` |  |
-| `gifSlug` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `mimeType` |  |
 | `pages` |  |
 | `parameters` |  |
-| `returnBase64` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` |  |
 | `startMs` |  |
 | `tags` |  |
@@ -777,7 +777,7 @@ API path: `/api/v1/agents/bootstrap`
 | `exampleImageUrl` |  |
 | `fps` |  |
 | `frameCount` |  |
-| `gifSlug` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -786,7 +786,7 @@ API path: `/api/v1/agents/bootstrap`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
@@ -1470,7 +1470,7 @@ Create an instance: `$free_caption_meme_success = $client->FreeCaptionMemeSucces
 | `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
-| `watermark` | `array` |  |
+| `watermark` | `array` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 #### Example: Create
 
@@ -1549,12 +1549,12 @@ Create an instance: `$generate = $client->Generate();`
 | `durationMs` | `int` |  |
 | `filename` | `string` |  |
 | `fps` | `int` |  |
-| `gifSlug` | `string` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `int` |  |
 | `mimeType` | `string` |  |
 | `pages` | `int` |  |
 | `parameters` | `array` |  |
-| `returnBase64` | `bool` |  |
+| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `int` |  |
 | `startMs` | `int` |  |
 | `tags` | `array` |  |
@@ -1843,7 +1843,7 @@ Create an instance: `$template = $client->Template();`
 | `exampleImageUrl` | `mixed` |  |
 | `fps` | `int` |  |
 | `frameCount` | `mixed` |  |
-| `gifSlug` | `string` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `mixed` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1852,7 +1852,7 @@ Create an instance: `$template = $client->Template();`
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `bool` |  |
+| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `mixed` |  |
 | `sourceUrl` | `string` |  |

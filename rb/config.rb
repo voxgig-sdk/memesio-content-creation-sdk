@@ -19,6 +19,9 @@ module MemesioContentCreationConfig
     {
       "main" => {
         "name" => "MemesioContentCreation",
+        "slug" => "memesio-content-creation",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -2500,6 +2503,7 @@ module MemesioContentCreationConfig
             },
             {
               "name" => "watermark",
+              "short" => "Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark.",
               "type" => "`$OBJECT`",
             },
           ],
@@ -2832,6 +2836,7 @@ module MemesioContentCreationConfig
                 },
               },
               "req" => true,
+              "short" => "Required for /api/v1/gifs/generate.",
               "type" => "`$STRING`",
             },
             {
@@ -2856,6 +2861,7 @@ module MemesioContentCreationConfig
             },
             {
               "name" => "returnBase64",
+              "short" => "Only used by /api/v1/gifs/generate.",
               "type" => "`$BOOLEAN`",
             },
             {
@@ -4108,6 +4114,7 @@ module MemesioContentCreationConfig
             },
             {
               "name" => "gifSlug",
+              "short" => "Required for /api/v1/gifs/generate.",
               "type" => "`$STRING`",
             },
             {
@@ -4155,6 +4162,7 @@ module MemesioContentCreationConfig
             },
             {
               "name" => "returnBase64",
+              "short" => "Only used by /api/v1/gifs/generate.",
               "type" => "`$BOOLEAN`",
             },
             {

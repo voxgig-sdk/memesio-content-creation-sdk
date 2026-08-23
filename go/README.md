@@ -6,7 +6,7 @@ The Golang SDK for the MemesioContentCreation API — an entity-oriented client 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Agent(nil)` — each with the same small set of operations (`List`, `Load`, `Create`, `Update`, `Remove`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -572,7 +572,7 @@ API path: `/api/v1/templates/ideas`
 | `"templateSlug"` |  |
 | `"title"` |  |
 | `"visibility"` |  |
-| `"watermark"` |  |
+| `"watermark"` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 Operations: Create.
 
@@ -621,12 +621,12 @@ API path: `/api/free/templates`
 | `"durationMs"` |  |
 | `"filename"` |  |
 | `"fps"` |  |
-| `"gifSlug"` |  |
+| `"gifSlug"` | Required for /api/v1/gifs/generate. |
 | `"height"` |  |
 | `"mimeType"` |  |
 | `"pages"` |  |
 | `"parameters"` |  |
-| `"returnBase64"` |  |
+| `"returnBase64"` | Only used by /api/v1/gifs/generate. |
 | `"sourceDurationMs"` |  |
 | `"startMs"` |  |
 | `"tags"` |  |
@@ -793,7 +793,7 @@ API path: `/api/v1/agents/bootstrap`
 | `"exampleImageUrl"` |  |
 | `"fps"` |  |
 | `"frameCount"` |  |
-| `"gifSlug"` |  |
+| `"gifSlug"` | Required for /api/v1/gifs/generate. |
 | `"height"` |  |
 | `"id"` |  |
 | `"imageUrl"` |  |
@@ -802,7 +802,7 @@ API path: `/api/v1/agents/bootstrap`
 | `"posterImageUrl"` |  |
 | `"previewImageUrl"` |  |
 | `"qualityStatus"` |  |
-| `"returnBase64"` |  |
+| `"returnBase64"` | Only used by /api/v1/gifs/generate. |
 | `"slug"` |  |
 | `"sourceTemplateId"` |  |
 | `"sourceUrl"` |  |
@@ -1556,7 +1556,7 @@ Create an instance: `freeCaptionMemeSuccess := client.FreeCaptionMemeSuccess(nil
 | `templateSlug` | `string` |  |
 | `title` | `string` |  |
 | `visibility` | `string` |  |
-| `watermark` | `map[string]any` |  |
+| `watermark` | `map[string]any` | Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. |
 
 #### Example: Create
 
@@ -1642,12 +1642,12 @@ Create an instance: `generate := client.Generate(nil)`
 | `durationMs` | `int` |  |
 | `filename` | `string` |  |
 | `fps` | `int` |  |
-| `gifSlug` | `string` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `int` |  |
 | `mimeType` | `string` |  |
 | `pages` | `int` |  |
 | `parameters` | `map[string]any` |  |
-| `returnBase64` | `bool` |  |
+| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `sourceDurationMs` | `int` |  |
 | `startMs` | `int` |  |
 | `tags` | `[]any` |  |
@@ -1964,7 +1964,7 @@ Create an instance: `template := client.Template(nil)`
 | `exampleImageUrl` | `any` |  |
 | `fps` | `int` |  |
 | `frameCount` | `any` |  |
-| `gifSlug` | `string` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `any` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1973,7 +1973,7 @@ Create an instance: `template := client.Template(nil)`
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `bool` |  |
+| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `any` |  |
 | `sourceUrl` | `string` |  |
