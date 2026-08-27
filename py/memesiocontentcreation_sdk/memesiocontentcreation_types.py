@@ -22,6 +22,7 @@ class AgentRequired(TypedDict):
 
 class Agent(AgentRequired, total=False):
     description: str
+    id: str
     locale: str
     slug: str
     status: str
@@ -41,6 +42,7 @@ class AgentCreateDataRequired(TypedDict):
 
 class AgentCreateData(AgentCreateDataRequired, total=False):
     description: str
+    id: str
     locale: str
     slug: str
     status: str
@@ -75,6 +77,7 @@ class AgentInfraRequired(TypedDict):
 
 
 class AgentInfra(AgentInfraRequired, total=False):
+    id: str
     metadata: dict
     payoutReference: str
     payoutStatus: str
@@ -85,7 +88,11 @@ class AgentInfra(AgentInfraRequired, total=False):
     weekStart: str
 
 
-class AgentInfraLoadMatch(TypedDict, total=False):
+class AgentInfraLoadMatchRequired(TypedDict):
+    id: str
+
+
+class AgentInfraLoadMatch(AgentInfraLoadMatchRequired, total=False):
     action: str
     chatId: str
     memeSlug: str
@@ -110,6 +117,7 @@ class AgentInfraCreateDataRequired(TypedDict):
 
 
 class AgentInfraCreateData(AgentInfraCreateDataRequired, total=False):
+    id: str
     metadata: dict
     payoutReference: str
     payoutStatus: str
@@ -793,7 +801,7 @@ class MediaCreateData(MediaCreateDataRequired, total=False):
     prefix: str
 
 
-class Meme(TypedDict):
+class MemeRequired(TypedDict):
     altText: str
     canonicalImageUrl: str
     canvas: dict
@@ -812,6 +820,10 @@ class Meme(TypedDict):
     title: str
     visibility: str
     watermark: dict
+
+
+class Meme(MemeRequired, total=False):
+    id: str
 
 
 class MemeLoadMatch(TypedDict):

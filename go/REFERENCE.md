@@ -204,6 +204,7 @@ fmt.Println(agent.GetName()) // "agent"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
+| `id` | `string` | No |  |
 | `locale` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | No |  |
@@ -218,6 +219,7 @@ fmt.Println(agent.GetName()) // "agent"
 | Field | load | create | update |
 | --- | --- | --- | --- |
 | `description` | - | - | - |
+| `id` | - | - | - |
 | `locale` | - | - | - |
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
@@ -307,6 +309,7 @@ fmt.Println(agentInfra.GetName()) // "agent_infra"
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
 | `chatId` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `memeSlug` | `string` | Yes |  |
 | `metadata` | `map[string]any` | No |  |
 | `payoutReference` | `string` | No |  |
@@ -326,7 +329,7 @@ fmt.Println(agentInfra.GetName()) // "agent_infra"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.AgentInfra(nil).Load(nil, nil)
+result, err := client.AgentInfra(nil).Load(map[string]any{"id": "agent_infra_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1693,6 +1696,7 @@ fmt.Println(meme.GetName()) // "meme"
 | `canvas` | `map[string]any` | Yes |  |
 | `captions` | `[]any` | Yes |  |
 | `createdAt` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `imageUrl` | `string` | Yes |  |
 | `nsfwStatus` | `string` | Yes |  |
 | `overlays` | `[]any` | Yes |  |
@@ -1991,13 +1995,13 @@ Create a new entity with the given data.
 result, err := client.Template(nil).Create(map[string]any{
     "slug": "example_slug",
     "description": "example_description",
-    "height": "example_height",
+    "height": 1,
     "id": "example_id",
     "imageUrl": "example_imageUrl",
     "mediaType": "example_mediaType",
     "name": "example_name",
     "sourceTemplateId": "example_sourceTemplateId",
-    "width": "example_width",
+    "width": 1,
 }, nil)
 if err != nil {
     panic(err)

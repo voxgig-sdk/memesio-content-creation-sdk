@@ -198,6 +198,7 @@ $agent = $client->Agent();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
+| `id` | `string` | No |  |
 | `locale` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | No |  |
@@ -212,6 +213,7 @@ $agent = $client->Agent();
 | Field | load | create | update |
 | --- | --- | --- | --- |
 | `description` | - | - | - |
+| `id` | - | - | - |
 | `locale` | - | - | - |
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
@@ -294,6 +296,7 @@ $agent_infra = $client->AgentInfra();
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
 | `chatId` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `memeSlug` | `string` | Yes |  |
 | `metadata` | `array` | No |  |
 | `payoutReference` | `string` | No |  |
@@ -327,7 +330,7 @@ $result = $client->AgentInfra()->create([
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->AgentInfra()->load();
+$result = $client->AgentInfra()->load(["id" => "agent_infra_id"]);
 ```
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1666,6 +1669,7 @@ $meme = $client->Meme();
 | `canvas` | `array` | Yes |  |
 | `captions` | `array` | Yes |  |
 | `createdAt` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `imageUrl` | `string` | Yes |  |
 | `nsfwStatus` | `string` | Yes |  |
 | `overlays` | `array` | Yes |  |

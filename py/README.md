@@ -58,8 +58,8 @@ except Exception as err:
 # Create — returns the ENTITY (call data_get() for the record)
 created = client.Agent().create({"name": "example_name"})
 
-# Update
-client.Agent().update({"id": "example_id", "description": "example_description", "locale": "example_locale"})
+# Update — the created record's id is a plain dict key
+client.Agent().update({"id": created.data_get()["id"], "description": "example_description", "locale": "example_locale"})
 
 ```
 
@@ -289,6 +289,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `description` |  |
+| `id` |  |
 | `locale` |  |
 | `name` |  |
 | `slug` |  |
@@ -308,6 +309,7 @@ API path: `/api/v1/agents`
 | --- | --- |
 | `action` |  |
 | `chatId` |  |
+| `id` |  |
 | `memeSlug` |  |
 | `metadata` |  |
 | `payoutReference` |  |
@@ -689,6 +691,7 @@ API path: `/api/media/signed-url`
 | `canvas` |  |
 | `captions` |  |
 | `createdAt` |  |
+| `id` |  |
 | `imageUrl` |  |
 | `nsfwStatus` |  |
 | `overlays` |  |
@@ -939,6 +942,7 @@ Create an instance: `agent = client.Agent()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `str` |  |
+| `id` | `str` |  |
 | `locale` | `str` |  |
 | `name` | `str` |  |
 | `slug` | `str` |  |
@@ -981,6 +985,7 @@ Create an instance: `agent_infra = client.AgentInfra()`
 | --- | --- | --- |
 | `action` | `str` |  |
 | `chatId` | `str` |  |
+| `id` | `str` |  |
 | `memeSlug` | `str` |  |
 | `metadata` | `dict` |  |
 | `payoutReference` | `str` |  |
@@ -996,7 +1001,7 @@ Create an instance: `agent_infra = client.AgentInfra()`
 #### Example: Load
 
 ```python
-agent_infra = client.AgentInfra().load()
+agent_infra = client.AgentInfra().load({"id": "agent_infra_id"})
 ```
 
 #### Example: Create
@@ -1697,6 +1702,7 @@ Create an instance: `meme = client.Meme()`
 | `canvas` | `dict` |  |
 | `captions` | `list` |  |
 | `createdAt` | `str` |  |
+| `id` | `str` |  |
 | `imageUrl` | `str` |  |
 | `nsfwStatus` | `str` |  |
 | `overlays` | `list` |  |
@@ -1855,13 +1861,13 @@ templates = client.Template().list()
 template = client.Template().create({
     "slug": "example_slug",  # str
     "description": "example_description",  # str
-    "height": "example_height",  # float | None
+    "height": 1,  # float | None
     "id": "example_id",  # str
     "imageUrl": "example_imageUrl",  # str
     "mediaType": "example_mediaType",  # str
     "name": "example_name",  # str
     "sourceTemplateId": "example_sourceTemplateId",  # str | None
-    "width": "example_width",  # float | None
+    "width": 1,  # float | None
 })
 ```
 

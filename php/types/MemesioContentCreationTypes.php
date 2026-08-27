@@ -16,6 +16,7 @@ declare(strict_types=1);
 class Agent
 {
     public ?string $description = null;
+    public ?string $id = null;
     public ?string $locale = null;
     public string $name;
     public ?string $slug = null;
@@ -36,6 +37,7 @@ class AgentLoadMatch
 class AgentCreateData
 {
     public ?string $description = null;
+    public ?string $id = null;
     public ?string $locale = null;
     public string $name;
     public ?string $slug = null;
@@ -66,6 +68,7 @@ class AgentInfra
 {
     public string $action;
     public string $chatId;
+    public ?string $id = null;
     public string $memeSlug;
     public ?array $metadata = null;
     public ?string $payoutReference = null;
@@ -84,6 +87,7 @@ class AgentInfraLoadMatch
 {
     public ?string $action = null;
     public ?string $chatId = null;
+    public string $id;
     public ?string $memeSlug = null;
     public ?array $metadata = null;
     public ?string $payoutReference = null;
@@ -102,6 +106,7 @@ class AgentInfraCreateData
 {
     public string $action;
     public string $chatId;
+    public ?string $id = null;
     public string $memeSlug;
     public ?array $metadata = null;
     public ?string $payoutReference = null;
@@ -797,6 +802,7 @@ class Meme
     public array $canvas;
     public array $captions;
     public string $createdAt;
+    public ?string $id = null;
     public string $imageUrl;
     public string $nsfwStatus;
     public array $overlays;

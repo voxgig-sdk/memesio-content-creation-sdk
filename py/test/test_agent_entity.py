@@ -46,9 +46,11 @@ class TestAgentEntity:
 
         agent_ref01_data = helpers.to_map(runner.entity_data(agent_ref01_ent.create(agent_ref01_data, None)))
         assert agent_ref01_data is not None
+        assert agent_ref01_data["id"] is not None
 
         # UPDATE
         agent_ref01_data_up0_up = {
+            "id": agent_ref01_data["id"],
         }
 
         agent_ref01_markdef_up0_name = "description"
@@ -57,12 +59,17 @@ class TestAgentEntity:
 
         agent_ref01_resdata_up0 = helpers.to_map(runner.entity_data(agent_ref01_ent.update(agent_ref01_data_up0_up, None)))
         assert agent_ref01_resdata_up0 is not None
+        assert agent_ref01_resdata_up0["id"] == agent_ref01_data_up0_up["id"]
         assert agent_ref01_resdata_up0[agent_ref01_markdef_up0_name] == agent_ref01_markdef_up0_value
 
         # LOAD
-        agent_ref01_match_dt0 = {}
+        agent_ref01_match_dt0 = {
+            "id": agent_ref01_data["id"],
+        }
         agent_ref01_data_dt0_loaded = agent_ref01_ent.load(agent_ref01_match_dt0, None)
-        assert agent_ref01_data_dt0_loaded is not None
+        agent_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(agent_ref01_data_dt0_loaded))
+        assert agent_ref01_data_dt0_load_result is not None
+        assert agent_ref01_data_dt0_load_result["id"] == agent_ref01_data["id"]
 
 
 

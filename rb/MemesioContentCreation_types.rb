@@ -13,6 +13,9 @@
 # @!attribute [rw] description
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] locale
 #   @return [String, nil]
 #
@@ -38,6 +41,7 @@
 #   @return [String, nil]
 Agent = Struct.new(
   :description,
+  :id,
   :locale,
   :name,
   :slug,
@@ -61,6 +65,9 @@ AgentLoadMatch = Struct.new(
 # Request payload for Agent#create.
 #
 # @!attribute [rw] description
+#   @return [String, nil]
+#
+# @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] locale
@@ -88,6 +95,7 @@ AgentLoadMatch = Struct.new(
 #   @return [String, nil]
 AgentCreateData = Struct.new(
   :description,
+  :id,
   :locale,
   :name,
   :slug,
@@ -152,6 +160,9 @@ AgentUpdateData = Struct.new(
 # @!attribute [rw] chatId
 #   @return [String]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] memeSlug
 #   @return [String]
 #
@@ -187,6 +198,7 @@ AgentUpdateData = Struct.new(
 AgentInfra = Struct.new(
   :action,
   :chatId,
+  :id,
   :memeSlug,
   :metadata,
   :payoutReference,
@@ -208,6 +220,9 @@ AgentInfra = Struct.new(
 #
 # @!attribute [rw] chatId
 #   @return [String, nil]
+#
+# @!attribute [rw] id
+#   @return [String]
 #
 # @!attribute [rw] memeSlug
 #   @return [String, nil]
@@ -244,6 +259,7 @@ AgentInfra = Struct.new(
 AgentInfraLoadMatch = Struct.new(
   :action,
   :chatId,
+  :id,
   :memeSlug,
   :metadata,
   :payoutReference,
@@ -265,6 +281,9 @@ AgentInfraLoadMatch = Struct.new(
 #
 # @!attribute [rw] chatId
 #   @return [String]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
 #
 # @!attribute [rw] memeSlug
 #   @return [String]
@@ -301,6 +320,7 @@ AgentInfraLoadMatch = Struct.new(
 AgentInfraCreateData = Struct.new(
   :action,
   :chatId,
+  :id,
   :memeSlug,
   :metadata,
   :payoutReference,
@@ -2407,6 +2427,9 @@ MediaCreateData = Struct.new(
 # @!attribute [rw] createdAt
 #   @return [String]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] imageUrl
 #   @return [String]
 #
@@ -2451,6 +2474,7 @@ Meme = Struct.new(
   :canvas,
   :captions,
   :createdAt,
+  :id,
   :imageUrl,
   :nsfwStatus,
   :overlays,

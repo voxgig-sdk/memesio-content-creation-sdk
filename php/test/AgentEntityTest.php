@@ -46,9 +46,11 @@ class AgentEntityTest extends TestCase
         $agent_ref01_data_result = $agent_ref01_ent->create($agent_ref01_data, null);
         $agent_ref01_data = Helpers::to_map(is_object($agent_ref01_data_result) && method_exists($agent_ref01_data_result, 'data_get') ? $agent_ref01_data_result->data_get() : $agent_ref01_data_result);
         $this->assertNotNull($agent_ref01_data);
+        $this->assertNotNull($agent_ref01_data["id"]);
 
         // UPDATE
         $agent_ref01_data_up0_up = [
+            "id" => $agent_ref01_data["id"],
         ];
 
         $agent_ref01_markdef_up0_name = "description";
@@ -58,12 +60,17 @@ class AgentEntityTest extends TestCase
         $agent_ref01_resdata_up0_result = $agent_ref01_ent->update($agent_ref01_data_up0_up, null);
         $agent_ref01_resdata_up0 = Helpers::to_map(is_object($agent_ref01_resdata_up0_result) && method_exists($agent_ref01_resdata_up0_result, 'data_get') ? $agent_ref01_resdata_up0_result->data_get() : $agent_ref01_resdata_up0_result);
         $this->assertNotNull($agent_ref01_resdata_up0);
+        $this->assertEquals($agent_ref01_resdata_up0["id"], $agent_ref01_data_up0_up["id"]);
         $this->assertEquals($agent_ref01_resdata_up0[$agent_ref01_markdef_up0_name], $agent_ref01_markdef_up0_value);
 
         // LOAD
-        $agent_ref01_match_dt0 = [];
+        $agent_ref01_match_dt0 = [
+            "id" => $agent_ref01_data["id"],
+        ];
         $agent_ref01_data_dt0_loaded = $agent_ref01_ent->load($agent_ref01_match_dt0, null);
-        $this->assertNotNull($agent_ref01_data_dt0_loaded);
+        $agent_ref01_data_dt0_load_result = Helpers::to_map(is_object($agent_ref01_data_dt0_loaded) && method_exists($agent_ref01_data_dt0_loaded, 'data_get') ? $agent_ref01_data_dt0_loaded->data_get() : $agent_ref01_data_dt0_loaded);
+        $this->assertNotNull($agent_ref01_data_dt0_load_result);
+        $this->assertEquals($agent_ref01_data_dt0_load_result["id"], $agent_ref01_data["id"]);
 
     }
 }

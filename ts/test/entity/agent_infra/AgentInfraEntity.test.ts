@@ -64,15 +64,20 @@ describe('AgentInfraEntity', async () => {
     agent_infra_ref01_data['agent_id'] = setup.idmap['agent01']
 
     agent_infra_ref01_data = (await agent_infra_ref01_ent.create(agent_infra_ref01_data)).data()
-    assert(null != agent_infra_ref01_data)
+    assert(null != agent_infra_ref01_data.id)
 
 
     // LOAD
     const agent_infra_ref01_match_dt0: any = {}
+    agent_infra_ref01_match_dt0.id = agent_infra_ref01_data.id
     const agent_infra_ref01_data_dt0 = (await agent_infra_ref01_ent.load(agent_infra_ref01_match_dt0)).data()
-    assert(null != agent_infra_ref01_data_dt0)
+    assert(agent_infra_ref01_data_dt0.id === agent_infra_ref01_data.id)
 
 
+    // REMOVE
+    const agent_infra_ref01_match_rm0: any = { id: agent_infra_ref01_data.id }
+    await agent_infra_ref01_ent.remove(agent_infra_ref01_match_rm0)
+  
 
   })
 })

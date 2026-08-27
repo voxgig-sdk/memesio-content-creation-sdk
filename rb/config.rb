@@ -28,6 +28,7 @@ module MemesioContentCreationConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -73,6 +74,10 @@ module MemesioContentCreationConfig
           "fields" => [
             {
               "name" => "description",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
@@ -253,6 +258,10 @@ module MemesioContentCreationConfig
             {
               "name" => "chatId",
               "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
@@ -3545,6 +3554,10 @@ module MemesioContentCreationConfig
             {
               "name" => "createdAt",
               "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {

@@ -41,9 +41,13 @@ class MemeEntityTest < Minitest::Test
 
     # LOAD
     meme_ref01_ent = client.Meme(nil)
-    meme_ref01_match_dt0 = {}
+    meme_ref01_match_dt0 = {
+      "id" => meme_ref01_data["id"],
+    }
     meme_ref01_data_dt0_loaded = meme_ref01_ent.load(meme_ref01_match_dt0, nil)
-    assert !meme_ref01_data_dt0_loaded.nil?
+    meme_ref01_data_dt0_load_result = Helpers.to_map(meme_ref01_data_dt0_loaded.respond_to?(:data_get) ? meme_ref01_data_dt0_loaded.data_get : meme_ref01_data_dt0_loaded)
+    assert !meme_ref01_data_dt0_load_result.nil?
+    assert_equal meme_ref01_data_dt0_load_result["id"], meme_ref01_data["id"]
 
   end
 end

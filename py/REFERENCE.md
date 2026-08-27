@@ -193,6 +193,7 @@ agent = client.Agent()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `str` | No |  |
+| `id` | `str` | No |  |
 | `locale` | `str` | No |  |
 | `name` | `str` | Yes |  |
 | `slug` | `str` | No |  |
@@ -207,6 +208,7 @@ agent = client.Agent()
 | Field | load | create | update |
 | --- | --- | --- | --- |
 | `description` | - | - | - |
+| `id` | - | - | - |
 | `locale` | - | - | - |
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
@@ -288,6 +290,7 @@ agent_infra = client.AgentInfra()
 | --- | --- | --- | --- |
 | `action` | `str` | Yes |  |
 | `chatId` | `str` | Yes |  |
+| `id` | `str` | No |  |
 | `memeSlug` | `str` | Yes |  |
 | `metadata` | `dict` | No |  |
 | `payoutReference` | `str` | No |  |
@@ -321,7 +324,7 @@ result = client.AgentInfra().create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.AgentInfra().load()
+result = client.AgentInfra().load({"id": "agent_infra_id"})
 ```
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -1646,6 +1649,7 @@ meme = client.Meme()
 | `canvas` | `dict` | Yes |  |
 | `captions` | `list` | Yes |  |
 | `createdAt` | `str` | Yes |  |
+| `id` | `str` | No |  |
 | `imageUrl` | `str` | Yes |  |
 | `nsfwStatus` | `str` | Yes |  |
 | `overlays` | `list` | Yes |  |
@@ -1928,13 +1932,13 @@ Create a new entity with the given data. Returns the created entity data and rai
 result = client.Template().create({
     "slug": "example_slug",  # str
     "description": "example_description",  # str
-    "height": "example_height",  # float | None
+    "height": 1,  # float | None
     "id": "example_id",  # str
     "imageUrl": "example_imageUrl",  # str
     "mediaType": "example_mediaType",  # str
     "name": "example_name",  # str
     "sourceTemplateId": "example_sourceTemplateId",  # str | None
-    "width": "example_width",  # float | None
+    "width": 1,  # float | None
 })
 ```
 

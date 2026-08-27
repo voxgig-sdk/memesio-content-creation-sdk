@@ -309,6 +309,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"description"` |  |
+| `"id"` |  |
 | `"locale"` |  |
 | `"name"` |  |
 | `"slug"` |  |
@@ -328,6 +329,7 @@ API path: `/api/v1/agents`
 | --- | --- |
 | `"action"` |  |
 | `"chatId"` |  |
+| `"id"` |  |
 | `"memeSlug"` |  |
 | `"metadata"` |  |
 | `"payoutReference"` |  |
@@ -709,6 +711,7 @@ API path: `/api/media/signed-url`
 | `"canvas"` |  |
 | `"captions"` |  |
 | `"createdAt"` |  |
+| `"id"` |  |
 | `"imageUrl"` |  |
 | `"nsfwStatus"` |  |
 | `"overlays"` |  |
@@ -959,6 +962,7 @@ Create an instance: `agent := client.Agent(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
+| `id` | `string` |  |
 | `locale` | `string` |  |
 | `name` | `string` |  |
 | `slug` | `string` |  |
@@ -1009,6 +1013,7 @@ Create an instance: `agentInfra := client.AgentInfra(nil)`
 | --- | --- | --- |
 | `action` | `string` |  |
 | `chatId` | `string` |  |
+| `id` | `string` |  |
 | `memeSlug` | `string` |  |
 | `metadata` | `map[string]any` |  |
 | `payoutReference` | `string` |  |
@@ -1024,7 +1029,7 @@ Create an instance: `agentInfra := client.AgentInfra(nil)`
 #### Example: Load
 
 ```go
-agentInfra, err := client.AgentInfra(nil).Load(nil, nil)
+agentInfra, err := client.AgentInfra(nil).Load(map[string]any{"id": "agent_infra_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1825,6 +1830,7 @@ Create an instance: `meme := client.Meme(nil)`
 | `canvas` | `map[string]any` |  |
 | `captions` | `[]any` |  |
 | `createdAt` | `string` |  |
+| `id` | `string` |  |
 | `imageUrl` | `string` |  |
 | `nsfwStatus` | `string` |  |
 | `overlays` | `[]any` |  |
@@ -1999,13 +2005,13 @@ fmt.Println(templates) // the array of records
 result, err := client.Template(nil).Create(map[string]any{
     "slug": "example_slug",
     "description": "example_description",
-    "height": "example_height",
+    "height": 1,
     "id": "example_id",
     "imageUrl": "example_imageUrl",
     "mediaType": "example_mediaType",
     "name": "example_name",
     "sourceTemplateId": "example_sourceTemplateId",
-    "width": "example_width",
+    "width": 1,
 }, nil)
 if err != nil {
     panic(err)

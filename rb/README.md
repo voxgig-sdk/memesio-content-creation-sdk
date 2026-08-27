@@ -52,8 +52,8 @@ end
 # create returns the ENTITY — call data_get for the created Agent record.
 created = client.Agent.create({ "name" => "example_name" })
 
-# Update
-client.Agent.update({ "id" => "example_id", "description" => "example_description", "locale" => "example_locale" })
+# Update — index the record via data_get (created.data_get["id"]).
+client.Agent.update({ "id" => created.data_get["id"], "description" => "example_description", "locale" => "example_locale" })
 
 ```
 
@@ -283,6 +283,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `description` |  |
+| `id` |  |
 | `locale` |  |
 | `name` |  |
 | `slug` |  |
@@ -302,6 +303,7 @@ API path: `/api/v1/agents`
 | --- | --- |
 | `action` |  |
 | `chatId` |  |
+| `id` |  |
 | `memeSlug` |  |
 | `metadata` |  |
 | `payoutReference` |  |
@@ -683,6 +685,7 @@ API path: `/api/media/signed-url`
 | `canvas` |  |
 | `captions` |  |
 | `createdAt` |  |
+| `id` |  |
 | `imageUrl` |  |
 | `nsfwStatus` |  |
 | `overlays` |  |
@@ -933,6 +936,7 @@ Create an instance: `agent = client.Agent`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `String` |  |
+| `id` | `String` |  |
 | `locale` | `String` |  |
 | `name` | `String` |  |
 | `slug` | `String` |  |
@@ -976,6 +980,7 @@ Create an instance: `agent_infra = client.AgentInfra`
 | --- | --- | --- |
 | `action` | `String` |  |
 | `chatId` | `String` |  |
+| `id` | `String` |  |
 | `memeSlug` | `String` |  |
 | `metadata` | `Hash` |  |
 | `payoutReference` | `String` |  |
@@ -992,7 +997,7 @@ Create an instance: `agent_infra = client.AgentInfra`
 
 ```ruby
 # load returns the ENTITY — call data_get for the AgentInfra record (raises on error).
-agent_infra = client.AgentInfra.load()
+agent_infra = client.AgentInfra.load({ "id" => "agent_infra_id" })
 ```
 
 #### Example: Create
@@ -1704,6 +1709,7 @@ Create an instance: `meme = client.Meme`
 | `canvas` | `Hash` |  |
 | `captions` | `Array` |  |
 | `createdAt` | `String` |  |
+| `id` | `String` |  |
 | `imageUrl` | `String` |  |
 | `nsfwStatus` | `String` |  |
 | `overlays` | `Array` |  |
@@ -1865,13 +1871,13 @@ templates = client.Template.list
 template = client.Template.create({
   "slug" => "example_slug", # String
   "description" => "example_description", # String
-  "height" => "example_height", # Object
+  "height" => 1, # Object
   "id" => "example_id", # String
   "imageUrl" => "example_imageUrl", # String
   "mediaType" => "example_mediaType", # String
   "name" => "example_name", # String
   "sourceTemplateId" => "example_sourceTemplateId", # Object
-  "width" => "example_width", # Object
+  "width" => 1, # Object
 })
 ```
 

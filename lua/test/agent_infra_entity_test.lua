@@ -44,13 +44,24 @@ describe("AgentInfraEntity", function()
     assert.is_nil(err)
     agent_infra_ref01_data = helpers.to_map(type(agent_infra_ref01_data_result) == 'table' and agent_infra_ref01_data_result.data_get and agent_infra_ref01_data_result:data_get() or agent_infra_ref01_data_result)
     assert.is_not_nil(agent_infra_ref01_data)
+    assert.is_not_nil(agent_infra_ref01_data["id"])
 
     -- LOAD
-    local agent_infra_ref01_match_dt0 = {}
+    local agent_infra_ref01_match_dt0 = {
+      id = agent_infra_ref01_data["id"],
+    }
     local agent_infra_ref01_data_dt0_loaded, err = agent_infra_ref01_ent:load(agent_infra_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(agent_infra_ref01_data_dt0_loaded)
+    local agent_infra_ref01_data_dt0_load_result = helpers.to_map(type(agent_infra_ref01_data_dt0_loaded) == 'table' and agent_infra_ref01_data_dt0_loaded.data_get and agent_infra_ref01_data_dt0_loaded:data_get() or agent_infra_ref01_data_dt0_loaded)
+    assert.is_not_nil(agent_infra_ref01_data_dt0_load_result)
+    assert.are.equal(agent_infra_ref01_data_dt0_load_result["id"], agent_infra_ref01_data["id"])
 
+    -- REMOVE
+    local agent_infra_ref01_match_rm0 = {
+      id = agent_infra_ref01_data["id"],
+    }
+    local _, err = agent_infra_ref01_ent:remove(agent_infra_ref01_match_rm0, nil)
+    assert.is_nil(err)
 
   end)
 end)

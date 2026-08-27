@@ -196,6 +196,7 @@ local agent = client:Agent(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
+| `id` | `string` | No |  |
 | `locale` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | No |  |
@@ -210,6 +211,7 @@ local agent = client:Agent(nil)
 | Field | load | create | update |
 | --- | --- | --- | --- |
 | `description` | - | - | - |
+| `id` | - | - | - |
 | `locale` | - | - | - |
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
@@ -292,6 +294,7 @@ local agent_infra = client:AgentInfra(nil)
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
 | `chatId` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `memeSlug` | `string` | Yes |  |
 | `metadata` | `table` | No |  |
 | `payoutReference` | `string` | No |  |
@@ -325,7 +328,7 @@ local result, err = client:AgentInfra():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:AgentInfra():load()
+local result, err = client:AgentInfra():load({ id = "agent_infra_id" })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -1664,6 +1667,7 @@ local meme = client:Meme(nil)
 | `canvas` | `table` | Yes |  |
 | `captions` | `table` | Yes |  |
 | `createdAt` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `imageUrl` | `string` | Yes |  |
 | `nsfwStatus` | `string` | Yes |  |
 | `overlays` | `table` | Yes |  |

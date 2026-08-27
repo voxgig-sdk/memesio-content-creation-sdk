@@ -44,10 +44,14 @@ describe("MemeEntity", function()
 
     -- LOAD
     local meme_ref01_ent = client:Meme(nil)
-    local meme_ref01_match_dt0 = {}
+    local meme_ref01_match_dt0 = {
+      id = meme_ref01_data["id"],
+    }
     local meme_ref01_data_dt0_loaded, err = meme_ref01_ent:load(meme_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(meme_ref01_data_dt0_loaded)
+    local meme_ref01_data_dt0_load_result = helpers.to_map(type(meme_ref01_data_dt0_loaded) == 'table' and meme_ref01_data_dt0_loaded.data_get and meme_ref01_data_dt0_loaded:data_get() or meme_ref01_data_dt0_loaded)
+    assert.is_not_nil(meme_ref01_data_dt0_load_result)
+    assert.are.equal(meme_ref01_data_dt0_load_result["id"], meme_ref01_data["id"])
 
   end)
 end)

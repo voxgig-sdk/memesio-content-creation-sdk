@@ -53,8 +53,8 @@ try {
 // create() returns the ENTITY — call data_get() for the created Agent record.
 $created = $client->Agent()->create(["name" => "example_name"]);
 
-// Update
-$client->Agent()->update(["id" => "example_id", "description" => "example_description", "locale" => "example_locale"]);
+// Update — index the record via data_get() ($created->data_get()["id"]).
+$client->Agent()->update(["id" => $created->data_get()["id"], "description" => "example_description", "locale" => "example_locale"]);
 
 ```
 
@@ -293,6 +293,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `description` |  |
+| `id` |  |
 | `locale` |  |
 | `name` |  |
 | `slug` |  |
@@ -312,6 +313,7 @@ API path: `/api/v1/agents`
 | --- | --- |
 | `action` |  |
 | `chatId` |  |
+| `id` |  |
 | `memeSlug` |  |
 | `metadata` |  |
 | `payoutReference` |  |
@@ -693,6 +695,7 @@ API path: `/api/media/signed-url`
 | `canvas` |  |
 | `captions` |  |
 | `createdAt` |  |
+| `id` |  |
 | `imageUrl` |  |
 | `nsfwStatus` |  |
 | `overlays` |  |
@@ -943,6 +946,7 @@ Create an instance: `$agent = $client->Agent();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
+| `id` | `string` |  |
 | `locale` | `string` |  |
 | `name` | `string` |  |
 | `slug` | `string` |  |
@@ -986,6 +990,7 @@ Create an instance: `$agent_infra = $client->AgentInfra();`
 | --- | --- | --- |
 | `action` | `string` |  |
 | `chatId` | `string` |  |
+| `id` | `string` |  |
 | `memeSlug` | `string` |  |
 | `metadata` | `array` |  |
 | `payoutReference` | `string` |  |
@@ -1002,7 +1007,7 @@ Create an instance: `$agent_infra = $client->AgentInfra();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the AgentInfra record (throws on error).
-$agent_infra = $client->AgentInfra()->load();
+$agent_infra = $client->AgentInfra()->load(["id" => "agent_infra_id"]);
 ```
 
 #### Example: Create
@@ -1714,6 +1719,7 @@ Create an instance: `$meme = $client->Meme();`
 | `canvas` | `array` |  |
 | `captions` | `array` |  |
 | `createdAt` | `string` |  |
+| `id` | `string` |  |
 | `imageUrl` | `string` |  |
 | `nsfwStatus` | `string` |  |
 | `overlays` | `array` |  |

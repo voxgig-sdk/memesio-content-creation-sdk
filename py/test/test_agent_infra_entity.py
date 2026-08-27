@@ -47,12 +47,22 @@ class TestAgentInfraEntity:
 
         agent_infra_ref01_data = helpers.to_map(runner.entity_data(agent_infra_ref01_ent.create(agent_infra_ref01_data, None)))
         assert agent_infra_ref01_data is not None
+        assert agent_infra_ref01_data["id"] is not None
 
         # LOAD
-        agent_infra_ref01_match_dt0 = {}
+        agent_infra_ref01_match_dt0 = {
+            "id": agent_infra_ref01_data["id"],
+        }
         agent_infra_ref01_data_dt0_loaded = agent_infra_ref01_ent.load(agent_infra_ref01_match_dt0, None)
-        assert agent_infra_ref01_data_dt0_loaded is not None
+        agent_infra_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(agent_infra_ref01_data_dt0_loaded))
+        assert agent_infra_ref01_data_dt0_load_result is not None
+        assert agent_infra_ref01_data_dt0_load_result["id"] == agent_infra_ref01_data["id"]
 
+        # REMOVE
+        agent_infra_ref01_match_rm0 = {
+            "id": agent_infra_ref01_data["id"],
+        }
+        agent_infra_ref01_ent.remove(agent_infra_ref01_match_rm0, None)
 
 
 

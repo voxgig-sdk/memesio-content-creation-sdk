@@ -11,6 +11,11 @@ main: kit: entity: agent: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "locale"
       req: false
       type: "`$STRING`"
@@ -57,6 +62,11 @@ main: kit: entity: agent: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "agent"
   op: {

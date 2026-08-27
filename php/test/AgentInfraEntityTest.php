@@ -47,12 +47,22 @@ class AgentInfraEntityTest extends TestCase
         $agent_infra_ref01_data_result = $agent_infra_ref01_ent->create($agent_infra_ref01_data, null);
         $agent_infra_ref01_data = Helpers::to_map(is_object($agent_infra_ref01_data_result) && method_exists($agent_infra_ref01_data_result, 'data_get') ? $agent_infra_ref01_data_result->data_get() : $agent_infra_ref01_data_result);
         $this->assertNotNull($agent_infra_ref01_data);
+        $this->assertNotNull($agent_infra_ref01_data["id"]);
 
         // LOAD
-        $agent_infra_ref01_match_dt0 = [];
+        $agent_infra_ref01_match_dt0 = [
+            "id" => $agent_infra_ref01_data["id"],
+        ];
         $agent_infra_ref01_data_dt0_loaded = $agent_infra_ref01_ent->load($agent_infra_ref01_match_dt0, null);
-        $this->assertNotNull($agent_infra_ref01_data_dt0_loaded);
+        $agent_infra_ref01_data_dt0_load_result = Helpers::to_map(is_object($agent_infra_ref01_data_dt0_loaded) && method_exists($agent_infra_ref01_data_dt0_loaded, 'data_get') ? $agent_infra_ref01_data_dt0_loaded->data_get() : $agent_infra_ref01_data_dt0_loaded);
+        $this->assertNotNull($agent_infra_ref01_data_dt0_load_result);
+        $this->assertEquals($agent_infra_ref01_data_dt0_load_result["id"], $agent_infra_ref01_data["id"]);
 
+        // REMOVE
+        $agent_infra_ref01_match_rm0 = [
+            "id" => $agent_infra_ref01_data["id"],
+        ];
+        $agent_infra_ref01_ent->remove($agent_infra_ref01_match_rm0, null);
 
     }
 }

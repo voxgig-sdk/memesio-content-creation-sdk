@@ -63,17 +63,34 @@ func TestAgentInfraEntity(t *testing.T) {
 		if agentInfraRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
+		if agentInfraRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// LOAD
-		agentInfraRef01MatchDt0 := map[string]any{}
+		agentInfraRef01MatchDt0 := map[string]any{
+			"id": agentInfraRef01Data["id"],
+		}
 		agentInfraRef01DataDt0Loaded, err := agentInfraRef01Ent.Load(agentInfraRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if agentInfraRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		agentInfraRef01DataDt0LoadResult := core.ToMapAny(entityData(agentInfraRef01DataDt0Loaded))
+		if agentInfraRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if agentInfraRef01DataDt0LoadResult["id"] != agentInfraRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
+		// REMOVE
+		agentInfraRef01MatchRm0 := map[string]any{
+			"id": agentInfraRef01Data["id"],
+		}
+		_, err = agentInfraRef01Ent.Remove(agentInfraRef01MatchRm0, nil)
+		if err != nil {
+			t.Fatalf("remove failed: %v", err)
+		}
 
 	})
 }

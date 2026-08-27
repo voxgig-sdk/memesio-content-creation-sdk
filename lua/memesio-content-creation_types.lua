@@ -8,6 +8,7 @@
 
 ---@class Agent
 ---@field description? string
+---@field id? string
 ---@field locale? string
 ---@field name string
 ---@field slug? string
@@ -22,6 +23,7 @@
 
 ---@class AgentCreateData
 ---@field description? string
+---@field id? string
 ---@field locale? string
 ---@field name string
 ---@field slug? string
@@ -46,6 +48,7 @@
 ---@class AgentInfra
 ---@field action string
 ---@field chatId string
+---@field id? string
 ---@field memeSlug string
 ---@field metadata? table
 ---@field payoutReference? string
@@ -61,6 +64,7 @@
 ---@class AgentInfraLoadMatch
 ---@field action? string
 ---@field chatId? string
+---@field id string
 ---@field memeSlug? string
 ---@field metadata? table
 ---@field payoutReference? string
@@ -76,6 +80,7 @@
 ---@class AgentInfraCreateData
 ---@field action string
 ---@field chatId string
+---@field id? string
 ---@field memeSlug string
 ---@field metadata? table
 ---@field payoutReference? string
@@ -645,6 +650,7 @@
 ---@field canvas table
 ---@field captions table
 ---@field createdAt string
+---@field id? string
 ---@field imageUrl string
 ---@field nsfwStatus string
 ---@field overlays table

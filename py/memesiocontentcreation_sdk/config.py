@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -82,6 +83,10 @@ def make_config():
         "fields": [
           {
             "name": "description",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {
@@ -262,6 +267,10 @@ def make_config():
           {
             "name": "chatId",
             "req": True,
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {
@@ -3554,6 +3563,10 @@ def make_config():
           {
             "name": "createdAt",
             "req": True,
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {

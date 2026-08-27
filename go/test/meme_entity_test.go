@@ -61,13 +61,19 @@ func TestMemeEntity(t *testing.T) {
 
 		// LOAD
 		memeRef01Ent := client.Meme(nil)
-		memeRef01MatchDt0 := map[string]any{}
+		memeRef01MatchDt0 := map[string]any{
+			"id": memeRef01Data["id"],
+		}
 		memeRef01DataDt0Loaded, err := memeRef01Ent.Load(memeRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if memeRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		memeRef01DataDt0LoadResult := core.ToMapAny(entityData(memeRef01DataDt0Loaded))
+		if memeRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if memeRef01DataDt0LoadResult["id"] != memeRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

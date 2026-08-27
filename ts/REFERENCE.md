@@ -430,6 +430,7 @@ const agent = client.Agent()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `string` | No |  |
+| `id` | `string` | No |  |
 | `locale` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | No |  |
@@ -444,6 +445,7 @@ const agent = client.Agent()
 | Field | load | create | update |
 | --- | --- | --- | --- |
 | `description` | - | - | - |
+| `id` | - | - | - |
 | `locale` | - | - | - |
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
@@ -524,6 +526,7 @@ const agent_infra = client.AgentInfra()
 | --- | --- | --- | --- |
 | `action` | `string` | Yes |  |
 | `chatId` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `memeSlug` | `string` | Yes |  |
 | `metadata` | `Record<string, any>` | No |  |
 | `payoutReference` | `string` | No |  |
@@ -578,7 +581,7 @@ const result = await client.AgentInfra().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.AgentInfra().load()
+const result = await client.AgentInfra().load({ id: 'agent_infra_id' })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -2010,6 +2013,7 @@ const meme = client.Meme()
 | `canvas` | `Record<string, any>` | Yes |  |
 | `captions` | `any[]` | Yes |  |
 | `createdAt` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `imageUrl` | `string` | Yes |  |
 | `nsfwStatus` | `string` | Yes |  |
 | `overlays` | `any[]` | Yes |  |
@@ -2289,13 +2293,13 @@ Create a new entity with the given data.
 const result = await client.Template().create({
   slug: 'example_slug',
   description: 'example_description',
-  height: 'example_height',
+  height: 1,
   id: 'example_id',
   imageUrl: 'example_imageUrl',
   mediaType: 'example_mediaType',
   name: 'example_name',
   sourceTemplateId: 'example_sourceTemplateId',
-  width: 'example_width',
+  width: 1,
 })
 ```
 

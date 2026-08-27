@@ -48,9 +48,13 @@ class TestMemeEntity:
 
         # LOAD
         meme_ref01_ent = client.Meme(None)
-        meme_ref01_match_dt0 = {}
+        meme_ref01_match_dt0 = {
+            "id": meme_ref01_data["id"],
+        }
         meme_ref01_data_dt0_loaded = meme_ref01_ent.load(meme_ref01_match_dt0, None)
-        assert meme_ref01_data_dt0_loaded is not None
+        meme_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(meme_ref01_data_dt0_loaded))
+        assert meme_ref01_data_dt0_load_result is not None
+        assert meme_ref01_data_dt0_load_result["id"] == meme_ref01_data["id"]
 
 
 

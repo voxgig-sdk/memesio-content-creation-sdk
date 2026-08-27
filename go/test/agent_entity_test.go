@@ -63,9 +63,13 @@ func TestAgentEntity(t *testing.T) {
 		if agentRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
+		if agentRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// UPDATE
 		agentRef01DataUp0Up := map[string]any{
+			"id": agentRef01Data["id"],
 		}
 
 		agentRef01MarkdefUp0Name := "description"
@@ -80,18 +84,27 @@ func TestAgentEntity(t *testing.T) {
 		if agentRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
 		}
+		if agentRef01ResdataUp0["id"] != agentRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
 		if agentRef01ResdataUp0[agentRef01MarkdefUp0Name] != agentRef01MarkdefUp0Value {
 			t.Fatalf("expected %s to be updated, got %v", agentRef01MarkdefUp0Name, agentRef01ResdataUp0[agentRef01MarkdefUp0Name])
 		}
 
 		// LOAD
-		agentRef01MatchDt0 := map[string]any{}
+		agentRef01MatchDt0 := map[string]any{
+			"id": agentRef01Data["id"],
+		}
 		agentRef01DataDt0Loaded, err := agentRef01Ent.Load(agentRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if agentRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		agentRef01DataDt0LoadResult := core.ToMapAny(entityData(agentRef01DataDt0Loaded))
+		if agentRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if agentRef01DataDt0LoadResult["id"] != agentRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

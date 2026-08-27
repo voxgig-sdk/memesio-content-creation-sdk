@@ -2,55 +2,55 @@
   "existing": {
     "agent": {
       "AGENT00": {
-        "description": "s5a",
-        "locale": "s5b",
-        "name": "s5c",
-        "slug": "s5d",
-        "status": "s5e",
-        "stylePreset": "s5f",
-        "systemPrompt": "s60",
-        "watermarkText": "s61",
-        "websiteUrl": "s62",
-        "id": "AGENT00"
+        "description": "s64",
+        "id": "AGENT00",
+        "locale": "s66",
+        "name": "s67",
+        "slug": "s68",
+        "status": "s69",
+        "stylePreset": "s6a",
+        "systemPrompt": "s6b",
+        "watermarkText": "s6c",
+        "websiteUrl": "s6d"
       },
       "AGENT01": {
-        "description": "sb4",
-        "locale": "sb5",
-        "name": "sb6",
-        "slug": "sb7",
-        "status": "sb8",
-        "stylePreset": "sb9",
-        "systemPrompt": "sba",
-        "watermarkText": "sbb",
-        "websiteUrl": "sbc",
-        "id": "AGENT01"
+        "description": "sc8",
+        "id": "AGENT01",
+        "locale": "sca",
+        "name": "scb",
+        "slug": "scc",
+        "status": "scd",
+        "stylePreset": "sce",
+        "systemPrompt": "scf",
+        "watermarkText": "sd0",
+        "websiteUrl": "sd1"
       },
       "AGENT02": {
-        "description": "s10e",
-        "locale": "s10f",
-        "name": "s110",
-        "slug": "s111",
-        "status": "s112",
-        "stylePreset": "s113",
-        "systemPrompt": "s114",
-        "watermarkText": "s115",
-        "websiteUrl": "s116",
-        "id": "AGENT02"
+        "description": "s12c",
+        "id": "AGENT02",
+        "locale": "s12e",
+        "name": "s12f",
+        "slug": "s130",
+        "status": "s131",
+        "stylePreset": "s132",
+        "systemPrompt": "s133",
+        "watermarkText": "s134",
+        "websiteUrl": "s135"
       }
     }
   },
   "new": {
     "agent": {
       "agent_ref01": {
-        "description": "s168",
-        "locale": "s169",
-        "name": "s16a",
-        "slug": "s16b",
-        "status": "s16c",
-        "stylePreset": "s16d",
-        "systemPrompt": "s16e",
-        "watermarkText": "s16f",
-        "websiteUrl": "s170"
+        "description": "s190",
+        "locale": "s192",
+        "name": "s193",
+        "slug": "s194",
+        "status": "s195",
+        "stylePreset": "s196",
+        "systemPrompt": "s197",
+        "watermarkText": "s198",
+        "websiteUrl": "s199"
       }
     }
   }

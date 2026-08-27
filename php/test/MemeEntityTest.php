@@ -48,9 +48,13 @@ class MemeEntityTest extends TestCase
 
         // LOAD
         $meme_ref01_ent = $client->Meme(null);
-        $meme_ref01_match_dt0 = [];
+        $meme_ref01_match_dt0 = [
+            "id" => $meme_ref01_data["id"],
+        ];
         $meme_ref01_data_dt0_loaded = $meme_ref01_ent->load($meme_ref01_match_dt0, null);
-        $this->assertNotNull($meme_ref01_data_dt0_loaded);
+        $meme_ref01_data_dt0_load_result = Helpers::to_map(is_object($meme_ref01_data_dt0_loaded) && method_exists($meme_ref01_data_dt0_loaded, 'data_get') ? $meme_ref01_data_dt0_loaded->data_get() : $meme_ref01_data_dt0_loaded);
+        $this->assertNotNull($meme_ref01_data_dt0_load_result);
+        $this->assertEquals($meme_ref01_data_dt0_load_result["id"], $meme_ref01_data["id"]);
 
     }
 }

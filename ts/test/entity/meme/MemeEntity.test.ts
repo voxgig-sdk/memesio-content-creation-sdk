@@ -59,9 +59,12 @@ describe('MemeEntity', async () => {
 
     let meme_ref01_data = Object.values(setup.data.existing.meme)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const meme_ref01_ent = client.Meme()
+    const meme_ref01_match_dt0: any = {}
+    meme_ref01_match_dt0.id = meme_ref01_data.id
+    const meme_ref01_data_dt0 = (await meme_ref01_ent.load(meme_ref01_match_dt0)).data()
+    assert(meme_ref01_data_dt0.id === meme_ref01_data.id)
 
 
   })

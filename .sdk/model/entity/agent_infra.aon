@@ -16,6 +16,11 @@ main: kit: entity: agent_infra: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "memeSlug"
       req: true
       type: "`$STRING`"
@@ -71,6 +76,11 @@ main: kit: entity: agent_infra: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "agent_infra"
   op: {

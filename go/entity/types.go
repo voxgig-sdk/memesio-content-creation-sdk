@@ -15,6 +15,7 @@ import (
 // Agent is the typed data model for the agent entity.
 type Agent struct {
 	Description *string `json:"description,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Locale *string `json:"locale,omitempty"`
 	Name string `json:"name"`
 	Slug *string `json:"slug,omitempty"`
@@ -33,6 +34,7 @@ type AgentLoadMatch struct {
 // AgentCreateData is the typed request payload for Agent.CreateTyped.
 type AgentCreateData struct {
 	Description *string `json:"description,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Locale *string `json:"locale,omitempty"`
 	Name string `json:"name"`
 	Slug *string `json:"slug,omitempty"`
@@ -61,6 +63,7 @@ type AgentUpdateData struct {
 type AgentInfra struct {
 	Action string `json:"action"`
 	ChatId string `json:"chatId"`
+	Id *string `json:"id,omitempty"`
 	MemeSlug string `json:"memeSlug"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	PayoutReference *string `json:"payoutReference,omitempty"`
@@ -78,6 +81,7 @@ type AgentInfra struct {
 type AgentInfraLoadMatch struct {
 	Action *string `json:"action,omitempty"`
 	ChatId *string `json:"chatId,omitempty"`
+	Id string `json:"id"`
 	MemeSlug *string `json:"memeSlug,omitempty"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	PayoutReference *string `json:"payoutReference,omitempty"`
@@ -95,6 +99,7 @@ type AgentInfraLoadMatch struct {
 type AgentInfraCreateData struct {
 	Action string `json:"action"`
 	ChatId string `json:"chatId"`
+	Id *string `json:"id,omitempty"`
 	MemeSlug string `json:"memeSlug"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	PayoutReference *string `json:"payoutReference,omitempty"`
@@ -748,6 +753,7 @@ type Meme struct {
 	Canvas map[string]any `json:"canvas"`
 	Captions []any `json:"captions"`
 	CreatedAt string `json:"createdAt"`
+	Id *string `json:"id,omitempty"`
 	ImageUrl string `json:"imageUrl"`
 	NsfwStatus string `json:"nsfwStatus"`
 	Overlays []any `json:"overlays"`

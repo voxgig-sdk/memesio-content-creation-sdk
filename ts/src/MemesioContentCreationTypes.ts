@@ -7,6 +7,7 @@
 
 export interface Agent {
   description?: string
+  id?: string
   locale?: string
   name: string
   slug?: string
@@ -23,6 +24,7 @@ export interface AgentLoadMatch {
 
 export interface AgentCreateData {
   description?: string
+  id?: string
   locale?: string
   name: string
   slug?: string
@@ -49,6 +51,7 @@ export interface AgentUpdateData {
 export interface AgentInfra {
   action: string
   chatId: string
+  id?: string
   memeSlug: string
   metadata?: Record<string, any>
   payoutReference?: string
@@ -65,6 +68,7 @@ export interface AgentInfra {
 export interface AgentInfraLoadMatch {
   action?: string
   chatId?: string
+  id: string
   memeSlug?: string
   metadata?: Record<string, any>
   payoutReference?: string
@@ -87,6 +91,7 @@ export interface AgentInfraLoadMatch {
 export interface AgentInfraCreateData {
   action: string
   chatId: string
+  id?: string
   memeSlug: string
   metadata?: Record<string, any>
   payoutReference?: string
@@ -746,6 +751,7 @@ export interface Meme {
   canvas: Record<string, any>
   captions: any[]
   createdAt: string
+  id?: string
   imageUrl: string
   nsfwStatus: string
   overlays: any[]

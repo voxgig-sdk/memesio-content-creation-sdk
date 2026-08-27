@@ -42,6 +42,7 @@ class MemesioContentCreationConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -87,6 +88,10 @@ class MemesioContentCreationConfig
           'fields' => [
             [
               'name' => 'description',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [
@@ -267,6 +272,10 @@ class MemesioContentCreationConfig
             [
               'name' => 'chatId',
               'req' => true,
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [
@@ -3559,6 +3568,10 @@ class MemesioContentCreationConfig
             [
               'name' => 'createdAt',
               'req' => true,
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

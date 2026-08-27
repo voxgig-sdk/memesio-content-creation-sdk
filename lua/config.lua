@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -61,6 +62,10 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "description",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {
@@ -241,6 +246,10 @@ local function make_config()
           {
             ["name"] = "chatId",
             ["req"] = true,
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {
@@ -3533,6 +3542,10 @@ local function make_config()
           {
             ["name"] = "createdAt",
             ["req"] = true,
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {

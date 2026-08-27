@@ -199,6 +199,7 @@ agent = client.Agent
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `description` | `String` | No |  |
+| `id` | `String` | No |  |
 | `locale` | `String` | No |  |
 | `name` | `String` | Yes |  |
 | `slug` | `String` | No |  |
@@ -213,6 +214,7 @@ agent = client.Agent
 | Field | load | create | update |
 | --- | --- | --- | --- |
 | `description` | - | - | - |
+| `id` | - | - | - |
 | `locale` | - | - | - |
 | `name` | - | - | Yes |
 | `slug` | - | - | - |
@@ -295,6 +297,7 @@ agent_infra = client.AgentInfra
 | --- | --- | --- | --- |
 | `action` | `String` | Yes |  |
 | `chatId` | `String` | Yes |  |
+| `id` | `String` | No |  |
 | `memeSlug` | `String` | Yes |  |
 | `metadata` | `Hash` | No |  |
 | `payoutReference` | `String` | No |  |
@@ -328,7 +331,7 @@ result = client.AgentInfra.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.AgentInfra.load()
+result = client.AgentInfra.load({ "id" => "agent_infra_id" })
 ```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
@@ -1667,6 +1670,7 @@ meme = client.Meme
 | `canvas` | `Hash` | Yes |  |
 | `captions` | `Array` | Yes |  |
 | `createdAt` | `String` | Yes |  |
+| `id` | `String` | No |  |
 | `imageUrl` | `String` | Yes |  |
 | `nsfwStatus` | `String` | Yes |  |
 | `overlays` | `Array` | Yes |  |
@@ -1952,13 +1956,13 @@ Create a new entity with the given data. Raises on error.
 result = client.Template.create({
   "slug" => "example_slug", # String
   "description" => "example_description", # String
-  "height" => "example_height", # Object
+  "height" => 1, # Object
   "id" => "example_id", # String
   "imageUrl" => "example_imageUrl", # String
   "mediaType" => "example_mediaType", # String
   "name" => "example_name", # String
   "sourceTemplateId" => "example_sourceTemplateId", # Object
-  "width" => "example_width", # Object
+  "width" => 1, # Object
 })
 ```
 

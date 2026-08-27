@@ -43,9 +43,11 @@ describe("AgentEntity", function()
     assert.is_nil(err)
     agent_ref01_data = helpers.to_map(type(agent_ref01_data_result) == 'table' and agent_ref01_data_result.data_get and agent_ref01_data_result:data_get() or agent_ref01_data_result)
     assert.is_not_nil(agent_ref01_data)
+    assert.is_not_nil(agent_ref01_data["id"])
 
     -- UPDATE
     local agent_ref01_data_up0_up = {
+      id = agent_ref01_data["id"],
     }
 
     local agent_ref01_markdef_up0_name = "description"
@@ -56,13 +58,18 @@ describe("AgentEntity", function()
     assert.is_nil(err)
     local agent_ref01_resdata_up0 = helpers.to_map(type(agent_ref01_resdata_up0_result) == 'table' and agent_ref01_resdata_up0_result.data_get and agent_ref01_resdata_up0_result:data_get() or agent_ref01_resdata_up0_result)
     assert.is_not_nil(agent_ref01_resdata_up0)
+    assert.are.equal(agent_ref01_resdata_up0["id"], agent_ref01_data_up0_up["id"])
     assert.are.equal(agent_ref01_resdata_up0[agent_ref01_markdef_up0_name], agent_ref01_markdef_up0_value)
 
     -- LOAD
-    local agent_ref01_match_dt0 = {}
+    local agent_ref01_match_dt0 = {
+      id = agent_ref01_data["id"],
+    }
     local agent_ref01_data_dt0_loaded, err = agent_ref01_ent:load(agent_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(agent_ref01_data_dt0_loaded)
+    local agent_ref01_data_dt0_load_result = helpers.to_map(type(agent_ref01_data_dt0_loaded) == 'table' and agent_ref01_data_dt0_loaded.data_get and agent_ref01_data_dt0_loaded:data_get() or agent_ref01_data_dt0_loaded)
+    assert.is_not_nil(agent_ref01_data_dt0_load_result)
+    assert.are.equal(agent_ref01_data_dt0_load_result["id"], agent_ref01_data["id"])
 
   end)
 end)

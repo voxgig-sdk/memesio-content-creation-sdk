@@ -63,20 +63,27 @@ describe('AgentEntity', async () => {
     let agent_ref01_data = setup.data.new.agent['agent_ref01']
 
     agent_ref01_data = (await agent_ref01_ent.create(agent_ref01_data)).data()
-    assert(null != agent_ref01_data)
+    assert(null != agent_ref01_data.id)
 
 
     // UPDATE
     const agent_ref01_data_up0: any = {}
+    agent_ref01_data_up0.id = agent_ref01_data.id
 
     const agent_ref01_markdef_up0 = { name: 'description', value: 'Mark01-agent_ref01_' + setup.now }
     ;(agent_ref01_data_up0 as any)[agent_ref01_markdef_up0.name] = agent_ref01_markdef_up0.value
 
     const agent_ref01_resdata_up0 = (await agent_ref01_ent.update(agent_ref01_data_up0)).data()
-    assert(null != agent_ref01_resdata_up0)
+    assert(agent_ref01_resdata_up0.id === agent_ref01_data_up0.id)
 
     assert((agent_ref01_resdata_up0 as any)[agent_ref01_markdef_up0.name] === agent_ref01_markdef_up0.value)
 
+
+    // LOAD
+    const agent_ref01_match_dt0: any = {}
+    agent_ref01_match_dt0.id = agent_ref01_data.id
+    const agent_ref01_data_dt0 = (await agent_ref01_ent.load(agent_ref01_match_dt0)).data()
+    assert(agent_ref01_data_dt0.id === agent_ref01_data.id)
 
 
   })

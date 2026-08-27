@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -149,6 +150,10 @@ class Config {
       "fields": [
         {
           "name": "description",
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {
@@ -329,6 +334,10 @@ class Config {
         {
           "name": "chatId",
           "req": true,
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {
@@ -3621,6 +3630,10 @@ class Config {
         {
           "name": "createdAt",
           "req": true,
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {

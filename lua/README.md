@@ -53,7 +53,7 @@ local created, err = client:Agent():create({ name = "example_name" })
 if err then error(err) end
 
 -- Update
-client:Agent():update({ id = "example_id", description = "example_description", locale = "example_locale" })
+client:Agent():update({ id = created:data_get()["id"], description = "example_description", locale = "example_locale" })
 
 ```
 
@@ -275,6 +275,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `description` |  |
+| `id` |  |
 | `locale` |  |
 | `name` |  |
 | `slug` |  |
@@ -294,6 +295,7 @@ API path: `/api/v1/agents`
 | --- | --- |
 | `action` |  |
 | `chatId` |  |
+| `id` |  |
 | `memeSlug` |  |
 | `metadata` |  |
 | `payoutReference` |  |
@@ -675,6 +677,7 @@ API path: `/api/media/signed-url`
 | `canvas` |  |
 | `captions` |  |
 | `createdAt` |  |
+| `id` |  |
 | `imageUrl` |  |
 | `nsfwStatus` |  |
 | `overlays` |  |
@@ -925,6 +928,7 @@ Create an instance: `local agent = client:Agent(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
+| `id` | `string` |  |
 | `locale` | `string` |  |
 | `name` | `string` |  |
 | `slug` | `string` |  |
@@ -967,6 +971,7 @@ Create an instance: `local agent_infra = client:AgentInfra(nil)`
 | --- | --- | --- |
 | `action` | `string` |  |
 | `chatId` | `string` |  |
+| `id` | `string` |  |
 | `memeSlug` | `string` |  |
 | `metadata` | `table` |  |
 | `payoutReference` | `string` |  |
@@ -982,7 +987,7 @@ Create an instance: `local agent_infra = client:AgentInfra(nil)`
 #### Example: Load
 
 ```lua
-local agent_infra, err = client:AgentInfra():load()
+local agent_infra, err = client:AgentInfra():load({ id = "agent_infra_id" })
 ```
 
 #### Example: Create
@@ -1683,6 +1688,7 @@ Create an instance: `local meme = client:Meme(nil)`
 | `canvas` | `table` |  |
 | `captions` | `table` |  |
 | `createdAt` | `string` |  |
+| `id` | `string` |  |
 | `imageUrl` | `string` |  |
 | `nsfwStatus` | `string` |  |
 | `overlays` | `table` |  |
@@ -1841,13 +1847,13 @@ local templates, err = client:Template():list()
 local template, err = client:Template():create({
   slug = "example_slug", -- string
   description = "example_description", -- string
-  height = "example_height", -- number|nil
+  height = 1, -- number|nil
   id = "example_id", -- string
   imageUrl = "example_imageUrl", -- string
   mediaType = "example_mediaType", -- string
   name = "example_name", -- string
   sourceTemplateId = "example_sourceTemplateId", -- string|nil
-  width = "example_width", -- number|nil
+  width = 1, -- number|nil
 })
 ```
 

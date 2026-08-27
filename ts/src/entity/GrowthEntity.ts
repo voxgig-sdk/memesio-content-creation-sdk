@@ -44,7 +44,8 @@ class GrowthEntity extends MemesioContentCreationEntityBase<Growth> {
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,
@@ -165,7 +166,8 @@ class GrowthEntity extends MemesioContentCreationEntityBase<Growth> {
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,

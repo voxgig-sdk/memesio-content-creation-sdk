@@ -59,9 +59,9 @@ const created = await client.Agent().create({
   name: 'example_name',
 })
 
-// Update
+// Update — the id comes off the returned entity's data()
 const updated = await client.Agent().update({
-  id: 'example_id',
+  id: created.data().id!,
   description: 'example_description',
   locale: 'example_locale',
 })
@@ -345,6 +345,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `description` |  |
+| `id` |  |
 | `locale` |  |
 | `name` |  |
 | `slug` |  |
@@ -364,6 +365,7 @@ API path: `/api/v1/agents`
 | --- | --- |
 | `action` |  |
 | `chatId` |  |
+| `id` |  |
 | `memeSlug` |  |
 | `metadata` |  |
 | `payoutReference` |  |
@@ -745,6 +747,7 @@ API path: `/api/media/signed-url`
 | `canvas` |  |
 | `captions` |  |
 | `createdAt` |  |
+| `id` |  |
 | `imageUrl` |  |
 | `nsfwStatus` |  |
 | `overlays` |  |
@@ -995,6 +998,7 @@ Create an instance: `const agent = client.Agent()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `description` | `string` |  |
+| `id` | `string` |  |
 | `locale` | `string` |  |
 | `name` | `string` |  |
 | `slug` | `string` |  |
@@ -1037,6 +1041,7 @@ Create an instance: `const agent_infra = client.AgentInfra()`
 | --- | --- | --- |
 | `action` | `string` |  |
 | `chatId` | `string` |  |
+| `id` | `string` |  |
 | `memeSlug` | `string` |  |
 | `metadata` | `Record<string, any>` |  |
 | `payoutReference` | `string` |  |
@@ -1052,7 +1057,7 @@ Create an instance: `const agent_infra = client.AgentInfra()`
 #### Example: Load
 
 ```ts
-const agent_infra = await client.AgentInfra().load()
+const agent_infra = await client.AgentInfra().load({ id: 'agent_infra_id' })
 ```
 
 #### Example: Create
@@ -1753,6 +1758,7 @@ Create an instance: `const meme = client.Meme()`
 | `canvas` | `Record<string, any>` |  |
 | `captions` | `any[]` |  |
 | `createdAt` | `string` |  |
+| `id` | `string` |  |
 | `imageUrl` | `string` |  |
 | `nsfwStatus` | `string` |  |
 | `overlays` | `any[]` |  |
@@ -1911,13 +1917,13 @@ const templates = await client.Template().list()
 const template = await client.Template().create({
   slug: 'example_slug',
   description: 'example_description',
-  height: 'example_height',
+  height: 1,
   id: 'example_id',
   imageUrl: 'example_imageUrl',
   mediaType: 'example_mediaType',
   name: 'example_name',
   sourceTemplateId: 'example_sourceTemplateId',
-  width: 'example_width',
+  width: 1,
 })
 ```
 
