@@ -1001,7 +1001,7 @@ Create an instance: `agent_infra = client.AgentInfra()`
 #### Example: Load
 
 ```python
-agent_infra = client.AgentInfra().load({"id": "agent_infra_id"})
+agent_infra = client.AgentInfra().load()
 ```
 
 #### Example: Create
@@ -1340,7 +1340,7 @@ Create an instance: `collaboration = client.Collaboration()`
 #### Example: Load
 
 ```python
-collaboration = client.Collaboration().load()
+collaboration = client.Collaboration().load({"project_id": "project_id"})
 ```
 
 #### Example: Create
@@ -1605,7 +1605,7 @@ Create an instance: `growth = client.Growth()`
 #### Example: Load
 
 ```python
-growth = client.Growth().load()
+growth = client.Growth().load({"actor_id": "actor_id"})
 ```
 
 #### Example: Create
@@ -2065,6 +2065,29 @@ video = client.Video().create({
     "presetId": "example_presetId",  # str
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

@@ -85,20 +85,8 @@ class AgentInfra
 /** Request payload for AgentInfra#load. */
 class AgentInfraLoadMatch
 {
-    public ?string $action = null;
-    public ?string $chatId = null;
-    public string $id;
-    public ?string $memeSlug = null;
-    public ?array $metadata = null;
-    public ?string $payoutReference = null;
-    public ?string $payoutStatus = null;
-    public ?string $phoneOrChatId = null;
-    public ?string $prompt = null;
-    public ?array $proof = null;
-    public ?int $quotaBoostPerDay = null;
-    public ?array $scopes = null;
-    public ?string $userId = null;
-    public ?string $weekStart = null;
+    public ?int $limit = null;
+    public ?string $week_start = null;
 }
 
 /** Request payload for AgentInfra#create. */
@@ -163,34 +151,7 @@ class AiCaption
 /** Request payload for AiCaption#load. */
 class AiCaptionLoadMatch
 {
-    public ?array $blockedTerms = null;
-    public ?array $canvasText = null;
-    public ?int $captionCount = null;
-    public ?array $captionSets = null;
-    public ?array $entities = null;
-    public ?bool $fallbackUsed = null;
-    public ?string $generationStrategy = null;
     public ?string $locale = null;
-    public ?string $memeId = null;
-    public ?string $memeSlug = null;
-    public ?string $name = null;
-    public ?bool $ok = null;
-    public ?int $optionCount = null;
-    public ?string $ownerToken = null;
-    public ?string $providerId = null;
-    public ?array $referenceCaptions = null;
-    public ?string $rewriteNote = null;
-    public ?string $sceneSummary = null;
-    public ?string $templateDescription = null;
-    public ?string $templateName = null;
-    public ?array $templateTags = null;
-    public ?string $tone = null;
-    public ?array $toneCues = null;
-    public ?array $trendKeywords = null;
-    public ?array $trendReferences = null;
-    public ?array $trendSignals = null;
-    public ?int $variationOffset = null;
-    public ?array $voiceRules = null;
 }
 
 /** Request payload for AiCaption#create. */
@@ -396,16 +357,7 @@ class AiProvider
 /** Request payload for AiProvider#load. */
 class AiProviderLoadMatch
 {
-    public ?string $actorId = null;
-    public ?string $correlationId = null;
-    public ?float $limit = null;
-    public ?string $mappingMode = null;
-    public ?int $maxSlots = null;
-    public ?string $prompt = null;
-    public ?string $sourceImageUrl = null;
-    public ?array $texts = null;
-    public ?array $trendSignals = null;
-    public ?string $workspaceId = null;
+    public ?bool $refresh = null;
 }
 
 /** Request payload for AiProvider#create. */
@@ -431,6 +383,7 @@ class Analytics
 /** Request payload for Analytics#load. */
 class AnalyticsLoadMatch
 {
+    public ?string $template_id = null;
 }
 
 /** Auth entity data model. */
@@ -457,6 +410,8 @@ class Billing
 /** Request payload for Billing#load. */
 class BillingLoadMatch
 {
+    public ?int $window_day = null;
+    public ?string $workspace_id = null;
 }
 
 /** Collaboration entity data model. */
@@ -470,9 +425,9 @@ class Collaboration
 /** Request payload for Collaboration#load. */
 class CollaborationLoadMatch
 {
-    public ?string $authorId = null;
-    public ?string $message = null;
-    public ?string $projectId = null;
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public string $project_id;
 }
 
 /** Request payload for Collaboration#create. */
@@ -599,28 +554,14 @@ class FreeTemplateSearch
 /** Request payload for FreeTemplateSearch#list. */
 class FreeTemplateSearchListMatch
 {
-    public ?bool $animated = null;
-    public mixed $assetBytes = null;
-    public ?string $assetContentType = null;
-    public ?int $boxCount = null;
-    public ?int $captionCount = null;
-    public ?array $captions = null;
-    public ?string $description = null;
-    public mixed $durationMs = null;
-    public mixed $exampleImageUrl = null;
-    public mixed $frameCount = null;
-    public mixed $height = null;
-    public ?string $id = null;
-    public ?string $imageUrl = null;
-    public ?string $mediaType = null;
-    public ?string $name = null;
-    public ?string $posterImageUrl = null;
-    public ?string $qualityStatus = null;
-    public ?string $slug = null;
-    public mixed $sourceTemplateId = null;
-    public ?string $sourceUrl = null;
-    public ?array $tags = null;
-    public mixed $width = null;
+    public ?string $media_type = null;
+    public ?string $mode = null;
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public ?string $q = null;
+    public ?string $query = null;
+    public ?string $sort = null;
+    public ?string $tag = null;
 }
 
 /** Generate entity data model. */
@@ -697,22 +638,9 @@ class Growth
 /** Request payload for Growth#load. */
 class GrowthLoadMatch
 {
-    public ?string $accountId = null;
-    public ?string $action = null;
-    public ?string $actorId = null;
-    public ?string $caption = null;
-    public ?string $code = null;
-    public ?string $externalAccountId = null;
-    public ?string $handle = null;
-    public ?int $limit = null;
-    public ?bool $logExposure = null;
-    public ?string $memeSlug = null;
-    public ?string $now = null;
-    public ?string $platform = null;
-    public ?array $profiles = null;
-    public ?string $shareSlug = null;
+    public string $actor_id;
+    public ?bool $log_exposure = null;
     public ?string $surface = null;
-    public ?string $weekStart = null;
 }
 
 /** Request payload for Growth#create. */
@@ -757,18 +685,14 @@ class ListMeme
 /** Request payload for ListMeme#list. */
 class ListMemeListMatch
 {
-    public ?string $altText = null;
-    public ?string $canonicalImageUrl = null;
-    public ?string $createdAt = null;
-    public ?string $imageUrl = null;
-    public ?string $nsfwStatus = null;
-    public ?string $shareSlug = null;
-    public ?string $shareUrl = null;
-    public ?int $shareViews = null;
-    public ?string $slug = null;
-    public ?array $tags = null;
-    public ?string $templateSlug = null;
-    public ?string $title = null;
+    public ?bool $exclude_template_clone = null;
+    public ?bool $include_nsfw = null;
+    public ?bool $official_only = null;
+    public ?string $owner_token = null;
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public ?string $query = null;
+    public ?string $template_slug = null;
     public ?string $visibility = null;
 }
 
@@ -822,6 +746,7 @@ class Meme
 class MemeLoadMatch
 {
     public string $id;
+    public ?string $owner_token = null;
 }
 
 /** Request payload for Meme#remove. */
@@ -863,6 +788,7 @@ class PublicTemplateMediaItem
 class PublicTemplateMediaItemLoadMatch
 {
     public string $slug;
+    public ?string $media_type = null;
 }
 
 /** StandaloneAgentBootstrap entity data model. */
@@ -929,36 +855,14 @@ class Template
 /** Request payload for Template#list. */
 class TemplateListMatch
 {
-    public ?bool $animated = null;
-    public mixed $assetBytes = null;
-    public ?string $assetContentType = null;
-    public ?int $boxCount = null;
-    public ?int $captionCount = null;
-    public ?array $captions = null;
-    public ?array $categories = null;
-    public ?string $description = null;
-    public ?int $durationMs = null;
-    public mixed $exampleImageUrl = null;
-    public ?int $fps = null;
-    public mixed $frameCount = null;
-    public ?string $gifSlug = null;
-    public mixed $height = null;
-    public ?string $id = null;
-    public ?string $imageUrl = null;
-    public ?string $mediaType = null;
-    public ?string $name = null;
-    public ?string $posterImageUrl = null;
-    public ?string $previewImageUrl = null;
-    public ?string $qualityStatus = null;
-    public ?bool $returnBase64 = null;
-    public ?string $slug = null;
-    public mixed $sourceTemplateId = null;
-    public ?string $sourceUrl = null;
-    public ?int $startMs = null;
-    public ?array $tags = null;
-    public ?string $title = null;
-    public mixed $width = null;
-    public ?int $widthPx = null;
+    public ?string $media_type = null;
+    public ?string $mode = null;
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public ?string $q = null;
+    public ?string $query = null;
+    public ?string $sort = null;
+    public ?string $tag = null;
 }
 
 /** Request payload for Template#create. */
@@ -1028,30 +932,12 @@ class TemplateSearch
 /** Request payload for TemplateSearch#list. */
 class TemplateSearchListMatch
 {
-    public ?bool $animated = null;
-    public mixed $assetBytes = null;
-    public ?string $assetContentType = null;
-    public ?int $boxCount = null;
-    public ?int $captionCount = null;
-    public ?array $captions = null;
-    public ?array $categories = null;
-    public ?string $description = null;
-    public mixed $durationMs = null;
-    public mixed $exampleImageUrl = null;
-    public mixed $frameCount = null;
-    public mixed $height = null;
-    public ?string $id = null;
-    public ?string $imageUrl = null;
-    public ?string $mediaType = null;
-    public ?string $name = null;
-    public ?string $posterImageUrl = null;
-    public ?string $previewImageUrl = null;
-    public ?string $qualityStatus = null;
-    public ?string $slug = null;
-    public mixed $sourceTemplateId = null;
-    public ?string $sourceUrl = null;
-    public ?array $tags = null;
-    public mixed $width = null;
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public ?string $q = null;
+    public ?string $query = null;
+    public ?string $sort = null;
+    public ?string $tag = null;
 }
 
 /** TrendAlert entity data model. */
@@ -1078,21 +964,18 @@ class TrendAlert
 /** Request payload for TrendAlert#load. */
 class TrendAlertLoadMatch
 {
-    public ?string $action = null;
-    public ?string $actorId = null;
+    public ?string $actor_id = null;
     public ?float $aggressiveness = null;
-    public ?string $alertId = null;
-    public ?array $channels = null;
-    public ?bool $deliverAllAlerts = null;
-    public ?array $event = null;
-    public ?array $explicitNiches = null;
-    public ?array $explicitRegions = null;
-    public ?array $explicitSources = null;
-    public ?array $explicitTopics = null;
-    public ?int $followerCount = null;
+    public ?int $follower_count = null;
     public ?string $niche = null;
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public ?string $preferred_niche = null;
+    public ?string $preferred_region = null;
+    public ?string $query = null;
     public ?string $region = null;
     public ?string $source = null;
+    public ?string $status = null;
     public ?string $topic = null;
 }
 
@@ -1180,51 +1063,14 @@ class Video
 /** Request payload for Video#load. */
 class VideoLoadMatch
 {
-    public ?string $action = null;
-    public ?string $assetId = null;
-    public ?float $atMs = null;
-    public ?string $audioAssetId = null;
-    public ?int $beatOffsetMs = null;
-    public ?float $bitrateKbps = null;
+    public ?int $beat_offset_m = null;
     public ?int $bpm = null;
-    public ?bool $cancelled = null;
-    public ?string $container = null;
-    public ?float $durationMs = null;
-    public ?float $durationSeconds = null;
-    public ?string $easing = null;
-    public ?string $error = null;
-    public ?float $frameRate = null;
-    public ?string $inputFormat = null;
-    public ?float $intensity = null;
-    public ?string $jobId = null;
     public ?string $locale = null;
-    public ?string $mimeType = null;
-    public ?string $name = null;
-    public ?float $offsetMs = null;
-    public ?string $outputPresetId = null;
-    public ?string $outputUrl = null;
-    public ?string $planTier = null;
-    public ?string $presetId = null;
-    public ?float $progressPercent = null;
-    public ?array $project = null;
-    public ?string $projectId = null;
-    public ?string $property = null;
-    public ?string $sourceDeviceId = null;
-    public ?string $sourceUrl = null;
-    public ?string $stage = null;
-    public ?float $startMs = null;
-    public ?string $stylePresetId = null;
-    public ?bool $syncToBeatGrid = null;
+    public ?string $style_preset_id = null;
+    public ?bool $sync_to_beat_grid = null;
     public ?string $tone = null;
-    public ?string $trackId = null;
     public ?string $transcript = null;
-    public ?array $trendKeywords = null;
-    public ?string $type = null;
-    public ?string $updatedAt = null;
-    public ?float $value = null;
-    public ?bool $watermarkEnabled = null;
-    public ?string $watermarkText = null;
-    public ?string $workerId = null;
+    public ?string $trend_keyword = null;
 }
 
 /** Request payload for Video#create. */

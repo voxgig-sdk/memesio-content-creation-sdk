@@ -88,24 +88,9 @@ class AgentInfra(AgentInfraRequired, total=False):
     weekStart: str
 
 
-class AgentInfraLoadMatchRequired(TypedDict):
-    id: str
-
-
-class AgentInfraLoadMatch(AgentInfraLoadMatchRequired, total=False):
-    action: str
-    chatId: str
-    memeSlug: str
-    metadata: dict
-    payoutReference: str
-    payoutStatus: str
-    phoneOrChatId: str
-    prompt: str
-    proof: dict
-    quotaBoostPerDay: int
-    scopes: list
-    userId: str
-    weekStart: str
+class AgentInfraLoadMatch(TypedDict, total=False):
+    limit: int
+    week_start: str
 
 
 class AgentInfraCreateDataRequired(TypedDict):
@@ -168,34 +153,7 @@ class AiCaption(AiCaptionRequired, total=False):
 
 
 class AiCaptionLoadMatch(TypedDict, total=False):
-    blockedTerms: list
-    canvasText: list
-    captionCount: int
-    captionSets: list
-    entities: list
-    fallbackUsed: bool
-    generationStrategy: str
     locale: str
-    memeId: str
-    memeSlug: str
-    name: str
-    ok: bool
-    optionCount: int
-    ownerToken: str
-    providerId: str
-    referenceCaptions: list
-    rewriteNote: str
-    sceneSummary: str
-    templateDescription: str
-    templateName: str
-    templateTags: list
-    tone: str
-    toneCues: list
-    trendKeywords: list
-    trendReferences: list
-    trendSignals: list
-    variationOffset: int
-    voiceRules: list
 
 
 class AiCaptionCreateDataRequired(TypedDict):
@@ -403,16 +361,7 @@ class AiProvider(AiProviderRequired, total=False):
 
 
 class AiProviderLoadMatch(TypedDict, total=False):
-    actorId: str
-    correlationId: str
-    limit: float
-    mappingMode: str
-    maxSlots: int
-    prompt: str
-    sourceImageUrl: str
-    texts: list
-    trendSignals: list
-    workspaceId: str
+    refresh: bool
 
 
 class AiProviderCreateDataRequired(TypedDict):
@@ -435,8 +384,8 @@ class Analytics(TypedDict):
     pass
 
 
-class AnalyticsLoadMatch(TypedDict):
-    pass
+class AnalyticsLoadMatch(TypedDict, total=False):
+    template_id: str
 
 
 class AuthRequired(TypedDict):
@@ -461,8 +410,9 @@ class Billing(TypedDict):
     pass
 
 
-class BillingLoadMatch(TypedDict):
-    pass
+class BillingLoadMatch(TypedDict, total=False):
+    window_day: int
+    workspace_id: str
 
 
 class CollaborationRequired(TypedDict):
@@ -474,10 +424,13 @@ class Collaboration(CollaborationRequired, total=False):
     authorId: str
 
 
-class CollaborationLoadMatch(TypedDict, total=False):
-    authorId: str
-    message: str
-    projectId: str
+class CollaborationLoadMatchRequired(TypedDict):
+    project_id: str
+
+
+class CollaborationLoadMatch(CollaborationLoadMatchRequired, total=False):
+    page: int
+    page_size: int
 
 
 class CollaborationCreateDataRequired(TypedDict):
@@ -606,28 +559,14 @@ class FreeTemplateSearch(FreeTemplateSearchRequired, total=False):
 
 
 class FreeTemplateSearchListMatch(TypedDict, total=False):
-    animated: bool
-    assetBytes: int | None
-    assetContentType: str
-    boxCount: int
-    captionCount: int
-    captions: list
-    description: str
-    durationMs: int | None
-    exampleImageUrl: str | None
-    frameCount: int | None
-    height: float | None
-    id: str
-    imageUrl: str
-    mediaType: str
-    name: str
-    posterImageUrl: str
-    qualityStatus: str
-    slug: str
-    sourceTemplateId: str | None
-    sourceUrl: str
-    tags: list
-    width: float | None
+    media_type: str
+    mode: str
+    page: int
+    page_size: int
+    q: str
+    query: str
+    sort: str
+    tag: str
 
 
 class GenerateRequired(TypedDict):
@@ -704,23 +643,13 @@ class Growth(GrowthRequired, total=False):
     weekStart: str
 
 
-class GrowthLoadMatch(TypedDict, total=False):
-    accountId: str
-    action: str
-    actorId: str
-    caption: str
-    code: str
-    externalAccountId: str
-    handle: str
-    limit: int
-    logExposure: bool
-    memeSlug: str
-    now: str
-    platform: str
-    profiles: list
-    shareSlug: str
+class GrowthLoadMatchRequired(TypedDict):
+    actor_id: str
+
+
+class GrowthLoadMatch(GrowthLoadMatchRequired, total=False):
+    log_exposure: bool
     surface: str
-    weekStart: str
 
 
 class GrowthCreateDataRequired(TypedDict):
@@ -762,18 +691,14 @@ class ListMeme(TypedDict):
 
 
 class ListMemeListMatch(TypedDict, total=False):
-    altText: str
-    canonicalImageUrl: str
-    createdAt: str
-    imageUrl: str
-    nsfwStatus: str
-    shareSlug: str
-    shareUrl: str
-    shareViews: int
-    slug: str
-    tags: list
-    templateSlug: str
-    title: str
+    exclude_template_clone: bool
+    include_nsfw: bool
+    official_only: bool
+    owner_token: str
+    page: int
+    page_size: int
+    query: str
+    template_slug: str
     visibility: str
 
 
@@ -826,8 +751,12 @@ class Meme(MemeRequired, total=False):
     id: str
 
 
-class MemeLoadMatch(TypedDict):
+class MemeLoadMatchRequired(TypedDict):
     id: str
+
+
+class MemeLoadMatch(MemeLoadMatchRequired, total=False):
+    owner_token: str
 
 
 class MemeRemoveMatch(TypedDict):
@@ -864,8 +793,12 @@ class PublicTemplateMediaItem(PublicTemplateMediaItemRequired, total=False):
     sourceUrl: str
 
 
-class PublicTemplateMediaItemLoadMatch(TypedDict):
+class PublicTemplateMediaItemLoadMatchRequired(TypedDict):
     slug: str
+
+
+class PublicTemplateMediaItemLoadMatch(PublicTemplateMediaItemLoadMatchRequired, total=False):
+    media_type: str
 
 
 class StandaloneAgentBootstrapRequired(TypedDict):
@@ -933,36 +866,14 @@ class Template(TemplateRequired, total=False):
 
 
 class TemplateListMatch(TypedDict, total=False):
-    animated: bool
-    assetBytes: int | None
-    assetContentType: str
-    boxCount: int
-    captionCount: int
-    captions: list
-    categories: list
-    description: str
-    durationMs: int
-    exampleImageUrl: str | None
-    fps: int
-    frameCount: int | None
-    gifSlug: str
-    height: float | None
-    id: str
-    imageUrl: str
-    mediaType: str
-    name: str
-    posterImageUrl: str
-    previewImageUrl: str
-    qualityStatus: str
-    returnBase64: bool
-    slug: str
-    sourceTemplateId: str | None
-    sourceUrl: str
-    startMs: int
-    tags: list
-    title: str
-    width: float | None
-    widthPx: int
+    media_type: str
+    mode: str
+    page: int
+    page_size: int
+    q: str
+    query: str
+    sort: str
+    tag: str
 
 
 class TemplateCreateDataRequired(TypedDict):
@@ -1032,30 +943,12 @@ class TemplateSearch(TemplateSearchRequired, total=False):
 
 
 class TemplateSearchListMatch(TypedDict, total=False):
-    animated: bool
-    assetBytes: int | None
-    assetContentType: str
-    boxCount: int
-    captionCount: int
-    captions: list
-    categories: list
-    description: str
-    durationMs: int | None
-    exampleImageUrl: str | None
-    frameCount: int | None
-    height: float | None
-    id: str
-    imageUrl: str
-    mediaType: str
-    name: str
-    posterImageUrl: str
-    previewImageUrl: str
-    qualityStatus: str
-    slug: str
-    sourceTemplateId: str | None
-    sourceUrl: str
-    tags: list
-    width: float | None
+    page: int
+    page_size: int
+    q: str
+    query: str
+    sort: str
+    tag: str
 
 
 class TrendAlertRequired(TypedDict):
@@ -1081,21 +974,18 @@ class TrendAlert(TrendAlertRequired, total=False):
 
 
 class TrendAlertLoadMatch(TypedDict, total=False):
-    action: str
-    actorId: str
+    actor_id: str
     aggressiveness: float
-    alertId: str
-    channels: list
-    deliverAllAlerts: bool
-    event: dict
-    explicitNiches: list
-    explicitRegions: list
-    explicitSources: list
-    explicitTopics: list
-    followerCount: int
+    follower_count: int
     niche: str
+    page: int
+    page_size: int
+    preferred_niche: str
+    preferred_region: str
+    query: str
     region: str
     source: str
+    status: str
     topic: str
 
 
@@ -1181,51 +1071,14 @@ class Video(VideoRequired, total=False):
 
 
 class VideoLoadMatch(TypedDict, total=False):
-    action: str
-    assetId: str
-    atMs: float
-    audioAssetId: str
-    beatOffsetMs: int
-    bitrateKbps: float
+    beat_offset_m: int
     bpm: int
-    cancelled: bool
-    container: str
-    durationMs: float
-    durationSeconds: float
-    easing: str
-    error: str
-    frameRate: float
-    inputFormat: str
-    intensity: float
-    jobId: str
     locale: str
-    mimeType: str
-    name: str
-    offsetMs: float
-    outputPresetId: str
-    outputUrl: str
-    planTier: str
-    presetId: str
-    progressPercent: float
-    project: dict
-    projectId: str
-    property: str
-    sourceDeviceId: str
-    sourceUrl: str
-    stage: str
-    startMs: float
-    stylePresetId: str
-    syncToBeatGrid: bool
+    style_preset_id: str
+    sync_to_beat_grid: bool
     tone: str
-    trackId: str
     transcript: str
-    trendKeywords: list
-    type: str
-    updatedAt: str
-    value: float
-    watermarkEnabled: bool
-    watermarkText: str
-    workerId: str
+    trend_keyword: str
 
 
 class VideoCreateDataRequired(TypedDict):

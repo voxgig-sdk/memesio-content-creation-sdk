@@ -215,62 +215,14 @@ AgentInfra = Struct.new(
 
 # Request payload for AgentInfra#load.
 #
-# @!attribute [rw] action
-#   @return [String, nil]
-#
-# @!attribute [rw] chatId
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] memeSlug
-#   @return [String, nil]
-#
-# @!attribute [rw] metadata
-#   @return [Hash, nil]
-#
-# @!attribute [rw] payoutReference
-#   @return [String, nil]
-#
-# @!attribute [rw] payoutStatus
-#   @return [String, nil]
-#
-# @!attribute [rw] phoneOrChatId
-#   @return [String, nil]
-#
-# @!attribute [rw] prompt
-#   @return [String, nil]
-#
-# @!attribute [rw] proof
-#   @return [Hash, nil]
-#
-# @!attribute [rw] quotaBoostPerDay
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] scopes
-#   @return [Array, nil]
-#
-# @!attribute [rw] userId
-#   @return [String, nil]
-#
-# @!attribute [rw] weekStart
+# @!attribute [rw] week_start
 #   @return [String, nil]
 AgentInfraLoadMatch = Struct.new(
-  :action,
-  :chatId,
-  :id,
-  :memeSlug,
-  :metadata,
-  :payoutReference,
-  :payoutStatus,
-  :phoneOrChatId,
-  :prompt,
-  :proof,
-  :quotaBoostPerDay,
-  :scopes,
-  :userId,
-  :weekStart,
+  :limit,
+  :week_start,
   keyword_init: true
 )
 
@@ -467,118 +419,10 @@ AiCaption = Struct.new(
 
 # Request payload for AiCaption#load.
 #
-# @!attribute [rw] blockedTerms
-#   @return [Array, nil]
-#
-# @!attribute [rw] canvasText
-#   @return [Array, nil]
-#
-# @!attribute [rw] captionCount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] captionSets
-#   @return [Array, nil]
-#
-# @!attribute [rw] entities
-#   @return [Array, nil]
-#
-# @!attribute [rw] fallbackUsed
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] generationStrategy
-#   @return [String, nil]
-#
 # @!attribute [rw] locale
 #   @return [String, nil]
-#
-# @!attribute [rw] memeId
-#   @return [String, nil]
-#
-# @!attribute [rw] memeSlug
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] ok
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] optionCount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] ownerToken
-#   @return [String, nil]
-#
-# @!attribute [rw] providerId
-#   @return [String, nil]
-#
-# @!attribute [rw] referenceCaptions
-#   @return [Array, nil]
-#
-# @!attribute [rw] rewriteNote
-#   @return [String, nil]
-#
-# @!attribute [rw] sceneSummary
-#   @return [String, nil]
-#
-# @!attribute [rw] templateDescription
-#   @return [String, nil]
-#
-# @!attribute [rw] templateName
-#   @return [String, nil]
-#
-# @!attribute [rw] templateTags
-#   @return [Array, nil]
-#
-# @!attribute [rw] tone
-#   @return [String, nil]
-#
-# @!attribute [rw] toneCues
-#   @return [Array, nil]
-#
-# @!attribute [rw] trendKeywords
-#   @return [Array, nil]
-#
-# @!attribute [rw] trendReferences
-#   @return [Array, nil]
-#
-# @!attribute [rw] trendSignals
-#   @return [Array, nil]
-#
-# @!attribute [rw] variationOffset
-#   @return [Integer, nil]
-#
-# @!attribute [rw] voiceRules
-#   @return [Array, nil]
 AiCaptionLoadMatch = Struct.new(
-  :blockedTerms,
-  :canvasText,
-  :captionCount,
-  :captionSets,
-  :entities,
-  :fallbackUsed,
-  :generationStrategy,
   :locale,
-  :memeId,
-  :memeSlug,
-  :name,
-  :ok,
-  :optionCount,
-  :ownerToken,
-  :providerId,
-  :referenceCaptions,
-  :rewriteNote,
-  :sceneSummary,
-  :templateDescription,
-  :templateName,
-  :templateTags,
-  :tone,
-  :toneCues,
-  :trendKeywords,
-  :trendReferences,
-  :trendSignals,
-  :variationOffset,
-  :voiceRules,
   keyword_init: true
 )
 
@@ -1279,46 +1123,10 @@ AiProvider = Struct.new(
 
 # Request payload for AiProvider#load.
 #
-# @!attribute [rw] actorId
-#   @return [String, nil]
-#
-# @!attribute [rw] correlationId
-#   @return [String, nil]
-#
-# @!attribute [rw] limit
-#   @return [Float, nil]
-#
-# @!attribute [rw] mappingMode
-#   @return [String, nil]
-#
-# @!attribute [rw] maxSlots
-#   @return [Integer, nil]
-#
-# @!attribute [rw] prompt
-#   @return [String, nil]
-#
-# @!attribute [rw] sourceImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] texts
-#   @return [Array, nil]
-#
-# @!attribute [rw] trendSignals
-#   @return [Array, nil]
-#
-# @!attribute [rw] workspaceId
-#   @return [String, nil]
+# @!attribute [rw] refresh
+#   @return [Boolean, nil]
 AiProviderLoadMatch = Struct.new(
-  :actorId,
-  :correlationId,
-  :limit,
-  :mappingMode,
-  :maxSlots,
-  :prompt,
-  :sourceImageUrl,
-  :texts,
-  :trendSignals,
-  :workspaceId,
+  :refresh,
   keyword_init: true
 )
 
@@ -1372,8 +1180,13 @@ class Analytics
 end
 
 # Request payload for Analytics#load.
-class AnalyticsLoadMatch
-end
+#
+# @!attribute [rw] template_id
+#   @return [String, nil]
+AnalyticsLoadMatch = Struct.new(
+  :template_id,
+  keyword_init: true
+)
 
 # Auth entity data model.
 #
@@ -1414,8 +1227,17 @@ class Billing
 end
 
 # Request payload for Billing#load.
-class BillingLoadMatch
-end
+#
+# @!attribute [rw] window_day
+#   @return [Integer, nil]
+#
+# @!attribute [rw] workspace_id
+#   @return [String, nil]
+BillingLoadMatch = Struct.new(
+  :window_day,
+  :workspace_id,
+  keyword_init: true
+)
 
 # Collaboration entity data model.
 #
@@ -1436,18 +1258,18 @@ Collaboration = Struct.new(
 
 # Request payload for Collaboration#load.
 #
-# @!attribute [rw] authorId
-#   @return [String, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 #
-# @!attribute [rw] message
-#   @return [String, nil]
+# @!attribute [rw] page_size
+#   @return [Integer, nil]
 #
-# @!attribute [rw] projectId
-#   @return [String, nil]
+# @!attribute [rw] project_id
+#   @return [String]
 CollaborationLoadMatch = Struct.new(
-  :authorId,
-  :message,
-  :projectId,
+  :page,
+  :page_size,
+  :project_id,
   keyword_init: true
 )
 
@@ -1770,94 +1592,38 @@ FreeTemplateSearch = Struct.new(
 
 # Request payload for FreeTemplateSearch#list.
 #
-# @!attribute [rw] animated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] assetBytes
-#   @return [Object, nil]
-#
-# @!attribute [rw] assetContentType
+# @!attribute [rw] media_type
 #   @return [String, nil]
 #
-# @!attribute [rw] boxCount
+# @!attribute [rw] mode
+#   @return [String, nil]
+#
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] captionCount
+# @!attribute [rw] page_size
 #   @return [Integer, nil]
 #
-# @!attribute [rw] captions
-#   @return [Array, nil]
-#
-# @!attribute [rw] description
+# @!attribute [rw] q
 #   @return [String, nil]
 #
-# @!attribute [rw] durationMs
-#   @return [Object, nil]
-#
-# @!attribute [rw] exampleImageUrl
-#   @return [Object, nil]
-#
-# @!attribute [rw] frameCount
-#   @return [Object, nil]
-#
-# @!attribute [rw] height
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] query
 #   @return [String, nil]
 #
-# @!attribute [rw] imageUrl
+# @!attribute [rw] sort
 #   @return [String, nil]
 #
-# @!attribute [rw] mediaType
+# @!attribute [rw] tag
 #   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] posterImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] qualityStatus
-#   @return [String, nil]
-#
-# @!attribute [rw] slug
-#   @return [String, nil]
-#
-# @!attribute [rw] sourceTemplateId
-#   @return [Object, nil]
-#
-# @!attribute [rw] sourceUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] width
-#   @return [Object, nil]
 FreeTemplateSearchListMatch = Struct.new(
-  :animated,
-  :assetBytes,
-  :assetContentType,
-  :boxCount,
-  :captionCount,
-  :captions,
-  :description,
-  :durationMs,
-  :exampleImageUrl,
-  :frameCount,
-  :height,
-  :id,
-  :imageUrl,
-  :mediaType,
-  :name,
-  :posterImageUrl,
-  :qualityStatus,
-  :slug,
-  :sourceTemplateId,
-  :sourceUrl,
-  :tags,
-  :width,
+  :media_type,
+  :mode,
+  :page,
+  :page_size,
+  :q,
+  :query,
+  :sort,
+  :tag,
   keyword_init: true
 )
 
@@ -2102,70 +1868,18 @@ Growth = Struct.new(
 
 # Request payload for Growth#load.
 #
-# @!attribute [rw] accountId
-#   @return [String, nil]
+# @!attribute [rw] actor_id
+#   @return [String]
 #
-# @!attribute [rw] action
-#   @return [String, nil]
-#
-# @!attribute [rw] actorId
-#   @return [String, nil]
-#
-# @!attribute [rw] caption
-#   @return [String, nil]
-#
-# @!attribute [rw] code
-#   @return [String, nil]
-#
-# @!attribute [rw] externalAccountId
-#   @return [String, nil]
-#
-# @!attribute [rw] handle
-#   @return [String, nil]
-#
-# @!attribute [rw] limit
-#   @return [Integer, nil]
-#
-# @!attribute [rw] logExposure
+# @!attribute [rw] log_exposure
 #   @return [Boolean, nil]
-#
-# @!attribute [rw] memeSlug
-#   @return [String, nil]
-#
-# @!attribute [rw] now
-#   @return [String, nil]
-#
-# @!attribute [rw] platform
-#   @return [String, nil]
-#
-# @!attribute [rw] profiles
-#   @return [Array, nil]
-#
-# @!attribute [rw] shareSlug
-#   @return [String, nil]
 #
 # @!attribute [rw] surface
 #   @return [String, nil]
-#
-# @!attribute [rw] weekStart
-#   @return [String, nil]
 GrowthLoadMatch = Struct.new(
-  :accountId,
-  :action,
-  :actorId,
-  :caption,
-  :code,
-  :externalAccountId,
-  :handle,
-  :limit,
-  :logExposure,
-  :memeSlug,
-  :now,
-  :platform,
-  :profiles,
-  :shareSlug,
+  :actor_id,
+  :log_exposure,
   :surface,
-  :weekStart,
   keyword_init: true
 )
 
@@ -2297,57 +2011,41 @@ ListMeme = Struct.new(
 
 # Request payload for ListMeme#list.
 #
-# @!attribute [rw] altText
+# @!attribute [rw] exclude_template_clone
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] include_nsfw
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] official_only
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] owner_token
 #   @return [String, nil]
 #
-# @!attribute [rw] canonicalImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] createdAt
-#   @return [String, nil]
-#
-# @!attribute [rw] imageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] nsfwStatus
-#   @return [String, nil]
-#
-# @!attribute [rw] shareSlug
-#   @return [String, nil]
-#
-# @!attribute [rw] shareUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] shareViews
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] slug
+# @!attribute [rw] page_size
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 #
-# @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] templateSlug
-#   @return [String, nil]
-#
-# @!attribute [rw] title
+# @!attribute [rw] template_slug
 #   @return [String, nil]
 #
 # @!attribute [rw] visibility
 #   @return [String, nil]
 ListMemeListMatch = Struct.new(
-  :altText,
-  :canonicalImageUrl,
-  :createdAt,
-  :imageUrl,
-  :nsfwStatus,
-  :shareSlug,
-  :shareUrl,
-  :shareViews,
-  :slug,
-  :tags,
-  :templateSlug,
-  :title,
+  :exclude_template_clone,
+  :include_nsfw,
+  :official_only,
+  :owner_token,
+  :page,
+  :page_size,
+  :query,
+  :template_slug,
   :visibility,
   keyword_init: true
 )
@@ -2495,8 +2193,12 @@ Meme = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] owner_token
+#   @return [String, nil]
 MemeLoadMatch = Struct.new(
   :id,
+  :owner_token,
   keyword_init: true
 )
 
@@ -2614,8 +2316,12 @@ PublicTemplateMediaItem = Struct.new(
 #
 # @!attribute [rw] slug
 #   @return [String]
+#
+# @!attribute [rw] media_type
+#   @return [String, nil]
 PublicTemplateMediaItemLoadMatch = Struct.new(
   :slug,
+  :media_type,
   keyword_init: true
 )
 
@@ -2820,126 +2526,38 @@ Template = Struct.new(
 
 # Request payload for Template#list.
 #
-# @!attribute [rw] animated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] assetBytes
-#   @return [Object, nil]
-#
-# @!attribute [rw] assetContentType
+# @!attribute [rw] media_type
 #   @return [String, nil]
 #
-# @!attribute [rw] boxCount
+# @!attribute [rw] mode
+#   @return [String, nil]
+#
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] captionCount
+# @!attribute [rw] page_size
 #   @return [Integer, nil]
 #
-# @!attribute [rw] captions
-#   @return [Array, nil]
-#
-# @!attribute [rw] categories
-#   @return [Array, nil]
-#
-# @!attribute [rw] description
+# @!attribute [rw] q
 #   @return [String, nil]
 #
-# @!attribute [rw] durationMs
-#   @return [Integer, nil]
-#
-# @!attribute [rw] exampleImageUrl
-#   @return [Object, nil]
-#
-# @!attribute [rw] fps
-#   @return [Integer, nil]
-#
-# @!attribute [rw] frameCount
-#   @return [Object, nil]
-#
-# @!attribute [rw] gifSlug
+# @!attribute [rw] query
 #   @return [String, nil]
 #
-# @!attribute [rw] height
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] sort
 #   @return [String, nil]
 #
-# @!attribute [rw] imageUrl
+# @!attribute [rw] tag
 #   @return [String, nil]
-#
-# @!attribute [rw] mediaType
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] posterImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] previewImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] qualityStatus
-#   @return [String, nil]
-#
-# @!attribute [rw] returnBase64
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] slug
-#   @return [String, nil]
-#
-# @!attribute [rw] sourceTemplateId
-#   @return [Object, nil]
-#
-# @!attribute [rw] sourceUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] startMs
-#   @return [Integer, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] width
-#   @return [Object, nil]
-#
-# @!attribute [rw] widthPx
-#   @return [Integer, nil]
 TemplateListMatch = Struct.new(
-  :animated,
-  :assetBytes,
-  :assetContentType,
-  :boxCount,
-  :captionCount,
-  :captions,
-  :categories,
-  :description,
-  :durationMs,
-  :exampleImageUrl,
-  :fps,
-  :frameCount,
-  :gifSlug,
-  :height,
-  :id,
-  :imageUrl,
-  :mediaType,
-  :name,
-  :posterImageUrl,
-  :previewImageUrl,
-  :qualityStatus,
-  :returnBase64,
-  :slug,
-  :sourceTemplateId,
-  :sourceUrl,
-  :startMs,
-  :tags,
-  :title,
-  :width,
-  :widthPx,
+  :media_type,
+  :mode,
+  :page,
+  :page_size,
+  :q,
+  :query,
+  :sort,
+  :tag,
   keyword_init: true
 )
 
@@ -3171,102 +2789,30 @@ TemplateSearch = Struct.new(
 
 # Request payload for TemplateSearch#list.
 #
-# @!attribute [rw] animated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] assetBytes
-#   @return [Object, nil]
-#
-# @!attribute [rw] assetContentType
-#   @return [String, nil]
-#
-# @!attribute [rw] boxCount
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] captionCount
+# @!attribute [rw] page_size
 #   @return [Integer, nil]
 #
-# @!attribute [rw] captions
-#   @return [Array, nil]
-#
-# @!attribute [rw] categories
-#   @return [Array, nil]
-#
-# @!attribute [rw] description
+# @!attribute [rw] q
 #   @return [String, nil]
 #
-# @!attribute [rw] durationMs
-#   @return [Object, nil]
-#
-# @!attribute [rw] exampleImageUrl
-#   @return [Object, nil]
-#
-# @!attribute [rw] frameCount
-#   @return [Object, nil]
-#
-# @!attribute [rw] height
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] query
 #   @return [String, nil]
 #
-# @!attribute [rw] imageUrl
+# @!attribute [rw] sort
 #   @return [String, nil]
 #
-# @!attribute [rw] mediaType
+# @!attribute [rw] tag
 #   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] posterImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] previewImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] qualityStatus
-#   @return [String, nil]
-#
-# @!attribute [rw] slug
-#   @return [String, nil]
-#
-# @!attribute [rw] sourceTemplateId
-#   @return [Object, nil]
-#
-# @!attribute [rw] sourceUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] width
-#   @return [Object, nil]
 TemplateSearchListMatch = Struct.new(
-  :animated,
-  :assetBytes,
-  :assetContentType,
-  :boxCount,
-  :captionCount,
-  :captions,
-  :categories,
-  :description,
-  :durationMs,
-  :exampleImageUrl,
-  :frameCount,
-  :height,
-  :id,
-  :imageUrl,
-  :mediaType,
-  :name,
-  :posterImageUrl,
-  :previewImageUrl,
-  :qualityStatus,
-  :slug,
-  :sourceTemplateId,
-  :sourceUrl,
-  :tags,
-  :width,
+  :page,
+  :page_size,
+  :q,
+  :query,
+  :sort,
+  :tag,
   keyword_init: true
 )
 
@@ -3341,43 +2887,31 @@ TrendAlert = Struct.new(
 
 # Request payload for TrendAlert#load.
 #
-# @!attribute [rw] action
-#   @return [String, nil]
-#
-# @!attribute [rw] actorId
+# @!attribute [rw] actor_id
 #   @return [String, nil]
 #
 # @!attribute [rw] aggressiveness
 #   @return [Float, nil]
 #
-# @!attribute [rw] alertId
-#   @return [String, nil]
-#
-# @!attribute [rw] channels
-#   @return [Array, nil]
-#
-# @!attribute [rw] deliverAllAlerts
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] event
-#   @return [Hash, nil]
-#
-# @!attribute [rw] explicitNiches
-#   @return [Array, nil]
-#
-# @!attribute [rw] explicitRegions
-#   @return [Array, nil]
-#
-# @!attribute [rw] explicitSources
-#   @return [Array, nil]
-#
-# @!attribute [rw] explicitTopics
-#   @return [Array, nil]
-#
-# @!attribute [rw] followerCount
+# @!attribute [rw] follower_count
 #   @return [Integer, nil]
 #
 # @!attribute [rw] niche
+#   @return [String, nil]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] page_size
+#   @return [Integer, nil]
+#
+# @!attribute [rw] preferred_niche
+#   @return [String, nil]
+#
+# @!attribute [rw] preferred_region
+#   @return [String, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 #
 # @!attribute [rw] region
@@ -3386,24 +2920,24 @@ TrendAlert = Struct.new(
 # @!attribute [rw] source
 #   @return [String, nil]
 #
+# @!attribute [rw] status
+#   @return [String, nil]
+#
 # @!attribute [rw] topic
 #   @return [String, nil]
 TrendAlertLoadMatch = Struct.new(
-  :action,
-  :actorId,
+  :actor_id,
   :aggressiveness,
-  :alertId,
-  :channels,
-  :deliverAllAlerts,
-  :event,
-  :explicitNiches,
-  :explicitRegions,
-  :explicitSources,
-  :explicitTopics,
-  :followerCount,
+  :follower_count,
   :niche,
+  :page,
+  :page_size,
+  :preferred_niche,
+  :preferred_region,
+  :query,
   :region,
   :source,
+  :status,
   :topic,
   keyword_init: true
 )
@@ -3672,186 +3206,38 @@ Video = Struct.new(
 
 # Request payload for Video#load.
 #
-# @!attribute [rw] action
-#   @return [String, nil]
-#
-# @!attribute [rw] assetId
-#   @return [String, nil]
-#
-# @!attribute [rw] atMs
-#   @return [Float, nil]
-#
-# @!attribute [rw] audioAssetId
-#   @return [String, nil]
-#
-# @!attribute [rw] beatOffsetMs
+# @!attribute [rw] beat_offset_m
 #   @return [Integer, nil]
-#
-# @!attribute [rw] bitrateKbps
-#   @return [Float, nil]
 #
 # @!attribute [rw] bpm
 #   @return [Integer, nil]
 #
-# @!attribute [rw] cancelled
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] container
-#   @return [String, nil]
-#
-# @!attribute [rw] durationMs
-#   @return [Float, nil]
-#
-# @!attribute [rw] durationSeconds
-#   @return [Float, nil]
-#
-# @!attribute [rw] easing
-#   @return [String, nil]
-#
-# @!attribute [rw] error
-#   @return [String, nil]
-#
-# @!attribute [rw] frameRate
-#   @return [Float, nil]
-#
-# @!attribute [rw] inputFormat
-#   @return [String, nil]
-#
-# @!attribute [rw] intensity
-#   @return [Float, nil]
-#
-# @!attribute [rw] jobId
-#   @return [String, nil]
-#
 # @!attribute [rw] locale
 #   @return [String, nil]
 #
-# @!attribute [rw] mimeType
+# @!attribute [rw] style_preset_id
 #   @return [String, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] offsetMs
-#   @return [Float, nil]
-#
-# @!attribute [rw] outputPresetId
-#   @return [String, nil]
-#
-# @!attribute [rw] outputUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] planTier
-#   @return [String, nil]
-#
-# @!attribute [rw] presetId
-#   @return [String, nil]
-#
-# @!attribute [rw] progressPercent
-#   @return [Float, nil]
-#
-# @!attribute [rw] project
-#   @return [Hash, nil]
-#
-# @!attribute [rw] projectId
-#   @return [String, nil]
-#
-# @!attribute [rw] property
-#   @return [String, nil]
-#
-# @!attribute [rw] sourceDeviceId
-#   @return [String, nil]
-#
-# @!attribute [rw] sourceUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] stage
-#   @return [String, nil]
-#
-# @!attribute [rw] startMs
-#   @return [Float, nil]
-#
-# @!attribute [rw] stylePresetId
-#   @return [String, nil]
-#
-# @!attribute [rw] syncToBeatGrid
+# @!attribute [rw] sync_to_beat_grid
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] tone
 #   @return [String, nil]
 #
-# @!attribute [rw] trackId
-#   @return [String, nil]
-#
 # @!attribute [rw] transcript
 #   @return [String, nil]
 #
-# @!attribute [rw] trendKeywords
-#   @return [Array, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
-#
-# @!attribute [rw] updatedAt
-#   @return [String, nil]
-#
-# @!attribute [rw] value
-#   @return [Float, nil]
-#
-# @!attribute [rw] watermarkEnabled
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] watermarkText
-#   @return [String, nil]
-#
-# @!attribute [rw] workerId
+# @!attribute [rw] trend_keyword
 #   @return [String, nil]
 VideoLoadMatch = Struct.new(
-  :action,
-  :assetId,
-  :atMs,
-  :audioAssetId,
-  :beatOffsetMs,
-  :bitrateKbps,
+  :beat_offset_m,
   :bpm,
-  :cancelled,
-  :container,
-  :durationMs,
-  :durationSeconds,
-  :easing,
-  :error,
-  :frameRate,
-  :inputFormat,
-  :intensity,
-  :jobId,
   :locale,
-  :mimeType,
-  :name,
-  :offsetMs,
-  :outputPresetId,
-  :outputUrl,
-  :planTier,
-  :presetId,
-  :progressPercent,
-  :project,
-  :projectId,
-  :property,
-  :sourceDeviceId,
-  :sourceUrl,
-  :stage,
-  :startMs,
-  :stylePresetId,
-  :syncToBeatGrid,
+  :style_preset_id,
+  :sync_to_beat_grid,
   :tone,
-  :trackId,
   :transcript,
-  :trendKeywords,
-  :type,
-  :updatedAt,
-  :value,
-  :watermarkEnabled,
-  :watermarkText,
-  :workerId,
+  :trend_keyword,
   keyword_init: true
 )
 

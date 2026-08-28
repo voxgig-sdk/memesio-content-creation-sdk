@@ -987,7 +987,7 @@ Create an instance: `local agent_infra = client:AgentInfra(nil)`
 #### Example: Load
 
 ```lua
-local agent_infra, err = client:AgentInfra():load({ id = "agent_infra_id" })
+local agent_infra, err = client:AgentInfra():load()
 ```
 
 #### Example: Create
@@ -1326,7 +1326,7 @@ Create an instance: `local collaboration = client:Collaboration(nil)`
 #### Example: Load
 
 ```lua
-local collaboration, err = client:Collaboration():load()
+local collaboration, err = client:Collaboration():load({ project_id = "project_id" })
 ```
 
 #### Example: Create
@@ -1591,7 +1591,7 @@ Create an instance: `local growth = client:Growth(nil)`
 #### Example: Load
 
 ```lua
-local growth, err = client:Growth():load()
+local growth, err = client:Growth():load({ actor_id = "actor_id" })
 ```
 
 #### Example: Create
@@ -2051,6 +2051,29 @@ local video, err = client:Video():create({
   presetId = "example_presetId", -- string
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

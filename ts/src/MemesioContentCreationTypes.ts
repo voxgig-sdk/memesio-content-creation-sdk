@@ -66,20 +66,8 @@ export interface AgentInfra {
 }
 
 export interface AgentInfraLoadMatch {
-  action?: string
-  chatId?: string
-  id: string
-  memeSlug?: string
-  metadata?: Record<string, any>
-  payoutReference?: string
-  payoutStatus?: string
-  phoneOrChatId?: string
-  prompt?: string
-  proof?: Record<string, any>
-  quotaBoostPerDay?: number
-  scopes?: any[]
-  userId?: string
-  weekStart?: string
+  limit?: number
+  week_start?: string
 
   // Selects a custom action instead of the plain load:
   //   'keys'
@@ -148,34 +136,7 @@ export interface AiCaption {
 }
 
 export interface AiCaptionLoadMatch {
-  blockedTerms?: any[]
-  canvasText?: any[]
-  captionCount?: number
-  captionSets?: any[]
-  entities?: any[]
-  fallbackUsed?: boolean
-  generationStrategy?: string
   locale?: string
-  memeId?: string
-  memeSlug?: string
-  name?: string
-  ok?: boolean
-  optionCount?: number
-  ownerToken?: string
-  providerId?: string
-  referenceCaptions?: any[]
-  rewriteNote?: string
-  sceneSummary?: string
-  templateDescription?: string
-  templateName?: string
-  templateTags?: any[]
-  tone?: string
-  toneCues?: any[]
-  trendKeywords?: any[]
-  trendReferences?: any[]
-  trendSignals?: any[]
-  variationOffset?: number
-  voiceRules?: any[]
 }
 
 export interface AiCaptionCreateData {
@@ -365,16 +326,7 @@ export interface AiProvider {
 }
 
 export interface AiProviderLoadMatch {
-  actorId?: string
-  correlationId?: string
-  limit?: number
-  mappingMode?: string
-  maxSlots?: number
-  prompt?: string
-  sourceImageUrl?: string
-  texts?: any[]
-  trendSignals?: any[]
-  workspaceId?: string
+  refresh?: boolean
 }
 
 export interface AiProviderCreateData {
@@ -394,6 +346,7 @@ export interface Analytics {
 }
 
 export interface AnalyticsLoadMatch {
+  template_id?: string
 
   // Selects a custom action instead of the plain load:
   //   'metric_dictionary'
@@ -424,6 +377,8 @@ export interface Billing {
 }
 
 export interface BillingLoadMatch {
+  window_day?: number
+  workspace_id?: string
 
   // Selects a custom action instead of the plain load:
   //   'usage'
@@ -439,9 +394,9 @@ export interface Collaboration {
 }
 
 export interface CollaborationLoadMatch {
-  authorId?: string
-  message?: string
-  projectId?: string
+  page?: number
+  page_size?: number
+  project_id: string
 }
 
 export interface CollaborationCreateData {
@@ -550,28 +505,14 @@ export interface FreeTemplateSearch {
 }
 
 export interface FreeTemplateSearchListMatch {
-  animated?: boolean
-  assetBytes?: number | null
-  assetContentType?: string
-  boxCount?: number
-  captionCount?: number
-  captions?: any[]
-  description?: string
-  durationMs?: number | null
-  exampleImageUrl?: string | null
-  frameCount?: number | null
-  height?: number | null
-  id?: string
-  imageUrl?: string
-  mediaType?: string
-  name?: string
-  posterImageUrl?: string
-  qualityStatus?: string
-  slug?: string
-  sourceTemplateId?: string | null
-  sourceUrl?: string
-  tags?: any[]
-  width?: number | null
+  media_type?: string
+  mode?: string
+  page?: number
+  page_size?: number
+  q?: string
+  query?: string
+  sort?: string
+  tag?: string
 }
 
 export interface Generate {
@@ -640,22 +581,9 @@ export interface Growth {
 }
 
 export interface GrowthLoadMatch {
-  accountId?: string
-  action?: string
-  actorId?: string
-  caption?: string
-  code?: string
-  externalAccountId?: string
-  handle?: string
-  limit?: number
-  logExposure?: boolean
-  memeSlug?: string
-  now?: string
-  platform?: string
-  profiles?: any[]
-  shareSlug?: string
+  actor_id: string
+  log_exposure?: boolean
   surface?: string
-  weekStart?: string
 
   // Selects a custom action instead of the plain load:
   //   'lifecycle_messaging' | 'referral' | 'social_publish' | 'trend_campaign' | 'viral_trigger'
@@ -706,18 +634,14 @@ export interface ListMeme {
 }
 
 export interface ListMemeListMatch {
-  altText?: string
-  canonicalImageUrl?: string
-  createdAt?: string
-  imageUrl?: string
-  nsfwStatus?: string
-  shareSlug?: string
-  shareUrl?: string
-  shareViews?: number
-  slug?: string
-  tags?: any[]
-  templateSlug?: string
-  title?: string
+  exclude_template_clone?: boolean
+  include_nsfw?: boolean
+  official_only?: boolean
+  owner_token?: string
+  page?: number
+  page_size?: number
+  query?: string
+  template_slug?: string
   visibility?: string
 }
 
@@ -769,6 +693,7 @@ export interface Meme {
 
 export interface MemeLoadMatch {
   id: string
+  owner_token?: string
 }
 
 export interface MemeRemoveMatch {
@@ -804,6 +729,7 @@ export interface PublicTemplateMediaItem {
 
 export interface PublicTemplateMediaItemLoadMatch {
   slug: string
+  media_type?: string
 }
 
 export interface StandaloneAgentBootstrap {
@@ -862,36 +788,14 @@ export interface Template {
 }
 
 export interface TemplateListMatch {
-  animated?: boolean
-  assetBytes?: number | null
-  assetContentType?: string
-  boxCount?: number
-  captionCount?: number
-  captions?: any[]
-  categories?: any[]
-  description?: string
-  durationMs?: number
-  exampleImageUrl?: string | null
-  fps?: number
-  frameCount?: number | null
-  gifSlug?: string
-  height?: number | null
-  id?: string
-  imageUrl?: string
-  mediaType?: string
-  name?: string
-  posterImageUrl?: string
-  previewImageUrl?: string
-  qualityStatus?: string
-  returnBase64?: boolean
-  slug?: string
-  sourceTemplateId?: string | null
-  sourceUrl?: string
-  startMs?: number
-  tags?: any[]
-  title?: string
-  width?: number | null
-  widthPx?: number
+  media_type?: string
+  mode?: string
+  page?: number
+  page_size?: number
+  q?: string
+  query?: string
+  sort?: string
+  tag?: string
 }
 
 export interface TemplateCreateData {
@@ -955,30 +859,12 @@ export interface TemplateSearch {
 }
 
 export interface TemplateSearchListMatch {
-  animated?: boolean
-  assetBytes?: number | null
-  assetContentType?: string
-  boxCount?: number
-  captionCount?: number
-  captions?: any[]
-  categories?: any[]
-  description?: string
-  durationMs?: number | null
-  exampleImageUrl?: string | null
-  frameCount?: number | null
-  height?: number | null
-  id?: string
-  imageUrl?: string
-  mediaType?: string
-  name?: string
-  posterImageUrl?: string
-  previewImageUrl?: string
-  qualityStatus?: string
-  slug?: string
-  sourceTemplateId?: string | null
-  sourceUrl?: string
-  tags?: any[]
-  width?: number | null
+  page?: number
+  page_size?: number
+  q?: string
+  query?: string
+  sort?: string
+  tag?: string
 }
 
 export interface TrendAlert {
@@ -1001,21 +887,18 @@ export interface TrendAlert {
 }
 
 export interface TrendAlertLoadMatch {
-  action?: string
-  actorId?: string
+  actor_id?: string
   aggressiveness?: number
-  alertId?: string
-  channels?: any[]
-  deliverAllAlerts?: boolean
-  event?: Record<string, any>
-  explicitNiches?: any[]
-  explicitRegions?: any[]
-  explicitSources?: any[]
-  explicitTopics?: any[]
-  followerCount?: number
+  follower_count?: number
   niche?: string
+  page?: number
+  page_size?: number
+  preferred_niche?: string
+  preferred_region?: string
+  query?: string
   region?: string
   source?: string
+  status?: string
   topic?: string
 }
 
@@ -1093,51 +976,14 @@ export interface Video {
 }
 
 export interface VideoLoadMatch {
-  action?: string
-  assetId?: string
-  atMs?: number
-  audioAssetId?: string
-  beatOffsetMs?: number
-  bitrateKbps?: number
+  beat_offset_m?: number
   bpm?: number
-  cancelled?: boolean
-  container?: string
-  durationMs?: number
-  durationSeconds?: number
-  easing?: string
-  error?: string
-  frameRate?: number
-  inputFormat?: string
-  intensity?: number
-  jobId?: string
   locale?: string
-  mimeType?: string
-  name?: string
-  offsetMs?: number
-  outputPresetId?: string
-  outputUrl?: string
-  planTier?: string
-  presetId?: string
-  progressPercent?: number
-  project?: Record<string, any>
-  projectId?: string
-  property?: string
-  sourceDeviceId?: string
-  sourceUrl?: string
-  stage?: string
-  startMs?: number
-  stylePresetId?: string
-  syncToBeatGrid?: boolean
+  style_preset_id?: string
+  sync_to_beat_grid?: boolean
   tone?: string
-  trackId?: string
   transcript?: string
-  trendKeywords?: any[]
-  type?: string
-  updatedAt?: string
-  value?: number
-  watermarkEnabled?: boolean
-  watermarkText?: string
-  workerId?: string
+  trend_keyword?: string
 
   // Selects a custom action instead of the plain load:
   //   'audio_library' | 'draft' | 'export_setting' | 'format' | 'render_performance' | 'render_queue' | 'subtitle' | 'text_animation' | 'timeline'

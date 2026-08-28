@@ -1057,7 +1057,7 @@ Create an instance: `const agent_infra = client.AgentInfra()`
 #### Example: Load
 
 ```ts
-const agent_infra = await client.AgentInfra().load({ id: 'agent_infra_id' })
+const agent_infra = await client.AgentInfra().load()
 ```
 
 #### Example: Create
@@ -1396,7 +1396,7 @@ Create an instance: `const collaboration = client.Collaboration()`
 #### Example: Load
 
 ```ts
-const collaboration = await client.Collaboration().load()
+const collaboration = await client.Collaboration().load({ project_id: 'project_id' })
 ```
 
 #### Example: Create
@@ -1661,7 +1661,7 @@ Create an instance: `const growth = client.Growth()`
 #### Example: Load
 
 ```ts
-const growth = await client.Growth().load()
+const growth = await client.Growth().load({ actor_id: 'actor_id' })
 ```
 
 #### Example: Create
@@ -2121,6 +2121,29 @@ const video = await client.Video().create({
   presetId: 'example_presetId',
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

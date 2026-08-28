@@ -1029,7 +1029,7 @@ Create an instance: `agentInfra := client.AgentInfra(nil)`
 #### Example: Load
 
 ```go
-agentInfra, err := client.AgentInfra(nil).Load(map[string]any{"id": "agent_infra_id"}, nil)
+agentInfra, err := client.AgentInfra(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1416,7 +1416,7 @@ Create an instance: `collaboration := client.Collaboration(nil)`
 #### Example: Load
 
 ```go
-collaboration, err := client.Collaboration(nil).Load(nil, nil)
+collaboration, err := client.Collaboration(nil).Load(map[string]any{"project_id": "project_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1717,7 +1717,7 @@ Create an instance: `growth := client.Growth(nil)`
 #### Example: Load
 
 ```go
-growth, err := client.Growth(nil).Load(nil, nil)
+growth, err := client.Growth(nil).Load(map[string]any{"actor_id": "actor_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -2237,6 +2237,29 @@ if err != nil {
 }
 fmt.Println(result)
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

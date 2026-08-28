@@ -1007,7 +1007,7 @@ Create an instance: `$agent_infra = $client->AgentInfra();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the AgentInfra record (throws on error).
-$agent_infra = $client->AgentInfra()->load(["id" => "agent_infra_id"]);
+$agent_infra = $client->AgentInfra()->load();
 ```
 
 #### Example: Create
@@ -1352,7 +1352,7 @@ Create an instance: `$collaboration = $client->Collaboration();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Collaboration record (throws on error).
-$collaboration = $client->Collaboration()->load();
+$collaboration = $client->Collaboration()->load(["project_id" => "project_id"]);
 ```
 
 #### Example: Create
@@ -1621,7 +1621,7 @@ Create an instance: `$growth = $client->Growth();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Growth record (throws on error).
-$growth = $client->Growth()->load();
+$growth = $client->Growth()->load(["actor_id" => "actor_id"]);
 ```
 
 #### Example: Create
@@ -2088,6 +2088,29 @@ $video = $client->Video()->create([
     "presetId" => null, // string
 ]);
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

@@ -62,20 +62,8 @@
 ---@field weekStart? string
 
 ---@class AgentInfraLoadMatch
----@field action? string
----@field chatId? string
----@field id string
----@field memeSlug? string
----@field metadata? table
----@field payoutReference? string
----@field payoutStatus? string
----@field phoneOrChatId? string
----@field prompt? string
----@field proof? table
----@field quotaBoostPerDay? number
----@field scopes? table
----@field userId? string
----@field weekStart? string
+---@field limit? number
+---@field week_start? string
 
 ---@class AgentInfraCreateData
 ---@field action string
@@ -128,34 +116,7 @@
 ---@field voiceRules? table
 
 ---@class AiCaptionLoadMatch
----@field blockedTerms? table
----@field canvasText? table
----@field captionCount? number
----@field captionSets? table
----@field entities? table
----@field fallbackUsed? boolean
----@field generationStrategy? string
 ---@field locale? string
----@field memeId? string
----@field memeSlug? string
----@field name? string
----@field ok? boolean
----@field optionCount? number
----@field ownerToken? string
----@field providerId? string
----@field referenceCaptions? table
----@field rewriteNote? string
----@field sceneSummary? string
----@field templateDescription? string
----@field templateName? string
----@field templateTags? table
----@field tone? string
----@field toneCues? table
----@field trendKeywords? table
----@field trendReferences? table
----@field trendSignals? table
----@field variationOffset? number
----@field voiceRules? table
 
 ---@class AiCaptionCreateData
 ---@field blockedTerms? table
@@ -337,16 +298,7 @@
 ---@field workspaceId? string
 
 ---@class AiProviderLoadMatch
----@field actorId? string
----@field correlationId? string
----@field limit? number
----@field mappingMode? string
----@field maxSlots? number
----@field prompt? string
----@field sourceImageUrl? string
----@field texts? table
----@field trendSignals? table
----@field workspaceId? string
+---@field refresh? boolean
 
 ---@class AiProviderCreateData
 ---@field actorId? string
@@ -363,6 +315,7 @@
 ---@class Analytics
 
 ---@class AnalyticsLoadMatch
+---@field template_id? string
 
 ---@class Auth
 ---@field displayName? string
@@ -377,6 +330,8 @@
 ---@class Billing
 
 ---@class BillingLoadMatch
+---@field window_day? number
+---@field workspace_id? string
 
 ---@class Collaboration
 ---@field authorId? string
@@ -384,9 +339,9 @@
 ---@field projectId string
 
 ---@class CollaborationLoadMatch
----@field authorId? string
----@field message? string
----@field projectId? string
+---@field page? number
+---@field page_size? number
+---@field project_id string
 
 ---@class CollaborationCreateData
 ---@field authorId? string
@@ -477,28 +432,14 @@
 ---@field width number|nil
 
 ---@class FreeTemplateSearchListMatch
----@field animated? boolean
----@field assetBytes? number|nil
----@field assetContentType? string
----@field boxCount? number
----@field captionCount? number
----@field captions? table
----@field description? string
----@field durationMs? number|nil
----@field exampleImageUrl? string|nil
----@field frameCount? number|nil
----@field height? number|nil
----@field id? string
----@field imageUrl? string
----@field mediaType? string
----@field name? string
----@field posterImageUrl? string
----@field qualityStatus? string
----@field slug? string
----@field sourceTemplateId? string|nil
----@field sourceUrl? string
----@field tags? table
----@field width? number|nil
+---@field media_type? string
+---@field mode? string
+---@field page? number
+---@field page_size? number
+---@field q? string
+---@field query? string
+---@field sort? string
+---@field tag? string
 
 ---@class Generate
 ---@field base64? string
@@ -563,22 +504,9 @@
 ---@field weekStart? string
 
 ---@class GrowthLoadMatch
----@field accountId? string
----@field action? string
----@field actorId? string
----@field caption? string
----@field code? string
----@field externalAccountId? string
----@field handle? string
----@field limit? number
----@field logExposure? boolean
----@field memeSlug? string
----@field now? string
----@field platform? string
----@field profiles? table
----@field shareSlug? string
+---@field actor_id string
+---@field log_exposure? boolean
 ---@field surface? string
----@field weekStart? string
 
 ---@class GrowthCreateData
 ---@field accountId? string
@@ -614,18 +542,14 @@
 ---@field visibility string
 
 ---@class ListMemeListMatch
----@field altText? string
----@field canonicalImageUrl? string
----@field createdAt? string
----@field imageUrl? string
----@field nsfwStatus? string
----@field shareSlug? string
----@field shareUrl? string
----@field shareViews? number
----@field slug? string
----@field tags? table
----@field templateSlug? string
----@field title? string
+---@field exclude_template_clone? boolean
+---@field include_nsfw? boolean
+---@field official_only? boolean
+---@field owner_token? string
+---@field page? number
+---@field page_size? number
+---@field query? string
+---@field template_slug? string
 ---@field visibility? string
 
 ---@class Media
@@ -667,6 +591,7 @@
 
 ---@class MemeLoadMatch
 ---@field id string
+---@field owner_token? string
 
 ---@class MemeRemoveMatch
 ---@field id string
@@ -699,6 +624,7 @@
 
 ---@class PublicTemplateMediaItemLoadMatch
 ---@field slug string
+---@field media_type? string
 
 ---@class StandaloneAgentBootstrap
 ---@field description? string
@@ -753,36 +679,14 @@
 ---@field widthPx? number
 
 ---@class TemplateListMatch
----@field animated? boolean
----@field assetBytes? number|nil
----@field assetContentType? string
----@field boxCount? number
----@field captionCount? number
----@field captions? table
----@field categories? table
----@field description? string
----@field durationMs? number
----@field exampleImageUrl? string|nil
----@field fps? number
----@field frameCount? number|nil
----@field gifSlug? string
----@field height? number|nil
----@field id? string
----@field imageUrl? string
----@field mediaType? string
----@field name? string
----@field posterImageUrl? string
----@field previewImageUrl? string
----@field qualityStatus? string
----@field returnBase64? boolean
----@field slug? string
----@field sourceTemplateId? string|nil
----@field sourceUrl? string
----@field startMs? number
----@field tags? table
----@field title? string
----@field width? number|nil
----@field widthPx? number
+---@field media_type? string
+---@field mode? string
+---@field page? number
+---@field page_size? number
+---@field q? string
+---@field query? string
+---@field sort? string
+---@field tag? string
 
 ---@class TemplateCreateData
 ---@field slug string
@@ -843,30 +747,12 @@
 ---@field width number|nil
 
 ---@class TemplateSearchListMatch
----@field animated? boolean
----@field assetBytes? number|nil
----@field assetContentType? string
----@field boxCount? number
----@field captionCount? number
----@field captions? table
----@field categories? table
----@field description? string
----@field durationMs? number|nil
----@field exampleImageUrl? string|nil
----@field frameCount? number|nil
----@field height? number|nil
----@field id? string
----@field imageUrl? string
----@field mediaType? string
----@field name? string
----@field posterImageUrl? string
----@field previewImageUrl? string
----@field qualityStatus? string
----@field slug? string
----@field sourceTemplateId? string|nil
----@field sourceUrl? string
----@field tags? table
----@field width? number|nil
+---@field page? number
+---@field page_size? number
+---@field q? string
+---@field query? string
+---@field sort? string
+---@field tag? string
 
 ---@class TrendAlert
 ---@field action string
@@ -887,21 +773,18 @@
 ---@field topic string
 
 ---@class TrendAlertLoadMatch
----@field action? string
----@field actorId? string
+---@field actor_id? string
 ---@field aggressiveness? number
----@field alertId? string
----@field channels? table
----@field deliverAllAlerts? boolean
----@field event? table
----@field explicitNiches? table
----@field explicitRegions? table
----@field explicitSources? table
----@field explicitTopics? table
----@field followerCount? number
+---@field follower_count? number
 ---@field niche? string
+---@field page? number
+---@field page_size? number
+---@field preferred_niche? string
+---@field preferred_region? string
+---@field query? string
 ---@field region? string
 ---@field source? string
+---@field status? string
 ---@field topic? string
 
 ---@class TrendAlertCreateData
@@ -974,51 +857,14 @@
 ---@field workerId? string
 
 ---@class VideoLoadMatch
----@field action? string
----@field assetId? string
----@field atMs? number
----@field audioAssetId? string
----@field beatOffsetMs? number
----@field bitrateKbps? number
+---@field beat_offset_m? number
 ---@field bpm? number
----@field cancelled? boolean
----@field container? string
----@field durationMs? number
----@field durationSeconds? number
----@field easing? string
----@field error? string
----@field frameRate? number
----@field inputFormat? string
----@field intensity? number
----@field jobId? string
 ---@field locale? string
----@field mimeType? string
----@field name? string
----@field offsetMs? number
----@field outputPresetId? string
----@field outputUrl? string
----@field planTier? string
----@field presetId? string
----@field progressPercent? number
----@field project? table
----@field projectId? string
----@field property? string
----@field sourceDeviceId? string
----@field sourceUrl? string
----@field stage? string
----@field startMs? number
----@field stylePresetId? string
----@field syncToBeatGrid? boolean
+---@field style_preset_id? string
+---@field sync_to_beat_grid? boolean
 ---@field tone? string
----@field trackId? string
 ---@field transcript? string
----@field trendKeywords? table
----@field type? string
----@field updatedAt? string
----@field value? number
----@field watermarkEnabled? boolean
----@field watermarkText? string
----@field workerId? string
+---@field trend_keyword? string
 
 ---@class VideoCreateData
 ---@field action? string
