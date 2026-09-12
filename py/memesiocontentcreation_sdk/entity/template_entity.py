@@ -7,7 +7,6 @@ from memesiocontentcreation_sdk.core import helpers
 from memesiocontentcreation_sdk.memesiocontentcreation_types import (
     Template,
     TemplateListMatch,
-    TemplateCreateData,
 )
 
 
@@ -203,24 +202,6 @@ class TemplateEntity:
 
 
     
-    def create(self, reqdata: TemplateCreateData, ctrl=None) -> Template:
-        utility = self._utility
-        ctx = utility.make_context({
-            "opname": "create",
-            "ctrl": ctrl,
-            "match": self._match,
-            "data": self._data,
-            "reqdata": reqdata,
-        }, self._entctx)
-
-        def post_done():
-            if ctx.result is not None:
-                if ctx.result.resdata is not None:
-                    self._data = helpers.to_map(vs.clone(ctx.result.resdata)) or {}
-
-        return self._run_op(ctx, post_done)
-
-
 
     
 

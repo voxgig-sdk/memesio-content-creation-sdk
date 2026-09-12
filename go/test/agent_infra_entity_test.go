@@ -52,7 +52,7 @@ func TestAgentInfraEntity(t *testing.T) {
 		// CREATE
 		agentInfraRef01Ent := client.AgentInfra(nil)
 		agentInfraRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "agent_infra"}, setup.data), "agent_infra_ref01"))
+			vs.GetPath(setup.data, []any{"new", "agent_infra"}), "agent_infra_ref01"))
 		agentInfraRef01Data["agent_id"] = setup.idmap["agent01"]
 
 		agentInfraRef01DataResult, err := agentInfraRef01Ent.Create(agentInfraRef01Data, nil)
@@ -119,7 +119,7 @@ func agent_infraBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"agent_infra01", "agent_infra02", "agent_infra03", "unlock01", "unlock02", "unlock03", "agent01", "agent02", "agent03", "key01", "key02", "key03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -139,7 +139,7 @@ func agent_infraBasicSetup(extra map[string]any) *entityTestSetup {
 		"MEMESIO_CONTENT_CREATION_TEST_AGENT_INFRA_ENTID": idmap,
 		"MEMESIO_CONTENT_CREATION_TEST_LIVE":      "FALSE",
 		"MEMESIO_CONTENT_CREATION_TEST_EXPLAIN":   "FALSE",
-		"MEMESIO_CONTENT_CREATION_APIKEY":         "NONE",
+		"MEMESIO_CONTENT_CREATION_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["MEMESIO_CONTENT_CREATION_TEST_AGENT_INFRA_ENTID"])
@@ -148,11 +148,23 @@ func agent_infraBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["MEMESIO_CONTENT_CREATION_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMemesioContentCreationSDK(core.ToMapAny(mergedOpts))
 	}

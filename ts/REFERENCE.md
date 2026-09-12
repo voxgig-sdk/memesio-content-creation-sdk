@@ -809,6 +809,27 @@ const ai_job = client.AiJob()
 | `workerId` | - | - |
 | `workspaceId` | - | - |
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `cancel` | `/api/ai/jobs/{jobId}/cancel` | `client.AiJob().create({ $action: 'cancel', ... })` |
+| `complete` | `/api/ai/jobs/{jobId}/complete` | `client.AiJob().create({ $action: 'complete', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+AiJob record — check the API definition for its shape.
+
+```ts
+const result = await client.AiJob().create({
+  $action: 'cancel',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `create(data: object, ctrl?: object)`
@@ -2094,7 +2115,9 @@ const public_template_media_item = client.PublicTemplateMediaItem()
 | `description` | `string` | Yes |  |
 | `durationMs` | `number | null` | No |  |
 | `exampleImageUrl` | `string | null` | No |  |
+| `fps` | `number` | No |  |
 | `frameCount` | `number | null` | No |  |
+| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `number | null` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -2103,13 +2126,92 @@ const public_template_media_item = client.PublicTemplateMediaItem()
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
+| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `string | null` | Yes |  |
 | `sourceUrl` | `string` | No |  |
+| `startMs` | `number` | No |  |
 | `tags` | `any[]` | Yes |  |
+| `title` | `string` | No |  |
 | `width` | `number | null` | Yes |  |
+| `widthPx` | `number` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `animated` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | - | Yes |
+| `categories` | - | - |
+| `description` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
+| `fps` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
+| `height` | - | - |
+| `id` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
+| `name` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
+| `slug` | - | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | - | Yes |
+| `title` | - | - |
+| `width` | - | - |
+| `widthPx` | - | - |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `generate` | `/api/gifs/{slug}/generate` | `client.PublicTemplateMediaItem().create({ $action: 'generate', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+PublicTemplateMediaItem record — check the API definition for its shape.
+
+```ts
+const result = await client.PublicTemplateMediaItem().create({
+  $action: 'generate',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
+
+#### `create(data: object, ctrl?: object)`
+
+Create a new entity with the given data.
+
+```ts
+const result = await client.PublicTemplateMediaItem().create({
+  slug: 'example_slug',
+  captions: [],
+  description: 'example_description',
+  height: 1,
+  id: 'example_id',
+  imageUrl: 'example_imageUrl',
+  mediaType: 'example_mediaType',
+  name: 'example_name',
+  sourceTemplateId: 'example_sourceTemplateId',
+  tags: [],
+  width: 1,
+})
+```
 
 #### `load(match: object, ctrl?: object)`
 
@@ -2222,14 +2324,12 @@ const template = client.Template()
 | `assetContentType` | `string` | No |  |
 | `boxCount` | `number` | No |  |
 | `captionCount` | `number` | No |  |
-| `captions` | `any[]` | No |  |
+| `captions` | `any[]` | Yes |  |
 | `categories` | `any[]` | No |  |
 | `description` | `string` | Yes |  |
-| `durationMs` | `number` | No |  |
+| `durationMs` | `number | null` | No |  |
 | `exampleImageUrl` | `string | null` | No |  |
-| `fps` | `number` | No |  |
 | `frameCount` | `number | null` | No |  |
-| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `number | null` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -2238,70 +2338,13 @@ const template = client.Template()
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `string | null` | Yes |  |
 | `sourceUrl` | `string` | No |  |
-| `startMs` | `number` | No |  |
-| `tags` | `any[]` | No |  |
-| `title` | `string` | No |  |
+| `tags` | `any[]` | Yes |  |
 | `width` | `number | null` | Yes |  |
-| `widthPx` | `number` | No |  |
-
-### Field Usage by Operation
-
-| Field | list | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | Yes | - |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | Yes | - |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data.
-
-```ts
-const result = await client.Template().create({
-  slug: 'example_slug',
-  description: 'example_description',
-  height: 1,
-  id: 'example_id',
-  imageUrl: 'example_imageUrl',
-  mediaType: 'example_mediaType',
-  name: 'example_name',
-  sourceTemplateId: 'example_sourceTemplateId',
-  width: 1,
-})
-```
 
 #### `list(match: object, ctrl?: object)`
 

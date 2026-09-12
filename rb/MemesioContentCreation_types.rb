@@ -2243,8 +2243,14 @@ MemeRemoveMatch = Struct.new(
 # @!attribute [rw] exampleImageUrl
 #   @return [Object, nil]
 #
+# @!attribute [rw] fps
+#   @return [Integer, nil]
+#
 # @!attribute [rw] frameCount
 #   @return [Object, nil]
+#
+# @!attribute [rw] gifSlug
+#   @return [String, nil]
 #
 # @!attribute [rw] height
 #   @return [Object]
@@ -2270,6 +2276,9 @@ MemeRemoveMatch = Struct.new(
 # @!attribute [rw] qualityStatus
 #   @return [String, nil]
 #
+# @!attribute [rw] returnBase64
+#   @return [Boolean, nil]
+#
 # @!attribute [rw] slug
 #   @return [String]
 #
@@ -2279,11 +2288,20 @@ MemeRemoveMatch = Struct.new(
 # @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
+# @!attribute [rw] startMs
+#   @return [Integer, nil]
+#
 # @!attribute [rw] tags
 #   @return [Array]
 #
+# @!attribute [rw] title
+#   @return [String, nil]
+#
 # @!attribute [rw] width
 #   @return [Object]
+#
+# @!attribute [rw] widthPx
+#   @return [Integer, nil]
 PublicTemplateMediaItem = Struct.new(
   :animated,
   :assetBytes,
@@ -2295,7 +2313,9 @@ PublicTemplateMediaItem = Struct.new(
   :description,
   :durationMs,
   :exampleImageUrl,
+  :fps,
   :frameCount,
+  :gifSlug,
   :height,
   :id,
   :imageUrl,
@@ -2304,11 +2324,15 @@ PublicTemplateMediaItem = Struct.new(
   :posterImageUrl,
   :previewImageUrl,
   :qualityStatus,
+  :returnBase64,
   :slug,
   :sourceTemplateId,
   :sourceUrl,
+  :startMs,
   :tags,
+  :title,
   :width,
+  :widthPx,
   keyword_init: true
 )
 
@@ -2322,6 +2346,131 @@ PublicTemplateMediaItem = Struct.new(
 PublicTemplateMediaItemLoadMatch = Struct.new(
   :slug,
   :media_type,
+  keyword_init: true
+)
+
+# Request payload for PublicTemplateMediaItem#create.
+#
+# @!attribute [rw] slug
+#   @return [String]
+#
+# @!attribute [rw] animated
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] assetBytes
+#   @return [Object, nil]
+#
+# @!attribute [rw] assetContentType
+#   @return [String, nil]
+#
+# @!attribute [rw] boxCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captions
+#   @return [Array]
+#
+# @!attribute [rw] categories
+#   @return [Array, nil]
+#
+# @!attribute [rw] description
+#   @return [String]
+#
+# @!attribute [rw] durationMs
+#   @return [Object, nil]
+#
+# @!attribute [rw] exampleImageUrl
+#   @return [Object, nil]
+#
+# @!attribute [rw] fps
+#   @return [Integer, nil]
+#
+# @!attribute [rw] frameCount
+#   @return [Object, nil]
+#
+# @!attribute [rw] gifSlug
+#   @return [String, nil]
+#
+# @!attribute [rw] height
+#   @return [Object]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] imageUrl
+#   @return [String]
+#
+# @!attribute [rw] mediaType
+#   @return [String]
+#
+# @!attribute [rw] name
+#   @return [String]
+#
+# @!attribute [rw] posterImageUrl
+#   @return [String, nil]
+#
+# @!attribute [rw] previewImageUrl
+#   @return [String, nil]
+#
+# @!attribute [rw] qualityStatus
+#   @return [String, nil]
+#
+# @!attribute [rw] returnBase64
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] sourceTemplateId
+#   @return [Object]
+#
+# @!attribute [rw] sourceUrl
+#   @return [String, nil]
+#
+# @!attribute [rw] startMs
+#   @return [Integer, nil]
+#
+# @!attribute [rw] tags
+#   @return [Array]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] width
+#   @return [Object]
+#
+# @!attribute [rw] widthPx
+#   @return [Integer, nil]
+PublicTemplateMediaItemCreateData = Struct.new(
+  :slug,
+  :animated,
+  :assetBytes,
+  :assetContentType,
+  :boxCount,
+  :captionCount,
+  :captions,
+  :categories,
+  :description,
+  :durationMs,
+  :exampleImageUrl,
+  :fps,
+  :frameCount,
+  :gifSlug,
+  :height,
+  :id,
+  :imageUrl,
+  :mediaType,
+  :name,
+  :posterImageUrl,
+  :previewImageUrl,
+  :qualityStatus,
+  :returnBase64,
+  :sourceTemplateId,
+  :sourceUrl,
+  :startMs,
+  :tags,
+  :title,
+  :width,
+  :widthPx,
   keyword_init: true
 )
 
@@ -2417,7 +2566,7 @@ StandaloneAgentBootstrapCreateData = Struct.new(
 #   @return [Integer, nil]
 #
 # @!attribute [rw] captions
-#   @return [Array, nil]
+#   @return [Array]
 #
 # @!attribute [rw] categories
 #   @return [Array, nil]
@@ -2426,19 +2575,13 @@ StandaloneAgentBootstrapCreateData = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] durationMs
-#   @return [Integer, nil]
+#   @return [Object, nil]
 #
 # @!attribute [rw] exampleImageUrl
 #   @return [Object, nil]
 #
-# @!attribute [rw] fps
-#   @return [Integer, nil]
-#
 # @!attribute [rw] frameCount
 #   @return [Object, nil]
-#
-# @!attribute [rw] gifSlug
-#   @return [String, nil]
 #
 # @!attribute [rw] height
 #   @return [Object]
@@ -2464,9 +2607,6 @@ StandaloneAgentBootstrapCreateData = Struct.new(
 # @!attribute [rw] qualityStatus
 #   @return [String, nil]
 #
-# @!attribute [rw] returnBase64
-#   @return [Boolean, nil]
-#
 # @!attribute [rw] slug
 #   @return [String]
 #
@@ -2476,20 +2616,11 @@ StandaloneAgentBootstrapCreateData = Struct.new(
 # @!attribute [rw] sourceUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] startMs
-#   @return [Integer, nil]
-#
 # @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
+#   @return [Array]
 #
 # @!attribute [rw] width
 #   @return [Object]
-#
-# @!attribute [rw] widthPx
-#   @return [Integer, nil]
 Template = Struct.new(
   :animated,
   :assetBytes,
@@ -2501,9 +2632,7 @@ Template = Struct.new(
   :description,
   :durationMs,
   :exampleImageUrl,
-  :fps,
   :frameCount,
-  :gifSlug,
   :height,
   :id,
   :imageUrl,
@@ -2512,15 +2641,11 @@ Template = Struct.new(
   :posterImageUrl,
   :previewImageUrl,
   :qualityStatus,
-  :returnBase64,
   :slug,
   :sourceTemplateId,
   :sourceUrl,
-  :startMs,
   :tags,
-  :title,
   :width,
-  :widthPx,
   keyword_init: true
 )
 
@@ -2558,131 +2683,6 @@ TemplateListMatch = Struct.new(
   :query,
   :sort,
   :tag,
-  keyword_init: true
-)
-
-# Request payload for Template#create.
-#
-# @!attribute [rw] slug
-#   @return [String]
-#
-# @!attribute [rw] animated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] assetBytes
-#   @return [Object, nil]
-#
-# @!attribute [rw] assetContentType
-#   @return [String, nil]
-#
-# @!attribute [rw] boxCount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] captionCount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] captions
-#   @return [Array, nil]
-#
-# @!attribute [rw] categories
-#   @return [Array, nil]
-#
-# @!attribute [rw] description
-#   @return [String]
-#
-# @!attribute [rw] durationMs
-#   @return [Integer, nil]
-#
-# @!attribute [rw] exampleImageUrl
-#   @return [Object, nil]
-#
-# @!attribute [rw] fps
-#   @return [Integer, nil]
-#
-# @!attribute [rw] frameCount
-#   @return [Object, nil]
-#
-# @!attribute [rw] gifSlug
-#   @return [String, nil]
-#
-# @!attribute [rw] height
-#   @return [Object]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] imageUrl
-#   @return [String]
-#
-# @!attribute [rw] mediaType
-#   @return [String]
-#
-# @!attribute [rw] name
-#   @return [String]
-#
-# @!attribute [rw] posterImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] previewImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] qualityStatus
-#   @return [String, nil]
-#
-# @!attribute [rw] returnBase64
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] sourceTemplateId
-#   @return [Object]
-#
-# @!attribute [rw] sourceUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] startMs
-#   @return [Integer, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] width
-#   @return [Object]
-#
-# @!attribute [rw] widthPx
-#   @return [Integer, nil]
-TemplateCreateData = Struct.new(
-  :slug,
-  :animated,
-  :assetBytes,
-  :assetContentType,
-  :boxCount,
-  :captionCount,
-  :captions,
-  :categories,
-  :description,
-  :durationMs,
-  :exampleImageUrl,
-  :fps,
-  :frameCount,
-  :gifSlug,
-  :height,
-  :id,
-  :imageUrl,
-  :mediaType,
-  :name,
-  :posterImageUrl,
-  :previewImageUrl,
-  :qualityStatus,
-  :returnBase64,
-  :sourceTemplateId,
-  :sourceUrl,
-  :startMs,
-  :tags,
-  :title,
-  :width,
-  :widthPx,
   keyword_init: true
 )
 

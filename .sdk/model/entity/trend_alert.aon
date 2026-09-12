@@ -95,10 +95,16 @@ main: kit: entity: trend_alert: {
         {
           method: "POST"
           orig: "/api/alerts/delivery"
-          parts: [
-            "api"
-            "alerts"
-            "delivery"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "delivery"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -108,10 +114,16 @@ main: kit: entity: trend_alert: {
         {
           method: "POST"
           orig: "/api/alerts/feedback"
-          parts: [
-            "api"
-            "alerts"
-            "feedback"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "feedback"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -121,10 +133,16 @@ main: kit: entity: trend_alert: {
         {
           method: "POST"
           orig: "/api/alerts/preferences"
-          parts: [
-            "api"
-            "alerts"
-            "preferences"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "preferences"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -134,10 +152,16 @@ main: kit: entity: trend_alert: {
         {
           method: "POST"
           orig: "/api/alerts/triggers"
-          parts: [
-            "api"
-            "alerts"
-            "triggers"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "triggers"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -247,9 +271,13 @@ main: kit: entity: trend_alert: {
           }
           method: "GET"
           orig: "/api/alerts"
-          parts: [
-            "api"
-            "alerts"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
           ]
           select: {
             exist: [
@@ -329,10 +357,16 @@ main: kit: entity: trend_alert: {
           }
           method: "GET"
           orig: "/api/alerts/ranking"
-          parts: [
-            "api"
-            "alerts"
-            "ranking"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "ranking"
+            }
           ]
           select: {
             exist: [
@@ -371,10 +405,16 @@ main: kit: entity: trend_alert: {
           }
           method: "GET"
           orig: "/api/alerts/feedback"
-          parts: [
-            "api"
-            "alerts"
-            "feedback"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "feedback"
+            }
           ]
           select: {
             exist: [
@@ -401,10 +441,16 @@ main: kit: entity: trend_alert: {
           }
           method: "GET"
           orig: "/api/alerts/preferences"
-          parts: [
-            "api"
-            "alerts"
-            "preferences"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "preferences"
+            }
           ]
           select: {
             exist: [
@@ -430,10 +476,16 @@ main: kit: entity: trend_alert: {
           }
           method: "GET"
           orig: "/api/alerts/delivery"
-          parts: [
-            "api"
-            "alerts"
-            "delivery"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "delivery"
+            }
           ]
           select: {
             exist: [
@@ -459,10 +511,16 @@ main: kit: entity: trend_alert: {
           }
           method: "GET"
           orig: "/api/alerts/ingestion"
-          parts: [
-            "api"
-            "alerts"
-            "ingestion"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "ingestion"
+            }
           ]
           select: {
             exist: [
@@ -488,10 +546,16 @@ main: kit: entity: trend_alert: {
           }
           method: "GET"
           orig: "/api/alerts/quality-report"
-          parts: [
-            "api"
-            "alerts"
-            "quality-report"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "quality-report"
+            }
           ]
           select: {
             exist: [
@@ -517,10 +581,16 @@ main: kit: entity: trend_alert: {
           }
           method: "GET"
           orig: "/api/alerts/message-templates"
-          parts: [
-            "api"
-            "alerts"
-            "message-templates"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "message-templates"
+            }
           ]
           select: {
             exist: [
@@ -535,10 +605,16 @@ main: kit: entity: trend_alert: {
         {
           method: "GET"
           orig: "/api/alerts/connectors"
-          parts: [
-            "api"
-            "alerts"
-            "connectors"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "connectors"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -548,10 +624,16 @@ main: kit: entity: trend_alert: {
         {
           method: "GET"
           orig: "/api/alerts/triggers"
-          parts: [
-            "api"
-            "alerts"
-            "triggers"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "triggers"
+            }
           ]
           transform: {
             req: "`reqdata`"

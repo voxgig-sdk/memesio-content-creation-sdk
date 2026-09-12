@@ -607,7 +607,9 @@
 ---@field description string
 ---@field durationMs? number|nil
 ---@field exampleImageUrl? string|nil
+---@field fps? number
 ---@field frameCount? number|nil
+---@field gifSlug? string
 ---@field height number|nil
 ---@field id string
 ---@field imageUrl string
@@ -616,15 +618,51 @@
 ---@field posterImageUrl? string
 ---@field previewImageUrl? string
 ---@field qualityStatus? string
+---@field returnBase64? boolean
 ---@field slug string
 ---@field sourceTemplateId string|nil
 ---@field sourceUrl? string
+---@field startMs? number
 ---@field tags table
+---@field title? string
 ---@field width number|nil
+---@field widthPx? number
 
 ---@class PublicTemplateMediaItemLoadMatch
 ---@field slug string
 ---@field media_type? string
+
+---@class PublicTemplateMediaItemCreateData
+---@field slug string
+---@field animated? boolean
+---@field assetBytes? number|nil
+---@field assetContentType? string
+---@field boxCount? number
+---@field captionCount? number
+---@field captions table
+---@field categories? table
+---@field description string
+---@field durationMs? number|nil
+---@field exampleImageUrl? string|nil
+---@field fps? number
+---@field frameCount? number|nil
+---@field gifSlug? string
+---@field height number|nil
+---@field id string
+---@field imageUrl string
+---@field mediaType string
+---@field name string
+---@field posterImageUrl? string
+---@field previewImageUrl? string
+---@field qualityStatus? string
+---@field returnBase64? boolean
+---@field sourceTemplateId string|nil
+---@field sourceUrl? string
+---@field startMs? number
+---@field tags table
+---@field title? string
+---@field width number|nil
+---@field widthPx? number
 
 ---@class StandaloneAgentBootstrap
 ---@field description? string
@@ -652,14 +690,12 @@
 ---@field assetContentType? string
 ---@field boxCount? number
 ---@field captionCount? number
----@field captions? table
+---@field captions table
 ---@field categories? table
 ---@field description string
----@field durationMs? number
+---@field durationMs? number|nil
 ---@field exampleImageUrl? string|nil
----@field fps? number
 ---@field frameCount? number|nil
----@field gifSlug? string
 ---@field height number|nil
 ---@field id string
 ---@field imageUrl string
@@ -668,15 +704,11 @@
 ---@field posterImageUrl? string
 ---@field previewImageUrl? string
 ---@field qualityStatus? string
----@field returnBase64? boolean
 ---@field slug string
 ---@field sourceTemplateId string|nil
 ---@field sourceUrl? string
----@field startMs? number
----@field tags? table
----@field title? string
+---@field tags table
 ---@field width number|nil
----@field widthPx? number
 
 ---@class TemplateListMatch
 ---@field media_type? string
@@ -687,38 +719,6 @@
 ---@field query? string
 ---@field sort? string
 ---@field tag? string
-
----@class TemplateCreateData
----@field slug string
----@field animated? boolean
----@field assetBytes? number|nil
----@field assetContentType? string
----@field boxCount? number
----@field captionCount? number
----@field captions? table
----@field categories? table
----@field description string
----@field durationMs? number
----@field exampleImageUrl? string|nil
----@field fps? number
----@field frameCount? number|nil
----@field gifSlug? string
----@field height number|nil
----@field id string
----@field imageUrl string
----@field mediaType string
----@field name string
----@field posterImageUrl? string
----@field previewImageUrl? string
----@field qualityStatus? string
----@field returnBase64? boolean
----@field sourceTemplateId string|nil
----@field sourceUrl? string
----@field startMs? number
----@field tags? table
----@field title? string
----@field width number|nil
----@field widthPx? number
 
 ---@class TemplateSearch
 ---@field animated? boolean

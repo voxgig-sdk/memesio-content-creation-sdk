@@ -26,6 +26,7 @@ main: kit: entity: meme: {
       type: "`$ARRAY`"
     }
     {
+      format: "date-time"
       name: "createdAt"
       req: true
       type: "`$STRING`"
@@ -135,16 +136,22 @@ main: kit: entity: meme: {
           }
           method: "GET"
           orig: "/api/memes/{slug}"
-          parts: [
-            "api"
-            "memes"
-            "{id}"
-          ]
           rename: {
             param: {
               slug: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -175,16 +182,22 @@ main: kit: entity: meme: {
           }
           method: "DELETE"
           orig: "/api/memes/{slug}"
-          parts: [
-            "api"
-            "memes"
-            "{id}"
-          ]
           rename: {
             param: {
               slug: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

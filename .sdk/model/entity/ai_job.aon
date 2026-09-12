@@ -51,6 +51,7 @@ main: kit: entity: ai_job: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       type: "`$STRING`"
@@ -197,6 +198,7 @@ main: kit: entity: ai_job: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "updatedAt"
       req: false
       type: "`$STRING`"
@@ -247,19 +249,30 @@ main: kit: entity: ai_job: {
           }
           method: "POST"
           orig: "/api/ai/jobs/{jobId}/cancel"
-          parts: [
-            "api"
-            "ai"
-            "jobs"
-            "{job_id}"
-            "cancel"
-          ]
           rename: {
             param: {
               jobId: "job_id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
+            {
+              var: "job_id"
+            }
+            {
+              lit: "cancel"
+            }
+          ]
           select: {
+            "$action": "cancel"
             exist: [
               "job_id"
             ]
@@ -283,19 +296,30 @@ main: kit: entity: ai_job: {
           }
           method: "POST"
           orig: "/api/ai/jobs/{jobId}/complete"
-          parts: [
-            "api"
-            "ai"
-            "jobs"
-            "{job_id}"
-            "complete"
-          ]
           rename: {
             param: {
               jobId: "job_id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
+            {
+              var: "job_id"
+            }
+            {
+              lit: "complete"
+            }
+          ]
           select: {
+            "$action": "complete"
             exist: [
               "job_id"
             ]
@@ -308,10 +332,16 @@ main: kit: entity: ai_job: {
         {
           method: "POST"
           orig: "/api/ai/background-remove"
-          parts: [
-            "api"
-            "ai"
-            "background-remove"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "background-remove"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -321,10 +351,16 @@ main: kit: entity: ai_job: {
         {
           method: "POST"
           orig: "/api/ai/edit-history"
-          parts: [
-            "api"
-            "ai"
-            "edit-history"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "edit-history"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -334,10 +370,16 @@ main: kit: entity: ai_job: {
         {
           method: "POST"
           orig: "/api/ai/face-swap"
-          parts: [
-            "api"
-            "ai"
-            "face-swap"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "face-swap"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -347,10 +389,16 @@ main: kit: entity: ai_job: {
         {
           method: "POST"
           orig: "/api/ai/face-targets"
-          parts: [
-            "api"
-            "ai"
-            "face-targets"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "face-targets"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -360,10 +408,16 @@ main: kit: entity: ai_job: {
         {
           method: "POST"
           orig: "/api/ai/jobs"
-          parts: [
-            "api"
-            "ai"
-            "jobs"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -424,10 +478,16 @@ main: kit: entity: ai_job: {
           }
           method: "GET"
           orig: "/api/ai/edit-history"
-          parts: [
-            "api"
-            "ai"
-            "edit-history"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "edit-history"
+            }
           ]
           select: {
             exist: [
@@ -472,10 +532,16 @@ main: kit: entity: ai_job: {
           }
           method: "GET"
           orig: "/api/ai/jobs"
-          parts: [
-            "api"
-            "ai"
-            "jobs"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
           ]
           select: {
             exist: [
@@ -503,17 +569,25 @@ main: kit: entity: ai_job: {
           }
           method: "GET"
           orig: "/api/ai/jobs/{jobId}"
-          parts: [
-            "api"
-            "ai"
-            "jobs"
-            "{id}"
-          ]
           rename: {
             param: {
               jobId: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

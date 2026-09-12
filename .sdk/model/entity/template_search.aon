@@ -228,9 +228,13 @@ main: kit: entity: template_search: {
           }
           method: "GET"
           orig: "/api/gifs"
-          parts: [
-            "api"
-            "gifs"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "gifs"
+            }
           ]
           select: {
             exist: [

@@ -65,11 +65,19 @@ main: kit: entity: ai_provider: {
         {
           method: "POST"
           orig: "/api/ai/templates/detect"
-          parts: [
-            "api"
-            "ai"
-            "templates"
-            "detect"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              lit: "detect"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -79,11 +87,19 @@ main: kit: entity: ai_provider: {
         {
           method: "POST"
           orig: "/api/ai/templates/suggest"
-          parts: [
-            "api"
-            "ai"
-            "templates"
-            "suggest"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              lit: "suggest"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -109,11 +125,19 @@ main: kit: entity: ai_provider: {
           }
           method: "GET"
           orig: "/api/ai/providers/background-remove-benchmark"
-          parts: [
-            "api"
-            "ai"
-            "providers"
-            "background-remove-benchmark"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "providers"
+            }
+            {
+              lit: "background-remove-benchmark"
+            }
           ]
           select: {
             exist: [
@@ -139,11 +163,19 @@ main: kit: entity: ai_provider: {
           }
           method: "GET"
           orig: "/api/ai/providers/face-swap-benchmark"
-          parts: [
-            "api"
-            "ai"
-            "providers"
-            "face-swap-benchmark"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "providers"
+            }
+            {
+              lit: "face-swap-benchmark"
+            }
           ]
           select: {
             exist: [
@@ -158,11 +190,19 @@ main: kit: entity: ai_provider: {
         {
           method: "GET"
           orig: "/api/ai/memes/generate"
-          parts: [
-            "api"
-            "ai"
-            "memes"
-            "generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"

@@ -38,13 +38,7 @@ main: kit: entity: template: {
     }
     {
       name: "captions"
-      op: {
-        list: {
-          req: true
-          type: "`$ARRAY`"
-        }
-      }
-      req: false
+      req: true
       type: "`$ARRAY`"
     }
     {
@@ -60,7 +54,13 @@ main: kit: entity: template: {
     {
       name: "durationMs"
       req: false
-      type: "`$INTEGER`"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
     }
     {
       name: "exampleImageUrl"
@@ -74,11 +74,6 @@ main: kit: entity: template: {
       ]
     }
     {
-      name: "fps"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
       name: "frameCount"
       req: false
       type: [
@@ -88,12 +83,6 @@ main: kit: entity: template: {
           "`$NULL`"
         ]
       ]
-    }
-    {
-      name: "gifSlug"
-      req: false
-      short: "Required for /api/v1/gifs/generate."
-      type: "`$STRING`"
     }
     {
       name: "height"
@@ -142,12 +131,6 @@ main: kit: entity: template: {
       type: "`$STRING`"
     }
     {
-      name: "returnBase64"
-      req: false
-      short: "Only used by /api/v1/gifs/generate."
-      type: "`$BOOLEAN`"
-    }
-    {
       name: "slug"
       req: true
       type: "`$STRING`"
@@ -169,25 +152,9 @@ main: kit: entity: template: {
       type: "`$STRING`"
     }
     {
-      name: "startMs"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
       name: "tags"
-      op: {
-        list: {
-          req: true
-          type: "`$ARRAY`"
-        }
-      }
-      req: false
+      req: true
       type: "`$ARRAY`"
-    }
-    {
-      name: "title"
-      req: false
-      type: "`$STRING`"
     }
     {
       name: "width"
@@ -200,11 +167,6 @@ main: kit: entity: template: {
         ]
       ]
     }
-    {
-      name: "widthPx"
-      req: false
-      type: "`$INTEGER`"
-    }
   ]
 
   id: {
@@ -214,41 +176,6 @@ main: kit: entity: template: {
 
   name: "template"
   op: {
-    create: {
-      name: "create"
-      points: [
-        {
-          args: {
-            params: [
-              {
-                kind: "param"
-                name: "slug"
-                orig: "slug"
-                reqd: true
-                type: "`$STRING`"
-              }
-            ]
-          }
-          method: "POST"
-          orig: "/api/gifs/{slug}/generate"
-          parts: [
-            "api"
-            "gifs"
-            "{slug}"
-            "generate"
-          ]
-          select: {
-            exist: [
-              "slug"
-            ]
-          }
-          transform: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-      ]
-    }
     list: {
       name: "list"
       points: [
@@ -316,9 +243,13 @@ main: kit: entity: template: {
           }
           method: "GET"
           orig: "/api/templates"
-          parts: [
-            "api"
-            "templates"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "templates"
+            }
           ]
           select: {
             exist: [
@@ -339,14 +270,6 @@ main: kit: entity: template: {
         }
       ]
     }
-  }
-
-  relations: {
-    ancestors: [
-      [
-        "gif"
-      ]
-    ]
   }
 
 

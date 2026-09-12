@@ -101,20 +101,34 @@ main: kit: entity: agent_infra: {
           }
           method: "POST"
           orig: "/api/v1/agents/{agentId}/channels/telegram/bind"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "{agent_id}"
-            "channels"
-            "telegram"
-            "bind"
-          ]
           rename: {
             param: {
               agentId: "agent_id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "agent_id"
+            }
+            {
+              lit: "channels"
+            }
+            {
+              lit: "telegram"
+            }
+            {
+              lit: "bind"
+            }
+          ]
           select: {
             exist: [
               "agent_id"
@@ -139,20 +153,34 @@ main: kit: entity: agent_infra: {
           }
           method: "POST"
           orig: "/api/v1/agents/{agentId}/channels/whatsapp/bind"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "{agent_id}"
-            "channels"
-            "whatsapp"
-            "bind"
-          ]
           rename: {
             param: {
               agentId: "agent_id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "agent_id"
+            }
+            {
+              lit: "channels"
+            }
+            {
+              lit: "whatsapp"
+            }
+            {
+              lit: "bind"
+            }
+          ]
           select: {
             exist: [
               "agent_id"
@@ -177,19 +205,31 @@ main: kit: entity: agent_infra: {
           }
           method: "POST"
           orig: "/api/v1/agents/{agentId}/unlocks/social-action"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "{agent_id}"
-            "unlocks"
-            "social-action"
-          ]
           rename: {
             param: {
               agentId: "agent_id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "agent_id"
+            }
+            {
+              lit: "unlocks"
+            }
+            {
+              lit: "social-action"
+            }
+          ]
           select: {
             exist: [
               "agent_id"
@@ -214,18 +254,28 @@ main: kit: entity: agent_infra: {
           }
           method: "POST"
           orig: "/api/v1/agents/{agentId}/keys"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "{id}"
-            "keys"
-          ]
           rename: {
             param: {
               agentId: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "keys"
+            }
+          ]
           select: {
             "$action": "keys"
             exist: [
@@ -251,19 +301,31 @@ main: kit: entity: agent_infra: {
           }
           method: "POST"
           orig: "/api/v1/agents/unlocks/{unlockId}/approve"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "unlocks"
-            "{unlock_id}"
-            "approve"
-          ]
           rename: {
             param: {
               unlockId: "unlock_id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "unlocks"
+            }
+            {
+              var: "unlock_id"
+            }
+            {
+              lit: "approve"
+            }
+          ]
           select: {
             exist: [
               "unlock_id"
@@ -277,11 +339,19 @@ main: kit: entity: agent_infra: {
         {
           method: "POST"
           orig: "/api/v1/agents/names:generate"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "names:generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "names:generate"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -291,12 +361,22 @@ main: kit: entity: agent_infra: {
         {
           method: "POST"
           orig: "/api/v1/agents/rewards/votes"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "rewards"
-            "votes"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "rewards"
+            }
+            {
+              lit: "votes"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -306,12 +386,22 @@ main: kit: entity: agent_infra: {
         {
           method: "POST"
           orig: "/api/v1/agents/rewards/winner:close"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "rewards"
-            "winner:close"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "rewards"
+            }
+            {
+              lit: "winner:close"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -321,12 +411,22 @@ main: kit: entity: agent_infra: {
         {
           method: "POST"
           orig: "/api/v1/agents/webhooks/telegram"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "webhooks"
-            "telegram"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              lit: "telegram"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -336,12 +436,22 @@ main: kit: entity: agent_infra: {
         {
           method: "POST"
           orig: "/api/v1/agents/webhooks/whatsapp"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "webhooks"
-            "whatsapp"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              lit: "whatsapp"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -374,12 +484,22 @@ main: kit: entity: agent_infra: {
           }
           method: "GET"
           orig: "/api/v1/agents/rewards/leaderboard"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "rewards"
-            "leaderboard"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "rewards"
+            }
+            {
+              lit: "leaderboard"
+            }
           ]
           select: {
             exist: [
@@ -406,18 +526,28 @@ main: kit: entity: agent_infra: {
           }
           method: "GET"
           orig: "/api/v1/agents/{agentId}/keys"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "{id}"
-            "keys"
-          ]
           rename: {
             param: {
               agentId: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "keys"
+            }
+          ]
           select: {
             "$action": "keys"
             exist: [
@@ -432,12 +562,22 @@ main: kit: entity: agent_infra: {
         {
           method: "GET"
           orig: "/api/v1/agents/webhooks/whatsapp"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "webhooks"
-            "whatsapp"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              lit: "whatsapp"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -470,20 +610,32 @@ main: kit: entity: agent_infra: {
           }
           method: "DELETE"
           orig: "/api/v1/agents/{agentId}/keys/{keyId}"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "{agent_id}"
-            "keys"
-            "{key_id}"
-          ]
           rename: {
             param: {
               agentId: "agent_id"
               keyId: "key_id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "agent_id"
+            }
+            {
+              lit: "keys"
+            }
+            {
+              var: "key_id"
+            }
+          ]
           select: {
             exist: [
               "agent_id"

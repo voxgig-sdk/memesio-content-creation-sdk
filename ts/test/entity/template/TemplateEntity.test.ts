@@ -1,6 +1,4 @@
 
-const envlocal = __dirname + '/../../../.env.local'
-require('dotenv').config({ quiet: true, path: [envlocal] })
 
 import Path from 'node:path'
 import * as Fs from 'node:fs'
@@ -13,7 +11,9 @@ import { MemesioContentCreationSDK, BaseFeature, stdutil } from '../../..'
 
 import {
   envOverride,
+  liveClientOptions,
   liveDelay,
+  loadEnvLocal,
   makeCtrl,
   makeMatch,
   makeReqdata,
@@ -21,6 +21,13 @@ import {
   makeValid,
   maybeSkipControl,
 } from '../../utility'
+
+
+// AFTER the imports on purpose: TypeScript hoists `import` above any
+// statement in the emitted CommonJS, so a loader placed above them would
+// run only after every imported module had already been evaluated - and
+// anything reading process.env at module scope would miss these values.
+loadEnvLocal(__dirname + '/../../../.env.local')
 
 
 describe('TemplateEntity', async () => {
@@ -39,7 +46,7 @@ describe('TemplateEntity', async () => {
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE
-    for (const op of ['create', 'list']) {
+    for (const op of ['list']) {
       if (maybeSkipControl(t, 'entityOp', 'template.' + op, live)) return
     }
 
@@ -57,22 +64,13 @@ describe('TemplateEntity', async () => {
     const isempty = struct.isempty
     const select = struct.select
 
-
-    // CREATE
-    const template_ref01_ent = client.Template()
-    let template_ref01_data = setup.data.new.template['template_ref01']
-    template_ref01_data['slug'] = setup.idmap['slug01']
-
-    template_ref01_data = (await template_ref01_ent.create(template_ref01_data)).data()
-    assert(null != template_ref01_data.id)
-
+    let template_ref01_data = Object.values(setup.data.existing.template)[0] as any
 
     // LIST
+    const template_ref01_ent = client.Template()
     const template_ref01_match: any = {}
 
     const template_ref01_list = (await template_ref01_ent.list(template_ref01_match)).map((e: any) => e.data())
-
-    assert(!isempty(select(template_ref01_list, { id: template_ref01_data.id })))
 
 
   })
@@ -103,7 +101,7 @@ function basicSetup(extra?: any) {
   const transform = struct.transform
 
   let idmap = transform(
-    ['template01','template02','template03','gif01','gif02','gif03'],
+    ['template01','template02','template03'],
     {
       '`$PACK`': ['', {
         '`$KEY`': '`$COPY`',
@@ -122,7 +120,7 @@ function basicSetup(extra?: any) {
     'MEMESIO_CONTENT_CREATION_TEST_TEMPLATE_ENTID': idmap,
     'MEMESIO_CONTENT_CREATION_TEST_LIVE': 'FALSE',
     'MEMESIO_CONTENT_CREATION_TEST_EXPLAIN': 'FALSE',
-    'MEMESIO_CONTENT_CREATION_APIKEY': 'NONE',
+    'MEMESIO_CONTENT_CREATION_APIKEY': '',
   })
 
   idmap = env['MEMESIO_CONTENT_CREATION_TEST_TEMPLATE_ENTID']
@@ -131,10 +129,18 @@ function basicSetup(extra?: any) {
 
   if (live) {
     client = new MemesioContentCreationSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
       {
         apikey: env.MEMESIO_CONTENT_CREATION_APIKEY,
       },
-      extra
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {}
     ]))
   }
 

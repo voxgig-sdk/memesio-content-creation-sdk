@@ -115,10 +115,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -149,17 +155,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/agents/{agentId}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "agentId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -176,10 +190,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/agents",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -210,17 +230,25 @@
                   "kind": "http",
                   "method": "PATCH",
                   "orig": "/api/v1/agents/{agentId}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "agentId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -356,20 +384,34 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/{agentId}/channels/telegram/bind",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{agent_id}",
-                    "channels",
-                    "telegram",
-                    "bind"
-                  ],
                   "rename": {
                     "param": {
                       "agentId": "agent_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "var": "agent_id"
+                    },
+                    {
+                      "lit": "channels"
+                    },
+                    {
+                      "lit": "telegram"
+                    },
+                    {
+                      "lit": "bind"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "agent_id"
@@ -397,20 +439,34 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/{agentId}/channels/whatsapp/bind",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{agent_id}",
-                    "channels",
-                    "whatsapp",
-                    "bind"
-                  ],
                   "rename": {
                     "param": {
                       "agentId": "agent_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "var": "agent_id"
+                    },
+                    {
+                      "lit": "channels"
+                    },
+                    {
+                      "lit": "whatsapp"
+                    },
+                    {
+                      "lit": "bind"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "agent_id"
@@ -438,19 +494,31 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/{agentId}/unlocks/social-action",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{agent_id}",
-                    "unlocks",
-                    "social-action"
-                  ],
                   "rename": {
                     "param": {
                       "agentId": "agent_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "var": "agent_id"
+                    },
+                    {
+                      "lit": "unlocks"
+                    },
+                    {
+                      "lit": "social-action"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "agent_id"
@@ -478,18 +546,28 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/{agentId}/keys",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{id}",
-                    "keys"
-                  ],
                   "rename": {
                     "param": {
                       "agentId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "var": "id"
+                    },
+                    {
+                      "lit": "keys"
+                    }
+                  ],
                   "select": {
                     "$action": "keys",
                     "exist": [
@@ -518,19 +596,31 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/unlocks/{unlockId}/approve",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "unlocks",
-                    "{unlock_id}",
-                    "approve"
-                  ],
                   "rename": {
                     "param": {
                       "unlockId": "unlock_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "unlocks"
+                    },
+                    {
+                      "var": "unlock_id"
+                    },
+                    {
+                      "lit": "approve"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "unlock_id"
@@ -547,11 +637,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/names:generate",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "names:generate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "names:generate"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -565,12 +663,22 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/rewards/votes",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "rewards",
-                    "votes"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "rewards"
+                    },
+                    {
+                      "lit": "votes"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -584,12 +692,22 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/rewards/winner:close",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "rewards",
-                    "winner:close"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "rewards"
+                    },
+                    {
+                      "lit": "winner:close"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -603,12 +721,22 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/webhooks/telegram",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "webhooks",
-                    "telegram"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "webhooks"
+                    },
+                    {
+                      "lit": "telegram"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -622,12 +750,22 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/agents/webhooks/whatsapp",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "webhooks",
-                    "whatsapp"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "webhooks"
+                    },
+                    {
+                      "lit": "whatsapp"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -666,12 +804,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/agents/rewards/leaderboard",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "rewards",
-                    "leaderboard"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "rewards"
+                    },
+                    {
+                      "lit": "leaderboard"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -701,18 +849,28 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/agents/{agentId}/keys",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{id}",
-                    "keys"
-                  ],
                   "rename": {
                     "param": {
                       "agentId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "var": "id"
+                    },
+                    {
+                      "lit": "keys"
+                    }
+                  ],
                   "select": {
                     "$action": "keys",
                     "exist": [
@@ -730,12 +888,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/agents/webhooks/whatsapp",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "webhooks",
-                    "whatsapp"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "webhooks"
+                    },
+                    {
+                      "lit": "whatsapp"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -774,20 +942,32 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/api/v1/agents/{agentId}/keys/{keyId}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{agent_id}",
-                    "keys",
-                    "{key_id}"
-                  ],
                   "rename": {
                     "param": {
                       "agentId": "agent_id",
                       "keyId": "key_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "var": "agent_id"
+                    },
+                    {
+                      "lit": "keys"
+                    },
+                    {
+                      "var": "key_id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "agent_id",
@@ -1004,11 +1184,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/captions/generate",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "captions",
-                    "generate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "generate"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1022,11 +1210,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/captions/moderate",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "captions",
-                    "moderate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "moderate"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1040,11 +1236,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/captions/prompt",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "captions",
-                    "prompt"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "prompt"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1058,11 +1262,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/captions/rank",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "captions",
-                    "rank"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "rank"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1076,11 +1288,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/captions/rewrite",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "captions",
-                    "rewrite"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "rewrite"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1094,11 +1314,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/captions/scene",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "captions",
-                    "scene"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "scene"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1112,11 +1340,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/captions/tone-presets",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "captions",
-                    "tone-presets"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "tone-presets"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1147,11 +1383,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/ai/captions/tone-presets",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "captions",
-                    "tone-presets"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "tone-presets"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1169,11 +1413,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/ai/captions/generate",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "captions",
-                    "generate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "generate"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1250,6 +1502,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "createdAt",
               "req": false,
               "type": "`$STRING`"
@@ -1424,6 +1677,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "updatedAt",
               "req": false,
               "type": "`$STRING`"
@@ -1480,19 +1734,30 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/jobs/{jobId}/cancel",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "jobs",
-                    "{job_id}",
-                    "cancel"
-                  ],
                   "rename": {
                     "param": {
                       "jobId": "job_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "jobs"
+                    },
+                    {
+                      "var": "job_id"
+                    },
+                    {
+                      "lit": "cancel"
+                    }
+                  ],
                   "select": {
+                    "$action": "cancel",
                     "exist": [
                       "job_id"
                     ]
@@ -1519,19 +1784,30 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/jobs/{jobId}/complete",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "jobs",
-                    "{job_id}",
-                    "complete"
-                  ],
                   "rename": {
                     "param": {
                       "jobId": "job_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "jobs"
+                    },
+                    {
+                      "var": "job_id"
+                    },
+                    {
+                      "lit": "complete"
+                    }
+                  ],
                   "select": {
+                    "$action": "complete",
                     "exist": [
                       "job_id"
                     ]
@@ -1547,10 +1823,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/background-remove",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "background-remove"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "background-remove"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1564,10 +1846,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/edit-history",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "edit-history"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "edit-history"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1581,10 +1869,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/face-swap",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "face-swap"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "face-swap"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1598,10 +1892,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/face-targets",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "face-targets"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "face-targets"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1615,10 +1915,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/jobs",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "jobs"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "jobs"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1689,10 +1995,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/ai/edit-history",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "edit-history"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "edit-history"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1742,10 +2054,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/ai/jobs",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "jobs"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "jobs"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1776,17 +2094,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/ai/jobs/{jobId}",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "jobs",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "jobId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "jobs"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1971,11 +2297,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/memes/generate",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "memes",
-                    "generate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "lit": "generate"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1989,11 +2323,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/memes/generate",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "memes",
-                    "generate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "lit": "generate"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2087,11 +2429,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/templates/detect",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "templates",
-                    "detect"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "templates"
+                    },
+                    {
+                      "lit": "detect"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2105,11 +2455,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/ai/templates/suggest",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "templates",
-                    "suggest"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "templates"
+                    },
+                    {
+                      "lit": "suggest"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2140,11 +2498,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/ai/providers/background-remove-benchmark",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "providers",
-                    "background-remove-benchmark"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "providers"
+                    },
+                    {
+                      "lit": "background-remove-benchmark"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2173,11 +2539,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/ai/providers/face-swap-benchmark",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "providers",
-                    "face-swap-benchmark"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "providers"
+                    },
+                    {
+                      "lit": "face-swap-benchmark"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2195,11 +2569,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/ai/memes/generate",
-                  "parts": [
-                    "api",
-                    "ai",
-                    "memes",
-                    "generate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "lit": "generate"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2243,11 +2625,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/analytics/experiments/templates",
-                  "parts": [
-                    "api",
-                    "analytics",
-                    "experiments",
-                    "templates"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "experiments"
+                    },
+                    {
+                      "lit": "templates"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2276,11 +2666,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/analytics/dashboards/backend-reliability",
-                  "parts": [
-                    "api",
-                    "analytics",
-                    "dashboards",
-                    "backend-reliability"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "dashboards"
+                    },
+                    {
+                      "lit": "backend-reliability"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2298,11 +2696,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/analytics/alerts/backend",
-                  "parts": [
-                    "api",
-                    "analytics",
-                    "alerts",
-                    "backend"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "backend"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2316,11 +2722,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/analytics/anomalies/ai",
-                  "parts": [
-                    "api",
-                    "analytics",
-                    "anomalies",
-                    "ai"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "anomalies"
+                    },
+                    {
+                      "lit": "ai"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2334,11 +2748,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/analytics/dashboards/activation-retention",
-                  "parts": [
-                    "api",
-                    "analytics",
-                    "dashboards",
-                    "activation-retention"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "dashboards"
+                    },
+                    {
+                      "lit": "activation-retention"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2352,11 +2774,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/analytics/dashboards/feature-adoption",
-                  "parts": [
-                    "api",
-                    "analytics",
-                    "dashboards",
-                    "feature-adoption"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "dashboards"
+                    },
+                    {
+                      "lit": "feature-adoption"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2370,10 +2800,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/analytics/metric-dictionary",
-                  "parts": [
-                    "api",
-                    "analytics",
-                    "metric-dictionary"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "metric-dictionary"
+                    }
                   ],
                   "select": {
                     "$action": "metric_dictionary"
@@ -2404,6 +2840,7 @@
             },
             {
               "active": true,
+              "format": "email",
               "name": "email",
               "req": true,
               "type": "`$STRING`"
@@ -2427,10 +2864,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/auth/resend-verification",
-                  "parts": [
-                    "api",
-                    "auth",
-                    "resend-verification"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "auth"
+                    },
+                    {
+                      "lit": "resend-verification"
+                    }
                   ],
                   "select": {
                     "$action": "resend_verification"
@@ -2446,10 +2889,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/auth/signup",
-                  "parts": [
-                    "api",
-                    "auth",
-                    "signup"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "auth"
+                    },
+                    {
+                      "lit": "signup"
+                    }
                   ],
                   "select": {
                     "$action": "signup"
@@ -2503,10 +2952,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/billing/usage",
-                  "parts": [
-                    "api",
-                    "billing",
-                    "usage"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "billing"
+                    },
+                    {
+                      "lit": "usage"
+                    }
                   ],
                   "select": {
                     "$action": "usage",
@@ -2564,10 +3019,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/collab/comments",
-                  "parts": [
-                    "api",
-                    "collab",
-                    "comments"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "collab"
+                    },
+                    {
+                      "lit": "comments"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2614,10 +3075,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/collab/comments",
-                  "parts": [
-                    "api",
-                    "collab",
-                    "comments"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "collab"
+                    },
+                    {
+                      "lit": "comments"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2656,10 +3123,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/compliance/content-policy",
-                  "parts": [
-                    "api",
-                    "compliance",
-                    "content-policy"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "compliance"
+                    },
+                    {
+                      "lit": "content-policy"
+                    }
                   ],
                   "select": {
                     "$action": "content_policy"
@@ -2773,9 +3246,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/memes",
-                  "parts": [
-                    "api",
-                    "memes"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "memes"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2827,11 +3304,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/templates/ideas",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "templates",
-                    "ideas"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "templates"
+                    },
+                    {
+                      "lit": "ideas"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2851,11 +3336,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/memes/generate",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "memes",
-                    "generate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "lit": "generate"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2925,11 +3418,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/free/memes/caption",
-                  "parts": [
-                    "api",
-                    "free",
-                    "memes",
-                    "caption"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "free"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "lit": "caption"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2943,11 +3444,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/memes/caption-template",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "memes",
-                    "caption-template"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "lit": "caption-template"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -3227,10 +3736,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/free/templates",
-                  "parts": [
-                    "api",
-                    "free",
-                    "templates"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "free"
+                    },
+                    {
+                      "lit": "templates"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -3403,11 +3918,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/gifs/generate",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "gifs",
-                    "generate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "gifs"
+                    },
+                    {
+                      "lit": "generate"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -3496,6 +4019,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "now",
               "req": false,
               "type": "`$STRING`"
@@ -3543,11 +4067,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/growth/experiments/decision",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "experiments",
-                    "decision"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "experiments"
+                    },
+                    {
+                      "lit": "decision"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -3561,10 +4093,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/growth/lifecycle-messaging",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "lifecycle-messaging"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "lifecycle-messaging"
+                    }
                   ],
                   "select": {
                     "$action": "lifecycle_messaging"
@@ -3580,10 +4118,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/growth/referrals",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "referrals"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "referrals"
+                    }
                   ],
                   "select": {
                     "$action": "referral"
@@ -3599,10 +4143,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/growth/social-publish",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "social-publish"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "social-publish"
+                    }
                   ],
                   "select": {
                     "$action": "social_publish"
@@ -3618,10 +4168,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/growth/trend-campaigns",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "trend-campaigns"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "trend-campaigns"
+                    }
                   ],
                   "select": {
                     "$action": "trend_campaign"
@@ -3670,11 +4226,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/growth/experiments/decision",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "experiments",
-                    "decision"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "experiments"
+                    },
+                    {
+                      "lit": "decision"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -3721,10 +4285,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/growth/trend-campaigns",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "trend-campaigns"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "trend-campaigns"
+                    }
                   ],
                   "select": {
                     "$action": "trend_campaign",
@@ -3764,10 +4334,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/growth/social-publish",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "social-publish"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "social-publish"
+                    }
                   ],
                   "select": {
                     "$action": "social_publish",
@@ -3798,10 +4374,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/growth/referrals",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "referrals"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "referrals"
+                    }
                   ],
                   "select": {
                     "$action": "referral",
@@ -3820,10 +4402,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/growth/lifecycle-messaging",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "lifecycle-messaging"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "lifecycle-messaging"
+                    }
                   ],
                   "select": {
                     "$action": "lifecycle_messaging"
@@ -3839,10 +4427,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/growth/viral-triggers",
-                  "parts": [
-                    "api",
-                    "growth",
-                    "viral-triggers"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "viral-triggers"
+                    }
                   ],
                   "select": {
                     "$action": "viral_trigger"
@@ -3879,6 +4473,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "createdAt",
               "req": true,
               "type": "`$STRING`"
@@ -4031,9 +4626,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/memes",
-                  "parts": [
-                    "api",
-                    "memes"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "memes"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -4115,10 +4714,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/media/signed-url",
-                  "parts": [
-                    "api",
-                    "media",
-                    "signed-url"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "media"
+                    },
+                    {
+                      "lit": "signed-url"
+                    }
                   ],
                   "select": {
                     "$action": "signed_url"
@@ -4167,6 +4772,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "createdAt",
               "req": true,
               "type": "`$STRING`"
@@ -4293,16 +4899,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/memes/{slug}",
-                  "parts": [
-                    "api",
-                    "memes",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "slug": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id",
@@ -4337,16 +4949,22 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/api/memes/{slug}",
-                  "parts": [
-                    "api",
-                    "memes",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "slug": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -4409,410 +5027,13 @@
             {
               "active": true,
               "name": "captions",
-              "req": true,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "categories",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "description",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "durationMs",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "exampleImageUrl",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "frameCount",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "height",
-              "req": true,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "id",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "imageUrl",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "mediaType",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "name",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "posterImageUrl",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "previewImageUrl",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "qualityStatus",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "slug",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "sourceTemplateId",
-              "req": true,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "sourceUrl",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "tags",
-              "req": true,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "width",
-              "req": true,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`"
-                ]
-              ]
-            }
-          ],
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
-          "name": "public_template_media_item",
-          "op": {
-            "load": {
-              "input": "data",
-              "name": "load",
-              "points": [
-                {
-                  "active": true,
-                  "args": {
-                    "params": [
-                      {
-                        "active": true,
-                        "kind": "param",
-                        "name": "slug",
-                        "orig": "slug",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      }
-                    ],
-                    "query": [
-                      {
-                        "active": true,
-                        "example": "image",
-                        "kind": "query",
-                        "name": "media_type",
-                        "orig": "media_type",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/templates/{slug}",
-                  "parts": [
-                    "api",
-                    "templates",
-                    "{slug}"
-                  ],
-                  "select": {
-                    "exist": [
-                      "media_type",
-                      "slug"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {
-                    "params": [
-                      {
-                        "active": true,
-                        "kind": "param",
-                        "name": "slug",
-                        "orig": "slug",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/gifs/{slug}",
-                  "parts": [
-                    "api",
-                    "gifs",
-                    "{slug}"
-                  ],
-                  "select": {
-                    "exist": [
-                      "slug"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": [
-              [
-                "gif"
-              ],
-              [
-                "template"
-              ]
-            ]
-          }
-        },
-        "standalone_agent_bootstrap": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "handle",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "locale",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "name",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "stylePreset",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "systemPrompt",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "watermarkText",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "websiteUrl",
-              "req": false,
-              "type": "`$STRING`"
-            }
-          ],
-          "name": "standalone_agent_bootstrap",
-          "op": {
-            "create": {
-              "input": "data",
-              "name": "create",
-              "points": [
-                {
-                  "active": true,
-                  "args": {},
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/api/v1/agents/bootstrap",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "bootstrap"
-                  ],
-                  "select": {},
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {},
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/api/v1/agents/create-agent",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "agents",
-                    "create-agent"
-                  ],
-                  "select": {},
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "template": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "active": true,
-              "name": "animated",
-              "req": false,
-              "type": "`$BOOLEAN`"
-            },
-            {
-              "active": true,
-              "name": "assetBytes",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "assetContentType",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "boxCount",
-              "req": false,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "captionCount",
-              "req": false,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "captions",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": "`$ARRAY`"
                 }
               },
-              "req": false,
+              "req": true,
               "type": "`$ARRAY`"
             },
             {
@@ -4831,7 +5052,13 @@
               "active": true,
               "name": "durationMs",
               "req": false,
-              "type": "`$INTEGER`"
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
             },
             {
               "active": true,
@@ -4965,12 +5192,12 @@
               "active": true,
               "name": "tags",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": "`$ARRAY`"
                 }
               },
-              "req": false,
+              "req": true,
               "type": "`$ARRAY`"
             },
             {
@@ -5002,7 +5229,7 @@
             "field": "id",
             "name": "id"
           },
-          "name": "template",
+          "name": "public_template_media_item",
           "op": {
             "create": {
               "input": "data",
@@ -5025,11 +5252,114 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/gifs/{slug}/generate",
-                  "parts": [
-                    "api",
-                    "gifs",
-                    "{slug}",
-                    "generate"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "gifs"
+                    },
+                    {
+                      "var": "slug"
+                    },
+                    {
+                      "lit": "generate"
+                    }
+                  ],
+                  "select": {
+                    "$action": "generate",
+                    "exist": [
+                      "slug"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "slug",
+                        "orig": "slug",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "image",
+                        "kind": "query",
+                        "name": "media_type",
+                        "orig": "media_type",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "kind": "http",
+                  "method": "GET",
+                  "orig": "/api/templates/{slug}",
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "templates"
+                    },
+                    {
+                      "var": "slug"
+                    }
+                  ],
+                  "select": {
+                    "exist": [
+                      "media_type",
+                      "slug"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "slug",
+                        "orig": "slug",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "kind": "http",
+                  "method": "GET",
+                  "orig": "/api/gifs/{slug}",
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "gifs"
+                    },
+                    {
+                      "var": "slug"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5042,7 +5372,338 @@
                   }
                 }
               ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "gif"
+              ],
+              [
+                "template"
+              ]
+            ]
+          }
+        },
+        "standalone_agent_bootstrap": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "description",
+              "req": false,
+              "type": "`$STRING`"
             },
+            {
+              "active": true,
+              "name": "handle",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "locale",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "stylePreset",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "systemPrompt",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "watermarkText",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "websiteUrl",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "standalone_agent_bootstrap",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "kind": "http",
+                  "method": "POST",
+                  "orig": "/api/v1/agents/bootstrap",
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "bootstrap"
+                    }
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "kind": "http",
+                  "method": "POST",
+                  "orig": "/api/v1/agents/create-agent",
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "create-agent"
+                    }
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "template": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "animated",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "assetBytes",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "assetContentType",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "boxCount",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "captionCount",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "captions",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "categories",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "description",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "durationMs",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "exampleImageUrl",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "frameCount",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "height",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "imageUrl",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "mediaType",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "posterImageUrl",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "previewImageUrl",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "qualityStatus",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "slug",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "sourceTemplateId",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "sourceUrl",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "tags",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "width",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "template",
+          "op": {
             "list": {
               "input": "data",
               "name": "list",
@@ -5121,9 +5782,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/templates",
-                  "parts": [
-                    "api",
-                    "templates"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "templates"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5146,11 +5811,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "gif"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "template_search": {
@@ -5413,9 +6074,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/gifs",
-                  "parts": [
-                    "api",
-                    "gifs"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "gifs"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5554,10 +6219,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/alerts/delivery",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "delivery"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "delivery"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -5571,10 +6242,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/alerts/feedback",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "feedback"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "feedback"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -5588,10 +6265,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/alerts/preferences",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "preferences"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "preferences"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -5605,10 +6288,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/alerts/triggers",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "triggers"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "triggers"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -5735,9 +6424,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts",
-                  "parts": [
-                    "api",
-                    "alerts"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5826,10 +6519,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts/ranking",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "ranking"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "ranking"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5872,10 +6571,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts/feedback",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "feedback"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "feedback"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5905,10 +6610,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts/preferences",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "preferences"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "preferences"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5937,10 +6648,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts/delivery",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "delivery"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "delivery"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5969,10 +6686,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts/ingestion",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "ingestion"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "ingestion"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -6001,10 +6724,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts/quality-report",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "quality-report"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "quality-report"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -6033,10 +6762,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts/message-templates",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "message-templates"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "message-templates"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -6054,10 +6789,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts/connectors",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "connectors"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "connectors"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -6071,10 +6812,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/alerts/triggers",
-                  "parts": [
-                    "api",
-                    "alerts",
-                    "triggers"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "triggers"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -6107,11 +6854,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/memes/caption-upload",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "memes",
-                    "caption-upload"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "lit": "caption-upload"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -6398,6 +7153,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "updatedAt",
               "req": false,
               "type": "`$STRING`"
@@ -6439,10 +7195,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/video/drafts",
-                  "parts": [
-                    "api",
-                    "video",
-                    "drafts"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "drafts"
+                    }
                   ],
                   "select": {
                     "$action": "draft"
@@ -6458,10 +7220,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/video/export-settings",
-                  "parts": [
-                    "api",
-                    "video",
-                    "export-settings"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "export-settings"
+                    }
                   ],
                   "select": {
                     "$action": "export_setting"
@@ -6477,10 +7245,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/video/formats",
-                  "parts": [
-                    "api",
-                    "video",
-                    "formats"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "formats"
+                    }
                   ],
                   "select": {
                     "$action": "format"
@@ -6496,10 +7270,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/video/render-queue",
-                  "parts": [
-                    "api",
-                    "video",
-                    "render-queue"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "render-queue"
+                    }
                   ],
                   "select": {
                     "$action": "render_queue"
@@ -6515,10 +7295,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/video/subtitles",
-                  "parts": [
-                    "api",
-                    "video",
-                    "subtitles"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "subtitles"
+                    }
                   ],
                   "select": {
                     "$action": "subtitle"
@@ -6534,10 +7320,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/video/text-animations",
-                  "parts": [
-                    "api",
-                    "video",
-                    "text-animations"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "text-animations"
+                    }
                   ],
                   "select": {
                     "$action": "text_animation"
@@ -6553,10 +7345,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/video/timeline",
-                  "parts": [
-                    "api",
-                    "video",
-                    "timeline"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "timeline"
+                    }
                   ],
                   "select": {
                     "$action": "timeline"
@@ -6645,10 +7443,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/video/subtitles",
-                  "parts": [
-                    "api",
-                    "video",
-                    "subtitles"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "subtitles"
+                    }
                   ],
                   "select": {
                     "$action": "subtitle",
@@ -6725,10 +7529,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/video/audio-library",
-                  "parts": [
-                    "api",
-                    "video",
-                    "audio-library"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "audio-library"
+                    }
                   ],
                   "select": {
                     "$action": "audio_library",
@@ -6803,10 +7613,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/video/export-settings",
-                  "parts": [
-                    "api",
-                    "video",
-                    "export-settings"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "export-settings"
+                    }
                   ],
                   "select": {
                     "$action": "export_setting",
@@ -6873,10 +7689,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/video/formats",
-                  "parts": [
-                    "api",
-                    "video",
-                    "formats"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "formats"
+                    }
                   ],
                   "select": {
                     "$action": "format",
@@ -6934,10 +7756,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/video/render-queue",
-                  "parts": [
-                    "api",
-                    "video",
-                    "render-queue"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "render-queue"
+                    }
                   ],
                   "select": {
                     "$action": "render_queue",
@@ -6994,10 +7822,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/video/text-animations",
-                  "parts": [
-                    "api",
-                    "video",
-                    "text-animations"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "text-animations"
+                    }
                   ],
                   "select": {
                     "$action": "text_animation",
@@ -7038,10 +7872,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/video/drafts",
-                  "parts": [
-                    "api",
-                    "video",
-                    "drafts"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "drafts"
+                    }
                   ],
                   "select": {
                     "$action": "draft",
@@ -7080,10 +7920,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/video/timeline",
-                  "parts": [
-                    "api",
-                    "video",
-                    "timeline"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "timeline"
+                    }
                   ],
                   "select": {
                     "$action": "timeline",
@@ -7114,10 +7960,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/video/render-performance",
-                  "parts": [
-                    "api",
-                    "video",
-                    "render-performance"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "render-performance"
+                    }
                   ],
                   "select": {
                     "$action": "render_performance",
@@ -7202,8 +8054,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -7916,6 +8771,19 @@
               "active": true,
               "data": {},
               "input": {
+                "ref": "public_template_media_item_ref01"
+              },
+              "match": {
+                "slug": "slug01"
+              },
+              "op": "create",
+              "spec": [],
+              "valid": []
+            },
+            {
+              "active": true,
+              "data": {},
+              "input": {
                 "ref": "public_template_media_item_ref01",
                 "srcdatavar": "public_template_media_item_ref01_data",
                 "suffix": "_dt0"
@@ -7965,19 +8833,6 @@
           "name": "BasicTemplateFlow",
           "param": {},
           "step": [
-            {
-              "active": true,
-              "data": {},
-              "input": {
-                "ref": "template_ref01"
-              },
-              "match": {
-                "slug": "slug01"
-              },
-              "op": "create",
-              "spec": [],
-              "valid": []
-            },
             {
               "active": true,
               "data": {},
@@ -8185,6 +9040,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -8210,6 +9068,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -8261,6 +9123,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -8285,6 +9148,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -8336,6 +9200,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -8360,6 +9225,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -8400,6 +9266,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -8425,6 +9294,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -8459,6 +9331,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -8484,6 +9359,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -8524,6 +9402,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -8549,6 +9430,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -8594,6 +9478,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -8619,6 +9506,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -8636,11 +9526,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -8669,6 +9554,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -8693,6 +9581,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

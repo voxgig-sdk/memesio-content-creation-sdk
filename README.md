@@ -189,9 +189,9 @@ The API exposes 27 entities:
 | **ListMeme** | The ListMeme entity (list). | `/api/memes` |
 | **Media** | The Media entity (create). | `/api/media/signed-url` |
 | **Meme** | The Meme entity (load, remove). | `/api/memes/{slug}` |
-| **PublicTemplateMediaItem** | The PublicTemplateMediaItem entity (load). | `/api/templates/{slug}` |
+| **PublicTemplateMediaItem** | The PublicTemplateMediaItem entity (create, load). | `/api/templates/{slug}` |
 | **StandaloneAgentBootstrap** | The StandaloneAgentBootstrap entity (create). | `/api/v1/agents/bootstrap` |
-| **Template** | The Template entity (create, list). | `/api/templates` |
+| **Template** | The Template entity (list). | `/api/templates` |
 | **TemplateSearch** | The TemplateSearch entity (list). | `/api/gifs` |
 | **TrendAlert** | The TrendAlert entity (create, load). | `/api/alerts` |
 | **UploadCaptionMemeSuccess** | The UploadCaptionMemeSuccess entity (create). | `/api/v1/memes/caption-upload` |
@@ -394,7 +394,7 @@ customizable without forking any upstream tool:
 
 - **The model** (`.sdk/model/`) declares everything this project owns:
   package names, versions, active features, per-target settings. It is
-  written in [aontu](https://github.com/aontu-lang/aontu), a JSON-based
+  written in [aontu](https://aontu.dev), a JSON-based
   specification language designed for building ontologies: easy to edit
   by hand, and files unify rather than override, so small declarations
   compose into one model. Regeneration re-reads it every time.

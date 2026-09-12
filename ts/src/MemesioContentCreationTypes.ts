@@ -262,6 +262,12 @@ export interface AiJobCreateData {
   width: number
   workerId: string
   workspaceId?: string
+
+  // Selects a custom action instead of the plain create:
+  //   'cancel' | 'complete'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface AiMemeGenerationSucceeded {
@@ -711,7 +717,9 @@ export interface PublicTemplateMediaItem {
   description: string
   durationMs?: number | null
   exampleImageUrl?: string | null
+  fps?: number
   frameCount?: number | null
+  gifSlug?: string
   height: number | null
   id: string
   imageUrl: string
@@ -720,16 +728,59 @@ export interface PublicTemplateMediaItem {
   posterImageUrl?: string
   previewImageUrl?: string
   qualityStatus?: string
+  returnBase64?: boolean
   slug: string
   sourceTemplateId: string | null
   sourceUrl?: string
+  startMs?: number
   tags: any[]
+  title?: string
   width: number | null
+  widthPx?: number
 }
 
 export interface PublicTemplateMediaItemLoadMatch {
   slug: string
   media_type?: string
+}
+
+export interface PublicTemplateMediaItemCreateData {
+  slug: string
+  animated?: boolean
+  assetBytes?: number | null
+  assetContentType?: string
+  boxCount?: number
+  captionCount?: number
+  captions: any[]
+  categories?: any[]
+  description: string
+  durationMs?: number | null
+  exampleImageUrl?: string | null
+  fps?: number
+  frameCount?: number | null
+  gifSlug?: string
+  height: number | null
+  id: string
+  imageUrl: string
+  mediaType: string
+  name: string
+  posterImageUrl?: string
+  previewImageUrl?: string
+  qualityStatus?: string
+  returnBase64?: boolean
+  sourceTemplateId: string | null
+  sourceUrl?: string
+  startMs?: number
+  tags: any[]
+  title?: string
+  width: number | null
+  widthPx?: number
+
+  // Selects a custom action instead of the plain create:
+  //   'generate'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface StandaloneAgentBootstrap {
@@ -760,14 +811,12 @@ export interface Template {
   assetContentType?: string
   boxCount?: number
   captionCount?: number
-  captions?: any[]
+  captions: any[]
   categories?: any[]
   description: string
-  durationMs?: number
+  durationMs?: number | null
   exampleImageUrl?: string | null
-  fps?: number
   frameCount?: number | null
-  gifSlug?: string
   height: number | null
   id: string
   imageUrl: string
@@ -776,15 +825,11 @@ export interface Template {
   posterImageUrl?: string
   previewImageUrl?: string
   qualityStatus?: string
-  returnBase64?: boolean
   slug: string
   sourceTemplateId: string | null
   sourceUrl?: string
-  startMs?: number
-  tags?: any[]
-  title?: string
+  tags: any[]
   width: number | null
-  widthPx?: number
 }
 
 export interface TemplateListMatch {
@@ -796,39 +841,6 @@ export interface TemplateListMatch {
   query?: string
   sort?: string
   tag?: string
-}
-
-export interface TemplateCreateData {
-  slug: string
-  animated?: boolean
-  assetBytes?: number | null
-  assetContentType?: string
-  boxCount?: number
-  captionCount?: number
-  captions?: any[]
-  categories?: any[]
-  description: string
-  durationMs?: number
-  exampleImageUrl?: string | null
-  fps?: number
-  frameCount?: number | null
-  gifSlug?: string
-  height: number | null
-  id: string
-  imageUrl: string
-  mediaType: string
-  name: string
-  posterImageUrl?: string
-  previewImageUrl?: string
-  qualityStatus?: string
-  returnBase64?: boolean
-  sourceTemplateId: string | null
-  sourceUrl?: string
-  startMs?: number
-  tags?: any[]
-  title?: string
-  width: number | null
-  widthPx?: number
 }
 
 export interface TemplateSearch {

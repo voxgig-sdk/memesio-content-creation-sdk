@@ -27,7 +27,7 @@ class TestPublicTemplateMediaItemEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["load"]:
+        for _op in ["create", "load"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "public_template_media_item." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -39,15 +39,17 @@ class TestPublicTemplateMediaItemEntity:
                         "set MEMESIO_CONTENT_CREATION_TEST_PUBLIC_TEMPLATE_MEDIA_ITEM_ENTID JSON to run live")
         client = setup["client"]
 
-        # Bootstrap entity data from existing test data.
-        public_template_media_item_ref01_data_raw = vs.items(helpers.to_map(
-            vs.getpath(setup["data"], "existing.public_template_media_item")))
-        public_template_media_item_ref01_data = None
-        if len(public_template_media_item_ref01_data_raw) > 0:
-            public_template_media_item_ref01_data = helpers.to_map(public_template_media_item_ref01_data_raw[0][1])
+        # CREATE
+        public_template_media_item_ref01_ent = client.PublicTemplateMediaItem(None)
+        public_template_media_item_ref01_data = helpers.to_map(vs.getprop(
+            vs.getpath(setup["data"], "new.public_template_media_item"), "public_template_media_item_ref01"))
+        public_template_media_item_ref01_data["slug"] = setup["idmap"]["slug01"]
+
+        public_template_media_item_ref01_data = helpers.to_map(runner.entity_data(public_template_media_item_ref01_ent.create(public_template_media_item_ref01_data, None)))
+        assert public_template_media_item_ref01_data is not None
+        assert public_template_media_item_ref01_data["id"] is not None
 
         # LOAD
-        public_template_media_item_ref01_ent = client.PublicTemplateMediaItem(None)
         public_template_media_item_ref01_match_dt0 = {
             "id": public_template_media_item_ref01_data["id"],
         }
@@ -74,7 +76,7 @@ def _public_template_media_item_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03"],
+        ["public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03", "slug01"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",
@@ -94,7 +96,7 @@ def _public_template_media_item_basic_setup(extra):
         "MEMESIO_CONTENT_CREATION_TEST_PUBLIC_TEMPLATE_MEDIA_ITEM_ENTID": idmap,
         "MEMESIO_CONTENT_CREATION_TEST_LIVE": "FALSE",
         "MEMESIO_CONTENT_CREATION_TEST_EXPLAIN": "FALSE",
-        "MEMESIO_CONTENT_CREATION_APIKEY": "NONE",
+        "MEMESIO_CONTENT_CREATION_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -104,6 +106,10 @@ def _public_template_media_item_basic_setup(extra):
 
     if env.get("MEMESIO_CONTENT_CREATION_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("MEMESIO_CONTENT_CREATION_APIKEY"),
             },

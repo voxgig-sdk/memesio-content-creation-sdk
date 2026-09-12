@@ -728,7 +728,9 @@ API path: `/api/memes/{slug}`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
+| `fps` |  |
 | `frameCount` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -737,15 +739,19 @@ API path: `/api/memes/{slug}`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
+| `startMs` |  |
 | `tags` |  |
+| `title` |  |
 | `width` |  |
+| `widthPx` |  |
 
-Operations: Load.
+Operations: Create, Load.
 
-API path: `/api/templates/{slug}`
+API path: `/api/gifs/{slug}/generate`
 
 #### StandaloneAgentBootstrap
 
@@ -778,9 +784,7 @@ API path: `/api/v1/agents/bootstrap`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
-| `fps` |  |
 | `frameCount` |  |
-| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -789,19 +793,15 @@ API path: `/api/v1/agents/bootstrap`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
-| `startMs` |  |
 | `tags` |  |
-| `title` |  |
 | `width` |  |
-| `widthPx` |  |
 
-Operations: Create, List.
+Operations: List.
 
-API path: `/api/gifs/{slug}/generate`
+API path: `/api/templates`
 
 #### TemplateSearch
 
@@ -1750,6 +1750,7 @@ Create an instance: `$public_template_media_item = $client->PublicTemplateMediaI
 
 | Method | Description |
 | --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
@@ -1766,7 +1767,9 @@ Create an instance: `$public_template_media_item = $client->PublicTemplateMediaI
 | `description` | `string` |  |
 | `durationMs` | `mixed` |  |
 | `exampleImageUrl` | `mixed` |  |
+| `fps` | `int` |  |
 | `frameCount` | `mixed` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `mixed` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1775,17 +1778,39 @@ Create an instance: `$public_template_media_item = $client->PublicTemplateMediaI
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
+| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `mixed` |  |
 | `sourceUrl` | `string` |  |
+| `startMs` | `int` |  |
 | `tags` | `array` |  |
+| `title` | `string` |  |
 | `width` | `mixed` |  |
+| `widthPx` | `int` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the ENTITY — call data_get() for the PublicTemplateMediaItem record (throws on error).
 $public_template_media_item = $client->PublicTemplateMediaItem()->load(["slug" => "slug"]);
+```
+
+#### Example: Create
+
+```php
+$public_template_media_item = $client->PublicTemplateMediaItem()->create([
+    "slug" => null, // string
+    "captions" => null, // array
+    "description" => null, // string
+    "height" => null, // mixed
+    "id" => null, // string
+    "imageUrl" => null, // string
+    "mediaType" => null, // string
+    "name" => null, // string
+    "sourceTemplateId" => null, // mixed
+    "tags" => null, // array
+    "width" => null, // mixed
+]);
 ```
 
 
@@ -1830,7 +1855,6 @@ Create an instance: `$template = $client->Template();`
 
 | Method | Description |
 | --- | --- |
-| `create(data)` | Create a new entity with the given data. |
 | `list(match)` | List entities matching the criteria. |
 
 #### Fields
@@ -1845,11 +1869,9 @@ Create an instance: `$template = $client->Template();`
 | `captions` | `array` |  |
 | `categories` | `array` |  |
 | `description` | `string` |  |
-| `durationMs` | `int` |  |
+| `durationMs` | `mixed` |  |
 | `exampleImageUrl` | `mixed` |  |
-| `fps` | `int` |  |
 | `frameCount` | `mixed` |  |
-| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `mixed` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1858,37 +1880,17 @@ Create an instance: `$template = $client->Template();`
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `mixed` |  |
 | `sourceUrl` | `string` |  |
-| `startMs` | `int` |  |
 | `tags` | `array` |  |
-| `title` | `string` |  |
 | `width` | `mixed` |  |
-| `widthPx` | `int` |  |
 
 #### Example: List
 
 ```php
 // list() returns an array of Template records (throws on error).
 $templates = $client->Template()->list();
-```
-
-#### Example: Create
-
-```php
-$template = $client->Template()->create([
-    "slug" => null, // string
-    "description" => null, // string
-    "height" => null, // mixed
-    "id" => null, // string
-    "imageUrl" => null, // string
-    "mediaType" => null, // string
-    "name" => null, // string
-    "sourceTemplateId" => null, // mixed
-    "width" => null, // mixed
-]);
 ```
 
 

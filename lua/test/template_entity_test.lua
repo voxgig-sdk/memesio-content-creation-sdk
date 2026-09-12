@@ -60,7 +60,7 @@ describe("TemplateEntity", function()
     local setup = template_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"create", "list"}) do
+    for _, _op in ipairs({"list"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "template." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -75,29 +75,21 @@ describe("TemplateEntity", function()
     end
     local client = setup.client
 
-    -- CREATE
-    local template_ref01_ent = client:Template(nil)
-    local template_ref01_data = helpers.to_map(vs.getprop(
-      vs.getpath(setup.data, "new.template"), "template_ref01"))
-    template_ref01_data["slug"] = setup.idmap["slug01"]
-
-    local template_ref01_data_result, err = template_ref01_ent:create(template_ref01_data, nil)
-    assert.is_nil(err)
-    template_ref01_data = helpers.to_map(type(template_ref01_data_result) == 'table' and template_ref01_data_result.data_get and template_ref01_data_result:data_get() or template_ref01_data_result)
-    assert.is_not_nil(template_ref01_data)
-    assert.is_not_nil(template_ref01_data["id"])
+    -- Bootstrap entity data from existing test data.
+    local template_ref01_data_raw = vs.items(helpers.to_map(
+      vs.getpath(setup.data, "existing.template")))
+    local template_ref01_data = nil
+    if #template_ref01_data_raw > 0 then
+      template_ref01_data = helpers.to_map(template_ref01_data_raw[1][2])
+    end
 
     -- LIST
+    local template_ref01_ent = client:Template(nil)
     local template_ref01_match = {}
 
     local template_ref01_list_result, err = template_ref01_ent:list(template_ref01_match, nil)
     assert.is_nil(err)
     assert.is_table(template_ref01_list_result)
-
-    local found_item = vs.select(
-      runner.entity_list_to_data(template_ref01_list_result),
-      { id = template_ref01_data["id"] })
-    assert.is_false(vs.isempty(found_item))
 
   end)
 end)
@@ -122,7 +114,7 @@ function template_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "template01", "template02", "template03", "gif01", "gif02", "gif03", "slug01" },
+    { "template01", "template02", "template03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",
@@ -141,7 +133,7 @@ function template_basic_setup(extra)
     ["MEMESIO_CONTENT_CREATION_TEST_TEMPLATE_ENTID"] = idmap,
     ["MEMESIO_CONTENT_CREATION_TEST_LIVE"] = "FALSE",
     ["MEMESIO_CONTENT_CREATION_TEST_EXPLAIN"] = "FALSE",
-    ["MEMESIO_CONTENT_CREATION_APIKEY"] = "NONE",
+    ["MEMESIO_CONTENT_CREATION_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -152,6 +144,9 @@ function template_basic_setup(extra)
 
   if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["MEMESIO_CONTENT_CREATION_APIKEY"],
       },

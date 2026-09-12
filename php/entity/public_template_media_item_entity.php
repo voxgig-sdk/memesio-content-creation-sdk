@@ -279,6 +279,36 @@ class PublicTemplateMediaItemEntity
     
 
     
+    /**
+     * Create a new PublicTemplateMediaItem.
+     *
+     * @param PublicTemplateMediaItemCreateData|array|null $reqdata Body data as an assoc-array;
+     *   a typed PublicTemplateMediaItemCreateData names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return PublicTemplateMediaItem|array The created PublicTemplateMediaItem as an assoc-array at the
+     *   SDK boundary; throws MemesioContentCreationError on failure (item-5 convention).
+     */
+    public function create(?array $reqdata = null, $ctrl = null): mixed
+    {
+        $utility = $this->_utility;
+        $ctx = ($utility->make_context)([
+            "opname" => "create",
+            "ctrl" => $ctrl,
+            "match" => $this->_match,
+            "data" => $this->_data,
+            "reqdata" => $reqdata,
+        ], $this->_entctx);
+
+        return $this->_run_op($ctx, function () use ($ctx) {
+            if ($ctx->result) {
+                if ($ctx->result->resdata) {
+                    $this->_data = MemesioContentCreationHelpers::to_map(Struct::clone($ctx->result->resdata)) ?? [];
+                }
+            }
+        });
+    }
+
+
 
     
 

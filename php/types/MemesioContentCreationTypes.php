@@ -768,7 +768,9 @@ class PublicTemplateMediaItem
     public string $description;
     public mixed $durationMs = null;
     public mixed $exampleImageUrl = null;
+    public ?int $fps = null;
     public mixed $frameCount = null;
+    public ?string $gifSlug = null;
     public mixed $height;
     public string $id;
     public string $imageUrl;
@@ -777,11 +779,15 @@ class PublicTemplateMediaItem
     public ?string $posterImageUrl = null;
     public ?string $previewImageUrl = null;
     public ?string $qualityStatus = null;
+    public ?bool $returnBase64 = null;
     public string $slug;
     public mixed $sourceTemplateId;
     public ?string $sourceUrl = null;
+    public ?int $startMs = null;
     public array $tags;
+    public ?string $title = null;
     public mixed $width;
+    public ?int $widthPx = null;
 }
 
 /** Request payload for PublicTemplateMediaItem#load. */
@@ -789,6 +795,41 @@ class PublicTemplateMediaItemLoadMatch
 {
     public string $slug;
     public ?string $media_type = null;
+}
+
+/** Request payload for PublicTemplateMediaItem#create. */
+class PublicTemplateMediaItemCreateData
+{
+    public string $slug;
+    public ?bool $animated = null;
+    public mixed $assetBytes = null;
+    public ?string $assetContentType = null;
+    public ?int $boxCount = null;
+    public ?int $captionCount = null;
+    public array $captions;
+    public ?array $categories = null;
+    public string $description;
+    public mixed $durationMs = null;
+    public mixed $exampleImageUrl = null;
+    public ?int $fps = null;
+    public mixed $frameCount = null;
+    public ?string $gifSlug = null;
+    public mixed $height;
+    public string $id;
+    public string $imageUrl;
+    public string $mediaType;
+    public string $name;
+    public ?string $posterImageUrl = null;
+    public ?string $previewImageUrl = null;
+    public ?string $qualityStatus = null;
+    public ?bool $returnBase64 = null;
+    public mixed $sourceTemplateId;
+    public ?string $sourceUrl = null;
+    public ?int $startMs = null;
+    public array $tags;
+    public ?string $title = null;
+    public mixed $width;
+    public ?int $widthPx = null;
 }
 
 /** StandaloneAgentBootstrap entity data model. */
@@ -825,14 +866,12 @@ class Template
     public ?string $assetContentType = null;
     public ?int $boxCount = null;
     public ?int $captionCount = null;
-    public ?array $captions = null;
+    public array $captions;
     public ?array $categories = null;
     public string $description;
-    public ?int $durationMs = null;
+    public mixed $durationMs = null;
     public mixed $exampleImageUrl = null;
-    public ?int $fps = null;
     public mixed $frameCount = null;
-    public ?string $gifSlug = null;
     public mixed $height;
     public string $id;
     public string $imageUrl;
@@ -841,15 +880,11 @@ class Template
     public ?string $posterImageUrl = null;
     public ?string $previewImageUrl = null;
     public ?string $qualityStatus = null;
-    public ?bool $returnBase64 = null;
     public string $slug;
     public mixed $sourceTemplateId;
     public ?string $sourceUrl = null;
-    public ?int $startMs = null;
-    public ?array $tags = null;
-    public ?string $title = null;
+    public array $tags;
     public mixed $width;
-    public ?int $widthPx = null;
 }
 
 /** Request payload for Template#list. */
@@ -863,41 +898,6 @@ class TemplateListMatch
     public ?string $query = null;
     public ?string $sort = null;
     public ?string $tag = null;
-}
-
-/** Request payload for Template#create. */
-class TemplateCreateData
-{
-    public string $slug;
-    public ?bool $animated = null;
-    public mixed $assetBytes = null;
-    public ?string $assetContentType = null;
-    public ?int $boxCount = null;
-    public ?int $captionCount = null;
-    public ?array $captions = null;
-    public ?array $categories = null;
-    public string $description;
-    public ?int $durationMs = null;
-    public mixed $exampleImageUrl = null;
-    public ?int $fps = null;
-    public mixed $frameCount = null;
-    public ?string $gifSlug = null;
-    public mixed $height;
-    public string $id;
-    public string $imageUrl;
-    public string $mediaType;
-    public string $name;
-    public ?string $posterImageUrl = null;
-    public ?string $previewImageUrl = null;
-    public ?string $qualityStatus = null;
-    public ?bool $returnBase64 = null;
-    public mixed $sourceTemplateId;
-    public ?string $sourceUrl = null;
-    public ?int $startMs = null;
-    public ?array $tags = null;
-    public ?string $title = null;
-    public mixed $width;
-    public ?int $widthPx = null;
 }
 
 /** TemplateSearch entity data model. */

@@ -19,7 +19,7 @@ describe("PublicTemplateMediaItemEntity", function()
     local setup = public_template_media_item_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"load"}) do
+    for _, _op in ipairs({"create", "load"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "public_template_media_item." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -34,16 +34,19 @@ describe("PublicTemplateMediaItemEntity", function()
     end
     local client = setup.client
 
-    -- Bootstrap entity data from existing test data.
-    local public_template_media_item_ref01_data_raw = vs.items(helpers.to_map(
-      vs.getpath(setup.data, "existing.public_template_media_item")))
-    local public_template_media_item_ref01_data = nil
-    if #public_template_media_item_ref01_data_raw > 0 then
-      public_template_media_item_ref01_data = helpers.to_map(public_template_media_item_ref01_data_raw[1][2])
-    end
+    -- CREATE
+    local public_template_media_item_ref01_ent = client:PublicTemplateMediaItem(nil)
+    local public_template_media_item_ref01_data = helpers.to_map(vs.getprop(
+      vs.getpath(setup.data, "new.public_template_media_item"), "public_template_media_item_ref01"))
+    public_template_media_item_ref01_data["slug"] = setup.idmap["slug01"]
+
+    local public_template_media_item_ref01_data_result, err = public_template_media_item_ref01_ent:create(public_template_media_item_ref01_data, nil)
+    assert.is_nil(err)
+    public_template_media_item_ref01_data = helpers.to_map(type(public_template_media_item_ref01_data_result) == 'table' and public_template_media_item_ref01_data_result.data_get and public_template_media_item_ref01_data_result:data_get() or public_template_media_item_ref01_data_result)
+    assert.is_not_nil(public_template_media_item_ref01_data)
+    assert.is_not_nil(public_template_media_item_ref01_data["id"])
 
     -- LOAD
-    local public_template_media_item_ref01_ent = client:PublicTemplateMediaItem(nil)
     local public_template_media_item_ref01_match_dt0 = {
       id = public_template_media_item_ref01_data["id"],
     }
@@ -76,7 +79,7 @@ function public_template_media_item_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03" },
+    { "public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03", "slug01" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",
@@ -95,7 +98,7 @@ function public_template_media_item_basic_setup(extra)
     ["MEMESIO_CONTENT_CREATION_TEST_PUBLIC_TEMPLATE_MEDIA_ITEM_ENTID"] = idmap,
     ["MEMESIO_CONTENT_CREATION_TEST_LIVE"] = "FALSE",
     ["MEMESIO_CONTENT_CREATION_TEST_EXPLAIN"] = "FALSE",
-    ["MEMESIO_CONTENT_CREATION_APIKEY"] = "NONE",
+    ["MEMESIO_CONTENT_CREATION_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -106,6 +109,9 @@ function public_template_media_item_basic_setup(extra)
 
   if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["MEMESIO_CONTENT_CREATION_APIKEY"],
       },

@@ -61,7 +61,7 @@ class TestTemplateEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["create", "list"]:
+        for _op in ["list"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "template." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -73,26 +73,19 @@ class TestTemplateEntity:
                         "set MEMESIO_CONTENT_CREATION_TEST_TEMPLATE_ENTID JSON to run live")
         client = setup["client"]
 
-        # CREATE
-        template_ref01_ent = client.Template(None)
-        template_ref01_data = helpers.to_map(vs.getprop(
-            vs.getpath(setup["data"], "new.template"), "template_ref01"))
-        template_ref01_data["slug"] = setup["idmap"]["slug01"]
-
-        template_ref01_data = helpers.to_map(runner.entity_data(template_ref01_ent.create(template_ref01_data, None)))
-        assert template_ref01_data is not None
-        assert template_ref01_data["id"] is not None
+        # Bootstrap entity data from existing test data.
+        template_ref01_data_raw = vs.items(helpers.to_map(
+            vs.getpath(setup["data"], "existing.template")))
+        template_ref01_data = None
+        if len(template_ref01_data_raw) > 0:
+            template_ref01_data = helpers.to_map(template_ref01_data_raw[0][1])
 
         # LIST
+        template_ref01_ent = client.Template(None)
         template_ref01_match = {}
 
         template_ref01_list_result = template_ref01_ent.list(template_ref01_match, None)
         assert isinstance(template_ref01_list_result, list)
-
-        found_item = vs.select(
-            runner.entity_list_to_data(template_ref01_list_result),
-            {"id": template_ref01_data["id"]})
-        assert not vs.isempty(found_item)
 
 
 
@@ -112,7 +105,7 @@ def _template_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["template01", "template02", "template03", "gif01", "gif02", "gif03", "slug01"],
+        ["template01", "template02", "template03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",
@@ -132,7 +125,7 @@ def _template_basic_setup(extra):
         "MEMESIO_CONTENT_CREATION_TEST_TEMPLATE_ENTID": idmap,
         "MEMESIO_CONTENT_CREATION_TEST_LIVE": "FALSE",
         "MEMESIO_CONTENT_CREATION_TEST_EXPLAIN": "FALSE",
-        "MEMESIO_CONTENT_CREATION_APIKEY": "NONE",
+        "MEMESIO_CONTENT_CREATION_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -142,6 +135,10 @@ def _template_basic_setup(extra):
 
     if env.get("MEMESIO_CONTENT_CREATION_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("MEMESIO_CONTENT_CREATION_APIKEY"),
             },

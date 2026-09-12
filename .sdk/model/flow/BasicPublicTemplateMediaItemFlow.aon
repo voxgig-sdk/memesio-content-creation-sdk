@@ -8,6 +8,18 @@ main: kit: flow: BasicPublicTemplateMediaItemFlow:
   step: [
     {
       input: {
+        ref: "public_template_media_item_ref01"
+      }
+
+      match: {
+        slug: "slug01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
         ref: "public_template_media_item_ref01",
         srcdatavar: "public_template_media_item_ref01_data",
         suffix: "_dt0"

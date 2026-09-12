@@ -118,7 +118,7 @@ def template_search_basic_setup(extra)
     "MEMESIO_CONTENT_CREATION_TEST_TEMPLATE_SEARCH_ENTID" => idmap,
     "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
     "MEMESIO_CONTENT_CREATION_TEST_EXPLAIN" => "FALSE",
-    "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
+    "MEMESIO_CONTENT_CREATION_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -129,6 +129,9 @@ def template_search_basic_setup(extra)
 
   if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["MEMESIO_CONTENT_CREATION_APIKEY"],
       },

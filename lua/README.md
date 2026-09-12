@@ -710,7 +710,9 @@ API path: `/api/memes/{slug}`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
+| `fps` |  |
 | `frameCount` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -719,15 +721,19 @@ API path: `/api/memes/{slug}`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
+| `startMs` |  |
 | `tags` |  |
+| `title` |  |
 | `width` |  |
+| `widthPx` |  |
 
-Operations: Load.
+Operations: Create, Load.
 
-API path: `/api/templates/{slug}`
+API path: `/api/gifs/{slug}/generate`
 
 #### StandaloneAgentBootstrap
 
@@ -760,9 +766,7 @@ API path: `/api/v1/agents/bootstrap`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
-| `fps` |  |
 | `frameCount` |  |
-| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -771,19 +775,15 @@ API path: `/api/v1/agents/bootstrap`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
-| `startMs` |  |
 | `tags` |  |
-| `title` |  |
 | `width` |  |
-| `widthPx` |  |
 
-Operations: Create, List.
+Operations: List.
 
-API path: `/api/gifs/{slug}/generate`
+API path: `/api/templates`
 
 #### TemplateSearch
 
@@ -1718,6 +1718,7 @@ Create an instance: `local public_template_media_item = client:PublicTemplateMed
 
 | Method | Description |
 | --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
@@ -1734,7 +1735,9 @@ Create an instance: `local public_template_media_item = client:PublicTemplateMed
 | `description` | `string` |  |
 | `durationMs` | `number|nil` |  |
 | `exampleImageUrl` | `string|nil` |  |
+| `fps` | `number` |  |
 | `frameCount` | `number|nil` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number|nil` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1743,16 +1746,38 @@ Create an instance: `local public_template_media_item = client:PublicTemplateMed
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
+| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `string|nil` |  |
 | `sourceUrl` | `string` |  |
+| `startMs` | `number` |  |
 | `tags` | `table` |  |
+| `title` | `string` |  |
 | `width` | `number|nil` |  |
+| `widthPx` | `number` |  |
 
 #### Example: Load
 
 ```lua
 local public_template_media_item, err = client:PublicTemplateMediaItem():load({ slug = "slug" })
+```
+
+#### Example: Create
+
+```lua
+local public_template_media_item, err = client:PublicTemplateMediaItem():create({
+  slug = "example_slug", -- string
+  captions = {}, -- table
+  description = "example_description", -- string
+  height = 1, -- number|nil
+  id = "example_id", -- string
+  imageUrl = "example_imageUrl", -- string
+  mediaType = "example_mediaType", -- string
+  name = "example_name", -- string
+  sourceTemplateId = "example_sourceTemplateId", -- string|nil
+  tags = {}, -- table
+  width = 1, -- number|nil
+})
 ```
 
 
@@ -1797,7 +1822,6 @@ Create an instance: `local template = client:Template(nil)`
 
 | Method | Description |
 | --- | --- |
-| `create(data)` | Create a new entity with the given data. |
 | `list(match)` | List entities matching the criteria. |
 
 #### Fields
@@ -1812,11 +1836,9 @@ Create an instance: `local template = client:Template(nil)`
 | `captions` | `table` |  |
 | `categories` | `table` |  |
 | `description` | `string` |  |
-| `durationMs` | `number` |  |
+| `durationMs` | `number|nil` |  |
 | `exampleImageUrl` | `string|nil` |  |
-| `fps` | `number` |  |
 | `frameCount` | `number|nil` |  |
-| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number|nil` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1825,36 +1847,16 @@ Create an instance: `local template = client:Template(nil)`
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `string|nil` |  |
 | `sourceUrl` | `string` |  |
-| `startMs` | `number` |  |
 | `tags` | `table` |  |
-| `title` | `string` |  |
 | `width` | `number|nil` |  |
-| `widthPx` | `number` |  |
 
 #### Example: List
 
 ```lua
 local templates, err = client:Template():list()
-```
-
-#### Example: Create
-
-```lua
-local template, err = client:Template():create({
-  slug = "example_slug", -- string
-  description = "example_description", -- string
-  height = 1, -- number|nil
-  id = "example_id", -- string
-  imageUrl = "example_imageUrl", -- string
-  mediaType = "example_mediaType", -- string
-  name = "example_name", -- string
-  sourceTemplateId = "example_sourceTemplateId", -- string|nil
-  width = 1, -- number|nil
-})
 ```
 
 

@@ -45,10 +45,16 @@ main: kit: entity: media: {
         {
           method: "POST"
           orig: "/api/media/signed-url"
-          parts: [
-            "api"
-            "media"
-            "signed-url"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "media"
+            }
+            {
+              lit: "signed-url"
+            }
           ]
           select: {
             "$action": "signed_url"

@@ -52,7 +52,7 @@ class TemplateEntityTest < Minitest::Test
     setup = template_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    ["create", "list"].each do |_op|
+    ["list"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "template." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
@@ -67,27 +67,20 @@ class TemplateEntityTest < Minitest::Test
     end
     client = setup[:client]
 
-    # CREATE
-    template_ref01_ent = client.Template(nil)
-    template_ref01_data = Helpers.to_map(Vs.getprop(
-      Vs.getpath(setup[:data], "new.template"), "template_ref01"))
-    template_ref01_data["slug"] = setup[:idmap]["slug01"]
-
-    template_ref01_data_result = template_ref01_ent.create(template_ref01_data, nil)
-    template_ref01_data = Helpers.to_map(template_ref01_data_result.respond_to?(:data_get) ? template_ref01_data_result.data_get : template_ref01_data_result)
-    assert !template_ref01_data.nil?
-    assert !template_ref01_data["id"].nil?
+    # Bootstrap entity data from existing test data.
+    template_ref01_data_raw = Vs.items(Helpers.to_map(
+      Vs.getpath(setup[:data], "existing.template")))
+    template_ref01_data = nil
+    if template_ref01_data_raw.length > 0
+      template_ref01_data = Helpers.to_map(template_ref01_data_raw[0][1])
+    end
 
     # LIST
+    template_ref01_ent = client.Template(nil)
     template_ref01_match = {}
 
     template_ref01_list_result = template_ref01_ent.list(template_ref01_match, nil)
     assert template_ref01_list_result.is_a?(Array)
-
-    found_item = Vs.select(
-      Runner.entity_list_to_data(template_ref01_list_result),
-      { "id" => template_ref01_data["id"] })
-    assert !Vs.isempty(found_item)
 
   end
 end
@@ -106,7 +99,7 @@ def template_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["template01", "template02", "template03", "gif01", "gif02", "gif03", "slug01"],
+    ["template01", "template02", "template03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",
@@ -125,7 +118,7 @@ def template_basic_setup(extra)
     "MEMESIO_CONTENT_CREATION_TEST_TEMPLATE_ENTID" => idmap,
     "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
     "MEMESIO_CONTENT_CREATION_TEST_EXPLAIN" => "FALSE",
-    "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
+    "MEMESIO_CONTENT_CREATION_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -136,6 +129,9 @@ def template_basic_setup(extra)
 
   if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["MEMESIO_CONTENT_CREATION_APIKEY"],
       },

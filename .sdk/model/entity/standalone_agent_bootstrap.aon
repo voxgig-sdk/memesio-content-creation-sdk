@@ -55,11 +55,19 @@ main: kit: entity: standalone_agent_bootstrap: {
         {
           method: "POST"
           orig: "/api/v1/agents/bootstrap"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "bootstrap"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "bootstrap"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -69,11 +77,19 @@ main: kit: entity: standalone_agent_bootstrap: {
         {
           method: "POST"
           orig: "/api/v1/agents/create-agent"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "create-agent"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "create-agent"
+            }
           ]
           transform: {
             req: "`reqdata`"

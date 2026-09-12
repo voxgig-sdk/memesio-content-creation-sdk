@@ -718,7 +718,9 @@ API path: `/api/memes/{slug}`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
+| `fps` |  |
 | `frameCount` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -727,15 +729,19 @@ API path: `/api/memes/{slug}`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
+| `startMs` |  |
 | `tags` |  |
+| `title` |  |
 | `width` |  |
+| `widthPx` |  |
 
-Operations: Load.
+Operations: Create, Load.
 
-API path: `/api/templates/{slug}`
+API path: `/api/gifs/{slug}/generate`
 
 #### StandaloneAgentBootstrap
 
@@ -768,9 +774,7 @@ API path: `/api/v1/agents/bootstrap`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
-| `fps` |  |
 | `frameCount` |  |
-| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -779,19 +783,15 @@ API path: `/api/v1/agents/bootstrap`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
-| `startMs` |  |
 | `tags` |  |
-| `title` |  |
 | `width` |  |
-| `widthPx` |  |
 
-Operations: Create, List.
+Operations: List.
 
-API path: `/api/gifs/{slug}/generate`
+API path: `/api/templates`
 
 #### TemplateSearch
 
@@ -1740,6 +1740,7 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 
 | Method | Description |
 | --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
@@ -1756,7 +1757,9 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 | `description` | `String` |  |
 | `durationMs` | `Object` |  |
 | `exampleImageUrl` | `Object` |  |
+| `fps` | `Integer` |  |
 | `frameCount` | `Object` |  |
+| `gifSlug` | `String` | Required for /api/v1/gifs/generate. |
 | `height` | `Object` |  |
 | `id` | `String` |  |
 | `imageUrl` | `String` |  |
@@ -1765,17 +1768,39 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 | `posterImageUrl` | `String` |  |
 | `previewImageUrl` | `String` |  |
 | `qualityStatus` | `String` |  |
+| `returnBase64` | `Boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `String` |  |
 | `sourceTemplateId` | `Object` |  |
 | `sourceUrl` | `String` |  |
+| `startMs` | `Integer` |  |
 | `tags` | `Array` |  |
+| `title` | `String` |  |
 | `width` | `Object` |  |
+| `widthPx` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the ENTITY — call data_get for the PublicTemplateMediaItem record (raises on error).
 public_template_media_item = client.PublicTemplateMediaItem.load({ "slug" => "slug" })
+```
+
+#### Example: Create
+
+```ruby
+public_template_media_item = client.PublicTemplateMediaItem.create({
+  "slug" => "example_slug", # String
+  "captions" => [], # Array
+  "description" => "example_description", # String
+  "height" => 1, # Object
+  "id" => "example_id", # String
+  "imageUrl" => "example_imageUrl", # String
+  "mediaType" => "example_mediaType", # String
+  "name" => "example_name", # String
+  "sourceTemplateId" => "example_sourceTemplateId", # Object
+  "tags" => [], # Array
+  "width" => 1, # Object
+})
 ```
 
 
@@ -1820,7 +1845,6 @@ Create an instance: `template = client.Template`
 
 | Method | Description |
 | --- | --- |
-| `create(data)` | Create a new entity with the given data. |
 | `list(match)` | List entities matching the criteria. |
 
 #### Fields
@@ -1835,11 +1859,9 @@ Create an instance: `template = client.Template`
 | `captions` | `Array` |  |
 | `categories` | `Array` |  |
 | `description` | `String` |  |
-| `durationMs` | `Integer` |  |
+| `durationMs` | `Object` |  |
 | `exampleImageUrl` | `Object` |  |
-| `fps` | `Integer` |  |
 | `frameCount` | `Object` |  |
-| `gifSlug` | `String` | Required for /api/v1/gifs/generate. |
 | `height` | `Object` |  |
 | `id` | `String` |  |
 | `imageUrl` | `String` |  |
@@ -1848,37 +1870,17 @@ Create an instance: `template = client.Template`
 | `posterImageUrl` | `String` |  |
 | `previewImageUrl` | `String` |  |
 | `qualityStatus` | `String` |  |
-| `returnBase64` | `Boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `String` |  |
 | `sourceTemplateId` | `Object` |  |
 | `sourceUrl` | `String` |  |
-| `startMs` | `Integer` |  |
 | `tags` | `Array` |  |
-| `title` | `String` |  |
 | `width` | `Object` |  |
-| `widthPx` | `Integer` |  |
 
 #### Example: List
 
 ```ruby
 # list returns an Array of Template records (raises on error).
 templates = client.Template.list
-```
-
-#### Example: Create
-
-```ruby
-template = client.Template.create({
-  "slug" => "example_slug", # String
-  "description" => "example_description", # String
-  "height" => 1, # Object
-  "id" => "example_id", # String
-  "imageUrl" => "example_imageUrl", # String
-  "mediaType" => "example_mediaType", # String
-  "name" => "example_name", # String
-  "sourceTemplateId" => "example_sourceTemplateId", # Object
-  "width" => 1, # Object
-})
 ```
 
 

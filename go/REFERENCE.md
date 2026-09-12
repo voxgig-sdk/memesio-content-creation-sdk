@@ -1782,7 +1782,9 @@ fmt.Println(publicTemplateMediaItem.GetName()) // "public_template_media_item"
 | `description` | `string` | Yes |  |
 | `durationMs` | `any` | No |  |
 | `exampleImageUrl` | `any` | No |  |
+| `fps` | `int` | No |  |
 | `frameCount` | `any` | No |  |
+| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `any` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1791,11 +1793,50 @@ fmt.Println(publicTemplateMediaItem.GetName()) // "public_template_media_item"
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
+| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `any` | Yes |  |
 | `sourceUrl` | `string` | No |  |
+| `startMs` | `int` | No |  |
 | `tags` | `[]any` | Yes |  |
+| `title` | `string` | No |  |
 | `width` | `any` | Yes |  |
+| `widthPx` | `int` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `animated` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | - | Yes |
+| `categories` | - | - |
+| `description` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
+| `fps` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
+| `height` | - | - |
+| `id` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
+| `name` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
+| `slug` | - | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | - | Yes |
+| `title` | - | - |
+| `width` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
 
@@ -1805,6 +1846,30 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.PublicTemplateMediaItem(nil).Load(map[string]any{"slug": "slug"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.PublicTemplateMediaItem(nil).Create(map[string]any{
+    "slug": "example_slug",
+    "captions": []any{},
+    "description": "example_description",
+    "height": 1,
+    "id": "example_id",
+    "imageUrl": "example_imageUrl",
+    "mediaType": "example_mediaType",
+    "name": "example_name",
+    "sourceTemplateId": "example_sourceTemplateId",
+    "tags": []any{},
+    "width": 1,
+}, nil)
 if err != nil {
     panic(err)
 }
@@ -1912,14 +1977,12 @@ fmt.Println(template.GetName()) // "template"
 | `assetContentType` | `string` | No |  |
 | `boxCount` | `int` | No |  |
 | `captionCount` | `int` | No |  |
-| `captions` | `[]any` | No |  |
+| `captions` | `[]any` | Yes |  |
 | `categories` | `[]any` | No |  |
 | `description` | `string` | Yes |  |
-| `durationMs` | `int` | No |  |
+| `durationMs` | `any` | No |  |
 | `exampleImageUrl` | `any` | No |  |
-| `fps` | `int` | No |  |
 | `frameCount` | `any` | No |  |
-| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `any` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1928,50 +1991,11 @@ fmt.Println(template.GetName()) // "template"
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `any` | Yes |  |
 | `sourceUrl` | `string` | No |  |
-| `startMs` | `int` | No |  |
-| `tags` | `[]any` | No |  |
-| `title` | `string` | No |  |
+| `tags` | `[]any` | Yes |  |
 | `width` | `any` | Yes |  |
-| `widthPx` | `int` | No |  |
-
-### Field Usage by Operation
-
-| Field | list | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | Yes | - |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | Yes | - |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Operations
 
@@ -1985,28 +2009,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(results)
-```
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.Template(nil).Create(map[string]any{
-    "slug": "example_slug",
-    "description": "example_description",
-    "height": 1,
-    "id": "example_id",
-    "imageUrl": "example_imageUrl",
-    "mediaType": "example_mediaType",
-    "name": "example_name",
-    "sourceTemplateId": "example_sourceTemplateId",
-    "width": 1,
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
 ```
 
 ### Common Methods

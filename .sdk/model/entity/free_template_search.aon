@@ -233,10 +233,16 @@ main: kit: entity: free_template_search: {
           }
           method: "GET"
           orig: "/api/free/templates"
-          parts: [
-            "api"
-            "free"
-            "templates"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "free"
+            }
+            {
+              lit: "templates"
+            }
           ]
           select: {
             exist: [

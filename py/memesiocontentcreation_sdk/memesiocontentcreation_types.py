@@ -786,11 +786,17 @@ class PublicTemplateMediaItem(PublicTemplateMediaItemRequired, total=False):
     categories: list
     durationMs: int | None
     exampleImageUrl: str | None
+    fps: int
     frameCount: int | None
+    gifSlug: str
     posterImageUrl: str
     previewImageUrl: str
     qualityStatus: str
+    returnBase64: bool
     sourceUrl: str
+    startMs: int
+    title: str
+    widthPx: int
 
 
 class PublicTemplateMediaItemLoadMatchRequired(TypedDict):
@@ -799,6 +805,42 @@ class PublicTemplateMediaItemLoadMatchRequired(TypedDict):
 
 class PublicTemplateMediaItemLoadMatch(PublicTemplateMediaItemLoadMatchRequired, total=False):
     media_type: str
+
+
+class PublicTemplateMediaItemCreateDataRequired(TypedDict):
+    slug: str
+    captions: list
+    description: str
+    height: float | None
+    id: str
+    imageUrl: str
+    mediaType: str
+    name: str
+    sourceTemplateId: str | None
+    tags: list
+    width: float | None
+
+
+class PublicTemplateMediaItemCreateData(PublicTemplateMediaItemCreateDataRequired, total=False):
+    animated: bool
+    assetBytes: int | None
+    assetContentType: str
+    boxCount: int
+    captionCount: int
+    categories: list
+    durationMs: int | None
+    exampleImageUrl: str | None
+    fps: int
+    frameCount: int | None
+    gifSlug: str
+    posterImageUrl: str
+    previewImageUrl: str
+    qualityStatus: str
+    returnBase64: bool
+    sourceUrl: str
+    startMs: int
+    title: str
+    widthPx: int
 
 
 class StandaloneAgentBootstrapRequired(TypedDict):
@@ -830,6 +872,7 @@ class StandaloneAgentBootstrapCreateData(StandaloneAgentBootstrapCreateDataRequi
 
 
 class TemplateRequired(TypedDict):
+    captions: list
     description: str
     height: float | None
     id: str
@@ -838,6 +881,7 @@ class TemplateRequired(TypedDict):
     name: str
     slug: str
     sourceTemplateId: str | None
+    tags: list
     width: float | None
 
 
@@ -847,22 +891,14 @@ class Template(TemplateRequired, total=False):
     assetContentType: str
     boxCount: int
     captionCount: int
-    captions: list
     categories: list
-    durationMs: int
+    durationMs: int | None
     exampleImageUrl: str | None
-    fps: int
     frameCount: int | None
-    gifSlug: str
     posterImageUrl: str
     previewImageUrl: str
     qualityStatus: str
-    returnBase64: bool
     sourceUrl: str
-    startMs: int
-    tags: list
-    title: str
-    widthPx: int
 
 
 class TemplateListMatch(TypedDict, total=False):
@@ -874,42 +910,6 @@ class TemplateListMatch(TypedDict, total=False):
     query: str
     sort: str
     tag: str
-
-
-class TemplateCreateDataRequired(TypedDict):
-    slug: str
-    description: str
-    height: float | None
-    id: str
-    imageUrl: str
-    mediaType: str
-    name: str
-    sourceTemplateId: str | None
-    width: float | None
-
-
-class TemplateCreateData(TemplateCreateDataRequired, total=False):
-    animated: bool
-    assetBytes: int | None
-    assetContentType: str
-    boxCount: int
-    captionCount: int
-    captions: list
-    categories: list
-    durationMs: int
-    exampleImageUrl: str | None
-    fps: int
-    frameCount: int | None
-    gifSlug: str
-    posterImageUrl: str
-    previewImageUrl: str
-    qualityStatus: str
-    returnBase64: bool
-    sourceUrl: str
-    startMs: int
-    tags: list
-    title: str
-    widthPx: int
 
 
 class TemplateSearchRequired(TypedDict):

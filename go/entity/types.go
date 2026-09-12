@@ -716,7 +716,9 @@ type PublicTemplateMediaItem struct {
 	Description string `json:"description"`
 	DurationMs *any `json:"durationMs,omitempty"`
 	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
+	Fps *int `json:"fps,omitempty"`
 	FrameCount *any `json:"frameCount,omitempty"`
+	GifSlug *string `json:"gifSlug,omitempty"`
 	Height any `json:"height"`
 	Id string `json:"id"`
 	ImageUrl string `json:"imageUrl"`
@@ -725,17 +727,55 @@ type PublicTemplateMediaItem struct {
 	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
 	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
 	QualityStatus *string `json:"qualityStatus,omitempty"`
+	ReturnBase64 *bool `json:"returnBase64,omitempty"`
 	Slug string `json:"slug"`
 	SourceTemplateId any `json:"sourceTemplateId"`
 	SourceUrl *string `json:"sourceUrl,omitempty"`
+	StartMs *int `json:"startMs,omitempty"`
 	Tags []any `json:"tags"`
+	Title *string `json:"title,omitempty"`
 	Width any `json:"width"`
+	WidthPx *int `json:"widthPx,omitempty"`
 }
 
 // PublicTemplateMediaItemLoadMatch is the typed request payload for PublicTemplateMediaItem.LoadTyped.
 type PublicTemplateMediaItemLoadMatch struct {
 	Slug string `json:"slug"`
 	MediaType *string `json:"media_type,omitempty"`
+}
+
+// PublicTemplateMediaItemCreateData is the typed request payload for PublicTemplateMediaItem.CreateTyped.
+type PublicTemplateMediaItemCreateData struct {
+	Slug string `json:"slug"`
+	Animated *bool `json:"animated,omitempty"`
+	AssetBytes *any `json:"assetBytes,omitempty"`
+	AssetContentType *string `json:"assetContentType,omitempty"`
+	BoxCount *int `json:"boxCount,omitempty"`
+	CaptionCount *int `json:"captionCount,omitempty"`
+	Captions []any `json:"captions"`
+	Categories *[]any `json:"categories,omitempty"`
+	Description string `json:"description"`
+	DurationMs *any `json:"durationMs,omitempty"`
+	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
+	Fps *int `json:"fps,omitempty"`
+	FrameCount *any `json:"frameCount,omitempty"`
+	GifSlug *string `json:"gifSlug,omitempty"`
+	Height any `json:"height"`
+	Id string `json:"id"`
+	ImageUrl string `json:"imageUrl"`
+	MediaType string `json:"mediaType"`
+	Name string `json:"name"`
+	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
+	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
+	QualityStatus *string `json:"qualityStatus,omitempty"`
+	ReturnBase64 *bool `json:"returnBase64,omitempty"`
+	SourceTemplateId any `json:"sourceTemplateId"`
+	SourceUrl *string `json:"sourceUrl,omitempty"`
+	StartMs *int `json:"startMs,omitempty"`
+	Tags []any `json:"tags"`
+	Title *string `json:"title,omitempty"`
+	Width any `json:"width"`
+	WidthPx *int `json:"widthPx,omitempty"`
 }
 
 // StandaloneAgentBootstrap is the typed data model for the standalone_agent_bootstrap entity.
@@ -769,14 +809,12 @@ type Template struct {
 	AssetContentType *string `json:"assetContentType,omitempty"`
 	BoxCount *int `json:"boxCount,omitempty"`
 	CaptionCount *int `json:"captionCount,omitempty"`
-	Captions *[]any `json:"captions,omitempty"`
+	Captions []any `json:"captions"`
 	Categories *[]any `json:"categories,omitempty"`
 	Description string `json:"description"`
-	DurationMs *int `json:"durationMs,omitempty"`
+	DurationMs *any `json:"durationMs,omitempty"`
 	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
-	Fps *int `json:"fps,omitempty"`
 	FrameCount *any `json:"frameCount,omitempty"`
-	GifSlug *string `json:"gifSlug,omitempty"`
 	Height any `json:"height"`
 	Id string `json:"id"`
 	ImageUrl string `json:"imageUrl"`
@@ -785,15 +823,11 @@ type Template struct {
 	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
 	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
 	QualityStatus *string `json:"qualityStatus,omitempty"`
-	ReturnBase64 *bool `json:"returnBase64,omitempty"`
 	Slug string `json:"slug"`
 	SourceTemplateId any `json:"sourceTemplateId"`
 	SourceUrl *string `json:"sourceUrl,omitempty"`
-	StartMs *int `json:"startMs,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Title *string `json:"title,omitempty"`
+	Tags []any `json:"tags"`
 	Width any `json:"width"`
-	WidthPx *int `json:"widthPx,omitempty"`
 }
 
 // TemplateListMatch is the typed request payload for Template.ListTyped.
@@ -806,40 +840,6 @@ type TemplateListMatch struct {
 	Query *string `json:"query,omitempty"`
 	Sort *string `json:"sort,omitempty"`
 	Tag *string `json:"tag,omitempty"`
-}
-
-// TemplateCreateData is the typed request payload for Template.CreateTyped.
-type TemplateCreateData struct {
-	Slug string `json:"slug"`
-	Animated *bool `json:"animated,omitempty"`
-	AssetBytes *any `json:"assetBytes,omitempty"`
-	AssetContentType *string `json:"assetContentType,omitempty"`
-	BoxCount *int `json:"boxCount,omitempty"`
-	CaptionCount *int `json:"captionCount,omitempty"`
-	Captions *[]any `json:"captions,omitempty"`
-	Categories *[]any `json:"categories,omitempty"`
-	Description string `json:"description"`
-	DurationMs *int `json:"durationMs,omitempty"`
-	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
-	Fps *int `json:"fps,omitempty"`
-	FrameCount *any `json:"frameCount,omitempty"`
-	GifSlug *string `json:"gifSlug,omitempty"`
-	Height any `json:"height"`
-	Id string `json:"id"`
-	ImageUrl string `json:"imageUrl"`
-	MediaType string `json:"mediaType"`
-	Name string `json:"name"`
-	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
-	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
-	QualityStatus *string `json:"qualityStatus,omitempty"`
-	ReturnBase64 *bool `json:"returnBase64,omitempty"`
-	SourceTemplateId any `json:"sourceTemplateId"`
-	SourceUrl *string `json:"sourceUrl,omitempty"`
-	StartMs *int `json:"startMs,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Width any `json:"width"`
-	WidthPx *int `json:"widthPx,omitempty"`
 }
 
 // TemplateSearch is the typed data model for the template_search entity.

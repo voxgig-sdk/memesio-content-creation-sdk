@@ -30,10 +30,16 @@ main: kit: entity: billing: {
           }
           method: "GET"
           orig: "/api/billing/usage"
-          parts: [
-            "api"
-            "billing"
-            "usage"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "billing"
+            }
+            {
+              lit: "usage"
+            }
           ]
           select: {
             "$action": "usage"

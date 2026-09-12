@@ -23,7 +23,7 @@ class PublicTemplateMediaItemEntityTest extends TestCase
         $setup = public_template_media_item_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach (["load"] as $_op) {
+        foreach (["create", "load"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "public_template_media_item." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
@@ -38,16 +38,18 @@ class PublicTemplateMediaItemEntityTest extends TestCase
         }
         $client = $setup["client"];
 
-        // Bootstrap entity data from existing test data.
-        $public_template_media_item_ref01_data_raw = Vs::items(Helpers::to_map(
-            Vs::getpath($setup["data"], "existing.public_template_media_item")));
-        $public_template_media_item_ref01_data = null;
-        if (count($public_template_media_item_ref01_data_raw) > 0) {
-            $public_template_media_item_ref01_data = Helpers::to_map($public_template_media_item_ref01_data_raw[0][1]);
-        }
+        // CREATE
+        $public_template_media_item_ref01_ent = $client->PublicTemplateMediaItem(null);
+        $public_template_media_item_ref01_data = Helpers::to_map(Vs::getprop(
+            Vs::getpath($setup["data"], "new.public_template_media_item"), "public_template_media_item_ref01"));
+        $public_template_media_item_ref01_data["slug"] = $setup["idmap"]["slug01"];
+
+        $public_template_media_item_ref01_data_result = $public_template_media_item_ref01_ent->create($public_template_media_item_ref01_data, null);
+        $public_template_media_item_ref01_data = Helpers::to_map(is_object($public_template_media_item_ref01_data_result) && method_exists($public_template_media_item_ref01_data_result, 'data_get') ? $public_template_media_item_ref01_data_result->data_get() : $public_template_media_item_ref01_data_result);
+        $this->assertNotNull($public_template_media_item_ref01_data);
+        $this->assertNotNull($public_template_media_item_ref01_data["id"]);
 
         // LOAD
-        $public_template_media_item_ref01_ent = $client->PublicTemplateMediaItem(null);
         $public_template_media_item_ref01_match_dt0 = [
             "id" => $public_template_media_item_ref01_data["id"],
         ];
@@ -74,7 +76,7 @@ function public_template_media_item_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03"] as $k) {
+    foreach (["public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03", "slug01"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 
@@ -88,7 +90,7 @@ function public_template_media_item_basic_setup($extra)
         "MEMESIO_CONTENT_CREATION_TEST_PUBLIC_TEMPLATE_MEDIA_ITEM_ENTID" => $idmap,
         "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
         "MEMESIO_CONTENT_CREATION_TEST_EXPLAIN" => "FALSE",
-        "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
+        "MEMESIO_CONTENT_CREATION_APIKEY" => "",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -99,10 +101,17 @@ function public_template_media_item_basic_setup($extra)
 
     if ($env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
+            // FIRST, so the generated fields below win: sdk-test-control.json's
+            // test.client.options adds to the live client, it does not redirect it.
+            Runner::live_client_options(),
             [
                 "apikey" => $env["MEMESIO_CONTENT_CREATION_APIKEY"],
             ],
-            $extra ?? [],
+            // ismap, not a plain "?? []" default: an empty PHP array is a
+            // LIST, and a non-map later entry REPLACES the accumulated map in
+            // merge - so the no-extras call discarded live_client_options()
+            // and the apikey/server map above it.
+            Vs::ismap($extra) ? $extra : new \stdClass(),
         ]);
         $client = new MemesioContentCreationSDK(Helpers::to_map($merged_opts));
     }

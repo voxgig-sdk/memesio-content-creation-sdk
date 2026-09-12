@@ -780,7 +780,9 @@ API path: `/api/memes/{slug}`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
+| `fps` |  |
 | `frameCount` |  |
+| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -789,15 +791,19 @@ API path: `/api/memes/{slug}`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
+| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
+| `startMs` |  |
 | `tags` |  |
+| `title` |  |
 | `width` |  |
+| `widthPx` |  |
 
-Operations: load.
+Operations: create, load.
 
-API path: `/api/templates/{slug}`
+API path: `/api/gifs/{slug}/generate`
 
 #### StandaloneAgentBootstrap
 
@@ -830,9 +836,7 @@ API path: `/api/v1/agents/bootstrap`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
-| `fps` |  |
 | `frameCount` |  |
-| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -841,19 +845,15 @@ API path: `/api/v1/agents/bootstrap`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
-| `startMs` |  |
 | `tags` |  |
-| `title` |  |
 | `width` |  |
-| `widthPx` |  |
 
-Operations: create, list.
+Operations: list.
 
-API path: `/api/gifs/{slug}/generate`
+API path: `/api/templates`
 
 #### TemplateSearch
 
@@ -1788,6 +1788,7 @@ Create an instance: `const public_template_media_item = client.PublicTemplateMed
 
 | Method | Description |
 | --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
@@ -1804,7 +1805,9 @@ Create an instance: `const public_template_media_item = client.PublicTemplateMed
 | `description` | `string` |  |
 | `durationMs` | `number | null` |  |
 | `exampleImageUrl` | `string | null` |  |
+| `fps` | `number` |  |
 | `frameCount` | `number | null` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number | null` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1813,16 +1816,38 @@ Create an instance: `const public_template_media_item = client.PublicTemplateMed
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
+| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `string | null` |  |
 | `sourceUrl` | `string` |  |
+| `startMs` | `number` |  |
 | `tags` | `any[]` |  |
+| `title` | `string` |  |
 | `width` | `number | null` |  |
+| `widthPx` | `number` |  |
 
 #### Example: Load
 
 ```ts
 const public_template_media_item = await client.PublicTemplateMediaItem().load({ slug: 'slug' })
+```
+
+#### Example: Create
+
+```ts
+const public_template_media_item = await client.PublicTemplateMediaItem().create({
+  slug: 'example_slug',
+  captions: [],
+  description: 'example_description',
+  height: 1,
+  id: 'example_id',
+  imageUrl: 'example_imageUrl',
+  mediaType: 'example_mediaType',
+  name: 'example_name',
+  sourceTemplateId: 'example_sourceTemplateId',
+  tags: [],
+  width: 1,
+})
 ```
 
 
@@ -1867,7 +1892,6 @@ Create an instance: `const template = client.Template()`
 
 | Method | Description |
 | --- | --- |
-| `create(data)` | Create a new entity with the given data. |
 | `list(match)` | List entities matching the criteria. |
 
 #### Fields
@@ -1882,11 +1906,9 @@ Create an instance: `const template = client.Template()`
 | `captions` | `any[]` |  |
 | `categories` | `any[]` |  |
 | `description` | `string` |  |
-| `durationMs` | `number` |  |
+| `durationMs` | `number | null` |  |
 | `exampleImageUrl` | `string | null` |  |
-| `fps` | `number` |  |
 | `frameCount` | `number | null` |  |
-| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number | null` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1895,36 +1917,16 @@ Create an instance: `const template = client.Template()`
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `string | null` |  |
 | `sourceUrl` | `string` |  |
-| `startMs` | `number` |  |
 | `tags` | `any[]` |  |
-| `title` | `string` |  |
 | `width` | `number | null` |  |
-| `widthPx` | `number` |  |
 
 #### Example: List
 
 ```ts
 const templates = await client.Template().list()
-```
-
-#### Example: Create
-
-```ts
-const template = await client.Template().create({
-  slug: 'example_slug',
-  description: 'example_description',
-  height: 1,
-  id: 'example_id',
-  imageUrl: 'example_imageUrl',
-  mediaType: 'example_mediaType',
-  name: 'example_name',
-  sourceTemplateId: 'example_sourceTemplateId',
-  width: 1,
-})
 ```
 
 

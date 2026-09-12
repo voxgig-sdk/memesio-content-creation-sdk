@@ -1752,7 +1752,9 @@ $public_template_media_item = $client->PublicTemplateMediaItem();
 | `description` | `string` | Yes |  |
 | `durationMs` | `mixed` | No |  |
 | `exampleImageUrl` | `mixed` | No |  |
+| `fps` | `int` | No |  |
 | `frameCount` | `mixed` | No |  |
+| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `mixed` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1761,13 +1763,72 @@ $public_template_media_item = $client->PublicTemplateMediaItem();
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
+| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `mixed` | Yes |  |
 | `sourceUrl` | `string` | No |  |
+| `startMs` | `int` | No |  |
 | `tags` | `array` | Yes |  |
+| `title` | `string` | No |  |
 | `width` | `mixed` | Yes |  |
+| `widthPx` | `int` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `animated` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | - | Yes |
+| `categories` | - | - |
+| `description` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
+| `fps` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
+| `height` | - | - |
+| `id` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
+| `name` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
+| `slug` | - | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | - | Yes |
+| `title` | - | - |
+| `width` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
+
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
+
+Create a new entity with the given data. Throws on error.
+
+```php
+$result = $client->PublicTemplateMediaItem()->create([
+  "slug" => null, // string
+  "captions" => null, // array
+  "description" => null, // string
+  "height" => null, // mixed
+  "id" => null, // string
+  "imageUrl" => null, // string
+  "mediaType" => null, // string
+  "name" => null, // string
+  "sourceTemplateId" => null, // mixed
+  "tags" => null, // array
+  "width" => null, // mixed
+]);
+```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
@@ -1884,14 +1945,12 @@ $template = $client->Template();
 | `assetContentType` | `string` | No |  |
 | `boxCount` | `int` | No |  |
 | `captionCount` | `int` | No |  |
-| `captions` | `array` | No |  |
+| `captions` | `array` | Yes |  |
 | `categories` | `array` | No |  |
 | `description` | `string` | Yes |  |
-| `durationMs` | `int` | No |  |
+| `durationMs` | `mixed` | No |  |
 | `exampleImageUrl` | `mixed` | No |  |
-| `fps` | `int` | No |  |
 | `frameCount` | `mixed` | No |  |
-| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `mixed` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1900,70 +1959,13 @@ $template = $client->Template();
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `mixed` | Yes |  |
 | `sourceUrl` | `string` | No |  |
-| `startMs` | `int` | No |  |
-| `tags` | `array` | No |  |
-| `title` | `string` | No |  |
+| `tags` | `array` | Yes |  |
 | `width` | `mixed` | Yes |  |
-| `widthPx` | `int` | No |  |
-
-### Field Usage by Operation
-
-| Field | list | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | Yes | - |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | Yes | - |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Operations
-
-#### `create(array $reqdata, ?array $ctrl = null): mixed`
-
-Create a new entity with the given data. Throws on error.
-
-```php
-$result = $client->Template()->create([
-  "slug" => null, // string
-  "description" => null, // string
-  "height" => null, // mixed
-  "id" => null, // string
-  "imageUrl" => null, // string
-  "mediaType" => null, // string
-  "name" => null, // string
-  "sourceTemplateId" => null, // mixed
-  "width" => null, // mixed
-]);
-```
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 

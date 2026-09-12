@@ -1731,7 +1731,9 @@ public_template_media_item = client.PublicTemplateMediaItem()
 | `description` | `str` | Yes |  |
 | `durationMs` | `int | None` | No |  |
 | `exampleImageUrl` | `str | None` | No |  |
+| `fps` | `int` | No |  |
 | `frameCount` | `int | None` | No |  |
+| `gifSlug` | `str` | No | Required for /api/v1/gifs/generate. |
 | `height` | `float | None` | Yes |  |
 | `id` | `str` | Yes |  |
 | `imageUrl` | `str` | Yes |  |
@@ -1740,13 +1742,72 @@ public_template_media_item = client.PublicTemplateMediaItem()
 | `posterImageUrl` | `str` | No |  |
 | `previewImageUrl` | `str` | No |  |
 | `qualityStatus` | `str` | No |  |
+| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `str` | Yes |  |
 | `sourceTemplateId` | `str | None` | Yes |  |
 | `sourceUrl` | `str` | No |  |
+| `startMs` | `int` | No |  |
 | `tags` | `list` | Yes |  |
+| `title` | `str` | No |  |
 | `width` | `float | None` | Yes |  |
+| `widthPx` | `int` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `animated` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | - | Yes |
+| `categories` | - | - |
+| `description` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
+| `fps` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
+| `height` | - | - |
+| `id` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
+| `name` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
+| `slug` | - | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | - | Yes |
+| `title` | - | - |
+| `width` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
+
+#### `create(reqdata, ctrl=None) -> dict`
+
+Create a new entity with the given data. Returns the created entity data and raises on error.
+
+```python
+result = client.PublicTemplateMediaItem().create({
+    "slug": "example_slug",  # str
+    "captions": [],  # list
+    "description": "example_description",  # str
+    "height": 1,  # float | None
+    "id": "example_id",  # str
+    "imageUrl": "example_imageUrl",  # str
+    "mediaType": "example_mediaType",  # str
+    "name": "example_name",  # str
+    "sourceTemplateId": "example_sourceTemplateId",  # str | None
+    "tags": [],  # list
+    "width": 1,  # float | None
+})
+```
 
 #### `load(reqmatch, ctrl=None) -> dict`
 
@@ -1861,14 +1922,12 @@ template = client.Template()
 | `assetContentType` | `str` | No |  |
 | `boxCount` | `int` | No |  |
 | `captionCount` | `int` | No |  |
-| `captions` | `list` | No |  |
+| `captions` | `list` | Yes |  |
 | `categories` | `list` | No |  |
 | `description` | `str` | Yes |  |
-| `durationMs` | `int` | No |  |
+| `durationMs` | `int | None` | No |  |
 | `exampleImageUrl` | `str | None` | No |  |
-| `fps` | `int` | No |  |
 | `frameCount` | `int | None` | No |  |
-| `gifSlug` | `str` | No | Required for /api/v1/gifs/generate. |
 | `height` | `float | None` | Yes |  |
 | `id` | `str` | Yes |  |
 | `imageUrl` | `str` | Yes |  |
@@ -1877,70 +1936,13 @@ template = client.Template()
 | `posterImageUrl` | `str` | No |  |
 | `previewImageUrl` | `str` | No |  |
 | `qualityStatus` | `str` | No |  |
-| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `str` | Yes |  |
 | `sourceTemplateId` | `str | None` | Yes |  |
 | `sourceUrl` | `str` | No |  |
-| `startMs` | `int` | No |  |
-| `tags` | `list` | No |  |
-| `title` | `str` | No |  |
+| `tags` | `list` | Yes |  |
 | `width` | `float | None` | Yes |  |
-| `widthPx` | `int` | No |  |
-
-### Field Usage by Operation
-
-| Field | list | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | Yes | - |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | Yes | - |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Operations
-
-#### `create(reqdata, ctrl=None) -> dict`
-
-Create a new entity with the given data. Returns the created entity data and raises on error.
-
-```python
-result = client.Template().create({
-    "slug": "example_slug",  # str
-    "description": "example_description",  # str
-    "height": 1,  # float | None
-    "id": "example_id",  # str
-    "imageUrl": "example_imageUrl",  # str
-    "mediaType": "example_mediaType",  # str
-    "name": "example_name",  # str
-    "sourceTemplateId": "example_sourceTemplateId",  # str | None
-    "width": 1,  # float | None
-})
-```
 
 #### `list(reqmatch=None, ctrl=None) -> list`
 

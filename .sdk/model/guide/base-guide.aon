@@ -115,10 +115,12 @@ guide: {
       op: load: method: *GET
     }
     path: "/api/ai/jobs/{jobId}/cancel": {
+      action: "cancel": {}
       rename: param: "jobId": *"job_id"
       op: create: method: *POST
     }
     path: "/api/ai/jobs/{jobId}/complete": {
+      action: "complete": {}
       rename: param: "jobId": *"job_id"
       op: create: method: *POST
     }
@@ -305,6 +307,10 @@ guide: {
     path: "/api/gifs/{slug}": {
       op: load: method: *GET
     }
+    path: "/api/gifs/{slug}/generate": {
+      action: "generate": {}
+      op: create: method: *POST
+    }
     path: "/api/templates/{slug}": {
       op: load: method: *GET
     }
@@ -320,9 +326,6 @@ guide: {
   }
 
   entity: template: {
-    path: "/api/gifs/{slug}/generate": {
-      op: create: method: *POST
-    }
     path: "/api/templates": {
       op: list: method: *GET
       op: list: transform: res: *("`body.items`")|top

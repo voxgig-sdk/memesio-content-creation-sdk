@@ -12,11 +12,19 @@ main: kit: entity: upload_caption_meme_success: {
         {
           method: "POST"
           orig: "/api/v1/memes/caption-upload"
-          parts: [
-            "api"
-            "v1"
-            "memes"
-            "caption-upload"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "caption-upload"
+            }
           ]
           transform: {
             req: "`reqdata`"

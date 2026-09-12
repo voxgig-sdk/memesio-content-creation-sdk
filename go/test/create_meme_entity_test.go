@@ -52,7 +52,7 @@ func TestCreateMemeEntity(t *testing.T) {
 		// CREATE
 		createMemeRef01Ent := client.CreateMeme(nil)
 		createMemeRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "create_meme"}, setup.data), "create_meme_ref01"))
+			vs.GetPath(setup.data, []any{"new", "create_meme"}), "create_meme_ref01"))
 
 		createMemeRef01DataResult, err := createMemeRef01Ent.Create(createMemeRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func create_memeBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"create_meme01", "create_meme02", "create_meme03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -110,7 +110,7 @@ func create_memeBasicSetup(extra map[string]any) *entityTestSetup {
 		"MEMESIO_CONTENT_CREATION_TEST_CREATE_MEME_ENTID": idmap,
 		"MEMESIO_CONTENT_CREATION_TEST_LIVE":      "FALSE",
 		"MEMESIO_CONTENT_CREATION_TEST_EXPLAIN":   "FALSE",
-		"MEMESIO_CONTENT_CREATION_APIKEY":         "NONE",
+		"MEMESIO_CONTENT_CREATION_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["MEMESIO_CONTENT_CREATION_TEST_CREATE_MEME_ENTID"])
@@ -119,11 +119,23 @@ func create_memeBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["MEMESIO_CONTENT_CREATION_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMemesioContentCreationSDK(core.ToMapAny(mergedOpts))
 	}

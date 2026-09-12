@@ -11,6 +11,7 @@ main: kit: entity: auth: {
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "email"
       req: true
       type: "`$STRING`"
@@ -30,10 +31,16 @@ main: kit: entity: auth: {
         {
           method: "POST"
           orig: "/api/auth/resend-verification"
-          parts: [
-            "api"
-            "auth"
-            "resend-verification"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "auth"
+            }
+            {
+              lit: "resend-verification"
+            }
           ]
           select: {
             "$action": "resend_verification"
@@ -46,10 +53,16 @@ main: kit: entity: auth: {
         {
           method: "POST"
           orig: "/api/auth/signup"
-          parts: [
-            "api"
-            "auth"
-            "signup"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "auth"
+            }
+            {
+              lit: "signup"
+            }
           ]
           select: {
             "$action": "signup"

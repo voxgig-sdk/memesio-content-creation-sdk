@@ -230,6 +230,7 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "updatedAt"
       req: false
       type: "`$STRING`"
@@ -264,10 +265,16 @@ main: kit: entity: video: {
         {
           method: "POST"
           orig: "/api/video/drafts"
-          parts: [
-            "api"
-            "video"
-            "drafts"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "drafts"
+            }
           ]
           select: {
             "$action": "draft"
@@ -280,10 +287,16 @@ main: kit: entity: video: {
         {
           method: "POST"
           orig: "/api/video/export-settings"
-          parts: [
-            "api"
-            "video"
-            "export-settings"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "export-settings"
+            }
           ]
           select: {
             "$action": "export_setting"
@@ -296,10 +309,16 @@ main: kit: entity: video: {
         {
           method: "POST"
           orig: "/api/video/formats"
-          parts: [
-            "api"
-            "video"
-            "formats"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "formats"
+            }
           ]
           select: {
             "$action": "format"
@@ -312,10 +331,16 @@ main: kit: entity: video: {
         {
           method: "POST"
           orig: "/api/video/render-queue"
-          parts: [
-            "api"
-            "video"
-            "render-queue"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "render-queue"
+            }
           ]
           select: {
             "$action": "render_queue"
@@ -328,10 +353,16 @@ main: kit: entity: video: {
         {
           method: "POST"
           orig: "/api/video/subtitles"
-          parts: [
-            "api"
-            "video"
-            "subtitles"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "subtitles"
+            }
           ]
           select: {
             "$action": "subtitle"
@@ -344,10 +375,16 @@ main: kit: entity: video: {
         {
           method: "POST"
           orig: "/api/video/text-animations"
-          parts: [
-            "api"
-            "video"
-            "text-animations"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "text-animations"
+            }
           ]
           select: {
             "$action": "text_animation"
@@ -360,10 +397,16 @@ main: kit: entity: video: {
         {
           method: "POST"
           orig: "/api/video/timeline"
-          parts: [
-            "api"
-            "video"
-            "timeline"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "timeline"
+            }
           ]
           select: {
             "$action": "timeline"
@@ -441,10 +484,16 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/api/video/subtitles"
-          parts: [
-            "api"
-            "video"
-            "subtitles"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "subtitles"
+            }
           ]
           select: {
             "$action": "subtitle"
@@ -513,10 +562,16 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/api/video/audio-library"
-          parts: [
-            "api"
-            "video"
-            "audio-library"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "audio-library"
+            }
           ]
           select: {
             "$action": "audio_library"
@@ -583,10 +638,16 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/api/video/export-settings"
-          parts: [
-            "api"
-            "video"
-            "export-settings"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "export-settings"
+            }
           ]
           select: {
             "$action": "export_setting"
@@ -646,10 +707,16 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/api/video/formats"
-          parts: [
-            "api"
-            "video"
-            "formats"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "formats"
+            }
           ]
           select: {
             "$action": "format"
@@ -701,10 +768,16 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/api/video/render-queue"
-          parts: [
-            "api"
-            "video"
-            "render-queue"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "render-queue"
+            }
           ]
           select: {
             "$action": "render_queue"
@@ -755,10 +828,16 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/api/video/text-animations"
-          parts: [
-            "api"
-            "video"
-            "text-animations"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "text-animations"
+            }
           ]
           select: {
             "$action": "text_animation"
@@ -795,10 +874,16 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/api/video/drafts"
-          parts: [
-            "api"
-            "video"
-            "drafts"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "drafts"
+            }
           ]
           select: {
             "$action": "draft"
@@ -833,10 +918,16 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/api/video/timeline"
-          parts: [
-            "api"
-            "video"
-            "timeline"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "timeline"
+            }
           ]
           select: {
             "$action": "timeline"
@@ -864,10 +955,16 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/api/video/render-performance"
-          parts: [
-            "api"
-            "video"
-            "render-performance"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "render-performance"
+            }
           ]
           select: {
             "$action": "render_performance"

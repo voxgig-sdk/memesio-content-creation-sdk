@@ -52,7 +52,7 @@ func TestGenerateEntity(t *testing.T) {
 		// CREATE
 		generateRef01Ent := client.Generate(nil)
 		generateRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "generate"}, setup.data), "generate_ref01"))
+			vs.GetPath(setup.data, []any{"new", "generate"}), "generate_ref01"))
 
 		generateRef01DataResult, err := generateRef01Ent.Create(generateRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func generateBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"generate01", "generate02", "generate03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -110,7 +110,7 @@ func generateBasicSetup(extra map[string]any) *entityTestSetup {
 		"MEMESIO_CONTENT_CREATION_TEST_GENERATE_ENTID": idmap,
 		"MEMESIO_CONTENT_CREATION_TEST_LIVE":      "FALSE",
 		"MEMESIO_CONTENT_CREATION_TEST_EXPLAIN":   "FALSE",
-		"MEMESIO_CONTENT_CREATION_APIKEY":         "NONE",
+		"MEMESIO_CONTENT_CREATION_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["MEMESIO_CONTENT_CREATION_TEST_GENERATE_ENTID"])
@@ -119,11 +119,23 @@ func generateBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["MEMESIO_CONTENT_CREATION_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMemesioContentCreationSDK(core.ToMapAny(mergedOpts))
 	}

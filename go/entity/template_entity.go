@@ -293,40 +293,9 @@ func (e *TemplateEntity) ListTyped(reqmatch TemplateListMatch, ctrl map[string]a
 
 
 
-
-func (e *TemplateEntity) Create(reqdata map[string]any, ctrl map[string]any) (any, error) {
-	utility := e.utility
-	ctx := utility.MakeContext(map[string]any{
-		"opname":  "create",
-		"ctrl":    ctrl,
-		"match":   e.match,
-		"data":    e.data,
-		"reqdata": reqdata,
-	}, e.entctx)
-
-	return e.runOp(ctx, func() {
-		if ctx.Result != nil {
-			if ctx.Result.Resdata != nil {
-				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
-				if e.data == nil {
-					e.data = map[string]any{}
-				}
-			}
-		}
-	})
+func (e *TemplateEntity) Create(_ map[string]any, _ map[string]any) (any, error) {
+	return core.UnsupportedOp("create", e.name)
 }
-
-// CreateTyped is the statically-typed variant of Create: it takes an
-// TemplateCreateData and returns an Template. It delegates to the untyped
-// Create (identical runtime) and converts at the typed boundary.
-func (e *TemplateEntity) CreateTyped(reqdata TemplateCreateData, ctrl map[string]any) (Template, error) {
-	res, err := e.Create(asMap(reqdata), ctrl)
-	if err != nil {
-		return Template{}, err
-	}
-	return typedFrom[Template](res), nil
-}
-
 
 
 func (e *TemplateEntity) Update(_ map[string]any, _ map[string]any) (any, error) {

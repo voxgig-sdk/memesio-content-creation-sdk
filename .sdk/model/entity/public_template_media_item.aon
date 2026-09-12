@@ -38,6 +38,12 @@ main: kit: entity: public_template_media_item: {
     }
     {
       name: "captions"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
       req: true
       type: "`$ARRAY`"
     }
@@ -74,6 +80,11 @@ main: kit: entity: public_template_media_item: {
       ]
     }
     {
+      name: "fps"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
       name: "frameCount"
       req: false
       type: [
@@ -83,6 +94,12 @@ main: kit: entity: public_template_media_item: {
           "`$NULL`"
         ]
       ]
+    }
+    {
+      name: "gifSlug"
+      req: false
+      short: "Required for /api/v1/gifs/generate."
+      type: "`$STRING`"
     }
     {
       name: "height"
@@ -131,6 +148,12 @@ main: kit: entity: public_template_media_item: {
       type: "`$STRING`"
     }
     {
+      name: "returnBase64"
+      req: false
+      short: "Only used by /api/v1/gifs/generate."
+      type: "`$BOOLEAN`"
+    }
+    {
       name: "slug"
       req: true
       type: "`$STRING`"
@@ -152,9 +175,25 @@ main: kit: entity: public_template_media_item: {
       type: "`$STRING`"
     }
     {
+      name: "startMs"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
       name: "tags"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
       req: true
       type: "`$ARRAY`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
     }
     {
       name: "width"
@@ -167,6 +206,11 @@ main: kit: entity: public_template_media_item: {
         ]
       ]
     }
+    {
+      name: "widthPx"
+      req: false
+      type: "`$INTEGER`"
+    }
   ]
 
   id: {
@@ -176,6 +220,50 @@ main: kit: entity: public_template_media_item: {
 
   name: "public_template_media_item"
   op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api/gifs/{slug}/generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "gifs"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          select: {
+            "$action": "generate"
+            exist: [
+              "slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
     load: {
       name: "load"
       points: [
@@ -203,10 +291,16 @@ main: kit: entity: public_template_media_item: {
           }
           method: "GET"
           orig: "/api/templates/{slug}"
-          parts: [
-            "api"
-            "templates"
-            "{slug}"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              var: "slug"
+            }
           ]
           select: {
             exist: [
@@ -233,10 +327,16 @@ main: kit: entity: public_template_media_item: {
           }
           method: "GET"
           orig: "/api/gifs/{slug}"
-          parts: [
-            "api"
-            "gifs"
-            "{slug}"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "gifs"
+            }
+            {
+              var: "slug"
+            }
           ]
           select: {
             exist: [

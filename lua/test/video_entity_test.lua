@@ -92,7 +92,7 @@ function video_basic_setup(extra)
     ["MEMESIO_CONTENT_CREATION_TEST_VIDEO_ENTID"] = idmap,
     ["MEMESIO_CONTENT_CREATION_TEST_LIVE"] = "FALSE",
     ["MEMESIO_CONTENT_CREATION_TEST_EXPLAIN"] = "FALSE",
-    ["MEMESIO_CONTENT_CREATION_APIKEY"] = "NONE",
+    ["MEMESIO_CONTENT_CREATION_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,6 +103,9 @@ function video_basic_setup(extra)
 
   if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["MEMESIO_CONTENT_CREATION_APIKEY"],
       },

@@ -1753,7 +1753,9 @@ public_template_media_item = client.PublicTemplateMediaItem
 | `description` | `String` | Yes |  |
 | `durationMs` | `Object` | No |  |
 | `exampleImageUrl` | `Object` | No |  |
+| `fps` | `Integer` | No |  |
 | `frameCount` | `Object` | No |  |
+| `gifSlug` | `String` | No | Required for /api/v1/gifs/generate. |
 | `height` | `Object` | Yes |  |
 | `id` | `String` | Yes |  |
 | `imageUrl` | `String` | Yes |  |
@@ -1762,13 +1764,72 @@ public_template_media_item = client.PublicTemplateMediaItem
 | `posterImageUrl` | `String` | No |  |
 | `previewImageUrl` | `String` | No |  |
 | `qualityStatus` | `String` | No |  |
+| `returnBase64` | `Boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `String` | Yes |  |
 | `sourceTemplateId` | `Object` | Yes |  |
 | `sourceUrl` | `String` | No |  |
+| `startMs` | `Integer` | No |  |
 | `tags` | `Array` | Yes |  |
+| `title` | `String` | No |  |
 | `width` | `Object` | Yes |  |
+| `widthPx` | `Integer` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `animated` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | - | Yes |
+| `categories` | - | - |
+| `description` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
+| `fps` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
+| `height` | - | - |
+| `id` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
+| `name` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
+| `slug` | - | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | - | Yes |
+| `title` | - | - |
+| `width` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
+
+#### `create(reqdata, ctrl = nil) -> result`
+
+Create a new entity with the given data. Raises on error.
+
+```ruby
+result = client.PublicTemplateMediaItem.create({
+  "slug" => "example_slug", # String
+  "captions" => [], # Array
+  "description" => "example_description", # String
+  "height" => 1, # Object
+  "id" => "example_id", # String
+  "imageUrl" => "example_imageUrl", # String
+  "mediaType" => "example_mediaType", # String
+  "name" => "example_name", # String
+  "sourceTemplateId" => "example_sourceTemplateId", # Object
+  "tags" => [], # Array
+  "width" => 1, # Object
+})
+```
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
@@ -1885,14 +1946,12 @@ template = client.Template
 | `assetContentType` | `String` | No |  |
 | `boxCount` | `Integer` | No |  |
 | `captionCount` | `Integer` | No |  |
-| `captions` | `Array` | No |  |
+| `captions` | `Array` | Yes |  |
 | `categories` | `Array` | No |  |
 | `description` | `String` | Yes |  |
-| `durationMs` | `Integer` | No |  |
+| `durationMs` | `Object` | No |  |
 | `exampleImageUrl` | `Object` | No |  |
-| `fps` | `Integer` | No |  |
 | `frameCount` | `Object` | No |  |
-| `gifSlug` | `String` | No | Required for /api/v1/gifs/generate. |
 | `height` | `Object` | Yes |  |
 | `id` | `String` | Yes |  |
 | `imageUrl` | `String` | Yes |  |
@@ -1901,70 +1960,13 @@ template = client.Template
 | `posterImageUrl` | `String` | No |  |
 | `previewImageUrl` | `String` | No |  |
 | `qualityStatus` | `String` | No |  |
-| `returnBase64` | `Boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `String` | Yes |  |
 | `sourceTemplateId` | `Object` | Yes |  |
 | `sourceUrl` | `String` | No |  |
-| `startMs` | `Integer` | No |  |
-| `tags` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `tags` | `Array` | Yes |  |
 | `width` | `Object` | Yes |  |
-| `widthPx` | `Integer` | No |  |
-
-### Field Usage by Operation
-
-| Field | list | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | Yes | - |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | Yes | - |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Operations
-
-#### `create(reqdata, ctrl = nil) -> result`
-
-Create a new entity with the given data. Raises on error.
-
-```ruby
-result = client.Template.create({
-  "slug" => "example_slug", # String
-  "description" => "example_description", # String
-  "height" => 1, # Object
-  "id" => "example_id", # String
-  "imageUrl" => "example_imageUrl", # String
-  "mediaType" => "example_mediaType", # String
-  "name" => "example_name", # String
-  "sourceTemplateId" => "example_sourceTemplateId", # Object
-  "width" => 1, # Object
-})
-```
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 

@@ -82,9 +82,13 @@ main: kit: entity: create_meme: {
         {
           method: "POST"
           orig: "/api/memes"
-          parts: [
-            "api"
-            "memes"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "memes"
+            }
           ]
           transform: {
             req: "`reqdata`"

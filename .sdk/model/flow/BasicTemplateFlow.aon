@@ -7,18 +7,6 @@ main: kit: flow: BasicTemplateFlow:
   name: "BasicTemplateFlow",
   step: [
     {
-      input: {
-        ref: "template_ref01"
-      }
-
-      match: {
-        slug: "slug01"
-      }
-
-      op: "create"
-    }
-
-    {
       op: "list",
       valid: [
         {

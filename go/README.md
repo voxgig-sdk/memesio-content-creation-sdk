@@ -744,7 +744,9 @@ API path: `/api/memes/{slug}`
 | `"description"` |  |
 | `"durationMs"` |  |
 | `"exampleImageUrl"` |  |
+| `"fps"` |  |
 | `"frameCount"` |  |
+| `"gifSlug"` | Required for /api/v1/gifs/generate. |
 | `"height"` |  |
 | `"id"` |  |
 | `"imageUrl"` |  |
@@ -753,15 +755,19 @@ API path: `/api/memes/{slug}`
 | `"posterImageUrl"` |  |
 | `"previewImageUrl"` |  |
 | `"qualityStatus"` |  |
+| `"returnBase64"` | Only used by /api/v1/gifs/generate. |
 | `"slug"` |  |
 | `"sourceTemplateId"` |  |
 | `"sourceUrl"` |  |
+| `"startMs"` |  |
 | `"tags"` |  |
+| `"title"` |  |
 | `"width"` |  |
+| `"widthPx"` |  |
 
-Operations: Load.
+Operations: Create, Load.
 
-API path: `/api/templates/{slug}`
+API path: `/api/gifs/{slug}/generate`
 
 #### StandaloneAgentBootstrap
 
@@ -794,9 +800,7 @@ API path: `/api/v1/agents/bootstrap`
 | `"description"` |  |
 | `"durationMs"` |  |
 | `"exampleImageUrl"` |  |
-| `"fps"` |  |
 | `"frameCount"` |  |
-| `"gifSlug"` | Required for /api/v1/gifs/generate. |
 | `"height"` |  |
 | `"id"` |  |
 | `"imageUrl"` |  |
@@ -805,19 +809,15 @@ API path: `/api/v1/agents/bootstrap`
 | `"posterImageUrl"` |  |
 | `"previewImageUrl"` |  |
 | `"qualityStatus"` |  |
-| `"returnBase64"` | Only used by /api/v1/gifs/generate. |
 | `"slug"` |  |
 | `"sourceTemplateId"` |  |
 | `"sourceUrl"` |  |
-| `"startMs"` |  |
 | `"tags"` |  |
-| `"title"` |  |
 | `"width"` |  |
-| `"widthPx"` |  |
 
-Operations: Create, List.
+Operations: List.
 
-API path: `/api/gifs/{slug}/generate`
+API path: `/api/templates`
 
 #### TemplateSearch
 
@@ -1865,6 +1865,7 @@ Create an instance: `publicTemplateMediaItem := client.PublicTemplateMediaItem(n
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -1880,7 +1881,9 @@ Create an instance: `publicTemplateMediaItem := client.PublicTemplateMediaItem(n
 | `description` | `string` |  |
 | `durationMs` | `any` |  |
 | `exampleImageUrl` | `any` |  |
+| `fps` | `int` |  |
 | `frameCount` | `any` |  |
+| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `any` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1889,11 +1892,15 @@ Create an instance: `publicTemplateMediaItem := client.PublicTemplateMediaItem(n
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
+| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `any` |  |
 | `sourceUrl` | `string` |  |
+| `startMs` | `int` |  |
 | `tags` | `[]any` |  |
+| `title` | `string` |  |
 | `width` | `any` |  |
+| `widthPx` | `int` |  |
 
 #### Example: Load
 
@@ -1903,6 +1910,28 @@ if err != nil {
     panic(err)
 }
 fmt.Println(publicTemplateMediaItem) // the loaded record
+```
+
+#### Example: Create
+
+```go
+result, err := client.PublicTemplateMediaItem(nil).Create(map[string]any{
+    "slug": "example_slug",
+    "captions": []any{},
+    "description": "example_description",
+    "height": 1,
+    "id": "example_id",
+    "imageUrl": "example_imageUrl",
+    "mediaType": "example_mediaType",
+    "name": "example_name",
+    "sourceTemplateId": "example_sourceTemplateId",
+    "tags": []any{},
+    "width": 1,
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -1952,7 +1981,6 @@ Create an instance: `template := client.Template(nil)`
 | Method | Description |
 | --- | --- |
 | `List(match, ctrl)` | List entities matching the criteria. |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -1966,11 +1994,9 @@ Create an instance: `template := client.Template(nil)`
 | `captions` | `[]any` |  |
 | `categories` | `[]any` |  |
 | `description` | `string` |  |
-| `durationMs` | `int` |  |
+| `durationMs` | `any` |  |
 | `exampleImageUrl` | `any` |  |
-| `fps` | `int` |  |
 | `frameCount` | `any` |  |
-| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `any` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1979,15 +2005,11 @@ Create an instance: `template := client.Template(nil)`
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `any` |  |
 | `sourceUrl` | `string` |  |
-| `startMs` | `int` |  |
 | `tags` | `[]any` |  |
-| `title` | `string` |  |
 | `width` | `any` |  |
-| `widthPx` | `int` |  |
 
 #### Example: List
 
@@ -1997,26 +2019,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(templates) // the array of records
-```
-
-#### Example: Create
-
-```go
-result, err := client.Template(nil).Create(map[string]any{
-    "slug": "example_slug",
-    "description": "example_description",
-    "height": 1,
-    "id": "example_id",
-    "imageUrl": "example_imageUrl",
-    "mediaType": "example_mediaType",
-    "name": "example_name",
-    "sourceTemplateId": "example_sourceTemplateId",
-    "width": 1,
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
 ```
 
 

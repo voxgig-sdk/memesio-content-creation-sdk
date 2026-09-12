@@ -123,11 +123,19 @@ main: kit: entity: generate: {
         {
           method: "POST"
           orig: "/api/v1/gifs/generate"
-          parts: [
-            "api"
-            "v1"
-            "gifs"
-            "generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "gifs"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"

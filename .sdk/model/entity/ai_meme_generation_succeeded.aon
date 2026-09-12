@@ -138,11 +138,19 @@ main: kit: entity: ai_meme_generation_succeeded: {
         {
           method: "POST"
           orig: "/api/ai/memes/generate"
-          parts: [
-            "api"
-            "ai"
-            "memes"
-            "generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -152,11 +160,19 @@ main: kit: entity: ai_meme_generation_succeeded: {
         {
           method: "POST"
           orig: "/api/v1/memes/generate"
-          parts: [
-            "api"
-            "v1"
-            "memes"
-            "generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"

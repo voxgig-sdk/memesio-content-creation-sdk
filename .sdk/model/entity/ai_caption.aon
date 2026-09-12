@@ -155,11 +155,19 @@ main: kit: entity: ai_caption: {
         {
           method: "POST"
           orig: "/api/ai/captions/generate"
-          parts: [
-            "api"
-            "ai"
-            "captions"
-            "generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -169,11 +177,19 @@ main: kit: entity: ai_caption: {
         {
           method: "POST"
           orig: "/api/ai/captions/moderate"
-          parts: [
-            "api"
-            "ai"
-            "captions"
-            "moderate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "moderate"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -183,11 +199,19 @@ main: kit: entity: ai_caption: {
         {
           method: "POST"
           orig: "/api/ai/captions/prompt"
-          parts: [
-            "api"
-            "ai"
-            "captions"
-            "prompt"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "prompt"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -197,11 +221,19 @@ main: kit: entity: ai_caption: {
         {
           method: "POST"
           orig: "/api/ai/captions/rank"
-          parts: [
-            "api"
-            "ai"
-            "captions"
-            "rank"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "rank"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -211,11 +243,19 @@ main: kit: entity: ai_caption: {
         {
           method: "POST"
           orig: "/api/ai/captions/rewrite"
-          parts: [
-            "api"
-            "ai"
-            "captions"
-            "rewrite"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "rewrite"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -225,11 +265,19 @@ main: kit: entity: ai_caption: {
         {
           method: "POST"
           orig: "/api/ai/captions/scene"
-          parts: [
-            "api"
-            "ai"
-            "captions"
-            "scene"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "scene"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -239,11 +287,19 @@ main: kit: entity: ai_caption: {
         {
           method: "POST"
           orig: "/api/ai/captions/tone-presets"
-          parts: [
-            "api"
-            "ai"
-            "captions"
-            "tone-presets"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "tone-presets"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -269,11 +325,19 @@ main: kit: entity: ai_caption: {
           }
           method: "GET"
           orig: "/api/ai/captions/tone-presets"
-          parts: [
-            "api"
-            "ai"
-            "captions"
-            "tone-presets"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "tone-presets"
+            }
           ]
           select: {
             exist: [
@@ -288,11 +352,19 @@ main: kit: entity: ai_caption: {
         {
           method: "GET"
           orig: "/api/ai/captions/generate"
-          parts: [
-            "api"
-            "ai"
-            "captions"
-            "generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"

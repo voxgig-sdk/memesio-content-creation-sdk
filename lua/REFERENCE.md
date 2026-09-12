@@ -1750,7 +1750,9 @@ local public_template_media_item = client:PublicTemplateMediaItem(nil)
 | `description` | `string` | Yes |  |
 | `durationMs` | `number|nil` | No |  |
 | `exampleImageUrl` | `string|nil` | No |  |
+| `fps` | `number` | No |  |
 | `frameCount` | `number|nil` | No |  |
+| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `number|nil` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1759,13 +1761,72 @@ local public_template_media_item = client:PublicTemplateMediaItem(nil)
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
+| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `string|nil` | Yes |  |
 | `sourceUrl` | `string` | No |  |
+| `startMs` | `number` | No |  |
 | `tags` | `table` | Yes |  |
+| `title` | `string` | No |  |
 | `width` | `number|nil` | Yes |  |
+| `widthPx` | `number` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `animated` | - | - |
+| `assetBytes` | - | - |
+| `assetContentType` | - | - |
+| `boxCount` | - | - |
+| `captionCount` | - | - |
+| `captions` | - | Yes |
+| `categories` | - | - |
+| `description` | - | - |
+| `durationMs` | - | - |
+| `exampleImageUrl` | - | - |
+| `fps` | - | - |
+| `frameCount` | - | - |
+| `gifSlug` | - | - |
+| `height` | - | - |
+| `id` | - | - |
+| `imageUrl` | - | - |
+| `mediaType` | - | - |
+| `name` | - | - |
+| `posterImageUrl` | - | - |
+| `previewImageUrl` | - | - |
+| `qualityStatus` | - | - |
+| `returnBase64` | - | - |
+| `slug` | - | - |
+| `sourceTemplateId` | - | - |
+| `sourceUrl` | - | - |
+| `startMs` | - | - |
+| `tags` | - | Yes |
+| `title` | - | - |
+| `width` | - | - |
+| `widthPx` | - | - |
 
 ### Operations
+
+#### `create(reqdata, ctrl) -> any, err`
+
+Create a new entity with the given data.
+
+```lua
+local result, err = client:PublicTemplateMediaItem():create({
+  slug = --[[ string ]],
+  captions = --[[ table ]],
+  description = --[[ string ]],
+  height = --[[ number|nil ]],
+  id = --[[ string ]],
+  imageUrl = --[[ string ]],
+  mediaType = --[[ string ]],
+  name = --[[ string ]],
+  sourceTemplateId = --[[ string|nil ]],
+  tags = --[[ table ]],
+  width = --[[ number|nil ]],
+})
+```
 
 #### `load(reqmatch, ctrl) -> any, err`
 
@@ -1882,14 +1943,12 @@ local template = client:Template(nil)
 | `assetContentType` | `string` | No |  |
 | `boxCount` | `number` | No |  |
 | `captionCount` | `number` | No |  |
-| `captions` | `table` | No |  |
+| `captions` | `table` | Yes |  |
 | `categories` | `table` | No |  |
 | `description` | `string` | Yes |  |
-| `durationMs` | `number` | No |  |
+| `durationMs` | `number|nil` | No |  |
 | `exampleImageUrl` | `string|nil` | No |  |
-| `fps` | `number` | No |  |
 | `frameCount` | `number|nil` | No |  |
-| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `number|nil` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1898,70 +1957,13 @@ local template = client:Template(nil)
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `string|nil` | Yes |  |
 | `sourceUrl` | `string` | No |  |
-| `startMs` | `number` | No |  |
-| `tags` | `table` | No |  |
-| `title` | `string` | No |  |
+| `tags` | `table` | Yes |  |
 | `width` | `number|nil` | Yes |  |
-| `widthPx` | `number` | No |  |
-
-### Field Usage by Operation
-
-| Field | list | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | Yes | - |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | Yes | - |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Operations
-
-#### `create(reqdata, ctrl) -> any, err`
-
-Create a new entity with the given data.
-
-```lua
-local result, err = client:Template():create({
-  slug = --[[ string ]],
-  description = --[[ string ]],
-  height = --[[ number|nil ]],
-  id = --[[ string ]],
-  imageUrl = --[[ string ]],
-  mediaType = --[[ string ]],
-  name = --[[ string ]],
-  sourceTemplateId = --[[ string|nil ]],
-  width = --[[ number|nil ]],
-})
-```
 
 #### `list(reqmatch, ctrl) -> any, err`
 

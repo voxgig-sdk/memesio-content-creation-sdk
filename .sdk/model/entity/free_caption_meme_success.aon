@@ -46,11 +46,19 @@ main: kit: entity: free_caption_meme_success: {
         {
           method: "POST"
           orig: "/api/free/memes/caption"
-          parts: [
-            "api"
-            "free"
-            "memes"
-            "caption"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "free"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "caption"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -60,11 +68,19 @@ main: kit: entity: free_caption_meme_success: {
         {
           method: "POST"
           orig: "/api/v1/memes/caption-template"
-          parts: [
-            "api"
-            "v1"
-            "memes"
-            "caption-template"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "caption-template"
+            }
           ]
           transform: {
             req: "`reqdata`"

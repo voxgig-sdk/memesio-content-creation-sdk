@@ -32,7 +32,7 @@ func TestPublicTemplateMediaItemEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"load"} {
+		for _, _op := range []string{"create", "load"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "public_template_media_item." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -49,18 +49,25 @@ func TestPublicTemplateMediaItemEntity(t *testing.T) {
 		}
 		client := setup.client
 
-		// Bootstrap entity data from existing test data (no create step in flow).
-		publicTemplateMediaItemRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.public_template_media_item", setup.data)))
-		var publicTemplateMediaItemRef01Data map[string]any
-		if len(publicTemplateMediaItemRef01DataRaw) > 0 {
-			publicTemplateMediaItemRef01Data = core.ToMapAny(publicTemplateMediaItemRef01DataRaw[0][1])
+		// CREATE
+		publicTemplateMediaItemRef01Ent := client.PublicTemplateMediaItem(nil)
+		publicTemplateMediaItemRef01Data := core.ToMapAny(vs.GetProp(
+			vs.GetPath(setup.data, []any{"new", "public_template_media_item"}), "public_template_media_item_ref01"))
+		publicTemplateMediaItemRef01Data["slug"] = setup.idmap["slug01"]
+
+		publicTemplateMediaItemRef01DataResult, err := publicTemplateMediaItemRef01Ent.Create(publicTemplateMediaItemRef01Data, nil)
+		if err != nil {
+			t.Fatalf("create failed: %v", err)
 		}
-		// Discard guards against Go's unused-var check when the flow's steps
-		// happen not to consume the bootstrap data (e.g. list-only flows).
-		_ = publicTemplateMediaItemRef01Data
+		publicTemplateMediaItemRef01Data = core.ToMapAny(entityData(publicTemplateMediaItemRef01DataResult))
+		if publicTemplateMediaItemRef01Data == nil {
+			t.Fatal("expected create result to be a map")
+		}
+		if publicTemplateMediaItemRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// LOAD
-		publicTemplateMediaItemRef01Ent := client.PublicTemplateMediaItem(nil)
 		publicTemplateMediaItemRef01MatchDt0 := map[string]any{
 			"id": publicTemplateMediaItemRef01Data["id"],
 		}
@@ -103,8 +110,8 @@ func public_template_media_itemBasicSetup(extra map[string]any) *entityTestSetup
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
-		[]any{"public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03"},
+	idmap, _ := vs.Transform(
+		[]any{"public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03", "slug01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",
@@ -123,7 +130,7 @@ func public_template_media_itemBasicSetup(extra map[string]any) *entityTestSetup
 		"MEMESIO_CONTENT_CREATION_TEST_PUBLIC_TEMPLATE_MEDIA_ITEM_ENTID": idmap,
 		"MEMESIO_CONTENT_CREATION_TEST_LIVE":      "FALSE",
 		"MEMESIO_CONTENT_CREATION_TEST_EXPLAIN":   "FALSE",
-		"MEMESIO_CONTENT_CREATION_APIKEY":         "NONE",
+		"MEMESIO_CONTENT_CREATION_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["MEMESIO_CONTENT_CREATION_TEST_PUBLIC_TEMPLATE_MEDIA_ITEM_ENTID"])
@@ -132,11 +139,23 @@ func public_template_media_itemBasicSetup(extra map[string]any) *entityTestSetup
 	}
 
 	if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["MEMESIO_CONTENT_CREATION_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMemesioContentCreationSDK(core.ToMapAny(mergedOpts))
 	}

@@ -118,14 +118,22 @@ func agentDirectSetup(mockres any) *agentDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MEMESIO_CONTENT_CREATION_TEST_AGENT_ENTID": map[string]any{},
 		"MEMESIO_CONTENT_CREATION_TEST_LIVE":    "FALSE",
-		"MEMESIO_CONTENT_CREATION_APIKEY":       "NONE",
+		"MEMESIO_CONTENT_CREATION_APIKEY":       "",
 	})
 
 	live := env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["MEMESIO_CONTENT_CREATION_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewMemesioContentCreationSDK(mergedOpts)
 

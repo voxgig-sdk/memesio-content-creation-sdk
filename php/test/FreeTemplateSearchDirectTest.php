@@ -68,15 +68,17 @@ function free_template_search_direct_setup($mockres)
     $env = Runner::env_override([
         "MEMESIO_CONTENT_CREATION_TEST_FREE_TEMPLATE_SEARCH_ENTID" => [],
         "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
-        "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
+        "MEMESIO_CONTENT_CREATION_APIKEY" => "",
     ]);
 
     $live = $env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["MEMESIO_CONTENT_CREATION_APIKEY"],
-        ];
+        ]);
         $client = new MemesioContentCreationSDK($merged_opts);
         return [
             "client" => $client,

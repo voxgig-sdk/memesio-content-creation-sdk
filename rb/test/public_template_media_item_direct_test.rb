@@ -71,15 +71,17 @@ def public_template_media_item_direct_setup(mockres)
   env = Runner.env_override({
     "MEMESIO_CONTENT_CREATION_TEST_PUBLIC_TEMPLATE_MEDIA_ITEM_ENTID" => {},
     "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
-    "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
+    "MEMESIO_CONTENT_CREATION_APIKEY" => "",
   })
 
   live = env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
       "apikey" => env["MEMESIO_CONTENT_CREATION_APIKEY"],
-    }
+    })
     client = MemesioContentCreationSDK.new(merged_opts)
     return {
       client: client,

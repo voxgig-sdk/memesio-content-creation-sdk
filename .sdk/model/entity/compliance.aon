@@ -12,10 +12,16 @@ main: kit: entity: compliance: {
         {
           method: "GET"
           orig: "/api/compliance/content-policy"
-          parts: [
-            "api"
-            "compliance"
-            "content-policy"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "compliance"
+            }
+            {
+              lit: "content-policy"
+            }
           ]
           select: {
             "$action": "content_policy"

@@ -119,6 +119,10 @@ module MemesioContentCreationConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "agent",
           "op" => {
             "create" => {
@@ -130,16 +134,27 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                  ],
                 },
               ],
             },
@@ -162,17 +177,25 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/agents/{agentId}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "agentId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -182,22 +205,39 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "{id}",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/agents",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                  ],
                 },
               ],
             },
@@ -220,17 +260,25 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "PATCH",
                   "orig" => "/api/v1/agents/{agentId}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "agentId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -240,6 +288,12 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -312,6 +366,10 @@ module MemesioContentCreationConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "agent_infra",
           "op" => {
             "create" => {
@@ -333,20 +391,34 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/{agentId}/channels/telegram/bind",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{agent_id}",
-                    "channels",
-                    "telegram",
-                    "bind",
-                  ],
                   "rename" => {
                     "param" => {
                       "agentId" => "agent_id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "var" => "agent_id",
+                    },
+                    {
+                      "lit" => "channels",
+                    },
+                    {
+                      "lit" => "telegram",
+                    },
+                    {
+                      "lit" => "bind",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "agent_id",
@@ -356,6 +428,15 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "{agent_id}",
+                    "channels",
+                    "telegram",
+                    "bind",
+                  ],
                 },
                 {
                   "args" => {
@@ -372,20 +453,34 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/{agentId}/channels/whatsapp/bind",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{agent_id}",
-                    "channels",
-                    "whatsapp",
-                    "bind",
-                  ],
                   "rename" => {
                     "param" => {
                       "agentId" => "agent_id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "var" => "agent_id",
+                    },
+                    {
+                      "lit" => "channels",
+                    },
+                    {
+                      "lit" => "whatsapp",
+                    },
+                    {
+                      "lit" => "bind",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "agent_id",
@@ -395,6 +490,15 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "{agent_id}",
+                    "channels",
+                    "whatsapp",
+                    "bind",
+                  ],
                 },
                 {
                   "args" => {
@@ -411,19 +515,31 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/{agentId}/unlocks/social-action",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{agent_id}",
-                    "unlocks",
-                    "social-action",
-                  ],
                   "rename" => {
                     "param" => {
                       "agentId" => "agent_id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "var" => "agent_id",
+                    },
+                    {
+                      "lit" => "unlocks",
+                    },
+                    {
+                      "lit" => "social-action",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "agent_id",
@@ -433,6 +549,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "{agent_id}",
+                    "unlocks",
+                    "social-action",
+                  ],
                 },
                 {
                   "args" => {
@@ -449,18 +573,28 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/{agentId}/keys",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{id}",
-                    "keys",
-                  ],
                   "rename" => {
                     "param" => {
                       "agentId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                    {
+                      "lit" => "keys",
+                    },
+                  ],
                   "select" => {
                     "$action" => "keys",
                     "exist" => [
@@ -471,6 +605,13 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "{id}",
+                    "keys",
+                  ],
                 },
                 {
                   "args" => {
@@ -487,19 +628,31 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/unlocks/{unlockId}/approve",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "unlocks",
-                    "{unlock_id}",
-                    "approve",
-                  ],
                   "rename" => {
                     "param" => {
                       "unlockId" => "unlock_id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "unlocks",
+                    },
+                    {
+                      "var" => "unlock_id",
+                    },
+                    {
+                      "lit" => "approve",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "unlock_id",
@@ -509,29 +662,73 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "unlocks",
+                    "{unlock_id}",
+                    "approve",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/names:generate",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "names:generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "names:generate",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "names:generate",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/rewards/votes",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "rewards",
+                    },
+                    {
+                      "lit" => "votes",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "v1",
@@ -539,17 +736,34 @@ module MemesioContentCreationConfig
                     "rewards",
                     "votes",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/rewards/winner:close",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "rewards",
+                    },
+                    {
+                      "lit" => "winner:close",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "v1",
@@ -557,17 +771,34 @@ module MemesioContentCreationConfig
                     "rewards",
                     "winner:close",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/webhooks/telegram",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "webhooks",
+                    },
+                    {
+                      "lit" => "telegram",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "v1",
@@ -575,17 +806,34 @@ module MemesioContentCreationConfig
                     "webhooks",
                     "telegram",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/agents/webhooks/whatsapp",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "webhooks",
+                    },
+                    {
+                      "lit" => "whatsapp",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "v1",
@@ -593,11 +841,6 @@ module MemesioContentCreationConfig
                     "webhooks",
                     "whatsapp",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
               ],
             },
@@ -625,12 +868,22 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/agents/rewards/leaderboard",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "rewards",
-                    "leaderboard",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "rewards",
+                    },
+                    {
+                      "lit" => "leaderboard",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -642,6 +895,13 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "rewards",
+                    "leaderboard",
+                  ],
                 },
                 {
                   "args" => {
@@ -658,18 +918,28 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/agents/{agentId}/keys",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{id}",
-                    "keys",
-                  ],
                   "rename" => {
                     "param" => {
                       "agentId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                    {
+                      "lit" => "keys",
+                    },
+                  ],
                   "select" => {
                     "$action" => "keys",
                     "exist" => [
@@ -680,12 +950,41 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "{id}",
+                    "keys",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/agents/webhooks/whatsapp",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "webhooks",
+                    },
+                    {
+                      "lit" => "whatsapp",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "v1",
@@ -693,11 +992,6 @@ module MemesioContentCreationConfig
                     "webhooks",
                     "whatsapp",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
               ],
             },
@@ -727,20 +1021,32 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/api/v1/agents/{agentId}/keys/{keyId}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "{agent_id}",
-                    "keys",
-                    "{key_id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "agentId" => "agent_id",
                       "keyId" => "key_id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "var" => "agent_id",
+                    },
+                    {
+                      "lit" => "keys",
+                    },
+                    {
+                      "var" => "key_id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "agent_id",
@@ -751,6 +1057,14 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "{agent_id}",
+                    "keys",
+                    "{key_id}",
+                  ],
                 },
               ],
             },
@@ -899,119 +1213,217 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/captions/generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "captions",
+                    },
+                    {
+                      "lit" => "generate",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "ai",
                     "captions",
                     "generate",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/captions/moderate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "captions",
+                    },
+                    {
+                      "lit" => "moderate",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "ai",
                     "captions",
                     "moderate",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/captions/prompt",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "captions",
+                    },
+                    {
+                      "lit" => "prompt",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "ai",
                     "captions",
                     "prompt",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/captions/rank",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "captions",
+                    },
+                    {
+                      "lit" => "rank",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "ai",
                     "captions",
                     "rank",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/captions/rewrite",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "captions",
+                    },
+                    {
+                      "lit" => "rewrite",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "ai",
                     "captions",
                     "rewrite",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/captions/scene",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "captions",
+                    },
+                    {
+                      "lit" => "scene",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "ai",
                     "captions",
                     "scene",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/captions/tone-presets",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "captions",
-                    "tone-presets",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "captions",
+                    },
+                    {
+                      "lit" => "tone-presets",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "captions",
+                    "tone-presets",
+                  ],
                 },
               ],
             },
@@ -1033,11 +1445,19 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/ai/captions/tone-presets",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "captions",
-                    "tone-presets",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "captions",
+                    },
+                    {
+                      "lit" => "tone-presets",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1048,23 +1468,43 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "captions",
+                    "tone-presets",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/ai/captions/generate",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "captions",
-                    "generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "captions",
+                    },
+                    {
+                      "lit" => "generate",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "captions",
+                    "generate",
+                  ],
                 },
               ],
             },
@@ -1114,6 +1554,7 @@ module MemesioContentCreationConfig
               "type" => "`$BOOLEAN`",
             },
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "type" => "`$STRING`",
             },
@@ -1241,6 +1682,7 @@ module MemesioContentCreationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "updatedAt",
               "type" => "`$STRING`",
             },
@@ -1263,6 +1705,10 @@ module MemesioContentCreationConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "ai_job",
           "op" => {
             "create" => {
@@ -1284,19 +1730,30 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/jobs/{jobId}/cancel",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "jobs",
-                    "{job_id}",
-                    "cancel",
-                  ],
                   "rename" => {
                     "param" => {
                       "jobId" => "job_id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "jobs",
+                    },
+                    {
+                      "var" => "job_id",
+                    },
+                    {
+                      "lit" => "cancel",
+                    },
+                  ],
                   "select" => {
+                    "$action" => "cancel",
                     "exist" => [
                       "job_id",
                     ],
@@ -1305,6 +1762,13 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "jobs",
+                    "{job_id}",
+                    "cancel",
+                  ],
                 },
                 {
                   "args" => {
@@ -1321,19 +1785,30 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/jobs/{jobId}/complete",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "jobs",
-                    "{job_id}",
-                    "complete",
-                  ],
                   "rename" => {
                     "param" => {
                       "jobId" => "job_id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "jobs",
+                    },
+                    {
+                      "var" => "job_id",
+                    },
+                    {
+                      "lit" => "complete",
+                    },
+                  ],
                   "select" => {
+                    "$action" => "complete",
                     "exist" => [
                       "job_id",
                     ],
@@ -1342,86 +1817,148 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "jobs",
+                    "{job_id}",
+                    "complete",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/background-remove",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "background-remove",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "background-remove",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "background-remove",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/edit-history",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "edit-history",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "edit-history",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "edit-history",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/face-swap",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "face-swap",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "face-swap",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "face-swap",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/face-targets",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "face-targets",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "face-targets",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "face-targets",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/jobs",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "jobs",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "jobs",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "jobs",
+                  ],
                 },
               ],
             },
@@ -1475,10 +2012,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/ai/edit-history",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "edit-history",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "edit-history",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1494,6 +2037,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "edit-history",
+                  ],
                 },
                 {
                   "args" => {
@@ -1521,10 +2069,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/ai/jobs",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "jobs",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "jobs",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1537,6 +2091,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "jobs",
+                  ],
                 },
                 {
                   "args" => {
@@ -1553,17 +2112,25 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/ai/jobs/{jobId}",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "jobs",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "jobId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "jobs",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -1573,6 +2140,12 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "jobs",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1705,34 +2278,62 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/memes/generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
+                    {
+                      "lit" => "generate",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "ai",
                     "memes",
                     "generate",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/memes/generate",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "memes",
-                    "generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
+                    {
+                      "lit" => "generate",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "memes",
+                    "generate",
+                  ],
                 },
               ],
             },
@@ -1797,34 +2398,62 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/templates/detect",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "templates",
+                    },
+                    {
+                      "lit" => "detect",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "ai",
                     "templates",
                     "detect",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/ai/templates/suggest",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "templates",
-                    "suggest",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "templates",
+                    },
+                    {
+                      "lit" => "suggest",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "templates",
+                    "suggest",
+                  ],
                 },
               ],
             },
@@ -1846,11 +2475,19 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/ai/providers/background-remove-benchmark",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "providers",
-                    "background-remove-benchmark",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "providers",
+                    },
+                    {
+                      "lit" => "background-remove-benchmark",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1861,6 +2498,12 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "providers",
+                    "background-remove-benchmark",
+                  ],
                 },
                 {
                   "args" => {
@@ -1876,11 +2519,19 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/ai/providers/face-swap-benchmark",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "providers",
-                    "face-swap-benchmark",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "providers",
+                    },
+                    {
+                      "lit" => "face-swap-benchmark",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1891,23 +2542,43 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "providers",
+                    "face-swap-benchmark",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/ai/memes/generate",
-                  "parts" => [
-                    "api",
-                    "ai",
-                    "memes",
-                    "generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
+                    {
+                      "lit" => "generate",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "ai",
+                    "memes",
+                    "generate",
+                  ],
                 },
               ],
             },
@@ -1938,11 +2609,19 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/analytics/experiments/templates",
-                  "parts" => [
-                    "api",
-                    "analytics",
-                    "experiments",
-                    "templates",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "analytics",
+                    },
+                    {
+                      "lit" => "experiments",
+                    },
+                    {
+                      "lit" => "templates",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1953,6 +2632,12 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "analytics",
+                    "experiments",
+                    "templates",
+                  ],
                 },
                 {
                   "args" => {
@@ -1968,11 +2653,19 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/analytics/dashboards/backend-reliability",
-                  "parts" => [
-                    "api",
-                    "analytics",
-                    "dashboards",
-                    "backend-reliability",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "analytics",
+                    },
+                    {
+                      "lit" => "dashboards",
+                    },
+                    {
+                      "lit" => "backend-reliability",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1983,84 +2676,152 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "analytics",
+                    "dashboards",
+                    "backend-reliability",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/analytics/alerts/backend",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "analytics",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "backend",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "analytics",
                     "alerts",
                     "backend",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/analytics/anomalies/ai",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "analytics",
+                    },
+                    {
+                      "lit" => "anomalies",
+                    },
+                    {
+                      "lit" => "ai",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "analytics",
                     "anomalies",
                     "ai",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/analytics/dashboards/activation-retention",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "analytics",
+                    },
+                    {
+                      "lit" => "dashboards",
+                    },
+                    {
+                      "lit" => "activation-retention",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "analytics",
                     "dashboards",
                     "activation-retention",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/analytics/dashboards/feature-adoption",
-                  "parts" => [
-                    "api",
-                    "analytics",
-                    "dashboards",
-                    "feature-adoption",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "analytics",
+                    },
+                    {
+                      "lit" => "dashboards",
+                    },
+                    {
+                      "lit" => "feature-adoption",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "analytics",
+                    "dashboards",
+                    "feature-adoption",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/analytics/metric-dictionary",
-                  "parts" => [
-                    "api",
-                    "analytics",
-                    "metric-dictionary",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "analytics",
+                    },
+                    {
+                      "lit" => "metric-dictionary",
+                    },
                   ],
                   "select" => {
                     "$action" => "metric_dictionary",
@@ -2069,6 +2830,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "analytics",
+                    "metric-dictionary",
+                  ],
                 },
               ],
             },
@@ -2084,6 +2850,7 @@ module MemesioContentCreationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "email",
               "name" => "email",
               "req" => true,
               "type" => "`$STRING`",
@@ -2105,10 +2872,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/auth/resend-verification",
-                  "parts" => [
-                    "api",
-                    "auth",
-                    "resend-verification",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "auth",
+                    },
+                    {
+                      "lit" => "resend-verification",
+                    },
                   ],
                   "select" => {
                     "$action" => "resend_verification",
@@ -2117,16 +2890,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "auth",
+                    "resend-verification",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/auth/signup",
-                  "parts" => [
-                    "api",
-                    "auth",
-                    "signup",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "auth",
+                    },
+                    {
+                      "lit" => "signup",
+                    },
                   ],
                   "select" => {
                     "$action" => "signup",
@@ -2135,6 +2919,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "auth",
+                    "signup",
+                  ],
                 },
               ],
             },
@@ -2171,10 +2960,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/billing/usage",
-                  "parts" => [
-                    "api",
-                    "billing",
-                    "usage",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "billing",
+                    },
+                    {
+                      "lit" => "usage",
+                    },
                   ],
                   "select" => {
                     "$action" => "usage",
@@ -2187,6 +2982,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "billing",
+                    "usage",
+                  ],
                 },
               ],
             },
@@ -2223,16 +3023,27 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/collab/comments",
-                  "parts" => [
-                    "api",
-                    "collab",
-                    "comments",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "collab",
+                    },
+                    {
+                      "lit" => "comments",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "collab",
+                    "comments",
+                  ],
                 },
               ],
             },
@@ -2267,10 +3078,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/collab/comments",
-                  "parts" => [
-                    "api",
-                    "collab",
-                    "comments",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "collab",
+                    },
+                    {
+                      "lit" => "comments",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2283,6 +3100,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "collab",
+                    "comments",
+                  ],
                 },
               ],
             },
@@ -2304,10 +3126,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/compliance/content-policy",
-                  "parts" => [
-                    "api",
-                    "compliance",
-                    "content-policy",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "compliance",
+                    },
+                    {
+                      "lit" => "content-policy",
+                    },
                   ],
                   "select" => {
                     "$action" => "content_policy",
@@ -2316,6 +3144,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "compliance",
+                    "content-policy",
+                  ],
                 },
               ],
             },
@@ -2399,15 +3232,23 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/memes",
-                  "parts" => [
-                    "api",
-                    "memes",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "memes",
+                  ],
                 },
               ],
             },
@@ -2443,17 +3284,31 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/templates/ideas",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "templates",
-                    "ideas",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "templates",
+                    },
+                    {
+                      "lit" => "ideas",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "templates",
+                    "ideas",
+                  ],
                 },
               ],
             },
@@ -2466,17 +3321,31 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/memes/generate",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "memes",
-                    "generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
+                    {
+                      "lit" => "generate",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "memes",
+                    "generate",
+                  ],
                 },
               ],
             },
@@ -2527,34 +3396,62 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/free/memes/caption",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "free",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
+                    {
+                      "lit" => "caption",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.data`",
+                  },
                   "parts" => [
                     "api",
                     "free",
                     "memes",
                     "caption",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.data`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/memes/caption-template",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "memes",
-                    "caption-template",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
+                    {
+                      "lit" => "caption-template",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "memes",
+                    "caption-template",
+                  ],
                 },
               ],
             },
@@ -2708,6 +3605,10 @@ module MemesioContentCreationConfig
               ],
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "free_template_search",
           "op" => {
             "list" => {
@@ -2771,10 +3672,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/free/templates",
-                  "parts" => [
-                    "api",
-                    "free",
-                    "templates",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "free",
+                    },
+                    {
+                      "lit" => "templates",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2792,6 +3699,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.items`",
                   },
+                  "parts" => [
+                    "api",
+                    "free",
+                    "templates",
+                  ],
                 },
               ],
             },
@@ -2911,17 +3823,31 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/gifs/generate",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "gifs",
-                    "generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "gifs",
+                    },
+                    {
+                      "lit" => "generate",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "gifs",
+                    "generate",
+                  ],
                 },
               ],
             },
@@ -2980,6 +3906,7 @@ module MemesioContentCreationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "now",
               "type" => "`$STRING`",
             },
@@ -3015,27 +3942,47 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/growth/experiments/decision",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "experiments",
-                    "decision",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "experiments",
+                    },
+                    {
+                      "lit" => "decision",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "experiments",
+                    "decision",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/growth/lifecycle-messaging",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "lifecycle-messaging",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "lifecycle-messaging",
+                    },
                   ],
                   "select" => {
                     "$action" => "lifecycle_messaging",
@@ -3044,16 +3991,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "lifecycle-messaging",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/growth/referrals",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "referrals",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "referrals",
+                    },
                   ],
                   "select" => {
                     "$action" => "referral",
@@ -3062,16 +4020,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "referrals",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/growth/social-publish",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "social-publish",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "social-publish",
+                    },
                   ],
                   "select" => {
                     "$action" => "social_publish",
@@ -3080,16 +4049,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "social-publish",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/growth/trend-campaigns",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "trend-campaigns",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "trend-campaigns",
+                    },
                   ],
                   "select" => {
                     "$action" => "trend_campaign",
@@ -3098,6 +4078,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "trend-campaigns",
+                  ],
                 },
               ],
             },
@@ -3132,11 +4117,19 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/growth/experiments/decision",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "experiments",
-                    "decision",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "experiments",
+                    },
+                    {
+                      "lit" => "decision",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -3149,6 +4142,12 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "experiments",
+                    "decision",
+                  ],
                 },
                 {
                   "args" => {
@@ -3176,10 +4175,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/growth/trend-campaigns",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "trend-campaigns",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "trend-campaigns",
+                    },
                   ],
                   "select" => {
                     "$action" => "trend_campaign",
@@ -3193,6 +4198,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "trend-campaigns",
+                  ],
                 },
                 {
                   "args" => {
@@ -3215,10 +4225,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/growth/social-publish",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "social-publish",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "social-publish",
+                    },
                   ],
                   "select" => {
                     "$action" => "social_publish",
@@ -3231,6 +4247,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "social-publish",
+                  ],
                 },
                 {
                   "args" => {
@@ -3246,10 +4267,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/growth/referrals",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "referrals",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "referrals",
+                    },
                   ],
                   "select" => {
                     "$action" => "referral",
@@ -3261,16 +4288,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "referrals",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/growth/lifecycle-messaging",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "lifecycle-messaging",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "lifecycle-messaging",
+                    },
                   ],
                   "select" => {
                     "$action" => "lifecycle_messaging",
@@ -3279,16 +4317,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "lifecycle-messaging",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/growth/viral-triggers",
-                  "parts" => [
-                    "api",
-                    "growth",
-                    "viral-triggers",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "growth",
+                    },
+                    {
+                      "lit" => "viral-triggers",
+                    },
                   ],
                   "select" => {
                     "$action" => "viral_trigger",
@@ -3297,6 +4346,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "growth",
+                    "viral-triggers",
+                  ],
                 },
               ],
             },
@@ -3318,6 +4372,7 @@ module MemesioContentCreationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "req" => true,
               "type" => "`$STRING`",
@@ -3441,9 +4496,13 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/memes",
-                  "parts" => [
-                    "api",
-                    "memes",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -3462,6 +4521,10 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.items`",
                   },
+                  "parts" => [
+                    "api",
+                    "memes",
+                  ],
                 },
               ],
             },
@@ -3509,10 +4572,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/media/signed-url",
-                  "parts" => [
-                    "api",
-                    "media",
-                    "signed-url",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "media",
+                    },
+                    {
+                      "lit" => "signed-url",
+                    },
                   ],
                   "select" => {
                     "$action" => "signed_url",
@@ -3521,6 +4590,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "media",
+                    "signed-url",
+                  ],
                 },
               ],
             },
@@ -3552,6 +4626,7 @@ module MemesioContentCreationConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "req" => true,
               "type" => "`$STRING`",
@@ -3626,6 +4701,10 @@ module MemesioContentCreationConfig
               "type" => "`$OBJECT`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "meme",
           "op" => {
             "load" => {
@@ -3655,16 +4734,22 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/memes/{slug}",
-                  "parts" => [
-                    "api",
-                    "memes",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "slug" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -3675,6 +4760,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "memes",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -3697,16 +4787,22 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/api/memes/{slug}",
-                  "parts" => [
-                    "api",
-                    "memes",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "slug" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -3716,6 +4812,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "memes",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -3754,338 +4855,12 @@ module MemesioContentCreationConfig
             },
             {
               "name" => "captions",
-              "req" => true,
-              "type" => "`$ARRAY`",
-            },
-            {
-              "name" => "categories",
-              "type" => "`$ARRAY`",
-            },
-            {
-              "name" => "description",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "durationMs",
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "exampleImageUrl",
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "frameCount",
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "height",
-              "req" => true,
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "id",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "imageUrl",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "mediaType",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "name",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "posterImageUrl",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "previewImageUrl",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "qualityStatus",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "slug",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "sourceTemplateId",
-              "req" => true,
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "sourceUrl",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "tags",
-              "req" => true,
-              "type" => "`$ARRAY`",
-            },
-            {
-              "name" => "width",
-              "req" => true,
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-          ],
-          "name" => "public_template_media_item",
-          "op" => {
-            "load" => {
-              "input" => "data",
-              "name" => "load",
-              "points" => [
-                {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "slug",
-                        "orig" => "slug",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "example" => "image",
-                        "kind" => "query",
-                        "name" => "media_type",
-                        "orig" => "media_type",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/api/templates/{slug}",
-                  "parts" => [
-                    "api",
-                    "templates",
-                    "{slug}",
-                  ],
-                  "select" => {
-                    "exist" => [
-                      "media_type",
-                      "slug",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                },
-                {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "slug",
-                        "orig" => "slug",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/api/gifs/{slug}",
-                  "parts" => [
-                    "api",
-                    "gifs",
-                    "{slug}",
-                  ],
-                  "select" => {
-                    "exist" => [
-                      "slug",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                },
-              ],
-            },
-          },
-          "relations" => {
-            "ancestors" => [
-              [
-                "gif",
-              ],
-              [
-                "template",
-              ],
-            ],
-          },
-        },
-        "standalone_agent_bootstrap" => {
-          "fields" => [
-            {
-              "name" => "description",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "handle",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "locale",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "name",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "stylePreset",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "systemPrompt",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "watermarkText",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "websiteUrl",
-              "type" => "`$STRING`",
-            },
-          ],
-          "name" => "standalone_agent_bootstrap",
-          "op" => {
-            "create" => {
-              "input" => "data",
-              "name" => "create",
-              "points" => [
-                {
-                  "args" => {},
-                  "kind" => "http",
-                  "method" => "POST",
-                  "orig" => "/api/v1/agents/bootstrap",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "bootstrap",
-                  ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                },
-                {
-                  "args" => {},
-                  "kind" => "http",
-                  "method" => "POST",
-                  "orig" => "/api/v1/agents/create-agent",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "agents",
-                    "create-agent",
-                  ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                },
-              ],
-            },
-          },
-          "relations" => {
-            "ancestors" => [],
-          },
-        },
-        "template" => {
-          "fields" => [
-            {
-              "name" => "animated",
-              "type" => "`$BOOLEAN`",
-            },
-            {
-              "name" => "assetBytes",
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "assetContentType",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "boxCount",
-              "type" => "`$INTEGER`",
-            },
-            {
-              "name" => "captionCount",
-              "type" => "`$INTEGER`",
-            },
-            {
-              "name" => "captions",
               "op" => {
-                "list" => {
-                  "req" => true,
+                "create" => {
                   "type" => "`$ARRAY`",
                 },
               },
+              "req" => true,
               "type" => "`$ARRAY`",
             },
             {
@@ -4099,7 +4874,13 @@ module MemesioContentCreationConfig
             },
             {
               "name" => "durationMs",
-              "type" => "`$INTEGER`",
+              "type" => [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`",
+                ],
+              ],
             },
             {
               "name" => "exampleImageUrl",
@@ -4205,11 +4986,11 @@ module MemesioContentCreationConfig
             {
               "name" => "tags",
               "op" => {
-                "list" => {
-                  "req" => true,
+                "create" => {
                   "type" => "`$ARRAY`",
                 },
               },
+              "req" => true,
               "type" => "`$ARRAY`",
             },
             {
@@ -4232,7 +5013,11 @@ module MemesioContentCreationConfig
               "type" => "`$INTEGER`",
             },
           ],
-          "name" => "template",
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
+          "name" => "public_template_media_item",
           "op" => {
             "create" => {
               "input" => "data",
@@ -4253,11 +5038,119 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/gifs/{slug}/generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "gifs",
+                    },
+                    {
+                      "var" => "slug",
+                    },
+                    {
+                      "lit" => "generate",
+                    },
+                  ],
+                  "select" => {
+                    "$action" => "generate",
+                    "exist" => [
+                      "slug",
+                    ],
+                  },
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "gifs",
                     "{slug}",
                     "generate",
+                  ],
+                },
+              ],
+            },
+            "load" => {
+              "input" => "data",
+              "name" => "load",
+              "points" => [
+                {
+                  "args" => {
+                    "params" => [
+                      {
+                        "kind" => "param",
+                        "name" => "slug",
+                        "orig" => "slug",
+                        "reqd" => true,
+                        "type" => "`$STRING`",
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "example" => "image",
+                        "kind" => "query",
+                        "name" => "media_type",
+                        "orig" => "media_type",
+                        "type" => "`$STRING`",
+                      },
+                    ],
+                  },
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/api/templates/{slug}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "templates",
+                    },
+                    {
+                      "var" => "slug",
+                    },
+                  ],
+                  "select" => {
+                    "exist" => [
+                      "media_type",
+                      "slug",
+                    ],
+                  },
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "parts" => [
+                    "api",
+                    "templates",
+                    "{slug}",
+                  ],
+                },
+                {
+                  "args" => {
+                    "params" => [
+                      {
+                        "kind" => "param",
+                        "name" => "slug",
+                        "orig" => "slug",
+                        "reqd" => true,
+                        "type" => "`$STRING`",
+                      },
+                    ],
+                  },
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/api/gifs/{slug}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "gifs",
+                    },
+                    {
+                      "var" => "slug",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -4268,9 +5161,296 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "gifs",
+                    "{slug}",
+                  ],
                 },
               ],
             },
+          },
+          "relations" => {
+            "ancestors" => [
+              [
+                "gif",
+              ],
+              [
+                "template",
+              ],
+            ],
+          },
+        },
+        "standalone_agent_bootstrap" => {
+          "fields" => [
+            {
+              "name" => "description",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "handle",
+              "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "locale",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "name",
+              "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "stylePreset",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "systemPrompt",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "watermarkText",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "websiteUrl",
+              "type" => "`$STRING`",
+            },
+          ],
+          "name" => "standalone_agent_bootstrap",
+          "op" => {
+            "create" => {
+              "input" => "data",
+              "name" => "create",
+              "points" => [
+                {
+                  "args" => {},
+                  "kind" => "http",
+                  "method" => "POST",
+                  "orig" => "/api/v1/agents/bootstrap",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "bootstrap",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "bootstrap",
+                  ],
+                },
+                {
+                  "args" => {},
+                  "kind" => "http",
+                  "method" => "POST",
+                  "orig" => "/api/v1/agents/create-agent",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "agents",
+                    },
+                    {
+                      "lit" => "create-agent",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "agents",
+                    "create-agent",
+                  ],
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
+        "template" => {
+          "fields" => [
+            {
+              "name" => "animated",
+              "type" => "`$BOOLEAN`",
+            },
+            {
+              "name" => "assetBytes",
+              "type" => [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`",
+                ],
+              ],
+            },
+            {
+              "name" => "assetContentType",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "boxCount",
+              "type" => "`$INTEGER`",
+            },
+            {
+              "name" => "captionCount",
+              "type" => "`$INTEGER`",
+            },
+            {
+              "name" => "captions",
+              "req" => true,
+              "type" => "`$ARRAY`",
+            },
+            {
+              "name" => "categories",
+              "type" => "`$ARRAY`",
+            },
+            {
+              "name" => "description",
+              "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "durationMs",
+              "type" => [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`",
+                ],
+              ],
+            },
+            {
+              "name" => "exampleImageUrl",
+              "type" => [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`",
+                ],
+              ],
+            },
+            {
+              "name" => "frameCount",
+              "type" => [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`",
+                ],
+              ],
+            },
+            {
+              "name" => "height",
+              "req" => true,
+              "type" => [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`",
+                ],
+              ],
+            },
+            {
+              "name" => "id",
+              "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "imageUrl",
+              "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "mediaType",
+              "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "name",
+              "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "posterImageUrl",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "previewImageUrl",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "qualityStatus",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "slug",
+              "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "sourceTemplateId",
+              "req" => true,
+              "type" => [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`",
+                ],
+              ],
+            },
+            {
+              "name" => "sourceUrl",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "tags",
+              "req" => true,
+              "type" => "`$ARRAY`",
+            },
+            {
+              "name" => "width",
+              "req" => true,
+              "type" => [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`",
+                ],
+              ],
+            },
+          ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
+          "name" => "template",
+          "op" => {
             "list" => {
               "input" => "data",
               "name" => "list",
@@ -4332,9 +5512,13 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/templates",
-                  "parts" => [
-                    "api",
-                    "templates",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "templates",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -4352,16 +5536,16 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.items`",
                   },
+                  "parts" => [
+                    "api",
+                    "templates",
+                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "gif",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "template_search" => {
@@ -4516,6 +5700,10 @@ module MemesioContentCreationConfig
               ],
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "template_search",
           "op" => {
             "list" => {
@@ -4566,9 +5754,13 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/gifs",
-                  "parts" => [
-                    "api",
-                    "gifs",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "gifs",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -4584,6 +5776,10 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body.items`",
                   },
+                  "parts" => [
+                    "api",
+                    "gifs",
+                  ],
                 },
               ],
             },
@@ -4674,64 +5870,108 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/alerts/delivery",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "delivery",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "delivery",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "delivery",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/alerts/feedback",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "feedback",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "feedback",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "feedback",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/alerts/preferences",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "preferences",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "preferences",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "preferences",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/alerts/triggers",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "triggers",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "triggers",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "triggers",
+                  ],
                 },
               ],
             },
@@ -4825,9 +6065,13 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts",
-                  "parts" => [
-                    "api",
-                    "alerts",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -4850,6 +6094,10 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                  ],
                 },
                 {
                   "args" => {
@@ -4901,10 +6149,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts/ranking",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "ranking",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "ranking",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -4921,6 +6175,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "ranking",
+                  ],
                 },
                 {
                   "args" => {
@@ -4942,10 +6201,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts/feedback",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "feedback",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "feedback",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -4957,6 +6222,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "feedback",
+                  ],
                 },
                 {
                   "args" => {
@@ -4973,10 +6243,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts/preferences",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "preferences",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "preferences",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -4987,6 +6263,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "preferences",
+                  ],
                 },
                 {
                   "args" => {
@@ -5002,10 +6283,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts/delivery",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "delivery",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "delivery",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -5016,6 +6303,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "delivery",
+                  ],
                 },
                 {
                   "args" => {
@@ -5031,10 +6323,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts/ingestion",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "ingestion",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "ingestion",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -5045,6 +6343,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "ingestion",
+                  ],
                 },
                 {
                   "args" => {
@@ -5060,10 +6363,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts/quality-report",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "quality-report",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "quality-report",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -5074,6 +6383,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "quality-report",
+                  ],
                 },
                 {
                   "args" => {
@@ -5089,10 +6403,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts/message-templates",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "message-templates",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "message-templates",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -5103,38 +6423,65 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "message-templates",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts/connectors",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "connectors",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "connectors",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "connectors",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/alerts/triggers",
-                  "parts" => [
-                    "api",
-                    "alerts",
-                    "triggers",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "alerts",
+                    },
+                    {
+                      "lit" => "triggers",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "alerts",
+                    "triggers",
+                  ],
                 },
               ],
             },
@@ -5156,17 +6503,31 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/memes/caption-upload",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "memes",
-                    "caption-upload",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "memes",
+                    },
+                    {
+                      "lit" => "caption-upload",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "memes",
+                    "caption-upload",
+                  ],
                 },
               ],
             },
@@ -5365,6 +6726,7 @@ module MemesioContentCreationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "updatedAt",
               "type" => "`$STRING`",
             },
@@ -5396,10 +6758,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/video/drafts",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "drafts",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "drafts",
+                    },
                   ],
                   "select" => {
                     "$action" => "draft",
@@ -5408,16 +6776,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "drafts",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/video/export-settings",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "export-settings",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "export-settings",
+                    },
                   ],
                   "select" => {
                     "$action" => "export_setting",
@@ -5426,16 +6805,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "export-settings",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/video/formats",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "formats",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "formats",
+                    },
                   ],
                   "select" => {
                     "$action" => "format",
@@ -5444,16 +6834,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "formats",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/video/render-queue",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "render-queue",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "render-queue",
+                    },
                   ],
                   "select" => {
                     "$action" => "render_queue",
@@ -5462,16 +6863,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "render-queue",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/video/subtitles",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "subtitles",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "subtitles",
+                    },
                   ],
                   "select" => {
                     "$action" => "subtitle",
@@ -5480,16 +6892,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "subtitles",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/video/text-animations",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "text-animations",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "text-animations",
+                    },
                   ],
                   "select" => {
                     "$action" => "text_animation",
@@ -5498,16 +6921,27 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "text-animations",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/video/timeline",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "timeline",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "timeline",
+                    },
                   ],
                   "select" => {
                     "$action" => "timeline",
@@ -5516,6 +6950,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "timeline",
+                  ],
                 },
               ],
             },
@@ -5579,10 +7018,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/video/subtitles",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "subtitles",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "subtitles",
+                    },
                   ],
                   "select" => {
                     "$action" => "subtitle",
@@ -5601,6 +7046,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "subtitles",
+                  ],
                 },
                 {
                   "args" => {
@@ -5646,10 +7096,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/video/audio-library",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "audio-library",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "audio-library",
+                    },
                   ],
                   "select" => {
                     "$action" => "audio_library",
@@ -5666,6 +7122,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "audio-library",
+                  ],
                 },
                 {
                   "args" => {
@@ -5711,10 +7172,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/video/export-settings",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "export-settings",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "export-settings",
+                    },
                   ],
                   "select" => {
                     "$action" => "export_setting",
@@ -5731,6 +7198,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "export-settings",
+                  ],
                 },
                 {
                   "args" => {
@@ -5770,10 +7242,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/video/formats",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "formats",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "formats",
+                    },
                   ],
                   "select" => {
                     "$action" => "format",
@@ -5789,6 +7267,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "formats",
+                  ],
                 },
                 {
                   "args" => {
@@ -5822,10 +7305,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/video/render-queue",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "render-queue",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "render-queue",
+                    },
                   ],
                   "select" => {
                     "$action" => "render_queue",
@@ -5840,6 +7329,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "render-queue",
+                  ],
                 },
                 {
                   "args" => {
@@ -5873,10 +7367,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/video/text-animations",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "text-animations",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "text-animations",
+                    },
                   ],
                   "select" => {
                     "$action" => "text_animation",
@@ -5891,6 +7391,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "text-animations",
+                  ],
                 },
                 {
                   "args" => {
@@ -5912,10 +7417,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/video/drafts",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "drafts",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "drafts",
+                    },
                   ],
                   "select" => {
                     "$action" => "draft",
@@ -5928,6 +7439,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "drafts",
+                  ],
                 },
                 {
                   "args" => {
@@ -5949,10 +7465,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/video/timeline",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "timeline",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "timeline",
+                    },
                   ],
                   "select" => {
                     "$action" => "timeline",
@@ -5965,6 +7487,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "timeline",
+                  ],
                 },
                 {
                   "args" => {
@@ -5980,10 +7507,16 @@ module MemesioContentCreationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/video/render-performance",
-                  "parts" => [
-                    "api",
-                    "video",
-                    "render-performance",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "video",
+                    },
+                    {
+                      "lit" => "render-performance",
+                    },
                   ],
                   "select" => {
                     "$action" => "render_performance",
@@ -5995,6 +7528,11 @@ module MemesioContentCreationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "video",
+                    "render-performance",
+                  ],
                 },
               ],
             },

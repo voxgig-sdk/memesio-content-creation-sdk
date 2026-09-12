@@ -30,11 +30,19 @@ main: kit: entity: developer_api: {
         {
           method: "POST"
           orig: "/api/v1/templates/ideas"
-          parts: [
-            "api"
-            "v1"
-            "templates"
-            "ideas"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              lit: "ideas"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -49,11 +57,19 @@ main: kit: entity: developer_api: {
         {
           method: "GET"
           orig: "/api/v1/memes/generate"
-          parts: [
-            "api"
-            "v1"
-            "memes"
-            "generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"

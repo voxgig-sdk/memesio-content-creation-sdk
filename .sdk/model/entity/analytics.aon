@@ -23,11 +23,19 @@ main: kit: entity: analytics: {
           }
           method: "GET"
           orig: "/api/analytics/experiments/templates"
-          parts: [
-            "api"
-            "analytics"
-            "experiments"
-            "templates"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "experiments"
+            }
+            {
+              lit: "templates"
+            }
           ]
           select: {
             exist: [
@@ -53,11 +61,19 @@ main: kit: entity: analytics: {
           }
           method: "GET"
           orig: "/api/analytics/dashboards/backend-reliability"
-          parts: [
-            "api"
-            "analytics"
-            "dashboards"
-            "backend-reliability"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "dashboards"
+            }
+            {
+              lit: "backend-reliability"
+            }
           ]
           select: {
             exist: [
@@ -72,11 +88,19 @@ main: kit: entity: analytics: {
         {
           method: "GET"
           orig: "/api/analytics/alerts/backend"
-          parts: [
-            "api"
-            "analytics"
-            "alerts"
-            "backend"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "backend"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -86,11 +110,19 @@ main: kit: entity: analytics: {
         {
           method: "GET"
           orig: "/api/analytics/anomalies/ai"
-          parts: [
-            "api"
-            "analytics"
-            "anomalies"
-            "ai"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "anomalies"
+            }
+            {
+              lit: "ai"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -100,11 +132,19 @@ main: kit: entity: analytics: {
         {
           method: "GET"
           orig: "/api/analytics/dashboards/activation-retention"
-          parts: [
-            "api"
-            "analytics"
-            "dashboards"
-            "activation-retention"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "dashboards"
+            }
+            {
+              lit: "activation-retention"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -114,11 +154,19 @@ main: kit: entity: analytics: {
         {
           method: "GET"
           orig: "/api/analytics/dashboards/feature-adoption"
-          parts: [
-            "api"
-            "analytics"
-            "dashboards"
-            "feature-adoption"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "dashboards"
+            }
+            {
+              lit: "feature-adoption"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -128,10 +176,16 @@ main: kit: entity: analytics: {
         {
           method: "GET"
           orig: "/api/analytics/metric-dictionary"
-          parts: [
-            "api"
-            "analytics"
-            "metric-dictionary"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "metric-dictionary"
+            }
           ]
           select: {
             "$action": "metric_dictionary"

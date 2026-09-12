@@ -62,7 +62,7 @@ class TemplateEntityTest extends TestCase
         $setup = template_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach (["create", "list"] as $_op) {
+        foreach (["list"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "template." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
@@ -77,27 +77,20 @@ class TemplateEntityTest extends TestCase
         }
         $client = $setup["client"];
 
-        // CREATE
-        $template_ref01_ent = $client->Template(null);
-        $template_ref01_data = Helpers::to_map(Vs::getprop(
-            Vs::getpath($setup["data"], "new.template"), "template_ref01"));
-        $template_ref01_data["slug"] = $setup["idmap"]["slug01"];
-
-        $template_ref01_data_result = $template_ref01_ent->create($template_ref01_data, null);
-        $template_ref01_data = Helpers::to_map(is_object($template_ref01_data_result) && method_exists($template_ref01_data_result, 'data_get') ? $template_ref01_data_result->data_get() : $template_ref01_data_result);
-        $this->assertNotNull($template_ref01_data);
-        $this->assertNotNull($template_ref01_data["id"]);
+        // Bootstrap entity data from existing test data.
+        $template_ref01_data_raw = Vs::items(Helpers::to_map(
+            Vs::getpath($setup["data"], "existing.template")));
+        $template_ref01_data = null;
+        if (count($template_ref01_data_raw) > 0) {
+            $template_ref01_data = Helpers::to_map($template_ref01_data_raw[0][1]);
+        }
 
         // LIST
+        $template_ref01_ent = $client->Template(null);
         $template_ref01_match = [];
 
         $template_ref01_list_result = $template_ref01_ent->list($template_ref01_match, null);
         $this->assertIsArray($template_ref01_list_result);
-
-        $found_item = sdk_select(
-            Runner::entity_list_to_data($template_ref01_list_result),
-            ["id" => $template_ref01_data["id"]]);
-        $this->assertNotEmpty($found_item);
 
     }
 }
@@ -117,7 +110,7 @@ function template_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["template01", "template02", "template03", "gif01", "gif02", "gif03", "slug01"] as $k) {
+    foreach (["template01", "template02", "template03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 
@@ -131,7 +124,7 @@ function template_basic_setup($extra)
         "MEMESIO_CONTENT_CREATION_TEST_TEMPLATE_ENTID" => $idmap,
         "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
         "MEMESIO_CONTENT_CREATION_TEST_EXPLAIN" => "FALSE",
-        "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
+        "MEMESIO_CONTENT_CREATION_APIKEY" => "",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -142,10 +135,17 @@ function template_basic_setup($extra)
 
     if ($env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
+            // FIRST, so the generated fields below win: sdk-test-control.json's
+            // test.client.options adds to the live client, it does not redirect it.
+            Runner::live_client_options(),
             [
                 "apikey" => $env["MEMESIO_CONTENT_CREATION_APIKEY"],
             ],
-            $extra ?? [],
+            // ismap, not a plain "?? []" default: an empty PHP array is a
+            // LIST, and a non-map later entry REPLACES the accumulated map in
+            // merge - so the no-extras call discarded live_client_options()
+            // and the apikey/server map above it.
+            Vs::ismap($extra) ? $extra : new \stdClass(),
         ]);
         $client = new MemesioContentCreationSDK(Helpers::to_map($merged_opts));
     }

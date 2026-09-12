@@ -76,10 +76,16 @@ main: kit: entity: agent: {
         {
           method: "POST"
           orig: "/api/v1/agents"
-          parts: [
-            "api"
-            "v1"
-            "agents"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -105,17 +111,25 @@ main: kit: entity: agent: {
           }
           method: "GET"
           orig: "/api/v1/agents/{agentId}"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "{id}"
-          ]
           rename: {
             param: {
               agentId: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -129,10 +143,16 @@ main: kit: entity: agent: {
         {
           method: "GET"
           orig: "/api/v1/agents"
-          parts: [
-            "api"
-            "v1"
-            "agents"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -158,17 +178,25 @@ main: kit: entity: agent: {
           }
           method: "PATCH"
           orig: "/api/v1/agents/{agentId}"
-          parts: [
-            "api"
-            "v1"
-            "agents"
-            "{id}"
-          ]
           rename: {
             param: {
               agentId: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

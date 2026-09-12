@@ -16,7 +16,7 @@ class PublicTemplateMediaItemEntityTest < Minitest::Test
     setup = public_template_media_item_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    ["load"].each do |_op|
+    ["create", "load"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "public_template_media_item." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
@@ -31,16 +31,18 @@ class PublicTemplateMediaItemEntityTest < Minitest::Test
     end
     client = setup[:client]
 
-    # Bootstrap entity data from existing test data.
-    public_template_media_item_ref01_data_raw = Vs.items(Helpers.to_map(
-      Vs.getpath(setup[:data], "existing.public_template_media_item")))
-    public_template_media_item_ref01_data = nil
-    if public_template_media_item_ref01_data_raw.length > 0
-      public_template_media_item_ref01_data = Helpers.to_map(public_template_media_item_ref01_data_raw[0][1])
-    end
+    # CREATE
+    public_template_media_item_ref01_ent = client.PublicTemplateMediaItem(nil)
+    public_template_media_item_ref01_data = Helpers.to_map(Vs.getprop(
+      Vs.getpath(setup[:data], "new.public_template_media_item"), "public_template_media_item_ref01"))
+    public_template_media_item_ref01_data["slug"] = setup[:idmap]["slug01"]
+
+    public_template_media_item_ref01_data_result = public_template_media_item_ref01_ent.create(public_template_media_item_ref01_data, nil)
+    public_template_media_item_ref01_data = Helpers.to_map(public_template_media_item_ref01_data_result.respond_to?(:data_get) ? public_template_media_item_ref01_data_result.data_get : public_template_media_item_ref01_data_result)
+    assert !public_template_media_item_ref01_data.nil?
+    assert !public_template_media_item_ref01_data["id"].nil?
 
     # LOAD
-    public_template_media_item_ref01_ent = client.PublicTemplateMediaItem(nil)
     public_template_media_item_ref01_match_dt0 = {
       "id" => public_template_media_item_ref01_data["id"],
     }
@@ -66,7 +68,7 @@ def public_template_media_item_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03"],
+    ["public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03", "slug01"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",
@@ -85,7 +87,7 @@ def public_template_media_item_basic_setup(extra)
     "MEMESIO_CONTENT_CREATION_TEST_PUBLIC_TEMPLATE_MEDIA_ITEM_ENTID" => idmap,
     "MEMESIO_CONTENT_CREATION_TEST_LIVE" => "FALSE",
     "MEMESIO_CONTENT_CREATION_TEST_EXPLAIN" => "FALSE",
-    "MEMESIO_CONTENT_CREATION_APIKEY" => "NONE",
+    "MEMESIO_CONTENT_CREATION_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -96,6 +98,9 @@ def public_template_media_item_basic_setup(extra)
 
   if env["MEMESIO_CONTENT_CREATION_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["MEMESIO_CONTENT_CREATION_APIKEY"],
       },
