@@ -9561,7 +9561,7 @@
             "registry": {
               "active": false,
               "name": "npm",
-              "package": "",
+              "package": "@voxgig-sdk/memesio-content-creation-sdk",
               "state": "pending",
               "url": "https://registry.npmjs.org",
               "vault": {

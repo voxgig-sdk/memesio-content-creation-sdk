@@ -103,7 +103,7 @@ local result, err = client:TrendAlert():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) |
+| TypeScript | `@voxgig-sdk/memesio-content-creation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) |
 | Python | `voxgig-sdk-memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) |
 | PHP | `voxgig-sdk/memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/memesio-content-creation-sdk/go` | `go get github.com/voxgig-sdk/memesio-content-creation-sdk/go@latest` |
@@ -117,7 +117,7 @@ local result, err = client:TrendAlert():load()
 ### TypeScript
 
 ```ts
-import { MemesioContentCreationSDK } from '@voxgig-sdk/memesio-content-creation'
+import { MemesioContentCreationSDK } from '@voxgig-sdk/memesio-content-creation-sdk'
 
 const client = new MemesioContentCreationSDK({
   apikey: process.env.MEMESIO_CONTENT_CREATION_APIKEY,

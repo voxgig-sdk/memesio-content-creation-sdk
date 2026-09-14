@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MemesioContentCreationSDK } from '@voxgig-sdk/memesio-content-creation'
+import { MemesioContentCreationSDK } from '@voxgig-sdk/memesio-content-creation-sdk'
 
 const client = new MemesioContentCreationSDK({
   apikey: process.env.MEMESIO_CONTENT_CREATION_APIKEY,
@@ -2207,7 +2207,7 @@ memesio-content-creation/
 Import the SDK from the package root:
 
 ```ts
-import { MemesioContentCreationSDK } from '@voxgig-sdk/memesio-content-creation'
+import { MemesioContentCreationSDK } from '@voxgig-sdk/memesio-content-creation-sdk'
 ```
 
 ### Entity state
