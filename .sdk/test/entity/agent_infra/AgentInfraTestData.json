@@ -12,7 +12,7 @@
         "phoneOrChatId": "s93",
         "prompt": "s94",
         "proof": {},
-        "quotaBoostPerDay": "s96",
+        "quotaBoostPerDay": 150,
         "scopes": [],
         "userId": "s98",
         "weekStart": "s99",
@@ -31,7 +31,7 @@
         "phoneOrChatId": "s11f",
         "prompt": "s120",
         "proof": {},
-        "quotaBoostPerDay": "s122",
+        "quotaBoostPerDay": 290,
         "scopes": [],
         "userId": "s124",
         "weekStart": "s125",
@@ -50,7 +50,7 @@
         "phoneOrChatId": "s1ab",
         "prompt": "s1ac",
         "proof": {},
-        "quotaBoostPerDay": "s1ae",
+        "quotaBoostPerDay": 430,
         "scopes": [],
         "userId": "s1b0",
         "weekStart": "s1b1",
@@ -72,10 +72,729 @@
         "phoneOrChatId": "s237",
         "prompt": "s238",
         "proof": {},
-        "quotaBoostPerDay": "s23a",
+        "quotaBoostPerDay": 570,
         "scopes": [],
         "userId": "s23c",
         "weekStart": "s23d"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/agents/{agentId}/channels/telegram/bind": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "chatId": {
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "chatId"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Telegram binding created/updated"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/v1/agents/{agentId}/channels/whatsapp/bind": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "metadata": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "phoneOrChatId": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "phoneOrChatId"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "WhatsApp binding created/updated"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/v1/agents/{agentId}/unlocks/social-action": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "action": {
+                    "enum": [
+                      "x_follow"
+                    ],
+                    "type": "string"
+                  },
+                  "proof": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "action"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Unlock request submitted"
+          },
+          "401": {
+            "description": "Agent API key required"
+          },
+          "403": {
+            "description": "Insufficient key scope"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/v1/agents/{agentId}/keys": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "scopes": {
+                    "items": {
+                      "enum": [
+                        "generate",
+                        "publish",
+                        "analytics",
+                        "admin"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "Agent key created (plaintext returned once)"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Agent not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/v1/agents/unlocks/{unlockId}/approve": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "unlockId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "quotaBoostPerDay": {
+                    "maximum": 20,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Unlock approved"
+          },
+          "403": {
+            "description": "Admin authorization required"
+          },
+          "404": {
+            "description": "Unlock not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/v1/agents/names:generate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "prompt": {
+                    "maxLength": 300,
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "prompt"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Name suggestions payload"
+          },
+          "401": {
+            "description": "Agent API key required"
+          },
+          "429": {
+            "description": "Per-key name generation limit exceeded"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/v1/agents/rewards/votes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "memeSlug": {
+                    "type": "string"
+                  },
+                  "weekStart": {
+                    "pattern": "^\\\\d{4}-\\\\d{2}-\\\\d{2}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "memeSlug"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Duplicate vote ignored"
+          },
+          "201": {
+            "description": "Vote accepted"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/v1/agents/rewards/winner:close": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "payoutReference": {
+                    "type": "string"
+                  },
+                  "payoutStatus": {
+                    "enum": [
+                      "pending",
+                      "paid"
+                    ],
+                    "type": "string"
+                  },
+                  "weekStart": {
+                    "pattern": "^\\\\d{4}-\\\\d{2}-\\\\d{2}$",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Winner record created/updated"
+          },
+          "403": {
+            "description": "Admin authorization required"
+          },
+          "404": {
+            "description": "No votes for week"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/v1/agents/webhooks/telegram": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Webhook processed"
+          },
+          "202": {
+            "description": "Ignored non-message Telegram update"
+          },
+          "403": {
+            "description": "Invalid webhook secret when configured"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/v1/agents/webhooks/whatsapp": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Webhook processed"
+          },
+          "202": {
+            "description": "Ignored non-message event"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/v1/agents/rewards/leaderboard": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "weekStart",
+            "schema": {
+              "pattern": "^\\\\d{4}-\\\\d{2}-\\\\d{2}$",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Leaderboard payload"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/v1/agents/{agentId}/keys": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Agent key list payload"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Agent not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/v1/agents/webhooks/whatsapp": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Verification challenge accepted"
+          },
+          "403": {
+            "description": "Invalid verify token"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "DELETE /api/v1/agents/{agentId}/keys/{keyId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "keyId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Key revoked"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Key not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

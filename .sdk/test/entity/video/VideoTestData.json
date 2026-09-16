@@ -6,9 +6,9 @@
         "assetId": "s1c3",
         "atMs": 452,
         "audioAssetId": "s1c5",
-        "beatOffsetMs": "s1c6",
+        "beatOffsetMs": 454,
         "bitrateKbps": 455,
-        "bpm": "s1c8",
+        "bpm": 456,
         "cancelled": false,
         "container": "s1ca",
         "durationMs": 459,
@@ -54,9 +54,9 @@
         "assetId": "s385",
         "atMs": 902,
         "audioAssetId": "s387",
-        "beatOffsetMs": "s388",
+        "beatOffsetMs": 904,
         "bitrateKbps": 905,
-        "bpm": "s38a",
+        "bpm": 906,
         "cancelled": false,
         "container": "s38c",
         "durationMs": 909,
@@ -102,9 +102,9 @@
         "assetId": "s547",
         "atMs": 1352,
         "audioAssetId": "s549",
-        "beatOffsetMs": "s54a",
+        "beatOffsetMs": 1354,
         "bitrateKbps": 1355,
-        "bpm": "s54c",
+        "bpm": 1356,
         "cancelled": false,
         "container": "s54e",
         "durationMs": 1359,
@@ -154,9 +154,9 @@
         "assetId": "s709",
         "atMs": 1802,
         "audioAssetId": "s70b",
-        "beatOffsetMs": "s70c",
+        "beatOffsetMs": 1804,
         "bitrateKbps": 1805,
-        "bpm": "s70e",
+        "bpm": 1806,
         "cancelled": false,
         "container": "s710",
         "durationMs": 1809,
@@ -195,6 +195,1192 @@
         "watermarkEnabled": true,
         "watermarkText": "s733",
         "workerId": "s734"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/video/drafts": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "action": {
+                    "enum": [
+                      "save",
+                      "resume"
+                    ],
+                    "type": "string"
+                  },
+                  "project": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "projectId": {
+                    "type": "string"
+                  },
+                  "sourceDeviceId": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "format": "date-time",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Draft resume payload"
+          },
+          "201": {
+            "description": "Draft saved payload"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Draft not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/video/export-settings": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "bitrateKbps": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "container": {
+                    "type": "string"
+                  },
+                  "planTier": {
+                    "enum": [
+                      "free",
+                      "pro",
+                      "team"
+                    ],
+                    "type": "string"
+                  },
+                  "presetId": {
+                    "type": "string"
+                  },
+                  "watermarkEnabled": {
+                    "type": "boolean"
+                  },
+                  "watermarkText": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "planTier",
+                  "presetId"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Export settings decision payload"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/video/formats": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "durationSeconds": {
+                    "minimum": 0.1,
+                    "type": "number"
+                  },
+                  "inputFormat": {
+                    "type": "string"
+                  },
+                  "mimeType": {
+                    "type": "string"
+                  },
+                  "outputPresetId": {
+                    "type": "string"
+                  },
+                  "planTier": {
+                    "enum": [
+                      "free",
+                      "pro",
+                      "team"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "planTier",
+                  "inputFormat",
+                  "mimeType",
+                  "outputPresetId",
+                  "durationSeconds"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Video job estimate payload"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/video/render-queue": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "action": {
+                    "enum": [
+                      "enqueue",
+                      "claim_next",
+                      "progress",
+                      "complete",
+                      "fail"
+                    ],
+                    "type": "string"
+                  },
+                  "cancelled": {
+                    "type": "boolean"
+                  },
+                  "durationSeconds": {
+                    "minimum": 0.1,
+                    "type": "number"
+                  },
+                  "error": {
+                    "type": "string"
+                  },
+                  "jobId": {
+                    "type": "string"
+                  },
+                  "outputPresetId": {
+                    "type": "string"
+                  },
+                  "outputUrl": {
+                    "type": "string"
+                  },
+                  "planTier": {
+                    "enum": [
+                      "free",
+                      "pro",
+                      "team"
+                    ],
+                    "type": "string"
+                  },
+                  "progressPercent": {
+                    "maximum": 100,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "projectId": {
+                    "type": "string"
+                  },
+                  "stage": {
+                    "type": "string"
+                  },
+                  "workerId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "action"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Queue mutation payload"
+          },
+          "201": {
+            "description": "Render job enqueued"
+          },
+          "204": {
+            "description": "No queued job available"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/video/subtitles": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "action": {
+                    "enum": [
+                      "preview",
+                      "apply"
+                    ],
+                    "type": "string"
+                  },
+                  "audioAssetId": {
+                    "type": "string"
+                  },
+                  "beatOffsetMs": {
+                    "maximum": 60000,
+                    "minimum": -60000,
+                    "type": "integer"
+                  },
+                  "bpm": {
+                    "maximum": 220,
+                    "minimum": 60,
+                    "type": "integer"
+                  },
+                  "locale": {
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "type": "string"
+                  },
+                  "stylePresetId": {
+                    "type": "string"
+                  },
+                  "syncToBeatGrid": {
+                    "type": "boolean"
+                  },
+                  "tone": {
+                    "type": "string"
+                  },
+                  "trackId": {
+                    "type": "string"
+                  },
+                  "transcript": {
+                    "type": "string"
+                  },
+                  "trendKeywords": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Subtitle preview payload"
+          },
+          "201": {
+            "description": "Subtitles applied to timeline"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Preset or timeline project not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/video/text-animations": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "action": {
+                    "enum": [
+                      "preview",
+                      "apply"
+                    ],
+                    "type": "string"
+                  },
+                  "durationMs": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "intensity": {
+                    "maximum": 2,
+                    "minimum": 0.2,
+                    "type": "number"
+                  },
+                  "presetId": {
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "type": "string"
+                  },
+                  "startMs": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "trackId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "presetId"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Preview keyframes payload"
+          },
+          "201": {
+            "description": "Preset applied to timeline"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Preset or timeline project not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/video/timeline": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "action": {
+                    "enum": [
+                      "create",
+                      "add_track",
+                      "add_asset",
+                      "attach_asset",
+                      "upsert_keyframe"
+                    ],
+                    "type": "string"
+                  },
+                  "assetId": {
+                    "type": "string"
+                  },
+                  "atMs": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "durationMs": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "easing": {
+                    "enum": [
+                      "linear",
+                      "ease_in",
+                      "ease_out",
+                      "ease_in_out"
+                    ],
+                    "type": "string"
+                  },
+                  "frameRate": {
+                    "maximum": 60,
+                    "minimum": 12,
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "offsetMs": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "projectId": {
+                    "type": "string"
+                  },
+                  "property": {
+                    "type": "string"
+                  },
+                  "sourceUrl": {
+                    "type": "string"
+                  },
+                  "startMs": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "trackId": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "enum": [
+                      "video",
+                      "audio",
+                      "sticker",
+                      "text",
+                      "overlay"
+                    ],
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "action"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Timeline updated"
+          },
+          "201": {
+            "description": "Timeline created"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/video/subtitles": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "transcript",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "locale",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stylePresetId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "trendKeywords",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "syncToBeatGrid",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "bpm",
+            "schema": {
+              "maximum": 220,
+              "minimum": 60,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "beatOffsetMs",
+            "schema": {
+              "maximum": 60000,
+              "minimum": -60000,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Subtitle style preset + preview payload"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/video/audio-library": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "schema": {
+              "enum": [
+                "meme_loop",
+                "punchline"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "targetBpm",
+            "schema": {
+              "maximum": 220,
+              "minimum": 60,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "toleranceBpm",
+            "schema": {
+              "maximum": 60,
+              "minimum": 2,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Audio library + beat sync suggestions payload"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/video/export-settings": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "planTier",
+            "schema": {
+              "enum": [
+                "free",
+                "pro",
+                "team"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "presetId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "container",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "bitrateKbps",
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "watermarkEnabled",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "watermarkText",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Export policy payload"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/video/formats": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "planTier",
+            "schema": {
+              "enum": [
+                "free",
+                "pro",
+                "team"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "inputFormat",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "mimeType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "outputPresetId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "durationSeconds",
+            "schema": {
+              "minimum": 0.1,
+              "type": "number"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Video format policy payload"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/video/render-queue": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "mode",
+            "schema": {
+              "enum": [
+                "snapshot",
+                "list"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "enum": [
+                "queued",
+                "running",
+                "completed",
+                "failed",
+                "cancelled"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "planTier",
+            "schema": {
+              "enum": [
+                "free",
+                "pro",
+                "team"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Render queue payload"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/video/text-animations": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "presetId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "startMs",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "durationMs",
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "intensity",
+            "schema": {
+              "maximum": 2,
+              "minimum": 0.2,
+              "type": "number"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Text animation preset payload"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/video/drafts": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "projectId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Video draft payload"
+          },
+          "404": {
+            "description": "Draft not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/video/timeline": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "projectId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Timeline project payload"
+          },
+          "404": {
+            "description": "Project not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/video/render-performance": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "refresh",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Video render performance summary payload"
+          },
+          "500": {
+            "description": "Policy validation or simulation failure"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

@@ -6,7 +6,7 @@
         "correlationId": "s65",
         "limit": 102,
         "mappingMode": "s67",
-        "maxSlots": "s68",
+        "maxSlots": 104,
         "prompt": "s69",
         "sourceImageUrl": "s6a",
         "texts": [],
@@ -19,7 +19,7 @@
         "correlationId": "sc9",
         "limit": 202,
         "mappingMode": "scb",
-        "maxSlots": "scc",
+        "maxSlots": 204,
         "prompt": "scd",
         "sourceImageUrl": "sce",
         "texts": [],
@@ -32,7 +32,7 @@
         "correlationId": "s12d",
         "limit": 302,
         "mappingMode": "s12f",
-        "maxSlots": "s130",
+        "maxSlots": 304,
         "prompt": "s131",
         "sourceImageUrl": "s132",
         "texts": [],
@@ -49,12 +49,268 @@
         "correlationId": "s191",
         "limit": 402,
         "mappingMode": "s193",
-        "maxSlots": "s194",
+        "maxSlots": 404,
         "prompt": "s195",
         "sourceImageUrl": "s196",
         "texts": [],
         "trendSignals": [],
         "workspaceId": "s199"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/ai/templates/detect": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "actorId": {
+                    "type": "string"
+                  },
+                  "correlationId": {
+                    "type": "string"
+                  },
+                  "mappingMode": {
+                    "enum": [
+                      "single_or_split"
+                    ],
+                    "type": "string"
+                  },
+                  "maxSlots": {
+                    "maximum": 2,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "sourceImageUrl": {
+                    "type": "string"
+                  },
+                  "texts": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 2,
+                    "type": "array"
+                  },
+                  "workspaceId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "sourceImageUrl"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Template detection payload"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "500": {
+            "description": "Detection failure"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/ai/templates/suggest": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "limit": {
+                    "maximum": 60,
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "prompt": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "trendSignals": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 20,
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "prompt"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Template suggestion ranking payload"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "DeveloperApiKeyAuth": []
+          },
+          {
+            "AgentApiKeyAuth": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /api/ai/providers/background-remove-benchmark": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "refresh",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Background-remove provider benchmark report"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/ai/providers/face-swap-benchmark": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "refresh",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Face-swap provider benchmark report"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/ai/memes/generate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Current actor AI quota snapshot"
+          }
+        },
+        "security": [
+          {
+            "DeveloperApiKeyAuth": []
+          },
+          {
+            "AgentApiKeyAuth": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

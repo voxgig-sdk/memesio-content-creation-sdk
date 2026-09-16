@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE;
         for (const op of ['create']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'upload_caption_meme_success.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'upload_caption_meme_success.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set MEMESIO_CONTENT_CREATION_TEST_UPLOAD_CAPTION_MEME_SUCCESS_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [], "name": "upload_caption_meme_success", "op": { "create": { "input": "data", "name": "create", "points": [{ "active": true, "args": {}, "contract": { "id": "POST /api/v1/memes/caption-upload", "json": "{\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"multipart/form-data\":{\"schema\":{\"properties\":{\"captions\":{\"description\":\"JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields.\",\"type\":\"string\"},\"file\":{\"format\":\"binary\",\"type\":\"string\"},\"title\":{\"maxLength\":140,\"type\":\"string\"},\"visibility\":{\"enum\":[\"private\",\"public\"],\"type\":\"string\"},\"watermark\":{\"description\":\"Optional JSON watermark object. Non-premium callers are forced to the default Memesio watermark; premium callers can customize enabled, text, position, and scale.\",\"type\":\"string\"}},\"required\":[\"file\",\"captions\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"altText\":{\"type\":\"string\"},\"apiUrl\":{\"type\":\"string\"},\"canonicalImageUrl\":{\"type\":\"string\"},\"captions\":{\"items\":{\"properties\":{\"boxHeightPct\":{\"type\":\"number\"},\"boxWidthPct\":{\"type\":\"number\"},\"fontFamily\":{\"enum\":[\"impact\",\"arial\",\"poster\"],\"type\":\"string\"},\"fontSize\":{\"type\":\"number\"},\"id\":{\"maxLength\":64,\"type\":\"string\"},\"maxLines\":{\"minimum\":1,\"type\":\"integer\"},\"text\":{\"maxLength\":300,\"type\":\"string\"},\"textAlign\":{\"enum\":[\"left\",\"center\",\"right\"],\"type\":\"string\"},\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"}},\"required\":[\"text\"],\"type\":\"object\"},\"type\":\"array\"},\"imageUrl\":{\"type\":\"string\"},\"ownerToken\":{\"type\":\"string\"},\"pageUrl\":{\"type\":\"string\"},\"shareSlug\":{\"type\":\"string\"},\"slug\":{\"type\":\"string\"},\"sourceImageUrl\":{\"type\":\"string\"},\"tags\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"templateSlug\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"visibility\":{\"enum\":[\"private\",\"public\"],\"type\":\"string\"},\"watermark\":{\"description\":\"Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. Premium callers can customize enabled, text, position, and scale.\",\"properties\":{\"enabled\":{\"type\":\"boolean\"},\"position\":{\"enum\":[\"top_left\",\"top_right\",\"bottom_left\",\"bottom_right\"],\"type\":\"string\"},\"scale\":{\"maximum\":3,\"minimum\":0.6,\"type\":\"number\"},\"text\":{\"maxLength\":64,\"type\":\"string\"}},\"type\":\"object\"}},\"required\":[\"slug\",\"shareSlug\",\"templateSlug\",\"title\",\"visibility\",\"sourceImageUrl\",\"imageUrl\",\"canonicalImageUrl\",\"altText\",\"tags\",\"apiUrl\",\"pageUrl\",\"ownerToken\",\"captions\",\"watermark\"],\"type\":\"object\"},\"ok\":{\"const\":true,\"type\":\"boolean\"}},\"required\":[\"ok\",\"data\"],\"type\":\"object\"}}},\"description\":\"Uploaded meme created\"},\"400\":{\"description\":\"Validation error\"},\"401\":{\"description\":\"Invalid API key when one is provided\"},\"415\":{\"description\":\"Unsupported upload content\"},\"429\":{\"description\":\"Rate limit exceeded\"}},\"security\":[{\"DeveloperApiKeyAuth\":[]},{\"AgentApiKeyAuth\":[]}],\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "POST", "orig": "/api/v1/memes/caption-upload", "segments": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "memes" }, { "lit": "caption-upload" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "upload_caption_meme_success", "name__orig": "upload_caption_meme_success", "Name": "UploadCaptionMemeSuccess", "name_": "upload_caption_meme_success", "name-": "upload-caption-meme-success", "NAME": "UPLOAD_CAPTION_MEME_SUCCESS", "index$": 25 }, { "active": true, "entity": "upload_caption_meme_success", "key$": "BasicUploadCaptionMemeSuccessFlow", "kind": "basic", "name": "BasicUploadCaptionMemeSuccessFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "upload_caption_meme_success_ref01" }, "match": {}, "op": "create", "spec": [], "valid": [], "index$": 0 }] }, 'UploadCaptionMemeSuccess');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['MEMESIO_CONTENT_CREATION_TEST_UPLOAD_CAPTION_MEME_SUCCESS_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'MEMESIO_CONTENT_CREATION_TEST_UPLOAD_CAPTION_MEME_SUCCESS_ENTID': idmap,
         'MEMESIO_CONTENT_CREATION_TEST_LIVE': 'FALSE',
@@ -115,7 +107,13 @@ function basicSetup(extra) {
     });
     idmap = env['MEMESIO_CONTENT_CREATION_TEST_UPLOAD_CAPTION_MEME_SUCCESS_ENTID'];
     const live = 'TRUE' === env.MEMESIO_CONTENT_CREATION_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['MEMESIO_CONTENT_CREATION_TEST_UPLOAD_CAPTION_MEME_SUCCESS_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.MemesioContentCreationSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -128,7 +126,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -140,7 +139,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.MEMESIO_CONTENT_CREATION_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

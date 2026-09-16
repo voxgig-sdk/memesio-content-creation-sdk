@@ -43,6 +43,12 @@ main: kit: entity: media: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /api/media/signed-url"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"action\":{\"enum\":[\"upload\",\"download\"],\"type\":\"string\"},\"contentType\":{\"type\":\"string\"},\"expiresInSeconds\":{\"maximum\":86400,\"minimum\":30,\"type\":\"integer\"},\"ownerToken\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"},\"prefix\":{\"enum\":[\"templates\",\"memes\"],\"type\":\"string\"}},\"required\":[\"action\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"description\":\"Signed URL generated\"},\"201\":{\"description\":\"Signed upload URL generated\"},\"400\":{\"description\":\"Invalid request\"},\"403\":{\"description\":\"Private download signing requires a valid ownerToken\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/media/signed-url"
           segments: [

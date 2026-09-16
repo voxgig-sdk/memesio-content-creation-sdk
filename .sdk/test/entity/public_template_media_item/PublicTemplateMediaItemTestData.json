@@ -5,14 +5,14 @@
         "animated": true,
         "assetBytes": "s12d",
         "assetContentType": "s12e",
-        "boxCount": "s12f",
-        "captionCount": "s130",
+        "boxCount": 303,
+        "captionCount": 304,
         "captions": [],
         "categories": [],
         "description": "s133",
         "durationMs": "s134",
         "exampleImageUrl": "s135",
-        "fps": "s136",
+        "fps": 310,
         "frameCount": "s137",
         "gifSlug": "s138",
         "height": "s139",
@@ -27,24 +27,24 @@
         "slug": "s142",
         "sourceTemplateId": "s143",
         "sourceUrl": "s144",
-        "startMs": "s145",
+        "startMs": 325,
         "tags": [],
         "title": "s147",
         "width": "s148",
-        "widthPx": "s149"
+        "widthPx": 329
       },
       "PUBLIC_TEMPLATE_MEDIA_ITEM01": {
         "animated": true,
         "assetBytes": "s259",
         "assetContentType": "s25a",
-        "boxCount": "s25b",
-        "captionCount": "s25c",
+        "boxCount": 603,
+        "captionCount": 604,
         "captions": [],
         "categories": [],
         "description": "s25f",
         "durationMs": "s260",
         "exampleImageUrl": "s261",
-        "fps": "s262",
+        "fps": 610,
         "frameCount": "s263",
         "gifSlug": "s264",
         "height": "s265",
@@ -59,24 +59,24 @@
         "slug": "s26e",
         "sourceTemplateId": "s26f",
         "sourceUrl": "s270",
-        "startMs": "s271",
+        "startMs": 625,
         "tags": [],
         "title": "s273",
         "width": "s274",
-        "widthPx": "s275"
+        "widthPx": 629
       },
       "PUBLIC_TEMPLATE_MEDIA_ITEM02": {
         "animated": true,
         "assetBytes": "s385",
         "assetContentType": "s386",
-        "boxCount": "s387",
-        "captionCount": "s388",
+        "boxCount": 903,
+        "captionCount": 904,
         "captions": [],
         "categories": [],
         "description": "s38b",
         "durationMs": "s38c",
         "exampleImageUrl": "s38d",
-        "fps": "s38e",
+        "fps": 910,
         "frameCount": "s38f",
         "gifSlug": "s390",
         "height": "s391",
@@ -91,11 +91,11 @@
         "slug": "s39a",
         "sourceTemplateId": "s39b",
         "sourceUrl": "s39c",
-        "startMs": "s39d",
+        "startMs": 925,
         "tags": [],
         "title": "s39f",
         "width": "s3a0",
-        "widthPx": "s3a1"
+        "widthPx": 929
       }
     }
   },
@@ -105,14 +105,14 @@
         "animated": true,
         "assetBytes": "s4b1",
         "assetContentType": "s4b2",
-        "boxCount": "s4b3",
-        "captionCount": "s4b4",
+        "boxCount": 1203,
+        "captionCount": 1204,
         "captions": [],
         "categories": [],
         "description": "s4b7",
         "durationMs": "s4b8",
         "exampleImageUrl": "s4b9",
-        "fps": "s4ba",
+        "fps": 1210,
         "frameCount": "s4bb",
         "gifSlug": "s4bc",
         "height": "s4bd",
@@ -126,11 +126,819 @@
         "slug": "s4c6",
         "sourceTemplateId": "s4c7",
         "sourceUrl": "s4c8",
-        "startMs": "s4c9",
+        "startMs": 1225,
         "tags": [],
         "title": "s4cb",
         "width": "s4cc",
-        "widthPx": "s4cd"
+        "widthPx": 1229
+      }
+    }
+  },
+  "requests": {
+    "POST /api/gifs/{slug}/generate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "captions": {
+                    "items": {
+                      "properties": {
+                        "boxWidthPct": {
+                          "maximum": 100,
+                          "minimum": 20,
+                          "type": "number"
+                        },
+                        "color": {
+                          "type": "string"
+                        },
+                        "fontFamily": {
+                          "enum": [
+                            "impact",
+                            "arial",
+                            "poster"
+                          ],
+                          "type": "string"
+                        },
+                        "fontSize": {
+                          "maximum": 64,
+                          "minimum": 14,
+                          "type": "number"
+                        },
+                        "id": {
+                          "maxLength": 80,
+                          "type": "string"
+                        },
+                        "maxLines": {
+                          "maximum": 4,
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "stroke": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "maxLength": 120,
+                          "type": "string"
+                        },
+                        "textAlign": {
+                          "enum": [
+                            "left",
+                            "center",
+                            "right"
+                          ],
+                          "type": "string"
+                        },
+                        "x": {
+                          "maximum": 100,
+                          "minimum": 0,
+                          "type": "number"
+                        },
+                        "y": {
+                          "maximum": 100,
+                          "minimum": 0,
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "text"
+                      ],
+                      "type": "object"
+                    },
+                    "maxItems": 4,
+                    "type": "array"
+                  },
+                  "durationMs": {
+                    "maximum": 24000,
+                    "minimum": 100,
+                    "type": "integer"
+                  },
+                  "fps": {
+                    "maximum": 24,
+                    "minimum": 10,
+                    "type": "integer"
+                  },
+                  "gifSlug": {
+                    "description": "Required for /api/v1/gifs/generate.",
+                    "type": "string"
+                  },
+                  "returnBase64": {
+                    "description": "Only used by /api/v1/gifs/generate.",
+                    "type": "boolean"
+                  },
+                  "startMs": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "tags": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 8,
+                    "type": "array"
+                  },
+                  "title": {
+                    "maxLength": 120,
+                    "type": "string"
+                  },
+                  "widthPx": {
+                    "maximum": 480,
+                    "minimum": 100,
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "image/gif": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Generated GIF bytes"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "GIF template not found"
+          },
+          "413": {
+            "description": "Source or output GIF too large"
+          },
+          "422": {
+            "description": "Frame or pixel budget exceeded"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "DeveloperApiKeyAuth": []
+          },
+          {
+            "AgentApiKeyAuth": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /api/templates/{slug}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "mediaType",
+            "schema": {
+              "default": "image",
+              "enum": [
+                "image",
+                "gif",
+                "all"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "animated": {
+                      "type": "boolean"
+                    },
+                    "assetBytes": {
+                      "minimum": 0,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "assetContentType": {
+                      "type": "string"
+                    },
+                    "boxCount": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "captionCount": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "captions": {
+                      "items": {
+                        "properties": {
+                          "backgroundColor": {
+                            "type": "string"
+                          },
+                          "backgroundEnabled": {
+                            "type": "boolean"
+                          },
+                          "backgroundOpacity": {
+                            "type": "number"
+                          },
+                          "boxHeightPct": {
+                            "type": "number"
+                          },
+                          "boxWidthPct": {
+                            "type": "number"
+                          },
+                          "color": {
+                            "type": "string"
+                          },
+                          "exampleText": {
+                            "type": "string"
+                          },
+                          "fontFamily": {
+                            "enum": [
+                              "impact",
+                              "arial",
+                              "poster"
+                            ],
+                            "type": "string"
+                          },
+                          "fontSize": {
+                            "type": "number"
+                          },
+                          "hidden": {
+                            "type": "boolean"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "letterSpacingEm": {
+                            "type": "number"
+                          },
+                          "lineHeight": {
+                            "type": "number"
+                          },
+                          "locked": {
+                            "type": "boolean"
+                          },
+                          "maxLines": {
+                            "type": "integer"
+                          },
+                          "paddingPct": {
+                            "type": "number"
+                          },
+                          "preferredCase": {
+                            "enum": [
+                              "uppercase",
+                              "sentence",
+                              "title",
+                              "preserve"
+                            ],
+                            "type": "string"
+                          },
+                          "recommendedCharsMax": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "recommendedCharsMin": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "recommendedWordsMax": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "recommendedWordsMin": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "rotationDeg": {
+                            "type": "number"
+                          },
+                          "semanticRole": {
+                            "enum": [
+                              "setup",
+                              "contrast",
+                              "punchline",
+                              "reaction",
+                              "label"
+                            ],
+                            "type": "string"
+                          },
+                          "shadowStrength": {
+                            "type": "number"
+                          },
+                          "stroke": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          },
+                          "textAlign": {
+                            "enum": [
+                              "left",
+                              "center",
+                              "right"
+                            ],
+                            "type": "string"
+                          },
+                          "x": {
+                            "type": "number"
+                          },
+                          "y": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "text",
+                          "x",
+                          "y",
+                          "fontSize"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "categories": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "durationMs": {
+                      "minimum": 0,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "exampleImageUrl": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "frameCount": {
+                      "minimum": 0,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "height": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "type": "string"
+                    },
+                    "mediaType": {
+                      "enum": [
+                        "image",
+                        "gif"
+                      ],
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "posterImageUrl": {
+                      "type": "string"
+                    },
+                    "previewImageUrl": {
+                      "type": "string"
+                    },
+                    "qualityStatus": {
+                      "enum": [
+                        "approved",
+                        "quarantined",
+                        "rejected",
+                        "pending"
+                      ],
+                      "type": "string"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "sourceTemplateId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "sourceUrl": {
+                      "type": "string"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "width": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "sourceTemplateId",
+                    "slug",
+                    "name",
+                    "description",
+                    "mediaType",
+                    "imageUrl",
+                    "width",
+                    "height",
+                    "captions",
+                    "tags"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Template details"
+          },
+          "400": {
+            "description": "Invalid slug"
+          },
+          "404": {
+            "description": "Template not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/gifs/{slug}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "animated": {
+                      "type": "boolean"
+                    },
+                    "assetBytes": {
+                      "minimum": 0,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "assetContentType": {
+                      "type": "string"
+                    },
+                    "boxCount": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "captionCount": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "captions": {
+                      "items": {
+                        "properties": {
+                          "backgroundColor": {
+                            "type": "string"
+                          },
+                          "backgroundEnabled": {
+                            "type": "boolean"
+                          },
+                          "backgroundOpacity": {
+                            "type": "number"
+                          },
+                          "boxHeightPct": {
+                            "type": "number"
+                          },
+                          "boxWidthPct": {
+                            "type": "number"
+                          },
+                          "color": {
+                            "type": "string"
+                          },
+                          "exampleText": {
+                            "type": "string"
+                          },
+                          "fontFamily": {
+                            "enum": [
+                              "impact",
+                              "arial",
+                              "poster"
+                            ],
+                            "type": "string"
+                          },
+                          "fontSize": {
+                            "type": "number"
+                          },
+                          "hidden": {
+                            "type": "boolean"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "letterSpacingEm": {
+                            "type": "number"
+                          },
+                          "lineHeight": {
+                            "type": "number"
+                          },
+                          "locked": {
+                            "type": "boolean"
+                          },
+                          "maxLines": {
+                            "type": "integer"
+                          },
+                          "paddingPct": {
+                            "type": "number"
+                          },
+                          "preferredCase": {
+                            "enum": [
+                              "uppercase",
+                              "sentence",
+                              "title",
+                              "preserve"
+                            ],
+                            "type": "string"
+                          },
+                          "recommendedCharsMax": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "recommendedCharsMin": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "recommendedWordsMax": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "recommendedWordsMin": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "rotationDeg": {
+                            "type": "number"
+                          },
+                          "semanticRole": {
+                            "enum": [
+                              "setup",
+                              "contrast",
+                              "punchline",
+                              "reaction",
+                              "label"
+                            ],
+                            "type": "string"
+                          },
+                          "shadowStrength": {
+                            "type": "number"
+                          },
+                          "stroke": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          },
+                          "textAlign": {
+                            "enum": [
+                              "left",
+                              "center",
+                              "right"
+                            ],
+                            "type": "string"
+                          },
+                          "x": {
+                            "type": "number"
+                          },
+                          "y": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "text",
+                          "x",
+                          "y",
+                          "fontSize"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "categories": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "durationMs": {
+                      "minimum": 0,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "exampleImageUrl": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "frameCount": {
+                      "minimum": 0,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "height": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "type": "string"
+                    },
+                    "mediaType": {
+                      "enum": [
+                        "image",
+                        "gif"
+                      ],
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "posterImageUrl": {
+                      "type": "string"
+                    },
+                    "previewImageUrl": {
+                      "type": "string"
+                    },
+                    "qualityStatus": {
+                      "enum": [
+                        "approved",
+                        "quarantined",
+                        "rejected",
+                        "pending"
+                      ],
+                      "type": "string"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "sourceTemplateId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "sourceUrl": {
+                      "type": "string"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "width": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "sourceTemplateId",
+                    "slug",
+                    "name",
+                    "description",
+                    "mediaType",
+                    "imageUrl",
+                    "width",
+                    "height",
+                    "captions",
+                    "tags"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "GIF template details"
+          },
+          "400": {
+            "description": "Invalid slug"
+          },
+          "404": {
+            "description": "GIF template not found"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

@@ -99,6 +99,12 @@ main: kit: entity: agent_infra: {
               }
             ]
           }
+          contract: {
+            id: "POST /api/v1/agents/{agentId}/channels/telegram/bind"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"agentId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"chatId\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":true,\"type\":\"object\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"chatId\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"description\":\"Telegram binding created/updated\"},\"401\":{\"description\":\"Authentication required\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/v1/agents/{agentId}/channels/telegram/bind"
           rename: {
@@ -150,6 +156,12 @@ main: kit: entity: agent_infra: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "POST /api/v1/agents/{agentId}/channels/whatsapp/bind"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"agentId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"metadata\":{\"additionalProperties\":true,\"type\":\"object\"},\"phoneOrChatId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"phoneOrChatId\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"description\":\"WhatsApp binding created/updated\"},\"401\":{\"description\":\"Authentication required\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "POST"
           orig: "/api/v1/agents/{agentId}/channels/whatsapp/bind"
@@ -203,6 +215,12 @@ main: kit: entity: agent_infra: {
               }
             ]
           }
+          contract: {
+            id: "POST /api/v1/agents/{agentId}/unlocks/social-action"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"agentId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"action\":{\"enum\":[\"x_follow\"],\"type\":\"string\"},\"proof\":{\"additionalProperties\":true,\"type\":\"object\"}},\"required\":[\"action\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"description\":\"Unlock request submitted\"},\"401\":{\"description\":\"Agent API key required\"},\"403\":{\"description\":\"Insufficient key scope\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/v1/agents/{agentId}/unlocks/social-action"
           rename: {
@@ -252,6 +270,12 @@ main: kit: entity: agent_infra: {
               }
             ]
           }
+          contract: {
+            id: "POST /api/v1/agents/{agentId}/keys"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"agentId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"scopes\":{\"items\":{\"enum\":[\"generate\",\"publish\",\"analytics\",\"admin\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"required\":false},\"responses\":{\"201\":{\"description\":\"Agent key created (plaintext returned once)\"},\"401\":{\"description\":\"Authentication required\"},\"404\":{\"description\":\"Agent not found\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/v1/agents/{agentId}/keys"
           rename: {
@@ -299,6 +323,12 @@ main: kit: entity: agent_infra: {
               }
             ]
           }
+          contract: {
+            id: "POST /api/v1/agents/unlocks/{unlockId}/approve"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"unlockId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"quotaBoostPerDay\":{\"maximum\":20,\"minimum\":1,\"type\":\"integer\"}},\"type\":\"object\"}}},\"required\":false},\"responses\":{\"200\":{\"description\":\"Unlock approved\"},\"403\":{\"description\":\"Admin authorization required\"},\"404\":{\"description\":\"Unlock not found\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/v1/agents/unlocks/{unlockId}/approve"
           rename: {
@@ -337,6 +367,12 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          contract: {
+            id: "POST /api/v1/agents/names:generate"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"prompt\":{\"maxLength\":300,\"minLength\":1,\"type\":\"string\"}},\"required\":[\"prompt\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"description\":\"Name suggestions payload\"},\"401\":{\"description\":\"Agent API key required\"},\"429\":{\"description\":\"Per-key name generation limit exceeded\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/v1/agents/names:generate"
           segments: [
@@ -359,6 +395,12 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          contract: {
+            id: "POST /api/v1/agents/rewards/votes"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"memeSlug\":{\"type\":\"string\"},\"weekStart\":{\"pattern\":\"^\\\\\\\\d{4}-\\\\\\\\d{2}-\\\\\\\\d{2}$\",\"type\":\"string\"}},\"required\":[\"memeSlug\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"description\":\"Duplicate vote ignored\"},\"201\":{\"description\":\"Vote accepted\"},\"400\":{\"description\":\"Validation error\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/v1/agents/rewards/votes"
           segments: [
@@ -384,6 +426,12 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          contract: {
+            id: "POST /api/v1/agents/rewards/winner:close"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"payoutReference\":{\"type\":\"string\"},\"payoutStatus\":{\"enum\":[\"pending\",\"paid\"],\"type\":\"string\"},\"weekStart\":{\"pattern\":\"^\\\\\\\\d{4}-\\\\\\\\d{2}-\\\\\\\\d{2}$\",\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":false},\"responses\":{\"200\":{\"description\":\"Winner record created/updated\"},\"403\":{\"description\":\"Admin authorization required\"},\"404\":{\"description\":\"No votes for week\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/v1/agents/rewards/winner:close"
           segments: [
@@ -409,6 +457,12 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          contract: {
+            id: "POST /api/v1/agents/webhooks/telegram"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Webhook processed\"},\"202\":{\"description\":\"Ignored non-message Telegram update\"},\"403\":{\"description\":\"Invalid webhook secret when configured\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/v1/agents/webhooks/telegram"
           segments: [
@@ -434,6 +488,12 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          contract: {
+            id: "POST /api/v1/agents/webhooks/whatsapp"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Webhook processed\"},\"202\":{\"description\":\"Ignored non-message event\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/v1/agents/webhooks/whatsapp"
           segments: [
@@ -482,6 +542,12 @@ main: kit: entity: agent_infra: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/v1/agents/rewards/leaderboard"
+            json: "{\"parameters\":[{\"in\":\"query\",\"name\":\"weekStart\",\"schema\":{\"pattern\":\"^\\\\\\\\d{4}-\\\\\\\\d{2}-\\\\\\\\d{2}$\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Leaderboard payload\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/v1/agents/rewards/leaderboard"
           segments: [
@@ -524,6 +590,12 @@ main: kit: entity: agent_infra: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/v1/agents/{agentId}/keys"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"agentId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Agent key list payload\"},\"401\":{\"description\":\"Authentication required\"},\"404\":{\"description\":\"Agent not found\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/v1/agents/{agentId}/keys"
           rename: {
@@ -560,6 +632,12 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          contract: {
+            id: "GET /api/v1/agents/webhooks/whatsapp"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Verification challenge accepted\"},\"403\":{\"description\":\"Invalid verify token\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/v1/agents/webhooks/whatsapp"
           segments: [
@@ -607,6 +685,12 @@ main: kit: entity: agent_infra: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "DELETE /api/v1/agents/{agentId}/keys/{keyId}"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"agentId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"keyId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Key revoked\"},\"401\":{\"description\":\"Authentication required\"},\"404\":{\"description\":\"Key not found\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "DELETE"
           orig: "/api/v1/agents/{agentId}/keys/{keyId}"

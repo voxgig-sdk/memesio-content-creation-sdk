@@ -28,6 +28,12 @@ main: kit: entity: billing: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/billing/usage"
+            json: "{\"parameters\":[{\"in\":\"query\",\"name\":\"workspaceId\",\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"windowDays\",\"schema\":{\"maximum\":365,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Usage snapshot\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/billing/usage"
           segments: [

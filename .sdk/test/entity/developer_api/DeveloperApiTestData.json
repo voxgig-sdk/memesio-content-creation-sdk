@@ -29,5 +29,120 @@
         "trendSignals": []
       }
     }
+  },
+  "requests": {
+    "POST /api/v1/templates/ideas": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "limit": {
+                    "maximum": 60,
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "prompt": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "trendSignals": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 20,
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "prompt"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Template idea ranking payload"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Developer or agent API key required"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "DeveloperApiKeyAuth": []
+          },
+          {
+            "AgentApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /api/v1/memes/generate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Current keyed actor AI quota snapshot"
+          },
+          "401": {
+            "description": "Developer or agent API key required"
+          }
+        },
+        "security": [
+          {
+            "DeveloperApiKeyAuth": []
+          },
+          {
+            "AgentApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

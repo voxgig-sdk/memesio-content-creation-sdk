@@ -4,7 +4,7 @@
       "MEDIA00": {
         "action": "s3c",
         "contentType": "s3d",
-        "expiresInSeconds": "s3e",
+        "expiresInSeconds": 62,
         "ownerToken": "s3f",
         "path": "s40",
         "prefix": "s41",
@@ -13,7 +13,7 @@
       "MEDIA01": {
         "action": "s78",
         "contentType": "s79",
-        "expiresInSeconds": "s7a",
+        "expiresInSeconds": 122,
         "ownerToken": "s7b",
         "path": "s7c",
         "prefix": "s7d",
@@ -22,7 +22,7 @@
       "MEDIA02": {
         "action": "sb4",
         "contentType": "sb5",
-        "expiresInSeconds": "sb6",
+        "expiresInSeconds": 182,
         "ownerToken": "sb7",
         "path": "sb8",
         "prefix": "sb9",
@@ -35,10 +35,91 @@
       "media_ref01": {
         "action": "sf0",
         "contentType": "sf1",
-        "expiresInSeconds": "sf2",
+        "expiresInSeconds": 242,
         "ownerToken": "sf3",
         "path": "sf4",
         "prefix": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/media/signed-url": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "action": {
+                    "enum": [
+                      "upload",
+                      "download"
+                    ],
+                    "type": "string"
+                  },
+                  "contentType": {
+                    "type": "string"
+                  },
+                  "expiresInSeconds": {
+                    "maximum": 86400,
+                    "minimum": 30,
+                    "type": "integer"
+                  },
+                  "ownerToken": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "prefix": {
+                    "enum": [
+                      "templates",
+                      "memes"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "action"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Signed URL generated"
+          },
+          "201": {
+            "description": "Signed upload URL generated"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "403": {
+            "description": "Private download signing requires a valid ownerToken"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

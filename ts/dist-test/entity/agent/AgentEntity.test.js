@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE;
         for (const op of ['create', 'update', 'load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'agent.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'agent.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set MEMESIO_CONTENT_CREATION_TEST_AGENT_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "description", "req": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "locale", "req": false, "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "name", "op": { "update": { "req": false, "type": "`$STRING`" } }, "req": true, "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "slug", "req": false, "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "status", "req": false, "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "stylePreset", "req": false, "type": "`$STRING`", "index$": 6 }, { "active": true, "name": "systemPrompt", "req": false, "type": "`$STRING`", "index$": 7 }, { "active": true, "name": "watermarkText", "req": false, "type": "`$STRING`", "index$": 8 }, { "active": true, "name": "websiteUrl", "req": false, "type": "`$STRING`", "index$": 9 }], "id": { "field": "id", "name": "id" }, "name": "agent", "op": { "create": { "input": "data", "name": "create", "points": [{ "active": true, "args": {}, "contract": { "id": "POST /api/v1/agents", "json": "{\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"description\":{\"maxLength\":1000,\"type\":\"string\"},\"locale\":{\"maxLength\":40,\"type\":\"string\"},\"name\":{\"maxLength\":120,\"minLength\":1,\"type\":\"string\"},\"slug\":{\"type\":\"string\"},\"stylePreset\":{\"maxLength\":80,\"type\":\"string\"},\"systemPrompt\":{\"maxLength\":2000,\"type\":\"string\"},\"watermarkText\":{\"maxLength\":160,\"type\":\"string\"},\"websiteUrl\":{\"maxLength\":2000,\"type\":\"string\"}},\"required\":[\"name\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"description\":\"Agent profile created\"},\"400\":{\"description\":\"Validation error\"},\"401\":{\"description\":\"Authentication required\"},\"409\":{\"description\":\"Slug conflict\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "POST", "orig": "/api/v1/agents", "segments": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "agents" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" }, "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "agent_id", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /api/v1/agents/{agentId}", "json": "{\"parameters\":[{\"in\":\"path\",\"name\":\"agentId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Agent profile payload\"},\"401\":{\"description\":\"Authentication required\"},\"404\":{\"description\":\"Agent not found\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/api/v1/agents/{agentId}", "rename": { "param": { "agentId": "id" } }, "segments": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "agents" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }, { "active": true, "args": {}, "contract": { "id": "GET /api/v1/agents", "json": "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Agent profile list payload\"},\"401\":{\"description\":\"Authentication required\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/api/v1/agents", "segments": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "agents" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 1 }], "key$": "load" }, "update": { "input": "data", "name": "update", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "agent_id", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "PATCH /api/v1/agents/{agentId}", "json": "{\"parameters\":[{\"in\":\"path\",\"name\":\"agentId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"description\":{\"maxLength\":1000,\"type\":\"string\"},\"locale\":{\"maxLength\":40,\"type\":\"string\"},\"name\":{\"maxLength\":120,\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"disabled\"],\"type\":\"string\"},\"stylePreset\":{\"maxLength\":80,\"type\":\"string\"},\"systemPrompt\":{\"maxLength\":2000,\"type\":\"string\"},\"watermarkText\":{\"maxLength\":160,\"type\":\"string\"},\"websiteUrl\":{\"maxLength\":2000,\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"description\":\"Agent profile updated\"},\"401\":{\"description\":\"Authentication required\"},\"404\":{\"description\":\"Agent not found\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "PATCH", "orig": "/api/v1/agents/{agentId}", "rename": { "param": { "agentId": "id" } }, "segments": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "agents" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "update" } }, "relations": { "ancestors": [] }, "key$": "agent", "name__orig": "agent", "Name": "Agent", "name_": "agent", "name-": "agent", "NAME": "AGENT", "index$": 0 }, { "active": true, "entity": "agent", "key$": "BasicAgentFlow", "kind": "basic", "name": "BasicAgentFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "agent_ref01" }, "match": {}, "op": "create", "spec": [], "valid": [], "index$": 0 }, { "active": true, "data": {}, "input": { "ref": "agent_ref01", "srcdatavar": "agent_ref01_data", "suffix": "_up0", "textfield": "description" }, "match": {}, "op": "update", "spec": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-agent_ref01" } }], "valid": [], "index$": 1 }, { "active": true, "data": {}, "input": { "ref": "agent_ref01", "srcdatavar": "agent_ref01_data", "suffix": "_dt0" }, "match": {}, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-agent_ref01" } }], "index$": 2 }] }, 'Agent');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -114,12 +112,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['MEMESIO_CONTENT_CREATION_TEST_AGENT_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'MEMESIO_CONTENT_CREATION_TEST_AGENT_ENTID': idmap,
         'MEMESIO_CONTENT_CREATION_TEST_LIVE': 'FALSE',
@@ -128,7 +120,13 @@ function basicSetup(extra) {
     });
     idmap = env['MEMESIO_CONTENT_CREATION_TEST_AGENT_ENTID'];
     const live = 'TRUE' === env.MEMESIO_CONTENT_CREATION_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['MEMESIO_CONTENT_CREATION_TEST_AGENT_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.MemesioContentCreationSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -141,7 +139,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -153,7 +152,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.MEMESIO_CONTENT_CREATION_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

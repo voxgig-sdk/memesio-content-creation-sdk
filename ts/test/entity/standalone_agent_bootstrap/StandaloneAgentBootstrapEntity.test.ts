@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { MemesioContentCreationSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('StandaloneAgentBootstrapEntity', async () => {
 
     const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE
     for (const op of ['create']) {
-      if (maybeSkipControl(t, 'entityOp', 'standalone_agent_bootstrap.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'standalone_agent_bootstrap.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set MEMESIO_CONTENT_CREATION_TEST_STANDALONE_AGENT_BOOTSTRAP_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"description","req":false,"type":"`$STRING`","index$":0},{"active":true,"name":"handle","req":true,"type":"`$STRING`","index$":1},{"active":true,"name":"locale","req":false,"type":"`$STRING`","index$":2},{"active":true,"name":"name","req":true,"type":"`$STRING`","index$":3},{"active":true,"name":"stylePreset","req":false,"type":"`$STRING`","index$":4},{"active":true,"name":"systemPrompt","req":false,"type":"`$STRING`","index$":5},{"active":true,"name":"watermarkText","req":false,"type":"`$STRING`","index$":6},{"active":true,"name":"websiteUrl","req":false,"type":"`$STRING`","index$":7}],"name":"standalone_agent_bootstrap","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{},"contract":{"id":"POST /api/v1/agents/bootstrap","json":"{\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"description\":{\"maxLength\":1000,\"type\":\"string\"},\"handle\":{\"maxLength\":80,\"minLength\":3,\"type\":\"string\"},\"locale\":{\"maxLength\":40,\"type\":\"string\"},\"name\":{\"maxLength\":120,\"minLength\":1,\"type\":\"string\"},\"stylePreset\":{\"maxLength\":80,\"type\":\"string\"},\"systemPrompt\":{\"maxLength\":2000,\"type\":\"string\"},\"watermarkText\":{\"maxLength\":160,\"type\":\"string\"},\"websiteUrl\":{\"maxLength\":2000,\"type\":\"string\"}},\"required\":[\"handle\",\"name\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"accountType\":{\"enum\":[\"standalone_agent\",\"standalone_agent_compat\"],\"type\":\"string\"},\"agent\":{\"properties\":{\"createdAt\":{\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"locale\":{\"type\":[\"string\",\"null\"]},\"name\":{\"type\":\"string\"},\"premiumStatus\":{\"enum\":[\"pending\",\"approved\",\"denied\"],\"type\":\"string\"},\"slug\":{\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"disabled\"],\"type\":\"string\"},\"stylePreset\":{\"type\":[\"string\",\"null\"]},\"systemPrompt\":{\"type\":[\"string\",\"null\"]},\"updatedAt\":{\"format\":\"date-time\",\"type\":\"string\"},\"watermarkText\":{\"type\":[\"string\",\"null\"]},\"websiteUrl\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"id\",\"slug\",\"name\",\"description\",\"websiteUrl\",\"systemPrompt\",\"watermarkText\",\"stylePreset\",\"locale\",\"premiumStatus\",\"status\",\"createdAt\",\"updatedAt\"],\"type\":\"object\"},\"key\":{\"allOf\":[{\"properties\":{\"createdAt\":{\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"keyPrefix\":{\"type\":\"string\"},\"revokedAt\":{\"format\":\"date-time\",\"type\":[\"string\",\"null\"]},\"scopes\":{\"items\":{\"enum\":[\"generate\",\"publish\",\"analytics\",\"admin\"],\"type\":\"string\"},\"type\":\"array\"},\"status\":{\"enum\":[\"active\",\"revoked\"],\"type\":\"string\"}},\"required\":[\"id\",\"keyPrefix\",\"scopes\",\"status\",\"createdAt\",\"revokedAt\"],\"type\":\"object\"},{\"properties\":{\"authMode\":{\"enum\":[\"agent\",\"developer\"],\"type\":\"string\"},\"plaintextKey\":{\"type\":\"string\"}},\"required\":[\"plaintextKey\",\"authMode\"],\"type\":\"object\"}]},\"ok\":{\"const\":true,\"type\":\"boolean\"}},\"required\":[\"ok\",\"accountType\",\"agent\",\"key\"],\"type\":\"object\"}}},\"description\":\"Standalone agent account created\"},\"400\":{\"description\":\"Validation error\"},\"409\":{\"description\":\"Handle conflict\"},\"429\":{\"description\":\"Rate limit exceeded\"},\"503\":{\"description\":\"Agent infra schema unavailable\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/v1/agents/bootstrap","segments":[{"lit":"api"},{"lit":"v1"},{"lit":"agents"},{"lit":"bootstrap"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0},{"active":true,"args":{},"contract":{"id":"POST /api/v1/agents/create-agent","json":"{\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"description\":{\"maxLength\":1000,\"type\":\"string\"},\"handle\":{\"maxLength\":80,\"minLength\":3,\"type\":\"string\"},\"locale\":{\"maxLength\":40,\"type\":\"string\"},\"name\":{\"maxLength\":120,\"minLength\":1,\"type\":\"string\"},\"stylePreset\":{\"maxLength\":80,\"type\":\"string\"},\"systemPrompt\":{\"maxLength\":2000,\"type\":\"string\"},\"watermarkText\":{\"maxLength\":160,\"type\":\"string\"},\"websiteUrl\":{\"maxLength\":2000,\"type\":\"string\"}},\"required\":[\"handle\",\"name\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"accountType\":{\"enum\":[\"standalone_agent\",\"standalone_agent_compat\"],\"type\":\"string\"},\"agent\":{\"properties\":{\"createdAt\":{\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"locale\":{\"type\":[\"string\",\"null\"]},\"name\":{\"type\":\"string\"},\"premiumStatus\":{\"enum\":[\"pending\",\"approved\",\"denied\"],\"type\":\"string\"},\"slug\":{\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"disabled\"],\"type\":\"string\"},\"stylePreset\":{\"type\":[\"string\",\"null\"]},\"systemPrompt\":{\"type\":[\"string\",\"null\"]},\"updatedAt\":{\"format\":\"date-time\",\"type\":\"string\"},\"watermarkText\":{\"type\":[\"string\",\"null\"]},\"websiteUrl\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"id\",\"slug\",\"name\",\"description\",\"websiteUrl\",\"systemPrompt\",\"watermarkText\",\"stylePreset\",\"locale\",\"premiumStatus\",\"status\",\"createdAt\",\"updatedAt\"],\"type\":\"object\"},\"key\":{\"allOf\":[{\"properties\":{\"createdAt\":{\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"keyPrefix\":{\"type\":\"string\"},\"revokedAt\":{\"format\":\"date-time\",\"type\":[\"string\",\"null\"]},\"scopes\":{\"items\":{\"enum\":[\"generate\",\"publish\",\"analytics\",\"admin\"],\"type\":\"string\"},\"type\":\"array\"},\"status\":{\"enum\":[\"active\",\"revoked\"],\"type\":\"string\"}},\"required\":[\"id\",\"keyPrefix\",\"scopes\",\"status\",\"createdAt\",\"revokedAt\"],\"type\":\"object\"},{\"properties\":{\"authMode\":{\"enum\":[\"agent\",\"developer\"],\"type\":\"string\"},\"plaintextKey\":{\"type\":\"string\"}},\"required\":[\"plaintextKey\",\"authMode\"],\"type\":\"object\"}]},\"ok\":{\"const\":true,\"type\":\"boolean\"}},\"required\":[\"ok\",\"accountType\",\"agent\",\"key\"],\"type\":\"object\"}}},\"description\":\"Standalone agent account created\"},\"400\":{\"description\":\"Validation error\"},\"409\":{\"description\":\"Handle conflict\"},\"429\":{\"description\":\"Rate limit exceeded\"},\"503\":{\"description\":\"Agent infra schema unavailable\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/v1/agents/create-agent","segments":[{"lit":"api"},{"lit":"v1"},{"lit":"agents"},{"lit":"create-agent"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"standalone_agent_bootstrap","name__orig":"standalone_agent_bootstrap","Name":"StandaloneAgentBootstrap","name_":"standalone_agent_bootstrap","name-":"standalone-agent-bootstrap","NAME":"STANDALONE_AGENT_BOOTSTRAP","index$":21}, {"active":true,"entity":"standalone_agent_bootstrap","key$":"BasicStandaloneAgentBootstrapFlow","kind":"basic","name":"BasicStandaloneAgentBootstrapFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"standalone_agent_bootstrap_ref01"},"match":{},"op":"create","spec":[],"valid":[],"index$":0}]}, 'StandaloneAgentBootstrap')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['MEMESIO_CONTENT_CREATION_TEST_STANDALONE_AGENT_BOOTSTRAP_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'MEMESIO_CONTENT_CREATION_TEST_STANDALONE_AGENT_BOOTSTRAP_ENTID': idmap,
     'MEMESIO_CONTENT_CREATION_TEST_LIVE': 'FALSE',
@@ -127,7 +119,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.MEMESIO_CONTENT_CREATION_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['MEMESIO_CONTENT_CREATION_TEST_STANDALONE_AGENT_BOOTSTRAP_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new MemesioContentCreationSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -140,7 +138,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -153,7 +152,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.MEMESIO_CONTENT_CREATION_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

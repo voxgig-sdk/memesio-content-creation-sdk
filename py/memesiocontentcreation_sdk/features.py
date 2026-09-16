@@ -1,12 +1,18 @@
 # MemesioContentCreation SDK feature factory
 
 from memesiocontentcreation_sdk.feature.base_feature import MemesioContentCreationBaseFeature
+from memesiocontentcreation_sdk.feature.ratelimit_feature import MemesioContentCreationRatelimitFeature
+from memesiocontentcreation_sdk.feature.retry_feature import MemesioContentCreationRetryFeature
 from memesiocontentcreation_sdk.feature.test_feature import MemesioContentCreationTestFeature
+from memesiocontentcreation_sdk.feature.timeout_feature import MemesioContentCreationTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: MemesioContentCreationBaseFeature(),
+    "ratelimit": lambda: MemesioContentCreationRatelimitFeature(),
+    "retry": lambda: MemesioContentCreationRetryFeature(),
     "test": lambda: MemesioContentCreationTestFeature(),
+    "timeout": lambda: MemesioContentCreationTimeoutFeature(),
 }
 
 

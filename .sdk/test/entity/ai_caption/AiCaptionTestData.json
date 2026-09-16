@@ -4,7 +4,7 @@
       "AI_CAPTION00": {
         "blockedTerms": [],
         "canvasText": [],
-        "captionCount": "s11a",
+        "captionCount": 282,
         "captionSets": [],
         "entities": [],
         "fallbackUsed": false,
@@ -14,7 +14,7 @@
         "memeSlug": "s121",
         "name": "s122",
         "ok": false,
-        "optionCount": "s124",
+        "optionCount": 292,
         "ownerToken": "s125",
         "providerId": "s126",
         "referenceCaptions": [],
@@ -28,14 +28,14 @@
         "trendKeywords": [],
         "trendReferences": [],
         "trendSignals": [],
-        "variationOffset": "s132",
+        "variationOffset": 306,
         "voiceRules": [],
         "id": "AI_CAPTION00"
       },
       "AI_CAPTION01": {
         "blockedTerms": [],
         "canvasText": [],
-        "captionCount": "s232",
+        "captionCount": 562,
         "captionSets": [],
         "entities": [],
         "fallbackUsed": false,
@@ -45,7 +45,7 @@
         "memeSlug": "s239",
         "name": "s23a",
         "ok": false,
-        "optionCount": "s23c",
+        "optionCount": 572,
         "ownerToken": "s23d",
         "providerId": "s23e",
         "referenceCaptions": [],
@@ -59,14 +59,14 @@
         "trendKeywords": [],
         "trendReferences": [],
         "trendSignals": [],
-        "variationOffset": "s24a",
+        "variationOffset": 586,
         "voiceRules": [],
         "id": "AI_CAPTION01"
       },
       "AI_CAPTION02": {
         "blockedTerms": [],
         "canvasText": [],
-        "captionCount": "s34a",
+        "captionCount": 842,
         "captionSets": [],
         "entities": [],
         "fallbackUsed": false,
@@ -76,7 +76,7 @@
         "memeSlug": "s351",
         "name": "s352",
         "ok": false,
-        "optionCount": "s354",
+        "optionCount": 852,
         "ownerToken": "s355",
         "providerId": "s356",
         "referenceCaptions": [],
@@ -90,7 +90,7 @@
         "trendKeywords": [],
         "trendReferences": [],
         "trendSignals": [],
-        "variationOffset": "s362",
+        "variationOffset": 866,
         "voiceRules": [],
         "id": "AI_CAPTION02"
       }
@@ -101,7 +101,7 @@
       "ai_caption_ref01": {
         "blockedTerms": [],
         "canvasText": [],
-        "captionCount": "s462",
+        "captionCount": 1122,
         "captionSets": [],
         "entities": [],
         "fallbackUsed": false,
@@ -111,7 +111,7 @@
         "memeSlug": "s469",
         "name": "s46a",
         "ok": false,
-        "optionCount": "s46c",
+        "optionCount": 1132,
         "ownerToken": "s46d",
         "providerId": "s46e",
         "referenceCaptions": [],
@@ -125,8 +125,504 @@
         "trendKeywords": [],
         "trendReferences": [],
         "trendSignals": [],
-        "variationOffset": "s47a",
+        "variationOffset": 1146,
         "voiceRules": []
+      }
+    }
+  },
+  "requests": {
+    "POST /api/ai/captions/generate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "captionCount": {
+                    "maximum": 7,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "entities": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "memeId": {
+                    "type": "string"
+                  },
+                  "memeSlug": {
+                    "type": "string"
+                  },
+                  "optionCount": {
+                    "maximum": 5,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "ownerToken": {
+                    "type": "string"
+                  },
+                  "referenceCaptions": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 7,
+                    "type": "array"
+                  },
+                  "rewriteNote": {
+                    "type": "string"
+                  },
+                  "sceneSummary": {
+                    "type": "string"
+                  },
+                  "tone": {
+                    "type": "string"
+                  },
+                  "toneCues": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "trendKeywords": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "trendReferences": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "variationOffset": {
+                    "maximum": 99,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "tone"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "captionSets": {
+                      "items": {
+                        "properties": {
+                          "captions": {
+                            "items": {
+                              "properties": {
+                                "text": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "score": {
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "fallbackUsed": {
+                      "type": "boolean"
+                    },
+                    "generationStrategy": {
+                      "enum": [
+                        "openai",
+                        "heuristic"
+                      ],
+                      "type": "string"
+                    },
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "providerId": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Caption generation + ranking payload with reroll quota snapshot"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "429": {
+            "description": "Daily caption reroll quota exceeded"
+          }
+        },
+        "security": [
+          {
+            "AgentApiKeyAuth": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /api/ai/captions/moderate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Caption moderation payload"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/ai/captions/prompt": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Caption prompt payload"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/ai/captions/rank": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Caption ranking payload"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/ai/captions/rewrite": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Caption rewrite payload"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "AgentApiKeyAuth": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /api/ai/captions/scene": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "canvasText": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "templateDescription": {
+                    "type": "string"
+                  },
+                  "templateName": {
+                    "type": "string"
+                  },
+                  "templateTags": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "trendSignals": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "canvasText"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Scene understanding payload"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /api/ai/captions/tone-presets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "blockedTerms": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "locale": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "voiceRules": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Tone preset saved"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/ai/captions/tone-presets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "locale",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Tone preset list payload"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/ai/captions/generate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Current actor caption reroll quota snapshot"
+          }
+        },
+        "security": [
+          {
+            "AgentApiKeyAuth": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

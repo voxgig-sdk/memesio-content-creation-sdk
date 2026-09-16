@@ -4,7 +4,10 @@ declare(strict_types=1);
 // MemesioContentCreation SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class MemesioContentCreationFeatures
@@ -14,8 +17,14 @@ class MemesioContentCreationFeatures
         switch ($name) {
             case "base":
                 return new MemesioContentCreationBaseFeature();
+            case "ratelimit":
+                return new MemesioContentCreationRatelimitFeature();
+            case "retry":
+                return new MemesioContentCreationRetryFeature();
             case "test":
                 return new MemesioContentCreationTestFeature();
+            case "timeout":
+                return new MemesioContentCreationTimeoutFeature();
             default:
                 return new MemesioContentCreationBaseFeature();
         }
@@ -31,7 +40,10 @@ class MemesioContentCreationFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

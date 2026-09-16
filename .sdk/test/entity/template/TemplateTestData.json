@@ -5,8 +5,8 @@
         "animated": true,
         "assetBytes": "sf1",
         "assetContentType": "sf2",
-        "boxCount": "sf3",
-        "captionCount": "sf4",
+        "boxCount": 243,
+        "captionCount": 244,
         "captions": [],
         "categories": [],
         "description": "sf7",
@@ -31,8 +31,8 @@
         "animated": true,
         "assetBytes": "s1e1",
         "assetContentType": "s1e2",
-        "boxCount": "s1e3",
-        "captionCount": "s1e4",
+        "boxCount": 483,
+        "captionCount": 484,
         "captions": [],
         "categories": [],
         "description": "s1e7",
@@ -57,8 +57,8 @@
         "animated": true,
         "assetBytes": "s2d1",
         "assetContentType": "s2d2",
-        "boxCount": "s2d3",
-        "captionCount": "s2d4",
+        "boxCount": 723,
+        "captionCount": 724,
         "captions": [],
         "categories": [],
         "description": "s2d7",
@@ -87,8 +87,8 @@
         "animated": true,
         "assetBytes": "s3c1",
         "assetContentType": "s3c2",
-        "boxCount": "s3c3",
-        "captionCount": "s3c4",
+        "boxCount": 963,
+        "captionCount": 964,
         "captions": [],
         "categories": [],
         "description": "s3c7",
@@ -107,6 +107,426 @@
         "sourceUrl": "s3d5",
         "tags": [],
         "width": "s3d7"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/templates": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "maximum": 60,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "enum": [
+                "curated",
+                "trending"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "mode",
+            "schema": {
+              "enum": [
+                "lexical",
+                "hybrid"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "mediaType",
+            "schema": {
+              "default": "image",
+              "enum": [
+                "image",
+                "gif",
+                "all"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "fallbackApplied": {
+                      "type": "boolean"
+                    },
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "animated": {
+                            "type": "boolean"
+                          },
+                          "assetBytes": {
+                            "minimum": 0,
+                            "type": [
+                              "integer",
+                              "null"
+                            ]
+                          },
+                          "assetContentType": {
+                            "type": "string"
+                          },
+                          "boxCount": {
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          "captionCount": {
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          "captions": {
+                            "items": {
+                              "properties": {
+                                "backgroundColor": {
+                                  "type": "string"
+                                },
+                                "backgroundEnabled": {
+                                  "type": "boolean"
+                                },
+                                "backgroundOpacity": {
+                                  "type": "number"
+                                },
+                                "boxHeightPct": {
+                                  "type": "number"
+                                },
+                                "boxWidthPct": {
+                                  "type": "number"
+                                },
+                                "color": {
+                                  "type": "string"
+                                },
+                                "exampleText": {
+                                  "type": "string"
+                                },
+                                "fontFamily": {
+                                  "enum": [
+                                    "impact",
+                                    "arial",
+                                    "poster"
+                                  ],
+                                  "type": "string"
+                                },
+                                "fontSize": {
+                                  "type": "number"
+                                },
+                                "hidden": {
+                                  "type": "boolean"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "letterSpacingEm": {
+                                  "type": "number"
+                                },
+                                "lineHeight": {
+                                  "type": "number"
+                                },
+                                "locked": {
+                                  "type": "boolean"
+                                },
+                                "maxLines": {
+                                  "type": "integer"
+                                },
+                                "paddingPct": {
+                                  "type": "number"
+                                },
+                                "preferredCase": {
+                                  "enum": [
+                                    "uppercase",
+                                    "sentence",
+                                    "title",
+                                    "preserve"
+                                  ],
+                                  "type": "string"
+                                },
+                                "recommendedCharsMax": {
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "recommendedCharsMin": {
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "recommendedWordsMax": {
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "recommendedWordsMin": {
+                                  "minimum": 1,
+                                  "type": "integer"
+                                },
+                                "rotationDeg": {
+                                  "type": "number"
+                                },
+                                "semanticRole": {
+                                  "enum": [
+                                    "setup",
+                                    "contrast",
+                                    "punchline",
+                                    "reaction",
+                                    "label"
+                                  ],
+                                  "type": "string"
+                                },
+                                "shadowStrength": {
+                                  "type": "number"
+                                },
+                                "stroke": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                },
+                                "textAlign": {
+                                  "enum": [
+                                    "left",
+                                    "center",
+                                    "right"
+                                  ],
+                                  "type": "string"
+                                },
+                                "x": {
+                                  "type": "number"
+                                },
+                                "y": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "text",
+                                "x",
+                                "y",
+                                "fontSize"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "categories": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "durationMs": {
+                            "minimum": 0,
+                            "type": [
+                              "integer",
+                              "null"
+                            ]
+                          },
+                          "exampleImageUrl": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "frameCount": {
+                            "minimum": 0,
+                            "type": [
+                              "integer",
+                              "null"
+                            ]
+                          },
+                          "height": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "imageUrl": {
+                            "type": "string"
+                          },
+                          "mediaType": {
+                            "enum": [
+                              "image",
+                              "gif"
+                            ],
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "posterImageUrl": {
+                            "type": "string"
+                          },
+                          "previewImageUrl": {
+                            "type": "string"
+                          },
+                          "qualityStatus": {
+                            "enum": [
+                              "approved",
+                              "quarantined",
+                              "rejected",
+                              "pending"
+                            ],
+                            "type": "string"
+                          },
+                          "slug": {
+                            "type": "string"
+                          },
+                          "sourceTemplateId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "sourceUrl": {
+                            "type": "string"
+                          },
+                          "tags": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "width": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "sourceTemplateId",
+                          "slug",
+                          "name",
+                          "description",
+                          "mediaType",
+                          "imageUrl",
+                          "width",
+                          "height",
+                          "captions",
+                          "tags"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "mediaType": {
+                      "enum": [
+                        "image",
+                        "gif",
+                        "all"
+                      ],
+                      "type": "string"
+                    },
+                    "nextPage": {
+                      "minimum": 1,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "page": {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "pageSize": {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "searchMode": {
+                      "enum": [
+                        "lexical",
+                        "hybrid"
+                      ],
+                      "type": "string"
+                    },
+                    "total": {
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "total",
+                    "nextPage",
+                    "page",
+                    "pageSize"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Template search results"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

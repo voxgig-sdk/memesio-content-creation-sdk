@@ -3,71 +3,71 @@
     "generate": {
       "GENERATE00": {
         "base64": "sc8",
-        "byteLength": "sc9",
+        "byteLength": 201,
         "captions": [],
         "dataUrl": "scb",
-        "delayMs": "scc",
-        "durationMs": "scd",
+        "delayMs": 204,
+        "durationMs": 205,
         "filename": "sce",
-        "fps": "scf",
+        "fps": 207,
         "gifSlug": "sd0",
-        "height": "sd1",
+        "height": 209,
         "mimeType": "sd2",
-        "pages": "sd3",
+        "pages": 211,
         "parameters": {},
         "returnBase64": false,
-        "sourceDurationMs": "sd6",
-        "startMs": "sd7",
+        "sourceDurationMs": 214,
+        "startMs": 215,
         "tags": [],
         "title": "sd9",
-        "width": "sda",
-        "widthPx": "sdb",
+        "width": 218,
+        "widthPx": 219,
         "id": "GENERATE00"
       },
       "GENERATE01": {
         "base64": "s190",
-        "byteLength": "s191",
+        "byteLength": 401,
         "captions": [],
         "dataUrl": "s193",
-        "delayMs": "s194",
-        "durationMs": "s195",
+        "delayMs": 404,
+        "durationMs": 405,
         "filename": "s196",
-        "fps": "s197",
+        "fps": 407,
         "gifSlug": "s198",
-        "height": "s199",
+        "height": 409,
         "mimeType": "s19a",
-        "pages": "s19b",
+        "pages": 411,
         "parameters": {},
         "returnBase64": false,
-        "sourceDurationMs": "s19e",
-        "startMs": "s19f",
+        "sourceDurationMs": 414,
+        "startMs": 415,
         "tags": [],
         "title": "s1a1",
-        "width": "s1a2",
-        "widthPx": "s1a3",
+        "width": 418,
+        "widthPx": 419,
         "id": "GENERATE01"
       },
       "GENERATE02": {
         "base64": "s258",
-        "byteLength": "s259",
+        "byteLength": 601,
         "captions": [],
         "dataUrl": "s25b",
-        "delayMs": "s25c",
-        "durationMs": "s25d",
+        "delayMs": 604,
+        "durationMs": 605,
         "filename": "s25e",
-        "fps": "s25f",
+        "fps": 607,
         "gifSlug": "s260",
-        "height": "s261",
+        "height": 609,
         "mimeType": "s262",
-        "pages": "s263",
+        "pages": 611,
         "parameters": {},
         "returnBase64": false,
-        "sourceDurationMs": "s266",
-        "startMs": "s267",
+        "sourceDurationMs": 614,
+        "startMs": 615,
         "tags": [],
         "title": "s269",
-        "width": "s26a",
-        "widthPx": "s26b",
+        "width": 618,
+        "widthPx": 619,
         "id": "GENERATE02"
       }
     }
@@ -76,25 +76,382 @@
     "generate": {
       "generate_ref01": {
         "base64": "s320",
-        "byteLength": "s321",
+        "byteLength": 801,
         "captions": [],
         "dataUrl": "s323",
-        "delayMs": "s324",
-        "durationMs": "s325",
+        "delayMs": 804,
+        "durationMs": 805,
         "filename": "s326",
-        "fps": "s327",
+        "fps": 807,
         "gifSlug": "s328",
-        "height": "s329",
+        "height": 809,
         "mimeType": "s32a",
-        "pages": "s32b",
+        "pages": 811,
         "parameters": {},
         "returnBase64": false,
-        "sourceDurationMs": "s32e",
-        "startMs": "s32f",
+        "sourceDurationMs": 814,
+        "startMs": 815,
         "tags": [],
         "title": "s331",
-        "width": "s332",
-        "widthPx": "s333"
+        "width": 818,
+        "widthPx": 819
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/gifs/generate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "captions": {
+                    "items": {
+                      "properties": {
+                        "boxWidthPct": {
+                          "maximum": 100,
+                          "minimum": 20,
+                          "type": "number"
+                        },
+                        "color": {
+                          "type": "string"
+                        },
+                        "fontFamily": {
+                          "enum": [
+                            "impact",
+                            "arial",
+                            "poster"
+                          ],
+                          "type": "string"
+                        },
+                        "fontSize": {
+                          "maximum": 64,
+                          "minimum": 14,
+                          "type": "number"
+                        },
+                        "id": {
+                          "maxLength": 80,
+                          "type": "string"
+                        },
+                        "maxLines": {
+                          "maximum": 4,
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "stroke": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "maxLength": 120,
+                          "type": "string"
+                        },
+                        "textAlign": {
+                          "enum": [
+                            "left",
+                            "center",
+                            "right"
+                          ],
+                          "type": "string"
+                        },
+                        "x": {
+                          "maximum": 100,
+                          "minimum": 0,
+                          "type": "number"
+                        },
+                        "y": {
+                          "maximum": 100,
+                          "minimum": 0,
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "text"
+                      ],
+                      "type": "object"
+                    },
+                    "maxItems": 4,
+                    "type": "array"
+                  },
+                  "durationMs": {
+                    "maximum": 24000,
+                    "minimum": 100,
+                    "type": "integer"
+                  },
+                  "fps": {
+                    "maximum": 24,
+                    "minimum": 10,
+                    "type": "integer"
+                  },
+                  "gifSlug": {
+                    "description": "Required for /api/v1/gifs/generate.",
+                    "type": "string"
+                  },
+                  "returnBase64": {
+                    "description": "Only used by /api/v1/gifs/generate.",
+                    "type": "boolean"
+                  },
+                  "startMs": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "tags": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 8,
+                    "type": "array"
+                  },
+                  "title": {
+                    "maxLength": 120,
+                    "type": "string"
+                  },
+                  "widthPx": {
+                    "maximum": 480,
+                    "minimum": 100,
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "base64": {
+                          "type": "string"
+                        },
+                        "byteLength": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "dataUrl": {
+                          "type": "string"
+                        },
+                        "delayMs": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "filename": {
+                          "type": "string"
+                        },
+                        "gifSlug": {
+                          "type": "string"
+                        },
+                        "height": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "mimeType": {
+                          "const": "image/gif",
+                          "type": "string"
+                        },
+                        "pages": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "parameters": {
+                          "properties": {
+                            "captions": {
+                              "items": {
+                                "properties": {
+                                  "boxWidthPct": {
+                                    "maximum": 100,
+                                    "minimum": 20,
+                                    "type": "number"
+                                  },
+                                  "color": {
+                                    "type": "string"
+                                  },
+                                  "fontFamily": {
+                                    "enum": [
+                                      "impact",
+                                      "arial",
+                                      "poster"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "fontSize": {
+                                    "maximum": 64,
+                                    "minimum": 14,
+                                    "type": "number"
+                                  },
+                                  "id": {
+                                    "maxLength": 80,
+                                    "type": "string"
+                                  },
+                                  "maxLines": {
+                                    "maximum": 4,
+                                    "minimum": 1,
+                                    "type": "integer"
+                                  },
+                                  "stroke": {
+                                    "type": "string"
+                                  },
+                                  "text": {
+                                    "maxLength": 120,
+                                    "type": "string"
+                                  },
+                                  "textAlign": {
+                                    "enum": [
+                                      "left",
+                                      "center",
+                                      "right"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "x": {
+                                    "maximum": 100,
+                                    "minimum": 0,
+                                    "type": "number"
+                                  },
+                                  "y": {
+                                    "maximum": 100,
+                                    "minimum": 0,
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "text"
+                                ],
+                                "type": "object"
+                              },
+                              "maxItems": 4,
+                              "type": "array"
+                            },
+                            "durationMs": {
+                              "maximum": 24000,
+                              "minimum": 100,
+                              "type": "integer"
+                            },
+                            "fps": {
+                              "maximum": 24,
+                              "minimum": 10,
+                              "type": "integer"
+                            },
+                            "gifSlug": {
+                              "description": "Required for /api/v1/gifs/generate.",
+                              "type": "string"
+                            },
+                            "returnBase64": {
+                              "description": "Only used by /api/v1/gifs/generate.",
+                              "type": "boolean"
+                            },
+                            "startMs": {
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "tags": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "maxItems": 8,
+                              "type": "array"
+                            },
+                            "title": {
+                              "maxLength": 120,
+                              "type": "string"
+                            },
+                            "widthPx": {
+                              "maximum": 480,
+                              "minimum": 100,
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "sourceDurationMs": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "width": {
+                          "minimum": 1,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "gifSlug",
+                        "filename",
+                        "mimeType",
+                        "byteLength",
+                        "width",
+                        "height",
+                        "pages",
+                        "delayMs",
+                        "sourceDurationMs",
+                        "parameters"
+                      ],
+                      "type": "object"
+                    },
+                    "ok": {
+                      "const": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "ok",
+                    "data"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Generated GIF metadata"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "GIF template not found"
+          },
+          "413": {
+            "description": "Source or output GIF too large"
+          },
+          "422": {
+            "description": "Frame or pixel budget exceeded"
+          },
+          "429": {
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "DeveloperApiKeyAuth": []
+          },
+          {
+            "AgentApiKeyAuth": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "AgentApiKeyAuth": {
+            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-agent-api-key",
+            "type": "apiKey"
+          },
+          "DeveloperApiKeyAuth": {
+            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
+            "in": "header",
+            "name": "x-developer-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

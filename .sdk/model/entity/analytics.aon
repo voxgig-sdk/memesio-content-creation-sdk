@@ -21,6 +21,12 @@ main: kit: entity: analytics: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/analytics/experiments/templates"
+            json: "{\"parameters\":[{\"in\":\"query\",\"name\":\"templateId\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Pricing experiment templates payload\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/analytics/experiments/templates"
           segments: [
@@ -59,6 +65,12 @@ main: kit: entity: analytics: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/analytics/dashboards/backend-reliability"
+            json: "{\"parameters\":[{\"in\":\"query\",\"name\":\"windowHours\",\"schema\":{\"maximum\":168,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Backend reliability dashboard + metrics snapshot payload\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/analytics/dashboards/backend-reliability"
           segments: [
@@ -86,6 +98,12 @@ main: kit: entity: analytics: {
           }
         }
         {
+          contract: {
+            id: "GET /api/analytics/alerts/backend"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Backend alerting summary payload\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/analytics/alerts/backend"
           segments: [
@@ -108,6 +126,12 @@ main: kit: entity: analytics: {
           }
         }
         {
+          contract: {
+            id: "GET /api/analytics/anomalies/ai"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"AI anomaly detection summary\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/analytics/anomalies/ai"
           segments: [
@@ -130,6 +154,12 @@ main: kit: entity: analytics: {
           }
         }
         {
+          contract: {
+            id: "GET /api/analytics/dashboards/activation-retention"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Dashboard spec payload\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/analytics/dashboards/activation-retention"
           segments: [
@@ -152,6 +182,12 @@ main: kit: entity: analytics: {
           }
         }
         {
+          contract: {
+            id: "GET /api/analytics/dashboards/feature-adoption"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Dashboard spec payload\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/analytics/dashboards/feature-adoption"
           segments: [
@@ -174,6 +210,12 @@ main: kit: entity: analytics: {
           }
         }
         {
+          contract: {
+            id: "GET /api/analytics/metric-dictionary"
+            json: "{\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Metric dictionary payload\"}},\"securitySchemes\":{\"AgentApiKeyAuth\":{\"description\":\"Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-agent-api-key\",\"type\":\"apiKey\"},\"DeveloperApiKeyAuth\":{\"description\":\"Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.\",\"in\":\"header\",\"name\":\"x-developer-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/analytics/metric-dictionary"
           segments: [
