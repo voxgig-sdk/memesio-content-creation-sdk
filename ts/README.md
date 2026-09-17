@@ -75,8 +75,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const trendalert = await client.TrendAlert().load()
-  console.log(trendalert)
+  const agentinfra = await client.AgentInfra().load()
+  console.log(agentinfra)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -142,10 +142,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MemesioContentCreationSDK.test()
 
-const trendalert = await client.TrendAlert().load()
-// trendalert is the entity, populated with mock response data
-// — call trendalert.data() for the record itself
-console.log(trendalert)
+const agentinfra = await client.AgentInfra().load()
+// agentinfra is the entity, populated with mock response data
+// — call agentinfra.data() for the record itself
+console.log(agentinfra)
 ```
 
 You can also use the instance method:
@@ -160,14 +160,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.TrendAlert()
+const entity = client.AgentInfra()
 
 // First call runs the operation and stores its result
 await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -379,7 +379,6 @@ API path: `/api/v1/agents`
 | `prompt` |  |
 | `proof` |  |
 | `quotaBoostPerDay` |  |
-| `scopes` |  |
 | `userId` |  |
 | `weekStart` |  |
 
@@ -440,7 +439,6 @@ API path: `/api/ai/captions/generate`
 | `createdAt` |  |
 | `detectedFaceCount` |  |
 | `edgeRefinement` |  |
-| `estimatedCostUsd` |  |
 | `frameTimeMs` |  |
 | `height` |  |
 | `id` |  |
@@ -452,10 +450,7 @@ API path: `/api/ai/captions/generate`
 | `mediaType` |  |
 | `metadata` |  |
 | `nsfwScore` |  |
-| `output` |  |
 | `projectId` |  |
-| `providerId` |  |
-| `reason` |  |
 | `runAfterMs` |  |
 | `sourceAssetUrl` |  |
 | `sourceFaceIndex` |  |
@@ -468,7 +463,6 @@ API path: `/api/ai/captions/generate`
 | `updatedAt` |  |
 | `versionId` |  |
 | `width` |  |
-| `workerId` |  |
 | `workspaceId` |  |
 
 Operations: create, load.
@@ -537,9 +531,6 @@ API path: `/api/analytics/experiments/templates`
 
 | Field | Description |
 | --- | --- |
-| `displayName` |  |
-| `email` |  |
-| `password` |  |
 
 Operations: create.
 
@@ -685,22 +676,11 @@ API path: `/api/v1/gifs/generate`
 
 | Field | Description |
 | --- | --- |
-| `accountId` |  |
 | `action` |  |
 | `actorId` |  |
-| `caption` |  |
-| `code` |  |
-| `externalAccountId` |  |
-| `handle` |  |
 | `limit` |  |
 | `logExposure` |  |
-| `memeSlug` |  |
-| `now` |  |
-| `platform` |  |
-| `profiles` |  |
-| `shareSlug` |  |
 | `surface` |  |
-| `weekStart` |  |
 
 Operations: create, load.
 
@@ -732,12 +712,6 @@ API path: `/api/memes`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `contentType` |  |
-| `expiresInSeconds` |  |
-| `ownerToken` |  |
-| `path` |  |
-| `prefix` |  |
 
 Operations: create.
 
@@ -785,9 +759,7 @@ API path: `/api/memes/{slug}`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
-| `fps` |  |
 | `frameCount` |  |
-| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -796,15 +768,11 @@ API path: `/api/memes/{slug}`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
-| `startMs` |  |
 | `tags` |  |
-| `title` |  |
 | `width` |  |
-| `widthPx` |  |
 
 Operations: create, load.
 
@@ -931,51 +899,6 @@ API path: `/api/v1/memes/caption-upload`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `assetId` |  |
-| `atMs` |  |
-| `audioAssetId` |  |
-| `beatOffsetMs` |  |
-| `bitrateKbps` |  |
-| `bpm` |  |
-| `cancelled` |  |
-| `container` |  |
-| `durationMs` |  |
-| `durationSeconds` |  |
-| `easing` |  |
-| `error` |  |
-| `frameRate` |  |
-| `inputFormat` |  |
-| `intensity` |  |
-| `jobId` |  |
-| `locale` |  |
-| `mimeType` |  |
-| `name` |  |
-| `offsetMs` |  |
-| `outputPresetId` |  |
-| `outputUrl` |  |
-| `planTier` |  |
-| `presetId` |  |
-| `progressPercent` |  |
-| `project` |  |
-| `projectId` |  |
-| `property` |  |
-| `sourceDeviceId` |  |
-| `sourceUrl` |  |
-| `stage` |  |
-| `startMs` |  |
-| `stylePresetId` |  |
-| `syncToBeatGrid` |  |
-| `tone` |  |
-| `trackId` |  |
-| `transcript` |  |
-| `trendKeywords` |  |
-| `type` |  |
-| `updatedAt` |  |
-| `value` |  |
-| `watermarkEnabled` |  |
-| `watermarkText` |  |
-| `workerId` |  |
 
 Operations: create, load.
 
@@ -1055,7 +978,6 @@ Create an instance: `const agent_infra = client.AgentInfra()`
 | `prompt` | `string` |  |
 | `proof` | `Record<string, any>` |  |
 | `quotaBoostPerDay` | `number` |  |
-| `scopes` | `any[]` |  |
 | `userId` | `string` |  |
 | `weekStart` | `string` |  |
 
@@ -1166,7 +1088,6 @@ Create an instance: `const ai_job = client.AiJob()`
 | `createdAt` | `string` |  |
 | `detectedFaceCount` | `number` |  |
 | `edgeRefinement` | `number` |  |
-| `estimatedCostUsd` | `number` |  |
 | `frameTimeMs` | `number` |  |
 | `height` | `number` |  |
 | `id` | `string` |  |
@@ -1178,10 +1099,7 @@ Create an instance: `const ai_job = client.AiJob()`
 | `mediaType` | `string` |  |
 | `metadata` | `Record<string, any>` |  |
 | `nsfwScore` | `number` |  |
-| `output` | `Record<string, any>` |  |
 | `projectId` | `string` |  |
-| `providerId` | `string` |  |
-| `reason` | `string` |  |
 | `runAfterMs` | `number` |  |
 | `sourceAssetUrl` | `string` |  |
 | `sourceFaceIndex` | `number` |  |
@@ -1194,7 +1112,6 @@ Create an instance: `const ai_job = client.AiJob()`
 | `updatedAt` | `string` |  |
 | `versionId` | `string` |  |
 | `width` | `number` |  |
-| `workerId` | `string` |  |
 | `workspaceId` | `string` |  |
 
 #### Example: Load
@@ -1219,7 +1136,6 @@ const ai_job = await client.AiJob().create({
   status: 'example_status',
   targetAssetUrl: 'example_targetAssetUrl',
   width: 1,
-  workerId: 'example_workerId',
 })
 ```
 
@@ -1344,20 +1260,10 @@ Create an instance: `const auth = client.Auth()`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `displayName` | `string` |  |
-| `email` | `string` |  |
-| `password` | `string` |  |
-
 #### Example: Create
 
 ```ts
 const auth = await client.Auth().create({
-  email: 'example_email',
-  password: 'example_password',
 })
 ```
 
@@ -1646,22 +1552,11 @@ Create an instance: `const growth = client.Growth()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accountId` | `string` |  |
 | `action` | `string` |  |
 | `actorId` | `string` |  |
-| `caption` | `string` |  |
-| `code` | `string` |  |
-| `externalAccountId` | `string` |  |
-| `handle` | `string` |  |
 | `limit` | `number` |  |
 | `logExposure` | `boolean` |  |
-| `memeSlug` | `string` |  |
-| `now` | `string` |  |
-| `platform` | `string` |  |
-| `profiles` | `any[]` |  |
-| `shareSlug` | `string` |  |
 | `surface` | `string` |  |
-| `weekStart` | `string` |  |
 
 #### Example: Load
 
@@ -1723,22 +1618,10 @@ Create an instance: `const media = client.Media()`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `string` |  |
-| `contentType` | `string` |  |
-| `expiresInSeconds` | `number` |  |
-| `ownerToken` | `string` |  |
-| `path` | `string` |  |
-| `prefix` | `string` |  |
-
 #### Example: Create
 
 ```ts
 const media = await client.Media().create({
-  action: 'example_action',
 })
 ```
 
@@ -1810,9 +1693,7 @@ Create an instance: `const public_template_media_item = client.PublicTemplateMed
 | `description` | `string` |  |
 | `durationMs` | `number | null` |  |
 | `exampleImageUrl` | `string | null` |  |
-| `fps` | `number` |  |
 | `frameCount` | `number | null` |  |
-| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number | null` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1821,15 +1702,11 @@ Create an instance: `const public_template_media_item = client.PublicTemplateMed
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `string | null` |  |
 | `sourceUrl` | `string` |  |
-| `startMs` | `number` |  |
 | `tags` | `any[]` |  |
-| `title` | `string` |  |
 | `width` | `number | null` |  |
-| `widthPx` | `number` |  |
 
 #### Example: Load
 
@@ -2060,56 +1937,6 @@ Create an instance: `const video = client.Video()`
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `string` |  |
-| `assetId` | `string` |  |
-| `atMs` | `number` |  |
-| `audioAssetId` | `string` |  |
-| `beatOffsetMs` | `number` |  |
-| `bitrateKbps` | `number` |  |
-| `bpm` | `number` |  |
-| `cancelled` | `boolean` |  |
-| `container` | `string` |  |
-| `durationMs` | `number` |  |
-| `durationSeconds` | `number` |  |
-| `easing` | `string` |  |
-| `error` | `string` |  |
-| `frameRate` | `number` |  |
-| `inputFormat` | `string` |  |
-| `intensity` | `number` |  |
-| `jobId` | `string` |  |
-| `locale` | `string` |  |
-| `mimeType` | `string` |  |
-| `name` | `string` |  |
-| `offsetMs` | `number` |  |
-| `outputPresetId` | `string` |  |
-| `outputUrl` | `string` |  |
-| `planTier` | `string` |  |
-| `presetId` | `string` |  |
-| `progressPercent` | `number` |  |
-| `project` | `Record<string, any>` |  |
-| `projectId` | `string` |  |
-| `property` | `string` |  |
-| `sourceDeviceId` | `string` |  |
-| `sourceUrl` | `string` |  |
-| `stage` | `string` |  |
-| `startMs` | `number` |  |
-| `stylePresetId` | `string` |  |
-| `syncToBeatGrid` | `boolean` |  |
-| `tone` | `string` |  |
-| `trackId` | `string` |  |
-| `transcript` | `string` |  |
-| `trendKeywords` | `any[]` |  |
-| `type` | `string` |  |
-| `updatedAt` | `string` |  |
-| `value` | `number` |  |
-| `watermarkEnabled` | `boolean` |  |
-| `watermarkText` | `string` |  |
-| `workerId` | `string` |  |
-
 #### Example: Load
 
 ```ts
@@ -2120,12 +1947,6 @@ const video = await client.Video().load()
 
 ```ts
 const video = await client.Video().create({
-  durationSeconds: 1,
-  inputFormat: 'example_inputFormat',
-  mimeType: 'example_mimeType',
-  outputPresetId: 'example_outputPresetId',
-  planTier: 'example_planTier',
-  presetId: 'example_presetId',
 })
 ```
 
@@ -2283,11 +2104,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const trendalert = client.TrendAlert()
-await trendalert.load()
+const agentinfra = client.AgentInfra()
+await agentinfra.load()
 
-// trendalert.data() now returns the trendalert data from the last `load`
-// trendalert.match() returns the last match criteria
+// agentinfra.data() now returns the agentinfra data from the last `load`
+// agentinfra.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

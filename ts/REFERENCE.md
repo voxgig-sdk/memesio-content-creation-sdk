@@ -535,7 +535,6 @@ const agent_infra = client.AgentInfra()
 | `prompt` | `string` | Yes |  |
 | `proof` | `Record<string, any>` | No |  |
 | `quotaBoostPerDay` | `number` | No |  |
-| `scopes` | `any[]` | No |  |
 | `userId` | `string` | No |  |
 | `weekStart` | `string` | No |  |
 
@@ -731,7 +730,6 @@ const ai_job = client.AiJob()
 | `createdAt` | `string` | No |  |
 | `detectedFaceCount` | `number` | Yes |  |
 | `edgeRefinement` | `number` | No |  |
-| `estimatedCostUsd` | `number` | No |  |
 | `frameTimeMs` | `number` | No |  |
 | `height` | `number` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -743,10 +741,7 @@ const ai_job = client.AiJob()
 | `mediaType` | `string` | No |  |
 | `metadata` | `Record<string, any>` | No |  |
 | `nsfwScore` | `number` | No |  |
-| `output` | `Record<string, any>` | No |  |
 | `projectId` | `string` | Yes |  |
-| `providerId` | `string` | No |  |
-| `reason` | `string` | No |  |
 | `runAfterMs` | `number` | No |  |
 | `sourceAssetUrl` | `string` | Yes |  |
 | `sourceFaceIndex` | `number` | No |  |
@@ -759,7 +754,6 @@ const ai_job = client.AiJob()
 | `updatedAt` | `string` | No |  |
 | `versionId` | `string` | No |  |
 | `width` | `number` | Yes |  |
-| `workerId` | `string` | Yes |  |
 | `workspaceId` | `string` | No |  |
 
 ### Field Usage by Operation
@@ -778,7 +772,6 @@ const ai_job = client.AiJob()
 | `createdAt` | - | - |
 | `detectedFaceCount` | - | - |
 | `edgeRefinement` | - | - |
-| `estimatedCostUsd` | - | - |
 | `frameTimeMs` | - | - |
 | `height` | - | - |
 | `id` | - | - |
@@ -790,10 +783,7 @@ const ai_job = client.AiJob()
 | `mediaType` | - | Yes |
 | `metadata` | - | - |
 | `nsfwScore` | - | - |
-| `output` | - | - |
 | `projectId` | - | - |
-| `providerId` | - | - |
-| `reason` | - | - |
 | `runAfterMs` | - | - |
 | `sourceAssetUrl` | - | - |
 | `sourceFaceIndex` | - | - |
@@ -806,7 +796,6 @@ const ai_job = client.AiJob()
 | `updatedAt` | - | - |
 | `versionId` | - | - |
 | `width` | - | - |
-| `workerId` | - | - |
 | `workspaceId` | - | - |
 
 ### Actions
@@ -850,7 +839,6 @@ const result = await client.AiJob().create({
   status: 'example_status',
   targetAssetUrl: 'example_targetAssetUrl',
   width: 1,
-  workerId: 'example_workerId',
 })
 ```
 
@@ -1134,14 +1122,6 @@ Return a copy of the entity options.
 const auth = client.Auth()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `displayName` | `string` | No |  |
-| `email` | `string` | Yes |  |
-| `password` | `string` | Yes |  |
-
 ### Actions
 
 This entity exposes custom API actions in addition to the standard
@@ -1171,8 +1151,6 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Auth().create({
-  email: 'example_email',
-  password: 'example_password',
 })
 ```
 
@@ -1766,43 +1744,11 @@ const growth = client.Growth()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountId` | `string` | No |  |
 | `action` | `string` | Yes |  |
 | `actorId` | `string` | No |  |
-| `caption` | `string` | No |  |
-| `code` | `string` | No |  |
-| `externalAccountId` | `string` | No |  |
-| `handle` | `string` | No |  |
 | `limit` | `number` | No |  |
 | `logExposure` | `boolean` | No |  |
-| `memeSlug` | `string` | No |  |
-| `now` | `string` | No |  |
-| `platform` | `string` | No |  |
-| `profiles` | `any[]` | No |  |
-| `shareSlug` | `string` | No |  |
 | `surface` | `string` | No |  |
-| `weekStart` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `accountId` | - | - |
-| `action` | - | - |
-| `actorId` | - | Yes |
-| `caption` | - | - |
-| `code` | - | - |
-| `externalAccountId` | - | - |
-| `handle` | - | - |
-| `limit` | - | - |
-| `logExposure` | - | - |
-| `memeSlug` | - | - |
-| `now` | - | - |
-| `platform` | - | - |
-| `profiles` | - | - |
-| `shareSlug` | - | - |
-| `surface` | - | - |
-| `weekStart` | - | - |
 
 ### Actions
 
@@ -1948,17 +1894,6 @@ Return a copy of the entity options.
 const media = client.Media()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `action` | `string` | Yes |  |
-| `contentType` | `string` | No |  |
-| `expiresInSeconds` | `number` | No |  |
-| `ownerToken` | `string` | No |  |
-| `path` | `string` | No |  |
-| `prefix` | `string` | No |  |
-
 ### Actions
 
 This entity exposes custom API actions in addition to the standard
@@ -1987,7 +1922,6 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Media().create({
-  action: 'example_action',
 })
 ```
 
@@ -2115,9 +2049,7 @@ const public_template_media_item = client.PublicTemplateMediaItem()
 | `description` | `string` | Yes |  |
 | `durationMs` | `number | null` | No |  |
 | `exampleImageUrl` | `string | null` | No |  |
-| `fps` | `number` | No |  |
 | `frameCount` | `number | null` | No |  |
-| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `number | null` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -2126,50 +2058,11 @@ const public_template_media_item = client.PublicTemplateMediaItem()
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `string | null` | Yes |  |
 | `sourceUrl` | `string` | No |  |
-| `startMs` | `number` | No |  |
 | `tags` | `any[]` | Yes |  |
-| `title` | `string` | No |  |
 | `width` | `number | null` | Yes |  |
-| `widthPx` | `number` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | - | Yes |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | - | Yes |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Actions
 
@@ -2584,106 +2477,6 @@ Return a copy of the entity options.
 const video = client.Video()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `action` | `string` | No |  |
-| `assetId` | `string` | No |  |
-| `atMs` | `number` | No |  |
-| `audioAssetId` | `string` | No |  |
-| `beatOffsetMs` | `number` | No |  |
-| `bitrateKbps` | `number` | No |  |
-| `bpm` | `number` | No |  |
-| `cancelled` | `boolean` | No |  |
-| `container` | `string` | No |  |
-| `durationMs` | `number` | No |  |
-| `durationSeconds` | `number` | Yes |  |
-| `easing` | `string` | No |  |
-| `error` | `string` | No |  |
-| `frameRate` | `number` | No |  |
-| `inputFormat` | `string` | Yes |  |
-| `intensity` | `number` | No |  |
-| `jobId` | `string` | No |  |
-| `locale` | `string` | No |  |
-| `mimeType` | `string` | Yes |  |
-| `name` | `string` | No |  |
-| `offsetMs` | `number` | No |  |
-| `outputPresetId` | `string` | Yes |  |
-| `outputUrl` | `string` | No |  |
-| `planTier` | `string` | Yes |  |
-| `presetId` | `string` | Yes |  |
-| `progressPercent` | `number` | No |  |
-| `project` | `Record<string, any>` | No |  |
-| `projectId` | `string` | No |  |
-| `property` | `string` | No |  |
-| `sourceDeviceId` | `string` | No |  |
-| `sourceUrl` | `string` | No |  |
-| `stage` | `string` | No |  |
-| `startMs` | `number` | No |  |
-| `stylePresetId` | `string` | No |  |
-| `syncToBeatGrid` | `boolean` | No |  |
-| `tone` | `string` | No |  |
-| `trackId` | `string` | No |  |
-| `transcript` | `string` | No |  |
-| `trendKeywords` | `any[]` | No |  |
-| `type` | `string` | No |  |
-| `updatedAt` | `string` | No |  |
-| `value` | `number` | No |  |
-| `watermarkEnabled` | `boolean` | No |  |
-| `watermarkText` | `string` | No |  |
-| `workerId` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `action` | - | Yes |
-| `assetId` | - | - |
-| `atMs` | - | - |
-| `audioAssetId` | - | - |
-| `beatOffsetMs` | - | - |
-| `bitrateKbps` | - | - |
-| `bpm` | - | - |
-| `cancelled` | - | - |
-| `container` | - | - |
-| `durationMs` | - | - |
-| `durationSeconds` | - | Yes |
-| `easing` | - | - |
-| `error` | - | - |
-| `frameRate` | - | - |
-| `inputFormat` | - | - |
-| `intensity` | - | - |
-| `jobId` | - | - |
-| `locale` | - | - |
-| `mimeType` | - | - |
-| `name` | - | - |
-| `offsetMs` | - | - |
-| `outputPresetId` | - | Yes |
-| `outputUrl` | - | - |
-| `planTier` | - | Yes |
-| `presetId` | - | - |
-| `progressPercent` | - | - |
-| `project` | - | - |
-| `projectId` | - | - |
-| `property` | - | - |
-| `sourceDeviceId` | - | - |
-| `sourceUrl` | - | - |
-| `stage` | - | - |
-| `startMs` | - | - |
-| `stylePresetId` | - | - |
-| `syncToBeatGrid` | - | - |
-| `tone` | - | - |
-| `trackId` | - | - |
-| `transcript` | - | - |
-| `trendKeywords` | - | - |
-| `type` | - | - |
-| `updatedAt` | - | - |
-| `value` | - | - |
-| `watermarkEnabled` | - | - |
-| `watermarkText` | - | - |
-| `workerId` | - | - |
-
 ### Actions
 
 This entity exposes custom API actions in addition to the standard
@@ -2727,12 +2520,6 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Video().create({
-  durationSeconds: 1,
-  inputFormat: 'example_inputFormat',
-  mimeType: 'example_mimeType',
-  outputPresetId: 'example_outputPresetId',
-  planTier: 'example_planTier',
-  presetId: 'example_presetId',
 })
 ```
 

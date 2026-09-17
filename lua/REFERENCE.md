@@ -303,7 +303,6 @@ local agent_infra = client:AgentInfra(nil)
 | `prompt` | `string` | Yes |  |
 | `proof` | `table` | No |  |
 | `quotaBoostPerDay` | `number` | No |  |
-| `scopes` | `table` | No |  |
 | `userId` | `string` | No |  |
 | `weekStart` | `string` | No |  |
 
@@ -482,7 +481,6 @@ local ai_job = client:AiJob(nil)
 | `createdAt` | `string` | No |  |
 | `detectedFaceCount` | `number` | Yes |  |
 | `edgeRefinement` | `number` | No |  |
-| `estimatedCostUsd` | `number` | No |  |
 | `frameTimeMs` | `number` | No |  |
 | `height` | `number` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -494,10 +492,7 @@ local ai_job = client:AiJob(nil)
 | `mediaType` | `string` | No |  |
 | `metadata` | `table` | No |  |
 | `nsfwScore` | `number` | No |  |
-| `output` | `table` | No |  |
 | `projectId` | `string` | Yes |  |
-| `providerId` | `string` | No |  |
-| `reason` | `string` | No |  |
 | `runAfterMs` | `number` | No |  |
 | `sourceAssetUrl` | `string` | Yes |  |
 | `sourceFaceIndex` | `number` | No |  |
@@ -510,7 +505,6 @@ local ai_job = client:AiJob(nil)
 | `updatedAt` | `string` | No |  |
 | `versionId` | `string` | No |  |
 | `width` | `number` | Yes |  |
-| `workerId` | `string` | Yes |  |
 | `workspaceId` | `string` | No |  |
 
 ### Field Usage by Operation
@@ -529,7 +523,6 @@ local ai_job = client:AiJob(nil)
 | `createdAt` | - | - |
 | `detectedFaceCount` | - | - |
 | `edgeRefinement` | - | - |
-| `estimatedCostUsd` | - | - |
 | `frameTimeMs` | - | - |
 | `height` | - | - |
 | `id` | - | - |
@@ -541,10 +534,7 @@ local ai_job = client:AiJob(nil)
 | `mediaType` | - | Yes |
 | `metadata` | - | - |
 | `nsfwScore` | - | - |
-| `output` | - | - |
 | `projectId` | - | - |
-| `providerId` | - | - |
-| `reason` | - | - |
 | `runAfterMs` | - | - |
 | `sourceAssetUrl` | - | - |
 | `sourceFaceIndex` | - | - |
@@ -557,7 +547,6 @@ local ai_job = client:AiJob(nil)
 | `updatedAt` | - | - |
 | `versionId` | - | - |
 | `width` | - | - |
-| `workerId` | - | - |
 | `workspaceId` | - | - |
 
 ### Operations
@@ -580,7 +569,6 @@ local result, err = client:AiJob():create({
   status = --[[ string ]],
   targetAssetUrl = --[[ string ]],
   width = --[[ number ]],
-  workerId = --[[ string ]],
 })
 ```
 
@@ -852,14 +840,6 @@ Return the entity name.
 local auth = client:Auth(nil)
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `displayName` | `string` | No |  |
-| `email` | `string` | Yes |  |
-| `password` | `string` | Yes |  |
-
 ### Operations
 
 #### `create(reqdata, ctrl) -> any, err`
@@ -868,8 +848,6 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Auth():create({
-  email = --[[ string ]],
-  password = --[[ string ]],
 })
 ```
 
@@ -1441,43 +1419,11 @@ local growth = client:Growth(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountId` | `string` | No |  |
 | `action` | `string` | Yes |  |
 | `actorId` | `string` | No |  |
-| `caption` | `string` | No |  |
-| `code` | `string` | No |  |
-| `externalAccountId` | `string` | No |  |
-| `handle` | `string` | No |  |
 | `limit` | `number` | No |  |
 | `logExposure` | `boolean` | No |  |
-| `memeSlug` | `string` | No |  |
-| `now` | `string` | No |  |
-| `platform` | `string` | No |  |
-| `profiles` | `table` | No |  |
-| `shareSlug` | `string` | No |  |
 | `surface` | `string` | No |  |
-| `weekStart` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `accountId` | - | - |
-| `action` | - | - |
-| `actorId` | - | Yes |
-| `caption` | - | - |
-| `code` | - | - |
-| `externalAccountId` | - | - |
-| `handle` | - | - |
-| `limit` | - | - |
-| `logExposure` | - | - |
-| `memeSlug` | - | - |
-| `now` | - | - |
-| `platform` | - | - |
-| `profiles` | - | - |
-| `shareSlug` | - | - |
-| `surface` | - | - |
-| `weekStart` | - | - |
 
 ### Operations
 
@@ -1599,17 +1545,6 @@ Return the entity name.
 local media = client:Media(nil)
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `action` | `string` | Yes |  |
-| `contentType` | `string` | No |  |
-| `expiresInSeconds` | `number` | No |  |
-| `ownerToken` | `string` | No |  |
-| `path` | `string` | No |  |
-| `prefix` | `string` | No |  |
-
 ### Operations
 
 #### `create(reqdata, ctrl) -> any, err`
@@ -1618,7 +1553,6 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Media():create({
-  action = --[[ string ]],
 })
 ```
 
@@ -1750,9 +1684,7 @@ local public_template_media_item = client:PublicTemplateMediaItem(nil)
 | `description` | `string` | Yes |  |
 | `durationMs` | `number|nil` | No |  |
 | `exampleImageUrl` | `string|nil` | No |  |
-| `fps` | `number` | No |  |
 | `frameCount` | `number|nil` | No |  |
-| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `number|nil` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1761,50 +1693,11 @@ local public_template_media_item = client:PublicTemplateMediaItem(nil)
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `string|nil` | Yes |  |
 | `sourceUrl` | `string` | No |  |
-| `startMs` | `number` | No |  |
 | `tags` | `table` | Yes |  |
-| `title` | `string` | No |  |
 | `width` | `number|nil` | Yes |  |
-| `widthPx` | `number` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | - | Yes |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | - | Yes |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Operations
 
@@ -2211,106 +2104,6 @@ Return the entity name.
 local video = client:Video(nil)
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `action` | `string` | No |  |
-| `assetId` | `string` | No |  |
-| `atMs` | `number` | No |  |
-| `audioAssetId` | `string` | No |  |
-| `beatOffsetMs` | `number` | No |  |
-| `bitrateKbps` | `number` | No |  |
-| `bpm` | `number` | No |  |
-| `cancelled` | `boolean` | No |  |
-| `container` | `string` | No |  |
-| `durationMs` | `number` | No |  |
-| `durationSeconds` | `number` | Yes |  |
-| `easing` | `string` | No |  |
-| `error` | `string` | No |  |
-| `frameRate` | `number` | No |  |
-| `inputFormat` | `string` | Yes |  |
-| `intensity` | `number` | No |  |
-| `jobId` | `string` | No |  |
-| `locale` | `string` | No |  |
-| `mimeType` | `string` | Yes |  |
-| `name` | `string` | No |  |
-| `offsetMs` | `number` | No |  |
-| `outputPresetId` | `string` | Yes |  |
-| `outputUrl` | `string` | No |  |
-| `planTier` | `string` | Yes |  |
-| `presetId` | `string` | Yes |  |
-| `progressPercent` | `number` | No |  |
-| `project` | `table` | No |  |
-| `projectId` | `string` | No |  |
-| `property` | `string` | No |  |
-| `sourceDeviceId` | `string` | No |  |
-| `sourceUrl` | `string` | No |  |
-| `stage` | `string` | No |  |
-| `startMs` | `number` | No |  |
-| `stylePresetId` | `string` | No |  |
-| `syncToBeatGrid` | `boolean` | No |  |
-| `tone` | `string` | No |  |
-| `trackId` | `string` | No |  |
-| `transcript` | `string` | No |  |
-| `trendKeywords` | `table` | No |  |
-| `type` | `string` | No |  |
-| `updatedAt` | `string` | No |  |
-| `value` | `number` | No |  |
-| `watermarkEnabled` | `boolean` | No |  |
-| `watermarkText` | `string` | No |  |
-| `workerId` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `action` | - | Yes |
-| `assetId` | - | - |
-| `atMs` | - | - |
-| `audioAssetId` | - | - |
-| `beatOffsetMs` | - | - |
-| `bitrateKbps` | - | - |
-| `bpm` | - | - |
-| `cancelled` | - | - |
-| `container` | - | - |
-| `durationMs` | - | - |
-| `durationSeconds` | - | Yes |
-| `easing` | - | - |
-| `error` | - | - |
-| `frameRate` | - | - |
-| `inputFormat` | - | - |
-| `intensity` | - | - |
-| `jobId` | - | - |
-| `locale` | - | - |
-| `mimeType` | - | - |
-| `name` | - | - |
-| `offsetMs` | - | - |
-| `outputPresetId` | - | Yes |
-| `outputUrl` | - | - |
-| `planTier` | - | Yes |
-| `presetId` | - | - |
-| `progressPercent` | - | - |
-| `project` | - | - |
-| `projectId` | - | - |
-| `property` | - | - |
-| `sourceDeviceId` | - | - |
-| `sourceUrl` | - | - |
-| `stage` | - | - |
-| `startMs` | - | - |
-| `stylePresetId` | - | - |
-| `syncToBeatGrid` | - | - |
-| `tone` | - | - |
-| `trackId` | - | - |
-| `transcript` | - | - |
-| `trendKeywords` | - | - |
-| `type` | - | - |
-| `updatedAt` | - | - |
-| `value` | - | - |
-| `watermarkEnabled` | - | - |
-| `watermarkText` | - | - |
-| `workerId` | - | - |
-
 ### Operations
 
 #### `create(reqdata, ctrl) -> any, err`
@@ -2319,12 +2112,6 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Video():create({
-  durationSeconds = --[[ number ]],
-  inputFormat = --[[ string ]],
-  mimeType = --[[ string ]],
-  outputPresetId = --[[ string ]],
-  planTier = --[[ string ]],
-  presetId = --[[ string ]],
 })
 ```
 

@@ -83,12 +83,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-trendalert, err := client.TrendAlert(nil).Load(nil, nil)
+agentinfra, err := client.AgentInfra(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = trendalert
+_ = agentinfra
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -152,13 +152,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-trendAlert, err := client.TrendAlert(nil).Load(
+agentInfra, err := client.AgentInfra(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(trendAlert) // the returned mock data
+fmt.Println(agentInfra) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -338,7 +338,6 @@ API path: `/api/v1/agents`
 | `"prompt"` |  |
 | `"proof"` |  |
 | `"quotaBoostPerDay"` |  |
-| `"scopes"` |  |
 | `"userId"` |  |
 | `"weekStart"` |  |
 
@@ -399,7 +398,6 @@ API path: `/api/ai/captions/generate`
 | `"createdAt"` |  |
 | `"detectedFaceCount"` |  |
 | `"edgeRefinement"` |  |
-| `"estimatedCostUsd"` |  |
 | `"frameTimeMs"` |  |
 | `"height"` |  |
 | `"id"` |  |
@@ -411,10 +409,7 @@ API path: `/api/ai/captions/generate`
 | `"mediaType"` |  |
 | `"metadata"` |  |
 | `"nsfwScore"` |  |
-| `"output"` |  |
 | `"projectId"` |  |
-| `"providerId"` |  |
-| `"reason"` |  |
 | `"runAfterMs"` |  |
 | `"sourceAssetUrl"` |  |
 | `"sourceFaceIndex"` |  |
@@ -427,7 +422,6 @@ API path: `/api/ai/captions/generate`
 | `"updatedAt"` |  |
 | `"versionId"` |  |
 | `"width"` |  |
-| `"workerId"` |  |
 | `"workspaceId"` |  |
 
 Operations: Create, Load.
@@ -496,9 +490,6 @@ API path: `/api/analytics/experiments/templates`
 
 | Field | Description |
 | --- | --- |
-| `"displayName"` |  |
-| `"email"` |  |
-| `"password"` |  |
 
 Operations: Create.
 
@@ -644,22 +635,11 @@ API path: `/api/v1/gifs/generate`
 
 | Field | Description |
 | --- | --- |
-| `"accountId"` |  |
 | `"action"` |  |
 | `"actorId"` |  |
-| `"caption"` |  |
-| `"code"` |  |
-| `"externalAccountId"` |  |
-| `"handle"` |  |
 | `"limit"` |  |
 | `"logExposure"` |  |
-| `"memeSlug"` |  |
-| `"now"` |  |
-| `"platform"` |  |
-| `"profiles"` |  |
-| `"shareSlug"` |  |
 | `"surface"` |  |
-| `"weekStart"` |  |
 
 Operations: Create, Load.
 
@@ -691,12 +671,6 @@ API path: `/api/memes`
 
 | Field | Description |
 | --- | --- |
-| `"action"` |  |
-| `"contentType"` |  |
-| `"expiresInSeconds"` |  |
-| `"ownerToken"` |  |
-| `"path"` |  |
-| `"prefix"` |  |
 
 Operations: Create.
 
@@ -744,9 +718,7 @@ API path: `/api/memes/{slug}`
 | `"description"` |  |
 | `"durationMs"` |  |
 | `"exampleImageUrl"` |  |
-| `"fps"` |  |
 | `"frameCount"` |  |
-| `"gifSlug"` | Required for /api/v1/gifs/generate. |
 | `"height"` |  |
 | `"id"` |  |
 | `"imageUrl"` |  |
@@ -755,15 +727,11 @@ API path: `/api/memes/{slug}`
 | `"posterImageUrl"` |  |
 | `"previewImageUrl"` |  |
 | `"qualityStatus"` |  |
-| `"returnBase64"` | Only used by /api/v1/gifs/generate. |
 | `"slug"` |  |
 | `"sourceTemplateId"` |  |
 | `"sourceUrl"` |  |
-| `"startMs"` |  |
 | `"tags"` |  |
-| `"title"` |  |
 | `"width"` |  |
-| `"widthPx"` |  |
 
 Operations: Create, Load.
 
@@ -890,51 +858,6 @@ API path: `/api/v1/memes/caption-upload`
 
 | Field | Description |
 | --- | --- |
-| `"action"` |  |
-| `"assetId"` |  |
-| `"atMs"` |  |
-| `"audioAssetId"` |  |
-| `"beatOffsetMs"` |  |
-| `"bitrateKbps"` |  |
-| `"bpm"` |  |
-| `"cancelled"` |  |
-| `"container"` |  |
-| `"durationMs"` |  |
-| `"durationSeconds"` |  |
-| `"easing"` |  |
-| `"error"` |  |
-| `"frameRate"` |  |
-| `"inputFormat"` |  |
-| `"intensity"` |  |
-| `"jobId"` |  |
-| `"locale"` |  |
-| `"mimeType"` |  |
-| `"name"` |  |
-| `"offsetMs"` |  |
-| `"outputPresetId"` |  |
-| `"outputUrl"` |  |
-| `"planTier"` |  |
-| `"presetId"` |  |
-| `"progressPercent"` |  |
-| `"project"` |  |
-| `"projectId"` |  |
-| `"property"` |  |
-| `"sourceDeviceId"` |  |
-| `"sourceUrl"` |  |
-| `"stage"` |  |
-| `"startMs"` |  |
-| `"stylePresetId"` |  |
-| `"syncToBeatGrid"` |  |
-| `"tone"` |  |
-| `"trackId"` |  |
-| `"transcript"` |  |
-| `"trendKeywords"` |  |
-| `"type"` |  |
-| `"updatedAt"` |  |
-| `"value"` |  |
-| `"watermarkEnabled"` |  |
-| `"watermarkText"` |  |
-| `"workerId"` |  |
 
 Operations: Create, Load.
 
@@ -1022,7 +945,6 @@ Create an instance: `agentInfra := client.AgentInfra(nil)`
 | `prompt` | `string` |  |
 | `proof` | `map[string]any` |  |
 | `quotaBoostPerDay` | `int` |  |
-| `scopes` | `[]any` |  |
 | `userId` | `string` |  |
 | `weekStart` | `string` |  |
 
@@ -1149,7 +1071,6 @@ Create an instance: `aiJob := client.AiJob(nil)`
 | `createdAt` | `string` |  |
 | `detectedFaceCount` | `float64` |  |
 | `edgeRefinement` | `float64` |  |
-| `estimatedCostUsd` | `float64` |  |
 | `frameTimeMs` | `float64` |  |
 | `height` | `float64` |  |
 | `id` | `string` |  |
@@ -1161,10 +1082,7 @@ Create an instance: `aiJob := client.AiJob(nil)`
 | `mediaType` | `string` |  |
 | `metadata` | `map[string]any` |  |
 | `nsfwScore` | `float64` |  |
-| `output` | `map[string]any` |  |
 | `projectId` | `string` |  |
-| `providerId` | `string` |  |
-| `reason` | `string` |  |
 | `runAfterMs` | `int` |  |
 | `sourceAssetUrl` | `string` |  |
 | `sourceFaceIndex` | `float64` |  |
@@ -1177,7 +1095,6 @@ Create an instance: `aiJob := client.AiJob(nil)`
 | `updatedAt` | `string` |  |
 | `versionId` | `string` |  |
 | `width` | `float64` |  |
-| `workerId` | `string` |  |
 | `workspaceId` | `string` |  |
 
 #### Example: Load
@@ -1206,7 +1123,6 @@ result, err := client.AiJob(nil).Create(map[string]any{
     "status": "example_status",
     "targetAssetUrl": "example_targetAssetUrl",
     "width": 1,
-    "workerId": "example_workerId",
 }, nil)
 if err != nil {
     panic(err)
@@ -1351,20 +1267,10 @@ Create an instance: `auth := client.Auth(nil)`
 | --- | --- |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `displayName` | `string` |  |
-| `email` | `string` |  |
-| `password` | `string` |  |
-
 #### Example: Create
 
 ```go
 result, err := client.Auth(nil).Create(map[string]any{
-    "email": "example_email",
-    "password": "example_password",
 }, nil)
 if err != nil {
     panic(err)
@@ -1697,22 +1603,11 @@ Create an instance: `growth := client.Growth(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accountId` | `string` |  |
 | `action` | `string` |  |
 | `actorId` | `string` |  |
-| `caption` | `string` |  |
-| `code` | `string` |  |
-| `externalAccountId` | `string` |  |
-| `handle` | `string` |  |
 | `limit` | `int` |  |
 | `logExposure` | `bool` |  |
-| `memeSlug` | `string` |  |
-| `now` | `string` |  |
-| `platform` | `string` |  |
-| `profiles` | `[]any` |  |
-| `shareSlug` | `string` |  |
 | `surface` | `string` |  |
-| `weekStart` | `string` |  |
 
 #### Example: Load
 
@@ -1786,22 +1681,10 @@ Create an instance: `media := client.Media(nil)`
 | --- | --- |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `string` |  |
-| `contentType` | `string` |  |
-| `expiresInSeconds` | `int` |  |
-| `ownerToken` | `string` |  |
-| `path` | `string` |  |
-| `prefix` | `string` |  |
-
 #### Example: Create
 
 ```go
 result, err := client.Media(nil).Create(map[string]any{
-    "action": "example_action",
 }, nil)
 if err != nil {
     panic(err)
@@ -1881,9 +1764,7 @@ Create an instance: `publicTemplateMediaItem := client.PublicTemplateMediaItem(n
 | `description` | `string` |  |
 | `durationMs` | `any` |  |
 | `exampleImageUrl` | `any` |  |
-| `fps` | `int` |  |
 | `frameCount` | `any` |  |
-| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `any` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1892,15 +1773,11 @@ Create an instance: `publicTemplateMediaItem := client.PublicTemplateMediaItem(n
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `any` |  |
 | `sourceUrl` | `string` |  |
-| `startMs` | `int` |  |
 | `tags` | `[]any` |  |
-| `title` | `string` |  |
 | `width` | `any` |  |
-| `widthPx` | `int` |  |
 
 #### Example: Load
 
@@ -2163,56 +2040,6 @@ Create an instance: `video := client.Video(nil)`
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `string` |  |
-| `assetId` | `string` |  |
-| `atMs` | `float64` |  |
-| `audioAssetId` | `string` |  |
-| `beatOffsetMs` | `int` |  |
-| `bitrateKbps` | `float64` |  |
-| `bpm` | `int` |  |
-| `cancelled` | `bool` |  |
-| `container` | `string` |  |
-| `durationMs` | `float64` |  |
-| `durationSeconds` | `float64` |  |
-| `easing` | `string` |  |
-| `error` | `string` |  |
-| `frameRate` | `float64` |  |
-| `inputFormat` | `string` |  |
-| `intensity` | `float64` |  |
-| `jobId` | `string` |  |
-| `locale` | `string` |  |
-| `mimeType` | `string` |  |
-| `name` | `string` |  |
-| `offsetMs` | `float64` |  |
-| `outputPresetId` | `string` |  |
-| `outputUrl` | `string` |  |
-| `planTier` | `string` |  |
-| `presetId` | `string` |  |
-| `progressPercent` | `float64` |  |
-| `project` | `map[string]any` |  |
-| `projectId` | `string` |  |
-| `property` | `string` |  |
-| `sourceDeviceId` | `string` |  |
-| `sourceUrl` | `string` |  |
-| `stage` | `string` |  |
-| `startMs` | `float64` |  |
-| `stylePresetId` | `string` |  |
-| `syncToBeatGrid` | `bool` |  |
-| `tone` | `string` |  |
-| `trackId` | `string` |  |
-| `transcript` | `string` |  |
-| `trendKeywords` | `[]any` |  |
-| `type` | `string` |  |
-| `updatedAt` | `string` |  |
-| `value` | `float64` |  |
-| `watermarkEnabled` | `bool` |  |
-| `watermarkText` | `string` |  |
-| `workerId` | `string` |  |
-
 #### Example: Load
 
 ```go
@@ -2227,12 +2054,6 @@ fmt.Println(video) // the loaded record
 
 ```go
 result, err := client.Video(nil).Create(map[string]any{
-    "durationSeconds": 1,
-    "inputFormat": "example_inputFormat",
-    "mimeType": "example_mimeType",
-    "outputPresetId": "example_outputPresetId",
-    "planTier": "example_planTier",
-    "presetId": "example_presetId",
 }, nil)
 if err != nil {
     panic(err)
@@ -2398,11 +2219,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-trendalert := client.TrendAlert(nil)
-trendalert.Load(nil, nil)
+agentinfra := client.AgentInfra(nil)
+agentinfra.Load(nil, nil)
 
-// trendalert.Data() now returns the trendalert data from the last load
-// trendalert.Match() returns the last match criteria
+// agentinfra.Data() now returns the agentinfra data from the last load
+// agentinfra.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

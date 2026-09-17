@@ -67,6 +67,7 @@ declare class Config {
         base: string;
         auth: {
             prefix: string;
+            name: string;
         };
         headers: {
             "content-type": string;
@@ -980,22 +981,7 @@ declare class Config {
             };
         };
         auth: {
-            fields: ({
-                name: string;
-                type: string;
-                format?: undefined;
-                req?: undefined;
-            } | {
-                format: string;
-                name: string;
-                req: boolean;
-                type: string;
-            } | {
-                name: string;
-                req: boolean;
-                type: string;
-                format?: undefined;
-            })[];
+            fields: never[];
             name: string;
             op: {
                 create: {
@@ -1437,33 +1423,12 @@ declare class Config {
         growth: {
             fields: ({
                 name: string;
-                type: string;
-                req?: undefined;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
                 req: boolean;
                 type: string;
-                op?: undefined;
-                format?: undefined;
             } | {
-                name: string;
-                op: {
-                    create: {
-                        req: boolean;
-                        type: string;
-                    };
-                };
-                type: string;
-                req?: undefined;
-                format?: undefined;
-            } | {
-                format: string;
                 name: string;
                 type: string;
                 req?: undefined;
-                op?: undefined;
             })[];
             name: string;
             op: {
@@ -1643,15 +1608,7 @@ declare class Config {
             };
         };
         media: {
-            fields: ({
-                name: string;
-                req: boolean;
-                type: string;
-            } | {
-                name: string;
-                type: string;
-                req?: undefined;
-            })[];
+            fields: never[];
             name: string;
             op: {
                 create: {
@@ -1794,43 +1751,19 @@ declare class Config {
             fields: ({
                 name: string;
                 type: string;
-                op?: undefined;
                 req?: undefined;
-                short?: undefined;
             } | {
                 name: string;
                 type: (string | string[])[];
-                op?: undefined;
                 req?: undefined;
-                short?: undefined;
-            } | {
-                name: string;
-                op: {
-                    create: {
-                        type: string;
-                    };
-                };
-                req: boolean;
-                type: string;
-                short?: undefined;
             } | {
                 name: string;
                 req: boolean;
                 type: string;
-                op?: undefined;
-                short?: undefined;
-            } | {
-                name: string;
-                short: string;
-                type: string;
-                op?: undefined;
-                req?: undefined;
             } | {
                 name: string;
                 req: boolean;
                 type: (string | string[])[];
-                op?: undefined;
-                short?: undefined;
             })[];
             id: {
                 field: string;
@@ -2238,47 +2171,7 @@ declare class Config {
             };
         };
         video: {
-            fields: ({
-                name: string;
-                op: {
-                    create: {
-                        req: boolean;
-                        type: string;
-                    };
-                };
-                type: string;
-                req?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                type: string;
-                op?: undefined;
-                req?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                op: {
-                    create: {
-                        type: string;
-                        req?: undefined;
-                    };
-                };
-                req: boolean;
-                type: string;
-                format?: undefined;
-            } | {
-                name: string;
-                req: boolean;
-                type: string;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                format: string;
-                name: string;
-                type: string;
-                op?: undefined;
-                req?: undefined;
-            })[];
+            fields: never[];
             name: string;
             op: {
                 create: {

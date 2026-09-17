@@ -6,43 +6,12 @@ main: kit: entity: growth: {
 
   fields: [
     {
-      name: "accountId"
-      req: false
-      type: "`$STRING`"
-    }
-    {
       name: "action"
       req: true
       type: "`$STRING`"
     }
     {
       name: "actorId"
-      op: {
-        create: {
-          req: true
-          type: "`$STRING`"
-        }
-      }
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "caption"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "code"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "externalAccountId"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "handle"
       req: false
       type: "`$STRING`"
     }
@@ -57,38 +26,7 @@ main: kit: entity: growth: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "memeSlug"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      format: "date-time"
-      name: "now"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "platform"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "profiles"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
-      name: "shareSlug"
-      req: false
-      type: "`$STRING`"
-    }
-    {
       name: "surface"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "weekStart"
       req: false
       type: "`$STRING`"
     }

@@ -318,7 +318,6 @@ fmt.Println(agentInfra.GetName()) // "agent_infra"
 | `prompt` | `string` | Yes |  |
 | `proof` | `map[string]any` | No |  |
 | `quotaBoostPerDay` | `int` | No |  |
-| `scopes` | `[]any` | No |  |
 | `userId` | `string` | No |  |
 | `weekStart` | `string` | No |  |
 
@@ -507,7 +506,6 @@ fmt.Println(aiJob.GetName()) // "ai_job"
 | `createdAt` | `string` | No |  |
 | `detectedFaceCount` | `float64` | Yes |  |
 | `edgeRefinement` | `float64` | No |  |
-| `estimatedCostUsd` | `float64` | No |  |
 | `frameTimeMs` | `float64` | No |  |
 | `height` | `float64` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -519,10 +517,7 @@ fmt.Println(aiJob.GetName()) // "ai_job"
 | `mediaType` | `string` | No |  |
 | `metadata` | `map[string]any` | No |  |
 | `nsfwScore` | `float64` | No |  |
-| `output` | `map[string]any` | No |  |
 | `projectId` | `string` | Yes |  |
-| `providerId` | `string` | No |  |
-| `reason` | `string` | No |  |
 | `runAfterMs` | `int` | No |  |
 | `sourceAssetUrl` | `string` | Yes |  |
 | `sourceFaceIndex` | `float64` | No |  |
@@ -535,7 +530,6 @@ fmt.Println(aiJob.GetName()) // "ai_job"
 | `updatedAt` | `string` | No |  |
 | `versionId` | `string` | No |  |
 | `width` | `float64` | Yes |  |
-| `workerId` | `string` | Yes |  |
 | `workspaceId` | `string` | No |  |
 
 ### Field Usage by Operation
@@ -554,7 +548,6 @@ fmt.Println(aiJob.GetName()) // "ai_job"
 | `createdAt` | - | - |
 | `detectedFaceCount` | - | - |
 | `edgeRefinement` | - | - |
-| `estimatedCostUsd` | - | - |
 | `frameTimeMs` | - | - |
 | `height` | - | - |
 | `id` | - | - |
@@ -566,10 +559,7 @@ fmt.Println(aiJob.GetName()) // "ai_job"
 | `mediaType` | - | Yes |
 | `metadata` | - | - |
 | `nsfwScore` | - | - |
-| `output` | - | - |
 | `projectId` | - | - |
-| `providerId` | - | - |
-| `reason` | - | - |
 | `runAfterMs` | - | - |
 | `sourceAssetUrl` | - | - |
 | `sourceFaceIndex` | - | - |
@@ -582,7 +572,6 @@ fmt.Println(aiJob.GetName()) // "ai_job"
 | `updatedAt` | - | - |
 | `versionId` | - | - |
 | `width` | - | - |
-| `workerId` | - | - |
 | `workspaceId` | - | - |
 
 ### Operations
@@ -617,7 +606,6 @@ result, err := client.AiJob(nil).Create(map[string]any{
     "status": "example_status",
     "targetAssetUrl": "example_targetAssetUrl",
     "width": 1,
-    "workerId": "example_workerId",
 }, nil)
 if err != nil {
     panic(err)
@@ -881,14 +869,6 @@ auth := client.Auth(nil)
 fmt.Println(auth.GetName()) // "auth"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `displayName` | `string` | No |  |
-| `email` | `string` | Yes |  |
-| `password` | `string` | Yes |  |
-
 ### Operations
 
 #### `Create(reqdata, ctrl map[string]any) (any, error)`
@@ -897,8 +877,6 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Auth(nil).Create(map[string]any{
-    "email": "example_email",
-    "password": "example_password",
 }, nil)
 if err != nil {
     panic(err)
@@ -1469,43 +1447,11 @@ fmt.Println(growth.GetName()) // "growth"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountId` | `string` | No |  |
 | `action` | `string` | Yes |  |
 | `actorId` | `string` | No |  |
-| `caption` | `string` | No |  |
-| `code` | `string` | No |  |
-| `externalAccountId` | `string` | No |  |
-| `handle` | `string` | No |  |
 | `limit` | `int` | No |  |
 | `logExposure` | `bool` | No |  |
-| `memeSlug` | `string` | No |  |
-| `now` | `string` | No |  |
-| `platform` | `string` | No |  |
-| `profiles` | `[]any` | No |  |
-| `shareSlug` | `string` | No |  |
 | `surface` | `string` | No |  |
-| `weekStart` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `accountId` | - | - |
-| `action` | - | - |
-| `actorId` | - | Yes |
-| `caption` | - | - |
-| `code` | - | - |
-| `externalAccountId` | - | - |
-| `handle` | - | - |
-| `limit` | - | - |
-| `logExposure` | - | - |
-| `memeSlug` | - | - |
-| `now` | - | - |
-| `platform` | - | - |
-| `profiles` | - | - |
-| `shareSlug` | - | - |
-| `surface` | - | - |
-| `weekStart` | - | - |
 
 ### Operations
 
@@ -1629,17 +1575,6 @@ media := client.Media(nil)
 fmt.Println(media.GetName()) // "media"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `action` | `string` | Yes |  |
-| `contentType` | `string` | No |  |
-| `expiresInSeconds` | `int` | No |  |
-| `ownerToken` | `string` | No |  |
-| `path` | `string` | No |  |
-| `prefix` | `string` | No |  |
-
 ### Operations
 
 #### `Create(reqdata, ctrl map[string]any) (any, error)`
@@ -1648,7 +1583,6 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Media(nil).Create(map[string]any{
-    "action": "example_action",
 }, nil)
 if err != nil {
     panic(err)
@@ -1782,9 +1716,7 @@ fmt.Println(publicTemplateMediaItem.GetName()) // "public_template_media_item"
 | `description` | `string` | Yes |  |
 | `durationMs` | `any` | No |  |
 | `exampleImageUrl` | `any` | No |  |
-| `fps` | `int` | No |  |
 | `frameCount` | `any` | No |  |
-| `gifSlug` | `string` | No | Required for /api/v1/gifs/generate. |
 | `height` | `any` | Yes |  |
 | `id` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
@@ -1793,50 +1725,11 @@ fmt.Println(publicTemplateMediaItem.GetName()) // "public_template_media_item"
 | `posterImageUrl` | `string` | No |  |
 | `previewImageUrl` | `string` | No |  |
 | `qualityStatus` | `string` | No |  |
-| `returnBase64` | `bool` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` | Yes |  |
 | `sourceTemplateId` | `any` | Yes |  |
 | `sourceUrl` | `string` | No |  |
-| `startMs` | `int` | No |  |
 | `tags` | `[]any` | Yes |  |
-| `title` | `string` | No |  |
 | `width` | `any` | Yes |  |
-| `widthPx` | `int` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | - | Yes |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | - | Yes |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Operations
 
@@ -2245,106 +2138,6 @@ video := client.Video(nil)
 fmt.Println(video.GetName()) // "video"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `action` | `string` | No |  |
-| `assetId` | `string` | No |  |
-| `atMs` | `float64` | No |  |
-| `audioAssetId` | `string` | No |  |
-| `beatOffsetMs` | `int` | No |  |
-| `bitrateKbps` | `float64` | No |  |
-| `bpm` | `int` | No |  |
-| `cancelled` | `bool` | No |  |
-| `container` | `string` | No |  |
-| `durationMs` | `float64` | No |  |
-| `durationSeconds` | `float64` | Yes |  |
-| `easing` | `string` | No |  |
-| `error` | `string` | No |  |
-| `frameRate` | `float64` | No |  |
-| `inputFormat` | `string` | Yes |  |
-| `intensity` | `float64` | No |  |
-| `jobId` | `string` | No |  |
-| `locale` | `string` | No |  |
-| `mimeType` | `string` | Yes |  |
-| `name` | `string` | No |  |
-| `offsetMs` | `float64` | No |  |
-| `outputPresetId` | `string` | Yes |  |
-| `outputUrl` | `string` | No |  |
-| `planTier` | `string` | Yes |  |
-| `presetId` | `string` | Yes |  |
-| `progressPercent` | `float64` | No |  |
-| `project` | `map[string]any` | No |  |
-| `projectId` | `string` | No |  |
-| `property` | `string` | No |  |
-| `sourceDeviceId` | `string` | No |  |
-| `sourceUrl` | `string` | No |  |
-| `stage` | `string` | No |  |
-| `startMs` | `float64` | No |  |
-| `stylePresetId` | `string` | No |  |
-| `syncToBeatGrid` | `bool` | No |  |
-| `tone` | `string` | No |  |
-| `trackId` | `string` | No |  |
-| `transcript` | `string` | No |  |
-| `trendKeywords` | `[]any` | No |  |
-| `type` | `string` | No |  |
-| `updatedAt` | `string` | No |  |
-| `value` | `float64` | No |  |
-| `watermarkEnabled` | `bool` | No |  |
-| `watermarkText` | `string` | No |  |
-| `workerId` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `action` | - | Yes |
-| `assetId` | - | - |
-| `atMs` | - | - |
-| `audioAssetId` | - | - |
-| `beatOffsetMs` | - | - |
-| `bitrateKbps` | - | - |
-| `bpm` | - | - |
-| `cancelled` | - | - |
-| `container` | - | - |
-| `durationMs` | - | - |
-| `durationSeconds` | - | Yes |
-| `easing` | - | - |
-| `error` | - | - |
-| `frameRate` | - | - |
-| `inputFormat` | - | - |
-| `intensity` | - | - |
-| `jobId` | - | - |
-| `locale` | - | - |
-| `mimeType` | - | - |
-| `name` | - | - |
-| `offsetMs` | - | - |
-| `outputPresetId` | - | Yes |
-| `outputUrl` | - | - |
-| `planTier` | - | Yes |
-| `presetId` | - | - |
-| `progressPercent` | - | - |
-| `project` | - | - |
-| `projectId` | - | - |
-| `property` | - | - |
-| `sourceDeviceId` | - | - |
-| `sourceUrl` | - | - |
-| `stage` | - | - |
-| `startMs` | - | - |
-| `stylePresetId` | - | - |
-| `syncToBeatGrid` | - | - |
-| `tone` | - | - |
-| `trackId` | - | - |
-| `transcript` | - | - |
-| `trendKeywords` | - | - |
-| `type` | - | - |
-| `updatedAt` | - | - |
-| `value` | - | - |
-| `watermarkEnabled` | - | - |
-| `watermarkText` | - | - |
-| `workerId` | - | - |
-
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -2365,12 +2158,6 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Video(nil).Create(map[string]any{
-    "durationSeconds": 1,
-    "inputFormat": "example_inputFormat",
-    "mimeType": "example_mimeType",
-    "outputPresetId": "example_outputPresetId",
-    "planTier": "example_planTier",
-    "presetId": "example_presetId",
 }, nil)
 if err != nil {
     panic(err)

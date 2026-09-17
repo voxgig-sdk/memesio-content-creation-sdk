@@ -64,7 +64,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local trendalert, err = client:TrendAlert():load()
+local agentinfra, err = client:AgentInfra():load()
 if err then error(err) end
 ```
 
@@ -122,7 +122,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:TrendAlert():load()
+local result, err = client:AgentInfra():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -304,7 +304,6 @@ API path: `/api/v1/agents`
 | `prompt` |  |
 | `proof` |  |
 | `quotaBoostPerDay` |  |
-| `scopes` |  |
 | `userId` |  |
 | `weekStart` |  |
 
@@ -365,7 +364,6 @@ API path: `/api/ai/captions/generate`
 | `createdAt` |  |
 | `detectedFaceCount` |  |
 | `edgeRefinement` |  |
-| `estimatedCostUsd` |  |
 | `frameTimeMs` |  |
 | `height` |  |
 | `id` |  |
@@ -377,10 +375,7 @@ API path: `/api/ai/captions/generate`
 | `mediaType` |  |
 | `metadata` |  |
 | `nsfwScore` |  |
-| `output` |  |
 | `projectId` |  |
-| `providerId` |  |
-| `reason` |  |
 | `runAfterMs` |  |
 | `sourceAssetUrl` |  |
 | `sourceFaceIndex` |  |
@@ -393,7 +388,6 @@ API path: `/api/ai/captions/generate`
 | `updatedAt` |  |
 | `versionId` |  |
 | `width` |  |
-| `workerId` |  |
 | `workspaceId` |  |
 
 Operations: Create, Load.
@@ -462,9 +456,6 @@ API path: `/api/analytics/experiments/templates`
 
 | Field | Description |
 | --- | --- |
-| `displayName` |  |
-| `email` |  |
-| `password` |  |
 
 Operations: Create.
 
@@ -610,22 +601,11 @@ API path: `/api/v1/gifs/generate`
 
 | Field | Description |
 | --- | --- |
-| `accountId` |  |
 | `action` |  |
 | `actorId` |  |
-| `caption` |  |
-| `code` |  |
-| `externalAccountId` |  |
-| `handle` |  |
 | `limit` |  |
 | `logExposure` |  |
-| `memeSlug` |  |
-| `now` |  |
-| `platform` |  |
-| `profiles` |  |
-| `shareSlug` |  |
 | `surface` |  |
-| `weekStart` |  |
 
 Operations: Create, Load.
 
@@ -657,12 +637,6 @@ API path: `/api/memes`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `contentType` |  |
-| `expiresInSeconds` |  |
-| `ownerToken` |  |
-| `path` |  |
-| `prefix` |  |
 
 Operations: Create.
 
@@ -710,9 +684,7 @@ API path: `/api/memes/{slug}`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
-| `fps` |  |
 | `frameCount` |  |
-| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -721,15 +693,11 @@ API path: `/api/memes/{slug}`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
-| `startMs` |  |
 | `tags` |  |
-| `title` |  |
 | `width` |  |
-| `widthPx` |  |
 
 Operations: Create, Load.
 
@@ -856,51 +824,6 @@ API path: `/api/v1/memes/caption-upload`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `assetId` |  |
-| `atMs` |  |
-| `audioAssetId` |  |
-| `beatOffsetMs` |  |
-| `bitrateKbps` |  |
-| `bpm` |  |
-| `cancelled` |  |
-| `container` |  |
-| `durationMs` |  |
-| `durationSeconds` |  |
-| `easing` |  |
-| `error` |  |
-| `frameRate` |  |
-| `inputFormat` |  |
-| `intensity` |  |
-| `jobId` |  |
-| `locale` |  |
-| `mimeType` |  |
-| `name` |  |
-| `offsetMs` |  |
-| `outputPresetId` |  |
-| `outputUrl` |  |
-| `planTier` |  |
-| `presetId` |  |
-| `progressPercent` |  |
-| `project` |  |
-| `projectId` |  |
-| `property` |  |
-| `sourceDeviceId` |  |
-| `sourceUrl` |  |
-| `stage` |  |
-| `startMs` |  |
-| `stylePresetId` |  |
-| `syncToBeatGrid` |  |
-| `tone` |  |
-| `trackId` |  |
-| `transcript` |  |
-| `trendKeywords` |  |
-| `type` |  |
-| `updatedAt` |  |
-| `value` |  |
-| `watermarkEnabled` |  |
-| `watermarkText` |  |
-| `workerId` |  |
 
 Operations: Create, Load.
 
@@ -980,7 +903,6 @@ Create an instance: `local agent_infra = client:AgentInfra(nil)`
 | `prompt` | `string` |  |
 | `proof` | `table` |  |
 | `quotaBoostPerDay` | `number` |  |
-| `scopes` | `table` |  |
 | `userId` | `string` |  |
 | `weekStart` | `string` |  |
 
@@ -1091,7 +1013,6 @@ Create an instance: `local ai_job = client:AiJob(nil)`
 | `createdAt` | `string` |  |
 | `detectedFaceCount` | `number` |  |
 | `edgeRefinement` | `number` |  |
-| `estimatedCostUsd` | `number` |  |
 | `frameTimeMs` | `number` |  |
 | `height` | `number` |  |
 | `id` | `string` |  |
@@ -1103,10 +1024,7 @@ Create an instance: `local ai_job = client:AiJob(nil)`
 | `mediaType` | `string` |  |
 | `metadata` | `table` |  |
 | `nsfwScore` | `number` |  |
-| `output` | `table` |  |
 | `projectId` | `string` |  |
-| `providerId` | `string` |  |
-| `reason` | `string` |  |
 | `runAfterMs` | `number` |  |
 | `sourceAssetUrl` | `string` |  |
 | `sourceFaceIndex` | `number` |  |
@@ -1119,7 +1037,6 @@ Create an instance: `local ai_job = client:AiJob(nil)`
 | `updatedAt` | `string` |  |
 | `versionId` | `string` |  |
 | `width` | `number` |  |
-| `workerId` | `string` |  |
 | `workspaceId` | `string` |  |
 
 #### Example: Load
@@ -1144,7 +1061,6 @@ local ai_job, err = client:AiJob():create({
   status = "example_status", -- string
   targetAssetUrl = "example_targetAssetUrl", -- string
   width = 1, -- number
-  workerId = "example_workerId", -- string
 })
 ```
 
@@ -1269,20 +1185,10 @@ Create an instance: `local auth = client:Auth(nil)`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `displayName` | `string` |  |
-| `email` | `string` |  |
-| `password` | `string` |  |
-
 #### Example: Create
 
 ```lua
 local auth, err = client:Auth():create({
-  email = "example_email", -- string
-  password = "example_password", -- string
 })
 ```
 
@@ -1571,22 +1477,11 @@ Create an instance: `local growth = client:Growth(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accountId` | `string` |  |
 | `action` | `string` |  |
 | `actorId` | `string` |  |
-| `caption` | `string` |  |
-| `code` | `string` |  |
-| `externalAccountId` | `string` |  |
-| `handle` | `string` |  |
 | `limit` | `number` |  |
 | `logExposure` | `boolean` |  |
-| `memeSlug` | `string` |  |
-| `now` | `string` |  |
-| `platform` | `string` |  |
-| `profiles` | `table` |  |
-| `shareSlug` | `string` |  |
 | `surface` | `string` |  |
-| `weekStart` | `string` |  |
 
 #### Example: Load
 
@@ -1648,22 +1543,10 @@ Create an instance: `local media = client:Media(nil)`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `string` |  |
-| `contentType` | `string` |  |
-| `expiresInSeconds` | `number` |  |
-| `ownerToken` | `string` |  |
-| `path` | `string` |  |
-| `prefix` | `string` |  |
-
 #### Example: Create
 
 ```lua
 local media, err = client:Media():create({
-  action = "example_action", -- string
 })
 ```
 
@@ -1735,9 +1618,7 @@ Create an instance: `local public_template_media_item = client:PublicTemplateMed
 | `description` | `string` |  |
 | `durationMs` | `number|nil` |  |
 | `exampleImageUrl` | `string|nil` |  |
-| `fps` | `number` |  |
 | `frameCount` | `number|nil` |  |
-| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `number|nil` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1746,15 +1627,11 @@ Create an instance: `local public_template_media_item = client:PublicTemplateMed
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `string|nil` |  |
 | `sourceUrl` | `string` |  |
-| `startMs` | `number` |  |
 | `tags` | `table` |  |
-| `title` | `string` |  |
 | `width` | `number|nil` |  |
-| `widthPx` | `number` |  |
 
 #### Example: Load
 
@@ -1985,56 +1862,6 @@ Create an instance: `local video = client:Video(nil)`
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `string` |  |
-| `assetId` | `string` |  |
-| `atMs` | `number` |  |
-| `audioAssetId` | `string` |  |
-| `beatOffsetMs` | `number` |  |
-| `bitrateKbps` | `number` |  |
-| `bpm` | `number` |  |
-| `cancelled` | `boolean` |  |
-| `container` | `string` |  |
-| `durationMs` | `number` |  |
-| `durationSeconds` | `number` |  |
-| `easing` | `string` |  |
-| `error` | `string` |  |
-| `frameRate` | `number` |  |
-| `inputFormat` | `string` |  |
-| `intensity` | `number` |  |
-| `jobId` | `string` |  |
-| `locale` | `string` |  |
-| `mimeType` | `string` |  |
-| `name` | `string` |  |
-| `offsetMs` | `number` |  |
-| `outputPresetId` | `string` |  |
-| `outputUrl` | `string` |  |
-| `planTier` | `string` |  |
-| `presetId` | `string` |  |
-| `progressPercent` | `number` |  |
-| `project` | `table` |  |
-| `projectId` | `string` |  |
-| `property` | `string` |  |
-| `sourceDeviceId` | `string` |  |
-| `sourceUrl` | `string` |  |
-| `stage` | `string` |  |
-| `startMs` | `number` |  |
-| `stylePresetId` | `string` |  |
-| `syncToBeatGrid` | `boolean` |  |
-| `tone` | `string` |  |
-| `trackId` | `string` |  |
-| `transcript` | `string` |  |
-| `trendKeywords` | `table` |  |
-| `type` | `string` |  |
-| `updatedAt` | `string` |  |
-| `value` | `number` |  |
-| `watermarkEnabled` | `boolean` |  |
-| `watermarkText` | `string` |  |
-| `workerId` | `string` |  |
-
 #### Example: Load
 
 ```lua
@@ -2045,12 +1872,6 @@ local video, err = client:Video():load()
 
 ```lua
 local video, err = client:Video():create({
-  durationSeconds = 1, -- number
-  inputFormat = "example_inputFormat", -- string
-  mimeType = "example_mimeType", -- string
-  outputPresetId = "example_outputPresetId", -- string
-  planTier = "example_planTier", -- string
-  presetId = "example_presetId", -- string
 })
 ```
 
@@ -2197,6 +2018,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── memesio-content-creation_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations
@@ -2215,11 +2037,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local trendalert = client:TrendAlert()
-trendalert:load()
+local agentinfra = client:AgentInfra()
+agentinfra:load()
 
--- trendalert:data_get() now returns the trendalert data from the last load
--- trendalert:match_get() returns the last match criteria
+-- agentinfra:data_get() now returns the agentinfra data from the last load
+-- agentinfra:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

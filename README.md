@@ -44,23 +44,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = MemesioContentCreationSDK.test({
   entity: {
-    trend_alert: {
-      test01: { id: 'test01', action: 'example_action', actorId: 'example_actorId', alertId: 'example_alertId' },
+    agent_infra: {
+      test01: { id: 'test01', action: 'example_action', chatId: 'example_chatId', memeSlug: 'example_memeSlug' },
     },
   },
 })
-const trendalert = await client.TrendAlert().load()
-// trendalert is the TrendAlert entity, populated with mock data
-// — call trendalert.data() for the record itself
-console.log(trendalert)
+const agentinfra = await client.AgentInfra().load()
+// agentinfra is the AgentInfra entity, populated with mock data
+// — call agentinfra.data() for the record itself
+console.log(agentinfra)
 ```
 
 ### Python
 
 ```python
 client = MemesioContentCreationSDK.test()
-trendalert = client.TrendAlert().load()
-print(trendalert)
+agentinfra = client.AgentInfra().load()
+print(agentinfra)
 ```
 
 ### PHP
@@ -68,16 +68,16 @@ print(trendalert)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = MemesioContentCreationSDK::test([
-    "entity" => ["trendalert" => ["test01" => []]],
+    "entity" => ["agentinfra" => ["test01" => []]],
 ]);
-$trendalert = $client->TrendAlert()->load();
+$agentinfra = $client->AgentInfra()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.TrendAlert(nil).Load(
+result, err := client.AgentInfra(nil).Load(
     nil, nil,
 )
 ```
@@ -87,28 +87,28 @@ result, err := client.TrendAlert(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = MemesioContentCreationSDK.test({
-  "entity" => { "trendalert" => { "test01" => {} } },
+  "entity" => { "agentinfra" => { "test01" => {} } },
 })
-trendalert = client.TrendAlert.load()
+agentinfra = client.AgentInfra.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:TrendAlert():load()
+local result, err = client:AgentInfra():load()
 ```
 
 ## Packages
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/memesio-content-creation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) |
-| Python | `voxgig-sdk-memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) |
-| PHP | `voxgig-sdk/memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) |
+| TypeScript | `@voxgig-sdk/memesio-content-creation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
+| Python | `voxgig-sdk-memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
+| PHP | `voxgig-sdk/memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/memesio-content-creation-sdk/go` | `go get github.com/voxgig-sdk/memesio-content-creation-sdk/go@latest` |
-| Ruby | `voxgig-sdk-memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) |
-| Lua | `voxgig-sdk-memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) |
+| Ruby | `voxgig-sdk-memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
+| Lua | `voxgig-sdk-memesio-content-creation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/memesio-content-creation-sdk/go-cli` | `go install github.com/voxgig-sdk/memesio-content-creation-sdk/go-cli/cmd/memesio-content-creation@latest` |
 | Go MCP server | `github.com/voxgig-sdk/memesio-content-creation-sdk/go-mcp` | `go get github.com/voxgig-sdk/memesio-content-creation-sdk/go-mcp@latest` |
 

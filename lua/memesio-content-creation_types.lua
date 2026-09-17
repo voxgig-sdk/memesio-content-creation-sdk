@@ -57,7 +57,6 @@
 ---@field prompt string
 ---@field proof? table
 ---@field quotaBoostPerDay? number
----@field scopes? table
 ---@field userId? string
 ---@field weekStart? string
 
@@ -77,7 +76,6 @@
 ---@field prompt string
 ---@field proof? table
 ---@field quotaBoostPerDay? number
----@field scopes? table
 ---@field userId? string
 ---@field weekStart? string
 
@@ -161,7 +159,6 @@
 ---@field createdAt? string
 ---@field detectedFaceCount number
 ---@field edgeRefinement? number
----@field estimatedCostUsd? number
 ---@field frameTimeMs? number
 ---@field height number
 ---@field id string
@@ -173,10 +170,7 @@
 ---@field mediaType? string
 ---@field metadata? table
 ---@field nsfwScore? number
----@field output? table
 ---@field projectId string
----@field providerId? string
----@field reason? string
 ---@field runAfterMs? number
 ---@field sourceAssetUrl string
 ---@field sourceFaceIndex? number
@@ -189,7 +183,6 @@
 ---@field updatedAt? string
 ---@field versionId? string
 ---@field width number
----@field workerId string
 ---@field workspaceId? string
 
 ---@class AiJobLoadMatch
@@ -208,7 +201,6 @@
 ---@field createdAt? string
 ---@field detectedFaceCount number
 ---@field edgeRefinement? number
----@field estimatedCostUsd? number
 ---@field frameTimeMs? number
 ---@field height number
 ---@field id string
@@ -220,10 +212,7 @@
 ---@field mediaType? string
 ---@field metadata? table
 ---@field nsfwScore? number
----@field output? table
 ---@field projectId string
----@field providerId? string
----@field reason? string
 ---@field runAfterMs? number
 ---@field sourceAssetUrl string
 ---@field sourceFaceIndex? number
@@ -236,7 +225,6 @@
 ---@field updatedAt? string
 ---@field versionId? string
 ---@field width number
----@field workerId string
 ---@field workspaceId? string
 
 ---@class AiMemeGenerationSucceeded
@@ -318,14 +306,8 @@
 ---@field template_id? string
 
 ---@class Auth
----@field displayName? string
----@field email string
----@field password string
 
 ---@class AuthCreateData
----@field displayName? string
----@field email string
----@field password string
 
 ---@class Billing
 
@@ -486,22 +468,11 @@
 ---@field widthPx? number
 
 ---@class Growth
----@field accountId? string
 ---@field action string
 ---@field actorId? string
----@field caption? string
----@field code? string
----@field externalAccountId? string
----@field handle? string
 ---@field limit? number
 ---@field logExposure? boolean
----@field memeSlug? string
----@field now? string
----@field platform? string
----@field profiles? table
----@field shareSlug? string
 ---@field surface? string
----@field weekStart? string
 
 ---@class GrowthLoadMatch
 ---@field actor_id string
@@ -509,22 +480,11 @@
 ---@field surface? string
 
 ---@class GrowthCreateData
----@field accountId? string
 ---@field action string
 ---@field actorId? string
----@field caption? string
----@field code? string
----@field externalAccountId? string
----@field handle? string
 ---@field limit? number
 ---@field logExposure? boolean
----@field memeSlug? string
----@field now? string
----@field platform? string
----@field profiles? table
----@field shareSlug? string
 ---@field surface? string
----@field weekStart? string
 
 ---@class ListMeme
 ---@field altText string
@@ -553,20 +513,8 @@
 ---@field visibility? string
 
 ---@class Media
----@field action string
----@field contentType? string
----@field expiresInSeconds? number
----@field ownerToken? string
----@field path? string
----@field prefix? string
 
 ---@class MediaCreateData
----@field action string
----@field contentType? string
----@field expiresInSeconds? number
----@field ownerToken? string
----@field path? string
----@field prefix? string
 
 ---@class Meme
 ---@field altText string
@@ -607,9 +555,7 @@
 ---@field description string
 ---@field durationMs? number|nil
 ---@field exampleImageUrl? string|nil
----@field fps? number
 ---@field frameCount? number|nil
----@field gifSlug? string
 ---@field height number|nil
 ---@field id string
 ---@field imageUrl string
@@ -618,15 +564,11 @@
 ---@field posterImageUrl? string
 ---@field previewImageUrl? string
 ---@field qualityStatus? string
----@field returnBase64? boolean
 ---@field slug string
 ---@field sourceTemplateId string|nil
 ---@field sourceUrl? string
----@field startMs? number
 ---@field tags table
----@field title? string
 ---@field width number|nil
----@field widthPx? number
 
 ---@class PublicTemplateMediaItemLoadMatch
 ---@field slug string
@@ -644,9 +586,7 @@
 ---@field description string
 ---@field durationMs? number|nil
 ---@field exampleImageUrl? string|nil
----@field fps? number
 ---@field frameCount? number|nil
----@field gifSlug? string
 ---@field height number|nil
 ---@field id string
 ---@field imageUrl string
@@ -655,14 +595,10 @@
 ---@field posterImageUrl? string
 ---@field previewImageUrl? string
 ---@field qualityStatus? string
----@field returnBase64? boolean
 ---@field sourceTemplateId string|nil
 ---@field sourceUrl? string
----@field startMs? number
 ---@field tags table
----@field title? string
 ---@field width number|nil
----@field widthPx? number
 
 ---@class StandaloneAgentBootstrap
 ---@field description? string
@@ -810,51 +746,6 @@
 ---@class UploadCaptionMemeSuccessCreateData
 
 ---@class Video
----@field action? string
----@field assetId? string
----@field atMs? number
----@field audioAssetId? string
----@field beatOffsetMs? number
----@field bitrateKbps? number
----@field bpm? number
----@field cancelled? boolean
----@field container? string
----@field durationMs? number
----@field durationSeconds number
----@field easing? string
----@field error? string
----@field frameRate? number
----@field inputFormat string
----@field intensity? number
----@field jobId? string
----@field locale? string
----@field mimeType string
----@field name? string
----@field offsetMs? number
----@field outputPresetId string
----@field outputUrl? string
----@field planTier string
----@field presetId string
----@field progressPercent? number
----@field project? table
----@field projectId? string
----@field property? string
----@field sourceDeviceId? string
----@field sourceUrl? string
----@field stage? string
----@field startMs? number
----@field stylePresetId? string
----@field syncToBeatGrid? boolean
----@field tone? string
----@field trackId? string
----@field transcript? string
----@field trendKeywords? table
----@field type? string
----@field updatedAt? string
----@field value? number
----@field watermarkEnabled? boolean
----@field watermarkText? string
----@field workerId? string
 
 ---@class VideoLoadMatch
 ---@field beat_offset_m? number
@@ -867,51 +758,6 @@
 ---@field trend_keyword? string
 
 ---@class VideoCreateData
----@field action? string
----@field assetId? string
----@field atMs? number
----@field audioAssetId? string
----@field beatOffsetMs? number
----@field bitrateKbps? number
----@field bpm? number
----@field cancelled? boolean
----@field container? string
----@field durationMs? number
----@field durationSeconds number
----@field easing? string
----@field error? string
----@field frameRate? number
----@field inputFormat string
----@field intensity? number
----@field jobId? string
----@field locale? string
----@field mimeType string
----@field name? string
----@field offsetMs? number
----@field outputPresetId string
----@field outputUrl? string
----@field planTier string
----@field presetId string
----@field progressPercent? number
----@field project? table
----@field projectId? string
----@field property? string
----@field sourceDeviceId? string
----@field sourceUrl? string
----@field stage? string
----@field startMs? number
----@field stylePresetId? string
----@field syncToBeatGrid? boolean
----@field tone? string
----@field trackId? string
----@field transcript? string
----@field trendKeywords? table
----@field type? string
----@field updatedAt? string
----@field value? number
----@field watermarkEnabled? boolean
----@field watermarkText? string
----@field workerId? string
 
 local M = {}
 

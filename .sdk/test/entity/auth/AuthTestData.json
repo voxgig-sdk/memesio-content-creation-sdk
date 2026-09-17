@@ -2,32 +2,19 @@
   "existing": {
     "auth": {
       "AUTH00": {
-        "displayName": "s1e",
-        "email": "s1f",
-        "password": "s20",
         "id": "AUTH00"
       },
       "AUTH01": {
-        "displayName": "s3c",
-        "email": "s3d",
-        "password": "s3e",
         "id": "AUTH01"
       },
       "AUTH02": {
-        "displayName": "s5a",
-        "email": "s5b",
-        "password": "s5c",
         "id": "AUTH02"
       }
     }
   },
   "new": {
     "auth": {
-      "auth_ref01": {
-        "displayName": "s78",
-        "email": "s79",
-        "password": "s7a"
-      }
+      "auth_ref01": {}
     }
   },
   "requests": {

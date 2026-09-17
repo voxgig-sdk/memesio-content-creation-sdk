@@ -2,44 +2,19 @@
   "existing": {
     "media": {
       "MEDIA00": {
-        "action": "s3c",
-        "contentType": "s3d",
-        "expiresInSeconds": 62,
-        "ownerToken": "s3f",
-        "path": "s40",
-        "prefix": "s41",
         "id": "MEDIA00"
       },
       "MEDIA01": {
-        "action": "s78",
-        "contentType": "s79",
-        "expiresInSeconds": 122,
-        "ownerToken": "s7b",
-        "path": "s7c",
-        "prefix": "s7d",
         "id": "MEDIA01"
       },
       "MEDIA02": {
-        "action": "sb4",
-        "contentType": "sb5",
-        "expiresInSeconds": 182,
-        "ownerToken": "sb7",
-        "path": "sb8",
-        "prefix": "sb9",
         "id": "MEDIA02"
       }
     }
   },
   "new": {
     "media": {
-      "media_ref01": {
-        "action": "sf0",
-        "contentType": "sf1",
-        "expiresInSeconds": 242,
-        "ownerToken": "sf3",
-        "path": "sf4",
-        "prefix": "sf5"
-      }
+      "media_ref01": {}
     }
   },
   "requests": {

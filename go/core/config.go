@@ -81,6 +81,7 @@ func MakeConfig() map[string]any {
 			"base": "/",
 			"auth": map[string]any{
 				"prefix": "",
+				"name": "x-developer-api-key",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",
@@ -398,10 +399,6 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "quotaBoostPerDay",
 						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "scopes",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "userId",
@@ -1614,10 +1611,6 @@ func MakeConfig() map[string]any {
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
-						"name": "estimatedCostUsd",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
 						"name": "frameTimeMs",
 						"type": "`$NUMBER`",
 					},
@@ -1671,20 +1664,8 @@ func MakeConfig() map[string]any {
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
-						"name": "output",
-						"type": "`$OBJECT`",
-					},
-					map[string]any{
 						"name": "projectId",
 						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "providerId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "reason",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1740,11 +1721,6 @@ func MakeConfig() map[string]any {
 						"name": "width",
 						"req": true,
 						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "workerId",
-						"req": true,
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "workspaceId",
@@ -2890,23 +2866,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"auth": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "displayName",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "email",
-						"name": "email",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "password",
-						"req": true,
-						"type": "`$STRING`",
-					},
-				},
+				"fields": []any{},
 				"name": "auth",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -3905,38 +3865,12 @@ func MakeConfig() map[string]any {
 			"growth": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "accountId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "action",
 						"req": true,
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "actorId",
-						"op": map[string]any{
-							"create": map[string]any{
-								"req": true,
-								"type": "`$STRING`",
-							},
-						},
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "caption",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "code",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "externalAccountId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "handle",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -3948,32 +3882,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
-						"name": "memeSlug",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "date-time",
-						"name": "now",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "platform",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "profiles",
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "shareSlug",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "surface",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "weekStart",
 						"type": "`$STRING`",
 					},
 				},
@@ -4580,33 +4489,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"media": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "action",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "contentType",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "expiresInSeconds",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "ownerToken",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "path",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "prefix",
-						"type": "`$STRING`",
-					},
-				},
+				"fields": []any{},
 				"name": "media",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -4901,11 +4784,6 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "captions",
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ARRAY`",
-							},
-						},
 						"req": true,
 						"type": "`$ARRAY`",
 					},
@@ -4939,10 +4817,6 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
-						"name": "fps",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
 						"name": "frameCount",
 						"type": []any{
 							"`$ONE`",
@@ -4951,11 +4825,6 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-					},
-					map[string]any{
-						"name": "gifSlug",
-						"short": "Required for /api/v1/gifs/generate.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "height",
@@ -5001,11 +4870,6 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"name": "returnBase64",
-						"short": "Only used by /api/v1/gifs/generate.",
-						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
 						"name": "slug",
 						"req": true,
 						"type": "`$STRING`",
@@ -5026,22 +4890,9 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"name": "startMs",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
 						"name": "tags",
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ARRAY`",
-							},
-						},
 						"req": true,
 						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "title",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "width",
@@ -5053,10 +4904,6 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-					},
-					map[string]any{
-						"name": "widthPx",
-						"type": "`$INTEGER`",
 					},
 				},
 				"id": map[string]any{
@@ -6583,216 +6430,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"video": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "action",
-						"op": map[string]any{
-							"create": map[string]any{
-								"req": true,
-								"type": "`$STRING`",
-							},
-						},
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "assetId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "atMs",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "audioAssetId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "beatOffsetMs",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "bitrateKbps",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "bpm",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "cancelled",
-						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
-						"name": "container",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "durationMs",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "durationSeconds",
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$NUMBER`",
-							},
-						},
-						"req": true,
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "easing",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "error",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "frameRate",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "inputFormat",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "intensity",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "jobId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "locale",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "mimeType",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "name",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "offsetMs",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "outputPresetId",
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$STRING`",
-							},
-						},
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "outputUrl",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "planTier",
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$STRING`",
-							},
-						},
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "presetId",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "progressPercent",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "project",
-						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"name": "projectId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "property",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "sourceDeviceId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "sourceUrl",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "stage",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "startMs",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "stylePresetId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "syncToBeatGrid",
-						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
-						"name": "tone",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "trackId",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "transcript",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "trendKeywords",
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "type",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "date-time",
-						"name": "updatedAt",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "value",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "watermarkEnabled",
-						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
-						"name": "watermarkText",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "workerId",
-						"type": "`$STRING`",
-					},
-				},
+				"fields": []any{},
 				"name": "video",
 				"op": map[string]any{
 					"create": map[string]any{

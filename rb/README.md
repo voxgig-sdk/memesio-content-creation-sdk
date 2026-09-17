@@ -64,7 +64,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  trendalert = client.TrendAlert.load()
+  agentinfra = client.AgentInfra.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -134,8 +134,8 @@ client = MemesioContentCreationSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-trendalert = client.TrendAlert.load()
-puts trendalert
+agentinfra = client.AgentInfra.load()
+puts agentinfra
 ```
 
 ### Use a custom fetch function
@@ -312,7 +312,6 @@ API path: `/api/v1/agents`
 | `prompt` |  |
 | `proof` |  |
 | `quotaBoostPerDay` |  |
-| `scopes` |  |
 | `userId` |  |
 | `weekStart` |  |
 
@@ -373,7 +372,6 @@ API path: `/api/ai/captions/generate`
 | `createdAt` |  |
 | `detectedFaceCount` |  |
 | `edgeRefinement` |  |
-| `estimatedCostUsd` |  |
 | `frameTimeMs` |  |
 | `height` |  |
 | `id` |  |
@@ -385,10 +383,7 @@ API path: `/api/ai/captions/generate`
 | `mediaType` |  |
 | `metadata` |  |
 | `nsfwScore` |  |
-| `output` |  |
 | `projectId` |  |
-| `providerId` |  |
-| `reason` |  |
 | `runAfterMs` |  |
 | `sourceAssetUrl` |  |
 | `sourceFaceIndex` |  |
@@ -401,7 +396,6 @@ API path: `/api/ai/captions/generate`
 | `updatedAt` |  |
 | `versionId` |  |
 | `width` |  |
-| `workerId` |  |
 | `workspaceId` |  |
 
 Operations: Create, Load.
@@ -470,9 +464,6 @@ API path: `/api/analytics/experiments/templates`
 
 | Field | Description |
 | --- | --- |
-| `displayName` |  |
-| `email` |  |
-| `password` |  |
 
 Operations: Create.
 
@@ -618,22 +609,11 @@ API path: `/api/v1/gifs/generate`
 
 | Field | Description |
 | --- | --- |
-| `accountId` |  |
 | `action` |  |
 | `actorId` |  |
-| `caption` |  |
-| `code` |  |
-| `externalAccountId` |  |
-| `handle` |  |
 | `limit` |  |
 | `logExposure` |  |
-| `memeSlug` |  |
-| `now` |  |
-| `platform` |  |
-| `profiles` |  |
-| `shareSlug` |  |
 | `surface` |  |
-| `weekStart` |  |
 
 Operations: Create, Load.
 
@@ -665,12 +645,6 @@ API path: `/api/memes`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `contentType` |  |
-| `expiresInSeconds` |  |
-| `ownerToken` |  |
-| `path` |  |
-| `prefix` |  |
 
 Operations: Create.
 
@@ -718,9 +692,7 @@ API path: `/api/memes/{slug}`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
-| `fps` |  |
 | `frameCount` |  |
-| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -729,15 +701,11 @@ API path: `/api/memes/{slug}`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
-| `startMs` |  |
 | `tags` |  |
-| `title` |  |
 | `width` |  |
-| `widthPx` |  |
 
 Operations: Create, Load.
 
@@ -864,51 +832,6 @@ API path: `/api/v1/memes/caption-upload`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `assetId` |  |
-| `atMs` |  |
-| `audioAssetId` |  |
-| `beatOffsetMs` |  |
-| `bitrateKbps` |  |
-| `bpm` |  |
-| `cancelled` |  |
-| `container` |  |
-| `durationMs` |  |
-| `durationSeconds` |  |
-| `easing` |  |
-| `error` |  |
-| `frameRate` |  |
-| `inputFormat` |  |
-| `intensity` |  |
-| `jobId` |  |
-| `locale` |  |
-| `mimeType` |  |
-| `name` |  |
-| `offsetMs` |  |
-| `outputPresetId` |  |
-| `outputUrl` |  |
-| `planTier` |  |
-| `presetId` |  |
-| `progressPercent` |  |
-| `project` |  |
-| `projectId` |  |
-| `property` |  |
-| `sourceDeviceId` |  |
-| `sourceUrl` |  |
-| `stage` |  |
-| `startMs` |  |
-| `stylePresetId` |  |
-| `syncToBeatGrid` |  |
-| `tone` |  |
-| `trackId` |  |
-| `transcript` |  |
-| `trendKeywords` |  |
-| `type` |  |
-| `updatedAt` |  |
-| `value` |  |
-| `watermarkEnabled` |  |
-| `watermarkText` |  |
-| `workerId` |  |
 
 Operations: Create, Load.
 
@@ -989,7 +912,6 @@ Create an instance: `agent_infra = client.AgentInfra`
 | `prompt` | `String` |  |
 | `proof` | `Hash` |  |
 | `quotaBoostPerDay` | `Integer` |  |
-| `scopes` | `Array` |  |
 | `userId` | `String` |  |
 | `weekStart` | `String` |  |
 
@@ -1102,7 +1024,6 @@ Create an instance: `ai_job = client.AiJob`
 | `createdAt` | `String` |  |
 | `detectedFaceCount` | `Float` |  |
 | `edgeRefinement` | `Float` |  |
-| `estimatedCostUsd` | `Float` |  |
 | `frameTimeMs` | `Float` |  |
 | `height` | `Float` |  |
 | `id` | `String` |  |
@@ -1114,10 +1035,7 @@ Create an instance: `ai_job = client.AiJob`
 | `mediaType` | `String` |  |
 | `metadata` | `Hash` |  |
 | `nsfwScore` | `Float` |  |
-| `output` | `Hash` |  |
 | `projectId` | `String` |  |
-| `providerId` | `String` |  |
-| `reason` | `String` |  |
 | `runAfterMs` | `Integer` |  |
 | `sourceAssetUrl` | `String` |  |
 | `sourceFaceIndex` | `Float` |  |
@@ -1130,7 +1048,6 @@ Create an instance: `ai_job = client.AiJob`
 | `updatedAt` | `String` |  |
 | `versionId` | `String` |  |
 | `width` | `Float` |  |
-| `workerId` | `String` |  |
 | `workspaceId` | `String` |  |
 
 #### Example: Load
@@ -1156,7 +1073,6 @@ ai_job = client.AiJob.create({
   "status" => "example_status", # String
   "targetAssetUrl" => "example_targetAssetUrl", # String
   "width" => 1, # Float
-  "workerId" => "example_workerId", # String
 })
 ```
 
@@ -1283,20 +1199,10 @@ Create an instance: `auth = client.Auth`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `displayName` | `String` |  |
-| `email` | `String` |  |
-| `password` | `String` |  |
-
 #### Example: Create
 
 ```ruby
 auth = client.Auth.create({
-  "email" => "example_email", # String
-  "password" => "example_password", # String
 })
 ```
 
@@ -1590,22 +1496,11 @@ Create an instance: `growth = client.Growth`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accountId` | `String` |  |
 | `action` | `String` |  |
 | `actorId` | `String` |  |
-| `caption` | `String` |  |
-| `code` | `String` |  |
-| `externalAccountId` | `String` |  |
-| `handle` | `String` |  |
 | `limit` | `Integer` |  |
 | `logExposure` | `Boolean` |  |
-| `memeSlug` | `String` |  |
-| `now` | `String` |  |
-| `platform` | `String` |  |
-| `profiles` | `Array` |  |
-| `shareSlug` | `String` |  |
 | `surface` | `String` |  |
-| `weekStart` | `String` |  |
 
 #### Example: Load
 
@@ -1669,22 +1564,10 @@ Create an instance: `media = client.Media`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `String` |  |
-| `contentType` | `String` |  |
-| `expiresInSeconds` | `Integer` |  |
-| `ownerToken` | `String` |  |
-| `path` | `String` |  |
-| `prefix` | `String` |  |
-
 #### Example: Create
 
 ```ruby
 media = client.Media.create({
-  "action" => "example_action", # String
 })
 ```
 
@@ -1757,9 +1640,7 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 | `description` | `String` |  |
 | `durationMs` | `Object` |  |
 | `exampleImageUrl` | `Object` |  |
-| `fps` | `Integer` |  |
 | `frameCount` | `Object` |  |
-| `gifSlug` | `String` | Required for /api/v1/gifs/generate. |
 | `height` | `Object` |  |
 | `id` | `String` |  |
 | `imageUrl` | `String` |  |
@@ -1768,15 +1649,11 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 | `posterImageUrl` | `String` |  |
 | `previewImageUrl` | `String` |  |
 | `qualityStatus` | `String` |  |
-| `returnBase64` | `Boolean` | Only used by /api/v1/gifs/generate. |
 | `slug` | `String` |  |
 | `sourceTemplateId` | `Object` |  |
 | `sourceUrl` | `String` |  |
-| `startMs` | `Integer` |  |
 | `tags` | `Array` |  |
-| `title` | `String` |  |
 | `width` | `Object` |  |
-| `widthPx` | `Integer` |  |
 
 #### Example: Load
 
@@ -2011,56 +1888,6 @@ Create an instance: `video = client.Video`
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `String` |  |
-| `assetId` | `String` |  |
-| `atMs` | `Float` |  |
-| `audioAssetId` | `String` |  |
-| `beatOffsetMs` | `Integer` |  |
-| `bitrateKbps` | `Float` |  |
-| `bpm` | `Integer` |  |
-| `cancelled` | `Boolean` |  |
-| `container` | `String` |  |
-| `durationMs` | `Float` |  |
-| `durationSeconds` | `Float` |  |
-| `easing` | `String` |  |
-| `error` | `String` |  |
-| `frameRate` | `Float` |  |
-| `inputFormat` | `String` |  |
-| `intensity` | `Float` |  |
-| `jobId` | `String` |  |
-| `locale` | `String` |  |
-| `mimeType` | `String` |  |
-| `name` | `String` |  |
-| `offsetMs` | `Float` |  |
-| `outputPresetId` | `String` |  |
-| `outputUrl` | `String` |  |
-| `planTier` | `String` |  |
-| `presetId` | `String` |  |
-| `progressPercent` | `Float` |  |
-| `project` | `Hash` |  |
-| `projectId` | `String` |  |
-| `property` | `String` |  |
-| `sourceDeviceId` | `String` |  |
-| `sourceUrl` | `String` |  |
-| `stage` | `String` |  |
-| `startMs` | `Float` |  |
-| `stylePresetId` | `String` |  |
-| `syncToBeatGrid` | `Boolean` |  |
-| `tone` | `String` |  |
-| `trackId` | `String` |  |
-| `transcript` | `String` |  |
-| `trendKeywords` | `Array` |  |
-| `type` | `String` |  |
-| `updatedAt` | `String` |  |
-| `value` | `Float` |  |
-| `watermarkEnabled` | `Boolean` |  |
-| `watermarkText` | `String` |  |
-| `workerId` | `String` |  |
-
 #### Example: Load
 
 ```ruby
@@ -2072,12 +1899,6 @@ video = client.Video.load()
 
 ```ruby
 video = client.Video.create({
-  "durationSeconds" => 1, # Float
-  "inputFormat" => "example_inputFormat", # String
-  "mimeType" => "example_mimeType", # String
-  "outputPresetId" => "example_outputPresetId", # String
-  "planTier" => "example_planTier", # String
-  "presetId" => "example_presetId", # String
 })
 ```
 
@@ -2224,6 +2045,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── MemesioContentCreation_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations
@@ -2242,11 +2064,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-trendalert = client.TrendAlert
-trendalert.load()
+agentinfra = client.AgentInfra
+agentinfra.load()
 
-# trendalert.data_get now returns the trendalert data from the last load
-# trendalert.match_get returns the last match criteria
+# agentinfra.data_get now returns the agentinfra data from the last load
+# agentinfra.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

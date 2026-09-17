@@ -67,11 +67,6 @@ main: kit: entity: ai_job: {
       type: "`$NUMBER`"
     }
     {
-      name: "estimatedCostUsd"
-      req: false
-      type: "`$NUMBER`"
-    }
-    {
       name: "frameTimeMs"
       req: false
       type: "`$NUMBER`"
@@ -133,23 +128,8 @@ main: kit: entity: ai_job: {
       type: "`$NUMBER`"
     }
     {
-      name: "output"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "projectId"
       req: true
-      type: "`$STRING`"
-    }
-    {
-      name: "providerId"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "reason"
-      req: false
       type: "`$STRING`"
     }
     {
@@ -212,11 +192,6 @@ main: kit: entity: ai_job: {
       name: "width"
       req: true
       type: "`$NUMBER`"
-    }
-    {
-      name: "workerId"
-      req: true
-      type: "`$STRING`"
     }
     {
       name: "workspaceId"

@@ -70,8 +70,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    trendalert = client.TrendAlert().load()
-    print(trendalert)
+    agentinfra = client.AgentInfra().load()
+    print(agentinfra)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -139,8 +139,8 @@ client = MemesioContentCreationSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-trendalert = client.TrendAlert().load()
-# trendalert contains the mock response record
+agentinfra = client.AgentInfra().load()
+# agentinfra contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -318,7 +318,6 @@ API path: `/api/v1/agents`
 | `prompt` |  |
 | `proof` |  |
 | `quotaBoostPerDay` |  |
-| `scopes` |  |
 | `userId` |  |
 | `weekStart` |  |
 
@@ -379,7 +378,6 @@ API path: `/api/ai/captions/generate`
 | `createdAt` |  |
 | `detectedFaceCount` |  |
 | `edgeRefinement` |  |
-| `estimatedCostUsd` |  |
 | `frameTimeMs` |  |
 | `height` |  |
 | `id` |  |
@@ -391,10 +389,7 @@ API path: `/api/ai/captions/generate`
 | `mediaType` |  |
 | `metadata` |  |
 | `nsfwScore` |  |
-| `output` |  |
 | `projectId` |  |
-| `providerId` |  |
-| `reason` |  |
 | `runAfterMs` |  |
 | `sourceAssetUrl` |  |
 | `sourceFaceIndex` |  |
@@ -407,7 +402,6 @@ API path: `/api/ai/captions/generate`
 | `updatedAt` |  |
 | `versionId` |  |
 | `width` |  |
-| `workerId` |  |
 | `workspaceId` |  |
 
 Operations: Create, Load.
@@ -476,9 +470,6 @@ API path: `/api/analytics/experiments/templates`
 
 | Field | Description |
 | --- | --- |
-| `displayName` |  |
-| `email` |  |
-| `password` |  |
 
 Operations: Create.
 
@@ -624,22 +615,11 @@ API path: `/api/v1/gifs/generate`
 
 | Field | Description |
 | --- | --- |
-| `accountId` |  |
 | `action` |  |
 | `actorId` |  |
-| `caption` |  |
-| `code` |  |
-| `externalAccountId` |  |
-| `handle` |  |
 | `limit` |  |
 | `logExposure` |  |
-| `memeSlug` |  |
-| `now` |  |
-| `platform` |  |
-| `profiles` |  |
-| `shareSlug` |  |
 | `surface` |  |
-| `weekStart` |  |
 
 Operations: Create, Load.
 
@@ -671,12 +651,6 @@ API path: `/api/memes`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `contentType` |  |
-| `expiresInSeconds` |  |
-| `ownerToken` |  |
-| `path` |  |
-| `prefix` |  |
 
 Operations: Create.
 
@@ -724,9 +698,7 @@ API path: `/api/memes/{slug}`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
-| `fps` |  |
 | `frameCount` |  |
-| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -735,15 +707,11 @@ API path: `/api/memes/{slug}`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
-| `startMs` |  |
 | `tags` |  |
-| `title` |  |
 | `width` |  |
-| `widthPx` |  |
 
 Operations: Create, Load.
 
@@ -870,51 +838,6 @@ API path: `/api/v1/memes/caption-upload`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `assetId` |  |
-| `atMs` |  |
-| `audioAssetId` |  |
-| `beatOffsetMs` |  |
-| `bitrateKbps` |  |
-| `bpm` |  |
-| `cancelled` |  |
-| `container` |  |
-| `durationMs` |  |
-| `durationSeconds` |  |
-| `easing` |  |
-| `error` |  |
-| `frameRate` |  |
-| `inputFormat` |  |
-| `intensity` |  |
-| `jobId` |  |
-| `locale` |  |
-| `mimeType` |  |
-| `name` |  |
-| `offsetMs` |  |
-| `outputPresetId` |  |
-| `outputUrl` |  |
-| `planTier` |  |
-| `presetId` |  |
-| `progressPercent` |  |
-| `project` |  |
-| `projectId` |  |
-| `property` |  |
-| `sourceDeviceId` |  |
-| `sourceUrl` |  |
-| `stage` |  |
-| `startMs` |  |
-| `stylePresetId` |  |
-| `syncToBeatGrid` |  |
-| `tone` |  |
-| `trackId` |  |
-| `transcript` |  |
-| `trendKeywords` |  |
-| `type` |  |
-| `updatedAt` |  |
-| `value` |  |
-| `watermarkEnabled` |  |
-| `watermarkText` |  |
-| `workerId` |  |
 
 Operations: Create, Load.
 
@@ -994,7 +917,6 @@ Create an instance: `agent_infra = client.AgentInfra()`
 | `prompt` | `str` |  |
 | `proof` | `dict` |  |
 | `quotaBoostPerDay` | `int` |  |
-| `scopes` | `list` |  |
 | `userId` | `str` |  |
 | `weekStart` | `str` |  |
 
@@ -1105,7 +1027,6 @@ Create an instance: `ai_job = client.AiJob()`
 | `createdAt` | `str` |  |
 | `detectedFaceCount` | `float` |  |
 | `edgeRefinement` | `float` |  |
-| `estimatedCostUsd` | `float` |  |
 | `frameTimeMs` | `float` |  |
 | `height` | `float` |  |
 | `id` | `str` |  |
@@ -1117,10 +1038,7 @@ Create an instance: `ai_job = client.AiJob()`
 | `mediaType` | `str` |  |
 | `metadata` | `dict` |  |
 | `nsfwScore` | `float` |  |
-| `output` | `dict` |  |
 | `projectId` | `str` |  |
-| `providerId` | `str` |  |
-| `reason` | `str` |  |
 | `runAfterMs` | `int` |  |
 | `sourceAssetUrl` | `str` |  |
 | `sourceFaceIndex` | `float` |  |
@@ -1133,7 +1051,6 @@ Create an instance: `ai_job = client.AiJob()`
 | `updatedAt` | `str` |  |
 | `versionId` | `str` |  |
 | `width` | `float` |  |
-| `workerId` | `str` |  |
 | `workspaceId` | `str` |  |
 
 #### Example: Load
@@ -1158,7 +1075,6 @@ ai_job = client.AiJob().create({
     "status": "example_status",  # str
     "targetAssetUrl": "example_targetAssetUrl",  # str
     "width": 1,  # float
-    "workerId": "example_workerId",  # str
 })
 ```
 
@@ -1283,20 +1199,10 @@ Create an instance: `auth = client.Auth()`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `displayName` | `str` |  |
-| `email` | `str` |  |
-| `password` | `str` |  |
-
 #### Example: Create
 
 ```python
 auth = client.Auth().create({
-    "email": "example_email",  # str
-    "password": "example_password",  # str
 })
 ```
 
@@ -1585,22 +1491,11 @@ Create an instance: `growth = client.Growth()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accountId` | `str` |  |
 | `action` | `str` |  |
 | `actorId` | `str` |  |
-| `caption` | `str` |  |
-| `code` | `str` |  |
-| `externalAccountId` | `str` |  |
-| `handle` | `str` |  |
 | `limit` | `int` |  |
 | `logExposure` | `bool` |  |
-| `memeSlug` | `str` |  |
-| `now` | `str` |  |
-| `platform` | `str` |  |
-| `profiles` | `list` |  |
-| `shareSlug` | `str` |  |
 | `surface` | `str` |  |
-| `weekStart` | `str` |  |
 
 #### Example: Load
 
@@ -1662,22 +1557,10 @@ Create an instance: `media = client.Media()`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `str` |  |
-| `contentType` | `str` |  |
-| `expiresInSeconds` | `int` |  |
-| `ownerToken` | `str` |  |
-| `path` | `str` |  |
-| `prefix` | `str` |  |
-
 #### Example: Create
 
 ```python
 media = client.Media().create({
-    "action": "example_action",  # str
 })
 ```
 
@@ -1749,9 +1632,7 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 | `description` | `str` |  |
 | `durationMs` | `int | None` |  |
 | `exampleImageUrl` | `str | None` |  |
-| `fps` | `int` |  |
 | `frameCount` | `int | None` |  |
-| `gifSlug` | `str` | Required for /api/v1/gifs/generate. |
 | `height` | `float | None` |  |
 | `id` | `str` |  |
 | `imageUrl` | `str` |  |
@@ -1760,15 +1641,11 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 | `posterImageUrl` | `str` |  |
 | `previewImageUrl` | `str` |  |
 | `qualityStatus` | `str` |  |
-| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `str` |  |
 | `sourceTemplateId` | `str | None` |  |
 | `sourceUrl` | `str` |  |
-| `startMs` | `int` |  |
 | `tags` | `list` |  |
-| `title` | `str` |  |
 | `width` | `float | None` |  |
-| `widthPx` | `int` |  |
 
 #### Example: Load
 
@@ -1999,56 +1876,6 @@ Create an instance: `video = client.Video()`
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `str` |  |
-| `assetId` | `str` |  |
-| `atMs` | `float` |  |
-| `audioAssetId` | `str` |  |
-| `beatOffsetMs` | `int` |  |
-| `bitrateKbps` | `float` |  |
-| `bpm` | `int` |  |
-| `cancelled` | `bool` |  |
-| `container` | `str` |  |
-| `durationMs` | `float` |  |
-| `durationSeconds` | `float` |  |
-| `easing` | `str` |  |
-| `error` | `str` |  |
-| `frameRate` | `float` |  |
-| `inputFormat` | `str` |  |
-| `intensity` | `float` |  |
-| `jobId` | `str` |  |
-| `locale` | `str` |  |
-| `mimeType` | `str` |  |
-| `name` | `str` |  |
-| `offsetMs` | `float` |  |
-| `outputPresetId` | `str` |  |
-| `outputUrl` | `str` |  |
-| `planTier` | `str` |  |
-| `presetId` | `str` |  |
-| `progressPercent` | `float` |  |
-| `project` | `dict` |  |
-| `projectId` | `str` |  |
-| `property` | `str` |  |
-| `sourceDeviceId` | `str` |  |
-| `sourceUrl` | `str` |  |
-| `stage` | `str` |  |
-| `startMs` | `float` |  |
-| `stylePresetId` | `str` |  |
-| `syncToBeatGrid` | `bool` |  |
-| `tone` | `str` |  |
-| `trackId` | `str` |  |
-| `transcript` | `str` |  |
-| `trendKeywords` | `list` |  |
-| `type` | `str` |  |
-| `updatedAt` | `str` |  |
-| `value` | `float` |  |
-| `watermarkEnabled` | `bool` |  |
-| `watermarkText` | `str` |  |
-| `workerId` | `str` |  |
-
 #### Example: Load
 
 ```python
@@ -2059,12 +1886,6 @@ video = client.Video().load()
 
 ```python
 video = client.Video().create({
-    "durationSeconds": 1,  # float
-    "inputFormat": "example_inputFormat",  # str
-    "mimeType": "example_mimeType",  # str
-    "outputPresetId": "example_outputPresetId",  # str
-    "planTier": "example_planTier",  # str
-    "presetId": "example_presetId",  # str
 })
 ```
 
@@ -2211,6 +2032,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── memesiocontentcreation_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations
@@ -2228,11 +2050,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-trendalert = client.TrendAlert()
-trendalert.load()
+agentinfra = client.AgentInfra()
+agentinfra.load()
 
-# trendalert.data_get() now returns the trendalert data from the last load
-# trendalert.match_get() returns the last match criteria
+# agentinfra.data_get() now returns the agentinfra data from the last load
+# agentinfra.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -66,7 +66,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $trendalert = $client->TrendAlert()->load();
+    $agentinfra = $client->AgentInfra()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -325,7 +325,6 @@ API path: `/api/v1/agents`
 | `prompt` |  |
 | `proof` |  |
 | `quotaBoostPerDay` |  |
-| `scopes` |  |
 | `userId` |  |
 | `weekStart` |  |
 
@@ -386,7 +385,6 @@ API path: `/api/ai/captions/generate`
 | `createdAt` |  |
 | `detectedFaceCount` |  |
 | `edgeRefinement` |  |
-| `estimatedCostUsd` |  |
 | `frameTimeMs` |  |
 | `height` |  |
 | `id` |  |
@@ -398,10 +396,7 @@ API path: `/api/ai/captions/generate`
 | `mediaType` |  |
 | `metadata` |  |
 | `nsfwScore` |  |
-| `output` |  |
 | `projectId` |  |
-| `providerId` |  |
-| `reason` |  |
 | `runAfterMs` |  |
 | `sourceAssetUrl` |  |
 | `sourceFaceIndex` |  |
@@ -414,7 +409,6 @@ API path: `/api/ai/captions/generate`
 | `updatedAt` |  |
 | `versionId` |  |
 | `width` |  |
-| `workerId` |  |
 | `workspaceId` |  |
 
 Operations: Create, Load.
@@ -483,9 +477,6 @@ API path: `/api/analytics/experiments/templates`
 
 | Field | Description |
 | --- | --- |
-| `displayName` |  |
-| `email` |  |
-| `password` |  |
 
 Operations: Create.
 
@@ -631,22 +622,11 @@ API path: `/api/v1/gifs/generate`
 
 | Field | Description |
 | --- | --- |
-| `accountId` |  |
 | `action` |  |
 | `actorId` |  |
-| `caption` |  |
-| `code` |  |
-| `externalAccountId` |  |
-| `handle` |  |
 | `limit` |  |
 | `logExposure` |  |
-| `memeSlug` |  |
-| `now` |  |
-| `platform` |  |
-| `profiles` |  |
-| `shareSlug` |  |
 | `surface` |  |
-| `weekStart` |  |
 
 Operations: Create, Load.
 
@@ -678,12 +658,6 @@ API path: `/api/memes`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `contentType` |  |
-| `expiresInSeconds` |  |
-| `ownerToken` |  |
-| `path` |  |
-| `prefix` |  |
 
 Operations: Create.
 
@@ -731,9 +705,7 @@ API path: `/api/memes/{slug}`
 | `description` |  |
 | `durationMs` |  |
 | `exampleImageUrl` |  |
-| `fps` |  |
 | `frameCount` |  |
-| `gifSlug` | Required for /api/v1/gifs/generate. |
 | `height` |  |
 | `id` |  |
 | `imageUrl` |  |
@@ -742,15 +714,11 @@ API path: `/api/memes/{slug}`
 | `posterImageUrl` |  |
 | `previewImageUrl` |  |
 | `qualityStatus` |  |
-| `returnBase64` | Only used by /api/v1/gifs/generate. |
 | `slug` |  |
 | `sourceTemplateId` |  |
 | `sourceUrl` |  |
-| `startMs` |  |
 | `tags` |  |
-| `title` |  |
 | `width` |  |
-| `widthPx` |  |
 
 Operations: Create, Load.
 
@@ -877,51 +845,6 @@ API path: `/api/v1/memes/caption-upload`
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `assetId` |  |
-| `atMs` |  |
-| `audioAssetId` |  |
-| `beatOffsetMs` |  |
-| `bitrateKbps` |  |
-| `bpm` |  |
-| `cancelled` |  |
-| `container` |  |
-| `durationMs` |  |
-| `durationSeconds` |  |
-| `easing` |  |
-| `error` |  |
-| `frameRate` |  |
-| `inputFormat` |  |
-| `intensity` |  |
-| `jobId` |  |
-| `locale` |  |
-| `mimeType` |  |
-| `name` |  |
-| `offsetMs` |  |
-| `outputPresetId` |  |
-| `outputUrl` |  |
-| `planTier` |  |
-| `presetId` |  |
-| `progressPercent` |  |
-| `project` |  |
-| `projectId` |  |
-| `property` |  |
-| `sourceDeviceId` |  |
-| `sourceUrl` |  |
-| `stage` |  |
-| `startMs` |  |
-| `stylePresetId` |  |
-| `syncToBeatGrid` |  |
-| `tone` |  |
-| `trackId` |  |
-| `transcript` |  |
-| `trendKeywords` |  |
-| `type` |  |
-| `updatedAt` |  |
-| `value` |  |
-| `watermarkEnabled` |  |
-| `watermarkText` |  |
-| `workerId` |  |
 
 Operations: Create, Load.
 
@@ -1002,7 +925,6 @@ Create an instance: `$agent_infra = $client->AgentInfra();`
 | `prompt` | `string` |  |
 | `proof` | `array` |  |
 | `quotaBoostPerDay` | `int` |  |
-| `scopes` | `array` |  |
 | `userId` | `string` |  |
 | `weekStart` | `string` |  |
 
@@ -1115,7 +1037,6 @@ Create an instance: `$ai_job = $client->AiJob();`
 | `createdAt` | `string` |  |
 | `detectedFaceCount` | `float` |  |
 | `edgeRefinement` | `float` |  |
-| `estimatedCostUsd` | `float` |  |
 | `frameTimeMs` | `float` |  |
 | `height` | `float` |  |
 | `id` | `string` |  |
@@ -1127,10 +1048,7 @@ Create an instance: `$ai_job = $client->AiJob();`
 | `mediaType` | `string` |  |
 | `metadata` | `array` |  |
 | `nsfwScore` | `float` |  |
-| `output` | `array` |  |
 | `projectId` | `string` |  |
-| `providerId` | `string` |  |
-| `reason` | `string` |  |
 | `runAfterMs` | `int` |  |
 | `sourceAssetUrl` | `string` |  |
 | `sourceFaceIndex` | `float` |  |
@@ -1143,7 +1061,6 @@ Create an instance: `$ai_job = $client->AiJob();`
 | `updatedAt` | `string` |  |
 | `versionId` | `string` |  |
 | `width` | `float` |  |
-| `workerId` | `string` |  |
 | `workspaceId` | `string` |  |
 
 #### Example: Load
@@ -1169,7 +1086,6 @@ $ai_job = $client->AiJob()->create([
     "status" => null, // string
     "targetAssetUrl" => null, // string
     "width" => null, // float
-    "workerId" => null, // string
 ]);
 ```
 
@@ -1296,20 +1212,10 @@ Create an instance: `$auth = $client->Auth();`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `displayName` | `string` |  |
-| `email` | `string` |  |
-| `password` | `string` |  |
-
 #### Example: Create
 
 ```php
 $auth = $client->Auth()->create([
-    "email" => null, // string
-    "password" => null, // string
 ]);
 ```
 
@@ -1603,22 +1509,11 @@ Create an instance: `$growth = $client->Growth();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accountId` | `string` |  |
 | `action` | `string` |  |
 | `actorId` | `string` |  |
-| `caption` | `string` |  |
-| `code` | `string` |  |
-| `externalAccountId` | `string` |  |
-| `handle` | `string` |  |
 | `limit` | `int` |  |
 | `logExposure` | `bool` |  |
-| `memeSlug` | `string` |  |
-| `now` | `string` |  |
-| `platform` | `string` |  |
-| `profiles` | `array` |  |
-| `shareSlug` | `string` |  |
 | `surface` | `string` |  |
-| `weekStart` | `string` |  |
 
 #### Example: Load
 
@@ -1682,22 +1577,10 @@ Create an instance: `$media = $client->Media();`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `string` |  |
-| `contentType` | `string` |  |
-| `expiresInSeconds` | `int` |  |
-| `ownerToken` | `string` |  |
-| `path` | `string` |  |
-| `prefix` | `string` |  |
-
 #### Example: Create
 
 ```php
 $media = $client->Media()->create([
-    "action" => null, // string
 ]);
 ```
 
@@ -1770,9 +1653,7 @@ Create an instance: `$public_template_media_item = $client->PublicTemplateMediaI
 | `description` | `string` |  |
 | `durationMs` | `mixed` |  |
 | `exampleImageUrl` | `mixed` |  |
-| `fps` | `int` |  |
 | `frameCount` | `mixed` |  |
-| `gifSlug` | `string` | Required for /api/v1/gifs/generate. |
 | `height` | `mixed` |  |
 | `id` | `string` |  |
 | `imageUrl` | `string` |  |
@@ -1781,15 +1662,11 @@ Create an instance: `$public_template_media_item = $client->PublicTemplateMediaI
 | `posterImageUrl` | `string` |  |
 | `previewImageUrl` | `string` |  |
 | `qualityStatus` | `string` |  |
-| `returnBase64` | `bool` | Only used by /api/v1/gifs/generate. |
 | `slug` | `string` |  |
 | `sourceTemplateId` | `mixed` |  |
 | `sourceUrl` | `string` |  |
-| `startMs` | `int` |  |
 | `tags` | `array` |  |
-| `title` | `string` |  |
 | `width` | `mixed` |  |
-| `widthPx` | `int` |  |
 
 #### Example: Load
 
@@ -2024,56 +1901,6 @@ Create an instance: `$video = $client->Video();`
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `action` | `string` |  |
-| `assetId` | `string` |  |
-| `atMs` | `float` |  |
-| `audioAssetId` | `string` |  |
-| `beatOffsetMs` | `int` |  |
-| `bitrateKbps` | `float` |  |
-| `bpm` | `int` |  |
-| `cancelled` | `bool` |  |
-| `container` | `string` |  |
-| `durationMs` | `float` |  |
-| `durationSeconds` | `float` |  |
-| `easing` | `string` |  |
-| `error` | `string` |  |
-| `frameRate` | `float` |  |
-| `inputFormat` | `string` |  |
-| `intensity` | `float` |  |
-| `jobId` | `string` |  |
-| `locale` | `string` |  |
-| `mimeType` | `string` |  |
-| `name` | `string` |  |
-| `offsetMs` | `float` |  |
-| `outputPresetId` | `string` |  |
-| `outputUrl` | `string` |  |
-| `planTier` | `string` |  |
-| `presetId` | `string` |  |
-| `progressPercent` | `float` |  |
-| `project` | `array` |  |
-| `projectId` | `string` |  |
-| `property` | `string` |  |
-| `sourceDeviceId` | `string` |  |
-| `sourceUrl` | `string` |  |
-| `stage` | `string` |  |
-| `startMs` | `float` |  |
-| `stylePresetId` | `string` |  |
-| `syncToBeatGrid` | `bool` |  |
-| `tone` | `string` |  |
-| `trackId` | `string` |  |
-| `transcript` | `string` |  |
-| `trendKeywords` | `array` |  |
-| `type` | `string` |  |
-| `updatedAt` | `string` |  |
-| `value` | `float` |  |
-| `watermarkEnabled` | `bool` |  |
-| `watermarkText` | `string` |  |
-| `workerId` | `string` |  |
-
 #### Example: Load
 
 ```php
@@ -2085,12 +1912,6 @@ $video = $client->Video()->load();
 
 ```php
 $video = $client->Video()->create([
-    "durationSeconds" => null, // float
-    "inputFormat" => null, // string
-    "mimeType" => null, // string
-    "outputPresetId" => null, // string
-    "planTier" => null, // string
-    "presetId" => null, // string
 ]);
 ```
 
@@ -2237,6 +2058,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── memesiocontentcreation_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations
@@ -2255,11 +2077,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$trendalert = $client->TrendAlert();
-$trendalert->load();
+$agentinfra = $client->AgentInfra();
+$agentinfra->load();
 
-// $trendalert->data_get() now returns the trendalert data from the last load
-// $trendalert->match_get() returns the last match criteria
+// $agentinfra->data_get() now returns the agentinfra data from the last load
+// $agentinfra->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

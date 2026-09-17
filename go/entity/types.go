@@ -72,7 +72,6 @@ type AgentInfra struct {
 	Prompt string `json:"prompt"`
 	Proof *map[string]any `json:"proof,omitempty"`
 	QuotaBoostPerDay *int `json:"quotaBoostPerDay,omitempty"`
-	Scopes *[]any `json:"scopes,omitempty"`
 	UserId *string `json:"userId,omitempty"`
 	WeekStart *string `json:"weekStart,omitempty"`
 }
@@ -96,7 +95,6 @@ type AgentInfraCreateData struct {
 	Prompt string `json:"prompt"`
 	Proof *map[string]any `json:"proof,omitempty"`
 	QuotaBoostPerDay *int `json:"quotaBoostPerDay,omitempty"`
-	Scopes *[]any `json:"scopes,omitempty"`
 	UserId *string `json:"userId,omitempty"`
 	WeekStart *string `json:"weekStart,omitempty"`
 }
@@ -190,7 +188,6 @@ type AiJob struct {
 	CreatedAt *string `json:"createdAt,omitempty"`
 	DetectedFaceCount float64 `json:"detectedFaceCount"`
 	EdgeRefinement *float64 `json:"edgeRefinement,omitempty"`
-	EstimatedCostUsd *float64 `json:"estimatedCostUsd,omitempty"`
 	FrameTimeMs *float64 `json:"frameTimeMs,omitempty"`
 	Height float64 `json:"height"`
 	Id string `json:"id"`
@@ -202,10 +199,7 @@ type AiJob struct {
 	MediaType *string `json:"mediaType,omitempty"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	NsfwScore *float64 `json:"nsfwScore,omitempty"`
-	Output *map[string]any `json:"output,omitempty"`
 	ProjectId string `json:"projectId"`
-	ProviderId *string `json:"providerId,omitempty"`
-	Reason *string `json:"reason,omitempty"`
 	RunAfterMs *int `json:"runAfterMs,omitempty"`
 	SourceAssetUrl string `json:"sourceAssetUrl"`
 	SourceFaceIndex *float64 `json:"sourceFaceIndex,omitempty"`
@@ -218,7 +212,6 @@ type AiJob struct {
 	UpdatedAt *string `json:"updatedAt,omitempty"`
 	VersionId *string `json:"versionId,omitempty"`
 	Width float64 `json:"width"`
-	WorkerId string `json:"workerId"`
 	WorkspaceId *string `json:"workspaceId,omitempty"`
 }
 
@@ -241,7 +234,6 @@ type AiJobCreateData struct {
 	CreatedAt *string `json:"createdAt,omitempty"`
 	DetectedFaceCount float64 `json:"detectedFaceCount"`
 	EdgeRefinement *float64 `json:"edgeRefinement,omitempty"`
-	EstimatedCostUsd *float64 `json:"estimatedCostUsd,omitempty"`
 	FrameTimeMs *float64 `json:"frameTimeMs,omitempty"`
 	Height float64 `json:"height"`
 	Id string `json:"id"`
@@ -253,10 +245,7 @@ type AiJobCreateData struct {
 	MediaType *string `json:"mediaType,omitempty"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	NsfwScore *float64 `json:"nsfwScore,omitempty"`
-	Output *map[string]any `json:"output,omitempty"`
 	ProjectId string `json:"projectId"`
-	ProviderId *string `json:"providerId,omitempty"`
-	Reason *string `json:"reason,omitempty"`
 	RunAfterMs *int `json:"runAfterMs,omitempty"`
 	SourceAssetUrl string `json:"sourceAssetUrl"`
 	SourceFaceIndex *float64 `json:"sourceFaceIndex,omitempty"`
@@ -269,7 +258,6 @@ type AiJobCreateData struct {
 	UpdatedAt *string `json:"updatedAt,omitempty"`
 	VersionId *string `json:"versionId,omitempty"`
 	Width float64 `json:"width"`
-	WorkerId string `json:"workerId"`
 	WorkspaceId *string `json:"workspaceId,omitempty"`
 }
 
@@ -367,16 +355,10 @@ type AnalyticsLoadMatch struct {
 
 // Auth is the typed data model for the auth entity.
 type Auth struct {
-	DisplayName *string `json:"displayName,omitempty"`
-	Email string `json:"email"`
-	Password string `json:"password"`
 }
 
 // AuthCreateData is the typed request payload for Auth.CreateTyped.
 type AuthCreateData struct {
-	DisplayName *string `json:"displayName,omitempty"`
-	Email string `json:"email"`
-	Password string `json:"password"`
 }
 
 // Billing is the typed data model for the billing entity.
@@ -575,22 +557,11 @@ type GenerateCreateData struct {
 
 // Growth is the typed data model for the growth entity.
 type Growth struct {
-	AccountId *string `json:"accountId,omitempty"`
 	Action string `json:"action"`
 	ActorId *string `json:"actorId,omitempty"`
-	Caption *string `json:"caption,omitempty"`
-	Code *string `json:"code,omitempty"`
-	ExternalAccountId *string `json:"externalAccountId,omitempty"`
-	Handle *string `json:"handle,omitempty"`
 	Limit *int `json:"limit,omitempty"`
 	LogExposure *bool `json:"logExposure,omitempty"`
-	MemeSlug *string `json:"memeSlug,omitempty"`
-	Now *string `json:"now,omitempty"`
-	Platform *string `json:"platform,omitempty"`
-	Profiles *[]any `json:"profiles,omitempty"`
-	ShareSlug *string `json:"shareSlug,omitempty"`
 	Surface *string `json:"surface,omitempty"`
-	WeekStart *string `json:"weekStart,omitempty"`
 }
 
 // GrowthLoadMatch is the typed request payload for Growth.LoadTyped.
@@ -602,22 +573,11 @@ type GrowthLoadMatch struct {
 
 // GrowthCreateData is the typed request payload for Growth.CreateTyped.
 type GrowthCreateData struct {
-	AccountId *string `json:"accountId,omitempty"`
 	Action string `json:"action"`
 	ActorId *string `json:"actorId,omitempty"`
-	Caption *string `json:"caption,omitempty"`
-	Code *string `json:"code,omitempty"`
-	ExternalAccountId *string `json:"externalAccountId,omitempty"`
-	Handle *string `json:"handle,omitempty"`
 	Limit *int `json:"limit,omitempty"`
 	LogExposure *bool `json:"logExposure,omitempty"`
-	MemeSlug *string `json:"memeSlug,omitempty"`
-	Now *string `json:"now,omitempty"`
-	Platform *string `json:"platform,omitempty"`
-	Profiles *[]any `json:"profiles,omitempty"`
-	ShareSlug *string `json:"shareSlug,omitempty"`
 	Surface *string `json:"surface,omitempty"`
-	WeekStart *string `json:"weekStart,omitempty"`
 }
 
 // ListMeme is the typed data model for the list_meme entity.
@@ -652,22 +612,10 @@ type ListMemeListMatch struct {
 
 // Media is the typed data model for the media entity.
 type Media struct {
-	Action string `json:"action"`
-	ContentType *string `json:"contentType,omitempty"`
-	ExpiresInSeconds *int `json:"expiresInSeconds,omitempty"`
-	OwnerToken *string `json:"ownerToken,omitempty"`
-	Path *string `json:"path,omitempty"`
-	Prefix *string `json:"prefix,omitempty"`
 }
 
 // MediaCreateData is the typed request payload for Media.CreateTyped.
 type MediaCreateData struct {
-	Action string `json:"action"`
-	ContentType *string `json:"contentType,omitempty"`
-	ExpiresInSeconds *int `json:"expiresInSeconds,omitempty"`
-	OwnerToken *string `json:"ownerToken,omitempty"`
-	Path *string `json:"path,omitempty"`
-	Prefix *string `json:"prefix,omitempty"`
 }
 
 // Meme is the typed data model for the meme entity.
@@ -716,9 +664,7 @@ type PublicTemplateMediaItem struct {
 	Description string `json:"description"`
 	DurationMs *any `json:"durationMs,omitempty"`
 	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
-	Fps *int `json:"fps,omitempty"`
 	FrameCount *any `json:"frameCount,omitempty"`
-	GifSlug *string `json:"gifSlug,omitempty"`
 	Height any `json:"height"`
 	Id string `json:"id"`
 	ImageUrl string `json:"imageUrl"`
@@ -727,15 +673,11 @@ type PublicTemplateMediaItem struct {
 	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
 	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
 	QualityStatus *string `json:"qualityStatus,omitempty"`
-	ReturnBase64 *bool `json:"returnBase64,omitempty"`
 	Slug string `json:"slug"`
 	SourceTemplateId any `json:"sourceTemplateId"`
 	SourceUrl *string `json:"sourceUrl,omitempty"`
-	StartMs *int `json:"startMs,omitempty"`
 	Tags []any `json:"tags"`
-	Title *string `json:"title,omitempty"`
 	Width any `json:"width"`
-	WidthPx *int `json:"widthPx,omitempty"`
 }
 
 // PublicTemplateMediaItemLoadMatch is the typed request payload for PublicTemplateMediaItem.LoadTyped.
@@ -757,9 +699,7 @@ type PublicTemplateMediaItemCreateData struct {
 	Description string `json:"description"`
 	DurationMs *any `json:"durationMs,omitempty"`
 	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
-	Fps *int `json:"fps,omitempty"`
 	FrameCount *any `json:"frameCount,omitempty"`
-	GifSlug *string `json:"gifSlug,omitempty"`
 	Height any `json:"height"`
 	Id string `json:"id"`
 	ImageUrl string `json:"imageUrl"`
@@ -768,14 +708,10 @@ type PublicTemplateMediaItemCreateData struct {
 	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
 	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
 	QualityStatus *string `json:"qualityStatus,omitempty"`
-	ReturnBase64 *bool `json:"returnBase64,omitempty"`
 	SourceTemplateId any `json:"sourceTemplateId"`
 	SourceUrl *string `json:"sourceUrl,omitempty"`
-	StartMs *int `json:"startMs,omitempty"`
 	Tags []any `json:"tags"`
-	Title *string `json:"title,omitempty"`
 	Width any `json:"width"`
-	WidthPx *int `json:"widthPx,omitempty"`
 }
 
 // StandaloneAgentBootstrap is the typed data model for the standalone_agent_bootstrap entity.
@@ -947,51 +883,6 @@ type UploadCaptionMemeSuccessCreateData struct {
 
 // Video is the typed data model for the video entity.
 type Video struct {
-	Action *string `json:"action,omitempty"`
-	AssetId *string `json:"assetId,omitempty"`
-	AtMs *float64 `json:"atMs,omitempty"`
-	AudioAssetId *string `json:"audioAssetId,omitempty"`
-	BeatOffsetMs *int `json:"beatOffsetMs,omitempty"`
-	BitrateKbps *float64 `json:"bitrateKbps,omitempty"`
-	Bpm *int `json:"bpm,omitempty"`
-	Cancelled *bool `json:"cancelled,omitempty"`
-	Container *string `json:"container,omitempty"`
-	DurationMs *float64 `json:"durationMs,omitempty"`
-	DurationSeconds float64 `json:"durationSeconds"`
-	Easing *string `json:"easing,omitempty"`
-	Error *string `json:"error,omitempty"`
-	FrameRate *float64 `json:"frameRate,omitempty"`
-	InputFormat string `json:"inputFormat"`
-	Intensity *float64 `json:"intensity,omitempty"`
-	JobId *string `json:"jobId,omitempty"`
-	Locale *string `json:"locale,omitempty"`
-	MimeType string `json:"mimeType"`
-	Name *string `json:"name,omitempty"`
-	OffsetMs *float64 `json:"offsetMs,omitempty"`
-	OutputPresetId string `json:"outputPresetId"`
-	OutputUrl *string `json:"outputUrl,omitempty"`
-	PlanTier string `json:"planTier"`
-	PresetId string `json:"presetId"`
-	ProgressPercent *float64 `json:"progressPercent,omitempty"`
-	Project *map[string]any `json:"project,omitempty"`
-	ProjectId *string `json:"projectId,omitempty"`
-	Property *string `json:"property,omitempty"`
-	SourceDeviceId *string `json:"sourceDeviceId,omitempty"`
-	SourceUrl *string `json:"sourceUrl,omitempty"`
-	Stage *string `json:"stage,omitempty"`
-	StartMs *float64 `json:"startMs,omitempty"`
-	StylePresetId *string `json:"stylePresetId,omitempty"`
-	SyncToBeatGrid *bool `json:"syncToBeatGrid,omitempty"`
-	Tone *string `json:"tone,omitempty"`
-	TrackId *string `json:"trackId,omitempty"`
-	Transcript *string `json:"transcript,omitempty"`
-	TrendKeywords *[]any `json:"trendKeywords,omitempty"`
-	Type *string `json:"type,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
-	Value *float64 `json:"value,omitempty"`
-	WatermarkEnabled *bool `json:"watermarkEnabled,omitempty"`
-	WatermarkText *string `json:"watermarkText,omitempty"`
-	WorkerId *string `json:"workerId,omitempty"`
 }
 
 // VideoLoadMatch is the typed request payload for Video.LoadTyped.
@@ -1008,51 +899,6 @@ type VideoLoadMatch struct {
 
 // VideoCreateData is the typed request payload for Video.CreateTyped.
 type VideoCreateData struct {
-	Action *string `json:"action,omitempty"`
-	AssetId *string `json:"assetId,omitempty"`
-	AtMs *float64 `json:"atMs,omitempty"`
-	AudioAssetId *string `json:"audioAssetId,omitempty"`
-	BeatOffsetMs *int `json:"beatOffsetMs,omitempty"`
-	BitrateKbps *float64 `json:"bitrateKbps,omitempty"`
-	Bpm *int `json:"bpm,omitempty"`
-	Cancelled *bool `json:"cancelled,omitempty"`
-	Container *string `json:"container,omitempty"`
-	DurationMs *float64 `json:"durationMs,omitempty"`
-	DurationSeconds float64 `json:"durationSeconds"`
-	Easing *string `json:"easing,omitempty"`
-	Error *string `json:"error,omitempty"`
-	FrameRate *float64 `json:"frameRate,omitempty"`
-	InputFormat string `json:"inputFormat"`
-	Intensity *float64 `json:"intensity,omitempty"`
-	JobId *string `json:"jobId,omitempty"`
-	Locale *string `json:"locale,omitempty"`
-	MimeType string `json:"mimeType"`
-	Name *string `json:"name,omitempty"`
-	OffsetMs *float64 `json:"offsetMs,omitempty"`
-	OutputPresetId string `json:"outputPresetId"`
-	OutputUrl *string `json:"outputUrl,omitempty"`
-	PlanTier string `json:"planTier"`
-	PresetId string `json:"presetId"`
-	ProgressPercent *float64 `json:"progressPercent,omitempty"`
-	Project *map[string]any `json:"project,omitempty"`
-	ProjectId *string `json:"projectId,omitempty"`
-	Property *string `json:"property,omitempty"`
-	SourceDeviceId *string `json:"sourceDeviceId,omitempty"`
-	SourceUrl *string `json:"sourceUrl,omitempty"`
-	Stage *string `json:"stage,omitempty"`
-	StartMs *float64 `json:"startMs,omitempty"`
-	StylePresetId *string `json:"stylePresetId,omitempty"`
-	SyncToBeatGrid *bool `json:"syncToBeatGrid,omitempty"`
-	Tone *string `json:"tone,omitempty"`
-	TrackId *string `json:"trackId,omitempty"`
-	Transcript *string `json:"transcript,omitempty"`
-	TrendKeywords *[]any `json:"trendKeywords,omitempty"`
-	Type *string `json:"type,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
-	Value *float64 `json:"value,omitempty"`
-	WatermarkEnabled *bool `json:"watermarkEnabled,omitempty"`
-	WatermarkText *string `json:"watermarkText,omitempty"`
-	WorkerId *string `json:"workerId,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

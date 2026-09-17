@@ -4,39 +4,6 @@ main: kit: entity: media: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "action"
-      req: true
-      type: "`$STRING`"
-    }
-    {
-      name: "contentType"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "expiresInSeconds"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
-      name: "ownerToken"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "path"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "prefix"
-      req: false
-      type: "`$STRING`"
-    }
-  ]
-
   name: "media"
   op: {
     create: {

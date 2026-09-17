@@ -106,6 +106,7 @@ def make_config():
             "base": "/",
             "auth": {
                 "prefix": "",
+                "name": "x-developer-api-key",
             },
             "headers": {
         "content-type": "application/json",
@@ -423,10 +424,6 @@ def make_config():
           {
             "name": "quotaBoostPerDay",
             "type": "`$INTEGER`",
-          },
-          {
-            "name": "scopes",
-            "type": "`$ARRAY`",
           },
           {
             "name": "userId",
@@ -1639,10 +1636,6 @@ def make_config():
             "type": "`$NUMBER`",
           },
           {
-            "name": "estimatedCostUsd",
-            "type": "`$NUMBER`",
-          },
-          {
             "name": "frameTimeMs",
             "type": "`$NUMBER`",
           },
@@ -1696,20 +1689,8 @@ def make_config():
             "type": "`$NUMBER`",
           },
           {
-            "name": "output",
-            "type": "`$OBJECT`",
-          },
-          {
             "name": "projectId",
             "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "providerId",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "reason",
             "type": "`$STRING`",
           },
           {
@@ -1765,11 +1746,6 @@ def make_config():
             "name": "width",
             "req": True,
             "type": "`$NUMBER`",
-          },
-          {
-            "name": "workerId",
-            "req": True,
-            "type": "`$STRING`",
           },
           {
             "name": "workspaceId",
@@ -2915,23 +2891,7 @@ def make_config():
         },
       },
       "auth": {
-        "fields": [
-          {
-            "name": "displayName",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "email",
-            "name": "email",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "password",
-            "req": True,
-            "type": "`$STRING`",
-          },
-        ],
+        "fields": [],
         "name": "auth",
         "op": {
           "create": {
@@ -3930,38 +3890,12 @@ def make_config():
       "growth": {
         "fields": [
           {
-            "name": "accountId",
-            "type": "`$STRING`",
-          },
-          {
             "name": "action",
             "req": True,
             "type": "`$STRING`",
           },
           {
             "name": "actorId",
-            "op": {
-              "create": {
-                "req": True,
-                "type": "`$STRING`",
-              },
-            },
-            "type": "`$STRING`",
-          },
-          {
-            "name": "caption",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "code",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "externalAccountId",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "handle",
             "type": "`$STRING`",
           },
           {
@@ -3973,32 +3907,7 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
-            "name": "memeSlug",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "date-time",
-            "name": "now",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "platform",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "profiles",
-            "type": "`$ARRAY`",
-          },
-          {
-            "name": "shareSlug",
-            "type": "`$STRING`",
-          },
-          {
             "name": "surface",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "weekStart",
             "type": "`$STRING`",
           },
         ],
@@ -4605,33 +4514,7 @@ def make_config():
         },
       },
       "media": {
-        "fields": [
-          {
-            "name": "action",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "contentType",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "expiresInSeconds",
-            "type": "`$INTEGER`",
-          },
-          {
-            "name": "ownerToken",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "path",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "prefix",
-            "type": "`$STRING`",
-          },
-        ],
+        "fields": [],
         "name": "media",
         "op": {
           "create": {
@@ -4926,11 +4809,6 @@ def make_config():
           },
           {
             "name": "captions",
-            "op": {
-              "create": {
-                "type": "`$ARRAY`",
-              },
-            },
             "req": True,
             "type": "`$ARRAY`",
           },
@@ -4964,10 +4842,6 @@ def make_config():
             ],
           },
           {
-            "name": "fps",
-            "type": "`$INTEGER`",
-          },
-          {
             "name": "frameCount",
             "type": [
               "`$ONE`",
@@ -4976,11 +4850,6 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-          },
-          {
-            "name": "gifSlug",
-            "short": "Required for /api/v1/gifs/generate.",
-            "type": "`$STRING`",
           },
           {
             "name": "height",
@@ -5026,11 +4895,6 @@ def make_config():
             "type": "`$STRING`",
           },
           {
-            "name": "returnBase64",
-            "short": "Only used by /api/v1/gifs/generate.",
-            "type": "`$BOOLEAN`",
-          },
-          {
             "name": "slug",
             "req": True,
             "type": "`$STRING`",
@@ -5051,22 +4915,9 @@ def make_config():
             "type": "`$STRING`",
           },
           {
-            "name": "startMs",
-            "type": "`$INTEGER`",
-          },
-          {
             "name": "tags",
-            "op": {
-              "create": {
-                "type": "`$ARRAY`",
-              },
-            },
             "req": True,
             "type": "`$ARRAY`",
-          },
-          {
-            "name": "title",
-            "type": "`$STRING`",
           },
           {
             "name": "width",
@@ -5078,10 +4929,6 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-          },
-          {
-            "name": "widthPx",
-            "type": "`$INTEGER`",
           },
         ],
         "id": {
@@ -6608,216 +6455,7 @@ def make_config():
         },
       },
       "video": {
-        "fields": [
-          {
-            "name": "action",
-            "op": {
-              "create": {
-                "req": True,
-                "type": "`$STRING`",
-              },
-            },
-            "type": "`$STRING`",
-          },
-          {
-            "name": "assetId",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "atMs",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "audioAssetId",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "beatOffsetMs",
-            "type": "`$INTEGER`",
-          },
-          {
-            "name": "bitrateKbps",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "bpm",
-            "type": "`$INTEGER`",
-          },
-          {
-            "name": "cancelled",
-            "type": "`$BOOLEAN`",
-          },
-          {
-            "name": "container",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "durationMs",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "durationSeconds",
-            "op": {
-              "create": {
-                "type": "`$NUMBER`",
-              },
-            },
-            "req": True,
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "easing",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "error",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "frameRate",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "inputFormat",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "intensity",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "jobId",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "locale",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "mimeType",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "name",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "offsetMs",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "outputPresetId",
-            "op": {
-              "create": {
-                "type": "`$STRING`",
-              },
-            },
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "outputUrl",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "planTier",
-            "op": {
-              "create": {
-                "type": "`$STRING`",
-              },
-            },
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "presetId",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "progressPercent",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "project",
-            "type": "`$OBJECT`",
-          },
-          {
-            "name": "projectId",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "property",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "sourceDeviceId",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "sourceUrl",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "stage",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "startMs",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "stylePresetId",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "syncToBeatGrid",
-            "type": "`$BOOLEAN`",
-          },
-          {
-            "name": "tone",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "trackId",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "transcript",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "trendKeywords",
-            "type": "`$ARRAY`",
-          },
-          {
-            "name": "type",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "date-time",
-            "name": "updatedAt",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "value",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "watermarkEnabled",
-            "type": "`$BOOLEAN`",
-          },
-          {
-            "name": "watermarkText",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "workerId",
-            "type": "`$STRING`",
-          },
-        ],
+        "fields": [],
         "name": "video",
         "op": {
           "create": {

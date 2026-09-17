@@ -77,6 +77,7 @@ local function make_config()
       base = "/",
       auth = {
         prefix = "",
+        name = "x-developer-api-key",
       },
       headers = {
         ["content-type"] = "application/json",
@@ -394,10 +395,6 @@ local function make_config()
           {
             ["name"] = "quotaBoostPerDay",
             ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "scopes",
-            ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "userId",
@@ -1610,10 +1607,6 @@ local function make_config()
             ["type"] = "`$NUMBER`",
           },
           {
-            ["name"] = "estimatedCostUsd",
-            ["type"] = "`$NUMBER`",
-          },
-          {
             ["name"] = "frameTimeMs",
             ["type"] = "`$NUMBER`",
           },
@@ -1667,20 +1660,8 @@ local function make_config()
             ["type"] = "`$NUMBER`",
           },
           {
-            ["name"] = "output",
-            ["type"] = "`$OBJECT`",
-          },
-          {
             ["name"] = "projectId",
             ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "providerId",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "reason",
             ["type"] = "`$STRING`",
           },
           {
@@ -1736,11 +1717,6 @@ local function make_config()
             ["name"] = "width",
             ["req"] = true,
             ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "workerId",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "workspaceId",
@@ -2886,23 +2862,7 @@ local function make_config()
         },
       },
       ["auth"] = {
-        ["fields"] = {
-          {
-            ["name"] = "displayName",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["format"] = "email",
-            ["name"] = "email",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "password",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-        },
+        ["fields"] = {},
         ["name"] = "auth",
         ["op"] = {
           ["create"] = {
@@ -3901,38 +3861,12 @@ local function make_config()
       ["growth"] = {
         ["fields"] = {
           {
-            ["name"] = "accountId",
-            ["type"] = "`$STRING`",
-          },
-          {
             ["name"] = "action",
             ["req"] = true,
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "actorId",
-            ["op"] = {
-              ["create"] = {
-                ["req"] = true,
-                ["type"] = "`$STRING`",
-              },
-            },
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "caption",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "code",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "externalAccountId",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "handle",
             ["type"] = "`$STRING`",
           },
           {
@@ -3944,32 +3878,7 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
-            ["name"] = "memeSlug",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["format"] = "date-time",
-            ["name"] = "now",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "platform",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "profiles",
-            ["type"] = "`$ARRAY`",
-          },
-          {
-            ["name"] = "shareSlug",
-            ["type"] = "`$STRING`",
-          },
-          {
             ["name"] = "surface",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "weekStart",
             ["type"] = "`$STRING`",
           },
         },
@@ -4576,33 +4485,7 @@ local function make_config()
         },
       },
       ["media"] = {
-        ["fields"] = {
-          {
-            ["name"] = "action",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "contentType",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "expiresInSeconds",
-            ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "ownerToken",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "path",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "prefix",
-            ["type"] = "`$STRING`",
-          },
-        },
+        ["fields"] = {},
         ["name"] = "media",
         ["op"] = {
           ["create"] = {
@@ -4897,11 +4780,6 @@ local function make_config()
           },
           {
             ["name"] = "captions",
-            ["op"] = {
-              ["create"] = {
-                ["type"] = "`$ARRAY`",
-              },
-            },
             ["req"] = true,
             ["type"] = "`$ARRAY`",
           },
@@ -4935,10 +4813,6 @@ local function make_config()
             },
           },
           {
-            ["name"] = "fps",
-            ["type"] = "`$INTEGER`",
-          },
-          {
             ["name"] = "frameCount",
             ["type"] = {
               "`$ONE`",
@@ -4947,11 +4821,6 @@ local function make_config()
                 "`$NULL`",
               },
             },
-          },
-          {
-            ["name"] = "gifSlug",
-            ["short"] = "Required for /api/v1/gifs/generate.",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "height",
@@ -4997,11 +4866,6 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
-            ["name"] = "returnBase64",
-            ["short"] = "Only used by /api/v1/gifs/generate.",
-            ["type"] = "`$BOOLEAN`",
-          },
-          {
             ["name"] = "slug",
             ["req"] = true,
             ["type"] = "`$STRING`",
@@ -5022,22 +4886,9 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
-            ["name"] = "startMs",
-            ["type"] = "`$INTEGER`",
-          },
-          {
             ["name"] = "tags",
-            ["op"] = {
-              ["create"] = {
-                ["type"] = "`$ARRAY`",
-              },
-            },
             ["req"] = true,
             ["type"] = "`$ARRAY`",
-          },
-          {
-            ["name"] = "title",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "width",
@@ -5049,10 +4900,6 @@ local function make_config()
                 "`$NULL`",
               },
             },
-          },
-          {
-            ["name"] = "widthPx",
-            ["type"] = "`$INTEGER`",
           },
         },
         ["id"] = {
@@ -6579,216 +6426,7 @@ local function make_config()
         },
       },
       ["video"] = {
-        ["fields"] = {
-          {
-            ["name"] = "action",
-            ["op"] = {
-              ["create"] = {
-                ["req"] = true,
-                ["type"] = "`$STRING`",
-              },
-            },
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "assetId",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "atMs",
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "audioAssetId",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "beatOffsetMs",
-            ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "bitrateKbps",
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "bpm",
-            ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "cancelled",
-            ["type"] = "`$BOOLEAN`",
-          },
-          {
-            ["name"] = "container",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "durationMs",
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "durationSeconds",
-            ["op"] = {
-              ["create"] = {
-                ["type"] = "`$NUMBER`",
-              },
-            },
-            ["req"] = true,
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "easing",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "error",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "frameRate",
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "inputFormat",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "intensity",
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "jobId",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "locale",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "mimeType",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "name",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "offsetMs",
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "outputPresetId",
-            ["op"] = {
-              ["create"] = {
-                ["type"] = "`$STRING`",
-              },
-            },
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "outputUrl",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "planTier",
-            ["op"] = {
-              ["create"] = {
-                ["type"] = "`$STRING`",
-              },
-            },
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "presetId",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "progressPercent",
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "project",
-            ["type"] = "`$OBJECT`",
-          },
-          {
-            ["name"] = "projectId",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "property",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "sourceDeviceId",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "sourceUrl",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "stage",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "startMs",
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "stylePresetId",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "syncToBeatGrid",
-            ["type"] = "`$BOOLEAN`",
-          },
-          {
-            ["name"] = "tone",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "trackId",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "transcript",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "trendKeywords",
-            ["type"] = "`$ARRAY`",
-          },
-          {
-            ["name"] = "type",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["format"] = "date-time",
-            ["name"] = "updatedAt",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "value",
-            ["type"] = "`$NUMBER`",
-          },
-          {
-            ["name"] = "watermarkEnabled",
-            ["type"] = "`$BOOLEAN`",
-          },
-          {
-            ["name"] = "watermarkText",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "workerId",
-            ["type"] = "`$STRING`",
-          },
-        },
+        ["fields"] = {},
         ["name"] = "video",
         ["op"] = {
           ["create"] = {

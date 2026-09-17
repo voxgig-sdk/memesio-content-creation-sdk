@@ -4,25 +4,6 @@ main: kit: entity: auth: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "displayName"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      format: "email"
-      name: "email"
-      req: true
-      type: "`$STRING`"
-    }
-    {
-      name: "password"
-      req: true
-      type: "`$STRING`"
-    }
-  ]
-
   name: "auth"
   op: {
     create: {

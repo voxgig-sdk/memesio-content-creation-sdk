@@ -306,7 +306,6 @@ agent_infra = client.AgentInfra
 | `prompt` | `String` | Yes |  |
 | `proof` | `Hash` | No |  |
 | `quotaBoostPerDay` | `Integer` | No |  |
-| `scopes` | `Array` | No |  |
 | `userId` | `String` | No |  |
 | `weekStart` | `String` | No |  |
 
@@ -485,7 +484,6 @@ ai_job = client.AiJob
 | `createdAt` | `String` | No |  |
 | `detectedFaceCount` | `Float` | Yes |  |
 | `edgeRefinement` | `Float` | No |  |
-| `estimatedCostUsd` | `Float` | No |  |
 | `frameTimeMs` | `Float` | No |  |
 | `height` | `Float` | Yes |  |
 | `id` | `String` | Yes |  |
@@ -497,10 +495,7 @@ ai_job = client.AiJob
 | `mediaType` | `String` | No |  |
 | `metadata` | `Hash` | No |  |
 | `nsfwScore` | `Float` | No |  |
-| `output` | `Hash` | No |  |
 | `projectId` | `String` | Yes |  |
-| `providerId` | `String` | No |  |
-| `reason` | `String` | No |  |
 | `runAfterMs` | `Integer` | No |  |
 | `sourceAssetUrl` | `String` | Yes |  |
 | `sourceFaceIndex` | `Float` | No |  |
@@ -513,7 +508,6 @@ ai_job = client.AiJob
 | `updatedAt` | `String` | No |  |
 | `versionId` | `String` | No |  |
 | `width` | `Float` | Yes |  |
-| `workerId` | `String` | Yes |  |
 | `workspaceId` | `String` | No |  |
 
 ### Field Usage by Operation
@@ -532,7 +526,6 @@ ai_job = client.AiJob
 | `createdAt` | - | - |
 | `detectedFaceCount` | - | - |
 | `edgeRefinement` | - | - |
-| `estimatedCostUsd` | - | - |
 | `frameTimeMs` | - | - |
 | `height` | - | - |
 | `id` | - | - |
@@ -544,10 +537,7 @@ ai_job = client.AiJob
 | `mediaType` | - | Yes |
 | `metadata` | - | - |
 | `nsfwScore` | - | - |
-| `output` | - | - |
 | `projectId` | - | - |
-| `providerId` | - | - |
-| `reason` | - | - |
 | `runAfterMs` | - | - |
 | `sourceAssetUrl` | - | - |
 | `sourceFaceIndex` | - | - |
@@ -560,7 +550,6 @@ ai_job = client.AiJob
 | `updatedAt` | - | - |
 | `versionId` | - | - |
 | `width` | - | - |
-| `workerId` | - | - |
 | `workspaceId` | - | - |
 
 ### Operations
@@ -583,7 +572,6 @@ result = client.AiJob.create({
   "status" => "example_status", # String
   "targetAssetUrl" => "example_targetAssetUrl", # String
   "width" => 1, # Float
-  "workerId" => "example_workerId", # String
 })
 ```
 
@@ -855,14 +843,6 @@ Return the entity name.
 auth = client.Auth
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `displayName` | `String` | No |  |
-| `email` | `String` | Yes |  |
-| `password` | `String` | Yes |  |
-
 ### Operations
 
 #### `create(reqdata, ctrl = nil) -> result`
@@ -871,8 +851,6 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Auth.create({
-  "email" => "example_email", # String
-  "password" => "example_password", # String
 })
 ```
 
@@ -1444,43 +1422,11 @@ growth = client.Growth
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountId` | `String` | No |  |
 | `action` | `String` | Yes |  |
 | `actorId` | `String` | No |  |
-| `caption` | `String` | No |  |
-| `code` | `String` | No |  |
-| `externalAccountId` | `String` | No |  |
-| `handle` | `String` | No |  |
 | `limit` | `Integer` | No |  |
 | `logExposure` | `Boolean` | No |  |
-| `memeSlug` | `String` | No |  |
-| `now` | `String` | No |  |
-| `platform` | `String` | No |  |
-| `profiles` | `Array` | No |  |
-| `shareSlug` | `String` | No |  |
 | `surface` | `String` | No |  |
-| `weekStart` | `String` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `accountId` | - | - |
-| `action` | - | - |
-| `actorId` | - | Yes |
-| `caption` | - | - |
-| `code` | - | - |
-| `externalAccountId` | - | - |
-| `handle` | - | - |
-| `limit` | - | - |
-| `logExposure` | - | - |
-| `memeSlug` | - | - |
-| `now` | - | - |
-| `platform` | - | - |
-| `profiles` | - | - |
-| `shareSlug` | - | - |
-| `surface` | - | - |
-| `weekStart` | - | - |
 
 ### Operations
 
@@ -1602,17 +1548,6 @@ Return the entity name.
 media = client.Media
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `action` | `String` | Yes |  |
-| `contentType` | `String` | No |  |
-| `expiresInSeconds` | `Integer` | No |  |
-| `ownerToken` | `String` | No |  |
-| `path` | `String` | No |  |
-| `prefix` | `String` | No |  |
-
 ### Operations
 
 #### `create(reqdata, ctrl = nil) -> result`
@@ -1621,7 +1556,6 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Media.create({
-  "action" => "example_action", # String
 })
 ```
 
@@ -1753,9 +1687,7 @@ public_template_media_item = client.PublicTemplateMediaItem
 | `description` | `String` | Yes |  |
 | `durationMs` | `Object` | No |  |
 | `exampleImageUrl` | `Object` | No |  |
-| `fps` | `Integer` | No |  |
 | `frameCount` | `Object` | No |  |
-| `gifSlug` | `String` | No | Required for /api/v1/gifs/generate. |
 | `height` | `Object` | Yes |  |
 | `id` | `String` | Yes |  |
 | `imageUrl` | `String` | Yes |  |
@@ -1764,50 +1696,11 @@ public_template_media_item = client.PublicTemplateMediaItem
 | `posterImageUrl` | `String` | No |  |
 | `previewImageUrl` | `String` | No |  |
 | `qualityStatus` | `String` | No |  |
-| `returnBase64` | `Boolean` | No | Only used by /api/v1/gifs/generate. |
 | `slug` | `String` | Yes |  |
 | `sourceTemplateId` | `Object` | Yes |  |
 | `sourceUrl` | `String` | No |  |
-| `startMs` | `Integer` | No |  |
 | `tags` | `Array` | Yes |  |
-| `title` | `String` | No |  |
 | `width` | `Object` | Yes |  |
-| `widthPx` | `Integer` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `animated` | - | - |
-| `assetBytes` | - | - |
-| `assetContentType` | - | - |
-| `boxCount` | - | - |
-| `captionCount` | - | - |
-| `captions` | - | Yes |
-| `categories` | - | - |
-| `description` | - | - |
-| `durationMs` | - | - |
-| `exampleImageUrl` | - | - |
-| `fps` | - | - |
-| `frameCount` | - | - |
-| `gifSlug` | - | - |
-| `height` | - | - |
-| `id` | - | - |
-| `imageUrl` | - | - |
-| `mediaType` | - | - |
-| `name` | - | - |
-| `posterImageUrl` | - | - |
-| `previewImageUrl` | - | - |
-| `qualityStatus` | - | - |
-| `returnBase64` | - | - |
-| `slug` | - | - |
-| `sourceTemplateId` | - | - |
-| `sourceUrl` | - | - |
-| `startMs` | - | - |
-| `tags` | - | Yes |
-| `title` | - | - |
-| `width` | - | - |
-| `widthPx` | - | - |
 
 ### Operations
 
@@ -2214,106 +2107,6 @@ Return the entity name.
 video = client.Video
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `action` | `String` | No |  |
-| `assetId` | `String` | No |  |
-| `atMs` | `Float` | No |  |
-| `audioAssetId` | `String` | No |  |
-| `beatOffsetMs` | `Integer` | No |  |
-| `bitrateKbps` | `Float` | No |  |
-| `bpm` | `Integer` | No |  |
-| `cancelled` | `Boolean` | No |  |
-| `container` | `String` | No |  |
-| `durationMs` | `Float` | No |  |
-| `durationSeconds` | `Float` | Yes |  |
-| `easing` | `String` | No |  |
-| `error` | `String` | No |  |
-| `frameRate` | `Float` | No |  |
-| `inputFormat` | `String` | Yes |  |
-| `intensity` | `Float` | No |  |
-| `jobId` | `String` | No |  |
-| `locale` | `String` | No |  |
-| `mimeType` | `String` | Yes |  |
-| `name` | `String` | No |  |
-| `offsetMs` | `Float` | No |  |
-| `outputPresetId` | `String` | Yes |  |
-| `outputUrl` | `String` | No |  |
-| `planTier` | `String` | Yes |  |
-| `presetId` | `String` | Yes |  |
-| `progressPercent` | `Float` | No |  |
-| `project` | `Hash` | No |  |
-| `projectId` | `String` | No |  |
-| `property` | `String` | No |  |
-| `sourceDeviceId` | `String` | No |  |
-| `sourceUrl` | `String` | No |  |
-| `stage` | `String` | No |  |
-| `startMs` | `Float` | No |  |
-| `stylePresetId` | `String` | No |  |
-| `syncToBeatGrid` | `Boolean` | No |  |
-| `tone` | `String` | No |  |
-| `trackId` | `String` | No |  |
-| `transcript` | `String` | No |  |
-| `trendKeywords` | `Array` | No |  |
-| `type` | `String` | No |  |
-| `updatedAt` | `String` | No |  |
-| `value` | `Float` | No |  |
-| `watermarkEnabled` | `Boolean` | No |  |
-| `watermarkText` | `String` | No |  |
-| `workerId` | `String` | No |  |
-
-### Field Usage by Operation
-
-| Field | load | create |
-| --- | --- | --- |
-| `action` | - | Yes |
-| `assetId` | - | - |
-| `atMs` | - | - |
-| `audioAssetId` | - | - |
-| `beatOffsetMs` | - | - |
-| `bitrateKbps` | - | - |
-| `bpm` | - | - |
-| `cancelled` | - | - |
-| `container` | - | - |
-| `durationMs` | - | - |
-| `durationSeconds` | - | Yes |
-| `easing` | - | - |
-| `error` | - | - |
-| `frameRate` | - | - |
-| `inputFormat` | - | - |
-| `intensity` | - | - |
-| `jobId` | - | - |
-| `locale` | - | - |
-| `mimeType` | - | - |
-| `name` | - | - |
-| `offsetMs` | - | - |
-| `outputPresetId` | - | Yes |
-| `outputUrl` | - | - |
-| `planTier` | - | Yes |
-| `presetId` | - | - |
-| `progressPercent` | - | - |
-| `project` | - | - |
-| `projectId` | - | - |
-| `property` | - | - |
-| `sourceDeviceId` | - | - |
-| `sourceUrl` | - | - |
-| `stage` | - | - |
-| `startMs` | - | - |
-| `stylePresetId` | - | - |
-| `syncToBeatGrid` | - | - |
-| `tone` | - | - |
-| `trackId` | - | - |
-| `transcript` | - | - |
-| `trendKeywords` | - | - |
-| `type` | - | - |
-| `updatedAt` | - | - |
-| `value` | - | - |
-| `watermarkEnabled` | - | - |
-| `watermarkText` | - | - |
-| `workerId` | - | - |
-
 ### Operations
 
 #### `create(reqdata, ctrl = nil) -> result`
@@ -2322,12 +2115,6 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Video.create({
-  "durationSeconds" => 1, # Float
-  "inputFormat" => "example_inputFormat", # String
-  "mimeType" => "example_mimeType", # String
-  "outputPresetId" => "example_outputPresetId", # String
-  "planTier" => "example_planTier", # String
-  "presetId" => "example_presetId", # String
 })
 ```
 

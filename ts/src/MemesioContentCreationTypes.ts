@@ -60,7 +60,6 @@ export interface AgentInfra {
   prompt: string
   proof?: Record<string, any>
   quotaBoostPerDay?: number
-  scopes?: any[]
   userId?: string
   weekStart?: string
 }
@@ -88,7 +87,6 @@ export interface AgentInfraCreateData {
   prompt: string
   proof?: Record<string, any>
   quotaBoostPerDay?: number
-  scopes?: any[]
   userId?: string
   weekStart?: string
 
@@ -183,7 +181,6 @@ export interface AiJob {
   createdAt?: string
   detectedFaceCount: number
   edgeRefinement?: number
-  estimatedCostUsd?: number
   frameTimeMs?: number
   height: number
   id: string
@@ -195,10 +192,7 @@ export interface AiJob {
   mediaType?: string
   metadata?: Record<string, any>
   nsfwScore?: number
-  output?: Record<string, any>
   projectId: string
-  providerId?: string
-  reason?: string
   runAfterMs?: number
   sourceAssetUrl: string
   sourceFaceIndex?: number
@@ -211,7 +205,6 @@ export interface AiJob {
   updatedAt?: string
   versionId?: string
   width: number
-  workerId: string
   workspaceId?: string
 }
 
@@ -232,7 +225,6 @@ export interface AiJobCreateData {
   createdAt?: string
   detectedFaceCount: number
   edgeRefinement?: number
-  estimatedCostUsd?: number
   frameTimeMs?: number
   height: number
   id: string
@@ -244,10 +236,7 @@ export interface AiJobCreateData {
   mediaType?: string
   metadata?: Record<string, any>
   nsfwScore?: number
-  output?: Record<string, any>
   projectId: string
-  providerId?: string
-  reason?: string
   runAfterMs?: number
   sourceAssetUrl: string
   sourceFaceIndex?: number
@@ -260,7 +249,6 @@ export interface AiJobCreateData {
   updatedAt?: string
   versionId?: string
   width: number
-  workerId: string
   workspaceId?: string
 
   // Selects a custom action instead of the plain create:
@@ -362,15 +350,9 @@ export interface AnalyticsLoadMatch {
 }
 
 export interface Auth {
-  displayName?: string
-  email: string
-  password: string
 }
 
 export interface AuthCreateData {
-  displayName?: string
-  email: string
-  password: string
 
   // Selects a custom action instead of the plain create:
   //   'resend_verification' | 'signup'
@@ -568,22 +550,11 @@ export interface GenerateCreateData {
 }
 
 export interface Growth {
-  accountId?: string
   action: string
   actorId?: string
-  caption?: string
-  code?: string
-  externalAccountId?: string
-  handle?: string
   limit?: number
   logExposure?: boolean
-  memeSlug?: string
-  now?: string
-  platform?: string
-  profiles?: any[]
-  shareSlug?: string
   surface?: string
-  weekStart?: string
 }
 
 export interface GrowthLoadMatch {
@@ -599,22 +570,11 @@ export interface GrowthLoadMatch {
 }
 
 export interface GrowthCreateData {
-  accountId?: string
   action: string
   actorId?: string
-  caption?: string
-  code?: string
-  externalAccountId?: string
-  handle?: string
   limit?: number
   logExposure?: boolean
-  memeSlug?: string
-  now?: string
-  platform?: string
-  profiles?: any[]
-  shareSlug?: string
   surface?: string
-  weekStart?: string
 
   // Selects a custom action instead of the plain create:
   //   'lifecycle_messaging' | 'referral' | 'social_publish' | 'trend_campaign'
@@ -652,21 +612,9 @@ export interface ListMemeListMatch {
 }
 
 export interface Media {
-  action: string
-  contentType?: string
-  expiresInSeconds?: number
-  ownerToken?: string
-  path?: string
-  prefix?: string
 }
 
 export interface MediaCreateData {
-  action: string
-  contentType?: string
-  expiresInSeconds?: number
-  ownerToken?: string
-  path?: string
-  prefix?: string
 
   // Selects a custom action instead of the plain create:
   //   'signed_url'
@@ -717,9 +665,7 @@ export interface PublicTemplateMediaItem {
   description: string
   durationMs?: number | null
   exampleImageUrl?: string | null
-  fps?: number
   frameCount?: number | null
-  gifSlug?: string
   height: number | null
   id: string
   imageUrl: string
@@ -728,15 +674,11 @@ export interface PublicTemplateMediaItem {
   posterImageUrl?: string
   previewImageUrl?: string
   qualityStatus?: string
-  returnBase64?: boolean
   slug: string
   sourceTemplateId: string | null
   sourceUrl?: string
-  startMs?: number
   tags: any[]
-  title?: string
   width: number | null
-  widthPx?: number
 }
 
 export interface PublicTemplateMediaItemLoadMatch {
@@ -756,9 +698,7 @@ export interface PublicTemplateMediaItemCreateData {
   description: string
   durationMs?: number | null
   exampleImageUrl?: string | null
-  fps?: number
   frameCount?: number | null
-  gifSlug?: string
   height: number | null
   id: string
   imageUrl: string
@@ -767,14 +707,10 @@ export interface PublicTemplateMediaItemCreateData {
   posterImageUrl?: string
   previewImageUrl?: string
   qualityStatus?: string
-  returnBase64?: boolean
   sourceTemplateId: string | null
   sourceUrl?: string
-  startMs?: number
   tags: any[]
-  title?: string
   width: number | null
-  widthPx?: number
 
   // Selects a custom action instead of the plain create:
   //   'generate'
@@ -940,51 +876,6 @@ export interface UploadCaptionMemeSuccessCreateData {
 }
 
 export interface Video {
-  action?: string
-  assetId?: string
-  atMs?: number
-  audioAssetId?: string
-  beatOffsetMs?: number
-  bitrateKbps?: number
-  bpm?: number
-  cancelled?: boolean
-  container?: string
-  durationMs?: number
-  durationSeconds: number
-  easing?: string
-  error?: string
-  frameRate?: number
-  inputFormat: string
-  intensity?: number
-  jobId?: string
-  locale?: string
-  mimeType: string
-  name?: string
-  offsetMs?: number
-  outputPresetId: string
-  outputUrl?: string
-  planTier: string
-  presetId: string
-  progressPercent?: number
-  project?: Record<string, any>
-  projectId?: string
-  property?: string
-  sourceDeviceId?: string
-  sourceUrl?: string
-  stage?: string
-  startMs?: number
-  stylePresetId?: string
-  syncToBeatGrid?: boolean
-  tone?: string
-  trackId?: string
-  transcript?: string
-  trendKeywords?: any[]
-  type?: string
-  updatedAt?: string
-  value?: number
-  watermarkEnabled?: boolean
-  watermarkText?: string
-  workerId?: string
 }
 
 export interface VideoLoadMatch {
@@ -1005,51 +896,6 @@ export interface VideoLoadMatch {
 }
 
 export interface VideoCreateData {
-  action?: string
-  assetId?: string
-  atMs?: number
-  audioAssetId?: string
-  beatOffsetMs?: number
-  bitrateKbps?: number
-  bpm?: number
-  cancelled?: boolean
-  container?: string
-  durationMs?: number
-  durationSeconds: number
-  easing?: string
-  error?: string
-  frameRate?: number
-  inputFormat: string
-  intensity?: number
-  jobId?: string
-  locale?: string
-  mimeType: string
-  name?: string
-  offsetMs?: number
-  outputPresetId: string
-  outputUrl?: string
-  planTier: string
-  presetId: string
-  progressPercent?: number
-  project?: Record<string, any>
-  projectId?: string
-  property?: string
-  sourceDeviceId?: string
-  sourceUrl?: string
-  stage?: string
-  startMs?: number
-  stylePresetId?: string
-  syncToBeatGrid?: boolean
-  tone?: string
-  trackId?: string
-  transcript?: string
-  trendKeywords?: any[]
-  type?: string
-  updatedAt?: string
-  value?: number
-  watermarkEnabled?: boolean
-  watermarkText?: string
-  workerId?: string
 
   // Selects a custom action instead of the plain create:
   //   'draft' | 'export_setting' | 'format' | 'render_queue' | 'subtitle' | 'text_animation' | 'timeline'

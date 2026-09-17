@@ -24,71 +24,6 @@
         "repr": "auto"
       },
       "contributor": {},
-      "doc": {
-        "active": true,
-        "assets": {
-          "path": ".sdk/doc/assets"
-        },
-        "brand": {
-          "label": "",
-          "notice": "",
-          "shortNotice": "",
-          "url": ""
-        },
-        "ci": {
-          "active": true,
-          "branch": "main"
-        },
-        "content": {
-          "path": ".sdk/doc/content"
-        },
-        "edition": {
-          "summary": {
-            "active": true,
-            "base": "node_modules/@voxgig/docgen/project/.sdk",
-            "brand": {},
-            "filter": {
-              "entities": [],
-              "features": [],
-              "targets": []
-            },
-            "kind": "summary",
-            "name": "summary",
-            "origname": "",
-            "output": {
-              "path": "SUMMARY.md"
-            },
-            "package": "@voxgig/docgen",
-            "site": {
-              "active": true
-            },
-            "style": {},
-            "title": ""
-          }
-        },
-        "qa": {
-          "vocabulary": []
-        },
-        "style": {
-          "color": {
-            "accent": "#00c6d8",
-            "background": "#f5f5f9",
-            "darkBackground": "#0f1117",
-            "darkText": "#e6edf3",
-            "primary": "#e70042",
-            "text": "#0a0a0a"
-          },
-          "font": "Nunito, system-ui, sans-serif",
-          "fontFile": "",
-          "headingFont": "Nunito, system-ui, sans-serif",
-          "headingFontFile": "",
-          "logo": "",
-          "mode": "light",
-          "mono": "ui-monospace, monospace",
-          "monoFile": ""
-        },
-        "target": {}
-      },
       "entity": {
         "agent": {
           "active": true,
@@ -425,12 +360,6 @@
               "name": "quotaBoostPerDay",
               "req": false,
               "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "scopes",
-              "req": false,
-              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -1747,12 +1676,6 @@
             },
             {
               "active": true,
-              "name": "estimatedCostUsd",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
               "name": "frameTimeMs",
               "req": false,
               "type": "`$NUMBER`"
@@ -1825,26 +1748,8 @@
             },
             {
               "active": true,
-              "name": "output",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
               "name": "projectId",
               "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "providerId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "reason",
-              "req": false,
               "type": "`$STRING`"
             },
             {
@@ -1919,12 +1824,6 @@
               "name": "width",
               "req": true,
               "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "workerId",
-              "req": true,
-              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -3201,27 +3100,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "displayName",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "email",
-              "name": "email",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "password",
-              "req": true,
-              "type": "`$STRING`"
-            }
-          ],
+          "fields": [],
           "name": "auth",
           "op": {
             "create": {
@@ -4401,12 +4280,6 @@
           "fields": [
             {
               "active": true,
-              "name": "accountId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "name": "action",
               "req": true,
               "type": "`$STRING`"
@@ -4414,36 +4287,6 @@
             {
               "active": true,
               "name": "actorId",
-              "op": {
-                "create": {
-                  "req": true,
-                  "type": "`$STRING`"
-                }
-              },
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "caption",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "code",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "externalAccountId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "handle",
               "req": false,
               "type": "`$STRING`"
             },
@@ -4461,44 +4304,7 @@
             },
             {
               "active": true,
-              "name": "memeSlug",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "now",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "platform",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "profiles",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "shareSlug",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "name": "surface",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "weekStart",
               "req": false,
               "type": "`$STRING`"
             }
@@ -5184,44 +4990,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "action",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "contentType",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "expiresInSeconds",
-              "req": false,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "ownerToken",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "path",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "prefix",
-              "req": false,
-              "type": "`$STRING`"
-            }
-          ],
+          "fields": [],
           "name": "media",
           "op": {
             "create": {
@@ -5565,12 +5334,6 @@
             {
               "active": true,
               "name": "captions",
-              "op": {
-                "create": {
-                  "req": false,
-                  "type": "`$ARRAY`"
-                }
-              },
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -5612,12 +5375,6 @@
             },
             {
               "active": true,
-              "name": "fps",
-              "req": false,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
               "name": "frameCount",
               "req": false,
               "type": [
@@ -5627,13 +5384,6 @@
                   "`$NULL`"
                 ]
               ]
-            },
-            {
-              "active": true,
-              "name": "gifSlug",
-              "req": false,
-              "short": "Required for /api/v1/gifs/generate.",
-              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -5691,13 +5441,6 @@
             },
             {
               "active": true,
-              "name": "returnBase64",
-              "req": false,
-              "short": "Only used by /api/v1/gifs/generate.",
-              "type": "`$BOOLEAN`"
-            },
-            {
-              "active": true,
               "name": "slug",
               "req": true,
               "type": "`$STRING`"
@@ -5722,27 +5465,9 @@
             },
             {
               "active": true,
-              "name": "startMs",
-              "req": false,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
               "name": "tags",
-              "op": {
-                "create": {
-                  "req": false,
-                  "type": "`$ARRAY`"
-                }
-              },
               "req": true,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -5755,12 +5480,6 @@
                   "`$NULL`"
                 ]
               ]
-            },
-            {
-              "active": true,
-              "name": "widthPx",
-              "req": false,
-              "type": "`$INTEGER`"
             }
           ],
           "id": {
@@ -7556,303 +7275,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "action",
-              "op": {
-                "create": {
-                  "req": true,
-                  "type": "`$STRING`"
-                }
-              },
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "assetId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "atMs",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "audioAssetId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "beatOffsetMs",
-              "req": false,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "bitrateKbps",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "bpm",
-              "req": false,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "cancelled",
-              "req": false,
-              "type": "`$BOOLEAN`"
-            },
-            {
-              "active": true,
-              "name": "container",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "durationMs",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "durationSeconds",
-              "op": {
-                "create": {
-                  "req": false,
-                  "type": "`$NUMBER`"
-                }
-              },
-              "req": true,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "easing",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "error",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "frameRate",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "inputFormat",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "intensity",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "jobId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "locale",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "mimeType",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "offsetMs",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "outputPresetId",
-              "op": {
-                "create": {
-                  "req": false,
-                  "type": "`$STRING`"
-                }
-              },
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "outputUrl",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "planTier",
-              "op": {
-                "create": {
-                  "req": false,
-                  "type": "`$STRING`"
-                }
-              },
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "presetId",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "progressPercent",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "project",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "projectId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "property",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "sourceDeviceId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "sourceUrl",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "stage",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "startMs",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "stylePresetId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "syncToBeatGrid",
-              "req": false,
-              "type": "`$BOOLEAN`"
-            },
-            {
-              "active": true,
-              "name": "tone",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "trackId",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "transcript",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "trendKeywords",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "updatedAt",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "value",
-              "req": false,
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "name": "watermarkEnabled",
-              "req": false,
-              "type": "`$BOOLEAN`"
-            },
-            {
-              "active": true,
-              "name": "watermarkText",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "workerId",
-              "req": false,
-              "type": "`$STRING`"
-            }
-          ],
+          "fields": [],
           "name": "video",
           "op": {
             "create": {
@@ -10081,6 +9504,8 @@
         "apikey": "",
         "auth": {
           "basic": false,
+          "in": "",
+          "name": "",
           "prefix": ""
         },
         "base": "http://localhost:8000",
@@ -10155,6 +9580,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -10381,6 +9807,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -10446,6 +9873,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -10517,6 +9945,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -10593,6 +10022,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {

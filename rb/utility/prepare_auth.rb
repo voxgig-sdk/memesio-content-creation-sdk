@@ -1,7 +1,7 @@
 # MemesioContentCreation SDK utility: prepare_auth
 require_relative 'struct/voxgig_struct'
 module MemesioContentCreationUtilities
-  HEADER_AUTH = "authorization"
+  HEADER_AUTH = "x-developer-api-key"
   OPTION_APIKEY = "apikey"
   NOT_FOUND = "__NOTFOUND__"
 

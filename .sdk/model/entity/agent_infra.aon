@@ -61,11 +61,6 @@ main: kit: entity: agent_infra: {
       type: "`$INTEGER`"
     }
     {
-      name: "scopes"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
       name: "userId"
       req: false
       type: "`$STRING`"

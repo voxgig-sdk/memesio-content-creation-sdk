@@ -77,7 +77,6 @@ class AgentInfra
     public string $prompt;
     public ?array $proof = null;
     public ?int $quotaBoostPerDay = null;
-    public ?array $scopes = null;
     public ?string $userId = null;
     public ?string $weekStart = null;
 }
@@ -103,7 +102,6 @@ class AgentInfraCreateData
     public string $prompt;
     public ?array $proof = null;
     public ?int $quotaBoostPerDay = null;
-    public ?array $scopes = null;
     public ?string $userId = null;
     public ?string $weekStart = null;
 }
@@ -202,7 +200,6 @@ class AiJob
     public ?string $createdAt = null;
     public float $detectedFaceCount;
     public ?float $edgeRefinement = null;
-    public ?float $estimatedCostUsd = null;
     public ?float $frameTimeMs = null;
     public float $height;
     public string $id;
@@ -214,10 +211,7 @@ class AiJob
     public ?string $mediaType = null;
     public ?array $metadata = null;
     public ?float $nsfwScore = null;
-    public ?array $output = null;
     public string $projectId;
-    public ?string $providerId = null;
-    public ?string $reason = null;
     public ?int $runAfterMs = null;
     public string $sourceAssetUrl;
     public ?float $sourceFaceIndex = null;
@@ -230,7 +224,6 @@ class AiJob
     public ?string $updatedAt = null;
     public ?string $versionId = null;
     public float $width;
-    public string $workerId;
     public ?string $workspaceId = null;
 }
 
@@ -255,7 +248,6 @@ class AiJobCreateData
     public ?string $createdAt = null;
     public float $detectedFaceCount;
     public ?float $edgeRefinement = null;
-    public ?float $estimatedCostUsd = null;
     public ?float $frameTimeMs = null;
     public float $height;
     public string $id;
@@ -267,10 +259,7 @@ class AiJobCreateData
     public ?string $mediaType = null;
     public ?array $metadata = null;
     public ?float $nsfwScore = null;
-    public ?array $output = null;
     public string $projectId;
-    public ?string $providerId = null;
-    public ?string $reason = null;
     public ?int $runAfterMs = null;
     public string $sourceAssetUrl;
     public ?float $sourceFaceIndex = null;
@@ -283,7 +272,6 @@ class AiJobCreateData
     public ?string $updatedAt = null;
     public ?string $versionId = null;
     public float $width;
-    public string $workerId;
     public ?string $workspaceId = null;
 }
 
@@ -389,17 +377,11 @@ class AnalyticsLoadMatch
 /** Auth entity data model. */
 class Auth
 {
-    public ?string $displayName = null;
-    public string $email;
-    public string $password;
 }
 
 /** Request payload for Auth#create. */
 class AuthCreateData
 {
-    public ?string $displayName = null;
-    public string $email;
-    public string $password;
 }
 
 /** Billing entity data model. */
@@ -617,22 +599,11 @@ class GenerateCreateData
 /** Growth entity data model. */
 class Growth
 {
-    public ?string $accountId = null;
     public string $action;
     public ?string $actorId = null;
-    public ?string $caption = null;
-    public ?string $code = null;
-    public ?string $externalAccountId = null;
-    public ?string $handle = null;
     public ?int $limit = null;
     public ?bool $logExposure = null;
-    public ?string $memeSlug = null;
-    public ?string $now = null;
-    public ?string $platform = null;
-    public ?array $profiles = null;
-    public ?string $shareSlug = null;
     public ?string $surface = null;
-    public ?string $weekStart = null;
 }
 
 /** Request payload for Growth#load. */
@@ -646,22 +617,11 @@ class GrowthLoadMatch
 /** Request payload for Growth#create. */
 class GrowthCreateData
 {
-    public ?string $accountId = null;
     public string $action;
     public ?string $actorId = null;
-    public ?string $caption = null;
-    public ?string $code = null;
-    public ?string $externalAccountId = null;
-    public ?string $handle = null;
     public ?int $limit = null;
     public ?bool $logExposure = null;
-    public ?string $memeSlug = null;
-    public ?string $now = null;
-    public ?string $platform = null;
-    public ?array $profiles = null;
-    public ?string $shareSlug = null;
     public ?string $surface = null;
-    public ?string $weekStart = null;
 }
 
 /** ListMeme entity data model. */
@@ -699,23 +659,11 @@ class ListMemeListMatch
 /** Media entity data model. */
 class Media
 {
-    public string $action;
-    public ?string $contentType = null;
-    public ?int $expiresInSeconds = null;
-    public ?string $ownerToken = null;
-    public ?string $path = null;
-    public ?string $prefix = null;
 }
 
 /** Request payload for Media#create. */
 class MediaCreateData
 {
-    public string $action;
-    public ?string $contentType = null;
-    public ?int $expiresInSeconds = null;
-    public ?string $ownerToken = null;
-    public ?string $path = null;
-    public ?string $prefix = null;
 }
 
 /** Meme entity data model. */
@@ -768,9 +716,7 @@ class PublicTemplateMediaItem
     public string $description;
     public mixed $durationMs = null;
     public mixed $exampleImageUrl = null;
-    public ?int $fps = null;
     public mixed $frameCount = null;
-    public ?string $gifSlug = null;
     public mixed $height;
     public string $id;
     public string $imageUrl;
@@ -779,15 +725,11 @@ class PublicTemplateMediaItem
     public ?string $posterImageUrl = null;
     public ?string $previewImageUrl = null;
     public ?string $qualityStatus = null;
-    public ?bool $returnBase64 = null;
     public string $slug;
     public mixed $sourceTemplateId;
     public ?string $sourceUrl = null;
-    public ?int $startMs = null;
     public array $tags;
-    public ?string $title = null;
     public mixed $width;
-    public ?int $widthPx = null;
 }
 
 /** Request payload for PublicTemplateMediaItem#load. */
@@ -811,9 +753,7 @@ class PublicTemplateMediaItemCreateData
     public string $description;
     public mixed $durationMs = null;
     public mixed $exampleImageUrl = null;
-    public ?int $fps = null;
     public mixed $frameCount = null;
-    public ?string $gifSlug = null;
     public mixed $height;
     public string $id;
     public string $imageUrl;
@@ -822,14 +762,10 @@ class PublicTemplateMediaItemCreateData
     public ?string $posterImageUrl = null;
     public ?string $previewImageUrl = null;
     public ?string $qualityStatus = null;
-    public ?bool $returnBase64 = null;
     public mixed $sourceTemplateId;
     public ?string $sourceUrl = null;
-    public ?int $startMs = null;
     public array $tags;
-    public ?string $title = null;
     public mixed $width;
-    public ?int $widthPx = null;
 }
 
 /** StandaloneAgentBootstrap entity data model. */
@@ -1013,51 +949,6 @@ class UploadCaptionMemeSuccessCreateData
 /** Video entity data model. */
 class Video
 {
-    public ?string $action = null;
-    public ?string $assetId = null;
-    public ?float $atMs = null;
-    public ?string $audioAssetId = null;
-    public ?int $beatOffsetMs = null;
-    public ?float $bitrateKbps = null;
-    public ?int $bpm = null;
-    public ?bool $cancelled = null;
-    public ?string $container = null;
-    public ?float $durationMs = null;
-    public float $durationSeconds;
-    public ?string $easing = null;
-    public ?string $error = null;
-    public ?float $frameRate = null;
-    public string $inputFormat;
-    public ?float $intensity = null;
-    public ?string $jobId = null;
-    public ?string $locale = null;
-    public string $mimeType;
-    public ?string $name = null;
-    public ?float $offsetMs = null;
-    public string $outputPresetId;
-    public ?string $outputUrl = null;
-    public string $planTier;
-    public string $presetId;
-    public ?float $progressPercent = null;
-    public ?array $project = null;
-    public ?string $projectId = null;
-    public ?string $property = null;
-    public ?string $sourceDeviceId = null;
-    public ?string $sourceUrl = null;
-    public ?string $stage = null;
-    public ?float $startMs = null;
-    public ?string $stylePresetId = null;
-    public ?bool $syncToBeatGrid = null;
-    public ?string $tone = null;
-    public ?string $trackId = null;
-    public ?string $transcript = null;
-    public ?array $trendKeywords = null;
-    public ?string $type = null;
-    public ?string $updatedAt = null;
-    public ?float $value = null;
-    public ?bool $watermarkEnabled = null;
-    public ?string $watermarkText = null;
-    public ?string $workerId = null;
 }
 
 /** Request payload for Video#load. */
@@ -1076,50 +967,5 @@ class VideoLoadMatch
 /** Request payload for Video#create. */
 class VideoCreateData
 {
-    public ?string $action = null;
-    public ?string $assetId = null;
-    public ?float $atMs = null;
-    public ?string $audioAssetId = null;
-    public ?int $beatOffsetMs = null;
-    public ?float $bitrateKbps = null;
-    public ?int $bpm = null;
-    public ?bool $cancelled = null;
-    public ?string $container = null;
-    public ?float $durationMs = null;
-    public float $durationSeconds;
-    public ?string $easing = null;
-    public ?string $error = null;
-    public ?float $frameRate = null;
-    public string $inputFormat;
-    public ?float $intensity = null;
-    public ?string $jobId = null;
-    public ?string $locale = null;
-    public string $mimeType;
-    public ?string $name = null;
-    public ?float $offsetMs = null;
-    public string $outputPresetId;
-    public ?string $outputUrl = null;
-    public string $planTier;
-    public string $presetId;
-    public ?float $progressPercent = null;
-    public ?array $project = null;
-    public ?string $projectId = null;
-    public ?string $property = null;
-    public ?string $sourceDeviceId = null;
-    public ?string $sourceUrl = null;
-    public ?string $stage = null;
-    public ?float $startMs = null;
-    public ?string $stylePresetId = null;
-    public ?bool $syncToBeatGrid = null;
-    public ?string $tone = null;
-    public ?string $trackId = null;
-    public ?string $transcript = null;
-    public ?array $trendKeywords = null;
-    public ?string $type = null;
-    public ?string $updatedAt = null;
-    public ?float $value = null;
-    public ?bool $watermarkEnabled = null;
-    public ?string $watermarkText = null;
-    public ?string $workerId = null;
 }
 
