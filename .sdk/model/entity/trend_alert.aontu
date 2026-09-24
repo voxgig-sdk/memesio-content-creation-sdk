@@ -1,0 +1,735 @@
+# Entity: trend_alert
+
+main: kit: entity: trend_alert: {
+
+  alias: field: {}
+
+  fields: {
+    action: {
+      h: "Action"
+      n: "action"
+      r: true
+      t: "`$STRING`"
+    }
+    actorId: {
+      h: "Actor Id"
+      n: "actorId"
+      r: true
+      t: "`$STRING`"
+    }
+    aggressiveness: {
+      h: "Aggressiveness"
+      n: "aggressiveness"
+      r: false
+      t: "`$NUMBER`"
+    }
+    alertId: {
+      h: "Alert Id"
+      n: "alertId"
+      r: true
+      t: "`$STRING`"
+    }
+    channels: {
+      h: "Channels"
+      n: "channels"
+      r: false
+      t: "`$ARRAY`"
+    }
+    deliverAllAlerts: {
+      h: "Deliver All Alerts"
+      n: "deliverAllAlerts"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    event: {
+      h: "Event"
+      n: "event"
+      r: false
+      t: "`$OBJECT`"
+    }
+    explicitNiches: {
+      h: "Explicit Niches"
+      n: "explicitNiches"
+      r: false
+      t: "`$ARRAY`"
+    }
+    explicitRegions: {
+      h: "Explicit Regions"
+      n: "explicitRegions"
+      r: false
+      t: "`$ARRAY`"
+    }
+    explicitSources: {
+      h: "Explicit Sources"
+      n: "explicitSources"
+      r: false
+      t: "`$ARRAY`"
+    }
+    explicitTopics: {
+      h: "Explicit Topics"
+      n: "explicitTopics"
+      r: false
+      t: "`$ARRAY`"
+    }
+    followerCount: {
+      h: "Follower Count"
+      n: "followerCount"
+      r: false
+      t: "`$INTEGER`"
+    }
+    niche: {
+      h: "Niche"
+      n: "niche"
+      r: false
+      t: "`$STRING`"
+    }
+    region: {
+      h: "Region"
+      n: "region"
+      r: false
+      t: "`$STRING`"
+    }
+    source: {
+      h: "Source"
+      n: "source"
+      r: false
+      t: "`$STRING`"
+    }
+    topic: {
+      h: "Topic"
+      n: "topic"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "trend_alert"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/alerts/delivery"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/alerts/delivery"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "delivery"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/alerts/feedback"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/alerts/feedback"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "feedback"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/alerts/preferences"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/alerts/preferences"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "preferences"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/alerts/triggers"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/alerts/triggers"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "triggers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/alerts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actor_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "aggressiveness"
+                or: "aggressiveness"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "follower_count"
+                or: "follower_count"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "niche"
+                or: "niche"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "page_size"
+                or: "page_size"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "preferred_niche"
+                or: "preferred_niche"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "preferred_region"
+                or: "preferred_region"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "region"
+                or: "region"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "source"
+                or: "source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "status"
+                or: "status"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "topic"
+                or: "topic"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts"
+          q: {
+            exist: [
+              "actor_id"
+              "aggressiveness"
+              "follower_count"
+              "niche"
+              "page"
+              "page_size"
+              "preferred_niche"
+              "preferred_region"
+              "query"
+              "region"
+              "source"
+              "status"
+              "topic"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/ranking"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actor_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "aggressiveness"
+                or: "aggressiveness"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "follower_count"
+                or: "follower_count"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "preferred_niche"
+                or: "preferred_niche"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "preferred_region"
+                or: "preferred_region"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "topic"
+                or: "topic"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/ranking"
+          q: {
+            exist: [
+              "actor_id"
+              "aggressiveness"
+              "follower_count"
+              "limit"
+              "preferred_niche"
+              "preferred_region"
+              "topic"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "ranking"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/feedback"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actor_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/feedback"
+          q: {
+            exist: [
+              "actor_id"
+              "limit"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "feedback"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/preferences"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actor_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/preferences"
+          q: {
+            exist: [
+              "actor_id"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "preferences"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/delivery"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "refresh"
+                or: "refresh"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/delivery"
+          q: {
+            exist: [
+              "refresh"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "delivery"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/ingestion"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "refresh"
+                or: "refresh"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/ingestion"
+          q: {
+            exist: [
+              "refresh"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "ingestion"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/quality-report"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "refresh"
+                or: "refresh"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/quality-report"
+          q: {
+            exist: [
+              "refresh"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "quality-report"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/message-templates"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "template_id"
+                or: "template_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/message-templates"
+          q: {
+            exist: [
+              "template_id"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "message-templates"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/connectors"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/alerts/connectors"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "connectors"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/triggers"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/alerts/triggers"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "triggers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

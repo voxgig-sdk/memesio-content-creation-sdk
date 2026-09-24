@@ -219,14 +219,13 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `FreeCaptionMemeSuccess` | `(data) -> FreeCaptionMemeSuccessEntity` | Create a FreeCaptionMemeSuccess entity instance. |
 | `FreeTemplateSearch` | `(data) -> FreeTemplateSearchEntity` | Create a FreeTemplateSearch entity instance. |
 | `Generate` | `(data) -> GenerateEntity` | Create a Generate entity instance. |
+| `Gif` | `(data) -> GifEntity` | Create a Gif entity instance. |
 | `Growth` | `(data) -> GrowthEntity` | Create a Growth entity instance. |
-| `ListMeme` | `(data) -> ListMemeEntity` | Create a ListMeme entity instance. |
 | `Media` | `(data) -> MediaEntity` | Create a Media entity instance. |
 | `Meme` | `(data) -> MemeEntity` | Create a Meme entity instance. |
 | `PublicTemplateMediaItem` | `(data) -> PublicTemplateMediaItemEntity` | Create a PublicTemplateMediaItem entity instance. |
 | `StandaloneAgentBootstrap` | `(data) -> StandaloneAgentBootstrapEntity` | Create a StandaloneAgentBootstrap entity instance. |
 | `Template` | `(data) -> TemplateEntity` | Create a Template entity instance. |
-| `TemplateSearch` | `(data) -> TemplateSearchEntity` | Create a TemplateSearch entity instance. |
 | `TrendAlert` | `(data) -> TrendAlertEntity` | Create a TrendAlert entity instance. |
 | `UploadCaptionMemeSuccess` | `(data) -> UploadCaptionMemeSuccessEntity` | Create an UploadCaptionMemeSuccess entity instance. |
 | `Video` | `(data) -> VideoEntity` | Create a Video entity instance. |
@@ -597,6 +596,39 @@ Operations: Create.
 
 API path: `/api/v1/gifs/generate`
 
+#### Gif
+
+| Field | Description |
+| --- | --- |
+| `animated` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
+| `description` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
+| `height` |  |
+| `id` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
+| `name` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
+| `slug` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
+| `width` |  |
+
+Operations: List.
+
+API path: `/api/gifs`
+
 #### Growth
 
 | Field | Description |
@@ -610,28 +642,6 @@ API path: `/api/v1/gifs/generate`
 Operations: Create, Load.
 
 API path: `/api/growth/experiments/decision`
-
-#### ListMeme
-
-| Field | Description |
-| --- | --- |
-| `altText` |  |
-| `canonicalImageUrl` |  |
-| `createdAt` |  |
-| `imageUrl` |  |
-| `nsfwStatus` |  |
-| `shareSlug` |  |
-| `shareUrl` |  |
-| `shareViews` |  |
-| `slug` |  |
-| `tags` |  |
-| `templateSlug` |  |
-| `title` |  |
-| `visibility` |  |
-
-Operations: List.
-
-API path: `/api/memes`
 
 #### Media
 
@@ -666,9 +676,9 @@ API path: `/api/media/signed-url`
 | `visibility` |  |
 | `watermark` |  |
 
-Operations: Load, Remove.
+Operations: List, Load, Remove.
 
-API path: `/api/memes/{slug}`
+API path: `/api/memes`
 
 #### PublicTemplateMediaItem
 
@@ -752,39 +762,6 @@ API path: `/api/v1/agents/bootstrap`
 Operations: List.
 
 API path: `/api/templates`
-
-#### TemplateSearch
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: List.
-
-API path: `/api/gifs`
 
 #### TrendAlert
 
@@ -1462,6 +1439,52 @@ local generate, err = client:Generate():create({
 ```
 
 
+### Gif
+
+Create an instance: `local gif = client:Gif(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `animated` | `boolean` |  |
+| `assetBytes` | `number|nil` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `number` |  |
+| `captionCount` | `number` |  |
+| `captions` | `table` |  |
+| `categories` | `table` |  |
+| `description` | `string` |  |
+| `durationMs` | `number|nil` |  |
+| `exampleImageUrl` | `string|nil` |  |
+| `frameCount` | `number|nil` |  |
+| `height` | `number|nil` |  |
+| `id` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
+| `name` | `string` |  |
+| `posterImageUrl` | `string` |  |
+| `previewImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
+| `slug` | `string` |  |
+| `sourceTemplateId` | `string|nil` |  |
+| `sourceUrl` | `string` |  |
+| `tags` | `table` |  |
+| `width` | `number|nil` |  |
+
+#### Example: List
+
+```lua
+local gifs, err = client:Gif():list()
+```
+
+
 ### Growth
 
 Create an instance: `local growth = client:Growth(nil)`
@@ -1498,41 +1521,6 @@ local growth, err = client:Growth():create({
 ```
 
 
-### ListMeme
-
-Create an instance: `local list_meme = client:ListMeme(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `altText` | `string` |  |
-| `canonicalImageUrl` | `string` |  |
-| `createdAt` | `string` |  |
-| `imageUrl` | `string` |  |
-| `nsfwStatus` | `string` |  |
-| `shareSlug` | `string` |  |
-| `shareUrl` | `string` |  |
-| `shareViews` | `number` |  |
-| `slug` | `string` |  |
-| `tags` | `table` |  |
-| `templateSlug` | `string` |  |
-| `title` | `string` |  |
-| `visibility` | `string` |  |
-
-#### Example: List
-
-```lua
-local list_memes, err = client:ListMeme():list()
-```
-
-
 ### Media
 
 Create an instance: `local media = client:Media(nil)`
@@ -1559,6 +1547,7 @@ Create an instance: `local meme = client:Meme(nil)`
 
 | Method | Description |
 | --- | --- |
+| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 | `remove(match)` | Remove the matching entity. |
 
@@ -1590,6 +1579,12 @@ Create an instance: `local meme = client:Meme(nil)`
 
 ```lua
 local meme, err = client:Meme():load({ id = "meme_id" })
+```
+
+#### Example: List
+
+```lua
+local memes, err = client:Meme():list()
 ```
 
 
@@ -1734,52 +1729,6 @@ Create an instance: `local template = client:Template(nil)`
 
 ```lua
 local templates, err = client:Template():list()
-```
-
-
-### TemplateSearch
-
-Create an instance: `local template_search = client:TemplateSearch(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `boolean` |  |
-| `assetBytes` | `number|nil` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `number` |  |
-| `captionCount` | `number` |  |
-| `captions` | `table` |  |
-| `categories` | `table` |  |
-| `description` | `string` |  |
-| `durationMs` | `number|nil` |  |
-| `exampleImageUrl` | `string|nil` |  |
-| `frameCount` | `number|nil` |  |
-| `height` | `number|nil` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `string|nil` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `table` |  |
-| `width` | `number|nil` |  |
-
-#### Example: List
-
-```lua
-local template_searchs, err = client:TemplateSearch():list()
 ```
 
 

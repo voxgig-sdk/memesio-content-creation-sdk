@@ -19,7 +19,6 @@ import type {
   FreeTemplateSearchListMatch,
 } from '../MemesioContentCreationTypes'
 
-// TODO: needs Entity superclass
 class FreeTemplateSearchEntity extends MemesioContentCreationEntityBase<FreeTemplateSearch> {
 
   constructor(client: MemesioContentCreationSDK, entopts: any) {

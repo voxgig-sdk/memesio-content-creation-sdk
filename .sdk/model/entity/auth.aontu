@@ -1,0 +1,75 @@
+# Entity: auth
+
+main: kit: entity: auth: {
+
+  alias: field: {}
+
+  name: "auth"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/auth/resend-verification"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/auth/resend-verification"
+          q: {
+            "$action": "resend_verification"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "auth"
+            }
+            {
+              lit: "resend-verification"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/auth/signup"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/auth/signup"
+          q: {
+            "$action": "signup"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "auth"
+            }
+            {
+              lit: "signup"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

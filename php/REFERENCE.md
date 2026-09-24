@@ -106,13 +106,13 @@ Create a new `FreeTemplateSearchEntity` instance. Pass `null` for no initial dat
 
 Create a new `GenerateEntity` instance. Pass `null` for no initial data.
 
+#### `Gif($data = null)`
+
+Create a new `GifEntity` instance. Pass `null` for no initial data.
+
 #### `Growth($data = null)`
 
 Create a new `GrowthEntity` instance. Pass `null` for no initial data.
-
-#### `ListMeme($data = null)`
-
-Create a new `ListMemeEntity` instance. Pass `null` for no initial data.
 
 #### `Media($data = null)`
 
@@ -133,10 +133,6 @@ Create a new `StandaloneAgentBootstrapEntity` instance. Pass `null` for no initi
 #### `Template($data = null)`
 
 Create a new `TemplateEntity` instance. Pass `null` for no initial data.
-
-#### `TemplateSearch($data = null)`
-
-Create a new `TemplateSearchEntity` instance. Pass `null` for no initial data.
 
 #### `TrendAlert($data = null)`
 
@@ -1411,6 +1407,81 @@ Return the entity name.
 
 ---
 
+## GifEntity
+
+```php
+$gif = $client->Gif();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `animated` | `bool` | No |  |
+| `assetBytes` | `mixed` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `int` | No |  |
+| `captionCount` | `int` | No |  |
+| `captions` | `array` | Yes |  |
+| `categories` | `array` | No |  |
+| `description` | `string` | Yes |  |
+| `durationMs` | `mixed` | No |  |
+| `exampleImageUrl` | `mixed` | No |  |
+| `frameCount` | `mixed` | No |  |
+| `height` | `mixed` | Yes |  |
+| `id` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
+| `slug` | `string` | Yes |  |
+| `sourceTemplateId` | `mixed` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `array` | Yes |  |
+| `width` | `mixed` | Yes |  |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Gif()->list();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): GifEntity`
+
+Create a new `GifEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
 ## GrowthEntity
 
 ```php
@@ -1468,70 +1539,6 @@ Set the entity match criteria.
 #### `make(): GrowthEntity`
 
 Create a new `GrowthEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## ListMemeEntity
-
-```php
-$list_meme = $client->ListMeme();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `altText` | `string` | Yes |  |
-| `canonicalImageUrl` | `string` | Yes |  |
-| `createdAt` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `nsfwStatus` | `string` | Yes |  |
-| `shareSlug` | `string` | Yes |  |
-| `shareUrl` | `string` | Yes |  |
-| `shareViews` | `int` | Yes |  |
-| `slug` | `string` | Yes |  |
-| `tags` | `array` | Yes |  |
-| `templateSlug` | `string` | Yes |  |
-| `title` | `string` | Yes |  |
-| `visibility` | `string` | Yes |  |
-
-### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->ListMeme()->list();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ListMemeEntity`
-
-Create a new `ListMemeEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -1619,6 +1626,14 @@ $meme = $client->Meme();
 | `watermark` | `array` | Yes |  |
 
 ### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Meme()->list();
+```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
@@ -1889,81 +1904,6 @@ Set the entity match criteria.
 #### `make(): TemplateEntity`
 
 Create a new `TemplateEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## TemplateSearchEntity
-
-```php
-$template_search = $client->TemplateSearch();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `bool` | No |  |
-| `assetBytes` | `mixed` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `int` | No |  |
-| `captionCount` | `int` | No |  |
-| `captions` | `array` | Yes |  |
-| `categories` | `array` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `mixed` | No |  |
-| `exampleImageUrl` | `mixed` | No |  |
-| `frameCount` | `mixed` | No |  |
-| `height` | `mixed` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `mixed` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `array` | Yes |  |
-| `width` | `mixed` | Yes |  |
-
-### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->TemplateSearch()->list();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): TemplateSearchEntity`
-
-Create a new `TemplateSearchEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

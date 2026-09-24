@@ -33,110 +33,13 @@
   "requests": {
     "POST /api/collab/comments": {
       "provenance": "operation-contract",
-      "contract": {
-        "parameters": [],
-        "protocol": "http",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "authorId": {
-                    "type": "string"
-                  },
-                  "message": {
-                    "maxLength": 1500,
-                    "minLength": 1,
-                    "type": "string"
-                  },
-                  "projectId": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "projectId",
-                  "message"
-                ],
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Comment created"
-          }
-        },
-        "securitySchemes": {
-          "AgentApiKeyAuth": {
-            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
-            "in": "header",
-            "name": "x-agent-api-key",
-            "type": "apiKey"
-          },
-          "DeveloperApiKeyAuth": {
-            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
-            "in": "header",
-            "name": "x-developer-api-key",
-            "type": "apiKey"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /api/collab/comments": {
       "provenance": "operation-contract",
-      "contract": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "projectId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page",
-            "schema": {
-              "minimum": 1,
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "pageSize",
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "integer"
-            }
-          }
-        ],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "description": "Comment list"
-          }
-        },
-        "securitySchemes": {
-          "AgentApiKeyAuth": {
-            "description": "Agent auth for free endpoints and agent-admin routes. You can also send the key as Authorization: Bearer <key>.",
-            "in": "header",
-            "name": "x-agent-api-key",
-            "type": "apiKey"
-          },
-          "DeveloperApiKeyAuth": {
-            "description": "Optional higher-rate free-tier auth. You can also send the key as Authorization: Bearer <key>.",
-            "in": "header",
-            "name": "x-developer-api-key",
-            "type": "apiKey"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

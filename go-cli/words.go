@@ -9,18 +9,6 @@ import (
 	sdk "github.com/voxgig-sdk/memesio-content-creation-sdk/go"
 )
 
-// registerSDKWords installs three native boru words bound to the SDK:
-// list / load / update. Each is declared with two overloads matching
-// the signature  [query?:(Node or Scalar) entity:atom]:
-//
-//   [entity:Atom]            — no query (e.g. `list book`)
-//   [query:Any entity:Atom]  — query is any Node or Scalar (e.g.
-//                              `load {id:1} book`, `load 1 book`)
-//
-// The entity slot is /q-quoted so a bareword `book` parses as the
-// Atom "book" rather than dispatching as an undefined word. Both
-// overloads are all-forward (BarrierAllForward), so args are collected
-// from the tokens following the word.
 func registerSDKWords(r *eng.Registry, client *sdk.MemesioContentCreationSDK) {
 	for _, op := range []string{"list", "load", "update"} {
 		op := op
@@ -121,10 +109,10 @@ func entityFor(client *sdk.MemesioContentCreationSDK, name string) (sdk.MemesioC
 		return client.FreeTemplateSearch(nil), nil
 	case "generate":
 		return client.Generate(nil), nil
+	case "gif":
+		return client.Gif(nil), nil
 	case "growth":
 		return client.Growth(nil), nil
-	case "list_meme":
-		return client.ListMeme(nil), nil
 	case "media":
 		return client.Media(nil), nil
 	case "meme":
@@ -135,8 +123,6 @@ func entityFor(client *sdk.MemesioContentCreationSDK, name string) (sdk.MemesioC
 		return client.StandaloneAgentBootstrap(nil), nil
 	case "template":
 		return client.Template(nil), nil
-	case "template_search":
-		return client.TemplateSearch(nil), nil
 	case "trend_alert":
 		return client.TrendAlert(nil), nil
 	case "upload_caption_meme_success":

@@ -120,7 +120,7 @@ func agent_infraBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"agent_infra01", "agent_infra02", "agent_infra03", "unlock01", "unlock02", "unlock03", "agent01", "agent02", "agent03", "key01", "key02", "key03"},
+		[]any{"agent_infra01", "agent_infra02", "agent_infra03", "agent01", "agent02", "agent03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

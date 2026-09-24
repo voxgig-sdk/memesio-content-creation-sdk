@@ -264,7 +264,6 @@ func (sdk *MemesioContentCreationSDK) rawRequest(fetchargs map[string]any) (map[
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
-					// f() returns nil on parse error in our fetcher.
 					jsonData = f()
 				}
 			}
@@ -281,17 +280,6 @@ func (sdk *MemesioContentCreationSDK) rawRequest(fetchargs map[string]any) (map[
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
 }
 
-// Raw GraphQL access: the pressure valve that makes the generated surface's
-// deliberate omissions (per-call selection sets, typed filter builders,
-// batching, subscriptions) livable — the whole schema stays reachable.
-//
-// Thin wrapper over the same prepare/fetch path Direct uses, with the one
-// thing raw Direct cannot do for GraphQL: a GraphQL failure rides HTTP 200
-// as a top-level `errors` array, so status alone would report a failed query
-// as ok.
-//
-// NOTE: like Direct, this bypasses the feature pipeline — no retry,
-// ratelimit or paging features apply.
 func (sdk *MemesioContentCreationSDK) Graphql(
 	query string, variables map[string]any, ctrl map[string]any,
 ) (map[string]any, error) {
@@ -466,19 +454,19 @@ func (sdk *MemesioContentCreationSDK) Generate(data map[string]any) MemesioConte
 }
 
 
+// Gif returns a Gif entity bound to this client.
+// Idiomatic usage: client.Gif(nil).List(nil, nil) or
+// client.Gif(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *MemesioContentCreationSDK) Gif(data map[string]any) MemesioContentCreationEntity {
+	return NewGifEntityFunc(sdk, data)
+}
+
+
 // Growth returns a Growth entity bound to this client.
 // Idiomatic usage: client.Growth(nil).List(nil, nil) or
 // client.Growth(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MemesioContentCreationSDK) Growth(data map[string]any) MemesioContentCreationEntity {
 	return NewGrowthEntityFunc(sdk, data)
-}
-
-
-// ListMeme returns a ListMeme entity bound to this client.
-// Idiomatic usage: client.ListMeme(nil).List(nil, nil) or
-// client.ListMeme(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *MemesioContentCreationSDK) ListMeme(data map[string]any) MemesioContentCreationEntity {
-	return NewListMemeEntityFunc(sdk, data)
 }
 
 
@@ -519,14 +507,6 @@ func (sdk *MemesioContentCreationSDK) StandaloneAgentBootstrap(data map[string]a
 // client.Template(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MemesioContentCreationSDK) Template(data map[string]any) MemesioContentCreationEntity {
 	return NewTemplateEntityFunc(sdk, data)
-}
-
-
-// TemplateSearch returns a TemplateSearch entity bound to this client.
-// Idiomatic usage: client.TemplateSearch(nil).List(nil, nil) or
-// client.TemplateSearch(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *MemesioContentCreationSDK) TemplateSearch(data map[string]any) MemesioContentCreationEntity {
-	return NewTemplateSearchEntityFunc(sdk, data)
 }
 
 

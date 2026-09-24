@@ -1,0 +1,124 @@
+# Entity: collaboration
+
+main: kit: entity: collaboration: {
+
+  alias: field: {}
+
+  fields: {
+    authorId: {
+      h: "Author Id"
+      n: "authorId"
+      r: false
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    projectId: {
+      h: "Project Id"
+      n: "projectId"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "collaboration"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/collab/comments"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/collab/comments"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "collab"
+            }
+            {
+              lit: "comments"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/collab/comments"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "page_size"
+                or: "page_size"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "project_id"
+                or: "project_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/collab/comments"
+          q: {
+            exist: [
+              "page"
+              "page_size"
+              "project_id"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "collab"
+            }
+            {
+              lit: "comments"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

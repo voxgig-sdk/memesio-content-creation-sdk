@@ -106,13 +106,13 @@ Create a new `FreeTemplateSearchEntity` instance. Pass `None` for no initial dat
 
 Create a new `GenerateEntity` instance. Pass `None` for no initial data.
 
+#### `Gif(data=None)`
+
+Create a new `GifEntity` instance. Pass `None` for no initial data.
+
 #### `Growth(data=None)`
 
 Create a new `GrowthEntity` instance. Pass `None` for no initial data.
-
-#### `ListMeme(data=None)`
-
-Create a new `ListMemeEntity` instance. Pass `None` for no initial data.
 
 #### `Media(data=None)`
 
@@ -133,10 +133,6 @@ Create a new `StandaloneAgentBootstrapEntity` instance. Pass `None` for no initi
 #### `Template(data=None)`
 
 Create a new `TemplateEntity` instance. Pass `None` for no initial data.
-
-#### `TemplateSearch(data=None)`
-
-Create a new `TemplateSearchEntity` instance. Pass `None` for no initial data.
 
 #### `TrendAlert(data=None)`
 
@@ -1392,6 +1388,82 @@ Return the entity name.
 
 ---
 
+## GifEntity
+
+```python
+gif = client.Gif()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `animated` | `bool` | No |  |
+| `assetBytes` | `int | None` | No |  |
+| `assetContentType` | `str` | No |  |
+| `boxCount` | `int` | No |  |
+| `captionCount` | `int` | No |  |
+| `captions` | `list` | Yes |  |
+| `categories` | `list` | No |  |
+| `description` | `str` | Yes |  |
+| `durationMs` | `int | None` | No |  |
+| `exampleImageUrl` | `str | None` | No |  |
+| `frameCount` | `int | None` | No |  |
+| `height` | `float | None` | Yes |  |
+| `id` | `str` | Yes |  |
+| `imageUrl` | `str` | Yes |  |
+| `mediaType` | `str` | Yes |  |
+| `name` | `str` | Yes |  |
+| `posterImageUrl` | `str` | No |  |
+| `previewImageUrl` | `str` | No |  |
+| `qualityStatus` | `str` | No |  |
+| `slug` | `str` | Yes |  |
+| `sourceTemplateId` | `str | None` | Yes |  |
+| `sourceUrl` | `str` | No |  |
+| `tags` | `list` | Yes |  |
+| `width` | `float | None` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.Gif().list()
+for gif in results:
+    print(gif)
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `GifEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
 ## GrowthEntity
 
 ```python
@@ -1449,71 +1521,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `GrowthEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ListMemeEntity
-
-```python
-list_meme = client.ListMeme()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `altText` | `str` | Yes |  |
-| `canonicalImageUrl` | `str` | Yes |  |
-| `createdAt` | `str` | Yes |  |
-| `imageUrl` | `str` | Yes |  |
-| `nsfwStatus` | `str` | Yes |  |
-| `shareSlug` | `str` | Yes |  |
-| `shareUrl` | `str` | Yes |  |
-| `shareViews` | `int` | Yes |  |
-| `slug` | `str` | Yes |  |
-| `tags` | `list` | Yes |  |
-| `templateSlug` | `str` | Yes |  |
-| `title` | `str` | Yes |  |
-| `visibility` | `str` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.ListMeme().list()
-for list_meme in results:
-    print(list_meme)
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListMemeEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -1599,6 +1606,16 @@ meme = client.Meme()
 | `watermark` | `dict` | Yes |  |
 
 ### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.Meme().list()
+for meme in results:
+    print(meme)
+```
 
 #### `load(reqmatch, ctrl=None) -> dict`
 
@@ -1868,82 +1885,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `TemplateEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## TemplateSearchEntity
-
-```python
-template_search = client.TemplateSearch()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `bool` | No |  |
-| `assetBytes` | `int | None` | No |  |
-| `assetContentType` | `str` | No |  |
-| `boxCount` | `int` | No |  |
-| `captionCount` | `int` | No |  |
-| `captions` | `list` | Yes |  |
-| `categories` | `list` | No |  |
-| `description` | `str` | Yes |  |
-| `durationMs` | `int | None` | No |  |
-| `exampleImageUrl` | `str | None` | No |  |
-| `frameCount` | `int | None` | No |  |
-| `height` | `float | None` | Yes |  |
-| `id` | `str` | Yes |  |
-| `imageUrl` | `str` | Yes |  |
-| `mediaType` | `str` | Yes |  |
-| `name` | `str` | Yes |  |
-| `posterImageUrl` | `str` | No |  |
-| `previewImageUrl` | `str` | No |  |
-| `qualityStatus` | `str` | No |  |
-| `slug` | `str` | Yes |  |
-| `sourceTemplateId` | `str | None` | Yes |  |
-| `sourceUrl` | `str` | No |  |
-| `tags` | `list` | Yes |  |
-| `width` | `float | None` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.TemplateSearch().list()
-for template_search in results:
-    print(template_search)
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `TemplateSearchEntity` instance with the same options.
 
 #### `get_name() -> str`
 

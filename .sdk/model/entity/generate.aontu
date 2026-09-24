@@ -1,0 +1,176 @@
+# Entity: generate
+
+main: kit: entity: generate: {
+
+  alias: field: {}
+
+  fields: {
+    base64: {
+      h: "Base64"
+      n: "base64"
+      r: false
+      t: "`$STRING`"
+    }
+    byteLength: {
+      h: "Byte Length"
+      n: "byteLength"
+      r: true
+      t: "`$INTEGER`"
+    }
+    captions: {
+      h: "Captions"
+      n: "captions"
+      r: false
+      t: "`$ARRAY`"
+    }
+    dataUrl: {
+      h: "Data Url"
+      n: "dataUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    delayMs: {
+      h: "Delay Ms"
+      n: "delayMs"
+      r: true
+      t: "`$INTEGER`"
+    }
+    durationMs: {
+      h: "Duration Ms"
+      n: "durationMs"
+      r: false
+      t: "`$INTEGER`"
+    }
+    filename: {
+      h: "Filename"
+      n: "filename"
+      r: true
+      t: "`$STRING`"
+    }
+    fps: {
+      h: "Fps"
+      n: "fps"
+      r: false
+      t: "`$INTEGER`"
+    }
+    gifSlug: {
+      h: "Gif Slug"
+      n: "gifSlug"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "Required for /api/v1/gifs/generate."
+      t: "`$STRING`"
+    }
+    height: {
+      h: "Height"
+      n: "height"
+      r: true
+      t: "`$INTEGER`"
+    }
+    mimeType: {
+      h: "Mime Type"
+      n: "mimeType"
+      r: true
+      t: "`$STRING`"
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: true
+      t: "`$INTEGER`"
+    }
+    parameters: {
+      h: "Parameters"
+      n: "parameters"
+      r: true
+      t: "`$OBJECT`"
+    }
+    returnBase64: {
+      h: "Return Base64"
+      n: "returnBase64"
+      r: false
+      sh: "Only used by /api/v1/gifs/generate."
+      t: "`$BOOLEAN`"
+    }
+    sourceDurationMs: {
+      h: "Source Duration Ms"
+      n: "sourceDurationMs"
+      r: true
+      t: "`$INTEGER`"
+    }
+    startMs: {
+      h: "Start Ms"
+      n: "startMs"
+      r: false
+      t: "`$INTEGER`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      t: "`$ARRAY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      t: "`$STRING`"
+    }
+    width: {
+      h: "Width"
+      n: "width"
+      r: true
+      t: "`$INTEGER`"
+    }
+    widthPx: {
+      h: "Width Px"
+      n: "widthPx"
+      r: false
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "generate"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/v1/gifs/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/gifs/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "gifs"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

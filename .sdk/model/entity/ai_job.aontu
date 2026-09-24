@@ -1,0 +1,669 @@
+# Entity: ai_job
+
+main: kit: entity: ai_job: {
+
+  alias: field: {}
+
+  fields: {
+    action: {
+      h: "Action"
+      n: "action"
+      r: true
+      t: "`$STRING`"
+    }
+    actorId: {
+      h: "Actor Id"
+      n: "actorId"
+      r: false
+      t: "`$STRING`"
+    }
+    afterState: {
+      h: "After State"
+      n: "afterState"
+      r: false
+      t: "`$OBJECT`"
+    }
+    attempts: {
+      h: "Attempts"
+      n: "attempts"
+      r: false
+      t: "`$INTEGER`"
+    }
+    beforeState: {
+      h: "Before State"
+      n: "beforeState"
+      r: false
+      t: "`$OBJECT`"
+    }
+    brushEdits: {
+      h: "Brush Edits"
+      n: "brushEdits"
+      r: false
+      t: "`$ARRAY`"
+    }
+    capability: {
+      h: "Capability"
+      n: "capability"
+      r: true
+      t: "`$STRING`"
+    }
+    celebrityConfidence: {
+      h: "Celebrity Confidence"
+      n: "celebrityConfidence"
+      r: false
+      t: "`$NUMBER`"
+    }
+    consentAttested: {
+      h: "Consent Attested"
+      n: "consentAttested"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    createdAt: {
+      fo: "date-time"
+      h: "Created At"
+      n: "createdAt"
+      r: false
+      t: "`$STRING`"
+    }
+    detectedFaceCount: {
+      h: "Detected Face Count"
+      n: "detectedFaceCount"
+      r: true
+      t: "`$NUMBER`"
+    }
+    edgeRefinement: {
+      h: "Edge Refinement"
+      n: "edgeRefinement"
+      r: false
+      t: "`$NUMBER`"
+    }
+    frameTimeMs: {
+      h: "Frame Time Ms"
+      n: "frameTimeMs"
+      r: false
+      t: "`$NUMBER`"
+    }
+    height: {
+      h: "Height"
+      n: "height"
+      r: true
+      t: "`$NUMBER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    input: {
+      h: "Input"
+      n: "input"
+      r: false
+      t: "`$OBJECT`"
+    }
+    layerId: {
+      h: "Layer Id"
+      n: "layerId"
+      r: true
+      t: "`$STRING`"
+    }
+    layerType: {
+      h: "Layer Type"
+      n: "layerType"
+      r: false
+      t: "`$STRING`"
+    }
+    maxAttempts: {
+      h: "Max Attempts"
+      n: "maxAttempts"
+      r: false
+      t: "`$INTEGER`"
+    }
+    maxFaces: {
+      h: "Max Faces"
+      n: "maxFaces"
+      r: false
+      t: "`$NUMBER`"
+    }
+    mediaType: {
+      h: "Media Type"
+      n: "mediaType"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      t: "`$STRING`"
+    }
+    metadata: {
+      h: "Metadata"
+      n: "metadata"
+      r: false
+      t: "`$OBJECT`"
+    }
+    nsfwScore: {
+      h: "Nsfw Score"
+      n: "nsfwScore"
+      r: false
+      t: "`$NUMBER`"
+    }
+    projectId: {
+      h: "Project Id"
+      n: "projectId"
+      r: true
+      t: "`$STRING`"
+    }
+    runAfterMs: {
+      h: "Run After Ms"
+      n: "runAfterMs"
+      r: false
+      t: "`$INTEGER`"
+    }
+    sourceAssetUrl: {
+      h: "Source Asset Url"
+      n: "sourceAssetUrl"
+      r: true
+      t: "`$STRING`"
+    }
+    sourceFaceIndex: {
+      h: "Source Face Index"
+      n: "sourceFaceIndex"
+      r: false
+      t: "`$NUMBER`"
+    }
+    sourceImageUrl: {
+      h: "Source Image Url"
+      n: "sourceImageUrl"
+      r: true
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+    targetAssetUrl: {
+      h: "Target Asset Url"
+      n: "targetAssetUrl"
+      r: true
+      t: "`$STRING`"
+    }
+    targetFaceIndex: {
+      h: "Target Face Index"
+      n: "targetFaceIndex"
+      r: false
+      t: "`$NUMBER`"
+    }
+    timeoutMs: {
+      h: "Timeout Ms"
+      n: "timeoutMs"
+      r: false
+      t: "`$INTEGER`"
+    }
+    traceId: {
+      h: "Trace Id"
+      n: "traceId"
+      r: false
+      t: "`$STRING`"
+    }
+    updatedAt: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updatedAt"
+      r: false
+      t: "`$STRING`"
+    }
+    versionId: {
+      h: "Version Id"
+      n: "versionId"
+      r: false
+      t: "`$STRING`"
+    }
+    width: {
+      h: "Width"
+      n: "width"
+      r: true
+      t: "`$NUMBER`"
+    }
+    workspaceId: {
+      h: "Workspace Id"
+      n: "workspaceId"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ai_job"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/ai/jobs/{jobId}/cancel"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "job_id"
+                or: "job_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/ai/jobs/{jobId}/cancel"
+          q: {
+            "$action": "cancel"
+            exist: [
+              "job_id"
+            ]
+          }
+          r: {
+            param: {
+              jobId: "job_id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
+            {
+              var: "job_id"
+            }
+            {
+              lit: "cancel"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/jobs/{jobId}/complete"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "job_id"
+                or: "job_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/ai/jobs/{jobId}/complete"
+          q: {
+            "$action": "complete"
+            exist: [
+              "job_id"
+            ]
+          }
+          r: {
+            param: {
+              jobId: "job_id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
+            {
+              var: "job_id"
+            }
+            {
+              lit: "complete"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/background-remove"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/background-remove"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "background-remove"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/edit-history"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/edit-history"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "edit-history"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/face-swap"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/face-swap"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "face-swap"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/face-targets"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/face-targets"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "face-targets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/jobs"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/jobs"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/ai/edit-history"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "from_version_id"
+                or: "from_version_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "layer_id"
+                or: "layer_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "mode"
+                or: "mode"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "project_id"
+                or: "project_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "to_version_id"
+                or: "to_version_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/ai/edit-history"
+          q: {
+            exist: [
+              "from_version_id"
+              "layer_id"
+              "limit"
+              "mode"
+              "project_id"
+              "to_version_id"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "edit-history"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/ai/jobs"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "page_size"
+                or: "page_size"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "status"
+                or: "status"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/ai/jobs"
+          q: {
+            exist: [
+              "page"
+              "page_size"
+              "status"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/ai/jobs/{jobId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "job_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/ai/jobs/{jobId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              jobId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

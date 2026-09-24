@@ -89,11 +89,11 @@ func init() {
 	core.NewGenerateEntityFunc = func(client *core.MemesioContentCreationSDK, entopts map[string]any) core.MemesioContentCreationEntity {
 		return entity.NewGenerateEntity(client, entopts)
 	}
+	core.NewGifEntityFunc = func(client *core.MemesioContentCreationSDK, entopts map[string]any) core.MemesioContentCreationEntity {
+		return entity.NewGifEntity(client, entopts)
+	}
 	core.NewGrowthEntityFunc = func(client *core.MemesioContentCreationSDK, entopts map[string]any) core.MemesioContentCreationEntity {
 		return entity.NewGrowthEntity(client, entopts)
-	}
-	core.NewListMemeEntityFunc = func(client *core.MemesioContentCreationSDK, entopts map[string]any) core.MemesioContentCreationEntity {
-		return entity.NewListMemeEntity(client, entopts)
 	}
 	core.NewMediaEntityFunc = func(client *core.MemesioContentCreationSDK, entopts map[string]any) core.MemesioContentCreationEntity {
 		return entity.NewMediaEntity(client, entopts)
@@ -109,9 +109,6 @@ func init() {
 	}
 	core.NewTemplateEntityFunc = func(client *core.MemesioContentCreationSDK, entopts map[string]any) core.MemesioContentCreationEntity {
 		return entity.NewTemplateEntity(client, entopts)
-	}
-	core.NewTemplateSearchEntityFunc = func(client *core.MemesioContentCreationSDK, entopts map[string]any) core.MemesioContentCreationEntity {
-		return entity.NewTemplateSearchEntity(client, entopts)
 	}
 	core.NewTrendAlertEntityFunc = func(client *core.MemesioContentCreationSDK, entopts map[string]any) core.MemesioContentCreationEntity {
 		return entity.NewTrendAlertEntity(client, entopts)

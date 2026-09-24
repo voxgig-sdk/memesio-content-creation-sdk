@@ -20,7 +20,7 @@ import (
 const prompt = "memesio-content-creation"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "agent agent_infra ai_caption ai_job ai_meme_generation_succeeded ai_provider analytics auth billing collaboration compliance create_meme developer_api free_caption_meme_success free_template_search generate growth list_meme media meme public_template_media_item standalone_agent_bootstrap template template_search trend_alert upload_caption_meme_success video"
+const entitiesHelp = "agent agent_infra ai_caption ai_job ai_meme_generation_succeeded ai_provider analytics auth billing collaboration compliance create_meme developer_api free_caption_meme_success free_template_search generate gif growth media meme public_template_media_item standalone_agent_bootstrap template trend_alert upload_caption_meme_success video"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

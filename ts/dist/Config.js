@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -126,14 +119,13 @@ class Config {
             free_caption_meme_success: {},
             free_template_search: {},
             generate: {},
+            gif: {},
             growth: {},
-            list_meme: {},
             media: {},
             meme: {},
             public_template_media_item: {},
             standalone_agent_bootstrap: {},
             template: {},
-            template_search: {},
             trend_alert: {},
             upload_caption_meme_success: {},
             video: {},
@@ -144,48 +136,58 @@ class Config {
             "fields": [
                 {
                     "name": "description",
+                    "title": "Description",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "locale",
+                    "title": "Locale",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "name",
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "req": true,
                     "op": {
                         "update": {
                             "type": "`$STRING`"
                         }
-                    },
-                    "req": true,
-                    "type": "`$STRING`"
+                    }
                 },
                 {
                     "name": "slug",
+                    "title": "Slug",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "status",
+                    "title": "Status",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "stylePreset",
+                    "title": "Style Preset",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "systemPrompt",
+                    "title": "System Prompt",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "watermarkText",
+                    "title": "Watermark Text",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "websiteUrl",
+                    "title": "Website Url",
                     "type": "`$STRING`"
                 }
             ],
@@ -200,7 +202,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents",
@@ -215,16 +216,18 @@ class Config {
                                     "lit": "agents"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -233,25 +236,9 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "agent_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/v1/agents/{agentId}",
-                            "rename": {
-                                "param": {
-                                    "agentId": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -266,24 +253,39 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "{id}"
-                            ]
+                            ],
+                            "rename": {
+                                "param": {
+                                    "agentId": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "agent_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/v1/agents",
@@ -298,16 +300,18 @@ class Config {
                                     "lit": "agents"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -316,25 +320,9 @@ class Config {
                     "name": "update",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "agent_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "PATCH",
                             "orig": "/api/v1/agents/{agentId}",
-                            "rename": {
-                                "param": {
-                                    "agentId": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -349,21 +337,37 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "{id}"
-                            ]
+                            ],
+                            "rename": {
+                                "param": {
+                                    "agentId": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "agent_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -376,59 +380,72 @@ class Config {
             "fields": [
                 {
                     "name": "action",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Action",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "chatId",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Chat Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "memeSlug",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Meme Slug",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "metadata",
+                    "title": "Metadata",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "payoutReference",
+                    "title": "Payout Reference",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "payoutStatus",
+                    "title": "Payout Status",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "phoneOrChatId",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Phone Or Chat Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "prompt",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Prompt",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "proof",
+                    "title": "Proof",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "quotaBoostPerDay",
+                    "title": "Quota Boost Per Day",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "userId",
+                    "title": "User Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "weekStart",
+                    "title": "Week Start",
                     "type": "`$STRING`"
                 }
             ],
@@ -443,25 +460,9 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "agent_id",
-                                        "orig": "agent_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/{agentId}/channels/telegram/bind",
-                            "rename": {
-                                "param": {
-                                    "agentId": "agent_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -485,15 +486,6 @@ class Config {
                                     "lit": "bind"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "agent_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
@@ -502,28 +494,37 @@ class Config {
                                 "channels",
                                 "telegram",
                                 "bind"
-                            ]
-                        },
-                        {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "agent_id",
-                                        "orig": "agent_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/agents/{agentId}/channels/whatsapp/bind",
+                            ],
                             "rename": {
                                 "param": {
                                     "agentId": "agent_id"
                                 }
                             },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "agent_id",
+                                        "orig": "agent_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "agent_id"
+                                ]
+                            }
+                        },
+                        {
+                            "kind": "http",
+                            "method": "POST",
+                            "orig": "/api/v1/agents/{agentId}/channels/whatsapp/bind",
                             "segments": [
                                 {
                                     "lit": "api"
@@ -547,15 +548,6 @@ class Config {
                                     "lit": "bind"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "agent_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
@@ -564,28 +556,37 @@ class Config {
                                 "channels",
                                 "whatsapp",
                                 "bind"
-                            ]
-                        },
-                        {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "agent_id",
-                                        "orig": "agent_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/agents/{agentId}/unlocks/social-action",
+                            ],
                             "rename": {
                                 "param": {
                                     "agentId": "agent_id"
                                 }
                             },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "agent_id",
+                                        "orig": "agent_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "agent_id"
+                                ]
+                            }
+                        },
+                        {
+                            "kind": "http",
+                            "method": "POST",
+                            "orig": "/api/v1/agents/{agentId}/unlocks/social-action",
                             "segments": [
                                 {
                                     "lit": "api"
@@ -606,15 +607,6 @@ class Config {
                                     "lit": "social-action"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "agent_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
@@ -622,28 +614,37 @@ class Config {
                                 "{agent_id}",
                                 "unlocks",
                                 "social-action"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {
+                                "param": {
+                                    "agentId": "agent_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
                                 "params": [
                                     {
-                                        "kind": "param",
-                                        "name": "id",
+                                        "name": "agent_id",
                                         "orig": "agent_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "agent_id"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/{agentId}/keys",
-                            "rename": {
-                                "param": {
-                                    "agentId": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -661,44 +662,44 @@ class Config {
                                     "lit": "keys"
                                 }
                             ],
-                            "select": {
-                                "$action": "keys",
-                                "exist": [
-                                    "id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "{id}",
                                 "keys"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {
+                                "param": {
+                                    "agentId": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
                                 "params": [
                                     {
+                                        "name": "id",
+                                        "orig": "agent_id",
+                                        "type": "`$STRING`",
                                         "kind": "param",
-                                        "name": "unlock_id",
-                                        "orig": "unlock_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
+                                        "reqd": true
                                     }
                                 ]
                             },
+                            "select": {
+                                "$action": "keys",
+                                "exist": [
+                                    "id"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/unlocks/{unlockId}/approve",
-                            "rename": {
-                                "param": {
-                                    "unlockId": "unlock_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -719,15 +720,6 @@ class Config {
                                     "lit": "approve"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "unlock_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
@@ -735,10 +727,34 @@ class Config {
                                 "unlocks",
                                 "{unlock_id}",
                                 "approve"
-                            ]
+                            ],
+                            "rename": {
+                                "param": {
+                                    "unlockId": "unlock_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "unlock_id",
+                                        "orig": "unlock_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "unlock_id"
+                                ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/names:generate",
@@ -756,20 +772,21 @@ class Config {
                                     "lit": "names:generate"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "names:generate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/rewards/votes",
@@ -790,21 +807,22 @@ class Config {
                                     "lit": "votes"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "rewards",
                                 "votes"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/rewards/winner:close",
@@ -825,21 +843,22 @@ class Config {
                                     "lit": "winner:close"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "rewards",
                                 "winner:close"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/webhooks/telegram",
@@ -860,21 +879,22 @@ class Config {
                                     "lit": "telegram"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "webhooks",
                                 "telegram"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/webhooks/whatsapp",
@@ -895,18 +915,20 @@ class Config {
                                     "lit": "whatsapp"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "webhooks",
                                 "whatsapp"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -915,22 +937,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "week_start",
-                                        "orig": "week_start",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/v1/agents/rewards/leaderboard",
@@ -951,44 +957,45 @@ class Config {
                                     "lit": "leaderboard"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "limit",
-                                    "week_start"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "rewards",
                                 "leaderboard"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
-                                "params": [
+                                "query": [
                                     {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "agent_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "week_start",
+                                        "orig": "week_start",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "limit",
+                                    "week_start"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/v1/agents/{agentId}/keys",
-                            "rename": {
-                                "param": {
-                                    "agentId": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -1006,26 +1013,41 @@ class Config {
                                     "lit": "keys"
                                 }
                             ],
-                            "select": {
-                                "$action": "keys",
-                                "exist": [
-                                    "id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "{id}",
                                 "keys"
-                            ]
+                            ],
+                            "rename": {
+                                "param": {
+                                    "agentId": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "agent_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "$action": "keys",
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/v1/agents/webhooks/whatsapp",
@@ -1046,18 +1068,20 @@ class Config {
                                     "lit": "whatsapp"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "webhooks",
                                 "whatsapp"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -1066,33 +1090,9 @@ class Config {
                     "name": "remove",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "agent_id",
-                                        "orig": "agent_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "key_id",
-                                        "orig": "key_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "DELETE",
                             "orig": "/api/v1/agents/{agentId}/keys/{keyId}",
-                            "rename": {
-                                "param": {
-                                    "agentId": "agent_id",
-                                    "keyId": "key_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -1113,16 +1113,6 @@ class Config {
                                     "var": "key_id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "agent_id",
-                                    "key_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
@@ -1130,7 +1120,41 @@ class Config {
                                 "{agent_id}",
                                 "keys",
                                 "{key_id}"
-                            ]
+                            ],
+                            "rename": {
+                                "param": {
+                                    "agentId": "agent_id",
+                                    "keyId": "key_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "agent_id",
+                                        "orig": "agent_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "key_id",
+                                        "orig": "key_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "agent_id",
+                                    "key_id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -1138,14 +1162,10 @@ class Config {
             "relations": {
                 "ancestors": [
                     [
-                        "unlock"
+                        "$.main.kit.entity.agent"
                     ],
                     [
-                        "agent"
-                    ],
-                    [
-                        "agent",
-                        "key"
+                        "$.main.kit.entity.agent"
                     ]
                 ]
             }
@@ -1154,117 +1174,145 @@ class Config {
             "fields": [
                 {
                     "name": "blockedTerms",
+                    "title": "Blocked Terms",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "canvasText",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Canvas Text",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "captionCount",
+                    "title": "Caption Count",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "captionSets",
+                    "title": "Caption Sets",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "entities",
+                    "title": "Entities",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "fallbackUsed",
+                    "title": "Fallback Used",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "generationStrategy",
+                    "title": "Generation Strategy",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "locale",
+                    "title": "Locale",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "memeId",
+                    "title": "Meme Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "memeSlug",
+                    "title": "Meme Slug",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "name",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "ok",
+                    "title": "Ok",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "optionCount",
+                    "title": "Option Count",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "ownerToken",
+                    "title": "Owner Token",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "providerId",
+                    "title": "Provider Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "referenceCaptions",
+                    "title": "Reference Captions",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "rewriteNote",
+                    "title": "Rewrite Note",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "sceneSummary",
+                    "title": "Scene Summary",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "templateDescription",
+                    "title": "Template Description",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "templateName",
+                    "title": "Template Name",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "templateTags",
+                    "title": "Template Tags",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "tone",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Tone",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "toneCues",
+                    "title": "Tone Cues",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "trendKeywords",
+                    "title": "Trend Keywords",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "trendReferences",
+                    "title": "Trend References",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "trendSignals",
+                    "title": "Trend Signals",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "variationOffset",
+                    "title": "Variation Offset",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "voiceRules",
+                    "title": "Voice Rules",
                     "type": "`$ARRAY`"
                 }
             ],
@@ -1275,7 +1323,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/captions/generate",
@@ -1293,20 +1340,21 @@ class Config {
                                     "lit": "generate"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "captions",
                                 "generate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/captions/moderate",
@@ -1324,20 +1372,21 @@ class Config {
                                     "lit": "moderate"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "captions",
                                 "moderate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/captions/prompt",
@@ -1355,20 +1404,21 @@ class Config {
                                     "lit": "prompt"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "captions",
                                 "prompt"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/captions/rank",
@@ -1386,20 +1436,21 @@ class Config {
                                     "lit": "rank"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "captions",
                                 "rank"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/captions/rewrite",
@@ -1417,20 +1468,21 @@ class Config {
                                     "lit": "rewrite"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "captions",
                                 "rewrite"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/captions/scene",
@@ -1448,20 +1500,21 @@ class Config {
                                     "lit": "scene"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "captions",
                                 "scene"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/captions/tone-presets",
@@ -1479,17 +1532,19 @@ class Config {
                                     "lit": "tone-presets"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "captions",
                                 "tone-presets"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -1498,16 +1553,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "locale",
-                                        "orig": "locale",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/ai/captions/tone-presets",
@@ -1525,24 +1570,34 @@ class Config {
                                     "lit": "tone-presets"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "locale"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "captions",
                                 "tone-presets"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "locale",
+                                        "orig": "locale",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "locale"
+                                ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/ai/captions/generate",
@@ -1560,17 +1615,19 @@ class Config {
                                     "lit": "generate"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "captions",
                                 "generate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -1583,170 +1640,207 @@ class Config {
             "fields": [
                 {
                     "name": "action",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Action",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "actorId",
+                    "title": "Actor Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "afterState",
+                    "title": "After State",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "attempts",
+                    "title": "Attempts",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "beforeState",
+                    "title": "Before State",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "brushEdits",
+                    "title": "Brush Edits",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "capability",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Capability",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "celebrityConfidence",
+                    "title": "Celebrity Confidence",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "consentAttested",
+                    "title": "Consent Attested",
                     "type": "`$BOOLEAN`"
                 },
                 {
-                    "format": "date-time",
                     "name": "createdAt",
-                    "type": "`$STRING`"
+                    "title": "Created At",
+                    "type": "`$STRING`",
+                    "format": "date-time"
                 },
                 {
                     "name": "detectedFaceCount",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Detected Face Count",
+                    "type": "`$NUMBER`",
+                    "req": true
                 },
                 {
                     "name": "edgeRefinement",
+                    "title": "Edge Refinement",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "frameTimeMs",
+                    "title": "Frame Time Ms",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "height",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Height",
+                    "type": "`$NUMBER`",
+                    "req": true
                 },
                 {
                     "name": "id",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "input",
+                    "title": "Input",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "layerId",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Layer Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "layerType",
+                    "title": "Layer Type",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "maxAttempts",
+                    "title": "Max Attempts",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "maxFaces",
+                    "title": "Max Faces",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "mediaType",
+                    "title": "Media Type",
+                    "type": "`$STRING`",
                     "op": {
                         "create": {
                             "req": true,
                             "type": "`$STRING`"
                         }
-                    },
-                    "type": "`$STRING`"
+                    }
                 },
                 {
                     "name": "metadata",
+                    "title": "Metadata",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "nsfwScore",
+                    "title": "Nsfw Score",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "projectId",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Project Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "runAfterMs",
+                    "title": "Run After Ms",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "sourceAssetUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Source Asset Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "sourceFaceIndex",
+                    "title": "Source Face Index",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "sourceImageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Source Image Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "status",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "targetAssetUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Target Asset Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "targetFaceIndex",
+                    "title": "Target Face Index",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "timeoutMs",
+                    "title": "Timeout Ms",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "traceId",
+                    "title": "Trace Id",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "date-time",
                     "name": "updatedAt",
-                    "type": "`$STRING`"
+                    "title": "Updated At",
+                    "type": "`$STRING`",
+                    "format": "date-time"
                 },
                 {
                     "name": "versionId",
+                    "title": "Version Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "width",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Width",
+                    "type": "`$NUMBER`",
+                    "req": true
                 },
                 {
                     "name": "workspaceId",
+                    "title": "Workspace Id",
                     "type": "`$STRING`"
                 }
             ],
@@ -1761,25 +1855,9 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "job_id",
-                                        "orig": "job_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/jobs/{jobId}/cancel",
-                            "rename": {
-                                "param": {
-                                    "jobId": "job_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -1797,44 +1875,44 @@ class Config {
                                     "lit": "cancel"
                                 }
                             ],
-                            "select": {
-                                "$action": "cancel",
-                                "exist": [
-                                    "job_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "jobs",
                                 "{job_id}",
                                 "cancel"
-                            ]
-                        },
-                        {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "job_id",
-                                        "orig": "job_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/ai/jobs/{jobId}/complete",
+                            ],
                             "rename": {
                                 "param": {
                                     "jobId": "job_id"
                                 }
                             },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "job_id",
+                                        "orig": "job_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "$action": "cancel",
+                                "exist": [
+                                    "job_id"
+                                ]
+                            }
+                        },
+                        {
+                            "kind": "http",
+                            "method": "POST",
+                            "orig": "/api/ai/jobs/{jobId}/complete",
                             "segments": [
                                 {
                                     "lit": "api"
@@ -1852,26 +1930,41 @@ class Config {
                                     "lit": "complete"
                                 }
                             ],
-                            "select": {
-                                "$action": "complete",
-                                "exist": [
-                                    "job_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "jobs",
                                 "{job_id}",
                                 "complete"
-                            ]
+                            ],
+                            "rename": {
+                                "param": {
+                                    "jobId": "job_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "job_id",
+                                        "orig": "job_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "$action": "complete",
+                                "exist": [
+                                    "job_id"
+                                ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/background-remove",
@@ -1886,19 +1979,20 @@ class Config {
                                     "lit": "background-remove"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "background-remove"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/edit-history",
@@ -1913,19 +2007,20 @@ class Config {
                                     "lit": "edit-history"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "edit-history"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/face-swap",
@@ -1940,19 +2035,20 @@ class Config {
                                     "lit": "face-swap"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "face-swap"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/face-targets",
@@ -1967,19 +2063,20 @@ class Config {
                                     "lit": "face-targets"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "face-targets"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/jobs",
@@ -1994,16 +2091,18 @@ class Config {
                                     "lit": "jobs"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "jobs"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -2012,48 +2111,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "from_version_id",
-                                        "orig": "from_version_id",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "layer_id",
-                                        "orig": "layer_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "mode",
-                                        "orig": "mode",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "project_id",
-                                        "orig": "project_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "to_version_id",
-                                        "orig": "to_version_id",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/ai/edit-history",
@@ -2068,6 +2125,58 @@ class Config {
                                     "lit": "edit-history"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "ai",
+                                "edit-history"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "from_version_id",
+                                        "orig": "from_version_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "layer_id",
+                                        "orig": "layer_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "mode",
+                                        "orig": "mode",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "project_id",
+                                        "orig": "project_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "to_version_id",
+                                        "orig": "to_version_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "from_version_id",
@@ -2077,40 +2186,9 @@ class Config {
                                     "project_id",
                                     "to_version_id"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "ai",
-                                "edit-history"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page_size",
-                                        "orig": "page_size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "status",
-                                        "orig": "status",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/ai/jobs",
@@ -2125,43 +2203,50 @@ class Config {
                                     "lit": "jobs"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "ai",
+                                "jobs"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page_size",
+                                        "orig": "page_size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "status",
+                                        "orig": "status",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "page",
                                     "page_size",
                                     "status"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "ai",
-                                "jobs"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "job_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/ai/jobs/{jobId}",
-                            "rename": {
-                                "param": {
-                                    "jobId": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -2176,139 +2261,172 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "jobs",
                                 "{id}"
-                            ]
+                            ],
+                            "rename": {
+                                "param": {
+                                    "jobId": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "job_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "job"
-                    ]
-                ]
+                "ancestors": []
             }
         },
         "ai_meme_generation_succeeded": {
             "fields": [
                 {
                     "name": "allowHeuristicFallback",
+                    "title": "Allow Heuristic Fallback",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "captionSource",
+                    "title": "Caption Source",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "captions",
+                    "title": "Captions",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "correlationId",
+                    "title": "Correlation Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "degradedFromAsync",
+                    "title": "Degraded From Async",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "editableCaptions",
+                    "title": "Editable Captions",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "flow",
+                    "title": "Flow",
+                    "type": "`$STRING`",
+                    "req": true,
                     "op": {
                         "create": {
                             "type": "`$STRING`"
                         }
-                    },
-                    "req": true,
-                    "type": "`$STRING`"
+                    }
                 },
                 {
                     "name": "imageUrl",
+                    "title": "Image Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "mode",
+                    "title": "Mode",
+                    "type": "`$STRING`",
+                    "req": true,
                     "op": {
                         "create": {
                             "type": "`$STRING`"
                         }
-                    },
-                    "req": true,
-                    "type": "`$STRING`"
+                    }
                 },
                 {
                     "name": "ok",
-                    "req": true,
-                    "type": "`$BOOLEAN`"
+                    "title": "Ok",
+                    "type": "`$BOOLEAN`",
+                    "req": true
                 },
                 {
                     "name": "preferredProviderId",
+                    "title": "Preferred Provider Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "prompt",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Prompt",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "rewriteNote",
+                    "title": "Rewrite Note",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "runId",
+                    "title": "Run Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "status",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "templateId",
+                    "title": "Template Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "tone",
+                    "title": "Tone",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "toneCues",
+                    "title": "Tone Cues",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "variantCount",
+                    "title": "Variant Count",
+                    "type": "`$INTEGER`",
+                    "req": true,
                     "op": {
                         "create": {
                             "type": "`$NUMBER`"
                         }
-                    },
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    }
                 },
                 {
                     "name": "variants",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Variants",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "workspaceId",
+                    "title": "Workspace Id",
                     "type": "`$STRING`"
                 }
             ],
@@ -2319,7 +2437,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/memes/generate",
@@ -2337,20 +2454,21 @@ class Config {
                                     "lit": "generate"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "memes",
                                 "generate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/memes/generate",
@@ -2368,17 +2486,19 @@ class Config {
                                     "lit": "generate"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "memes",
                                 "generate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -2391,44 +2511,54 @@ class Config {
             "fields": [
                 {
                     "name": "actorId",
+                    "title": "Actor Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "correlationId",
+                    "title": "Correlation Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "limit",
+                    "title": "Limit",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "mappingMode",
+                    "title": "Mapping Mode",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "maxSlots",
+                    "title": "Max Slots",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "prompt",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Prompt",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "sourceImageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Source Image Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "texts",
+                    "title": "Texts",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "trendSignals",
+                    "title": "Trend Signals",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "workspaceId",
+                    "title": "Workspace Id",
                     "type": "`$STRING`"
                 }
             ],
@@ -2439,7 +2569,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/templates/detect",
@@ -2457,20 +2586,21 @@ class Config {
                                     "lit": "detect"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "templates",
                                 "detect"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/ai/templates/suggest",
@@ -2488,17 +2618,19 @@ class Config {
                                     "lit": "suggest"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "templates",
                                 "suggest"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -2507,16 +2639,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "refresh",
-                                        "orig": "refresh",
-                                        "type": "`$BOOLEAN`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/ai/providers/background-remove-benchmark",
@@ -2534,33 +2656,34 @@ class Config {
                                     "lit": "background-remove-benchmark"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "refresh"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "providers",
                                 "background-remove-benchmark"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
                                 "query": [
                                     {
-                                        "kind": "query",
                                         "name": "refresh",
                                         "orig": "refresh",
-                                        "type": "`$BOOLEAN`"
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "refresh"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/ai/providers/face-swap-benchmark",
@@ -2578,24 +2701,34 @@ class Config {
                                     "lit": "face-swap-benchmark"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "refresh"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "providers",
                                 "face-swap-benchmark"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "refresh",
+                                        "orig": "refresh",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "refresh"
+                                ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/ai/memes/generate",
@@ -2613,17 +2746,19 @@ class Config {
                                     "lit": "generate"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "ai",
                                 "memes",
                                 "generate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -2641,16 +2776,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "template_id",
-                                        "orig": "template_id",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/analytics/experiments/templates",
@@ -2668,33 +2793,34 @@ class Config {
                                     "lit": "templates"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "template_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "analytics",
                                 "experiments",
                                 "templates"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
                                 "query": [
                                     {
-                                        "kind": "query",
-                                        "name": "window_hour",
-                                        "orig": "window_hour",
-                                        "type": "`$INTEGER`"
+                                        "name": "template_id",
+                                        "orig": "template_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "template_id"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/analytics/dashboards/backend-reliability",
@@ -2712,24 +2838,34 @@ class Config {
                                     "lit": "backend-reliability"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "window_hour"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "analytics",
                                 "dashboards",
                                 "backend-reliability"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "window_hour",
+                                        "orig": "window_hour",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "window_hour"
+                                ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/analytics/alerts/backend",
@@ -2747,20 +2883,21 @@ class Config {
                                     "lit": "backend"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "analytics",
                                 "alerts",
                                 "backend"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/analytics/anomalies/ai",
@@ -2778,20 +2915,21 @@ class Config {
                                     "lit": "ai"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "analytics",
                                 "anomalies",
                                 "ai"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/analytics/dashboards/activation-retention",
@@ -2809,20 +2947,21 @@ class Config {
                                     "lit": "activation-retention"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "analytics",
                                 "dashboards",
                                 "activation-retention"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/analytics/dashboards/feature-adoption",
@@ -2840,20 +2979,21 @@ class Config {
                                     "lit": "feature-adoption"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "analytics",
                                 "dashboards",
                                 "feature-adoption"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/analytics/metric-dictionary",
@@ -2868,18 +3008,20 @@ class Config {
                                     "lit": "metric-dictionary"
                                 }
                             ],
-                            "select": {
-                                "$action": "metric_dictionary"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "analytics",
                                 "metric-dictionary"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "metric_dictionary"
+                            }
                         }
                     ]
                 }
@@ -2897,7 +3039,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/auth/resend-verification",
@@ -2912,21 +3053,22 @@ class Config {
                                     "lit": "resend-verification"
                                 }
                             ],
-                            "select": {
-                                "$action": "resend_verification"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "auth",
                                 "resend-verification"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "resend_verification"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/auth/signup",
@@ -2941,18 +3083,20 @@ class Config {
                                     "lit": "signup"
                                 }
                             ],
-                            "select": {
-                                "$action": "signup"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "auth",
                                 "signup"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "signup"
+                            }
                         }
                     ]
                 }
@@ -2970,22 +3114,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "window_day",
-                                        "orig": "window_day",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "workspace_id",
-                                        "orig": "workspace_id",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/billing/usage",
@@ -3000,22 +3128,39 @@ class Config {
                                     "lit": "usage"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "billing",
+                                "usage"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "window_day",
+                                        "orig": "window_day",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "workspace_id",
+                                        "orig": "workspace_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "usage",
                                 "exist": [
                                     "window_day",
                                     "workspace_id"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "billing",
-                                "usage"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -3028,17 +3173,20 @@ class Config {
             "fields": [
                 {
                     "name": "authorId",
+                    "title": "Author Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "message",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Message",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "projectId",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Project Id",
+                    "type": "`$STRING`",
+                    "req": true
                 }
             ],
             "name": "collaboration",
@@ -3048,7 +3196,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/collab/comments",
@@ -3063,16 +3210,18 @@ class Config {
                                     "lit": "comments"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "collab",
                                 "comments"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -3081,29 +3230,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page_size",
-                                        "orig": "page_size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "project_id",
-                                        "orig": "project_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/collab/comments",
@@ -3118,22 +3244,46 @@ class Config {
                                     "lit": "comments"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "collab",
+                                "comments"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page_size",
+                                        "orig": "page_size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "project_id",
+                                        "orig": "project_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "page",
                                     "page_size",
                                     "project_id"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "collab",
-                                "comments"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -3151,7 +3301,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/compliance/content-policy",
@@ -3166,18 +3315,20 @@ class Config {
                                     "lit": "content-policy"
                                 }
                             ],
-                            "select": {
-                                "$action": "content_policy"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "compliance",
                                 "content-policy"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "content_policy"
+                            }
                         }
                     ]
                 }
@@ -3190,16 +3341,19 @@ class Config {
             "fields": [
                 {
                     "name": "canvas",
-                    "req": true,
-                    "type": "`$OBJECT`"
+                    "title": "Canvas",
+                    "type": "`$OBJECT`",
+                    "req": true
                 },
                 {
                     "name": "captions",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Captions",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "generationRunId",
+                    "title": "Generation Run Id",
                     "type": [
                         "`$ONE`",
                         [
@@ -3210,6 +3364,7 @@ class Config {
                 },
                 {
                     "name": "generationVariantId",
+                    "title": "Generation Variant Id",
                     "type": [
                         "`$ONE`",
                         [
@@ -3220,34 +3375,41 @@ class Config {
                 },
                 {
                     "name": "imageDataUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Image Data Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "overlays",
+                    "title": "Overlays",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "sourceImageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Source Image Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "templateSlug",
+                    "title": "Template Slug",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "title",
+                    "title": "Title",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "visibility",
+                    "title": "Visibility",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "watermark",
-                    "req": true,
-                    "type": "`$OBJECT`"
+                    "title": "Watermark",
+                    "type": "`$OBJECT`",
+                    "req": true
                 }
             ],
             "name": "create_meme",
@@ -3257,7 +3419,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/memes",
@@ -3269,15 +3430,17 @@ class Config {
                                     "lit": "memes"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "api",
+                                "memes"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "api",
-                                "memes"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -3290,15 +3453,18 @@ class Config {
             "fields": [
                 {
                     "name": "limit",
+                    "title": "Limit",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "prompt",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Prompt",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "trendSignals",
+                    "title": "Trend Signals",
                     "type": "`$ARRAY`"
                 }
             ],
@@ -3309,7 +3475,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/templates/ideas",
@@ -3327,17 +3492,19 @@ class Config {
                                     "lit": "ideas"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "templates",
                                 "ideas"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -3346,7 +3513,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/v1/memes/generate",
@@ -3364,17 +3530,19 @@ class Config {
                                     "lit": "generate"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "memes",
                                 "generate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -3387,31 +3555,31 @@ class Config {
             "fields": [
                 {
                     "name": "captions",
-                    "req": true,
+                    "title": "Captions",
                     "type": "`$ARRAY`",
-                    "union": {
-                        "branches": 2,
-                        "count": 1,
-                        "depth": 1
-                    }
+                    "req": true
                 },
                 {
                     "name": "templateSlug",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Template Slug",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "title",
+                    "title": "Title",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "visibility",
+                    "title": "Visibility",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "watermark",
-                    "short": "Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark.",
-                    "type": "`$OBJECT`"
+                    "title": "Watermark",
+                    "type": "`$OBJECT`",
+                    "short": "Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark."
                 }
             ],
             "name": "free_caption_meme_success",
@@ -3421,7 +3589,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/free/memes/caption",
@@ -3439,20 +3606,21 @@ class Config {
                                     "lit": "caption"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
                             "parts": [
                                 "api",
                                 "free",
                                 "memes",
                                 "caption"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/memes/caption-template",
@@ -3470,17 +3638,19 @@ class Config {
                                     "lit": "caption-template"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "memes",
                                 "caption-template"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -3493,10 +3663,12 @@ class Config {
             "fields": [
                 {
                     "name": "animated",
+                    "title": "Animated",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "assetBytes",
+                    "title": "Asset Bytes",
                     "type": [
                         "`$ONE`",
                         [
@@ -3507,30 +3679,36 @@ class Config {
                 },
                 {
                     "name": "assetContentType",
+                    "title": "Asset Content Type",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "boxCount",
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    "title": "Box Count",
+                    "type": "`$INTEGER`",
+                    "req": true
                 },
                 {
                     "name": "captionCount",
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    "title": "Caption Count",
+                    "type": "`$INTEGER`",
+                    "req": true
                 },
                 {
                     "name": "captions",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Captions",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "description",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "durationMs",
+                    "title": "Duration Ms",
                     "type": [
                         "`$ONE`",
                         [
@@ -3541,6 +3719,7 @@ class Config {
                 },
                 {
                     "name": "exampleImageUrl",
+                    "title": "Example Image Url",
                     "type": [
                         "`$ONE`",
                         [
@@ -3551,6 +3730,7 @@ class Config {
                 },
                 {
                     "name": "frameCount",
+                    "title": "Frame Count",
                     "type": [
                         "`$ONE`",
                         [
@@ -3561,77 +3741,89 @@ class Config {
                 },
                 {
                     "name": "height",
-                    "req": true,
+                    "title": "Height",
                     "type": [
                         "`$ONE`",
                         [
                             "`$NUMBER`",
                             "`$NULL`"
                         ]
-                    ]
+                    ],
+                    "req": true
                 },
                 {
                     "name": "id",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "imageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Image Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "mediaType",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Media Type",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "name",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "posterImageUrl",
+                    "title": "Poster Image Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "qualityStatus",
+                    "title": "Quality Status",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "slug",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Slug",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "sourceTemplateId",
-                    "req": true,
+                    "title": "Source Template Id",
                     "type": [
                         "`$ONE`",
                         [
                             "`$STRING`",
                             "`$NULL`"
                         ]
-                    ]
+                    ],
+                    "req": true
                 },
                 {
                     "name": "sourceUrl",
+                    "title": "Source Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "tags",
+                    "title": "Tags",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "width",
-                    "req": true,
+                    "title": "Width",
                     "type": [
                         "`$ONE`",
                         [
                             "`$NUMBER`",
                             "`$NULL`"
                         ]
-                    ]
+                    ],
+                    "req": true
                 }
             ],
             "id": {
@@ -3645,59 +3837,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "image",
-                                        "kind": "query",
-                                        "name": "media_type",
-                                        "orig": "media_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "mode",
-                                        "orig": "mode",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page_size",
-                                        "orig": "page_size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "q",
-                                        "orig": "q",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "tag",
-                                        "orig": "tag",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/free/templates",
@@ -3712,6 +3851,69 @@ class Config {
                                     "lit": "templates"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "free",
+                                "templates"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.items`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "media_type",
+                                        "orig": "media_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "image"
+                                    },
+                                    {
+                                        "name": "mode",
+                                        "orig": "mode",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page_size",
+                                        "orig": "page_size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "q",
+                                        "orig": "q",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "tag",
+                                        "orig": "tag",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "media_type",
@@ -3723,16 +3925,7 @@ class Config {
                                     "sort",
                                     "tag"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.items`"
-                            },
-                            "parts": [
-                                "api",
-                                "free",
-                                "templates"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -3745,99 +3938,119 @@ class Config {
             "fields": [
                 {
                     "name": "base64",
+                    "title": "Base64",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "byteLength",
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    "title": "Byte Length",
+                    "type": "`$INTEGER`",
+                    "req": true
                 },
                 {
                     "name": "captions",
+                    "title": "Captions",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "dataUrl",
+                    "title": "Data Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "delayMs",
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    "title": "Delay Ms",
+                    "type": "`$INTEGER`",
+                    "req": true
                 },
                 {
                     "name": "durationMs",
+                    "title": "Duration Ms",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "filename",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Filename",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "fps",
+                    "title": "Fps",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "gifSlug",
+                    "title": "Gif Slug",
+                    "type": "`$STRING`",
+                    "req": true,
                     "op": {
                         "create": {
                             "type": "`$STRING`"
                         }
                     },
-                    "req": true,
-                    "short": "Required for /api/v1/gifs/generate.",
-                    "type": "`$STRING`"
+                    "short": "Required for /api/v1/gifs/generate."
                 },
                 {
                     "name": "height",
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    "title": "Height",
+                    "type": "`$INTEGER`",
+                    "req": true
                 },
                 {
                     "name": "mimeType",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Mime Type",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "pages",
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    "title": "Pages",
+                    "type": "`$INTEGER`",
+                    "req": true
                 },
                 {
                     "name": "parameters",
-                    "req": true,
-                    "type": "`$OBJECT`"
+                    "title": "Parameters",
+                    "type": "`$OBJECT`",
+                    "req": true
                 },
                 {
                     "name": "returnBase64",
-                    "short": "Only used by /api/v1/gifs/generate.",
-                    "type": "`$BOOLEAN`"
+                    "title": "Return Base64",
+                    "type": "`$BOOLEAN`",
+                    "short": "Only used by /api/v1/gifs/generate."
                 },
                 {
                     "name": "sourceDurationMs",
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    "title": "Source Duration Ms",
+                    "type": "`$INTEGER`",
+                    "req": true
                 },
                 {
                     "name": "startMs",
+                    "title": "Start Ms",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "tags",
+                    "title": "Tags",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "title",
+                    "title": "Title",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "width",
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    "title": "Width",
+                    "type": "`$INTEGER`",
+                    "req": true
                 },
                 {
                     "name": "widthPx",
+                    "title": "Width Px",
                     "type": "`$INTEGER`"
                 }
             ],
@@ -3848,7 +4061,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/gifs/generate",
@@ -3866,17 +4078,284 @@ class Config {
                                     "lit": "generate"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "gifs",
                                 "generate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {},
+                            "select": {}
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": []
+            }
+        },
+        "gif": {
+            "fields": [
+                {
+                    "name": "animated",
+                    "title": "Animated",
+                    "type": "`$BOOLEAN`"
+                },
+                {
+                    "name": "assetBytes",
+                    "title": "Asset Bytes",
+                    "type": [
+                        "`$ONE`",
+                        [
+                            "`$INTEGER`",
+                            "`$NULL`"
+                        ]
+                    ]
+                },
+                {
+                    "name": "assetContentType",
+                    "title": "Asset Content Type",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "boxCount",
+                    "title": "Box Count",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "captionCount",
+                    "title": "Caption Count",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "captions",
+                    "title": "Captions",
+                    "type": "`$ARRAY`",
+                    "req": true
+                },
+                {
+                    "name": "categories",
+                    "title": "Categories",
+                    "type": "`$ARRAY`"
+                },
+                {
+                    "name": "description",
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "req": true
+                },
+                {
+                    "name": "durationMs",
+                    "title": "Duration Ms",
+                    "type": [
+                        "`$ONE`",
+                        [
+                            "`$INTEGER`",
+                            "`$NULL`"
+                        ]
+                    ]
+                },
+                {
+                    "name": "exampleImageUrl",
+                    "title": "Example Image Url",
+                    "type": [
+                        "`$ONE`",
+                        [
+                            "`$STRING`",
+                            "`$NULL`"
+                        ]
+                    ]
+                },
+                {
+                    "name": "frameCount",
+                    "title": "Frame Count",
+                    "type": [
+                        "`$ONE`",
+                        [
+                            "`$INTEGER`",
+                            "`$NULL`"
+                        ]
+                    ]
+                },
+                {
+                    "name": "height",
+                    "title": "Height",
+                    "type": [
+                        "`$ONE`",
+                        [
+                            "`$NUMBER`",
+                            "`$NULL`"
+                        ]
+                    ],
+                    "req": true
+                },
+                {
+                    "name": "id",
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "req": true
+                },
+                {
+                    "name": "imageUrl",
+                    "title": "Image Url",
+                    "type": "`$STRING`",
+                    "req": true
+                },
+                {
+                    "name": "mediaType",
+                    "title": "Media Type",
+                    "type": "`$STRING`",
+                    "req": true
+                },
+                {
+                    "name": "name",
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "req": true
+                },
+                {
+                    "name": "posterImageUrl",
+                    "title": "Poster Image Url",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "previewImageUrl",
+                    "title": "Preview Image Url",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "qualityStatus",
+                    "title": "Quality Status",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "slug",
+                    "title": "Slug",
+                    "type": "`$STRING`",
+                    "req": true
+                },
+                {
+                    "name": "sourceTemplateId",
+                    "title": "Source Template Id",
+                    "type": [
+                        "`$ONE`",
+                        [
+                            "`$STRING`",
+                            "`$NULL`"
+                        ]
+                    ],
+                    "req": true
+                },
+                {
+                    "name": "sourceUrl",
+                    "title": "Source Url",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "tags",
+                    "title": "Tags",
+                    "type": "`$ARRAY`",
+                    "req": true
+                },
+                {
+                    "name": "width",
+                    "title": "Width",
+                    "type": [
+                        "`$ONE`",
+                        [
+                            "`$NUMBER`",
+                            "`$NULL`"
+                        ]
+                    ],
+                    "req": true
+                }
+            ],
+            "id": {
+                "field": "id",
+                "name": "id"
+            },
+            "name": "gif",
+            "op": {
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/gifs",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "gifs"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "gifs"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.items`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page_size",
+                                        "orig": "page_size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "q",
+                                        "orig": "q",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "tag",
+                                        "orig": "tag",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "page",
+                                    "page_size",
+                                    "q",
+                                    "query",
+                                    "sort",
+                                    "tag"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -3889,23 +4368,28 @@ class Config {
             "fields": [
                 {
                     "name": "action",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Action",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "actorId",
+                    "title": "Actor Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "limit",
+                    "title": "Limit",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "logExposure",
+                    "title": "Log Exposure",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "surface",
+                    "title": "Surface",
                     "type": "`$STRING`"
                 }
             ],
@@ -3916,7 +4400,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/growth/experiments/decision",
@@ -3934,20 +4417,21 @@ class Config {
                                     "lit": "decision"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "growth",
                                 "experiments",
                                 "decision"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/growth/lifecycle-messaging",
@@ -3962,21 +4446,22 @@ class Config {
                                     "lit": "lifecycle-messaging"
                                 }
                             ],
-                            "select": {
-                                "$action": "lifecycle_messaging"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "growth",
                                 "lifecycle-messaging"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "lifecycle_messaging"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/growth/referrals",
@@ -3991,21 +4476,22 @@ class Config {
                                     "lit": "referrals"
                                 }
                             ],
-                            "select": {
-                                "$action": "referral"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "growth",
                                 "referrals"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "referral"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/growth/social-publish",
@@ -4020,21 +4506,22 @@ class Config {
                                     "lit": "social-publish"
                                 }
                             ],
-                            "select": {
-                                "$action": "social_publish"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "growth",
                                 "social-publish"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "social_publish"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/growth/trend-campaigns",
@@ -4049,18 +4536,20 @@ class Config {
                                     "lit": "trend-campaigns"
                                 }
                             ],
-                            "select": {
-                                "$action": "trend_campaign"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "growth",
                                 "trend-campaigns"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "trend_campaign"
+                            }
                         }
                     ]
                 },
@@ -4069,29 +4558,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "actor_id",
-                                        "orig": "actor_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "log_exposure",
-                                        "orig": "log_exposure",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "surface",
-                                        "orig": "surface",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/growth/experiments/decision",
@@ -4109,47 +4575,49 @@ class Config {
                                     "lit": "decision"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "growth",
+                                "experiments",
+                                "decision"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "actor_id",
+                                        "orig": "actor_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "log_exposure",
+                                        "orig": "log_exposure",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "surface",
+                                        "orig": "surface",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "actor_id",
                                     "log_exposure",
                                     "surface"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "growth",
-                                "experiments",
-                                "decision"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "published_only",
-                                        "orig": "published_only",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "week_start",
-                                        "orig": "week_start",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/growth/trend-campaigns",
@@ -4164,6 +4632,38 @@ class Config {
                                     "lit": "trend-campaigns"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "growth",
+                                "trend-campaigns"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "published_only",
+                                        "orig": "published_only",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "week_start",
+                                        "orig": "week_start",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "trend_campaign",
                                 "exist": [
@@ -4171,35 +4671,9 @@ class Config {
                                     "published_only",
                                     "week_start"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "growth",
-                                "trend-campaigns"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "actor_id",
-                                        "orig": "actor_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "publish_limit",
-                                        "orig": "publish_limit",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/growth/social-publish",
@@ -4214,34 +4688,42 @@ class Config {
                                     "lit": "social-publish"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "growth",
+                                "social-publish"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "actor_id",
+                                        "orig": "actor_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "publish_limit",
+                                        "orig": "publish_limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "social_publish",
                                 "exist": [
                                     "actor_id",
                                     "publish_limit"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "growth",
-                                "social-publish"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "actor_id",
-                                        "orig": "actor_id",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/growth/referrals",
@@ -4256,24 +4738,34 @@ class Config {
                                     "lit": "referrals"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "growth",
+                                "referrals"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "actor_id",
+                                        "orig": "actor_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "referral",
                                 "exist": [
                                     "actor_id"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "growth",
-                                "referrals"
-                            ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/growth/lifecycle-messaging",
@@ -4288,21 +4780,22 @@ class Config {
                                     "lit": "lifecycle-messaging"
                                 }
                             ],
-                            "select": {
-                                "$action": "lifecycle_messaging"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "growth",
                                 "lifecycle-messaging"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "lifecycle_messaging"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/growth/viral-triggers",
@@ -4317,192 +4810,20 @@ class Config {
                                     "lit": "viral-triggers"
                                 }
                             ],
-                            "select": {
-                                "$action": "viral_trigger"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "growth",
                                 "viral-triggers"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
-        "list_meme": {
-            "fields": [
-                {
-                    "name": "altText",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "canonicalImageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "format": "date-time",
-                    "name": "createdAt",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "imageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "nsfwStatus",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "shareSlug",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "shareUrl",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "shareViews",
-                    "req": true,
-                    "type": "`$INTEGER`"
-                },
-                {
-                    "name": "slug",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "tags",
-                    "req": true,
-                    "type": "`$ARRAY`"
-                },
-                {
-                    "name": "templateSlug",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "title",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "visibility",
-                    "req": true,
-                    "type": "`$STRING`"
-                }
-            ],
-            "name": "list_meme",
-            "op": {
-                "list": {
-                    "input": "data",
-                    "name": "list",
-                    "points": [
-                        {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "exclude_template_clone",
-                                        "orig": "exclude_template_clone",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "include_nsfw",
-                                        "orig": "include_nsfw",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "official_only",
-                                        "orig": "official_only",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "owner_token",
-                                        "orig": "owner_token",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page_size",
-                                        "orig": "page_size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "template_slug",
-                                        "orig": "template_slug",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "visibility",
-                                        "orig": "visibility",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/memes",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "memes"
-                                }
                             ],
-                            "select": {
-                                "exist": [
-                                    "exclude_template_clone",
-                                    "include_nsfw",
-                                    "official_only",
-                                    "owner_token",
-                                    "page",
-                                    "page_size",
-                                    "query",
-                                    "template_slug",
-                                    "visibility"
-                                ]
-                            },
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
-                                "res": "`body.items`"
+                                "res": "`body`"
                             },
-                            "parts": [
-                                "api",
-                                "memes"
-                            ]
+                            "args": {},
+                            "select": {
+                                "$action": "viral_trigger"
+                            }
                         }
                     ]
                 }
@@ -4520,7 +4841,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/media/signed-url",
@@ -4535,18 +4855,20 @@ class Config {
                                     "lit": "signed-url"
                                 }
                             ],
-                            "select": {
-                                "$action": "signed_url"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "media",
                                 "signed-url"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "signed_url"
+                            }
                         }
                     ]
                 }
@@ -4559,98 +4881,117 @@ class Config {
             "fields": [
                 {
                     "name": "altText",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Alt Text",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "canonicalImageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Canonical Image Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "canvas",
-                    "req": true,
-                    "type": "`$OBJECT`"
+                    "title": "Canvas",
+                    "type": "`$OBJECT`",
+                    "req": true
                 },
                 {
                     "name": "captions",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Captions",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
-                    "format": "date-time",
                     "name": "createdAt",
+                    "title": "Created At",
+                    "type": "`$STRING`",
                     "req": true,
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "imageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Image Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "nsfwStatus",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Nsfw Status",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "overlays",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Overlays",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "shareSlug",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Share Slug",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "shareUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Share Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "shareViews",
-                    "req": true,
-                    "type": "`$INTEGER`"
+                    "title": "Share Views",
+                    "type": "`$INTEGER`",
+                    "req": true
                 },
                 {
                     "name": "slug",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Slug",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "sourceImageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Source Image Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "tags",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Tags",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "templateSlug",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Template Slug",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "title",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Title",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "visibility",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Visibility",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "watermark",
-                    "req": true,
-                    "type": "`$OBJECT`"
+                    "title": "Watermark",
+                    "type": "`$OBJECT`",
+                    "req": true
                 }
             ],
             "id": {
@@ -4659,38 +5000,113 @@ class Config {
             },
             "name": "meme",
             "op": {
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/memes",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "memes"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "memes"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.items`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "exclude_template_clone",
+                                        "orig": "exclude_template_clone",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "include_nsfw",
+                                        "orig": "include_nsfw",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "official_only",
+                                        "orig": "official_only",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "owner_token",
+                                        "orig": "owner_token",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page_size",
+                                        "orig": "page_size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "template_slug",
+                                        "orig": "template_slug",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "visibility",
+                                        "orig": "visibility",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "exclude_template_clone",
+                                    "include_nsfw",
+                                    "official_only",
+                                    "owner_token",
+                                    "page",
+                                    "page_size",
+                                    "query",
+                                    "template_slug",
+                                    "visibility"
+                                ]
+                            }
+                        }
+                    ]
+                },
                 "load": {
                     "input": "data",
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "slug",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "owner_token",
-                                        "orig": "owner_token",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/memes/{slug}",
-                            "rename": {
-                                "param": {
-                                    "slug": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -4702,21 +5118,45 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id",
-                                    "owner_token"
-                                ]
+                            "parts": [
+                                "api",
+                                "memes",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "slug": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "api",
-                                "memes",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "slug",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "owner_token",
+                                        "orig": "owner_token",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id",
+                                    "owner_token"
+                                ]
+                            }
                         }
                     ]
                 },
@@ -4725,25 +5165,9 @@ class Config {
                     "name": "remove",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "slug",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "DELETE",
                             "orig": "/api/memes/{slug}",
-                            "rename": {
-                                "param": {
-                                    "slug": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -4755,20 +5179,36 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
+                            "parts": [
+                                "api",
+                                "memes",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "slug": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "api",
-                                "memes",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "slug",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -4781,10 +5221,12 @@ class Config {
             "fields": [
                 {
                     "name": "animated",
+                    "title": "Animated",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "assetBytes",
+                    "title": "Asset Bytes",
                     "type": [
                         "`$ONE`",
                         [
@@ -4795,32 +5237,39 @@ class Config {
                 },
                 {
                     "name": "assetContentType",
+                    "title": "Asset Content Type",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "boxCount",
+                    "title": "Box Count",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "captionCount",
+                    "title": "Caption Count",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "captions",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Captions",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "categories",
+                    "title": "Categories",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "description",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "durationMs",
+                    "title": "Duration Ms",
                     "type": [
                         "`$ONE`",
                         [
@@ -4831,6 +5280,7 @@ class Config {
                 },
                 {
                     "name": "exampleImageUrl",
+                    "title": "Example Image Url",
                     "type": [
                         "`$ONE`",
                         [
@@ -4841,6 +5291,7 @@ class Config {
                 },
                 {
                     "name": "frameCount",
+                    "title": "Frame Count",
                     "type": [
                         "`$ONE`",
                         [
@@ -4851,82 +5302,95 @@ class Config {
                 },
                 {
                     "name": "height",
-                    "req": true,
+                    "title": "Height",
                     "type": [
                         "`$ONE`",
                         [
                             "`$NUMBER`",
                             "`$NULL`"
                         ]
-                    ]
+                    ],
+                    "req": true
                 },
                 {
                     "name": "id",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "imageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Image Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "mediaType",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Media Type",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "name",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "posterImageUrl",
+                    "title": "Poster Image Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "previewImageUrl",
+                    "title": "Preview Image Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "qualityStatus",
+                    "title": "Quality Status",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "slug",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Slug",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "sourceTemplateId",
-                    "req": true,
+                    "title": "Source Template Id",
                     "type": [
                         "`$ONE`",
                         [
                             "`$STRING`",
                             "`$NULL`"
                         ]
-                    ]
+                    ],
+                    "req": true
                 },
                 {
                     "name": "sourceUrl",
+                    "title": "Source Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "tags",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Tags",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "width",
-                    "req": true,
+                    "title": "Width",
                     "type": [
                         "`$ONE`",
                         [
                             "`$NUMBER`",
                             "`$NULL`"
                         ]
-                    ]
+                    ],
+                    "req": true
                 }
             ],
             "id": {
@@ -4940,17 +5404,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "slug",
-                                        "orig": "slug",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/gifs/{slug}/generate",
@@ -4968,22 +5421,34 @@ class Config {
                                     "lit": "generate"
                                 }
                             ],
-                            "select": {
-                                "$action": "generate",
-                                "exist": [
-                                    "slug"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "gifs",
                                 "{slug}",
                                 "generate"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "slug",
+                                        "orig": "slug",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "$action": "generate",
+                                "exist": [
+                                    "slug"
+                                ]
+                            }
                         }
                     ]
                 },
@@ -4992,26 +5457,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "slug",
-                                        "orig": "slug",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "example": "image",
-                                        "kind": "query",
-                                        "name": "media_type",
-                                        "orig": "media_type",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/templates/{slug}",
@@ -5026,34 +5471,44 @@ class Config {
                                     "var": "slug"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "templates",
+                                "{slug}"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "slug",
+                                        "orig": "slug",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "media_type",
+                                        "orig": "media_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "image"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "media_type",
                                     "slug"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "templates",
-                                "{slug}"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "slug",
-                                        "orig": "slug",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/gifs/{slug}",
@@ -5068,20 +5523,32 @@ class Config {
                                     "var": "slug"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "slug"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "gifs",
                                 "{slug}"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "slug",
+                                        "orig": "slug",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "slug"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -5089,10 +5556,10 @@ class Config {
             "relations": {
                 "ancestors": [
                     [
-                        "gif"
+                        "$.main.kit.entity.gif"
                     ],
                     [
-                        "template"
+                        "$.main.kit.entity.template"
                     ]
                 ]
             }
@@ -5101,36 +5568,44 @@ class Config {
             "fields": [
                 {
                     "name": "description",
+                    "title": "Description",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "handle",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Handle",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "locale",
+                    "title": "Locale",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "name",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "stylePreset",
+                    "title": "Style Preset",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "systemPrompt",
+                    "title": "System Prompt",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "watermarkText",
+                    "title": "Watermark Text",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "websiteUrl",
+                    "title": "Website Url",
                     "type": "`$STRING`"
                 }
             ],
@@ -5141,7 +5616,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/bootstrap",
@@ -5159,20 +5633,21 @@ class Config {
                                     "lit": "bootstrap"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "bootstrap"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/agents/create-agent",
@@ -5190,17 +5665,19 @@ class Config {
                                     "lit": "create-agent"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "agents",
                                 "create-agent"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -5213,10 +5690,12 @@ class Config {
             "fields": [
                 {
                     "name": "animated",
+                    "title": "Animated",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "assetBytes",
+                    "title": "Asset Bytes",
                     "type": [
                         "`$ONE`",
                         [
@@ -5227,32 +5706,39 @@ class Config {
                 },
                 {
                     "name": "assetContentType",
+                    "title": "Asset Content Type",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "boxCount",
+                    "title": "Box Count",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "captionCount",
+                    "title": "Caption Count",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "captions",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Captions",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "categories",
+                    "title": "Categories",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "description",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "durationMs",
+                    "title": "Duration Ms",
                     "type": [
                         "`$ONE`",
                         [
@@ -5263,6 +5749,7 @@ class Config {
                 },
                 {
                     "name": "exampleImageUrl",
+                    "title": "Example Image Url",
                     "type": [
                         "`$ONE`",
                         [
@@ -5273,6 +5760,7 @@ class Config {
                 },
                 {
                     "name": "frameCount",
+                    "title": "Frame Count",
                     "type": [
                         "`$ONE`",
                         [
@@ -5283,82 +5771,95 @@ class Config {
                 },
                 {
                     "name": "height",
-                    "req": true,
+                    "title": "Height",
                     "type": [
                         "`$ONE`",
                         [
                             "`$NUMBER`",
                             "`$NULL`"
                         ]
-                    ]
+                    ],
+                    "req": true
                 },
                 {
                     "name": "id",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "imageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Image Url",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "mediaType",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Media Type",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "name",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "posterImageUrl",
+                    "title": "Poster Image Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "previewImageUrl",
+                    "title": "Preview Image Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "qualityStatus",
+                    "title": "Quality Status",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "slug",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Slug",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "sourceTemplateId",
-                    "req": true,
+                    "title": "Source Template Id",
                     "type": [
                         "`$ONE`",
                         [
                             "`$STRING`",
                             "`$NULL`"
                         ]
-                    ]
+                    ],
+                    "req": true
                 },
                 {
                     "name": "sourceUrl",
+                    "title": "Source Url",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "tags",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Tags",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "width",
-                    "req": true,
+                    "title": "Width",
                     "type": [
                         "`$ONE`",
                         [
                             "`$NUMBER`",
                             "`$NULL`"
                         ]
-                    ]
+                    ],
+                    "req": true
                 }
             ],
             "id": {
@@ -5372,59 +5873,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "image",
-                                        "kind": "query",
-                                        "name": "media_type",
-                                        "orig": "media_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "mode",
-                                        "orig": "mode",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page_size",
-                                        "orig": "page_size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "q",
-                                        "orig": "q",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "tag",
-                                        "orig": "tag",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/templates",
@@ -5436,6 +5884,68 @@ class Config {
                                     "lit": "templates"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "templates"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.items`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "media_type",
+                                        "orig": "media_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "image"
+                                    },
+                                    {
+                                        "name": "mode",
+                                        "orig": "mode",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page_size",
+                                        "orig": "page_size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "q",
+                                        "orig": "q",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "tag",
+                                        "orig": "tag",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "media_type",
@@ -5447,255 +5957,7 @@ class Config {
                                     "sort",
                                     "tag"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.items`"
-                            },
-                            "parts": [
-                                "api",
-                                "templates"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
-        "template_search": {
-            "fields": [
-                {
-                    "name": "animated",
-                    "type": "`$BOOLEAN`"
-                },
-                {
-                    "name": "assetBytes",
-                    "type": [
-                        "`$ONE`",
-                        [
-                            "`$INTEGER`",
-                            "`$NULL`"
-                        ]
-                    ]
-                },
-                {
-                    "name": "assetContentType",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "boxCount",
-                    "type": "`$INTEGER`"
-                },
-                {
-                    "name": "captionCount",
-                    "type": "`$INTEGER`"
-                },
-                {
-                    "name": "captions",
-                    "req": true,
-                    "type": "`$ARRAY`"
-                },
-                {
-                    "name": "categories",
-                    "type": "`$ARRAY`"
-                },
-                {
-                    "name": "description",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "durationMs",
-                    "type": [
-                        "`$ONE`",
-                        [
-                            "`$INTEGER`",
-                            "`$NULL`"
-                        ]
-                    ]
-                },
-                {
-                    "name": "exampleImageUrl",
-                    "type": [
-                        "`$ONE`",
-                        [
-                            "`$STRING`",
-                            "`$NULL`"
-                        ]
-                    ]
-                },
-                {
-                    "name": "frameCount",
-                    "type": [
-                        "`$ONE`",
-                        [
-                            "`$INTEGER`",
-                            "`$NULL`"
-                        ]
-                    ]
-                },
-                {
-                    "name": "height",
-                    "req": true,
-                    "type": [
-                        "`$ONE`",
-                        [
-                            "`$NUMBER`",
-                            "`$NULL`"
-                        ]
-                    ]
-                },
-                {
-                    "name": "id",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "imageUrl",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "mediaType",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "name",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "posterImageUrl",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "previewImageUrl",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "qualityStatus",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "slug",
-                    "req": true,
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "sourceTemplateId",
-                    "req": true,
-                    "type": [
-                        "`$ONE`",
-                        [
-                            "`$STRING`",
-                            "`$NULL`"
-                        ]
-                    ]
-                },
-                {
-                    "name": "sourceUrl",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "tags",
-                    "req": true,
-                    "type": "`$ARRAY`"
-                },
-                {
-                    "name": "width",
-                    "req": true,
-                    "type": [
-                        "`$ONE`",
-                        [
-                            "`$NUMBER`",
-                            "`$NULL`"
-                        ]
-                    ]
-                }
-            ],
-            "id": {
-                "field": "id",
-                "name": "id"
-            },
-            "name": "template_search",
-            "op": {
-                "list": {
-                    "input": "data",
-                    "name": "list",
-                    "points": [
-                        {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page_size",
-                                        "orig": "page_size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "q",
-                                        "orig": "q",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "tag",
-                                        "orig": "tag",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/gifs",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "gifs"
-                                }
-                            ],
-                            "select": {
-                                "exist": [
-                                    "page",
-                                    "page_size",
-                                    "q",
-                                    "query",
-                                    "sort",
-                                    "tag"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.items`"
-                            },
-                            "parts": [
-                                "api",
-                                "gifs"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -5708,71 +5970,87 @@ class Config {
             "fields": [
                 {
                     "name": "action",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Action",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "actorId",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Actor Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "aggressiveness",
+                    "title": "Aggressiveness",
                     "type": "`$NUMBER`"
                 },
                 {
                     "name": "alertId",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Alert Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "channels",
+                    "title": "Channels",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "deliverAllAlerts",
+                    "title": "Deliver All Alerts",
                     "type": "`$BOOLEAN`"
                 },
                 {
                     "name": "event",
+                    "title": "Event",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "explicitNiches",
+                    "title": "Explicit Niches",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "explicitRegions",
+                    "title": "Explicit Regions",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "explicitSources",
+                    "title": "Explicit Sources",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "explicitTopics",
+                    "title": "Explicit Topics",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "followerCount",
+                    "title": "Follower Count",
                     "type": "`$INTEGER`"
                 },
                 {
                     "name": "niche",
+                    "title": "Niche",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "region",
+                    "title": "Region",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "source",
+                    "title": "Source",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "topic",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Topic",
+                    "type": "`$STRING`",
+                    "req": true
                 }
             ],
             "name": "trend_alert",
@@ -5782,7 +6060,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/alerts/delivery",
@@ -5797,19 +6074,20 @@ class Config {
                                     "lit": "delivery"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "delivery"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/alerts/feedback",
@@ -5824,19 +6102,20 @@ class Config {
                                     "lit": "feedback"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "feedback"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/alerts/preferences",
@@ -5851,19 +6130,20 @@ class Config {
                                     "lit": "preferences"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "preferences"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/alerts/triggers",
@@ -5878,16 +6158,18 @@ class Config {
                                     "lit": "triggers"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "triggers"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -5896,88 +6178,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "actor_id",
-                                        "orig": "actor_id",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "aggressiveness",
-                                        "orig": "aggressiveness",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "follower_count",
-                                        "orig": "follower_count",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "niche",
-                                        "orig": "niche",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "page_size",
-                                        "orig": "page_size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "preferred_niche",
-                                        "orig": "preferred_niche",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "preferred_region",
-                                        "orig": "preferred_region",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "region",
-                                        "orig": "region",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "source",
-                                        "orig": "source",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "status",
-                                        "orig": "status",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "topic",
-                                        "orig": "topic",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts",
@@ -5989,6 +6189,97 @@ class Config {
                                     "lit": "alerts"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "alerts"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "actor_id",
+                                        "orig": "actor_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "aggressiveness",
+                                        "orig": "aggressiveness",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "follower_count",
+                                        "orig": "follower_count",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "niche",
+                                        "orig": "niche",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "page_size",
+                                        "orig": "page_size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "preferred_niche",
+                                        "orig": "preferred_niche",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "preferred_region",
+                                        "orig": "preferred_region",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "region",
+                                        "orig": "region",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "source",
+                                        "orig": "source",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "status",
+                                        "orig": "status",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "topic",
+                                        "orig": "topic",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "actor_id",
@@ -6005,63 +6296,9 @@ class Config {
                                     "status",
                                     "topic"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "alerts"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "actor_id",
-                                        "orig": "actor_id",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "aggressiveness",
-                                        "orig": "aggressiveness",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "follower_count",
-                                        "orig": "follower_count",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "preferred_niche",
-                                        "orig": "preferred_niche",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "preferred_region",
-                                        "orig": "preferred_region",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "topic",
-                                        "orig": "topic",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts/ranking",
@@ -6076,6 +6313,62 @@ class Config {
                                     "lit": "ranking"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "alerts",
+                                "ranking"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "actor_id",
+                                        "orig": "actor_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "aggressiveness",
+                                        "orig": "aggressiveness",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "follower_count",
+                                        "orig": "follower_count",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "preferred_niche",
+                                        "orig": "preferred_niche",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "preferred_region",
+                                        "orig": "preferred_region",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "topic",
+                                        "orig": "topic",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "actor_id",
@@ -6086,34 +6379,9 @@ class Config {
                                     "preferred_region",
                                     "topic"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "alerts",
-                                "ranking"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "actor_id",
-                                        "orig": "actor_id",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts/feedback",
@@ -6128,34 +6396,40 @@ class Config {
                                     "lit": "feedback"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "alerts",
+                                "feedback"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "actor_id",
+                                        "orig": "actor_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "actor_id",
                                     "limit"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "alerts",
-                                "feedback"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "actor_id",
-                                        "orig": "actor_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts/preferences",
@@ -6170,32 +6444,34 @@ class Config {
                                     "lit": "preferences"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "actor_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "preferences"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
                                 "query": [
                                     {
+                                        "name": "actor_id",
+                                        "orig": "actor_id",
+                                        "type": "`$STRING`",
                                         "kind": "query",
-                                        "name": "refresh",
-                                        "orig": "refresh",
-                                        "type": "`$BOOLEAN`"
+                                        "reqd": true
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "actor_id"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts/delivery",
@@ -6210,32 +6486,33 @@ class Config {
                                     "lit": "delivery"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "refresh"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "delivery"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
                                 "query": [
                                     {
-                                        "kind": "query",
                                         "name": "refresh",
                                         "orig": "refresh",
-                                        "type": "`$BOOLEAN`"
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "refresh"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts/ingestion",
@@ -6250,32 +6527,33 @@ class Config {
                                     "lit": "ingestion"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "refresh"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "ingestion"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
                                 "query": [
                                     {
-                                        "kind": "query",
                                         "name": "refresh",
                                         "orig": "refresh",
-                                        "type": "`$BOOLEAN`"
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "refresh"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts/quality-report",
@@ -6290,32 +6568,33 @@ class Config {
                                     "lit": "quality-report"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "refresh"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "quality-report"
-                            ]
-                        },
-                        {
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
                             "args": {
                                 "query": [
                                     {
-                                        "kind": "query",
-                                        "name": "template_id",
-                                        "orig": "template_id",
-                                        "type": "`$STRING`"
+                                        "name": "refresh",
+                                        "orig": "refresh",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
                                     }
                                 ]
                             },
+                            "select": {
+                                "exist": [
+                                    "refresh"
+                                ]
+                            }
+                        },
+                        {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts/message-templates",
@@ -6330,23 +6609,33 @@ class Config {
                                     "lit": "message-templates"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "template_id"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "message-templates"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "template_id",
+                                        "orig": "template_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "template_id"
+                                ]
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts/connectors",
@@ -6361,19 +6650,20 @@ class Config {
                                     "lit": "connectors"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "connectors"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/alerts/triggers",
@@ -6388,16 +6678,18 @@ class Config {
                                     "lit": "triggers"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "alerts",
                                 "triggers"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -6415,7 +6707,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/v1/memes/caption-upload",
@@ -6433,17 +6724,19 @@ class Config {
                                     "lit": "caption-upload"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
                             "parts": [
                                 "api",
                                 "v1",
                                 "memes",
                                 "caption-upload"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -6461,7 +6754,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/video/drafts",
@@ -6476,21 +6768,22 @@ class Config {
                                     "lit": "drafts"
                                 }
                             ],
-                            "select": {
-                                "$action": "draft"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "video",
                                 "drafts"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "draft"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/video/export-settings",
@@ -6505,21 +6798,22 @@ class Config {
                                     "lit": "export-settings"
                                 }
                             ],
-                            "select": {
-                                "$action": "export_setting"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "video",
                                 "export-settings"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "export_setting"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/video/formats",
@@ -6534,21 +6828,22 @@ class Config {
                                     "lit": "formats"
                                 }
                             ],
-                            "select": {
-                                "$action": "format"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "video",
                                 "formats"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "format"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/video/render-queue",
@@ -6563,21 +6858,22 @@ class Config {
                                     "lit": "render-queue"
                                 }
                             ],
-                            "select": {
-                                "$action": "render_queue"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "video",
                                 "render-queue"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "render_queue"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/video/subtitles",
@@ -6592,21 +6888,22 @@ class Config {
                                     "lit": "subtitles"
                                 }
                             ],
-                            "select": {
-                                "$action": "subtitle"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "video",
                                 "subtitles"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "subtitle"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/video/text-animations",
@@ -6621,21 +6918,22 @@ class Config {
                                     "lit": "text-animations"
                                 }
                             ],
-                            "select": {
-                                "$action": "text_animation"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "video",
                                 "text-animations"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "text_animation"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api/video/timeline",
@@ -6650,18 +6948,20 @@ class Config {
                                     "lit": "timeline"
                                 }
                             ],
-                            "select": {
-                                "$action": "timeline"
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "api",
                                 "video",
                                 "timeline"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {
+                                "$action": "timeline"
+                            }
                         }
                     ]
                 },
@@ -6670,58 +6970,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "beat_offset_m",
-                                        "orig": "beat_offset_m",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "bpm",
-                                        "orig": "bpm",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "locale",
-                                        "orig": "locale",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "style_preset_id",
-                                        "orig": "style_preset_id",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sync_to_beat_grid",
-                                        "orig": "sync_to_beat_grid",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "tone",
-                                        "orig": "tone",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "transcript",
-                                        "orig": "transcript",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "trend_keyword",
-                                        "orig": "trend_keyword",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/video/subtitles",
@@ -6736,6 +6984,68 @@ class Config {
                                     "lit": "subtitles"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "video",
+                                "subtitles"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "beat_offset_m",
+                                        "orig": "beat_offset_m",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "bpm",
+                                        "orig": "bpm",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "locale",
+                                        "orig": "locale",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "style_preset_id",
+                                        "orig": "style_preset_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "sync_to_beat_grid",
+                                        "orig": "sync_to_beat_grid",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "tone",
+                                        "orig": "tone",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "transcript",
+                                        "orig": "transcript",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "trend_keyword",
+                                        "orig": "trend_keyword",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "subtitle",
                                 "exist": [
@@ -6748,58 +7058,9 @@ class Config {
                                     "transcript",
                                     "trend_keyword"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "video",
-                                "subtitles"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "kind",
-                                        "orig": "kind",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "tag",
-                                        "orig": "tag",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "target_bpm",
-                                        "orig": "target_bpm",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "tolerance_bpm",
-                                        "orig": "tolerance_bpm",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/video/audio-library",
@@ -6814,6 +7075,56 @@ class Config {
                                     "lit": "audio-library"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "video",
+                                "audio-library"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "kind",
+                                        "orig": "kind",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "tag",
+                                        "orig": "tag",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "target_bpm",
+                                        "orig": "target_bpm",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "tolerance_bpm",
+                                        "orig": "tolerance_bpm",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "audio_library",
                                 "exist": [
@@ -6824,58 +7135,9 @@ class Config {
                                     "target_bpm",
                                     "tolerance_bpm"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "video",
-                                "audio-library"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "bitrate_kbp",
-                                        "orig": "bitrate_kbp",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "container",
-                                        "orig": "container",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "plan_tier",
-                                        "orig": "plan_tier",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "preset_id",
-                                        "orig": "preset_id",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "watermark_enabled",
-                                        "orig": "watermark_enabled",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "watermark_text",
-                                        "orig": "watermark_text",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/video/export-settings",
@@ -6890,6 +7152,56 @@ class Config {
                                     "lit": "export-settings"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "video",
+                                "export-settings"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "bitrate_kbp",
+                                        "orig": "bitrate_kbp",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "container",
+                                        "orig": "container",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "plan_tier",
+                                        "orig": "plan_tier",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "preset_id",
+                                        "orig": "preset_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "watermark_enabled",
+                                        "orig": "watermark_enabled",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "watermark_text",
+                                        "orig": "watermark_text",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "export_setting",
                                 "exist": [
@@ -6900,52 +7212,9 @@ class Config {
                                     "watermark_enabled",
                                     "watermark_text"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "video",
-                                "export-settings"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "duration_second",
-                                        "orig": "duration_second",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "input_format",
-                                        "orig": "input_format",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "mime_type",
-                                        "orig": "mime_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "output_preset_id",
-                                        "orig": "output_preset_id",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "plan_tier",
-                                        "orig": "plan_tier",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/video/formats",
@@ -6960,6 +7229,50 @@ class Config {
                                     "lit": "formats"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "video",
+                                "formats"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "duration_second",
+                                        "orig": "duration_second",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "input_format",
+                                        "orig": "input_format",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "mime_type",
+                                        "orig": "mime_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "output_preset_id",
+                                        "orig": "output_preset_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "plan_tier",
+                                        "orig": "plan_tier",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "format",
                                 "exist": [
@@ -6969,46 +7282,9 @@ class Config {
                                     "output_preset_id",
                                     "plan_tier"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "video",
-                                "formats"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "mode",
-                                        "orig": "mode",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "plan_tier",
-                                        "orig": "plan_tier",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "status",
-                                        "orig": "status",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/video/render-queue",
@@ -7023,6 +7299,44 @@ class Config {
                                     "lit": "render-queue"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "video",
+                                "render-queue"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "mode",
+                                        "orig": "mode",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "plan_tier",
+                                        "orig": "plan_tier",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "status",
+                                        "orig": "status",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "render_queue",
                                 "exist": [
@@ -7031,46 +7345,9 @@ class Config {
                                     "plan_tier",
                                     "status"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "video",
-                                "render-queue"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "duration_m",
-                                        "orig": "duration_m",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "intensity",
-                                        "orig": "intensity",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "preset_id",
-                                        "orig": "preset_id",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "start_m",
-                                        "orig": "start_m",
-                                        "type": "`$NUMBER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/video/text-animations",
@@ -7085,6 +7362,44 @@ class Config {
                                     "lit": "text-animations"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "video",
+                                "text-animations"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "duration_m",
+                                        "orig": "duration_m",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "intensity",
+                                        "orig": "intensity",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "preset_id",
+                                        "orig": "preset_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "start_m",
+                                        "orig": "start_m",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "text_animation",
                                 "exist": [
@@ -7093,34 +7408,9 @@ class Config {
                                     "preset_id",
                                     "start_m"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "video",
-                                "text-animations"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "project_id",
-                                        "orig": "project_id",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/video/drafts",
@@ -7135,40 +7425,41 @@ class Config {
                                     "lit": "drafts"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "video",
+                                "drafts"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "project_id",
+                                        "orig": "project_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "draft",
                                 "exist": [
                                     "limit",
                                     "project_id"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "video",
-                                "drafts"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "project_id",
-                                        "orig": "project_id",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/video/timeline",
@@ -7183,34 +7474,41 @@ class Config {
                                     "lit": "timeline"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "video",
+                                "timeline"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "project_id",
+                                        "orig": "project_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "timeline",
                                 "exist": [
                                     "limit",
                                     "project_id"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "video",
-                                "timeline"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "refresh",
-                                        "orig": "refresh",
-                                        "type": "`$BOOLEAN`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/video/render-performance",
@@ -7225,21 +7523,32 @@ class Config {
                                     "lit": "render-performance"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "video",
+                                "render-performance"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "refresh",
+                                        "orig": "refresh",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "render_performance",
                                 "exist": [
                                     "refresh"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api",
-                                "video",
-                                "render-performance"
-                            ]
+                            }
                         }
                     ]
                 }

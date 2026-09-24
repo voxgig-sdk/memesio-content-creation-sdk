@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 // Typed models for the MemesioContentCreation SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 //
@@ -596,6 +596,46 @@ class GenerateCreateData
     public ?int $widthPx = null;
 }
 
+/** Gif entity data model. */
+class Gif
+{
+    public ?bool $animated = null;
+    public mixed $assetBytes = null;
+    public ?string $assetContentType = null;
+    public ?int $boxCount = null;
+    public ?int $captionCount = null;
+    public array $captions;
+    public ?array $categories = null;
+    public string $description;
+    public mixed $durationMs = null;
+    public mixed $exampleImageUrl = null;
+    public mixed $frameCount = null;
+    public mixed $height;
+    public string $id;
+    public string $imageUrl;
+    public string $mediaType;
+    public string $name;
+    public ?string $posterImageUrl = null;
+    public ?string $previewImageUrl = null;
+    public ?string $qualityStatus = null;
+    public string $slug;
+    public mixed $sourceTemplateId;
+    public ?string $sourceUrl = null;
+    public array $tags;
+    public mixed $width;
+}
+
+/** Request payload for Gif#list. */
+class GifListMatch
+{
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public ?string $q = null;
+    public ?string $query = null;
+    public ?string $sort = null;
+    public ?string $tag = null;
+}
+
 /** Growth entity data model. */
 class Growth
 {
@@ -622,38 +662,6 @@ class GrowthCreateData
     public ?int $limit = null;
     public ?bool $logExposure = null;
     public ?string $surface = null;
-}
-
-/** ListMeme entity data model. */
-class ListMeme
-{
-    public string $altText;
-    public string $canonicalImageUrl;
-    public string $createdAt;
-    public string $imageUrl;
-    public string $nsfwStatus;
-    public string $shareSlug;
-    public string $shareUrl;
-    public int $shareViews;
-    public string $slug;
-    public array $tags;
-    public string $templateSlug;
-    public string $title;
-    public string $visibility;
-}
-
-/** Request payload for ListMeme#list. */
-class ListMemeListMatch
-{
-    public ?bool $exclude_template_clone = null;
-    public ?bool $include_nsfw = null;
-    public ?bool $official_only = null;
-    public ?string $owner_token = null;
-    public ?int $page = null;
-    public ?int $page_size = null;
-    public ?string $query = null;
-    public ?string $template_slug = null;
-    public ?string $visibility = null;
 }
 
 /** Media entity data model. */
@@ -695,6 +703,20 @@ class MemeLoadMatch
 {
     public string $id;
     public ?string $owner_token = null;
+}
+
+/** Request payload for Meme#list. */
+class MemeListMatch
+{
+    public ?bool $exclude_template_clone = null;
+    public ?bool $include_nsfw = null;
+    public ?bool $official_only = null;
+    public ?string $owner_token = null;
+    public ?int $page = null;
+    public ?int $page_size = null;
+    public ?string $query = null;
+    public ?string $template_slug = null;
+    public ?string $visibility = null;
 }
 
 /** Request payload for Meme#remove. */
@@ -828,46 +850,6 @@ class TemplateListMatch
 {
     public ?string $media_type = null;
     public ?string $mode = null;
-    public ?int $page = null;
-    public ?int $page_size = null;
-    public ?string $q = null;
-    public ?string $query = null;
-    public ?string $sort = null;
-    public ?string $tag = null;
-}
-
-/** TemplateSearch entity data model. */
-class TemplateSearch
-{
-    public ?bool $animated = null;
-    public mixed $assetBytes = null;
-    public ?string $assetContentType = null;
-    public ?int $boxCount = null;
-    public ?int $captionCount = null;
-    public array $captions;
-    public ?array $categories = null;
-    public string $description;
-    public mixed $durationMs = null;
-    public mixed $exampleImageUrl = null;
-    public mixed $frameCount = null;
-    public mixed $height;
-    public string $id;
-    public string $imageUrl;
-    public string $mediaType;
-    public string $name;
-    public ?string $posterImageUrl = null;
-    public ?string $previewImageUrl = null;
-    public ?string $qualityStatus = null;
-    public string $slug;
-    public mixed $sourceTemplateId;
-    public ?string $sourceUrl = null;
-    public array $tags;
-    public mixed $width;
-}
-
-/** Request payload for TemplateSearch#list. */
-class TemplateSearchListMatch
-{
     public ?int $page = null;
     public ?int $page_size = null;
     public ?string $q = null;

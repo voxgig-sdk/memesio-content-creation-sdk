@@ -1,0 +1,242 @@
+# Entity: analytics
+
+main: kit: entity: analytics: {
+
+  alias: field: {}
+
+  name: "analytics"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/analytics/experiments/templates"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "template_id"
+                or: "template_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/analytics/experiments/templates"
+          q: {
+            exist: [
+              "template_id"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "experiments"
+            }
+            {
+              lit: "templates"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/analytics/dashboards/backend-reliability"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "window_hour"
+                or: "window_hour"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/analytics/dashboards/backend-reliability"
+          q: {
+            exist: [
+              "window_hour"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "dashboards"
+            }
+            {
+              lit: "backend-reliability"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/analytics/alerts/backend"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/analytics/alerts/backend"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "backend"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/analytics/anomalies/ai"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/analytics/anomalies/ai"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "anomalies"
+            }
+            {
+              lit: "ai"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/analytics/dashboards/activation-retention"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/analytics/dashboards/activation-retention"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "dashboards"
+            }
+            {
+              lit: "activation-retention"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/analytics/dashboards/feature-adoption"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/analytics/dashboards/feature-adoption"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "dashboards"
+            }
+            {
+              lit: "feature-adoption"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/analytics/metric-dictionary"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/analytics/metric-dictionary"
+          q: {
+            "$action": "metric_dictionary"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "metric-dictionary"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

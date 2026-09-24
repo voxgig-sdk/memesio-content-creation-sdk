@@ -1,0 +1,48 @@
+# Entity: upload_caption_meme_success
+
+main: kit: entity: upload_caption_meme_success: {
+
+  alias: field: {}
+
+  name: "upload_caption_meme_success"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/v1/memes/caption-upload"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/memes/caption-upload"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "caption-upload"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

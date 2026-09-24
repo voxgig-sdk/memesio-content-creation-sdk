@@ -1,0 +1,123 @@
+# Entity: standalone_agent_bootstrap
+
+main: kit: entity: standalone_agent_bootstrap: {
+
+  alias: field: {}
+
+  fields: {
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      t: "`$STRING`"
+    }
+    handle: {
+      h: "Handle"
+      n: "handle"
+      r: true
+      t: "`$STRING`"
+    }
+    locale: {
+      h: "Locale"
+      n: "locale"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      t: "`$STRING`"
+    }
+    stylePreset: {
+      h: "Style Preset"
+      n: "stylePreset"
+      r: false
+      t: "`$STRING`"
+    }
+    systemPrompt: {
+      h: "System Prompt"
+      n: "systemPrompt"
+      r: false
+      t: "`$STRING`"
+    }
+    watermarkText: {
+      h: "Watermark Text"
+      n: "watermarkText"
+      r: false
+      t: "`$STRING`"
+    }
+    websiteUrl: {
+      h: "Website Url"
+      n: "websiteUrl"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "standalone_agent_bootstrap"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/v1/agents/bootstrap"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/agents/bootstrap"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "bootstrap"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/create-agent"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/agents/create-agent"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "create-agent"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -106,13 +106,13 @@ Create a new `FreeTemplateSearch` entity instance. Pass `nil` for no initial dat
 
 Create a new `Generate` entity instance. Pass `nil` for no initial data.
 
+#### `Gif(data = nil)`
+
+Create a new `Gif` entity instance. Pass `nil` for no initial data.
+
 #### `Growth(data = nil)`
 
 Create a new `Growth` entity instance. Pass `nil` for no initial data.
-
-#### `ListMeme(data = nil)`
-
-Create a new `ListMeme` entity instance. Pass `nil` for no initial data.
 
 #### `Media(data = nil)`
 
@@ -133,10 +133,6 @@ Create a new `StandaloneAgentBootstrap` entity instance. Pass `nil` for no initi
 #### `Template(data = nil)`
 
 Create a new `Template` entity instance. Pass `nil` for no initial data.
-
-#### `TemplateSearch(data = nil)`
-
-Create a new `TemplateSearch` entity instance. Pass `nil` for no initial data.
 
 #### `TrendAlert(data = nil)`
 
@@ -1412,6 +1408,81 @@ Return the entity name.
 
 ---
 
+## GifEntity
+
+```ruby
+gif = client.Gif
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `animated` | `Boolean` | No |  |
+| `assetBytes` | `Object` | No |  |
+| `assetContentType` | `String` | No |  |
+| `boxCount` | `Integer` | No |  |
+| `captionCount` | `Integer` | No |  |
+| `captions` | `Array` | Yes |  |
+| `categories` | `Array` | No |  |
+| `description` | `String` | Yes |  |
+| `durationMs` | `Object` | No |  |
+| `exampleImageUrl` | `Object` | No |  |
+| `frameCount` | `Object` | No |  |
+| `height` | `Object` | Yes |  |
+| `id` | `String` | Yes |  |
+| `imageUrl` | `String` | Yes |  |
+| `mediaType` | `String` | Yes |  |
+| `name` | `String` | Yes |  |
+| `posterImageUrl` | `String` | No |  |
+| `previewImageUrl` | `String` | No |  |
+| `qualityStatus` | `String` | No |  |
+| `slug` | `String` | Yes |  |
+| `sourceTemplateId` | `Object` | Yes |  |
+| `sourceUrl` | `String` | No |  |
+| `tags` | `Array` | Yes |  |
+| `width` | `Object` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.Gif.list
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `GifEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
 ## GrowthEntity
 
 ```ruby
@@ -1469,70 +1540,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `GrowthEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## ListMemeEntity
-
-```ruby
-list_meme = client.ListMeme
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `altText` | `String` | Yes |  |
-| `canonicalImageUrl` | `String` | Yes |  |
-| `createdAt` | `String` | Yes |  |
-| `imageUrl` | `String` | Yes |  |
-| `nsfwStatus` | `String` | Yes |  |
-| `shareSlug` | `String` | Yes |  |
-| `shareUrl` | `String` | Yes |  |
-| `shareViews` | `Integer` | Yes |  |
-| `slug` | `String` | Yes |  |
-| `tags` | `Array` | Yes |  |
-| `templateSlug` | `String` | Yes |  |
-| `title` | `String` | Yes |  |
-| `visibility` | `String` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.ListMeme.list
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ListMemeEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -1620,6 +1627,14 @@ meme = client.Meme
 | `watermark` | `Hash` | Yes |  |
 
 ### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.Meme.list
+```
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
@@ -1890,81 +1905,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `TemplateEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## TemplateSearchEntity
-
-```ruby
-template_search = client.TemplateSearch
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `Boolean` | No |  |
-| `assetBytes` | `Object` | No |  |
-| `assetContentType` | `String` | No |  |
-| `boxCount` | `Integer` | No |  |
-| `captionCount` | `Integer` | No |  |
-| `captions` | `Array` | Yes |  |
-| `categories` | `Array` | No |  |
-| `description` | `String` | Yes |  |
-| `durationMs` | `Object` | No |  |
-| `exampleImageUrl` | `Object` | No |  |
-| `frameCount` | `Object` | No |  |
-| `height` | `Object` | Yes |  |
-| `id` | `String` | Yes |  |
-| `imageUrl` | `String` | Yes |  |
-| `mediaType` | `String` | Yes |  |
-| `name` | `String` | Yes |  |
-| `posterImageUrl` | `String` | No |  |
-| `previewImageUrl` | `String` | No |  |
-| `qualityStatus` | `String` | No |  |
-| `slug` | `String` | Yes |  |
-| `sourceTemplateId` | `Object` | Yes |  |
-| `sourceUrl` | `String` | No |  |
-| `tags` | `Array` | Yes |  |
-| `width` | `Object` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.TemplateSearch.list
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `TemplateSearchEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

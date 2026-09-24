@@ -1,0 +1,48 @@
+# Entity: compliance
+
+main: kit: entity: compliance: {
+
+  alias: field: {}
+
+  name: "compliance"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/compliance/content-policy"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/compliance/content-policy"
+          q: {
+            "$action": "content_policy"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "compliance"
+            }
+            {
+              lit: "content-policy"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

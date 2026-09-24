@@ -1,0 +1,98 @@
+# Entity: developer_api
+
+main: kit: entity: developer_api: {
+
+  alias: field: {}
+
+  fields: {
+    limit: {
+      h: "Limit"
+      n: "limit"
+      r: false
+      t: "`$NUMBER`"
+    }
+    prompt: {
+      h: "Prompt"
+      n: "prompt"
+      r: true
+      t: "`$STRING`"
+    }
+    trendSignals: {
+      h: "Trend Signals"
+      n: "trendSignals"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "developer_api"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/v1/templates/ideas"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/templates/ideas"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              lit: "ideas"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/memes/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/memes/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -12,13 +12,13 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as **27 semantic entities** that you
+This SDK exposes the API as **26 semantic entities** that you
 call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`, `create`, `update`, `remove`):
@@ -165,7 +165,7 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 27 entities:
+The API exposes 26 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
@@ -185,14 +185,13 @@ The API exposes 27 entities:
 | **FreeCaptionMemeSuccess** | The FreeCaptionMemeSuccess entity (create). | `/api/free/memes/caption` |
 | **FreeTemplateSearch** | The FreeTemplateSearch entity (list). | `/api/free/templates` |
 | **Generate** | The Generate entity (create). | `/api/v1/gifs/generate` |
+| **Gif** | The Gif entity (list). | `/api/gifs` |
 | **Growth** | The Growth entity (create, load). | `/api/growth/experiments/decision` |
-| **ListMeme** | The ListMeme entity (list). | `/api/memes` |
 | **Media** | The Media entity (create). | `/api/media/signed-url` |
-| **Meme** | The Meme entity (load, remove). | `/api/memes/{slug}` |
+| **Meme** | The Meme entity (list, load, remove). | `/api/memes` |
 | **PublicTemplateMediaItem** | The PublicTemplateMediaItem entity (create, load). | `/api/templates/{slug}` |
 | **StandaloneAgentBootstrap** | The StandaloneAgentBootstrap entity (create). | `/api/v1/agents/bootstrap` |
 | **Template** | The Template entity (list). | `/api/templates` |
-| **TemplateSearch** | The TemplateSearch entity (list). | `/api/gifs` |
 | **TrendAlert** | The TrendAlert entity (create, load). | `/api/alerts` |
 | **UploadCaptionMemeSuccess** | The UploadCaptionMemeSuccess entity (create). | `/api/v1/memes/caption-upload` |
 | **Video** | The Video entity (create, load). | `/api/video/subtitles` |

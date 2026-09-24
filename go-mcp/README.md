@@ -129,7 +129,7 @@ Both tools take the same argument object:
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `entity` | string | One of the 27 supported entities (see below). |
+| `entity` | string | One of the 26 supported entities (see below). |
 | `query` | object | Optional match map. `{"id":N}` for load; omit or `{}` for list. |
 
 JSON schemas are emitted by the SDK from the `Args` struct's `json` /
@@ -151,9 +151,9 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 ### Entities
 
-The 27 entities valid as the `entity` argument:
+The 26 entities valid as the `entity` argument:
 
-agent | agent_infra | ai_caption | ai_job | ai_meme_generation_succeeded | ai_provider | analytics | auth | billing | collaboration | compliance | create_meme | developer_api | free_caption_meme_success | free_template_search | generate | growth | list_meme | media | meme | public_template_media_item | standalone_agent_bootstrap | template | template_search | trend_alert | upload_caption_meme_success | video
+agent | agent_infra | ai_caption | ai_job | ai_meme_generation_succeeded | ai_provider | analytics | auth | billing | collaboration | compliance | create_meme | developer_api | free_caption_meme_success | free_template_search | generate | gif | growth | media | meme | public_template_media_item | standalone_agent_bootstrap | template | trend_alert | upload_caption_meme_success | video
 
 ### Smoke test via HTTP (raw JSON-RPC)
 

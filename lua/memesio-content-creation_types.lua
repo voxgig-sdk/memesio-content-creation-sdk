@@ -1,7 +1,7 @@
 -- Typed models for the MemesioContentCreation SDK (LuaLS annotations).
 --
--- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
--- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
 -- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
@@ -467,6 +467,40 @@
 ---@field width number
 ---@field widthPx? number
 
+---@class Gif
+---@field animated? boolean
+---@field assetBytes? number|nil
+---@field assetContentType? string
+---@field boxCount? number
+---@field captionCount? number
+---@field captions table
+---@field categories? table
+---@field description string
+---@field durationMs? number|nil
+---@field exampleImageUrl? string|nil
+---@field frameCount? number|nil
+---@field height number|nil
+---@field id string
+---@field imageUrl string
+---@field mediaType string
+---@field name string
+---@field posterImageUrl? string
+---@field previewImageUrl? string
+---@field qualityStatus? string
+---@field slug string
+---@field sourceTemplateId string|nil
+---@field sourceUrl? string
+---@field tags table
+---@field width number|nil
+
+---@class GifListMatch
+---@field page? number
+---@field page_size? number
+---@field q? string
+---@field query? string
+---@field sort? string
+---@field tag? string
+
 ---@class Growth
 ---@field action string
 ---@field actorId? string
@@ -485,32 +519,6 @@
 ---@field limit? number
 ---@field logExposure? boolean
 ---@field surface? string
-
----@class ListMeme
----@field altText string
----@field canonicalImageUrl string
----@field createdAt string
----@field imageUrl string
----@field nsfwStatus string
----@field shareSlug string
----@field shareUrl string
----@field shareViews number
----@field slug string
----@field tags table
----@field templateSlug string
----@field title string
----@field visibility string
-
----@class ListMemeListMatch
----@field exclude_template_clone? boolean
----@field include_nsfw? boolean
----@field official_only? boolean
----@field owner_token? string
----@field page? number
----@field page_size? number
----@field query? string
----@field template_slug? string
----@field visibility? string
 
 ---@class Media
 
@@ -540,6 +548,17 @@
 ---@class MemeLoadMatch
 ---@field id string
 ---@field owner_token? string
+
+---@class MemeListMatch
+---@field exclude_template_clone? boolean
+---@field include_nsfw? boolean
+---@field official_only? boolean
+---@field owner_token? string
+---@field page? number
+---@field page_size? number
+---@field query? string
+---@field template_slug? string
+---@field visibility? string
 
 ---@class MemeRemoveMatch
 ---@field id string
@@ -649,40 +668,6 @@
 ---@class TemplateListMatch
 ---@field media_type? string
 ---@field mode? string
----@field page? number
----@field page_size? number
----@field q? string
----@field query? string
----@field sort? string
----@field tag? string
-
----@class TemplateSearch
----@field animated? boolean
----@field assetBytes? number|nil
----@field assetContentType? string
----@field boxCount? number
----@field captionCount? number
----@field captions table
----@field categories? table
----@field description string
----@field durationMs? number|nil
----@field exampleImageUrl? string|nil
----@field frameCount? number|nil
----@field height number|nil
----@field id string
----@field imageUrl string
----@field mediaType string
----@field name string
----@field posterImageUrl? string
----@field previewImageUrl? string
----@field qualityStatus? string
----@field slug string
----@field sourceTemplateId string|nil
----@field sourceUrl? string
----@field tags table
----@field width number|nil
-
----@class TemplateSearchListMatch
 ---@field page? number
 ---@field page_size? number
 ---@field q? string

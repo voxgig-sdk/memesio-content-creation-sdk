@@ -105,13 +105,13 @@ Create a new `FreeTemplateSearch` entity instance. Pass `nil` for no initial dat
 
 Create a new `Generate` entity instance. Pass `nil` for no initial data.
 
+#### `Gif(data)`
+
+Create a new `Gif` entity instance. Pass `nil` for no initial data.
+
 #### `Growth(data)`
 
 Create a new `Growth` entity instance. Pass `nil` for no initial data.
-
-#### `ListMeme(data)`
-
-Create a new `ListMeme` entity instance. Pass `nil` for no initial data.
 
 #### `Media(data)`
 
@@ -132,10 +132,6 @@ Create a new `StandaloneAgentBootstrap` entity instance. Pass `nil` for no initi
 #### `Template(data)`
 
 Create a new `Template` entity instance. Pass `nil` for no initial data.
-
-#### `TemplateSearch(data)`
-
-Create a new `TemplateSearch` entity instance. Pass `nil` for no initial data.
 
 #### `TrendAlert(data)`
 
@@ -1409,6 +1405,81 @@ Return the entity name.
 
 ---
 
+## GifEntity
+
+```lua
+local gif = client:Gif(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `animated` | `boolean` | No |  |
+| `assetBytes` | `number|nil` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `number` | No |  |
+| `captionCount` | `number` | No |  |
+| `captions` | `table` | Yes |  |
+| `categories` | `table` | No |  |
+| `description` | `string` | Yes |  |
+| `durationMs` | `number|nil` | No |  |
+| `exampleImageUrl` | `string|nil` | No |  |
+| `frameCount` | `number|nil` | No |  |
+| `height` | `number|nil` | Yes |  |
+| `id` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
+| `slug` | `string` | Yes |  |
+| `sourceTemplateId` | `string|nil` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `table` | Yes |  |
+| `width` | `number|nil` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:Gif():list()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `GifEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
 ## GrowthEntity
 
 ```lua
@@ -1466,70 +1537,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `GrowthEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ListMemeEntity
-
-```lua
-local list_meme = client:ListMeme(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `altText` | `string` | Yes |  |
-| `canonicalImageUrl` | `string` | Yes |  |
-| `createdAt` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `nsfwStatus` | `string` | Yes |  |
-| `shareSlug` | `string` | Yes |  |
-| `shareUrl` | `string` | Yes |  |
-| `shareViews` | `number` | Yes |  |
-| `slug` | `string` | Yes |  |
-| `tags` | `table` | Yes |  |
-| `templateSlug` | `string` | Yes |  |
-| `title` | `string` | Yes |  |
-| `visibility` | `string` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:ListMeme():list()
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListMemeEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -1617,6 +1624,14 @@ local meme = client:Meme(nil)
 | `watermark` | `table` | Yes |  |
 
 ### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:Meme():list()
+```
 
 #### `load(reqmatch, ctrl) -> any, err`
 
@@ -1887,81 +1902,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `TemplateEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## TemplateSearchEntity
-
-```lua
-local template_search = client:TemplateSearch(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `boolean` | No |  |
-| `assetBytes` | `number|nil` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `number` | No |  |
-| `captionCount` | `number` | No |  |
-| `captions` | `table` | Yes |  |
-| `categories` | `table` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `number|nil` | No |  |
-| `exampleImageUrl` | `string|nil` | No |  |
-| `frameCount` | `number|nil` | No |  |
-| `height` | `number|nil` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `string|nil` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `table` | Yes |  |
-| `width` | `number|nil` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:TemplateSearch():list()
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `TemplateSearchEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

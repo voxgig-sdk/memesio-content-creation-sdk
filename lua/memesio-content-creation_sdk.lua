@@ -573,6 +573,20 @@ function MemesioContentCreationSDK:Generate(data)
 end
 
 
+-- Idiomatic facade: client:Gif():list() / client:Gif():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MemesioContentCreationSDK:Gif(data)
+  local EntityMod = require("entity.gif_entity")
+  if data == nil then
+    if self._gif == nil then
+      self._gif = EntityMod.new(self, nil)
+    end
+    return self._gif
+  end
+  return EntityMod.new(self, data)
+end
+
+
 -- Idiomatic facade: client:Growth():list() / client:Growth():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function MemesioContentCreationSDK:Growth(data)
@@ -582,20 +596,6 @@ function MemesioContentCreationSDK:Growth(data)
       self._growth = EntityMod.new(self, nil)
     end
     return self._growth
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:ListMeme():list() / client:ListMeme():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function MemesioContentCreationSDK:ListMeme(data)
-  local EntityMod = require("entity.list_meme_entity")
-  if data == nil then
-    if self._list_meme == nil then
-      self._list_meme = EntityMod.new(self, nil)
-    end
-    return self._list_meme
   end
   return EntityMod.new(self, data)
 end
@@ -666,20 +666,6 @@ function MemesioContentCreationSDK:Template(data)
       self._template = EntityMod.new(self, nil)
     end
     return self._template
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:TemplateSearch():list() / client:TemplateSearch():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function MemesioContentCreationSDK:TemplateSearch(data)
-  local EntityMod = require("entity.template_search_entity")
-  if data == nil then
-    if self._template_search == nil then
-      self._template_search = EntityMod.new(self, nil)
-    end
-    return self._template_search
   end
   return EntityMod.new(self, data)
 end

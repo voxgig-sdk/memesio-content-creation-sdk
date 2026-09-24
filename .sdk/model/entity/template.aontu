@@ -1,0 +1,306 @@
+# Entity: template
+
+main: kit: entity: template: {
+
+  alias: field: {}
+
+  fields: {
+    animated: {
+      h: "Animated"
+      n: "animated"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    assetBytes: {
+      h: "Asset Bytes"
+      n: "assetBytes"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    assetContentType: {
+      h: "Asset Content Type"
+      n: "assetContentType"
+      r: false
+      t: "`$STRING`"
+    }
+    boxCount: {
+      h: "Box Count"
+      n: "boxCount"
+      r: false
+      t: "`$INTEGER`"
+    }
+    captionCount: {
+      h: "Caption Count"
+      n: "captionCount"
+      r: false
+      t: "`$INTEGER`"
+    }
+    captions: {
+      h: "Captions"
+      n: "captions"
+      r: true
+      t: "`$ARRAY`"
+    }
+    categories: {
+      h: "Categories"
+      n: "categories"
+      r: false
+      t: "`$ARRAY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: true
+      t: "`$STRING`"
+    }
+    durationMs: {
+      h: "Duration Ms"
+      n: "durationMs"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    exampleImageUrl: {
+      h: "Example Image Url"
+      n: "exampleImageUrl"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    frameCount: {
+      h: "Frame Count"
+      n: "frameCount"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    height: {
+      h: "Height"
+      n: "height"
+      r: true
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    imageUrl: {
+      h: "Image Url"
+      n: "imageUrl"
+      r: true
+      t: "`$STRING`"
+    }
+    mediaType: {
+      h: "Media Type"
+      n: "mediaType"
+      r: true
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      t: "`$STRING`"
+    }
+    posterImageUrl: {
+      h: "Poster Image Url"
+      n: "posterImageUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    previewImageUrl: {
+      h: "Preview Image Url"
+      n: "previewImageUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    qualityStatus: {
+      h: "Quality Status"
+      n: "qualityStatus"
+      r: false
+      t: "`$STRING`"
+    }
+    slug: {
+      h: "Slug"
+      n: "slug"
+      r: true
+      t: "`$STRING`"
+    }
+    sourceTemplateId: {
+      h: "Source Template Id"
+      n: "sourceTemplateId"
+      r: true
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    sourceUrl: {
+      h: "Source Url"
+      n: "sourceUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: true
+      t: "`$ARRAY`"
+    }
+    width: {
+      h: "Width"
+      n: "width"
+      r: true
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "template"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/templates"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "image"
+                k: "query"
+                n: "media_type"
+                or: "media_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "mode"
+                or: "mode"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "page_size"
+                or: "page_size"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "q"
+                or: "q"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "tag"
+                or: "tag"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/templates"
+          q: {
+            exist: [
+              "media_type"
+              "mode"
+              "page"
+              "page_size"
+              "q"
+              "query"
+              "sort"
+              "tag"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "templates"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.items`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

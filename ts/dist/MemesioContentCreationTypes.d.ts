@@ -473,6 +473,40 @@ export interface GenerateCreateData {
     width: number;
     widthPx?: number;
 }
+export interface Gif {
+    animated?: boolean;
+    assetBytes?: number | null;
+    assetContentType?: string;
+    boxCount?: number;
+    captionCount?: number;
+    captions: any[];
+    categories?: any[];
+    description: string;
+    durationMs?: number | null;
+    exampleImageUrl?: string | null;
+    frameCount?: number | null;
+    height: number | null;
+    id: string;
+    imageUrl: string;
+    mediaType: string;
+    name: string;
+    posterImageUrl?: string;
+    previewImageUrl?: string;
+    qualityStatus?: string;
+    slug: string;
+    sourceTemplateId: string | null;
+    sourceUrl?: string;
+    tags: any[];
+    width: number | null;
+}
+export interface GifListMatch {
+    page?: number;
+    page_size?: number;
+    q?: string;
+    query?: string;
+    sort?: string;
+    tag?: string;
+}
 export interface Growth {
     action: string;
     actorId?: string;
@@ -495,32 +529,6 @@ export interface GrowthCreateData {
     surface?: string;
     $action?: string;
     [action: string]: any;
-}
-export interface ListMeme {
-    altText: string;
-    canonicalImageUrl: string;
-    createdAt: string;
-    imageUrl: string;
-    nsfwStatus: string;
-    shareSlug: string;
-    shareUrl: string;
-    shareViews: number;
-    slug: string;
-    tags: any[];
-    templateSlug: string;
-    title: string;
-    visibility: string;
-}
-export interface ListMemeListMatch {
-    exclude_template_clone?: boolean;
-    include_nsfw?: boolean;
-    official_only?: boolean;
-    owner_token?: string;
-    page?: number;
-    page_size?: number;
-    query?: string;
-    template_slug?: string;
-    visibility?: string;
 }
 export interface Media {
 }
@@ -552,6 +560,17 @@ export interface Meme {
 export interface MemeLoadMatch {
     id: string;
     owner_token?: string;
+}
+export interface MemeListMatch {
+    exclude_template_clone?: boolean;
+    include_nsfw?: boolean;
+    official_only?: boolean;
+    owner_token?: string;
+    page?: number;
+    page_size?: number;
+    query?: string;
+    template_slug?: string;
+    visibility?: string;
 }
 export interface MemeRemoveMatch {
     id: string;
@@ -663,40 +682,6 @@ export interface Template {
 export interface TemplateListMatch {
     media_type?: string;
     mode?: string;
-    page?: number;
-    page_size?: number;
-    q?: string;
-    query?: string;
-    sort?: string;
-    tag?: string;
-}
-export interface TemplateSearch {
-    animated?: boolean;
-    assetBytes?: number | null;
-    assetContentType?: string;
-    boxCount?: number;
-    captionCount?: number;
-    captions: any[];
-    categories?: any[];
-    description: string;
-    durationMs?: number | null;
-    exampleImageUrl?: string | null;
-    frameCount?: number | null;
-    height: number | null;
-    id: string;
-    imageUrl: string;
-    mediaType: string;
-    name: string;
-    posterImageUrl?: string;
-    previewImageUrl?: string;
-    qualityStatus?: string;
-    slug: string;
-    sourceTemplateId: string | null;
-    sourceUrl?: string;
-    tags: any[];
-    width: number | null;
-}
-export interface TemplateSearchListMatch {
     page?: number;
     page_size?: number;
     q?: string;

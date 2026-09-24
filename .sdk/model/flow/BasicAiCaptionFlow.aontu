@@ -1,0 +1,36 @@
+# BasicAiCaptionFlow
+
+main: kit: flow: BasicAiCaptionFlow:
+{
+  entity: "ai_caption",
+  kind: "basic",
+  name: "BasicAiCaptionFlow",
+  step: [
+    {
+      i: {
+        ref: "ai_caption_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "ai_caption_ref01",
+        srcdatavar: "ai_caption_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ai_caption_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAiCaptionFlow"
+}

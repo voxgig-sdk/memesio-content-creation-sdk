@@ -16,14 +16,13 @@ import { DeveloperApiEntity } from './entity/DeveloperApiEntity'
 import { FreeCaptionMemeSuccessEntity } from './entity/FreeCaptionMemeSuccessEntity'
 import { FreeTemplateSearchEntity } from './entity/FreeTemplateSearchEntity'
 import { GenerateEntity } from './entity/GenerateEntity'
+import { GifEntity } from './entity/GifEntity'
 import { GrowthEntity } from './entity/GrowthEntity'
-import { ListMemeEntity } from './entity/ListMemeEntity'
 import { MediaEntity } from './entity/MediaEntity'
 import { MemeEntity } from './entity/MemeEntity'
 import { PublicTemplateMediaItemEntity } from './entity/PublicTemplateMediaItemEntity'
 import { StandaloneAgentBootstrapEntity } from './entity/StandaloneAgentBootstrapEntity'
 import { TemplateEntity } from './entity/TemplateEntity'
-import { TemplateSearchEntity } from './entity/TemplateSearchEntity'
 import { TrendAlertEntity } from './entity/TrendAlertEntity'
 import { UploadCaptionMemeSuccessEntity } from './entity/UploadCaptionMemeSuccessEntity'
 import { VideoEntity } from './entity/VideoEntity'
@@ -150,7 +149,6 @@ class MemesioContentCreationSDK {
 
     const options = this._options
 
-    // Build spec directly from SDK options + user-provided fetch args.
     const spec: any = {
       base: options.base,
       prefix: options.prefix,
@@ -166,7 +164,6 @@ class MemesioContentCreationSDK {
 
     ctx.spec = spec
 
-    // Merge user-provided headers over SDK defaults.
     if (fetchargs.headers) {
       const uheaders = fetchargs.headers
       for (let key in uheaders) {
@@ -176,7 +173,6 @@ class MemesioContentCreationSDK {
 
     
 
-    // Apply SDK auth (apikey, auth prefix, etc.)
     const authResult = prepareAuth(ctx)
     if (authResult instanceof Error) {
       return authResult
@@ -269,18 +265,6 @@ class MemesioContentCreationSDK {
 
 
 
-  // Raw GraphQL access: the pressure valve that makes the generated
-  // surface's deliberate omissions (per-call selection sets, typed filter
-  // builders, batching, subscriptions) livable — the whole schema stays
-  // reachable.
-  //
-  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-  // HTTP 200 as a top-level `errors` array, so status alone would report a
-  // failed query as ok.
-  //
-  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-  // ratelimit or paging features apply.
   async graphql(query: string, variables?: any, ctrl?: any) {
     const options = this._options
 
@@ -467,21 +451,21 @@ class MemesioContentCreationSDK {
   }
 
 
+  // Entity access: `client.Gif().list()` / `client.Gif().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Gif(entopts?: Record<string, any>) {
+    const self = this
+    return new GifEntity(self, entopts)
+  }
+
+
   // Entity access: `client.Growth().list()` / `client.Growth().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
   Growth(entopts?: Record<string, any>) {
     const self = this
     return new GrowthEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.ListMeme().list()` / `client.ListMeme().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  ListMeme(entopts?: Record<string, any>) {
-    const self = this
-    return new ListMemeEntity(self, entopts)
   }
 
 
@@ -527,15 +511,6 @@ class MemesioContentCreationSDK {
   Template(entopts?: Record<string, any>) {
     const self = this
     return new TemplateEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.TemplateSearch().list()` / `client.TemplateSearch().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  TemplateSearch(entopts?: Record<string, any>) {
-    const self = this
-    return new TemplateSearchEntity(self, entopts)
   }
 
 

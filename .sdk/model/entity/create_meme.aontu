@@ -1,0 +1,120 @@
+# Entity: create_meme
+
+main: kit: entity: create_meme: {
+
+  alias: field: {}
+
+  fields: {
+    canvas: {
+      h: "Canvas"
+      n: "canvas"
+      r: true
+      t: "`$OBJECT`"
+    }
+    captions: {
+      h: "Captions"
+      n: "captions"
+      r: true
+      t: "`$ARRAY`"
+    }
+    generationRunId: {
+      h: "Generation Run Id"
+      n: "generationRunId"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    generationVariantId: {
+      h: "Generation Variant Id"
+      n: "generationVariantId"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    imageDataUrl: {
+      h: "Image Data Url"
+      n: "imageDataUrl"
+      r: true
+      t: "`$STRING`"
+    }
+    overlays: {
+      h: "Overlays"
+      n: "overlays"
+      r: false
+      t: "`$ARRAY`"
+    }
+    sourceImageUrl: {
+      h: "Source Image Url"
+      n: "sourceImageUrl"
+      r: true
+      t: "`$STRING`"
+    }
+    templateSlug: {
+      h: "Template Slug"
+      n: "templateSlug"
+      r: false
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      t: "`$STRING`"
+    }
+    visibility: {
+      h: "Visibility"
+      n: "visibility"
+      r: false
+      t: "`$STRING`"
+    }
+    watermark: {
+      h: "Watermark"
+      n: "watermark"
+      r: true
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "create_meme"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/memes"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/memes"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "memes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

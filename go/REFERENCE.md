@@ -112,13 +112,13 @@ Create a new `FreeTemplateSearch` entity instance. Pass `nil` for no initial dat
 
 Create a new `Generate` entity instance. Pass `nil` for no initial data.
 
+#### `Gif(data map[string]any) MemesioContentCreationEntity`
+
+Create a new `Gif` entity instance. Pass `nil` for no initial data.
+
 #### `Growth(data map[string]any) MemesioContentCreationEntity`
 
 Create a new `Growth` entity instance. Pass `nil` for no initial data.
-
-#### `ListMeme(data map[string]any) MemesioContentCreationEntity`
-
-Create a new `ListMeme` entity instance. Pass `nil` for no initial data.
 
 #### `Media(data map[string]any) MemesioContentCreationEntity`
 
@@ -139,10 +139,6 @@ Create a new `StandaloneAgentBootstrap` entity instance. Pass `nil` for no initi
 #### `Template(data map[string]any) MemesioContentCreationEntity`
 
 Create a new `Template` entity instance. Pass `nil` for no initial data.
-
-#### `TemplateSearch(data map[string]any) MemesioContentCreationEntity`
-
-Create a new `TemplateSearch` entity instance. Pass `nil` for no initial data.
 
 #### `TrendAlert(data map[string]any) MemesioContentCreationEntity`
 
@@ -1436,6 +1432,80 @@ Return the entity name.
 
 ---
 
+## GifEntity
+
+```go
+gif := client.Gif(nil)
+fmt.Println(gif.GetName()) // "gif"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `animated` | `bool` | No |  |
+| `assetBytes` | `any` | No |  |
+| `assetContentType` | `string` | No |  |
+| `boxCount` | `int` | No |  |
+| `captionCount` | `int` | No |  |
+| `captions` | `[]any` | Yes |  |
+| `categories` | `[]any` | No |  |
+| `description` | `string` | Yes |  |
+| `durationMs` | `any` | No |  |
+| `exampleImageUrl` | `any` | No |  |
+| `frameCount` | `any` | No |  |
+| `height` | `any` | Yes |  |
+| `id` | `string` | Yes |  |
+| `imageUrl` | `string` | Yes |  |
+| `mediaType` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `posterImageUrl` | `string` | No |  |
+| `previewImageUrl` | `string` | No |  |
+| `qualityStatus` | `string` | No |  |
+| `slug` | `string` | Yes |  |
+| `sourceTemplateId` | `any` | Yes |  |
+| `sourceUrl` | `string` | No |  |
+| `tags` | `[]any` | Yes |  |
+| `width` | `any` | Yes |  |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Gif(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `GifEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
 ## GrowthEntity
 
 ```go
@@ -1496,69 +1566,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `GrowthEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ListMemeEntity
-
-```go
-listMeme := client.ListMeme(nil)
-fmt.Println(listMeme.GetName()) // "list_meme"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `altText` | `string` | Yes |  |
-| `canonicalImageUrl` | `string` | Yes |  |
-| `createdAt` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `nsfwStatus` | `string` | Yes |  |
-| `shareSlug` | `string` | Yes |  |
-| `shareUrl` | `string` | Yes |  |
-| `shareViews` | `int` | Yes |  |
-| `slug` | `string` | Yes |  |
-| `tags` | `[]any` | Yes |  |
-| `templateSlug` | `string` | Yes |  |
-| `title` | `string` | Yes |  |
-| `visibility` | `string` | Yes |  |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.ListMeme(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(results)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ListMemeEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -1646,6 +1653,18 @@ fmt.Println(meme.GetName()) // "meme"
 | `watermark` | `map[string]any` | Yes |  |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Meme(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -1919,80 +1938,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `TemplateEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## TemplateSearchEntity
-
-```go
-templateSearch := client.TemplateSearch(nil)
-fmt.Println(templateSearch.GetName()) // "template_search"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `bool` | No |  |
-| `assetBytes` | `any` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `int` | No |  |
-| `captionCount` | `int` | No |  |
-| `captions` | `[]any` | Yes |  |
-| `categories` | `[]any` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `any` | No |  |
-| `exampleImageUrl` | `any` | No |  |
-| `frameCount` | `any` | No |  |
-| `height` | `any` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `any` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `[]any` | Yes |  |
-| `width` | `any` | Yes |  |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.TemplateSearch(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(results)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `TemplateSearchEntity` instance with the same client and
 options.
 
 #### `GetName() string`

@@ -86,7 +86,7 @@ function agent_infra_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "agent_infra01", "agent_infra02", "agent_infra03", "unlock01", "unlock02", "unlock03", "agent01", "agent02", "agent03", "key01", "key02", "key03" },
+    { "agent_infra01", "agent_infra02", "agent_infra03", "agent01", "agent02", "agent03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

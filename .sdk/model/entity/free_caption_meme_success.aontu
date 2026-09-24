@@ -1,0 +1,111 @@
+# Entity: free_caption_meme_success
+
+main: kit: entity: free_caption_meme_success: {
+
+  alias: field: {}
+
+  fields: {
+    captions: {
+      h: "Captions"
+      n: "captions"
+      r: true
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
+    }
+    templateSlug: {
+      h: "Template Slug"
+      n: "templateSlug"
+      r: true
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      t: "`$STRING`"
+    }
+    visibility: {
+      h: "Visibility"
+      n: "visibility"
+      r: false
+      t: "`$STRING`"
+    }
+    watermark: {
+      h: "Watermark"
+      n: "watermark"
+      r: false
+      sh: "Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark."
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "free_caption_meme_success"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/free/memes/caption"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/free/memes/caption"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "free"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "caption"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/memes/caption-template"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/memes/caption-template"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "caption-template"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

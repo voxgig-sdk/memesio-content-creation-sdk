@@ -1,0 +1,219 @@
+# Entity: ai_meme_generation_succeeded
+
+main: kit: entity: ai_meme_generation_succeeded: {
+
+  alias: field: {}
+
+  fields: {
+    allowHeuristicFallback: {
+      h: "Allow Heuristic Fallback"
+      n: "allowHeuristicFallback"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    captionSource: {
+      h: "Caption Source"
+      n: "captionSource"
+      r: false
+      t: "`$STRING`"
+    }
+    captions: {
+      h: "Captions"
+      n: "captions"
+      r: false
+      t: "`$ARRAY`"
+    }
+    correlationId: {
+      h: "Correlation Id"
+      n: "correlationId"
+      r: false
+      t: "`$STRING`"
+    }
+    degradedFromAsync: {
+      h: "Degraded From Async"
+      n: "degradedFromAsync"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    editableCaptions: {
+      h: "Editable Captions"
+      n: "editableCaptions"
+      r: false
+      t: "`$ARRAY`"
+    }
+    flow: {
+      h: "Flow"
+      n: "flow"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      t: "`$STRING`"
+    }
+    imageUrl: {
+      h: "Image Url"
+      n: "imageUrl"
+      r: false
+      t: "`$STRING`"
+    }
+    mode: {
+      h: "Mode"
+      n: "mode"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      t: "`$STRING`"
+    }
+    ok: {
+      h: "Ok"
+      n: "ok"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    preferredProviderId: {
+      h: "Preferred Provider Id"
+      n: "preferredProviderId"
+      r: false
+      t: "`$STRING`"
+    }
+    prompt: {
+      h: "Prompt"
+      n: "prompt"
+      r: true
+      t: "`$STRING`"
+    }
+    rewriteNote: {
+      h: "Rewrite Note"
+      n: "rewriteNote"
+      r: false
+      t: "`$STRING`"
+    }
+    runId: {
+      h: "Run Id"
+      n: "runId"
+      r: false
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+    templateId: {
+      h: "Template Id"
+      n: "templateId"
+      r: false
+      t: "`$STRING`"
+    }
+    tone: {
+      h: "Tone"
+      n: "tone"
+      r: false
+      t: "`$STRING`"
+    }
+    toneCues: {
+      h: "Tone Cues"
+      n: "toneCues"
+      r: false
+      t: "`$ARRAY`"
+    }
+    variantCount: {
+      h: "Variant Count"
+      n: "variantCount"
+      op: {
+        create: {
+          req: false
+          type: "`$NUMBER`"
+        }
+      }
+      r: true
+      t: "`$INTEGER`"
+    }
+    variants: {
+      h: "Variants"
+      n: "variants"
+      r: true
+      t: "`$ARRAY`"
+    }
+    workspaceId: {
+      h: "Workspace Id"
+      n: "workspaceId"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "ai_meme_generation_succeeded"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/ai/memes/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/memes/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/memes/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/memes/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

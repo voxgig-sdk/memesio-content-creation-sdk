@@ -1,7 +1,7 @@
 // Typed models for the MemesioContentCreation SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,16 +14,6 @@ import (
 
 // Agent is the typed data model for the agent entity.
 type Agent struct {
-	Description *string `json:"description,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Locale *string `json:"locale,omitempty"`
-	Name string `json:"name"`
-	Slug *string `json:"slug,omitempty"`
-	Status *string `json:"status,omitempty"`
-	StylePreset *string `json:"stylePreset,omitempty"`
-	SystemPrompt *string `json:"systemPrompt,omitempty"`
-	WatermarkText *string `json:"watermarkText,omitempty"`
-	WebsiteUrl *string `json:"websiteUrl,omitempty"`
 }
 
 // AgentLoadMatch is the typed request payload for Agent.LoadTyped.
@@ -61,19 +51,6 @@ type AgentUpdateData struct {
 
 // AgentInfra is the typed data model for the agent_infra entity.
 type AgentInfra struct {
-	Action string `json:"action"`
-	ChatId string `json:"chatId"`
-	Id *string `json:"id,omitempty"`
-	MemeSlug string `json:"memeSlug"`
-	Metadata *map[string]any `json:"metadata,omitempty"`
-	PayoutReference *string `json:"payoutReference,omitempty"`
-	PayoutStatus *string `json:"payoutStatus,omitempty"`
-	PhoneOrChatId string `json:"phoneOrChatId"`
-	Prompt string `json:"prompt"`
-	Proof *map[string]any `json:"proof,omitempty"`
-	QuotaBoostPerDay *int `json:"quotaBoostPerDay,omitempty"`
-	UserId *string `json:"userId,omitempty"`
-	WeekStart *string `json:"weekStart,omitempty"`
 }
 
 // AgentInfraLoadMatch is the typed request payload for AgentInfra.LoadTyped.
@@ -107,34 +84,6 @@ type AgentInfraRemoveMatch struct {
 
 // AiCaption is the typed data model for the ai_caption entity.
 type AiCaption struct {
-	BlockedTerms *[]any `json:"blockedTerms,omitempty"`
-	CanvasText []any `json:"canvasText"`
-	CaptionCount *int `json:"captionCount,omitempty"`
-	CaptionSets *[]any `json:"captionSets,omitempty"`
-	Entities *[]any `json:"entities,omitempty"`
-	FallbackUsed *bool `json:"fallbackUsed,omitempty"`
-	GenerationStrategy *string `json:"generationStrategy,omitempty"`
-	Locale *string `json:"locale,omitempty"`
-	MemeId *string `json:"memeId,omitempty"`
-	MemeSlug *string `json:"memeSlug,omitempty"`
-	Name string `json:"name"`
-	Ok *bool `json:"ok,omitempty"`
-	OptionCount *int `json:"optionCount,omitempty"`
-	OwnerToken *string `json:"ownerToken,omitempty"`
-	ProviderId *string `json:"providerId,omitempty"`
-	ReferenceCaptions *[]any `json:"referenceCaptions,omitempty"`
-	RewriteNote *string `json:"rewriteNote,omitempty"`
-	SceneSummary *string `json:"sceneSummary,omitempty"`
-	TemplateDescription *string `json:"templateDescription,omitempty"`
-	TemplateName *string `json:"templateName,omitempty"`
-	TemplateTags *[]any `json:"templateTags,omitempty"`
-	Tone string `json:"tone"`
-	ToneCues *[]any `json:"toneCues,omitempty"`
-	TrendKeywords *[]any `json:"trendKeywords,omitempty"`
-	TrendReferences *[]any `json:"trendReferences,omitempty"`
-	TrendSignals *[]any `json:"trendSignals,omitempty"`
-	VariationOffset *int `json:"variationOffset,omitempty"`
-	VoiceRules *[]any `json:"voiceRules,omitempty"`
 }
 
 // AiCaptionLoadMatch is the typed request payload for AiCaption.LoadTyped.
@@ -176,43 +125,6 @@ type AiCaptionCreateData struct {
 
 // AiJob is the typed data model for the ai_job entity.
 type AiJob struct {
-	Action string `json:"action"`
-	ActorId *string `json:"actorId,omitempty"`
-	AfterState *map[string]any `json:"afterState,omitempty"`
-	Attempts *int `json:"attempts,omitempty"`
-	BeforeState *map[string]any `json:"beforeState,omitempty"`
-	BrushEdits *[]any `json:"brushEdits,omitempty"`
-	Capability string `json:"capability"`
-	CelebrityConfidence *float64 `json:"celebrityConfidence,omitempty"`
-	ConsentAttested *bool `json:"consentAttested,omitempty"`
-	CreatedAt *string `json:"createdAt,omitempty"`
-	DetectedFaceCount float64 `json:"detectedFaceCount"`
-	EdgeRefinement *float64 `json:"edgeRefinement,omitempty"`
-	FrameTimeMs *float64 `json:"frameTimeMs,omitempty"`
-	Height float64 `json:"height"`
-	Id string `json:"id"`
-	Input *map[string]any `json:"input,omitempty"`
-	LayerId string `json:"layerId"`
-	LayerType *string `json:"layerType,omitempty"`
-	MaxAttempts *int `json:"maxAttempts,omitempty"`
-	MaxFaces *float64 `json:"maxFaces,omitempty"`
-	MediaType *string `json:"mediaType,omitempty"`
-	Metadata *map[string]any `json:"metadata,omitempty"`
-	NsfwScore *float64 `json:"nsfwScore,omitempty"`
-	ProjectId string `json:"projectId"`
-	RunAfterMs *int `json:"runAfterMs,omitempty"`
-	SourceAssetUrl string `json:"sourceAssetUrl"`
-	SourceFaceIndex *float64 `json:"sourceFaceIndex,omitempty"`
-	SourceImageUrl string `json:"sourceImageUrl"`
-	Status string `json:"status"`
-	TargetAssetUrl string `json:"targetAssetUrl"`
-	TargetFaceIndex *float64 `json:"targetFaceIndex,omitempty"`
-	TimeoutMs *int `json:"timeoutMs,omitempty"`
-	TraceId *string `json:"traceId,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
-	VersionId *string `json:"versionId,omitempty"`
-	Width float64 `json:"width"`
-	WorkspaceId *string `json:"workspaceId,omitempty"`
 }
 
 // AiJobLoadMatch is the typed request payload for AiJob.LoadTyped.
@@ -263,27 +175,6 @@ type AiJobCreateData struct {
 
 // AiMemeGenerationSucceeded is the typed data model for the ai_meme_generation_succeeded entity.
 type AiMemeGenerationSucceeded struct {
-	AllowHeuristicFallback *bool `json:"allowHeuristicFallback,omitempty"`
-	CaptionSource *string `json:"captionSource,omitempty"`
-	Captions *[]any `json:"captions,omitempty"`
-	CorrelationId *string `json:"correlationId,omitempty"`
-	DegradedFromAsync *bool `json:"degradedFromAsync,omitempty"`
-	EditableCaptions *[]any `json:"editableCaptions,omitempty"`
-	Flow string `json:"flow"`
-	ImageUrl *string `json:"imageUrl,omitempty"`
-	Mode string `json:"mode"`
-	Ok bool `json:"ok"`
-	PreferredProviderId *string `json:"preferredProviderId,omitempty"`
-	Prompt string `json:"prompt"`
-	RewriteNote *string `json:"rewriteNote,omitempty"`
-	RunId *string `json:"runId,omitempty"`
-	Status string `json:"status"`
-	TemplateId *string `json:"templateId,omitempty"`
-	Tone *string `json:"tone,omitempty"`
-	ToneCues *[]any `json:"toneCues,omitempty"`
-	VariantCount int `json:"variantCount"`
-	Variants []any `json:"variants"`
-	WorkspaceId *string `json:"workspaceId,omitempty"`
 }
 
 // AiMemeGenerationSucceededCreateData is the typed request payload for AiMemeGenerationSucceeded.CreateTyped.
@@ -313,16 +204,6 @@ type AiMemeGenerationSucceededCreateData struct {
 
 // AiProvider is the typed data model for the ai_provider entity.
 type AiProvider struct {
-	ActorId *string `json:"actorId,omitempty"`
-	CorrelationId *string `json:"correlationId,omitempty"`
-	Limit *float64 `json:"limit,omitempty"`
-	MappingMode *string `json:"mappingMode,omitempty"`
-	MaxSlots *int `json:"maxSlots,omitempty"`
-	Prompt string `json:"prompt"`
-	SourceImageUrl string `json:"sourceImageUrl"`
-	Texts *[]any `json:"texts,omitempty"`
-	TrendSignals *[]any `json:"trendSignals,omitempty"`
-	WorkspaceId *string `json:"workspaceId,omitempty"`
 }
 
 // AiProviderLoadMatch is the typed request payload for AiProvider.LoadTyped.
@@ -373,9 +254,6 @@ type BillingLoadMatch struct {
 
 // Collaboration is the typed data model for the collaboration entity.
 type Collaboration struct {
-	AuthorId *string `json:"authorId,omitempty"`
-	Message string `json:"message"`
-	ProjectId string `json:"projectId"`
 }
 
 // CollaborationLoadMatch is the typed request payload for Collaboration.LoadTyped.
@@ -402,17 +280,6 @@ type ComplianceLoadMatch struct {
 
 // CreateMeme is the typed data model for the create_meme entity.
 type CreateMeme struct {
-	Canvas map[string]any `json:"canvas"`
-	Captions []any `json:"captions"`
-	GenerationRunId *any `json:"generationRunId,omitempty"`
-	GenerationVariantId *any `json:"generationVariantId,omitempty"`
-	ImageDataUrl string `json:"imageDataUrl"`
-	Overlays *[]any `json:"overlays,omitempty"`
-	SourceImageUrl string `json:"sourceImageUrl"`
-	TemplateSlug *string `json:"templateSlug,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Visibility *string `json:"visibility,omitempty"`
-	Watermark map[string]any `json:"watermark"`
 }
 
 // CreateMemeCreateData is the typed request payload for CreateMeme.CreateTyped.
@@ -432,9 +299,6 @@ type CreateMemeCreateData struct {
 
 // DeveloperApi is the typed data model for the developer_api entity.
 type DeveloperApi struct {
-	Limit *float64 `json:"limit,omitempty"`
-	Prompt string `json:"prompt"`
-	TrendSignals *[]any `json:"trendSignals,omitempty"`
 }
 
 // DeveloperApiLoadMatch is the typed request payload for DeveloperApi.LoadTyped.
@@ -453,11 +317,6 @@ type DeveloperApiCreateData struct {
 
 // FreeCaptionMemeSuccess is the typed data model for the free_caption_meme_success entity.
 type FreeCaptionMemeSuccess struct {
-	Captions []any `json:"captions"`
-	TemplateSlug string `json:"templateSlug"`
-	Title *string `json:"title,omitempty"`
-	Visibility *string `json:"visibility,omitempty"`
-	Watermark *map[string]any `json:"watermark,omitempty"`
 }
 
 // FreeCaptionMemeSuccessCreateData is the typed request payload for FreeCaptionMemeSuccess.CreateTyped.
@@ -471,28 +330,6 @@ type FreeCaptionMemeSuccessCreateData struct {
 
 // FreeTemplateSearch is the typed data model for the free_template_search entity.
 type FreeTemplateSearch struct {
-	Animated *bool `json:"animated,omitempty"`
-	AssetBytes *any `json:"assetBytes,omitempty"`
-	AssetContentType *string `json:"assetContentType,omitempty"`
-	BoxCount int `json:"boxCount"`
-	CaptionCount int `json:"captionCount"`
-	Captions []any `json:"captions"`
-	Description string `json:"description"`
-	DurationMs *any `json:"durationMs,omitempty"`
-	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
-	FrameCount *any `json:"frameCount,omitempty"`
-	Height any `json:"height"`
-	Id string `json:"id"`
-	ImageUrl string `json:"imageUrl"`
-	MediaType string `json:"mediaType"`
-	Name string `json:"name"`
-	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
-	QualityStatus *string `json:"qualityStatus,omitempty"`
-	Slug string `json:"slug"`
-	SourceTemplateId any `json:"sourceTemplateId"`
-	SourceUrl *string `json:"sourceUrl,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Width any `json:"width"`
 }
 
 // FreeTemplateSearchListMatch is the typed request payload for FreeTemplateSearch.ListTyped.
@@ -509,26 +346,6 @@ type FreeTemplateSearchListMatch struct {
 
 // Generate is the typed data model for the generate entity.
 type Generate struct {
-	Base64 *string `json:"base64,omitempty"`
-	ByteLength int `json:"byteLength"`
-	Captions *[]any `json:"captions,omitempty"`
-	DataUrl *string `json:"dataUrl,omitempty"`
-	DelayMs int `json:"delayMs"`
-	DurationMs *int `json:"durationMs,omitempty"`
-	Filename string `json:"filename"`
-	Fps *int `json:"fps,omitempty"`
-	GifSlug string `json:"gifSlug"`
-	Height int `json:"height"`
-	MimeType string `json:"mimeType"`
-	Pages int `json:"pages"`
-	Parameters map[string]any `json:"parameters"`
-	ReturnBase64 *bool `json:"returnBase64,omitempty"`
-	SourceDurationMs int `json:"sourceDurationMs"`
-	StartMs *int `json:"startMs,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Width int `json:"width"`
-	WidthPx *int `json:"widthPx,omitempty"`
 }
 
 // GenerateCreateData is the typed request payload for Generate.CreateTyped.
@@ -555,13 +372,22 @@ type GenerateCreateData struct {
 	WidthPx *int `json:"widthPx,omitempty"`
 }
 
+// Gif is the typed data model for the gif entity.
+type Gif struct {
+}
+
+// GifListMatch is the typed request payload for Gif.ListTyped.
+type GifListMatch struct {
+	Page *int `json:"page,omitempty"`
+	PageSize *int `json:"page_size,omitempty"`
+	Q *string `json:"q,omitempty"`
+	Query *string `json:"query,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	Tag *string `json:"tag,omitempty"`
+}
+
 // Growth is the typed data model for the growth entity.
 type Growth struct {
-	Action string `json:"action"`
-	ActorId *string `json:"actorId,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	LogExposure *bool `json:"logExposure,omitempty"`
-	Surface *string `json:"surface,omitempty"`
 }
 
 // GrowthLoadMatch is the typed request payload for Growth.LoadTyped.
@@ -580,25 +406,26 @@ type GrowthCreateData struct {
 	Surface *string `json:"surface,omitempty"`
 }
 
-// ListMeme is the typed data model for the list_meme entity.
-type ListMeme struct {
-	AltText string `json:"altText"`
-	CanonicalImageUrl string `json:"canonicalImageUrl"`
-	CreatedAt string `json:"createdAt"`
-	ImageUrl string `json:"imageUrl"`
-	NsfwStatus string `json:"nsfwStatus"`
-	ShareSlug string `json:"shareSlug"`
-	ShareUrl string `json:"shareUrl"`
-	ShareViews int `json:"shareViews"`
-	Slug string `json:"slug"`
-	Tags []any `json:"tags"`
-	TemplateSlug string `json:"templateSlug"`
-	Title string `json:"title"`
-	Visibility string `json:"visibility"`
+// Media is the typed data model for the media entity.
+type Media struct {
 }
 
-// ListMemeListMatch is the typed request payload for ListMeme.ListTyped.
-type ListMemeListMatch struct {
+// MediaCreateData is the typed request payload for Media.CreateTyped.
+type MediaCreateData struct {
+}
+
+// Meme is the typed data model for the meme entity.
+type Meme struct {
+}
+
+// MemeLoadMatch is the typed request payload for Meme.LoadTyped.
+type MemeLoadMatch struct {
+	Id string `json:"id"`
+	OwnerToken *string `json:"owner_token,omitempty"`
+}
+
+// MemeListMatch is the typed request payload for Meme.ListTyped.
+type MemeListMatch struct {
 	ExcludeTemplateClone *bool `json:"exclude_template_clone,omitempty"`
 	IncludeNsfw *bool `json:"include_nsfw,omitempty"`
 	OfficialOnly *bool `json:"official_only,omitempty"`
@@ -610,43 +437,6 @@ type ListMemeListMatch struct {
 	Visibility *string `json:"visibility,omitempty"`
 }
 
-// Media is the typed data model for the media entity.
-type Media struct {
-}
-
-// MediaCreateData is the typed request payload for Media.CreateTyped.
-type MediaCreateData struct {
-}
-
-// Meme is the typed data model for the meme entity.
-type Meme struct {
-	AltText string `json:"altText"`
-	CanonicalImageUrl string `json:"canonicalImageUrl"`
-	Canvas map[string]any `json:"canvas"`
-	Captions []any `json:"captions"`
-	CreatedAt string `json:"createdAt"`
-	Id *string `json:"id,omitempty"`
-	ImageUrl string `json:"imageUrl"`
-	NsfwStatus string `json:"nsfwStatus"`
-	Overlays []any `json:"overlays"`
-	ShareSlug string `json:"shareSlug"`
-	ShareUrl string `json:"shareUrl"`
-	ShareViews int `json:"shareViews"`
-	Slug string `json:"slug"`
-	SourceImageUrl string `json:"sourceImageUrl"`
-	Tags []any `json:"tags"`
-	TemplateSlug string `json:"templateSlug"`
-	Title string `json:"title"`
-	Visibility string `json:"visibility"`
-	Watermark map[string]any `json:"watermark"`
-}
-
-// MemeLoadMatch is the typed request payload for Meme.LoadTyped.
-type MemeLoadMatch struct {
-	Id string `json:"id"`
-	OwnerToken *string `json:"owner_token,omitempty"`
-}
-
 // MemeRemoveMatch is the typed request payload for Meme.RemoveTyped.
 type MemeRemoveMatch struct {
 	Id string `json:"id"`
@@ -654,30 +444,6 @@ type MemeRemoveMatch struct {
 
 // PublicTemplateMediaItem is the typed data model for the public_template_media_item entity.
 type PublicTemplateMediaItem struct {
-	Animated *bool `json:"animated,omitempty"`
-	AssetBytes *any `json:"assetBytes,omitempty"`
-	AssetContentType *string `json:"assetContentType,omitempty"`
-	BoxCount *int `json:"boxCount,omitempty"`
-	CaptionCount *int `json:"captionCount,omitempty"`
-	Captions []any `json:"captions"`
-	Categories *[]any `json:"categories,omitempty"`
-	Description string `json:"description"`
-	DurationMs *any `json:"durationMs,omitempty"`
-	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
-	FrameCount *any `json:"frameCount,omitempty"`
-	Height any `json:"height"`
-	Id string `json:"id"`
-	ImageUrl string `json:"imageUrl"`
-	MediaType string `json:"mediaType"`
-	Name string `json:"name"`
-	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
-	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
-	QualityStatus *string `json:"qualityStatus,omitempty"`
-	Slug string `json:"slug"`
-	SourceTemplateId any `json:"sourceTemplateId"`
-	SourceUrl *string `json:"sourceUrl,omitempty"`
-	Tags []any `json:"tags"`
-	Width any `json:"width"`
 }
 
 // PublicTemplateMediaItemLoadMatch is the typed request payload for PublicTemplateMediaItem.LoadTyped.
@@ -716,14 +482,6 @@ type PublicTemplateMediaItemCreateData struct {
 
 // StandaloneAgentBootstrap is the typed data model for the standalone_agent_bootstrap entity.
 type StandaloneAgentBootstrap struct {
-	Description *string `json:"description,omitempty"`
-	Handle string `json:"handle"`
-	Locale *string `json:"locale,omitempty"`
-	Name string `json:"name"`
-	StylePreset *string `json:"stylePreset,omitempty"`
-	SystemPrompt *string `json:"systemPrompt,omitempty"`
-	WatermarkText *string `json:"watermarkText,omitempty"`
-	WebsiteUrl *string `json:"websiteUrl,omitempty"`
 }
 
 // StandaloneAgentBootstrapCreateData is the typed request payload for StandaloneAgentBootstrap.CreateTyped.
@@ -740,30 +498,6 @@ type StandaloneAgentBootstrapCreateData struct {
 
 // Template is the typed data model for the template entity.
 type Template struct {
-	Animated *bool `json:"animated,omitempty"`
-	AssetBytes *any `json:"assetBytes,omitempty"`
-	AssetContentType *string `json:"assetContentType,omitempty"`
-	BoxCount *int `json:"boxCount,omitempty"`
-	CaptionCount *int `json:"captionCount,omitempty"`
-	Captions []any `json:"captions"`
-	Categories *[]any `json:"categories,omitempty"`
-	Description string `json:"description"`
-	DurationMs *any `json:"durationMs,omitempty"`
-	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
-	FrameCount *any `json:"frameCount,omitempty"`
-	Height any `json:"height"`
-	Id string `json:"id"`
-	ImageUrl string `json:"imageUrl"`
-	MediaType string `json:"mediaType"`
-	Name string `json:"name"`
-	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
-	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
-	QualityStatus *string `json:"qualityStatus,omitempty"`
-	Slug string `json:"slug"`
-	SourceTemplateId any `json:"sourceTemplateId"`
-	SourceUrl *string `json:"sourceUrl,omitempty"`
-	Tags []any `json:"tags"`
-	Width any `json:"width"`
 }
 
 // TemplateListMatch is the typed request payload for Template.ListTyped.
@@ -778,62 +512,8 @@ type TemplateListMatch struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-// TemplateSearch is the typed data model for the template_search entity.
-type TemplateSearch struct {
-	Animated *bool `json:"animated,omitempty"`
-	AssetBytes *any `json:"assetBytes,omitempty"`
-	AssetContentType *string `json:"assetContentType,omitempty"`
-	BoxCount *int `json:"boxCount,omitempty"`
-	CaptionCount *int `json:"captionCount,omitempty"`
-	Captions []any `json:"captions"`
-	Categories *[]any `json:"categories,omitempty"`
-	Description string `json:"description"`
-	DurationMs *any `json:"durationMs,omitempty"`
-	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
-	FrameCount *any `json:"frameCount,omitempty"`
-	Height any `json:"height"`
-	Id string `json:"id"`
-	ImageUrl string `json:"imageUrl"`
-	MediaType string `json:"mediaType"`
-	Name string `json:"name"`
-	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
-	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
-	QualityStatus *string `json:"qualityStatus,omitempty"`
-	Slug string `json:"slug"`
-	SourceTemplateId any `json:"sourceTemplateId"`
-	SourceUrl *string `json:"sourceUrl,omitempty"`
-	Tags []any `json:"tags"`
-	Width any `json:"width"`
-}
-
-// TemplateSearchListMatch is the typed request payload for TemplateSearch.ListTyped.
-type TemplateSearchListMatch struct {
-	Page *int `json:"page,omitempty"`
-	PageSize *int `json:"page_size,omitempty"`
-	Q *string `json:"q,omitempty"`
-	Query *string `json:"query,omitempty"`
-	Sort *string `json:"sort,omitempty"`
-	Tag *string `json:"tag,omitempty"`
-}
-
 // TrendAlert is the typed data model for the trend_alert entity.
 type TrendAlert struct {
-	Action string `json:"action"`
-	ActorId string `json:"actorId"`
-	Aggressiveness *float64 `json:"aggressiveness,omitempty"`
-	AlertId string `json:"alertId"`
-	Channels *[]any `json:"channels,omitempty"`
-	DeliverAllAlerts *bool `json:"deliverAllAlerts,omitempty"`
-	Event *map[string]any `json:"event,omitempty"`
-	ExplicitNiches *[]any `json:"explicitNiches,omitempty"`
-	ExplicitRegions *[]any `json:"explicitRegions,omitempty"`
-	ExplicitSources *[]any `json:"explicitSources,omitempty"`
-	ExplicitTopics *[]any `json:"explicitTopics,omitempty"`
-	FollowerCount *int `json:"followerCount,omitempty"`
-	Niche *string `json:"niche,omitempty"`
-	Region *string `json:"region,omitempty"`
-	Source *string `json:"source,omitempty"`
-	Topic string `json:"topic"`
 }
 
 // TrendAlertLoadMatch is the typed request payload for TrendAlert.LoadTyped.

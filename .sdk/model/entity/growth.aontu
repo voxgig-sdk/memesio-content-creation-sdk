@@ -1,0 +1,451 @@
+# Entity: growth
+
+main: kit: entity: growth: {
+
+  alias: field: {}
+
+  fields: {
+    action: {
+      h: "Action"
+      n: "action"
+      r: true
+      t: "`$STRING`"
+    }
+    actorId: {
+      h: "Actor Id"
+      n: "actorId"
+      r: false
+      t: "`$STRING`"
+    }
+    limit: {
+      h: "Limit"
+      n: "limit"
+      r: false
+      t: "`$INTEGER`"
+    }
+    logExposure: {
+      h: "Log Exposure"
+      n: "logExposure"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    surface: {
+      h: "Surface"
+      n: "surface"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "growth"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/growth/experiments/decision"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/growth/experiments/decision"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "experiments"
+            }
+            {
+              lit: "decision"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/growth/lifecycle-messaging"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/growth/lifecycle-messaging"
+          q: {
+            "$action": "lifecycle_messaging"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "lifecycle-messaging"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/growth/referrals"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/growth/referrals"
+          q: {
+            "$action": "referral"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "referrals"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/growth/social-publish"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/growth/social-publish"
+          q: {
+            "$action": "social_publish"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "social-publish"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/growth/trend-campaigns"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/growth/trend-campaigns"
+          q: {
+            "$action": "trend_campaign"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "trend-campaigns"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/growth/experiments/decision"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actor_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "log_exposure"
+                or: "log_exposure"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "surface"
+                or: "surface"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/growth/experiments/decision"
+          q: {
+            exist: [
+              "actor_id"
+              "log_exposure"
+              "surface"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "experiments"
+            }
+            {
+              lit: "decision"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/growth/trend-campaigns"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "published_only"
+                or: "published_only"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "week_start"
+                or: "week_start"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/growth/trend-campaigns"
+          q: {
+            "$action": "trend_campaign"
+            exist: [
+              "limit"
+              "published_only"
+              "week_start"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "trend-campaigns"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/growth/social-publish"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actor_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "publish_limit"
+                or: "publish_limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/growth/social-publish"
+          q: {
+            "$action": "social_publish"
+            exist: [
+              "actor_id"
+              "publish_limit"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "social-publish"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/growth/referrals"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actor_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/growth/referrals"
+          q: {
+            "$action": "referral"
+            exist: [
+              "actor_id"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "referrals"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/growth/lifecycle-messaging"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/growth/lifecycle-messaging"
+          q: {
+            "$action": "lifecycle_messaging"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "lifecycle-messaging"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/growth/viral-triggers"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/growth/viral-triggers"
+          q: {
+            "$action": "viral_trigger"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "viral-triggers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

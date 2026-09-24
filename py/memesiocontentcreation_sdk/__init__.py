@@ -403,16 +403,16 @@ class MemesioContentCreationSDK:
         return GenerateEntity(self, data)
 
 
+    def Gif(self, data=None) -> "GifEntity":
+        """Entity factory: client.Gif().list() / client.Gif().load({"id": ...})."""
+        from memesiocontentcreation_sdk.entity.gif_entity import GifEntity
+        return GifEntity(self, data)
+
+
     def Growth(self, data=None) -> "GrowthEntity":
         """Entity factory: client.Growth().list() / client.Growth().load({"id": ...})."""
         from memesiocontentcreation_sdk.entity.growth_entity import GrowthEntity
         return GrowthEntity(self, data)
-
-
-    def ListMeme(self, data=None) -> "ListMemeEntity":
-        """Entity factory: client.ListMeme().list() / client.ListMeme().load({"id": ...})."""
-        from memesiocontentcreation_sdk.entity.list_meme_entity import ListMemeEntity
-        return ListMemeEntity(self, data)
 
 
     def Media(self, data=None) -> "MediaEntity":
@@ -443,12 +443,6 @@ class MemesioContentCreationSDK:
         """Entity factory: client.Template().list() / client.Template().load({"id": ...})."""
         from memesiocontentcreation_sdk.entity.template_entity import TemplateEntity
         return TemplateEntity(self, data)
-
-
-    def TemplateSearch(self, data=None) -> "TemplateSearchEntity":
-        """Entity factory: client.TemplateSearch().list() / client.TemplateSearch().load({"id": ...})."""
-        from memesiocontentcreation_sdk.entity.template_search_entity import TemplateSearchEntity
-        return TemplateSearchEntity(self, data)
 
 
     def TrendAlert(self, data=None) -> "TrendAlertEntity":
@@ -512,14 +506,13 @@ if TYPE_CHECKING:
     from memesiocontentcreation_sdk.entity.free_caption_meme_success_entity import FreeCaptionMemeSuccessEntity
     from memesiocontentcreation_sdk.entity.free_template_search_entity import FreeTemplateSearchEntity
     from memesiocontentcreation_sdk.entity.generate_entity import GenerateEntity
+    from memesiocontentcreation_sdk.entity.gif_entity import GifEntity
     from memesiocontentcreation_sdk.entity.growth_entity import GrowthEntity
-    from memesiocontentcreation_sdk.entity.list_meme_entity import ListMemeEntity
     from memesiocontentcreation_sdk.entity.media_entity import MediaEntity
     from memesiocontentcreation_sdk.entity.meme_entity import MemeEntity
     from memesiocontentcreation_sdk.entity.public_template_media_item_entity import PublicTemplateMediaItemEntity
     from memesiocontentcreation_sdk.entity.standalone_agent_bootstrap_entity import StandaloneAgentBootstrapEntity
     from memesiocontentcreation_sdk.entity.template_entity import TemplateEntity
-    from memesiocontentcreation_sdk.entity.template_search_entity import TemplateSearchEntity
     from memesiocontentcreation_sdk.entity.trend_alert_entity import TrendAlertEntity
     from memesiocontentcreation_sdk.entity.upload_caption_meme_success_entity import UploadCaptionMemeSuccessEntity
     from memesiocontentcreation_sdk.entity.video_entity import VideoEntity

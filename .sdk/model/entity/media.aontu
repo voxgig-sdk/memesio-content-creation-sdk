@@ -1,0 +1,48 @@
+# Entity: media
+
+main: kit: entity: media: {
+
+  alias: field: {}
+
+  name: "media"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/media/signed-url"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/media/signed-url"
+          q: {
+            "$action": "signed_url"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "media"
+            }
+            {
+              lit: "signed-url"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

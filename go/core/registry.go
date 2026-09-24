@@ -44,9 +44,9 @@ var NewFreeTemplateSearchEntityFunc func(client *MemesioContentCreationSDK, ento
 
 var NewGenerateEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
 
-var NewGrowthEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
+var NewGifEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
 
-var NewListMemeEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
+var NewGrowthEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
 
 var NewMediaEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
 
@@ -57,8 +57,6 @@ var NewPublicTemplateMediaItemEntityFunc func(client *MemesioContentCreationSDK,
 var NewStandaloneAgentBootstrapEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
 
 var NewTemplateEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
-
-var NewTemplateSearchEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
 
 var NewTrendAlertEntityFunc func(client *MemesioContentCreationSDK, entopts map[string]any) MemesioContentCreationEntity
 

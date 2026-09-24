@@ -253,14 +253,13 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `FreeCaptionMemeSuccess` | `(data map[string]any) MemesioContentCreationEntity` | Create a FreeCaptionMemeSuccess entity instance. |
 | `FreeTemplateSearch` | `(data map[string]any) MemesioContentCreationEntity` | Create a FreeTemplateSearch entity instance. |
 | `Generate` | `(data map[string]any) MemesioContentCreationEntity` | Create a Generate entity instance. |
+| `Gif` | `(data map[string]any) MemesioContentCreationEntity` | Create a Gif entity instance. |
 | `Growth` | `(data map[string]any) MemesioContentCreationEntity` | Create a Growth entity instance. |
-| `ListMeme` | `(data map[string]any) MemesioContentCreationEntity` | Create a ListMeme entity instance. |
 | `Media` | `(data map[string]any) MemesioContentCreationEntity` | Create a Media entity instance. |
 | `Meme` | `(data map[string]any) MemesioContentCreationEntity` | Create a Meme entity instance. |
 | `PublicTemplateMediaItem` | `(data map[string]any) MemesioContentCreationEntity` | Create a PublicTemplateMediaItem entity instance. |
 | `StandaloneAgentBootstrap` | `(data map[string]any) MemesioContentCreationEntity` | Create a StandaloneAgentBootstrap entity instance. |
 | `Template` | `(data map[string]any) MemesioContentCreationEntity` | Create a Template entity instance. |
-| `TemplateSearch` | `(data map[string]any) MemesioContentCreationEntity` | Create a TemplateSearch entity instance. |
 | `TrendAlert` | `(data map[string]any) MemesioContentCreationEntity` | Create a TrendAlert entity instance. |
 | `UploadCaptionMemeSuccess` | `(data map[string]any) MemesioContentCreationEntity` | Create an UploadCaptionMemeSuccess entity instance. |
 | `Video` | `(data map[string]any) MemesioContentCreationEntity` | Create a Video entity instance. |
@@ -631,6 +630,39 @@ Operations: Create.
 
 API path: `/api/v1/gifs/generate`
 
+#### Gif
+
+| Field | Description |
+| --- | --- |
+| `"animated"` |  |
+| `"assetBytes"` |  |
+| `"assetContentType"` |  |
+| `"boxCount"` |  |
+| `"captionCount"` |  |
+| `"captions"` |  |
+| `"categories"` |  |
+| `"description"` |  |
+| `"durationMs"` |  |
+| `"exampleImageUrl"` |  |
+| `"frameCount"` |  |
+| `"height"` |  |
+| `"id"` |  |
+| `"imageUrl"` |  |
+| `"mediaType"` |  |
+| `"name"` |  |
+| `"posterImageUrl"` |  |
+| `"previewImageUrl"` |  |
+| `"qualityStatus"` |  |
+| `"slug"` |  |
+| `"sourceTemplateId"` |  |
+| `"sourceUrl"` |  |
+| `"tags"` |  |
+| `"width"` |  |
+
+Operations: List.
+
+API path: `/api/gifs`
+
 #### Growth
 
 | Field | Description |
@@ -644,28 +676,6 @@ API path: `/api/v1/gifs/generate`
 Operations: Create, Load.
 
 API path: `/api/growth/experiments/decision`
-
-#### ListMeme
-
-| Field | Description |
-| --- | --- |
-| `"altText"` |  |
-| `"canonicalImageUrl"` |  |
-| `"createdAt"` |  |
-| `"imageUrl"` |  |
-| `"nsfwStatus"` |  |
-| `"shareSlug"` |  |
-| `"shareUrl"` |  |
-| `"shareViews"` |  |
-| `"slug"` |  |
-| `"tags"` |  |
-| `"templateSlug"` |  |
-| `"title"` |  |
-| `"visibility"` |  |
-
-Operations: List.
-
-API path: `/api/memes`
 
 #### Media
 
@@ -700,9 +710,9 @@ API path: `/api/media/signed-url`
 | `"visibility"` |  |
 | `"watermark"` |  |
 
-Operations: Load, Remove.
+Operations: List, Load, Remove.
 
-API path: `/api/memes/{slug}`
+API path: `/api/memes`
 
 #### PublicTemplateMediaItem
 
@@ -786,39 +796,6 @@ API path: `/api/v1/agents/bootstrap`
 Operations: List.
 
 API path: `/api/templates`
-
-#### TemplateSearch
-
-| Field | Description |
-| --- | --- |
-| `"animated"` |  |
-| `"assetBytes"` |  |
-| `"assetContentType"` |  |
-| `"boxCount"` |  |
-| `"captionCount"` |  |
-| `"captions"` |  |
-| `"categories"` |  |
-| `"description"` |  |
-| `"durationMs"` |  |
-| `"exampleImageUrl"` |  |
-| `"frameCount"` |  |
-| `"height"` |  |
-| `"id"` |  |
-| `"imageUrl"` |  |
-| `"mediaType"` |  |
-| `"name"` |  |
-| `"posterImageUrl"` |  |
-| `"previewImageUrl"` |  |
-| `"qualityStatus"` |  |
-| `"slug"` |  |
-| `"sourceTemplateId"` |  |
-| `"sourceUrl"` |  |
-| `"tags"` |  |
-| `"width"` |  |
-
-Operations: List.
-
-API path: `/api/gifs`
 
 #### TrendAlert
 
@@ -1588,6 +1565,56 @@ fmt.Println(result)
 ```
 
 
+### Gif
+
+Create an instance: `gif := client.Gif(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `animated` | `bool` |  |
+| `assetBytes` | `any` |  |
+| `assetContentType` | `string` |  |
+| `boxCount` | `int` |  |
+| `captionCount` | `int` |  |
+| `captions` | `[]any` |  |
+| `categories` | `[]any` |  |
+| `description` | `string` |  |
+| `durationMs` | `any` |  |
+| `exampleImageUrl` | `any` |  |
+| `frameCount` | `any` |  |
+| `height` | `any` |  |
+| `id` | `string` |  |
+| `imageUrl` | `string` |  |
+| `mediaType` | `string` |  |
+| `name` | `string` |  |
+| `posterImageUrl` | `string` |  |
+| `previewImageUrl` | `string` |  |
+| `qualityStatus` | `string` |  |
+| `slug` | `string` |  |
+| `sourceTemplateId` | `any` |  |
+| `sourceUrl` | `string` |  |
+| `tags` | `[]any` |  |
+| `width` | `any` |  |
+
+#### Example: List
+
+```go
+gifs, err := client.Gif(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(gifs) // the array of records
+```
+
+
 ### Growth
 
 Create an instance: `growth := client.Growth(nil)`
@@ -1632,45 +1659,6 @@ fmt.Println(result)
 ```
 
 
-### ListMeme
-
-Create an instance: `listMeme := client.ListMeme(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `altText` | `string` |  |
-| `canonicalImageUrl` | `string` |  |
-| `createdAt` | `string` |  |
-| `imageUrl` | `string` |  |
-| `nsfwStatus` | `string` |  |
-| `shareSlug` | `string` |  |
-| `shareUrl` | `string` |  |
-| `shareViews` | `int` |  |
-| `slug` | `string` |  |
-| `tags` | `[]any` |  |
-| `templateSlug` | `string` |  |
-| `title` | `string` |  |
-| `visibility` | `string` |  |
-
-#### Example: List
-
-```go
-listMemes, err := client.ListMeme(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(listMemes) // the array of records
-```
-
-
 ### Media
 
 Create an instance: `media := client.Media(nil)`
@@ -1701,6 +1689,7 @@ Create an instance: `meme := client.Meme(nil)`
 
 | Method | Description |
 | --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
@@ -1736,6 +1725,16 @@ if err != nil {
     panic(err)
 }
 fmt.Println(meme) // the loaded record
+```
+
+#### Example: List
+
+```go
+memes, err := client.Meme(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(memes) // the array of records
 ```
 
 
@@ -1896,56 +1895,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(templates) // the array of records
-```
-
-
-### TemplateSearch
-
-Create an instance: `templateSearch := client.TemplateSearch(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `bool` |  |
-| `assetBytes` | `any` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `int` |  |
-| `captionCount` | `int` |  |
-| `captions` | `[]any` |  |
-| `categories` | `[]any` |  |
-| `description` | `string` |  |
-| `durationMs` | `any` |  |
-| `exampleImageUrl` | `any` |  |
-| `frameCount` | `any` |  |
-| `height` | `any` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `any` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `[]any` |  |
-| `width` | `any` |  |
-
-#### Example: List
-
-```go
-templateSearchs, err := client.TemplateSearch(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(templateSearchs) // the array of records
 ```
 
 

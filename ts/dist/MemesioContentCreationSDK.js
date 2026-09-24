@@ -18,14 +18,13 @@ const DeveloperApiEntity_1 = require("./entity/DeveloperApiEntity");
 const FreeCaptionMemeSuccessEntity_1 = require("./entity/FreeCaptionMemeSuccessEntity");
 const FreeTemplateSearchEntity_1 = require("./entity/FreeTemplateSearchEntity");
 const GenerateEntity_1 = require("./entity/GenerateEntity");
+const GifEntity_1 = require("./entity/GifEntity");
 const GrowthEntity_1 = require("./entity/GrowthEntity");
-const ListMemeEntity_1 = require("./entity/ListMemeEntity");
 const MediaEntity_1 = require("./entity/MediaEntity");
 const MemeEntity_1 = require("./entity/MemeEntity");
 const PublicTemplateMediaItemEntity_1 = require("./entity/PublicTemplateMediaItemEntity");
 const StandaloneAgentBootstrapEntity_1 = require("./entity/StandaloneAgentBootstrapEntity");
 const TemplateEntity_1 = require("./entity/TemplateEntity");
-const TemplateSearchEntity_1 = require("./entity/TemplateSearchEntity");
 const TrendAlertEntity_1 = require("./entity/TrendAlertEntity");
 const UploadCaptionMemeSuccessEntity_1 = require("./entity/UploadCaptionMemeSuccessEntity");
 const VideoEntity_1 = require("./entity/VideoEntity");
@@ -110,7 +109,6 @@ class MemesioContentCreationSDK {
             ctrl: fetchargs.ctrl || {},
         }, this._rootctx);
         const options = this._options;
-        // Build spec directly from SDK options + user-provided fetch args.
         const spec = {
             base: options.base,
             prefix: options.prefix,
@@ -124,14 +122,12 @@ class MemesioContentCreationSDK {
             step: 'start',
         };
         ctx.spec = spec;
-        // Merge user-provided headers over SDK defaults.
         if (fetchargs.headers) {
             const uheaders = fetchargs.headers;
             for (let key in uheaders) {
                 spec.headers[key] = uheaders[key];
             }
         }
-        // Apply SDK auth (apikey, auth prefix, etc.)
         const authResult = prepareAuth(ctx);
         if (authResult instanceof Error) {
             return authResult;
@@ -206,18 +202,6 @@ class MemesioContentCreationSDK {
             return { ok: false, err };
         }
     }
-    // Raw GraphQL access: the pressure valve that makes the generated
-    // surface's deliberate omissions (per-call selection sets, typed filter
-    // builders, batching, subscriptions) livable — the whole schema stays
-    // reachable.
-    //
-    // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-    // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-    // HTTP 200 as a top-level `errors` array, so status alone would report a
-    // failed query as ok.
-    //
-    // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-    // ratelimit or paging features apply.
     async graphql(query, variables, ctrl) {
         const options = this._options;
         if (!options.allow.op.includes('graphql')) {
@@ -363,19 +347,19 @@ class MemesioContentCreationSDK {
         const self = this;
         return new GenerateEntity_1.GenerateEntity(self, entopts);
     }
+    // Entity access: `client.Gif().list()` / `client.Gif().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    Gif(entopts) {
+        const self = this;
+        return new GifEntity_1.GifEntity(self, entopts);
+    }
     // Entity access: `client.Growth().list()` / `client.Growth().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
     Growth(entopts) {
         const self = this;
         return new GrowthEntity_1.GrowthEntity(self, entopts);
-    }
-    // Entity access: `client.ListMeme().list()` / `client.ListMeme().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    ListMeme(entopts) {
-        const self = this;
-        return new ListMemeEntity_1.ListMemeEntity(self, entopts);
     }
     // Entity access: `client.Media().list()` / `client.Media().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -411,13 +395,6 @@ class MemesioContentCreationSDK {
     Template(entopts) {
         const self = this;
         return new TemplateEntity_1.TemplateEntity(self, entopts);
-    }
-    // Entity access: `client.TemplateSearch().list()` / `client.TemplateSearch().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    TemplateSearch(entopts) {
-        const self = this;
-        return new TemplateSearchEntity_1.TemplateSearchEntity(self, entopts);
     }
     // Entity access: `client.TrendAlert().list()` / `client.TrendAlert().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

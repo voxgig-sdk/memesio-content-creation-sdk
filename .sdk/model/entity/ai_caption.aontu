@@ -1,0 +1,453 @@
+# Entity: ai_caption
+
+main: kit: entity: ai_caption: {
+
+  alias: field: {}
+
+  fields: {
+    blockedTerms: {
+      h: "Blocked Terms"
+      n: "blockedTerms"
+      r: false
+      t: "`$ARRAY`"
+    }
+    canvasText: {
+      h: "Canvas Text"
+      n: "canvasText"
+      r: true
+      t: "`$ARRAY`"
+    }
+    captionCount: {
+      h: "Caption Count"
+      n: "captionCount"
+      r: false
+      t: "`$INTEGER`"
+    }
+    captionSets: {
+      h: "Caption Sets"
+      n: "captionSets"
+      r: false
+      t: "`$ARRAY`"
+    }
+    entities: {
+      h: "Entities"
+      n: "entities"
+      r: false
+      t: "`$ARRAY`"
+    }
+    fallbackUsed: {
+      h: "Fallback Used"
+      n: "fallbackUsed"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    generationStrategy: {
+      h: "Generation Strategy"
+      n: "generationStrategy"
+      r: false
+      t: "`$STRING`"
+    }
+    locale: {
+      h: "Locale"
+      n: "locale"
+      r: false
+      t: "`$STRING`"
+    }
+    memeId: {
+      h: "Meme Id"
+      n: "memeId"
+      r: false
+      t: "`$STRING`"
+    }
+    memeSlug: {
+      h: "Meme Slug"
+      n: "memeSlug"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      t: "`$STRING`"
+    }
+    ok: {
+      h: "Ok"
+      n: "ok"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    optionCount: {
+      h: "Option Count"
+      n: "optionCount"
+      r: false
+      t: "`$INTEGER`"
+    }
+    ownerToken: {
+      h: "Owner Token"
+      n: "ownerToken"
+      r: false
+      t: "`$STRING`"
+    }
+    providerId: {
+      h: "Provider Id"
+      n: "providerId"
+      r: false
+      t: "`$STRING`"
+    }
+    referenceCaptions: {
+      h: "Reference Captions"
+      n: "referenceCaptions"
+      r: false
+      t: "`$ARRAY`"
+    }
+    rewriteNote: {
+      h: "Rewrite Note"
+      n: "rewriteNote"
+      r: false
+      t: "`$STRING`"
+    }
+    sceneSummary: {
+      h: "Scene Summary"
+      n: "sceneSummary"
+      r: false
+      t: "`$STRING`"
+    }
+    templateDescription: {
+      h: "Template Description"
+      n: "templateDescription"
+      r: false
+      t: "`$STRING`"
+    }
+    templateName: {
+      h: "Template Name"
+      n: "templateName"
+      r: false
+      t: "`$STRING`"
+    }
+    templateTags: {
+      h: "Template Tags"
+      n: "templateTags"
+      r: false
+      t: "`$ARRAY`"
+    }
+    tone: {
+      h: "Tone"
+      n: "tone"
+      r: true
+      t: "`$STRING`"
+    }
+    toneCues: {
+      h: "Tone Cues"
+      n: "toneCues"
+      r: false
+      t: "`$ARRAY`"
+    }
+    trendKeywords: {
+      h: "Trend Keywords"
+      n: "trendKeywords"
+      r: false
+      t: "`$ARRAY`"
+    }
+    trendReferences: {
+      h: "Trend References"
+      n: "trendReferences"
+      r: false
+      t: "`$ARRAY`"
+    }
+    trendSignals: {
+      h: "Trend Signals"
+      n: "trendSignals"
+      r: false
+      t: "`$ARRAY`"
+    }
+    variationOffset: {
+      h: "Variation Offset"
+      n: "variationOffset"
+      r: false
+      t: "`$INTEGER`"
+    }
+    voiceRules: {
+      h: "Voice Rules"
+      n: "voiceRules"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "ai_caption"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/ai/captions/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/captions/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/captions/moderate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/captions/moderate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "moderate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/captions/prompt"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/captions/prompt"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "prompt"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/captions/rank"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/captions/rank"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "rank"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/captions/rewrite"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/captions/rewrite"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "rewrite"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/captions/scene"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/captions/scene"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "scene"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/captions/tone-presets"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/captions/tone-presets"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "tone-presets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/ai/captions/tone-presets"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/ai/captions/tone-presets"
+          q: {
+            exist: [
+              "locale"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "tone-presets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/ai/captions/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/ai/captions/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

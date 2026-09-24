@@ -1,0 +1,40 @@
+# BasicAiJobFlow
+
+main: kit: flow: BasicAiJobFlow:
+{
+  entity: "ai_job",
+  kind: "basic",
+  name: "BasicAiJobFlow",
+  step: [
+    {
+      i: {
+        ref: "ai_job_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "ai_job_ref01",
+        srcdatavar: "ai_job_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "ai_job01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ai_job_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAiJobFlow"
+}

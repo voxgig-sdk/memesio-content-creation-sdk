@@ -1,0 +1,36 @@
+# BasicDeveloperApiFlow
+
+main: kit: flow: BasicDeveloperApiFlow:
+{
+  entity: "developer_api",
+  kind: "basic",
+  name: "BasicDeveloperApiFlow",
+  step: [
+    {
+      i: {
+        ref: "developer_api_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "developer_api_ref01",
+        srcdatavar: "developer_api_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-developer_api_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDeveloperApiFlow"
+}

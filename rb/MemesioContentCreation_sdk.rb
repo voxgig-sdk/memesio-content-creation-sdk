@@ -401,17 +401,17 @@ class MemesioContentCreationSDK
   end
 
 
+  # Canonical facade: client.Gif.list / client.Gif.load({ "id" => ... })
+  def Gif(data = nil)
+    require_relative 'entity/gif_entity'
+    GifEntity.new(self, data)
+  end
+
+
   # Canonical facade: client.Growth.list / client.Growth.load({ "id" => ... })
   def Growth(data = nil)
     require_relative 'entity/growth_entity'
     GrowthEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.ListMeme.list / client.ListMeme.load({ "id" => ... })
-  def ListMeme(data = nil)
-    require_relative 'entity/list_meme_entity'
-    ListMemeEntity.new(self, data)
   end
 
 
@@ -447,13 +447,6 @@ class MemesioContentCreationSDK
   def Template(data = nil)
     require_relative 'entity/template_entity'
     TemplateEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.TemplateSearch.list / client.TemplateSearch.load({ "id" => ... })
-  def TemplateSearch(data = nil)
-    require_relative 'entity/template_search_entity'
-    TemplateSearchEntity.new(self, data)
   end
 
 

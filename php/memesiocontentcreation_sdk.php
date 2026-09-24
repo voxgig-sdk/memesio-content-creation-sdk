@@ -629,6 +629,24 @@ class MemesioContentCreationSDK
     }
 
 
+    private $_gif = null;
+
+    // Canonical facade: $client->Gif()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->gif()
+    // resolves here too.
+    public function Gif($data = null)
+    {
+        require_once __DIR__ . '/entity/gif_entity.php';
+        if ($data === null) {
+            if ($this->_gif === null) {
+                $this->_gif = new GifEntity($this, null);
+            }
+            return $this->_gif;
+        }
+        return new GifEntity($this, $data);
+    }
+
+
     private $_growth = null;
 
     // Canonical facade: $client->Growth()->list() / ->load(["id" => ...]).
@@ -644,24 +662,6 @@ class MemesioContentCreationSDK
             return $this->_growth;
         }
         return new GrowthEntity($this, $data);
-    }
-
-
-    private $_list_meme = null;
-
-    // Canonical facade: $client->ListMeme()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->list_meme()
-    // resolves here too.
-    public function ListMeme($data = null)
-    {
-        require_once __DIR__ . '/entity/list_meme_entity.php';
-        if ($data === null) {
-            if ($this->_list_meme === null) {
-                $this->_list_meme = new ListMemeEntity($this, null);
-            }
-            return $this->_list_meme;
-        }
-        return new ListMemeEntity($this, $data);
     }
 
 
@@ -752,24 +752,6 @@ class MemesioContentCreationSDK
             return $this->_template;
         }
         return new TemplateEntity($this, $data);
-    }
-
-
-    private $_template_search = null;
-
-    // Canonical facade: $client->TemplateSearch()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->template_search()
-    // resolves here too.
-    public function TemplateSearch($data = null)
-    {
-        require_once __DIR__ . '/entity/template_search_entity.php';
-        if ($data === null) {
-            if ($this->_template_search === null) {
-                $this->_template_search = new TemplateSearchEntity($this, null);
-            }
-            return $this->_template_search;
-        }
-        return new TemplateSearchEntity($this, $data);
     }
 
 

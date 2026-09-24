@@ -1,7 +1,7 @@
 # Typed models for the MemesioContentCreation SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -599,6 +599,45 @@ class GenerateCreateData(GenerateCreateDataRequired, total=False):
     widthPx: int
 
 
+class GifRequired(TypedDict):
+    captions: list
+    description: str
+    height: float | None
+    id: str
+    imageUrl: str
+    mediaType: str
+    name: str
+    slug: str
+    sourceTemplateId: str | None
+    tags: list
+    width: float | None
+
+
+class Gif(GifRequired, total=False):
+    animated: bool
+    assetBytes: int | None
+    assetContentType: str
+    boxCount: int
+    captionCount: int
+    categories: list
+    durationMs: int | None
+    exampleImageUrl: str | None
+    frameCount: int | None
+    posterImageUrl: str
+    previewImageUrl: str
+    qualityStatus: str
+    sourceUrl: str
+
+
+class GifListMatch(TypedDict, total=False):
+    page: int
+    page_size: int
+    q: str
+    query: str
+    sort: str
+    tag: str
+
+
 class GrowthRequired(TypedDict):
     action: str
 
@@ -628,34 +667,6 @@ class GrowthCreateData(GrowthCreateDataRequired, total=False):
     limit: int
     logExposure: bool
     surface: str
-
-
-class ListMeme(TypedDict):
-    altText: str
-    canonicalImageUrl: str
-    createdAt: str
-    imageUrl: str
-    nsfwStatus: str
-    shareSlug: str
-    shareUrl: str
-    shareViews: int
-    slug: str
-    tags: list
-    templateSlug: str
-    title: str
-    visibility: str
-
-
-class ListMemeListMatch(TypedDict, total=False):
-    exclude_template_clone: bool
-    include_nsfw: bool
-    official_only: bool
-    owner_token: str
-    page: int
-    page_size: int
-    query: str
-    template_slug: str
-    visibility: str
 
 
 class Media(TypedDict):
@@ -697,6 +708,18 @@ class MemeLoadMatchRequired(TypedDict):
 
 class MemeLoadMatch(MemeLoadMatchRequired, total=False):
     owner_token: str
+
+
+class MemeListMatch(TypedDict, total=False):
+    exclude_template_clone: bool
+    include_nsfw: bool
+    official_only: bool
+    owner_token: str
+    page: int
+    page_size: int
+    query: str
+    template_slug: str
+    visibility: str
 
 
 class MemeRemoveMatch(TypedDict):
@@ -832,45 +855,6 @@ class Template(TemplateRequired, total=False):
 class TemplateListMatch(TypedDict, total=False):
     media_type: str
     mode: str
-    page: int
-    page_size: int
-    q: str
-    query: str
-    sort: str
-    tag: str
-
-
-class TemplateSearchRequired(TypedDict):
-    captions: list
-    description: str
-    height: float | None
-    id: str
-    imageUrl: str
-    mediaType: str
-    name: str
-    slug: str
-    sourceTemplateId: str | None
-    tags: list
-    width: float | None
-
-
-class TemplateSearch(TemplateSearchRequired, total=False):
-    animated: bool
-    assetBytes: int | None
-    assetContentType: str
-    boxCount: int
-    captionCount: int
-    categories: list
-    durationMs: int | None
-    exampleImageUrl: str | None
-    frameCount: int | None
-    posterImageUrl: str
-    previewImageUrl: str
-    qualityStatus: str
-    sourceUrl: str
-
-
-class TemplateSearchListMatch(TypedDict, total=False):
     page: int
     page_size: int
     q: str

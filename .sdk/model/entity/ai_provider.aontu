@@ -1,0 +1,253 @@
+# Entity: ai_provider
+
+main: kit: entity: ai_provider: {
+
+  alias: field: {}
+
+  fields: {
+    actorId: {
+      h: "Actor Id"
+      n: "actorId"
+      r: false
+      t: "`$STRING`"
+    }
+    correlationId: {
+      h: "Correlation Id"
+      n: "correlationId"
+      r: false
+      t: "`$STRING`"
+    }
+    limit: {
+      h: "Limit"
+      n: "limit"
+      r: false
+      t: "`$NUMBER`"
+    }
+    mappingMode: {
+      h: "Mapping Mode"
+      n: "mappingMode"
+      r: false
+      t: "`$STRING`"
+    }
+    maxSlots: {
+      h: "Max Slots"
+      n: "maxSlots"
+      r: false
+      t: "`$INTEGER`"
+    }
+    prompt: {
+      h: "Prompt"
+      n: "prompt"
+      r: true
+      t: "`$STRING`"
+    }
+    sourceImageUrl: {
+      h: "Source Image Url"
+      n: "sourceImageUrl"
+      r: true
+      t: "`$STRING`"
+    }
+    texts: {
+      h: "Texts"
+      n: "texts"
+      r: false
+      t: "`$ARRAY`"
+    }
+    trendSignals: {
+      h: "Trend Signals"
+      n: "trendSignals"
+      r: false
+      t: "`$ARRAY`"
+    }
+    workspaceId: {
+      h: "Workspace Id"
+      n: "workspaceId"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "ai_provider"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/ai/templates/detect"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/templates/detect"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              lit: "detect"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/ai/templates/suggest"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/ai/templates/suggest"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              lit: "suggest"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/ai/providers/background-remove-benchmark"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "refresh"
+                or: "refresh"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/ai/providers/background-remove-benchmark"
+          q: {
+            exist: [
+              "refresh"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "providers"
+            }
+            {
+              lit: "background-remove-benchmark"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/ai/providers/face-swap-benchmark"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "refresh"
+                or: "refresh"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/ai/providers/face-swap-benchmark"
+          q: {
+            exist: [
+              "refresh"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "providers"
+            }
+            {
+              lit: "face-swap-benchmark"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/ai/memes/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/ai/memes/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

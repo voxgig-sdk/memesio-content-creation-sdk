@@ -234,14 +234,13 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `FreeCaptionMemeSuccess` | `(data) -> FreeCaptionMemeSuccessEntity` | Create a FreeCaptionMemeSuccess entity instance. |
 | `FreeTemplateSearch` | `(data) -> FreeTemplateSearchEntity` | Create a FreeTemplateSearch entity instance. |
 | `Generate` | `(data) -> GenerateEntity` | Create a Generate entity instance. |
+| `Gif` | `(data) -> GifEntity` | Create a Gif entity instance. |
 | `Growth` | `(data) -> GrowthEntity` | Create a Growth entity instance. |
-| `ListMeme` | `(data) -> ListMemeEntity` | Create a ListMeme entity instance. |
 | `Media` | `(data) -> MediaEntity` | Create a Media entity instance. |
 | `Meme` | `(data) -> MemeEntity` | Create a Meme entity instance. |
 | `PublicTemplateMediaItem` | `(data) -> PublicTemplateMediaItemEntity` | Create a PublicTemplateMediaItem entity instance. |
 | `StandaloneAgentBootstrap` | `(data) -> StandaloneAgentBootstrapEntity` | Create a StandaloneAgentBootstrap entity instance. |
 | `Template` | `(data) -> TemplateEntity` | Create a Template entity instance. |
-| `TemplateSearch` | `(data) -> TemplateSearchEntity` | Create a TemplateSearch entity instance. |
 | `TrendAlert` | `(data) -> TrendAlertEntity` | Create a TrendAlert entity instance. |
 | `UploadCaptionMemeSuccess` | `(data) -> UploadCaptionMemeSuccessEntity` | Create an UploadCaptionMemeSuccess entity instance. |
 | `Video` | `(data) -> VideoEntity` | Create a Video entity instance. |
@@ -611,6 +610,39 @@ Operations: Create.
 
 API path: `/api/v1/gifs/generate`
 
+#### Gif
+
+| Field | Description |
+| --- | --- |
+| `animated` |  |
+| `assetBytes` |  |
+| `assetContentType` |  |
+| `boxCount` |  |
+| `captionCount` |  |
+| `captions` |  |
+| `categories` |  |
+| `description` |  |
+| `durationMs` |  |
+| `exampleImageUrl` |  |
+| `frameCount` |  |
+| `height` |  |
+| `id` |  |
+| `imageUrl` |  |
+| `mediaType` |  |
+| `name` |  |
+| `posterImageUrl` |  |
+| `previewImageUrl` |  |
+| `qualityStatus` |  |
+| `slug` |  |
+| `sourceTemplateId` |  |
+| `sourceUrl` |  |
+| `tags` |  |
+| `width` |  |
+
+Operations: List.
+
+API path: `/api/gifs`
+
 #### Growth
 
 | Field | Description |
@@ -624,28 +656,6 @@ API path: `/api/v1/gifs/generate`
 Operations: Create, Load.
 
 API path: `/api/growth/experiments/decision`
-
-#### ListMeme
-
-| Field | Description |
-| --- | --- |
-| `altText` |  |
-| `canonicalImageUrl` |  |
-| `createdAt` |  |
-| `imageUrl` |  |
-| `nsfwStatus` |  |
-| `shareSlug` |  |
-| `shareUrl` |  |
-| `shareViews` |  |
-| `slug` |  |
-| `tags` |  |
-| `templateSlug` |  |
-| `title` |  |
-| `visibility` |  |
-
-Operations: List.
-
-API path: `/api/memes`
 
 #### Media
 
@@ -680,9 +690,9 @@ API path: `/api/media/signed-url`
 | `visibility` |  |
 | `watermark` |  |
 
-Operations: Load, Remove.
+Operations: List, Load, Remove.
 
-API path: `/api/memes/{slug}`
+API path: `/api/memes`
 
 #### PublicTemplateMediaItem
 
@@ -766,39 +776,6 @@ API path: `/api/v1/agents/bootstrap`
 Operations: List.
 
 API path: `/api/templates`
-
-#### TemplateSearch
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: List.
-
-API path: `/api/gifs`
 
 #### TrendAlert
 
@@ -1476,6 +1453,52 @@ generate = client.Generate().create({
 ```
 
 
+### Gif
+
+Create an instance: `gif = client.Gif()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `animated` | `bool` |  |
+| `assetBytes` | `int | None` |  |
+| `assetContentType` | `str` |  |
+| `boxCount` | `int` |  |
+| `captionCount` | `int` |  |
+| `captions` | `list` |  |
+| `categories` | `list` |  |
+| `description` | `str` |  |
+| `durationMs` | `int | None` |  |
+| `exampleImageUrl` | `str | None` |  |
+| `frameCount` | `int | None` |  |
+| `height` | `float | None` |  |
+| `id` | `str` |  |
+| `imageUrl` | `str` |  |
+| `mediaType` | `str` |  |
+| `name` | `str` |  |
+| `posterImageUrl` | `str` |  |
+| `previewImageUrl` | `str` |  |
+| `qualityStatus` | `str` |  |
+| `slug` | `str` |  |
+| `sourceTemplateId` | `str | None` |  |
+| `sourceUrl` | `str` |  |
+| `tags` | `list` |  |
+| `width` | `float | None` |  |
+
+#### Example: List
+
+```python
+gifs = client.Gif().list()
+```
+
+
 ### Growth
 
 Create an instance: `growth = client.Growth()`
@@ -1512,41 +1535,6 @@ growth = client.Growth().create({
 ```
 
 
-### ListMeme
-
-Create an instance: `list_meme = client.ListMeme()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `altText` | `str` |  |
-| `canonicalImageUrl` | `str` |  |
-| `createdAt` | `str` |  |
-| `imageUrl` | `str` |  |
-| `nsfwStatus` | `str` |  |
-| `shareSlug` | `str` |  |
-| `shareUrl` | `str` |  |
-| `shareViews` | `int` |  |
-| `slug` | `str` |  |
-| `tags` | `list` |  |
-| `templateSlug` | `str` |  |
-| `title` | `str` |  |
-| `visibility` | `str` |  |
-
-#### Example: List
-
-```python
-list_memes = client.ListMeme().list()
-```
-
-
 ### Media
 
 Create an instance: `media = client.Media()`
@@ -1573,6 +1561,7 @@ Create an instance: `meme = client.Meme()`
 
 | Method | Description |
 | --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 | `remove(match)` | Remove the matching entity. |
 
@@ -1604,6 +1593,12 @@ Create an instance: `meme = client.Meme()`
 
 ```python
 meme = client.Meme().load({"id": "meme_id"})
+```
+
+#### Example: List
+
+```python
+memes = client.Meme().list()
 ```
 
 
@@ -1748,52 +1743,6 @@ Create an instance: `template = client.Template()`
 
 ```python
 templates = client.Template().list()
-```
-
-
-### TemplateSearch
-
-Create an instance: `template_search = client.TemplateSearch()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `bool` |  |
-| `assetBytes` | `int | None` |  |
-| `assetContentType` | `str` |  |
-| `boxCount` | `int` |  |
-| `captionCount` | `int` |  |
-| `captions` | `list` |  |
-| `categories` | `list` |  |
-| `description` | `str` |  |
-| `durationMs` | `int | None` |  |
-| `exampleImageUrl` | `str | None` |  |
-| `frameCount` | `int | None` |  |
-| `height` | `float | None` |  |
-| `id` | `str` |  |
-| `imageUrl` | `str` |  |
-| `mediaType` | `str` |  |
-| `name` | `str` |  |
-| `posterImageUrl` | `str` |  |
-| `previewImageUrl` | `str` |  |
-| `qualityStatus` | `str` |  |
-| `slug` | `str` |  |
-| `sourceTemplateId` | `str | None` |  |
-| `sourceUrl` | `str` |  |
-| `tags` | `list` |  |
-| `width` | `float | None` |  |
-
-#### Example: List
-
-```python
-template_searchs = client.TemplateSearch().list()
 ```
 
 

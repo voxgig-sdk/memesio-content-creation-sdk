@@ -1,0 +1,44 @@
+# BasicMemeFlow
+
+main: kit: flow: BasicMemeFlow:
+{
+  entity: "meme",
+  kind: "basic",
+  name: "BasicMemeFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "meme_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "meme_ref01",
+        srcdatavar: "meme_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "meme01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-meme_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMemeFlow"
+}

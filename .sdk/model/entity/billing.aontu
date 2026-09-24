@@ -1,0 +1,70 @@
+# Entity: billing
+
+main: kit: entity: billing: {
+
+  alias: field: {}
+
+  name: "billing"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/billing/usage"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "window_day"
+                or: "window_day"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/billing/usage"
+          q: {
+            "$action": "usage"
+            exist: [
+              "window_day"
+              "workspace_id"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "billing"
+            }
+            {
+              lit: "usage"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

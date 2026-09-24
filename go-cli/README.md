@@ -117,7 +117,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 27 entities.
+below — this SDK exposes 26 entities.
 
 ## Reference
 
@@ -172,9 +172,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 27 entities this SDK exposes (any is valid as `<entity>`):
+The 26 entities this SDK exposes (any is valid as `<entity>`):
 
-agent agent_infra ai_caption ai_job ai_meme_generation_succeeded ai_provider analytics auth billing collaboration compliance create_meme developer_api free_caption_meme_success free_template_search generate growth list_meme media meme public_template_media_item standalone_agent_bootstrap template template_search trend_alert upload_caption_meme_success video
+agent agent_infra ai_caption ai_job ai_meme_generation_succeeded ai_provider analytics auth billing collaboration compliance create_meme developer_api free_caption_meme_success free_template_search generate gif growth media meme public_template_media_item standalone_agent_bootstrap template trend_alert upload_caption_meme_success video
 
 ## Explanation
 

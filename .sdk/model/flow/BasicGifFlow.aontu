@@ -1,0 +1,22 @@
+# BasicGifFlow
+
+main: kit: flow: BasicGifFlow:
+{
+  entity: "gif",
+  kind: "basic",
+  name: "BasicGifFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "gif_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGifFlow"
+}

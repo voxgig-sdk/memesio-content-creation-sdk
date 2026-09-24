@@ -19,7 +19,6 @@ import type {
   TemplateListMatch,
 } from '../MemesioContentCreationTypes'
 
-// TODO: needs Entity superclass
 class TemplateEntity extends MemesioContentCreationEntityBase<Template> {
 
   constructor(client: MemesioContentCreationSDK, entopts: any) {

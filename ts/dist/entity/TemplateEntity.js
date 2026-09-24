@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TemplateEntity = void 0;
 const MemesioContentCreationEntityBase_1 = require("../MemesioContentCreationEntityBase");
-// TODO: needs Entity superclass
 class TemplateEntity extends MemesioContentCreationEntityBase_1.MemesioContentCreationEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

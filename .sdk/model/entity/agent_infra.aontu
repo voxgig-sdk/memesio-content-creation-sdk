@@ -1,0 +1,738 @@
+# Entity: agent_infra
+
+main: kit: entity: agent_infra: {
+
+  alias: field: {}
+
+  fields: {
+    action: {
+      h: "Action"
+      n: "action"
+      r: true
+      t: "`$STRING`"
+    }
+    chatId: {
+      h: "Chat Id"
+      n: "chatId"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    memeSlug: {
+      h: "Meme Slug"
+      n: "memeSlug"
+      r: true
+      t: "`$STRING`"
+    }
+    metadata: {
+      h: "Metadata"
+      n: "metadata"
+      r: false
+      t: "`$OBJECT`"
+    }
+    payoutReference: {
+      h: "Payout Reference"
+      n: "payoutReference"
+      r: false
+      t: "`$STRING`"
+    }
+    payoutStatus: {
+      h: "Payout Status"
+      n: "payoutStatus"
+      r: false
+      t: "`$STRING`"
+    }
+    phoneOrChatId: {
+      h: "Phone Or Chat Id"
+      n: "phoneOrChatId"
+      r: true
+      t: "`$STRING`"
+    }
+    prompt: {
+      h: "Prompt"
+      n: "prompt"
+      r: true
+      t: "`$STRING`"
+    }
+    proof: {
+      h: "Proof"
+      n: "proof"
+      r: false
+      t: "`$OBJECT`"
+    }
+    quotaBoostPerDay: {
+      h: "Quota Boost Per Day"
+      n: "quotaBoostPerDay"
+      r: false
+      t: "`$INTEGER`"
+    }
+    userId: {
+      h: "User Id"
+      n: "userId"
+      r: false
+      t: "`$STRING`"
+    }
+    weekStart: {
+      h: "Week Start"
+      n: "weekStart"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "agent_infra"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/v1/agents/{agentId}/channels/telegram/bind"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "agent_id"
+                or: "agent_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/agents/{agentId}/channels/telegram/bind"
+          q: {
+            exist: [
+              "agent_id"
+            ]
+          }
+          r: {
+            param: {
+              agentId: "agent_id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "agent_id"
+            }
+            {
+              lit: "channels"
+            }
+            {
+              lit: "telegram"
+            }
+            {
+              lit: "bind"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/{agentId}/channels/whatsapp/bind"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "agent_id"
+                or: "agent_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/agents/{agentId}/channels/whatsapp/bind"
+          q: {
+            exist: [
+              "agent_id"
+            ]
+          }
+          r: {
+            param: {
+              agentId: "agent_id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "agent_id"
+            }
+            {
+              lit: "channels"
+            }
+            {
+              lit: "whatsapp"
+            }
+            {
+              lit: "bind"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/{agentId}/unlocks/social-action"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "agent_id"
+                or: "agent_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/agents/{agentId}/unlocks/social-action"
+          q: {
+            exist: [
+              "agent_id"
+            ]
+          }
+          r: {
+            param: {
+              agentId: "agent_id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "agent_id"
+            }
+            {
+              lit: "unlocks"
+            }
+            {
+              lit: "social-action"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/{agentId}/keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "agent_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/agents/{agentId}/keys"
+          q: {
+            "$action": "keys"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              agentId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/unlocks/{unlockId}/approve"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "unlock_id"
+                or: "unlock_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/agents/unlocks/{unlockId}/approve"
+          q: {
+            exist: [
+              "unlock_id"
+            ]
+          }
+          r: {
+            param: {
+              unlockId: "unlock_id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "unlocks"
+            }
+            {
+              var: "unlock_id"
+            }
+            {
+              lit: "approve"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/names:generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/agents/names:generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "names:generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/rewards/votes"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/agents/rewards/votes"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "rewards"
+            }
+            {
+              lit: "votes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/rewards/winner:close"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/agents/rewards/winner:close"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "rewards"
+            }
+            {
+              lit: "winner:close"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/webhooks/telegram"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/agents/webhooks/telegram"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              lit: "telegram"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/agents/webhooks/whatsapp"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/agents/webhooks/whatsapp"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              lit: "whatsapp"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/agents/rewards/leaderboard"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "week_start"
+                or: "week_start"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/agents/rewards/leaderboard"
+          q: {
+            exist: [
+              "limit"
+              "week_start"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "rewards"
+            }
+            {
+              lit: "leaderboard"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/agents/{agentId}/keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "agent_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/agents/{agentId}/keys"
+          q: {
+            "$action": "keys"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              agentId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/agents/webhooks/whatsapp"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/agents/webhooks/whatsapp"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "webhooks"
+            }
+            {
+              lit: "whatsapp"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /api/v1/agents/{agentId}/keys/{keyId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "agent_id"
+                or: "agent_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "key_id"
+                or: "key_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/api/v1/agents/{agentId}/keys/{keyId}"
+          q: {
+            exist: [
+              "agent_id"
+              "key_id"
+            ]
+          }
+          r: {
+            param: {
+              agentId: "agent_id"
+              keyId: "key_id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "agent_id"
+            }
+            {
+              lit: "keys"
+            }
+            {
+              var: "key_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.agent")]
+    [path("$.main.kit.entity.agent")]
+  ]
+
+}
