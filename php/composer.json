@@ -1,5 +1,5 @@
 {
-  "name": "voxgig-sdk/memesio-content-creation",
+  "name": "voxgig-sdk/memesio-content-creation-sdk",
   "description": "Unofficial generated PHP SDK for the Memesio API Contracts public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
   "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "memesio-content-creation"],
