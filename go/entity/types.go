@@ -278,25 +278,6 @@ type Compliance struct {
 type ComplianceLoadMatch struct {
 }
 
-// CreateMeme is the typed data model for the create_meme entity.
-type CreateMeme struct {
-}
-
-// CreateMemeCreateData is the typed request payload for CreateMeme.CreateTyped.
-type CreateMemeCreateData struct {
-	Canvas map[string]any `json:"canvas"`
-	Captions []any `json:"captions"`
-	GenerationRunId *any `json:"generationRunId,omitempty"`
-	GenerationVariantId *any `json:"generationVariantId,omitempty"`
-	ImageDataUrl string `json:"imageDataUrl"`
-	Overlays *[]any `json:"overlays,omitempty"`
-	SourceImageUrl string `json:"sourceImageUrl"`
-	TemplateSlug *string `json:"templateSlug,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Visibility *string `json:"visibility,omitempty"`
-	Watermark map[string]any `json:"watermark"`
-}
-
 // DeveloperApi is the typed data model for the developer_api entity.
 type DeveloperApi struct {
 }
@@ -372,20 +353,6 @@ type GenerateCreateData struct {
 	WidthPx *int `json:"widthPx,omitempty"`
 }
 
-// Gif is the typed data model for the gif entity.
-type Gif struct {
-}
-
-// GifListMatch is the typed request payload for Gif.ListTyped.
-type GifListMatch struct {
-	Page *int `json:"page,omitempty"`
-	PageSize *int `json:"page_size,omitempty"`
-	Q *string `json:"q,omitempty"`
-	Query *string `json:"query,omitempty"`
-	Sort *string `json:"sort,omitempty"`
-	Tag *string `json:"tag,omitempty"`
-}
-
 // Growth is the typed data model for the growth entity.
 type Growth struct {
 }
@@ -437,6 +404,32 @@ type MemeListMatch struct {
 	Visibility *string `json:"visibility,omitempty"`
 }
 
+// MemeCreateData is the typed request payload for Meme.CreateTyped.
+type MemeCreateData struct {
+	AltText string `json:"altText"`
+	CanonicalImageUrl string `json:"canonicalImageUrl"`
+	Canvas map[string]any `json:"canvas"`
+	Captions []any `json:"captions"`
+	CreatedAt string `json:"createdAt"`
+	GenerationRunId *any `json:"generationRunId,omitempty"`
+	GenerationVariantId *any `json:"generationVariantId,omitempty"`
+	Id *string `json:"id,omitempty"`
+	ImageDataUrl string `json:"imageDataUrl"`
+	ImageUrl string `json:"imageUrl"`
+	NsfwStatus string `json:"nsfwStatus"`
+	Overlays []any `json:"overlays"`
+	ShareSlug string `json:"shareSlug"`
+	ShareUrl string `json:"shareUrl"`
+	ShareViews int `json:"shareViews"`
+	Slug string `json:"slug"`
+	SourceImageUrl string `json:"sourceImageUrl"`
+	Tags []any `json:"tags"`
+	TemplateSlug string `json:"templateSlug"`
+	Title string `json:"title"`
+	Visibility string `json:"visibility"`
+	Watermark map[string]any `json:"watermark"`
+}
+
 // MemeRemoveMatch is the typed request payload for Meme.RemoveTyped.
 type MemeRemoveMatch struct {
 	Id string `json:"id"`
@@ -450,6 +443,18 @@ type PublicTemplateMediaItem struct {
 type PublicTemplateMediaItemLoadMatch struct {
 	Slug string `json:"slug"`
 	MediaType *string `json:"media_type,omitempty"`
+}
+
+// PublicTemplateMediaItemListMatch is the typed request payload for PublicTemplateMediaItem.ListTyped.
+type PublicTemplateMediaItemListMatch struct {
+	MediaType *string `json:"media_type,omitempty"`
+	Mode *string `json:"mode,omitempty"`
+	Page *int `json:"page,omitempty"`
+	PageSize *int `json:"page_size,omitempty"`
+	Q *string `json:"q,omitempty"`
+	Query *string `json:"query,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	Tag *string `json:"tag,omitempty"`
 }
 
 // PublicTemplateMediaItemCreateData is the typed request payload for PublicTemplateMediaItem.CreateTyped.
@@ -494,22 +499,6 @@ type StandaloneAgentBootstrapCreateData struct {
 	SystemPrompt *string `json:"systemPrompt,omitempty"`
 	WatermarkText *string `json:"watermarkText,omitempty"`
 	WebsiteUrl *string `json:"websiteUrl,omitempty"`
-}
-
-// Template is the typed data model for the template entity.
-type Template struct {
-}
-
-// TemplateListMatch is the typed request payload for Template.ListTyped.
-type TemplateListMatch struct {
-	MediaType *string `json:"media_type,omitempty"`
-	Mode *string `json:"mode,omitempty"`
-	Page *int `json:"page,omitempty"`
-	PageSize *int `json:"page_size,omitempty"`
-	Q *string `json:"q,omitempty"`
-	Query *string `json:"query,omitempty"`
-	Sort *string `json:"sort,omitempty"`
-	Tag *string `json:"tag,omitempty"`
 }
 
 // TrendAlert is the typed data model for the trend_alert entity.

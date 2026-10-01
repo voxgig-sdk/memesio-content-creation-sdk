@@ -35,14 +35,12 @@ local client = sdk.new({
 })
 ```
 
-### 3. Load a publictemplatemediaitem
-
-PublicTemplateMediaItem is nested under slug, so provide the `slug`.
+### 3. Load an agent
 
 ```lua
-local publictemplatemediaitem, err = client:PublicTemplateMediaItem():load({ slug = "example_slug" })
+local agent, err = client:Agent():load({ id = "example_id" })
 if err then error(err) end
-print(publictemplatemediaitem)
+print(agent)
 ```
 
 ### 4. Create, update, and remove
@@ -64,7 +62,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local agentinfra, err = client:AgentInfra():load()
+local aiprovider, err = client:AiProvider():load()
 if err then error(err) end
 ```
 
@@ -122,7 +120,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:AgentInfra():load()
+local result, err = client:AiProvider():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -214,18 +212,15 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Billing` | `(data) -> BillingEntity` | Create a Billing entity instance. |
 | `Collaboration` | `(data) -> CollaborationEntity` | Create a Collaboration entity instance. |
 | `Compliance` | `(data) -> ComplianceEntity` | Create a Compliance entity instance. |
-| `CreateMeme` | `(data) -> CreateMemeEntity` | Create a CreateMeme entity instance. |
 | `DeveloperApi` | `(data) -> DeveloperApiEntity` | Create a DeveloperApi entity instance. |
 | `FreeCaptionMemeSuccess` | `(data) -> FreeCaptionMemeSuccessEntity` | Create a FreeCaptionMemeSuccess entity instance. |
 | `FreeTemplateSearch` | `(data) -> FreeTemplateSearchEntity` | Create a FreeTemplateSearch entity instance. |
 | `Generate` | `(data) -> GenerateEntity` | Create a Generate entity instance. |
-| `Gif` | `(data) -> GifEntity` | Create a Gif entity instance. |
 | `Growth` | `(data) -> GrowthEntity` | Create a Growth entity instance. |
 | `Media` | `(data) -> MediaEntity` | Create a Media entity instance. |
 | `Meme` | `(data) -> MemeEntity` | Create a Meme entity instance. |
 | `PublicTemplateMediaItem` | `(data) -> PublicTemplateMediaItemEntity` | Create a PublicTemplateMediaItem entity instance. |
 | `StandaloneAgentBootstrap` | `(data) -> StandaloneAgentBootstrapEntity` | Create a StandaloneAgentBootstrap entity instance. |
-| `Template` | `(data) -> TemplateEntity` | Create a Template entity instance. |
 | `TrendAlert` | `(data) -> TrendAlertEntity` | Create a TrendAlert entity instance. |
 | `UploadCaptionMemeSuccess` | `(data) -> UploadCaptionMemeSuccessEntity` | Create an UploadCaptionMemeSuccess entity instance. |
 | `Video` | `(data) -> VideoEntity` | Create a Video entity instance. |
@@ -490,26 +485,6 @@ Operations: Load.
 
 API path: `/api/compliance/content-policy`
 
-#### CreateMeme
-
-| Field | Description |
-| --- | --- |
-| `canvas` |  |
-| `captions` |  |
-| `generationRunId` |  |
-| `generationVariantId` |  |
-| `imageDataUrl` |  |
-| `overlays` |  |
-| `sourceImageUrl` |  |
-| `templateSlug` |  |
-| `title` |  |
-| `visibility` |  |
-| `watermark` |  |
-
-Operations: Create.
-
-API path: `/api/memes`
-
 #### DeveloperApi
 
 | Field | Description |
@@ -596,39 +571,6 @@ Operations: Create.
 
 API path: `/api/v1/gifs/generate`
 
-#### Gif
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: List.
-
-API path: `/api/gifs`
-
 #### Growth
 
 | Field | Description |
@@ -661,7 +603,10 @@ API path: `/api/media/signed-url`
 | `canvas` |  |
 | `captions` |  |
 | `createdAt` |  |
+| `generationRunId` |  |
+| `generationVariantId` |  |
 | `id` |  |
+| `imageDataUrl` |  |
 | `imageUrl` |  |
 | `nsfwStatus` |  |
 | `overlays` |  |
@@ -676,7 +621,7 @@ API path: `/api/media/signed-url`
 | `visibility` |  |
 | `watermark` |  |
 
-Operations: List, Load, Remove.
+Operations: Create, List, Load, Remove.
 
 API path: `/api/memes`
 
@@ -709,7 +654,7 @@ API path: `/api/memes`
 | `tags` |  |
 | `width` |  |
 
-Operations: Create, Load.
+Operations: Create, List, Load.
 
 API path: `/api/gifs/{slug}/generate`
 
@@ -729,39 +674,6 @@ API path: `/api/gifs/{slug}/generate`
 Operations: Create.
 
 API path: `/api/v1/agents/bootstrap`
-
-#### Template
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: List.
-
-API path: `/api/templates`
 
 #### TrendAlert
 
@@ -1239,45 +1151,6 @@ local compliance, err = client:Compliance():load()
 ```
 
 
-### CreateMeme
-
-Create an instance: `local create_meme = client:CreateMeme(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `canvas` | `table` |  |
-| `captions` | `table` |  |
-| `generationRunId` | `string|nil` |  |
-| `generationVariantId` | `string|nil` |  |
-| `imageDataUrl` | `string` |  |
-| `overlays` | `table` |  |
-| `sourceImageUrl` | `string` |  |
-| `templateSlug` | `string` |  |
-| `title` | `string` |  |
-| `visibility` | `string` |  |
-| `watermark` | `table` |  |
-
-#### Example: Create
-
-```lua
-local create_meme, err = client:CreateMeme():create({
-  canvas = {}, -- table
-  captions = {}, -- table
-  imageDataUrl = "example_imageDataUrl", -- string
-  sourceImageUrl = "example_sourceImageUrl", -- string
-  watermark = {}, -- table
-})
-```
-
-
 ### DeveloperApi
 
 Create an instance: `local developer_api = client:DeveloperApi(nil)`
@@ -1439,52 +1312,6 @@ local generate, err = client:Generate():create({
 ```
 
 
-### Gif
-
-Create an instance: `local gif = client:Gif(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `boolean` |  |
-| `assetBytes` | `number|nil` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `number` |  |
-| `captionCount` | `number` |  |
-| `captions` | `table` |  |
-| `categories` | `table` |  |
-| `description` | `string` |  |
-| `durationMs` | `number|nil` |  |
-| `exampleImageUrl` | `string|nil` |  |
-| `frameCount` | `number|nil` |  |
-| `height` | `number|nil` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `string|nil` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `table` |  |
-| `width` | `number|nil` |  |
-
-#### Example: List
-
-```lua
-local gifs, err = client:Gif():list()
-```
-
-
 ### Growth
 
 Create an instance: `local growth = client:Growth(nil)`
@@ -1547,6 +1374,7 @@ Create an instance: `local meme = client:Meme(nil)`
 
 | Method | Description |
 | --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 | `remove(match)` | Remove the matching entity. |
@@ -1560,7 +1388,10 @@ Create an instance: `local meme = client:Meme(nil)`
 | `canvas` | `table` |  |
 | `captions` | `table` |  |
 | `createdAt` | `string` |  |
+| `generationRunId` | `string|nil` |  |
+| `generationVariantId` | `string|nil` |  |
 | `id` | `string` |  |
+| `imageDataUrl` | `string` |  |
 | `imageUrl` | `string` |  |
 | `nsfwStatus` | `string` |  |
 | `overlays` | `table` |  |
@@ -1587,6 +1418,32 @@ local meme, err = client:Meme():load({ id = "meme_id" })
 local memes, err = client:Meme():list()
 ```
 
+#### Example: Create
+
+```lua
+local meme, err = client:Meme():create({
+  altText = "example_altText", -- string
+  canonicalImageUrl = "example_canonicalImageUrl", -- string
+  canvas = {}, -- table
+  captions = {}, -- table
+  createdAt = "example_createdAt", -- string
+  imageDataUrl = "example_imageDataUrl", -- string
+  imageUrl = "example_imageUrl", -- string
+  nsfwStatus = "example_nsfwStatus", -- string
+  overlays = {}, -- table
+  shareSlug = "example_shareSlug", -- string
+  shareUrl = "example_shareUrl", -- string
+  shareViews = 1, -- number
+  slug = "example_slug", -- string
+  sourceImageUrl = "example_sourceImageUrl", -- string
+  tags = {}, -- table
+  templateSlug = "example_templateSlug", -- string
+  title = "example_title", -- string
+  visibility = "example_visibility", -- string
+  watermark = {}, -- table
+})
+```
+
 
 ### PublicTemplateMediaItem
 
@@ -1597,6 +1454,7 @@ Create an instance: `local public_template_media_item = client:PublicTemplateMed
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
+| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
@@ -1632,6 +1490,12 @@ Create an instance: `local public_template_media_item = client:PublicTemplateMed
 
 ```lua
 local public_template_media_item, err = client:PublicTemplateMediaItem():load({ slug = "slug" })
+```
+
+#### Example: List
+
+```lua
+local public_template_media_items, err = client:PublicTemplateMediaItem():list()
 ```
 
 #### Example: Create
@@ -1683,52 +1547,6 @@ local standalone_agent_bootstrap, err = client:StandaloneAgentBootstrap():create
   handle = "example_handle", -- string
   name = "example_name", -- string
 })
-```
-
-
-### Template
-
-Create an instance: `local template = client:Template(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `boolean` |  |
-| `assetBytes` | `number|nil` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `number` |  |
-| `captionCount` | `number` |  |
-| `captions` | `table` |  |
-| `categories` | `table` |  |
-| `description` | `string` |  |
-| `durationMs` | `number|nil` |  |
-| `exampleImageUrl` | `string|nil` |  |
-| `frameCount` | `number|nil` |  |
-| `height` | `number|nil` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `string|nil` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `table` |  |
-| `width` | `number|nil` |  |
-
-#### Example: List
-
-```lua
-local templates, err = client:Template():list()
 ```
 
 
@@ -1986,11 +1804,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local agentinfra = client:AgentInfra()
-agentinfra:load()
+local aiprovider = client:AiProvider()
+aiprovider:load()
 
--- agentinfra:data_get() now returns the agentinfra data from the last load
--- agentinfra:match_get() returns the last match criteria
+-- aiprovider:data_get() now returns the aiprovider data from the last load
+-- aiprovider:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

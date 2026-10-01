@@ -99,8 +99,6 @@ func entityFor(client *sdk.MemesioContentCreationSDK, name string) (sdk.MemesioC
 		return client.Collaboration(nil), nil
 	case "compliance":
 		return client.Compliance(nil), nil
-	case "create_meme":
-		return client.CreateMeme(nil), nil
 	case "developer_api":
 		return client.DeveloperApi(nil), nil
 	case "free_caption_meme_success":
@@ -109,8 +107,6 @@ func entityFor(client *sdk.MemesioContentCreationSDK, name string) (sdk.MemesioC
 		return client.FreeTemplateSearch(nil), nil
 	case "generate":
 		return client.Generate(nil), nil
-	case "gif":
-		return client.Gif(nil), nil
 	case "growth":
 		return client.Growth(nil), nil
 	case "media":
@@ -121,8 +117,6 @@ func entityFor(client *sdk.MemesioContentCreationSDK, name string) (sdk.MemesioC
 		return client.PublicTemplateMediaItem(nil), nil
 	case "standalone_agent_bootstrap":
 		return client.StandaloneAgentBootstrap(nil), nil
-	case "template":
-		return client.Template(nil), nil
 	case "trend_alert":
 		return client.TrendAlert(nil), nil
 	case "upload_caption_meme_success":

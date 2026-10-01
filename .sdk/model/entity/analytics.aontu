@@ -20,7 +20,7 @@ main: kit: entity: analytics: {
               {
                 k: "query"
                 n: "template_id"
-                or: "template_id"
+                or: "templateId"
                 r: false
                 t: "`$STRING`"
               }
@@ -63,7 +63,7 @@ main: kit: entity: analytics: {
               {
                 k: "query"
                 n: "window_hour"
-                or: "window_hour"
+                or: "windowHours"
                 r: false
                 t: "`$INTEGER`"
               }

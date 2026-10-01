@@ -15,7 +15,7 @@ import (
 // reqdata map passed through to the SDK. For load, `query` should be
 // `{"id": <value>}`. For list, omit `query` or pass an empty map.
 type Args struct {
-	Entity string         `json:"entity" jsonschema:"agent | agent_infra | ai_caption | ai_job | ai_meme_generation_succeeded | ai_provider | analytics | auth | billing | collaboration | compliance | create_meme | developer_api | free_caption_meme_success | free_template_search | generate | gif | growth | media | meme | public_template_media_item | standalone_agent_bootstrap | template | trend_alert | upload_caption_meme_success | video"`
+	Entity string         `json:"entity" jsonschema:"agent | agent_infra | ai_caption | ai_job | ai_meme_generation_succeeded | ai_provider | analytics | auth | billing | collaboration | compliance | developer_api | free_caption_meme_success | free_template_search | generate | growth | media | meme | public_template_media_item | standalone_agent_bootstrap | trend_alert | upload_caption_meme_success | video"`
 	Query  map[string]any `json:"query,omitempty" jsonschema:"optional match map e.g. {\"id\":1} for load, omit for list"`
 }
 
@@ -98,8 +98,6 @@ func entityFor(client *sdk.MemesioContentCreationSDK, name string) (sdk.MemesioC
 		return client.Collaboration(nil), nil
 	case "compliance":
 		return client.Compliance(nil), nil
-	case "create_meme":
-		return client.CreateMeme(nil), nil
 	case "developer_api":
 		return client.DeveloperApi(nil), nil
 	case "free_caption_meme_success":
@@ -108,8 +106,6 @@ func entityFor(client *sdk.MemesioContentCreationSDK, name string) (sdk.MemesioC
 		return client.FreeTemplateSearch(nil), nil
 	case "generate":
 		return client.Generate(nil), nil
-	case "gif":
-		return client.Gif(nil), nil
 	case "growth":
 		return client.Growth(nil), nil
 	case "media":
@@ -120,8 +116,6 @@ func entityFor(client *sdk.MemesioContentCreationSDK, name string) (sdk.MemesioC
 		return client.PublicTemplateMediaItem(nil), nil
 	case "standalone_agent_bootstrap":
 		return client.StandaloneAgentBootstrap(nil), nil
-	case "template":
-		return client.Template(nil), nil
 	case "trend_alert":
 		return client.TrendAlert(nil), nil
 	case "upload_caption_meme_success":

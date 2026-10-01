@@ -214,7 +214,7 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "beat_offset_m"
-                or: "beat_offset_m"
+                or: "beatOffsetMs"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -235,14 +235,14 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "style_preset_id"
-                or: "style_preset_id"
+                or: "stylePresetId"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "sync_to_beat_grid"
-                or: "sync_to_beat_grid"
+                or: "syncToBeatGrid"
                 r: false
                 t: "`$BOOLEAN`"
               }
@@ -263,7 +263,7 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "trend_keyword"
-                or: "trend_keyword"
+                or: "trendKeywords"
                 r: false
                 t: "`$STRING`"
               }
@@ -339,14 +339,14 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "target_bpm"
-                or: "target_bpm"
+                or: "targetBpm"
                 r: false
                 t: "`$INTEGER`"
               }
               {
                 k: "query"
                 n: "tolerance_bpm"
-                or: "tolerance_bpm"
+                or: "toleranceBpm"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -392,7 +392,7 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "bitrate_kbp"
-                or: "bitrate_kbp"
+                or: "bitrateKbps"
                 r: false
                 t: "`$NUMBER`"
               }
@@ -406,28 +406,28 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "plan_tier"
-                or: "plan_tier"
+                or: "planTier"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "preset_id"
-                or: "preset_id"
+                or: "presetId"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "watermark_enabled"
-                or: "watermark_enabled"
+                or: "watermarkEnabled"
                 r: false
                 t: "`$BOOLEAN`"
               }
               {
                 k: "query"
                 n: "watermark_text"
-                or: "watermark_text"
+                or: "watermarkText"
                 r: false
                 t: "`$STRING`"
               }
@@ -473,35 +473,35 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "duration_second"
-                or: "duration_second"
+                or: "durationSeconds"
                 r: false
                 t: "`$NUMBER`"
               }
               {
                 k: "query"
                 n: "input_format"
-                or: "input_format"
+                or: "inputFormat"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "mime_type"
-                or: "mime_type"
+                or: "mimeType"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "output_preset_id"
-                or: "output_preset_id"
+                or: "outputPresetId"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "plan_tier"
-                or: "plan_tier"
+                or: "planTier"
                 r: false
                 t: "`$STRING`"
               }
@@ -560,7 +560,7 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "plan_tier"
-                or: "plan_tier"
+                or: "planTier"
                 r: false
                 t: "`$STRING`"
               }
@@ -611,7 +611,7 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "duration_m"
-                or: "duration_m"
+                or: "durationMs"
                 r: false
                 t: "`$NUMBER`"
               }
@@ -625,14 +625,14 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "preset_id"
-                or: "preset_id"
+                or: "presetId"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "start_m"
-                or: "start_m"
+                or: "startMs"
                 r: false
                 t: "`$NUMBER`"
               }
@@ -683,7 +683,7 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "project_id"
-                or: "project_id"
+                or: "projectId"
                 r: false
                 t: "`$STRING`"
               }
@@ -732,7 +732,7 @@ main: kit: entity: video: {
               {
                 k: "query"
                 n: "project_id"
-                or: "project_id"
+                or: "projectId"
                 r: false
                 t: "`$STRING`"
               }

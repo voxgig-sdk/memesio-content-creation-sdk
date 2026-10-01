@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 MemesioContentCreationUtility::setRegistrar(function (MemesioContentCreationUtility $u): void {
     $u->clean = [MemesioContentCreationClean::class, 'call'];
+    $u->clean_add = [MemesioContentCreationClean::class, 'add'];
+    $u->clean_explain = [MemesioContentCreationDone::class, 'clean_explain'];
     $u->done = [MemesioContentCreationDone::class, 'call'];
     $u->make_error = [MemesioContentCreationMakeError::class, 'call'];
     $u->feature_add = [MemesioContentCreationFeatureAdd::class, 'call'];

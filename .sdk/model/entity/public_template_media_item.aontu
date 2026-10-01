@@ -249,6 +249,182 @@ main: kit: entity: public_template_media_item: {
         }
       ]
     }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/templates"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "image"
+                k: "query"
+                n: "media_type"
+                or: "mediaType"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "mode"
+                or: "mode"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "page_size"
+                or: "pageSize"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "q"
+                or: "q"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "tag"
+                or: "tag"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/templates"
+          q: {
+            exist: [
+              "media_type"
+              "mode"
+              "page"
+              "page_size"
+              "q"
+              "query"
+              "sort"
+              "tag"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "templates"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.items`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/gifs"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "page_size"
+                or: "pageSize"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "q"
+                or: "q"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "tag"
+                or: "tag"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/gifs"
+          q: {
+            exist: [
+              "page"
+              "page_size"
+              "q"
+              "query"
+              "sort"
+              "tag"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "gifs"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.items`"
+          }
+        }
+      ]
+    }
     load: {
       name: "load"
       points: [
@@ -273,7 +449,7 @@ main: kit: entity: public_template_media_item: {
                 ex: "image"
                 k: "query"
                 n: "media_type"
-                or: "media_type"
+                or: "mediaType"
                 r: false
                 t: "`$STRING`"
               }
@@ -348,9 +524,5 @@ main: kit: entity: public_template_media_item: {
   }
 
 
-  relations: ancestors: [
-    [path("$.main.kit.entity.gif")]
-    [path("$.main.kit.entity.template")]
-  ]
 
 }

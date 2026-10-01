@@ -31,7 +31,7 @@ Each feature is generated into every SDK target — as a directory
 `<lang>/src/feature/<name>/` (ts/js) or a flat file in the `<lang>/feature/`
 package (other languages). Each target's guide documents its features.
 
-**Entities** (26): `Agent`, `AgentInfra`, `AiCaption`, `AiJob`, `AiMemeGenerationSucceeded`, `AiProvider`, `Analytics`, `Auth`, `Billing`, `Collaboration`, `Compliance`, `CreateMeme`, `DeveloperApi`, `FreeCaptionMemeSuccess`, `FreeTemplateSearch`, `Generate`, `Gif`, `Growth`, `Media`, `Meme`, `PublicTemplateMediaItem`, `StandaloneAgentBootstrap`, `Template`, `TrendAlert`, `UploadCaptionMemeSuccess`, `Video`.
+**Entities** (23): `Agent`, `AgentInfra`, `AiCaption`, `AiJob`, `AiMemeGenerationSucceeded`, `AiProvider`, `Analytics`, `Auth`, `Billing`, `Collaboration`, `Compliance`, `DeveloperApi`, `FreeCaptionMemeSuccess`, `FreeTemplateSearch`, `Generate`, `Growth`, `Media`, `Meme`, `PublicTemplateMediaItem`, `StandaloneAgentBootstrap`, `TrendAlert`, `UploadCaptionMemeSuccess`, `Video`.
 
 ## Generating and updating the SDK
 

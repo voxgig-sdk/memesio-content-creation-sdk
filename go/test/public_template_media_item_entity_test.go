@@ -24,6 +24,54 @@ func TestPublicTemplateMediaItemEntity(t *testing.T) {
 		}
 	})
 
+	// Feature #4: the entity Stream(action, ...) method runs the op pipeline and
+	// returns a channel over result items. With the streaming feature active it
+	// yields the feature's incremental output; otherwise it falls back to the
+	// materialised list so Stream always yields.
+	t.Run("stream", func(t *testing.T) {
+		seed := map[string]any{
+			"entity": map[string]any{
+				"public_template_media_item": map[string]any{
+					"s1": map[string]any{"id": "s1"},
+					"s2": map[string]any{"id": "s2"},
+					"s3": map[string]any{"id": "s3"},
+				},
+			},
+		}
+
+		// Fallback: streaming inactive -> yields the materialised list items.
+		base := sdk.TestSDK(seed, nil)
+		var seen []any
+		for item := range base.PublicTemplateMediaItem(nil).Stream("list", nil, nil) {
+			seen = append(seen, item)
+		}
+		if len(seen) != 3 {
+			t.Fatalf("expected 3 streamed items, got %d", len(seen))
+		}
+
+		// Inbound: streaming active -> yields each item from the feature iterator.
+		hasStreaming := false
+		if fm, ok := core.SharedConfig()["feature"].(map[string]any); ok {
+			_, hasStreaming = fm["streaming"]
+		}
+		if hasStreaming {
+			streamSdk := sdk.TestSDK(seed, map[string]any{
+				"feature": map[string]any{"streaming": map[string]any{"active": true}},
+			})
+			var got []any
+			for item := range streamSdk.PublicTemplateMediaItem(nil).Stream("list", nil, nil) {
+				if sub, ok := item.([]any); ok {
+					got = append(got, sub...)
+				} else {
+					got = append(got, item)
+				}
+			}
+			if len(got) != 3 {
+				t.Fatalf("expected 3 items via streaming feature, got %d", len(got))
+			}
+		}
+	})
+
 	t.Run("basic", func(t *testing.T) {
 		setup := public_template_media_itemBasicSetup(nil)
 		// Per-op sdk-test-control.json skip — basic test exercises a flow
@@ -32,7 +80,7 @@ func TestPublicTemplateMediaItemEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create", "load"} {
+		for _, _op := range []string{"create", "list", "load"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "public_template_media_item." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -65,6 +113,23 @@ func TestPublicTemplateMediaItemEntity(t *testing.T) {
 		}
 		if publicTemplateMediaItemRef01Data["id"] == nil {
 			t.Fatal("expected created entity to have an id")
+		}
+
+		// LIST
+		publicTemplateMediaItemRef01Match := map[string]any{}
+
+		publicTemplateMediaItemRef01ListResult, err := publicTemplateMediaItemRef01Ent.List(publicTemplateMediaItemRef01Match, nil)
+		if err != nil {
+			t.Fatalf("list failed: %v", err)
+		}
+		publicTemplateMediaItemRef01List, publicTemplateMediaItemRef01ListOk := publicTemplateMediaItemRef01ListResult.([]any)
+		if !publicTemplateMediaItemRef01ListOk {
+			t.Fatalf("expected list result to be an array, got %T", publicTemplateMediaItemRef01ListResult)
+		}
+
+		foundItem := vs.Select(entityListToData(publicTemplateMediaItemRef01List), map[string]any{"id": publicTemplateMediaItemRef01Data["id"]})
+		if vs.IsEmpty(foundItem) {
+			t.Fatal("expected to find created entity in list")
 		}
 
 		// LOAD
@@ -111,7 +176,7 @@ func public_template_media_itemBasicSetup(extra map[string]any) *entityTestSetup
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03", "slug01"},
+		[]any{"public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "slug01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

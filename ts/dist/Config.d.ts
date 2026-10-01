@@ -84,18 +84,15 @@ declare class Config {
             billing: {};
             collaboration: {};
             compliance: {};
-            create_meme: {};
             developer_api: {};
             free_caption_meme_success: {};
             free_template_search: {};
             generate: {};
-            gif: {};
             growth: {};
             media: {};
             meme: {};
             public_template_media_item: {};
             standalone_agent_bootstrap: {};
-            template: {};
             trend_alert: {};
             upload_caption_meme_success: {};
             video: {};
@@ -1193,50 +1190,6 @@ declare class Config {
                 ancestors: never[];
             };
         };
-        create_meme: {
-            fields: ({
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-            } | {
-                name: string;
-                title: string;
-                type: (string | string[])[];
-                req?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req?: undefined;
-            })[];
-            name: string;
-            op: {
-                create: {
-                    input: string;
-                    name: string;
-                    points: {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {};
-                        select: {};
-                    }[];
-                };
-            };
-            relations: {
-                ancestors: never[];
-            };
-        };
         developer_api: {
             fields: ({
                 name: string;
@@ -1473,68 +1426,6 @@ declare class Config {
                 ancestors: never[];
             };
         };
-        gif: {
-            fields: ({
-                name: string;
-                title: string;
-                type: string;
-                req?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: (string | string[])[];
-                req?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-            } | {
-                name: string;
-                title: string;
-                type: (string | string[])[];
-                req: boolean;
-            })[];
-            id: {
-                field: string;
-                name: string;
-            };
-            name: string;
-            op: {
-                list: {
-                    input: string;
-                    name: string;
-                    points: {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                    }[];
-                };
-            };
-            relations: {
-                ancestors: never[];
-            };
-        };
         growth: {
             fields: ({
                 name: string;
@@ -1720,17 +1611,38 @@ declare class Config {
                 type: string;
                 req: boolean;
                 format?: undefined;
+                op?: undefined;
             } | {
                 name: string;
                 title: string;
                 type: string;
                 req: boolean;
                 format: string;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: (string | string[])[];
+                req?: undefined;
+                format?: undefined;
+                op?: undefined;
             } | {
                 name: string;
                 title: string;
                 type: string;
                 req?: undefined;
+                format?: undefined;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                    };
+                };
                 format?: undefined;
             })[];
             id: {
@@ -1739,6 +1651,26 @@ declare class Config {
             };
             name: string;
             op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {};
+                        select: {};
+                    }[];
+                };
                 list: {
                     input: string;
                     name: string;
@@ -1918,6 +1850,42 @@ declare class Config {
                         };
                     }[];
                 };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
                 load: {
                     input: string;
                     name: string;
@@ -1991,7 +1959,7 @@ declare class Config {
                 };
             };
             relations: {
-                ancestors: string[][];
+                ancestors: never[];
             };
         };
         standalone_agent_bootstrap: {
@@ -2026,75 +1994,6 @@ declare class Config {
                         };
                         args: {};
                         select: {};
-                    }[];
-                };
-            };
-            relations: {
-                ancestors: never[];
-            };
-        };
-        template: {
-            fields: ({
-                name: string;
-                title: string;
-                type: string;
-                req?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: (string | string[])[];
-                req?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-            } | {
-                name: string;
-                title: string;
-                type: (string | string[])[];
-                req: boolean;
-            })[];
-            id: {
-                field: string;
-                name: string;
-            };
-            name: string;
-            op: {
-                list: {
-                    input: string;
-                    name: string;
-                    points: {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: string;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example?: undefined;
-                            })[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
                     }[];
                 };
             };

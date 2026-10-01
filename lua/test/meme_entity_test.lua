@@ -60,7 +60,7 @@ describe("MemeEntity", function()
     local setup = meme_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"list", "load"}) do
+    for _, _op in ipairs({"create", "list", "load", "remove"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "meme." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -75,21 +75,28 @@ describe("MemeEntity", function()
     end
     local client = setup.client
 
-    -- Bootstrap entity data from existing test data.
-    local meme_ref01_data_raw = vs.items(helpers.to_map(
-      vs.getpath(setup.data, "existing.meme")))
-    local meme_ref01_data = nil
-    if #meme_ref01_data_raw > 0 then
-      meme_ref01_data = helpers.to_map(meme_ref01_data_raw[1][2])
-    end
+    -- CREATE
+    local meme_ref01_ent = client:Meme(nil)
+    local meme_ref01_data = helpers.to_map(vs.getprop(
+      vs.getpath(setup.data, "new.meme"), "meme_ref01"))
+
+    local meme_ref01_data_result, err = meme_ref01_ent:create(meme_ref01_data, nil)
+    assert.is_nil(err)
+    meme_ref01_data = helpers.to_map(type(meme_ref01_data_result) == 'table' and meme_ref01_data_result.data_get and meme_ref01_data_result:data_get() or meme_ref01_data_result)
+    assert.is_not_nil(meme_ref01_data)
+    assert.is_not_nil(meme_ref01_data["id"])
 
     -- LIST
-    local meme_ref01_ent = client:Meme(nil)
     local meme_ref01_match = {}
 
     local meme_ref01_list_result, err = meme_ref01_ent:list(meme_ref01_match, nil)
     assert.is_nil(err)
     assert.is_table(meme_ref01_list_result)
+
+    local found_item = vs.select(
+      runner.entity_list_to_data(meme_ref01_list_result),
+      { id = meme_ref01_data["id"] })
+    assert.is_false(vs.isempty(found_item))
 
     -- LOAD
     local meme_ref01_match_dt0 = {
@@ -100,6 +107,25 @@ describe("MemeEntity", function()
     local meme_ref01_data_dt0_load_result = helpers.to_map(type(meme_ref01_data_dt0_loaded) == 'table' and meme_ref01_data_dt0_loaded.data_get and meme_ref01_data_dt0_loaded:data_get() or meme_ref01_data_dt0_loaded)
     assert.is_not_nil(meme_ref01_data_dt0_load_result)
     assert.are.equal(meme_ref01_data_dt0_load_result["id"], meme_ref01_data["id"])
+
+    -- REMOVE
+    local meme_ref01_match_rm0 = {
+      id = meme_ref01_data["id"],
+    }
+    local _, err = meme_ref01_ent:remove(meme_ref01_match_rm0, nil)
+    assert.is_nil(err)
+
+    -- LIST
+    local meme_ref01_match_rt0 = {}
+
+    local meme_ref01_list_rt0_result, err = meme_ref01_ent:list(meme_ref01_match_rt0, nil)
+    assert.is_nil(err)
+    assert.is_table(meme_ref01_list_rt0_result)
+
+    local not_found_item = vs.select(
+      runner.entity_list_to_data(meme_ref01_list_rt0_result),
+      { id = meme_ref01_data["id"] })
+    assert.is_true(vs.isempty(not_found_item))
 
   end)
 end)

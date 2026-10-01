@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/memesio-content-creation-sdk
+composer config repositories.memesio-content-creation-sdk path ./memesio-content-creation-sdk/php
+composer require voxgig-sdk/memesio-content-creation-sdk:@dev
+```
 
 
 ## Tutorial: your first API call
@@ -33,15 +38,13 @@ $client = new MemesioContentCreationSDK([
 ]);
 ```
 
-### 3. Load a publictemplatemediaitem
-
-PublicTemplateMediaItem is nested under slug, so provide the `slug`.
+### 3. Load an agent
 
 ```php
 try {
-    // load() returns the ENTITY — call data_get() for the PublicTemplateMediaItem record (throws on error).
-    $publictemplatemediaitem = $client->PublicTemplateMediaItem()->load(["slug" => "example_slug"]);
-    print_r($publictemplatemediaitem->data_get());
+    // load() returns the ENTITY — call data_get() for the Agent record (throws on error).
+    $agent = $client->Agent()->load(["id" => "example_id"]);
+    print_r($agent->data_get());
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -66,7 +69,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $agentinfra = $client->AgentInfra()->load();
+    $aiprovider = $client->AiProvider()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -236,18 +239,15 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `Billing` | `($data): BillingEntity` | Create a Billing entity instance. |
 | `Collaboration` | `($data): CollaborationEntity` | Create a Collaboration entity instance. |
 | `Compliance` | `($data): ComplianceEntity` | Create a Compliance entity instance. |
-| `CreateMeme` | `($data): CreateMemeEntity` | Create a CreateMeme entity instance. |
 | `DeveloperApi` | `($data): DeveloperApiEntity` | Create a DeveloperApi entity instance. |
 | `FreeCaptionMemeSuccess` | `($data): FreeCaptionMemeSuccessEntity` | Create a FreeCaptionMemeSuccess entity instance. |
 | `FreeTemplateSearch` | `($data): FreeTemplateSearchEntity` | Create a FreeTemplateSearch entity instance. |
 | `Generate` | `($data): GenerateEntity` | Create a Generate entity instance. |
-| `Gif` | `($data): GifEntity` | Create a Gif entity instance. |
 | `Growth` | `($data): GrowthEntity` | Create a Growth entity instance. |
 | `Media` | `($data): MediaEntity` | Create a Media entity instance. |
 | `Meme` | `($data): MemeEntity` | Create a Meme entity instance. |
 | `PublicTemplateMediaItem` | `($data): PublicTemplateMediaItemEntity` | Create a PublicTemplateMediaItem entity instance. |
 | `StandaloneAgentBootstrap` | `($data): StandaloneAgentBootstrapEntity` | Create a StandaloneAgentBootstrap entity instance. |
-| `Template` | `($data): TemplateEntity` | Create a Template entity instance. |
 | `TrendAlert` | `($data): TrendAlertEntity` | Create a TrendAlert entity instance. |
 | `UploadCaptionMemeSuccess` | `($data): UploadCaptionMemeSuccessEntity` | Create an UploadCaptionMemeSuccess entity instance. |
 | `Video` | `($data): VideoEntity` | Create a Video entity instance. |
@@ -511,26 +511,6 @@ Operations: Load.
 
 API path: `/api/compliance/content-policy`
 
-#### CreateMeme
-
-| Field | Description |
-| --- | --- |
-| `canvas` |  |
-| `captions` |  |
-| `generationRunId` |  |
-| `generationVariantId` |  |
-| `imageDataUrl` |  |
-| `overlays` |  |
-| `sourceImageUrl` |  |
-| `templateSlug` |  |
-| `title` |  |
-| `visibility` |  |
-| `watermark` |  |
-
-Operations: Create.
-
-API path: `/api/memes`
-
 #### DeveloperApi
 
 | Field | Description |
@@ -617,39 +597,6 @@ Operations: Create.
 
 API path: `/api/v1/gifs/generate`
 
-#### Gif
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: List.
-
-API path: `/api/gifs`
-
 #### Growth
 
 | Field | Description |
@@ -682,7 +629,10 @@ API path: `/api/media/signed-url`
 | `canvas` |  |
 | `captions` |  |
 | `createdAt` |  |
+| `generationRunId` |  |
+| `generationVariantId` |  |
 | `id` |  |
+| `imageDataUrl` |  |
 | `imageUrl` |  |
 | `nsfwStatus` |  |
 | `overlays` |  |
@@ -697,7 +647,7 @@ API path: `/api/media/signed-url`
 | `visibility` |  |
 | `watermark` |  |
 
-Operations: List, Load, Remove.
+Operations: Create, List, Load, Remove.
 
 API path: `/api/memes`
 
@@ -730,7 +680,7 @@ API path: `/api/memes`
 | `tags` |  |
 | `width` |  |
 
-Operations: Create, Load.
+Operations: Create, List, Load.
 
 API path: `/api/gifs/{slug}/generate`
 
@@ -750,39 +700,6 @@ API path: `/api/gifs/{slug}/generate`
 Operations: Create.
 
 API path: `/api/v1/agents/bootstrap`
-
-#### Template
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: List.
-
-API path: `/api/templates`
 
 #### TrendAlert
 
@@ -1269,45 +1186,6 @@ $compliance = $client->Compliance()->load();
 ```
 
 
-### CreateMeme
-
-Create an instance: `$create_meme = $client->CreateMeme();`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `canvas` | `array` |  |
-| `captions` | `array` |  |
-| `generationRunId` | `mixed` |  |
-| `generationVariantId` | `mixed` |  |
-| `imageDataUrl` | `string` |  |
-| `overlays` | `array` |  |
-| `sourceImageUrl` | `string` |  |
-| `templateSlug` | `string` |  |
-| `title` | `string` |  |
-| `visibility` | `string` |  |
-| `watermark` | `array` |  |
-
-#### Example: Create
-
-```php
-$create_meme = $client->CreateMeme()->create([
-    "canvas" => null, // array
-    "captions" => null, // array
-    "imageDataUrl" => null, // string
-    "sourceImageUrl" => null, // string
-    "watermark" => null, // array
-]);
-```
-
-
 ### DeveloperApi
 
 Create an instance: `$developer_api = $client->DeveloperApi();`
@@ -1471,53 +1349,6 @@ $generate = $client->Generate()->create([
 ```
 
 
-### Gif
-
-Create an instance: `$gif = $client->Gif();`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `bool` |  |
-| `assetBytes` | `mixed` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `int` |  |
-| `captionCount` | `int` |  |
-| `captions` | `array` |  |
-| `categories` | `array` |  |
-| `description` | `string` |  |
-| `durationMs` | `mixed` |  |
-| `exampleImageUrl` | `mixed` |  |
-| `frameCount` | `mixed` |  |
-| `height` | `mixed` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `mixed` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `array` |  |
-| `width` | `mixed` |  |
-
-#### Example: List
-
-```php
-// list() returns an array of Gif records (throws on error).
-$gifs = $client->Gif()->list();
-```
-
-
 ### Growth
 
 Create an instance: `$growth = $client->Growth();`
@@ -1581,6 +1412,7 @@ Create an instance: `$meme = $client->Meme();`
 
 | Method | Description |
 | --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 | `remove(match)` | Remove the matching entity. |
@@ -1594,7 +1426,10 @@ Create an instance: `$meme = $client->Meme();`
 | `canvas` | `array` |  |
 | `captions` | `array` |  |
 | `createdAt` | `string` |  |
+| `generationRunId` | `mixed` |  |
+| `generationVariantId` | `mixed` |  |
 | `id` | `string` |  |
+| `imageDataUrl` | `string` |  |
 | `imageUrl` | `string` |  |
 | `nsfwStatus` | `string` |  |
 | `overlays` | `array` |  |
@@ -1623,6 +1458,32 @@ $meme = $client->Meme()->load(["id" => "meme_id"]);
 $memes = $client->Meme()->list();
 ```
 
+#### Example: Create
+
+```php
+$meme = $client->Meme()->create([
+    "altText" => null, // string
+    "canonicalImageUrl" => null, // string
+    "canvas" => null, // array
+    "captions" => null, // array
+    "createdAt" => null, // string
+    "imageDataUrl" => null, // string
+    "imageUrl" => null, // string
+    "nsfwStatus" => null, // string
+    "overlays" => null, // array
+    "shareSlug" => null, // string
+    "shareUrl" => null, // string
+    "shareViews" => null, // int
+    "slug" => null, // string
+    "sourceImageUrl" => null, // string
+    "tags" => null, // array
+    "templateSlug" => null, // string
+    "title" => null, // string
+    "visibility" => null, // string
+    "watermark" => null, // array
+]);
+```
+
 
 ### PublicTemplateMediaItem
 
@@ -1633,6 +1494,7 @@ Create an instance: `$public_template_media_item = $client->PublicTemplateMediaI
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
+| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
@@ -1669,6 +1531,13 @@ Create an instance: `$public_template_media_item = $client->PublicTemplateMediaI
 ```php
 // load() returns the ENTITY — call data_get() for the PublicTemplateMediaItem record (throws on error).
 $public_template_media_item = $client->PublicTemplateMediaItem()->load(["slug" => "slug"]);
+```
+
+#### Example: List
+
+```php
+// list() returns an array of PublicTemplateMediaItem records (throws on error).
+$public_template_media_items = $client->PublicTemplateMediaItem()->list();
 ```
 
 #### Example: Create
@@ -1720,53 +1589,6 @@ $standalone_agent_bootstrap = $client->StandaloneAgentBootstrap()->create([
     "handle" => null, // string
     "name" => null, // string
 ]);
-```
-
-
-### Template
-
-Create an instance: `$template = $client->Template();`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `bool` |  |
-| `assetBytes` | `mixed` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `int` |  |
-| `captionCount` | `int` |  |
-| `captions` | `array` |  |
-| `categories` | `array` |  |
-| `description` | `string` |  |
-| `durationMs` | `mixed` |  |
-| `exampleImageUrl` | `mixed` |  |
-| `frameCount` | `mixed` |  |
-| `height` | `mixed` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `mixed` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `array` |  |
-| `width` | `mixed` |  |
-
-#### Example: List
-
-```php
-// list() returns an array of Template records (throws on error).
-$templates = $client->Template()->list();
 ```
 
 
@@ -2026,11 +1848,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$agentinfra = $client->AgentInfra();
-$agentinfra->load();
+$aiprovider = $client->AiProvider();
+$aiprovider->load();
 
-// $agentinfra->data_get() now returns the agentinfra data from the last load
-// $agentinfra->match_get() returns the last match criteria
+// $aiprovider->data_get() now returns the aiprovider data from the last load
+// $aiprovider->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

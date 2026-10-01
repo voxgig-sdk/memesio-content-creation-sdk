@@ -13,18 +13,15 @@ const AuthEntity_1 = require("./entity/AuthEntity");
 const BillingEntity_1 = require("./entity/BillingEntity");
 const CollaborationEntity_1 = require("./entity/CollaborationEntity");
 const ComplianceEntity_1 = require("./entity/ComplianceEntity");
-const CreateMemeEntity_1 = require("./entity/CreateMemeEntity");
 const DeveloperApiEntity_1 = require("./entity/DeveloperApiEntity");
 const FreeCaptionMemeSuccessEntity_1 = require("./entity/FreeCaptionMemeSuccessEntity");
 const FreeTemplateSearchEntity_1 = require("./entity/FreeTemplateSearchEntity");
 const GenerateEntity_1 = require("./entity/GenerateEntity");
-const GifEntity_1 = require("./entity/GifEntity");
 const GrowthEntity_1 = require("./entity/GrowthEntity");
 const MediaEntity_1 = require("./entity/MediaEntity");
 const MemeEntity_1 = require("./entity/MemeEntity");
 const PublicTemplateMediaItemEntity_1 = require("./entity/PublicTemplateMediaItemEntity");
 const StandaloneAgentBootstrapEntity_1 = require("./entity/StandaloneAgentBootstrapEntity");
-const TemplateEntity_1 = require("./entity/TemplateEntity");
 const TrendAlertEntity_1 = require("./entity/TrendAlertEntity");
 const UploadCaptionMemeSuccessEntity_1 = require("./entity/UploadCaptionMemeSuccessEntity");
 const VideoEntity_1 = require("./entity/VideoEntity");
@@ -53,6 +50,11 @@ class MemesioContentCreationSDK {
             shared: new WeakMap()
         });
         this._options = this._utility.makeOptions(this._rootctx);
+        for (const key of ['_options', '_rootctx', '_features']) {
+            Object.defineProperty(this, key, {
+                value: this[key], enumerable: false, writable: true, configurable: true
+            });
+        }
         const struct = this._utility.struct;
         const getpath = struct.getpath;
         if (true === getpath(this._options.feature, 'test.active')) {
@@ -169,7 +171,7 @@ class MemesioContentCreationSDK {
                 return { ok: false, err: ctx.error('direct_no_response', 'response: undefined') };
             }
             else if (fetched instanceof Error) {
-                return { ok: false, err: fetched };
+                return { ok: false, err: utility.clean(ctx, fetched) };
             }
             const status = fetched.status;
             // No body responses (204 No Content, 304 Not Modified) and explicit
@@ -199,7 +201,7 @@ class MemesioContentCreationSDK {
             };
         }
         catch (err) {
-            return { ok: false, err };
+            return { ok: false, err: utility.clean(ctx, err) };
         }
     }
     async graphql(query, variables, ctrl) {
@@ -312,13 +314,6 @@ class MemesioContentCreationSDK {
         const self = this;
         return new ComplianceEntity_1.ComplianceEntity(self, entopts);
     }
-    // Entity access: `client.CreateMeme().list()` / `client.CreateMeme().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    CreateMeme(entopts) {
-        const self = this;
-        return new CreateMemeEntity_1.CreateMemeEntity(self, entopts);
-    }
     // Entity access: `client.DeveloperApi().list()` / `client.DeveloperApi().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
@@ -346,13 +341,6 @@ class MemesioContentCreationSDK {
     Generate(entopts) {
         const self = this;
         return new GenerateEntity_1.GenerateEntity(self, entopts);
-    }
-    // Entity access: `client.Gif().list()` / `client.Gif().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    Gif(entopts) {
-        const self = this;
-        return new GifEntity_1.GifEntity(self, entopts);
     }
     // Entity access: `client.Growth().list()` / `client.Growth().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -388,13 +376,6 @@ class MemesioContentCreationSDK {
     StandaloneAgentBootstrap(entopts) {
         const self = this;
         return new StandaloneAgentBootstrapEntity_1.StandaloneAgentBootstrapEntity(self, entopts);
-    }
-    // Entity access: `client.Template().list()` / `client.Template().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    Template(entopts) {
-        const self = this;
-        return new TemplateEntity_1.TemplateEntity(self, entopts);
     }
     // Entity access: `client.TrendAlert().list()` / `client.TrendAlert().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

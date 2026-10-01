@@ -4,7 +4,7 @@
 #   guide.aontu
 
 guide: {
-  metrics: count: entity: 26
+  metrics: count: entity: 23
   metrics: count: path: 88
   metrics: count: method: 117
 
@@ -213,12 +213,6 @@ guide: {
     }
   }
 
-  entity: create_meme: {
-    path: "/api/memes": {
-      op: create: method: *POST
-    }
-  }
-
   entity: developer_api: {
     path: "/api/v1/memes/generate": {
       op: load: method: *GET
@@ -250,13 +244,6 @@ guide: {
     path: "/api/v1/gifs/generate": {
       op: create: method: *POST
       op: create: transform: res: *("`body.data`")|top
-    }
-  }
-
-  entity: gif: {
-    path: "/api/gifs": {
-      op: list: method: *GET
-      op: list: transform: res: *("`body.items`")|top
     }
   }
 
@@ -300,6 +287,7 @@ guide: {
 
   entity: meme: {
     path: "/api/memes": {
+      op: create: method: *POST
       op: list: method: *GET
       op: list: transform: res: *("`body.items`")|top
     }
@@ -311,12 +299,20 @@ guide: {
   }
 
   entity: public_template_media_item: {
+    path: "/api/gifs": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
+    }
     path: "/api/gifs/{slug}": {
       op: load: method: *GET
     }
     path: "/api/gifs/{slug}/generate": {
       action: "generate": {}
       op: create: method: *POST
+    }
+    path: "/api/templates": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
     path: "/api/templates/{slug}": {
       op: load: method: *GET
@@ -329,13 +325,6 @@ guide: {
     }
     path: "/api/v1/agents/create-agent": {
       op: create: method: *POST
-    }
-  }
-
-  entity: template: {
-    path: "/api/templates": {
-      op: list: method: *GET
-      op: list: transform: res: *("`body.items`")|top
     }
   }
 

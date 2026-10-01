@@ -14,11 +14,15 @@ from memesiocontentcreation_sdk.features import _has_feature, _make_feature
 
 
 class MemesioContentCreationSDK:
+    # The options hold the credential. A slot keeps them reachable as
+    # `client.options` and out of `vars(client)` and every attribute dump;
+    # the dict entry keeps the instance open for everything else.
+    __slots__ = ("_options", "__dict__")
 
     def __init__(self, options=None):
         self.mode = "live"
         self.features = []
-        self.options = None
+        self._options = None
 
         utility = MemesioContentCreationUtility()
         self._utility = utility
@@ -86,6 +90,17 @@ class MemesioContentCreationSDK:
         utility.feature_hook(self._rootctx, "PostConstruct")
 
         # #BuildFeatures
+
+    @property
+    def options(self):
+        return self._options
+
+    @options.setter
+    def options(self, value):
+        self._options = value
+
+    def __repr__(self):
+        return "MemesioContentCreationSDK(mode=" + repr(self.mode) + ")"
 
     def options_map(self):
         out = vs.clone(self.options)
@@ -207,7 +222,8 @@ class MemesioContentCreationSDK:
         except Exception as err:
             # direct() is the raw-HTTP escape hatch: it never raises, it
             # returns a result object callers branch on via result["ok"].
-            return {"ok": False, "err": err}
+            # That error never passes through make_error, so it is cleaned.
+            return {"ok": False, "err": utility.clean(self._rootctx, err)}
 
         if fetchargs is None:
             fetchargs = {}
@@ -224,7 +240,7 @@ class MemesioContentCreationSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}
+            return {"ok": False, "err": utility.clean(ctx, fetch_err)}
 
         if fetched is None:
             return {
@@ -373,12 +389,6 @@ class MemesioContentCreationSDK:
         return ComplianceEntity(self, data)
 
 
-    def CreateMeme(self, data=None) -> "CreateMemeEntity":
-        """Entity factory: client.CreateMeme().list() / client.CreateMeme().load({"id": ...})."""
-        from memesiocontentcreation_sdk.entity.create_meme_entity import CreateMemeEntity
-        return CreateMemeEntity(self, data)
-
-
     def DeveloperApi(self, data=None) -> "DeveloperApiEntity":
         """Entity factory: client.DeveloperApi().list() / client.DeveloperApi().load({"id": ...})."""
         from memesiocontentcreation_sdk.entity.developer_api_entity import DeveloperApiEntity
@@ -401,12 +411,6 @@ class MemesioContentCreationSDK:
         """Entity factory: client.Generate().list() / client.Generate().load({"id": ...})."""
         from memesiocontentcreation_sdk.entity.generate_entity import GenerateEntity
         return GenerateEntity(self, data)
-
-
-    def Gif(self, data=None) -> "GifEntity":
-        """Entity factory: client.Gif().list() / client.Gif().load({"id": ...})."""
-        from memesiocontentcreation_sdk.entity.gif_entity import GifEntity
-        return GifEntity(self, data)
 
 
     def Growth(self, data=None) -> "GrowthEntity":
@@ -437,12 +441,6 @@ class MemesioContentCreationSDK:
         """Entity factory: client.StandaloneAgentBootstrap().list() / client.StandaloneAgentBootstrap().load({"id": ...})."""
         from memesiocontentcreation_sdk.entity.standalone_agent_bootstrap_entity import StandaloneAgentBootstrapEntity
         return StandaloneAgentBootstrapEntity(self, data)
-
-
-    def Template(self, data=None) -> "TemplateEntity":
-        """Entity factory: client.Template().list() / client.Template().load({"id": ...})."""
-        from memesiocontentcreation_sdk.entity.template_entity import TemplateEntity
-        return TemplateEntity(self, data)
 
 
     def TrendAlert(self, data=None) -> "TrendAlertEntity":
@@ -501,18 +499,15 @@ if TYPE_CHECKING:
     from memesiocontentcreation_sdk.entity.billing_entity import BillingEntity
     from memesiocontentcreation_sdk.entity.collaboration_entity import CollaborationEntity
     from memesiocontentcreation_sdk.entity.compliance_entity import ComplianceEntity
-    from memesiocontentcreation_sdk.entity.create_meme_entity import CreateMemeEntity
     from memesiocontentcreation_sdk.entity.developer_api_entity import DeveloperApiEntity
     from memesiocontentcreation_sdk.entity.free_caption_meme_success_entity import FreeCaptionMemeSuccessEntity
     from memesiocontentcreation_sdk.entity.free_template_search_entity import FreeTemplateSearchEntity
     from memesiocontentcreation_sdk.entity.generate_entity import GenerateEntity
-    from memesiocontentcreation_sdk.entity.gif_entity import GifEntity
     from memesiocontentcreation_sdk.entity.growth_entity import GrowthEntity
     from memesiocontentcreation_sdk.entity.media_entity import MediaEntity
     from memesiocontentcreation_sdk.entity.meme_entity import MemeEntity
     from memesiocontentcreation_sdk.entity.public_template_media_item_entity import PublicTemplateMediaItemEntity
     from memesiocontentcreation_sdk.entity.standalone_agent_bootstrap_entity import StandaloneAgentBootstrapEntity
-    from memesiocontentcreation_sdk.entity.template_entity import TemplateEntity
     from memesiocontentcreation_sdk.entity.trend_alert_entity import TrendAlertEntity
     from memesiocontentcreation_sdk.entity.upload_caption_meme_success_entity import UploadCaptionMemeSuccessEntity
     from memesiocontentcreation_sdk.entity.video_entity import VideoEntity

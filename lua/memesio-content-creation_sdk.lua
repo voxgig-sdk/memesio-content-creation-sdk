@@ -1,5 +1,6 @@
 -- MemesioContentCreation SDK
 
+local json = require("dkjson")
 local vs = require("utility.struct.struct")
 local Utility = require("core.utility_type")
 local Spec = require("core.spec")
@@ -17,7 +18,53 @@ local features_factory = require("features")
 
 
 local MemesioContentCreationSDK = {}
-MemesioContentCreationSDK.__index = MemesioContentCreationSDK
+
+-- The options and the root context both hold the credential. They live in
+-- a side table rather than in the client, so a dump or an encoder walking
+-- the client's fields never reaches them; `sdk.options` still reads and
+-- writes through the metamethods, and options_map() is the documented way
+-- to read the credential back.
+local HIDDEN = { options = true, _rootctx = true }
+local SLOTS = setmetatable({}, { __mode = "k" })
+
+MemesioContentCreationSDK.__index = function(self, key)
+  local member = rawget(MemesioContentCreationSDK, key)
+  if member ~= nil then
+    return member
+  end
+  if HIDDEN[key] then
+    local slots = SLOTS[self]
+    return slots ~= nil and slots[key] or nil
+  end
+  return nil
+end
+
+MemesioContentCreationSDK.__newindex = function(self, key, val)
+  if HIDDEN[key] then
+    local slots = SLOTS[self]
+    if slots == nil then
+      slots = {}
+      SLOTS[self] = slots
+    end
+    slots[key] = val
+  else
+    rawset(self, key, val)
+  end
+end
+
+-- The client's own record: what a serialiser or clean's snapshot sees in
+-- place of the client, so neither reaches the options through it.
+function MemesioContentCreationSDK:to_record()
+  return { sdk = "MemesioContentCreation", mode = self.mode }
+end
+
+MemesioContentCreationSDK.__tostring = function(self)
+  return "MemesioContentCreationSDK mode=" .. tostring(self.mode)
+end
+
+MemesioContentCreationSDK.__tojson = function(self)
+  return json.encode(self:to_record())
+end
 
 
 local function _make_feature(name)
@@ -248,7 +295,7 @@ function MemesioContentCreationSDK:_raw_request(fetchargs)
   local fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
   if fetch_err ~= nil then
-    return { ok = false, err = fetch_err }, nil
+    return { ok = false, err = utility.clean(ctx, fetch_err) }, nil
   end
 
   if fetched == nil then
@@ -503,20 +550,6 @@ function MemesioContentCreationSDK:Compliance(data)
 end
 
 
--- Idiomatic facade: client:CreateMeme():list() / client:CreateMeme():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function MemesioContentCreationSDK:CreateMeme(data)
-  local EntityMod = require("entity.create_meme_entity")
-  if data == nil then
-    if self._create_meme == nil then
-      self._create_meme = EntityMod.new(self, nil)
-    end
-    return self._create_meme
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:DeveloperApi():list() / client:DeveloperApi():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function MemesioContentCreationSDK:DeveloperApi(data)
@@ -568,20 +601,6 @@ function MemesioContentCreationSDK:Generate(data)
       self._generate = EntityMod.new(self, nil)
     end
     return self._generate
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Gif():list() / client:Gif():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function MemesioContentCreationSDK:Gif(data)
-  local EntityMod = require("entity.gif_entity")
-  if data == nil then
-    if self._gif == nil then
-      self._gif = EntityMod.new(self, nil)
-    end
-    return self._gif
   end
   return EntityMod.new(self, data)
 end
@@ -652,20 +671,6 @@ function MemesioContentCreationSDK:StandaloneAgentBootstrap(data)
       self._standalone_agent_bootstrap = EntityMod.new(self, nil)
     end
     return self._standalone_agent_bootstrap
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Template():list() / client:Template():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function MemesioContentCreationSDK:Template(data)
-  local EntityMod = require("entity.template_entity")
-  if data == nil then
-    if self._template == nil then
-      self._template = EntityMod.new(self, nil)
-    end
-    return self._template
   end
   return EntityMod.new(self, data)
 end

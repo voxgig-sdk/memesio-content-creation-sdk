@@ -86,10 +86,6 @@ Create a new `Collaboration` entity instance. Pass `nil` for no initial data.
 
 Create a new `Compliance` entity instance. Pass `nil` for no initial data.
 
-#### `CreateMeme(data = nil)`
-
-Create a new `CreateMeme` entity instance. Pass `nil` for no initial data.
-
 #### `DeveloperApi(data = nil)`
 
 Create a new `DeveloperApi` entity instance. Pass `nil` for no initial data.
@@ -105,10 +101,6 @@ Create a new `FreeTemplateSearch` entity instance. Pass `nil` for no initial dat
 #### `Generate(data = nil)`
 
 Create a new `Generate` entity instance. Pass `nil` for no initial data.
-
-#### `Gif(data = nil)`
-
-Create a new `Gif` entity instance. Pass `nil` for no initial data.
 
 #### `Growth(data = nil)`
 
@@ -129,10 +121,6 @@ Create a new `PublicTemplateMediaItem` entity instance. Pass `nil` for no initia
 #### `StandaloneAgentBootstrap(data = nil)`
 
 Create a new `StandaloneAgentBootstrap` entity instance. Pass `nil` for no initial data.
-
-#### `Template(data = nil)`
-
-Create a new `Template` entity instance. Pass `nil` for no initial data.
 
 #### `TrendAlert(data = nil)`
 
@@ -1037,74 +1025,6 @@ Return the entity name.
 
 ---
 
-## CreateMemeEntity
-
-```ruby
-create_meme = client.CreateMeme
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canvas` | `Hash` | Yes |  |
-| `captions` | `Array` | Yes |  |
-| `generationRunId` | `Object` | No |  |
-| `generationVariantId` | `Object` | No |  |
-| `imageDataUrl` | `String` | Yes |  |
-| `overlays` | `Array` | No |  |
-| `sourceImageUrl` | `String` | Yes |  |
-| `templateSlug` | `String` | No |  |
-| `title` | `String` | No |  |
-| `visibility` | `String` | No |  |
-| `watermark` | `Hash` | Yes |  |
-
-### Operations
-
-#### `create(reqdata, ctrl = nil) -> result`
-
-Create a new entity with the given data. Raises on error.
-
-```ruby
-result = client.CreateMeme.create({
-  "canvas" => {}, # Hash
-  "captions" => [], # Array
-  "imageDataUrl" => "example_imageDataUrl", # String
-  "sourceImageUrl" => "example_sourceImageUrl", # String
-  "watermark" => {}, # Hash
-})
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `CreateMemeEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## DeveloperApiEntity
 
 ```ruby
@@ -1408,81 +1328,6 @@ Return the entity name.
 
 ---
 
-## GifEntity
-
-```ruby
-gif = client.Gif
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `Boolean` | No |  |
-| `assetBytes` | `Object` | No |  |
-| `assetContentType` | `String` | No |  |
-| `boxCount` | `Integer` | No |  |
-| `captionCount` | `Integer` | No |  |
-| `captions` | `Array` | Yes |  |
-| `categories` | `Array` | No |  |
-| `description` | `String` | Yes |  |
-| `durationMs` | `Object` | No |  |
-| `exampleImageUrl` | `Object` | No |  |
-| `frameCount` | `Object` | No |  |
-| `height` | `Object` | Yes |  |
-| `id` | `String` | Yes |  |
-| `imageUrl` | `String` | Yes |  |
-| `mediaType` | `String` | Yes |  |
-| `name` | `String` | Yes |  |
-| `posterImageUrl` | `String` | No |  |
-| `previewImageUrl` | `String` | No |  |
-| `qualityStatus` | `String` | No |  |
-| `slug` | `String` | Yes |  |
-| `sourceTemplateId` | `Object` | Yes |  |
-| `sourceUrl` | `String` | No |  |
-| `tags` | `Array` | Yes |  |
-| `width` | `Object` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.Gif.list
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `GifEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## GrowthEntity
 
 ```ruby
@@ -1611,7 +1456,10 @@ meme = client.Meme
 | `canvas` | `Hash` | Yes |  |
 | `captions` | `Array` | Yes |  |
 | `createdAt` | `String` | Yes |  |
+| `generationRunId` | `Object` | No |  |
+| `generationVariantId` | `Object` | No |  |
 | `id` | `String` | No |  |
+| `imageDataUrl` | `String` | Yes |  |
 | `imageUrl` | `String` | Yes |  |
 | `nsfwStatus` | `String` | Yes |  |
 | `overlays` | `Array` | Yes |  |
@@ -1626,7 +1474,62 @@ meme = client.Meme
 | `visibility` | `String` | Yes |  |
 | `watermark` | `Hash` | Yes |  |
 
+### Field Usage by Operation
+
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `altText` | - | - | - | - |
+| `canonicalImageUrl` | - | - | - | - |
+| `canvas` | - | - | - | - |
+| `captions` | - | - | - | - |
+| `createdAt` | - | - | - | - |
+| `generationRunId` | - | - | - | - |
+| `generationVariantId` | - | - | - | - |
+| `id` | - | - | - | - |
+| `imageDataUrl` | - | - | - | - |
+| `imageUrl` | - | - | - | - |
+| `nsfwStatus` | - | - | - | - |
+| `overlays` | - | - | Yes | - |
+| `shareSlug` | - | - | - | - |
+| `shareUrl` | - | - | - | - |
+| `shareViews` | - | - | - | - |
+| `slug` | - | - | - | - |
+| `sourceImageUrl` | - | - | - | - |
+| `tags` | - | - | - | - |
+| `templateSlug` | - | - | Yes | - |
+| `title` | - | - | Yes | - |
+| `visibility` | - | - | Yes | - |
+| `watermark` | - | - | - | - |
+
 ### Operations
+
+#### `create(reqdata, ctrl = nil) -> result`
+
+Create a new entity with the given data. Raises on error.
+
+```ruby
+result = client.Meme.create({
+  "altText" => "example_altText", # String
+  "canonicalImageUrl" => "example_canonicalImageUrl", # String
+  "canvas" => {}, # Hash
+  "captions" => [], # Array
+  "createdAt" => "example_createdAt", # String
+  "imageDataUrl" => "example_imageDataUrl", # String
+  "imageUrl" => "example_imageUrl", # String
+  "nsfwStatus" => "example_nsfwStatus", # String
+  "overlays" => [], # Array
+  "shareSlug" => "example_shareSlug", # String
+  "shareUrl" => "example_shareUrl", # String
+  "shareViews" => 1, # Integer
+  "slug" => "example_slug", # String
+  "sourceImageUrl" => "example_sourceImageUrl", # String
+  "tags" => [], # Array
+  "templateSlug" => "example_templateSlug", # String
+  "title" => "example_title", # String
+  "visibility" => "example_visibility", # String
+  "watermark" => {}, # Hash
+})
+```
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
@@ -1739,6 +1642,14 @@ result = client.PublicTemplateMediaItem.create({
 })
 ```
 
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.PublicTemplateMediaItem.list
+```
+
 #### `load(reqmatch, ctrl = nil) -> result`
 
 Load a single entity matching the given criteria. Raises on error.
@@ -1830,81 +1741,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `StandaloneAgentBootstrapEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## TemplateEntity
-
-```ruby
-template = client.Template
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `Boolean` | No |  |
-| `assetBytes` | `Object` | No |  |
-| `assetContentType` | `String` | No |  |
-| `boxCount` | `Integer` | No |  |
-| `captionCount` | `Integer` | No |  |
-| `captions` | `Array` | Yes |  |
-| `categories` | `Array` | No |  |
-| `description` | `String` | Yes |  |
-| `durationMs` | `Object` | No |  |
-| `exampleImageUrl` | `Object` | No |  |
-| `frameCount` | `Object` | No |  |
-| `height` | `Object` | Yes |  |
-| `id` | `String` | Yes |  |
-| `imageUrl` | `String` | Yes |  |
-| `mediaType` | `String` | Yes |  |
-| `name` | `String` | Yes |  |
-| `posterImageUrl` | `String` | No |  |
-| `previewImageUrl` | `String` | No |  |
-| `qualityStatus` | `String` | No |  |
-| `slug` | `String` | Yes |  |
-| `sourceTemplateId` | `Object` | Yes |  |
-| `sourceUrl` | `String` | No |  |
-| `tags` | `Array` | Yes |  |
-| `width` | `Object` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.Template.list
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `TemplateEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

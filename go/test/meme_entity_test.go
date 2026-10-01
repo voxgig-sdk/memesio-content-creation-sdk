@@ -80,7 +80,7 @@ func TestMemeEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"list", "load"} {
+		for _, _op := range []string{"create", "list", "load", "remove"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "meme." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -97,27 +97,38 @@ func TestMemeEntity(t *testing.T) {
 		}
 		client := setup.client
 
-		// Bootstrap entity data from existing test data (no create step in flow).
-		memeRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.meme")))
-		var memeRef01Data map[string]any
-		if len(memeRef01DataRaw) > 0 {
-			memeRef01Data = core.ToMapAny(memeRef01DataRaw[0][1])
+		// CREATE
+		memeRef01Ent := client.Meme(nil)
+		memeRef01Data := core.ToMapAny(vs.GetProp(
+			vs.GetPath(setup.data, []any{"new", "meme"}), "meme_ref01"))
+
+		memeRef01DataResult, err := memeRef01Ent.Create(memeRef01Data, nil)
+		if err != nil {
+			t.Fatalf("create failed: %v", err)
 		}
-		// Discard guards against Go's unused-var check when the flow's steps
-		// happen not to consume the bootstrap data (e.g. list-only flows).
-		_ = memeRef01Data
+		memeRef01Data = core.ToMapAny(entityData(memeRef01DataResult))
+		if memeRef01Data == nil {
+			t.Fatal("expected create result to be a map")
+		}
+		if memeRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// LIST
-		memeRef01Ent := client.Meme(nil)
 		memeRef01Match := map[string]any{}
 
 		memeRef01ListResult, err := memeRef01Ent.List(memeRef01Match, nil)
 		if err != nil {
 			t.Fatalf("list failed: %v", err)
 		}
-		_, memeRef01ListOk := memeRef01ListResult.([]any)
+		memeRef01List, memeRef01ListOk := memeRef01ListResult.([]any)
 		if !memeRef01ListOk {
 			t.Fatalf("expected list result to be an array, got %T", memeRef01ListResult)
+		}
+
+		foundItem := vs.Select(entityListToData(memeRef01List), map[string]any{"id": memeRef01Data["id"]})
+		if vs.IsEmpty(foundItem) {
+			t.Fatal("expected to find created entity in list")
 		}
 
 		// LOAD
@@ -134,6 +145,32 @@ func TestMemeEntity(t *testing.T) {
 		}
 		if memeRef01DataDt0LoadResult["id"] != memeRef01Data["id"] {
 			t.Fatal("expected load result id to match")
+		}
+
+		// REMOVE
+		memeRef01MatchRm0 := map[string]any{
+			"id": memeRef01Data["id"],
+		}
+		_, err = memeRef01Ent.Remove(memeRef01MatchRm0, nil)
+		if err != nil {
+			t.Fatalf("remove failed: %v", err)
+		}
+
+		// LIST
+		memeRef01MatchRt0 := map[string]any{}
+
+		memeRef01ListRt0Result, err := memeRef01Ent.List(memeRef01MatchRt0, nil)
+		if err != nil {
+			t.Fatalf("list failed: %v", err)
+		}
+		memeRef01ListRt0, memeRef01ListRt0Ok := memeRef01ListRt0Result.([]any)
+		if !memeRef01ListRt0Ok {
+			t.Fatalf("expected list result to be an array, got %T", memeRef01ListRt0Result)
+		}
+
+		notFoundItem := vs.Select(entityListToData(memeRef01ListRt0), map[string]any{"id": memeRef01Data["id"]})
+		if !vs.IsEmpty(notFoundItem) {
+			t.Fatal("expected removed entity to not be in list")
 		}
 
 	})

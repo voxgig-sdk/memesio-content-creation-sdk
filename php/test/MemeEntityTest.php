@@ -62,7 +62,7 @@ class MemeEntityTest extends TestCase
         $setup = meme_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach (["list", "load"] as $_op) {
+        foreach (["create", "list", "load", "remove"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "meme." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
@@ -77,20 +77,26 @@ class MemeEntityTest extends TestCase
         }
         $client = $setup["client"];
 
-        // Bootstrap entity data from existing test data.
-        $meme_ref01_data_raw = Vs::items(Helpers::to_map(
-            Vs::getpath($setup["data"], "existing.meme")));
-        $meme_ref01_data = null;
-        if (count($meme_ref01_data_raw) > 0) {
-            $meme_ref01_data = Helpers::to_map($meme_ref01_data_raw[0][1]);
-        }
+        // CREATE
+        $meme_ref01_ent = $client->Meme(null);
+        $meme_ref01_data = Helpers::to_map(Vs::getprop(
+            Vs::getpath($setup["data"], "new.meme"), "meme_ref01"));
+
+        $meme_ref01_data_result = $meme_ref01_ent->create($meme_ref01_data, null);
+        $meme_ref01_data = Helpers::to_map(is_object($meme_ref01_data_result) && method_exists($meme_ref01_data_result, 'data_get') ? $meme_ref01_data_result->data_get() : $meme_ref01_data_result);
+        $this->assertNotNull($meme_ref01_data);
+        $this->assertNotNull($meme_ref01_data["id"]);
 
         // LIST
-        $meme_ref01_ent = $client->Meme(null);
         $meme_ref01_match = [];
 
         $meme_ref01_list_result = $meme_ref01_ent->list($meme_ref01_match, null);
         $this->assertIsArray($meme_ref01_list_result);
+
+        $found_item = sdk_select(
+            Runner::entity_list_to_data($meme_ref01_list_result),
+            ["id" => $meme_ref01_data["id"]]);
+        $this->assertNotEmpty($found_item);
 
         // LOAD
         $meme_ref01_match_dt0 = [
@@ -100,6 +106,23 @@ class MemeEntityTest extends TestCase
         $meme_ref01_data_dt0_load_result = Helpers::to_map(is_object($meme_ref01_data_dt0_loaded) && method_exists($meme_ref01_data_dt0_loaded, 'data_get') ? $meme_ref01_data_dt0_loaded->data_get() : $meme_ref01_data_dt0_loaded);
         $this->assertNotNull($meme_ref01_data_dt0_load_result);
         $this->assertEquals($meme_ref01_data_dt0_load_result["id"], $meme_ref01_data["id"]);
+
+        // REMOVE
+        $meme_ref01_match_rm0 = [
+            "id" => $meme_ref01_data["id"],
+        ];
+        $meme_ref01_ent->remove($meme_ref01_match_rm0, null);
+
+        // LIST
+        $meme_ref01_match_rt0 = [];
+
+        $meme_ref01_list_rt0_result = $meme_ref01_ent->list($meme_ref01_match_rt0, null);
+        $this->assertIsArray($meme_ref01_list_rt0_result);
+
+        $not_found_item = sdk_select(
+            Runner::entity_list_to_data($meme_ref01_list_rt0_result),
+            ["id" => $meme_ref01_data["id"]]);
+        $this->assertEmpty($not_found_item);
 
     }
 }

@@ -22,7 +22,7 @@ use Voxgig\Struct\Struct;
 // (_retry, _cache, _metrics, ...); allow them explicitly (PHP 8.2+
 // deprecates implicit dynamic properties).
 #[\AllowDynamicProperties]
-class MemesioContentCreationSDK
+class MemesioContentCreationSDK implements \JsonSerializable
 {
     public string $mode;
     public array $features;
@@ -115,6 +115,19 @@ class MemesioContentCreationSDK
     {
         $out = Struct::clone($this->options);
         return is_array($out) ? $out : [];
+    }
+
+    // The options hold the credential, so the default print and json form
+    // name the client and nothing more; options_map() is the way to read
+    // them back.
+    public function jsonSerialize(): array
+    {
+        return ['name' => 'MemesioContentCreation'];
+    }
+
+    public function __debugInfo(): array
+    {
+        return $this->jsonSerialize();
     }
 
     public function get_utility()
@@ -242,7 +255,7 @@ class MemesioContentCreationSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return ["ok" => false, "err" => $fetch_err];
+            return ["ok" => false, "err" => ($utility->clean)($ctx, $fetch_err)];
         }
 
         if ($fetched === null) {
@@ -539,24 +552,6 @@ class MemesioContentCreationSDK
     }
 
 
-    private $_create_meme = null;
-
-    // Canonical facade: $client->CreateMeme()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->create_meme()
-    // resolves here too.
-    public function CreateMeme($data = null)
-    {
-        require_once __DIR__ . '/entity/create_meme_entity.php';
-        if ($data === null) {
-            if ($this->_create_meme === null) {
-                $this->_create_meme = new CreateMemeEntity($this, null);
-            }
-            return $this->_create_meme;
-        }
-        return new CreateMemeEntity($this, $data);
-    }
-
-
     private $_developer_api = null;
 
     // Canonical facade: $client->DeveloperApi()->list() / ->load(["id" => ...]).
@@ -626,24 +621,6 @@ class MemesioContentCreationSDK
             return $this->_generate;
         }
         return new GenerateEntity($this, $data);
-    }
-
-
-    private $_gif = null;
-
-    // Canonical facade: $client->Gif()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->gif()
-    // resolves here too.
-    public function Gif($data = null)
-    {
-        require_once __DIR__ . '/entity/gif_entity.php';
-        if ($data === null) {
-            if ($this->_gif === null) {
-                $this->_gif = new GifEntity($this, null);
-            }
-            return $this->_gif;
-        }
-        return new GifEntity($this, $data);
     }
 
 
@@ -734,24 +711,6 @@ class MemesioContentCreationSDK
             return $this->_standalone_agent_bootstrap;
         }
         return new StandaloneAgentBootstrapEntity($this, $data);
-    }
-
-
-    private $_template = null;
-
-    // Canonical facade: $client->Template()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->template()
-    // resolves here too.
-    public function Template($data = null)
-    {
-        require_once __DIR__ . '/entity/template_entity.php';
-        if ($data === null) {
-            if ($this->_template === null) {
-                $this->_template = new TemplateEntity($this, null);
-            }
-            return $this->_template;
-        }
-        return new TemplateEntity($this, $data);
     }
 
 

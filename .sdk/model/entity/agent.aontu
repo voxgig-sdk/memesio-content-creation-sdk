@@ -123,7 +123,7 @@ main: kit: entity: agent: {
               {
                 k: "param"
                 n: "id"
-                or: "agent_id"
+                or: "agentId"
                 r: true
                 t: "`$STRING`"
               }
@@ -200,7 +200,7 @@ main: kit: entity: agent: {
               {
                 k: "param"
                 n: "id"
-                or: "agent_id"
+                or: "agentId"
                 r: true
                 t: "`$STRING`"
               }

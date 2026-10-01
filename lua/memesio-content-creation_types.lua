@@ -334,32 +334,6 @@
 
 ---@class ComplianceLoadMatch
 
----@class CreateMeme
----@field canvas table
----@field captions table
----@field generationRunId? string|nil
----@field generationVariantId? string|nil
----@field imageDataUrl string
----@field overlays? table
----@field sourceImageUrl string
----@field templateSlug? string
----@field title? string
----@field visibility? string
----@field watermark table
-
----@class CreateMemeCreateData
----@field canvas table
----@field captions table
----@field generationRunId? string|nil
----@field generationVariantId? string|nil
----@field imageDataUrl string
----@field overlays? table
----@field sourceImageUrl string
----@field templateSlug? string
----@field title? string
----@field visibility? string
----@field watermark table
-
 ---@class DeveloperApi
 ---@field limit? number
 ---@field prompt string
@@ -467,40 +441,6 @@
 ---@field width number
 ---@field widthPx? number
 
----@class Gif
----@field animated? boolean
----@field assetBytes? number|nil
----@field assetContentType? string
----@field boxCount? number
----@field captionCount? number
----@field captions table
----@field categories? table
----@field description string
----@field durationMs? number|nil
----@field exampleImageUrl? string|nil
----@field frameCount? number|nil
----@field height number|nil
----@field id string
----@field imageUrl string
----@field mediaType string
----@field name string
----@field posterImageUrl? string
----@field previewImageUrl? string
----@field qualityStatus? string
----@field slug string
----@field sourceTemplateId string|nil
----@field sourceUrl? string
----@field tags table
----@field width number|nil
-
----@class GifListMatch
----@field page? number
----@field page_size? number
----@field q? string
----@field query? string
----@field sort? string
----@field tag? string
-
 ---@class Growth
 ---@field action string
 ---@field actorId? string
@@ -530,7 +470,10 @@
 ---@field canvas table
 ---@field captions table
 ---@field createdAt string
+---@field generationRunId? string|nil
+---@field generationVariantId? string|nil
 ---@field id? string
+---@field imageDataUrl string
 ---@field imageUrl string
 ---@field nsfwStatus string
 ---@field overlays table
@@ -559,6 +502,30 @@
 ---@field query? string
 ---@field template_slug? string
 ---@field visibility? string
+
+---@class MemeCreateData
+---@field altText string
+---@field canonicalImageUrl string
+---@field canvas table
+---@field captions table
+---@field createdAt string
+---@field generationRunId? string|nil
+---@field generationVariantId? string|nil
+---@field id? string
+---@field imageDataUrl string
+---@field imageUrl string
+---@field nsfwStatus string
+---@field overlays table
+---@field shareSlug string
+---@field shareUrl string
+---@field shareViews number
+---@field slug string
+---@field sourceImageUrl string
+---@field tags table
+---@field templateSlug string
+---@field title string
+---@field visibility string
+---@field watermark table
 
 ---@class MemeRemoveMatch
 ---@field id string
@@ -592,6 +559,16 @@
 ---@class PublicTemplateMediaItemLoadMatch
 ---@field slug string
 ---@field media_type? string
+
+---@class PublicTemplateMediaItemListMatch
+---@field media_type? string
+---@field mode? string
+---@field page? number
+---@field page_size? number
+---@field q? string
+---@field query? string
+---@field sort? string
+---@field tag? string
 
 ---@class PublicTemplateMediaItemCreateData
 ---@field slug string
@@ -638,42 +615,6 @@
 ---@field systemPrompt? string
 ---@field watermarkText? string
 ---@field websiteUrl? string
-
----@class Template
----@field animated? boolean
----@field assetBytes? number|nil
----@field assetContentType? string
----@field boxCount? number
----@field captionCount? number
----@field captions table
----@field categories? table
----@field description string
----@field durationMs? number|nil
----@field exampleImageUrl? string|nil
----@field frameCount? number|nil
----@field height number|nil
----@field id string
----@field imageUrl string
----@field mediaType string
----@field name string
----@field posterImageUrl? string
----@field previewImageUrl? string
----@field qualityStatus? string
----@field slug string
----@field sourceTemplateId string|nil
----@field sourceUrl? string
----@field tags table
----@field width number|nil
-
----@class TemplateListMatch
----@field media_type? string
----@field mode? string
----@field page? number
----@field page_size? number
----@field q? string
----@field query? string
----@field sort? string
----@field tag? string
 
 ---@class TrendAlert
 ---@field action string

@@ -86,10 +86,6 @@ Create a new `CollaborationEntity` instance. Pass `null` for no initial data.
 
 Create a new `ComplianceEntity` instance. Pass `null` for no initial data.
 
-#### `CreateMeme($data = null)`
-
-Create a new `CreateMemeEntity` instance. Pass `null` for no initial data.
-
 #### `DeveloperApi($data = null)`
 
 Create a new `DeveloperApiEntity` instance. Pass `null` for no initial data.
@@ -105,10 +101,6 @@ Create a new `FreeTemplateSearchEntity` instance. Pass `null` for no initial dat
 #### `Generate($data = null)`
 
 Create a new `GenerateEntity` instance. Pass `null` for no initial data.
-
-#### `Gif($data = null)`
-
-Create a new `GifEntity` instance. Pass `null` for no initial data.
 
 #### `Growth($data = null)`
 
@@ -129,10 +121,6 @@ Create a new `PublicTemplateMediaItemEntity` instance. Pass `null` for no initia
 #### `StandaloneAgentBootstrap($data = null)`
 
 Create a new `StandaloneAgentBootstrapEntity` instance. Pass `null` for no initial data.
-
-#### `Template($data = null)`
-
-Create a new `TemplateEntity` instance. Pass `null` for no initial data.
 
 #### `TrendAlert($data = null)`
 
@@ -1036,74 +1024,6 @@ Return the entity name.
 
 ---
 
-## CreateMemeEntity
-
-```php
-$create_meme = $client->CreateMeme();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canvas` | `array` | Yes |  |
-| `captions` | `array` | Yes |  |
-| `generationRunId` | `mixed` | No |  |
-| `generationVariantId` | `mixed` | No |  |
-| `imageDataUrl` | `string` | Yes |  |
-| `overlays` | `array` | No |  |
-| `sourceImageUrl` | `string` | Yes |  |
-| `templateSlug` | `string` | No |  |
-| `title` | `string` | No |  |
-| `visibility` | `string` | No |  |
-| `watermark` | `array` | Yes |  |
-
-### Operations
-
-#### `create(array $reqdata, ?array $ctrl = null): mixed`
-
-Create a new entity with the given data. Throws on error.
-
-```php
-$result = $client->CreateMeme()->create([
-  "canvas" => null, // array
-  "captions" => null, // array
-  "imageDataUrl" => null, // string
-  "sourceImageUrl" => null, // string
-  "watermark" => null, // array
-]);
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): CreateMemeEntity`
-
-Create a new `CreateMemeEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## DeveloperApiEntity
 
 ```php
@@ -1407,81 +1327,6 @@ Return the entity name.
 
 ---
 
-## GifEntity
-
-```php
-$gif = $client->Gif();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `bool` | No |  |
-| `assetBytes` | `mixed` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `int` | No |  |
-| `captionCount` | `int` | No |  |
-| `captions` | `array` | Yes |  |
-| `categories` | `array` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `mixed` | No |  |
-| `exampleImageUrl` | `mixed` | No |  |
-| `frameCount` | `mixed` | No |  |
-| `height` | `mixed` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `mixed` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `array` | Yes |  |
-| `width` | `mixed` | Yes |  |
-
-### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->Gif()->list();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): GifEntity`
-
-Create a new `GifEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## GrowthEntity
 
 ```php
@@ -1610,7 +1455,10 @@ $meme = $client->Meme();
 | `canvas` | `array` | Yes |  |
 | `captions` | `array` | Yes |  |
 | `createdAt` | `string` | Yes |  |
+| `generationRunId` | `mixed` | No |  |
+| `generationVariantId` | `mixed` | No |  |
 | `id` | `string` | No |  |
+| `imageDataUrl` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
 | `nsfwStatus` | `string` | Yes |  |
 | `overlays` | `array` | Yes |  |
@@ -1625,7 +1473,62 @@ $meme = $client->Meme();
 | `visibility` | `string` | Yes |  |
 | `watermark` | `array` | Yes |  |
 
+### Field Usage by Operation
+
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `altText` | - | - | - | - |
+| `canonicalImageUrl` | - | - | - | - |
+| `canvas` | - | - | - | - |
+| `captions` | - | - | - | - |
+| `createdAt` | - | - | - | - |
+| `generationRunId` | - | - | - | - |
+| `generationVariantId` | - | - | - | - |
+| `id` | - | - | - | - |
+| `imageDataUrl` | - | - | - | - |
+| `imageUrl` | - | - | - | - |
+| `nsfwStatus` | - | - | - | - |
+| `overlays` | - | - | Yes | - |
+| `shareSlug` | - | - | - | - |
+| `shareUrl` | - | - | - | - |
+| `shareViews` | - | - | - | - |
+| `slug` | - | - | - | - |
+| `sourceImageUrl` | - | - | - | - |
+| `tags` | - | - | - | - |
+| `templateSlug` | - | - | Yes | - |
+| `title` | - | - | Yes | - |
+| `visibility` | - | - | Yes | - |
+| `watermark` | - | - | - | - |
+
 ### Operations
+
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
+
+Create a new entity with the given data. Throws on error.
+
+```php
+$result = $client->Meme()->create([
+  "altText" => null, // string
+  "canonicalImageUrl" => null, // string
+  "canvas" => null, // array
+  "captions" => null, // array
+  "createdAt" => null, // string
+  "imageDataUrl" => null, // string
+  "imageUrl" => null, // string
+  "nsfwStatus" => null, // string
+  "overlays" => null, // array
+  "shareSlug" => null, // string
+  "shareUrl" => null, // string
+  "shareViews" => null, // int
+  "slug" => null, // string
+  "sourceImageUrl" => null, // string
+  "tags" => null, // array
+  "templateSlug" => null, // string
+  "title" => null, // string
+  "visibility" => null, // string
+  "watermark" => null, // array
+]);
+```
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
@@ -1738,6 +1641,14 @@ $result = $client->PublicTemplateMediaItem()->create([
 ]);
 ```
 
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->PublicTemplateMediaItem()->list();
+```
+
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
 Load a single entity matching the given criteria. Throws on error.
@@ -1829,81 +1740,6 @@ Set the entity match criteria.
 #### `make(): StandaloneAgentBootstrapEntity`
 
 Create a new `StandaloneAgentBootstrapEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## TemplateEntity
-
-```php
-$template = $client->Template();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `bool` | No |  |
-| `assetBytes` | `mixed` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `int` | No |  |
-| `captionCount` | `int` | No |  |
-| `captions` | `array` | Yes |  |
-| `categories` | `array` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `mixed` | No |  |
-| `exampleImageUrl` | `mixed` | No |  |
-| `frameCount` | `mixed` | No |  |
-| `height` | `mixed` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `mixed` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `array` | Yes |  |
-| `width` | `mixed` | Yes |  |
-
-### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->Template()->list();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): TemplateEntity`
-
-Create a new `TemplateEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/memesio-content-creation-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-memesio-content-creation-sdk", path: "./memesio-content-creation-sdk/rb"
+```
 
 
 ## Tutorial: your first API call
@@ -32,15 +41,13 @@ client = MemesioContentCreationSDK.new({
 })
 ```
 
-### 3. Load a publictemplatemediaitem
-
-PublicTemplateMediaItem is nested under slug, so provide the `slug`.
+### 3. Load an agent
 
 ```ruby
 begin
-  # load returns the ENTITY — call data_get for the PublicTemplateMediaItem record (raises on error).
-  publictemplatemediaitem = client.PublicTemplateMediaItem.load({ "slug" => "example_slug" })
-  puts publictemplatemediaitem
+  # load returns the ENTITY — call data_get for the Agent record (raises on error).
+  agent = client.Agent.load({ "id" => "example_id" })
+  puts agent
 rescue => err
   warn "load failed: #{err}"
 end
@@ -64,7 +71,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  agentinfra = client.AgentInfra.load()
+  aiprovider = client.AiProvider.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -134,8 +141,8 @@ client = MemesioContentCreationSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-agentinfra = client.AgentInfra.load()
-puts agentinfra
+aiprovider = client.AiProvider.load()
+puts aiprovider
 ```
 
 ### Use a custom fetch function
@@ -224,18 +231,15 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Billing` | `(data) -> BillingEntity` | Create a Billing entity instance. |
 | `Collaboration` | `(data) -> CollaborationEntity` | Create a Collaboration entity instance. |
 | `Compliance` | `(data) -> ComplianceEntity` | Create a Compliance entity instance. |
-| `CreateMeme` | `(data) -> CreateMemeEntity` | Create a CreateMeme entity instance. |
 | `DeveloperApi` | `(data) -> DeveloperApiEntity` | Create a DeveloperApi entity instance. |
 | `FreeCaptionMemeSuccess` | `(data) -> FreeCaptionMemeSuccessEntity` | Create a FreeCaptionMemeSuccess entity instance. |
 | `FreeTemplateSearch` | `(data) -> FreeTemplateSearchEntity` | Create a FreeTemplateSearch entity instance. |
 | `Generate` | `(data) -> GenerateEntity` | Create a Generate entity instance. |
-| `Gif` | `(data) -> GifEntity` | Create a Gif entity instance. |
 | `Growth` | `(data) -> GrowthEntity` | Create a Growth entity instance. |
 | `Media` | `(data) -> MediaEntity` | Create a Media entity instance. |
 | `Meme` | `(data) -> MemeEntity` | Create a Meme entity instance. |
 | `PublicTemplateMediaItem` | `(data) -> PublicTemplateMediaItemEntity` | Create a PublicTemplateMediaItem entity instance. |
 | `StandaloneAgentBootstrap` | `(data) -> StandaloneAgentBootstrapEntity` | Create a StandaloneAgentBootstrap entity instance. |
-| `Template` | `(data) -> TemplateEntity` | Create a Template entity instance. |
 | `TrendAlert` | `(data) -> TrendAlertEntity` | Create a TrendAlert entity instance. |
 | `UploadCaptionMemeSuccess` | `(data) -> UploadCaptionMemeSuccessEntity` | Create an UploadCaptionMemeSuccess entity instance. |
 | `Video` | `(data) -> VideoEntity` | Create a Video entity instance. |
@@ -498,26 +502,6 @@ Operations: Load.
 
 API path: `/api/compliance/content-policy`
 
-#### CreateMeme
-
-| Field | Description |
-| --- | --- |
-| `canvas` |  |
-| `captions` |  |
-| `generationRunId` |  |
-| `generationVariantId` |  |
-| `imageDataUrl` |  |
-| `overlays` |  |
-| `sourceImageUrl` |  |
-| `templateSlug` |  |
-| `title` |  |
-| `visibility` |  |
-| `watermark` |  |
-
-Operations: Create.
-
-API path: `/api/memes`
-
 #### DeveloperApi
 
 | Field | Description |
@@ -604,39 +588,6 @@ Operations: Create.
 
 API path: `/api/v1/gifs/generate`
 
-#### Gif
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: List.
-
-API path: `/api/gifs`
-
 #### Growth
 
 | Field | Description |
@@ -669,7 +620,10 @@ API path: `/api/media/signed-url`
 | `canvas` |  |
 | `captions` |  |
 | `createdAt` |  |
+| `generationRunId` |  |
+| `generationVariantId` |  |
 | `id` |  |
+| `imageDataUrl` |  |
 | `imageUrl` |  |
 | `nsfwStatus` |  |
 | `overlays` |  |
@@ -684,7 +638,7 @@ API path: `/api/media/signed-url`
 | `visibility` |  |
 | `watermark` |  |
 
-Operations: List, Load, Remove.
+Operations: Create, List, Load, Remove.
 
 API path: `/api/memes`
 
@@ -717,7 +671,7 @@ API path: `/api/memes`
 | `tags` |  |
 | `width` |  |
 
-Operations: Create, Load.
+Operations: Create, List, Load.
 
 API path: `/api/gifs/{slug}/generate`
 
@@ -737,39 +691,6 @@ API path: `/api/gifs/{slug}/generate`
 Operations: Create.
 
 API path: `/api/v1/agents/bootstrap`
-
-#### Template
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: List.
-
-API path: `/api/templates`
 
 #### TrendAlert
 
@@ -1256,45 +1177,6 @@ compliance = client.Compliance.load()
 ```
 
 
-### CreateMeme
-
-Create an instance: `create_meme = client.CreateMeme`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `canvas` | `Hash` |  |
-| `captions` | `Array` |  |
-| `generationRunId` | `Object` |  |
-| `generationVariantId` | `Object` |  |
-| `imageDataUrl` | `String` |  |
-| `overlays` | `Array` |  |
-| `sourceImageUrl` | `String` |  |
-| `templateSlug` | `String` |  |
-| `title` | `String` |  |
-| `visibility` | `String` |  |
-| `watermark` | `Hash` |  |
-
-#### Example: Create
-
-```ruby
-create_meme = client.CreateMeme.create({
-  "canvas" => {}, # Hash
-  "captions" => [], # Array
-  "imageDataUrl" => "example_imageDataUrl", # String
-  "sourceImageUrl" => "example_sourceImageUrl", # String
-  "watermark" => {}, # Hash
-})
-```
-
-
 ### DeveloperApi
 
 Create an instance: `developer_api = client.DeveloperApi`
@@ -1458,53 +1340,6 @@ generate = client.Generate.create({
 ```
 
 
-### Gif
-
-Create an instance: `gif = client.Gif`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `Boolean` |  |
-| `assetBytes` | `Object` |  |
-| `assetContentType` | `String` |  |
-| `boxCount` | `Integer` |  |
-| `captionCount` | `Integer` |  |
-| `captions` | `Array` |  |
-| `categories` | `Array` |  |
-| `description` | `String` |  |
-| `durationMs` | `Object` |  |
-| `exampleImageUrl` | `Object` |  |
-| `frameCount` | `Object` |  |
-| `height` | `Object` |  |
-| `id` | `String` |  |
-| `imageUrl` | `String` |  |
-| `mediaType` | `String` |  |
-| `name` | `String` |  |
-| `posterImageUrl` | `String` |  |
-| `previewImageUrl` | `String` |  |
-| `qualityStatus` | `String` |  |
-| `slug` | `String` |  |
-| `sourceTemplateId` | `Object` |  |
-| `sourceUrl` | `String` |  |
-| `tags` | `Array` |  |
-| `width` | `Object` |  |
-
-#### Example: List
-
-```ruby
-# list returns an Array of Gif records (raises on error).
-gifs = client.Gif.list
-```
-
-
 ### Growth
 
 Create an instance: `growth = client.Growth`
@@ -1568,6 +1403,7 @@ Create an instance: `meme = client.Meme`
 
 | Method | Description |
 | --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 | `remove(match)` | Remove the matching entity. |
@@ -1581,7 +1417,10 @@ Create an instance: `meme = client.Meme`
 | `canvas` | `Hash` |  |
 | `captions` | `Array` |  |
 | `createdAt` | `String` |  |
+| `generationRunId` | `Object` |  |
+| `generationVariantId` | `Object` |  |
 | `id` | `String` |  |
+| `imageDataUrl` | `String` |  |
 | `imageUrl` | `String` |  |
 | `nsfwStatus` | `String` |  |
 | `overlays` | `Array` |  |
@@ -1610,6 +1449,32 @@ meme = client.Meme.load({ "id" => "meme_id" })
 memes = client.Meme.list
 ```
 
+#### Example: Create
+
+```ruby
+meme = client.Meme.create({
+  "altText" => "example_altText", # String
+  "canonicalImageUrl" => "example_canonicalImageUrl", # String
+  "canvas" => {}, # Hash
+  "captions" => [], # Array
+  "createdAt" => "example_createdAt", # String
+  "imageDataUrl" => "example_imageDataUrl", # String
+  "imageUrl" => "example_imageUrl", # String
+  "nsfwStatus" => "example_nsfwStatus", # String
+  "overlays" => [], # Array
+  "shareSlug" => "example_shareSlug", # String
+  "shareUrl" => "example_shareUrl", # String
+  "shareViews" => 1, # Integer
+  "slug" => "example_slug", # String
+  "sourceImageUrl" => "example_sourceImageUrl", # String
+  "tags" => [], # Array
+  "templateSlug" => "example_templateSlug", # String
+  "title" => "example_title", # String
+  "visibility" => "example_visibility", # String
+  "watermark" => {}, # Hash
+})
+```
+
 
 ### PublicTemplateMediaItem
 
@@ -1620,6 +1485,7 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
+| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
@@ -1656,6 +1522,13 @@ Create an instance: `public_template_media_item = client.PublicTemplateMediaItem
 ```ruby
 # load returns the ENTITY — call data_get for the PublicTemplateMediaItem record (raises on error).
 public_template_media_item = client.PublicTemplateMediaItem.load({ "slug" => "slug" })
+```
+
+#### Example: List
+
+```ruby
+# list returns an Array of PublicTemplateMediaItem records (raises on error).
+public_template_media_items = client.PublicTemplateMediaItem.list
 ```
 
 #### Example: Create
@@ -1707,53 +1580,6 @@ standalone_agent_bootstrap = client.StandaloneAgentBootstrap.create({
   "handle" => "example_handle", # String
   "name" => "example_name", # String
 })
-```
-
-
-### Template
-
-Create an instance: `template = client.Template`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `Boolean` |  |
-| `assetBytes` | `Object` |  |
-| `assetContentType` | `String` |  |
-| `boxCount` | `Integer` |  |
-| `captionCount` | `Integer` |  |
-| `captions` | `Array` |  |
-| `categories` | `Array` |  |
-| `description` | `String` |  |
-| `durationMs` | `Object` |  |
-| `exampleImageUrl` | `Object` |  |
-| `frameCount` | `Object` |  |
-| `height` | `Object` |  |
-| `id` | `String` |  |
-| `imageUrl` | `String` |  |
-| `mediaType` | `String` |  |
-| `name` | `String` |  |
-| `posterImageUrl` | `String` |  |
-| `previewImageUrl` | `String` |  |
-| `qualityStatus` | `String` |  |
-| `slug` | `String` |  |
-| `sourceTemplateId` | `Object` |  |
-| `sourceUrl` | `String` |  |
-| `tags` | `Array` |  |
-| `width` | `Object` |  |
-
-#### Example: List
-
-```ruby
-# list returns an Array of Template records (raises on error).
-templates = client.Template.list
 ```
 
 
@@ -2013,11 +1839,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-agentinfra = client.AgentInfra
-agentinfra.load()
+aiprovider = client.AiProvider
+aiprovider.load()
 
-# agentinfra.data_get now returns the agentinfra data from the last load
-# agentinfra.match_get returns the last match criteria
+# aiprovider.data_get now returns the aiprovider data from the last load
+# aiprovider.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

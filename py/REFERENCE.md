@@ -86,10 +86,6 @@ Create a new `CollaborationEntity` instance. Pass `None` for no initial data.
 
 Create a new `ComplianceEntity` instance. Pass `None` for no initial data.
 
-#### `CreateMeme(data=None)`
-
-Create a new `CreateMemeEntity` instance. Pass `None` for no initial data.
-
 #### `DeveloperApi(data=None)`
 
 Create a new `DeveloperApiEntity` instance. Pass `None` for no initial data.
@@ -105,10 +101,6 @@ Create a new `FreeTemplateSearchEntity` instance. Pass `None` for no initial dat
 #### `Generate(data=None)`
 
 Create a new `GenerateEntity` instance. Pass `None` for no initial data.
-
-#### `Gif(data=None)`
-
-Create a new `GifEntity` instance. Pass `None` for no initial data.
 
 #### `Growth(data=None)`
 
@@ -129,10 +121,6 @@ Create a new `PublicTemplateMediaItemEntity` instance. Pass `None` for no initia
 #### `StandaloneAgentBootstrap(data=None)`
 
 Create a new `StandaloneAgentBootstrapEntity` instance. Pass `None` for no initial data.
-
-#### `Template(data=None)`
-
-Create a new `TemplateEntity` instance. Pass `None` for no initial data.
 
 #### `TrendAlert(data=None)`
 
@@ -1020,73 +1008,6 @@ Return the entity name.
 
 ---
 
-## CreateMemeEntity
-
-```python
-create_meme = client.CreateMeme()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canvas` | `dict` | Yes |  |
-| `captions` | `list` | Yes |  |
-| `generationRunId` | `str | None` | No |  |
-| `generationVariantId` | `str | None` | No |  |
-| `imageDataUrl` | `str` | Yes |  |
-| `overlays` | `list` | No |  |
-| `sourceImageUrl` | `str` | Yes |  |
-| `templateSlug` | `str` | No |  |
-| `title` | `str` | No |  |
-| `visibility` | `str` | No |  |
-| `watermark` | `dict` | Yes |  |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> dict`
-
-Create a new entity with the given data. Returns the created entity data and raises on error.
-
-```python
-result = client.CreateMeme().create({
-    "canvas": {},  # dict
-    "captions": [],  # list
-    "imageDataUrl": "example_imageDataUrl",  # str
-    "sourceImageUrl": "example_sourceImageUrl",  # str
-    "watermark": {},  # dict
-})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreateMemeEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## DeveloperApiEntity
 
 ```python
@@ -1388,82 +1309,6 @@ Return the entity name.
 
 ---
 
-## GifEntity
-
-```python
-gif = client.Gif()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `bool` | No |  |
-| `assetBytes` | `int | None` | No |  |
-| `assetContentType` | `str` | No |  |
-| `boxCount` | `int` | No |  |
-| `captionCount` | `int` | No |  |
-| `captions` | `list` | Yes |  |
-| `categories` | `list` | No |  |
-| `description` | `str` | Yes |  |
-| `durationMs` | `int | None` | No |  |
-| `exampleImageUrl` | `str | None` | No |  |
-| `frameCount` | `int | None` | No |  |
-| `height` | `float | None` | Yes |  |
-| `id` | `str` | Yes |  |
-| `imageUrl` | `str` | Yes |  |
-| `mediaType` | `str` | Yes |  |
-| `name` | `str` | Yes |  |
-| `posterImageUrl` | `str` | No |  |
-| `previewImageUrl` | `str` | No |  |
-| `qualityStatus` | `str` | No |  |
-| `slug` | `str` | Yes |  |
-| `sourceTemplateId` | `str | None` | Yes |  |
-| `sourceUrl` | `str` | No |  |
-| `tags` | `list` | Yes |  |
-| `width` | `float | None` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.Gif().list()
-for gif in results:
-    print(gif)
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `GifEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## GrowthEntity
 
 ```python
@@ -1590,7 +1435,10 @@ meme = client.Meme()
 | `canvas` | `dict` | Yes |  |
 | `captions` | `list` | Yes |  |
 | `createdAt` | `str` | Yes |  |
+| `generationRunId` | `str | None` | No |  |
+| `generationVariantId` | `str | None` | No |  |
 | `id` | `str` | No |  |
+| `imageDataUrl` | `str` | Yes |  |
 | `imageUrl` | `str` | Yes |  |
 | `nsfwStatus` | `str` | Yes |  |
 | `overlays` | `list` | Yes |  |
@@ -1605,7 +1453,62 @@ meme = client.Meme()
 | `visibility` | `str` | Yes |  |
 | `watermark` | `dict` | Yes |  |
 
+### Field Usage by Operation
+
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `altText` | - | - | - | - |
+| `canonicalImageUrl` | - | - | - | - |
+| `canvas` | - | - | - | - |
+| `captions` | - | - | - | - |
+| `createdAt` | - | - | - | - |
+| `generationRunId` | - | - | - | - |
+| `generationVariantId` | - | - | - | - |
+| `id` | - | - | - | - |
+| `imageDataUrl` | - | - | - | - |
+| `imageUrl` | - | - | - | - |
+| `nsfwStatus` | - | - | - | - |
+| `overlays` | - | - | Yes | - |
+| `shareSlug` | - | - | - | - |
+| `shareUrl` | - | - | - | - |
+| `shareViews` | - | - | - | - |
+| `slug` | - | - | - | - |
+| `sourceImageUrl` | - | - | - | - |
+| `tags` | - | - | - | - |
+| `templateSlug` | - | - | Yes | - |
+| `title` | - | - | Yes | - |
+| `visibility` | - | - | Yes | - |
+| `watermark` | - | - | - | - |
+
 ### Operations
+
+#### `create(reqdata, ctrl=None) -> dict`
+
+Create a new entity with the given data. Returns the created entity data and raises on error.
+
+```python
+result = client.Meme().create({
+    "altText": "example_altText",  # str
+    "canonicalImageUrl": "example_canonicalImageUrl",  # str
+    "canvas": {},  # dict
+    "captions": [],  # list
+    "createdAt": "example_createdAt",  # str
+    "imageDataUrl": "example_imageDataUrl",  # str
+    "imageUrl": "example_imageUrl",  # str
+    "nsfwStatus": "example_nsfwStatus",  # str
+    "overlays": [],  # list
+    "shareSlug": "example_shareSlug",  # str
+    "shareUrl": "example_shareUrl",  # str
+    "shareViews": 1,  # int
+    "slug": "example_slug",  # str
+    "sourceImageUrl": "example_sourceImageUrl",  # str
+    "tags": [],  # list
+    "templateSlug": "example_templateSlug",  # str
+    "title": "example_title",  # str
+    "visibility": "example_visibility",  # str
+    "watermark": {},  # dict
+})
+```
 
 #### `list(reqmatch=None, ctrl=None) -> list`
 
@@ -1719,6 +1622,16 @@ result = client.PublicTemplateMediaItem().create({
 })
 ```
 
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.PublicTemplateMediaItem().list()
+for public_template_media_item in results:
+    print(public_template_media_item)
+```
+
 #### `load(reqmatch, ctrl=None) -> dict`
 
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
@@ -1809,82 +1722,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `StandaloneAgentBootstrapEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## TemplateEntity
-
-```python
-template = client.Template()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `bool` | No |  |
-| `assetBytes` | `int | None` | No |  |
-| `assetContentType` | `str` | No |  |
-| `boxCount` | `int` | No |  |
-| `captionCount` | `int` | No |  |
-| `captions` | `list` | Yes |  |
-| `categories` | `list` | No |  |
-| `description` | `str` | Yes |  |
-| `durationMs` | `int | None` | No |  |
-| `exampleImageUrl` | `str | None` | No |  |
-| `frameCount` | `int | None` | No |  |
-| `height` | `float | None` | Yes |  |
-| `id` | `str` | Yes |  |
-| `imageUrl` | `str` | Yes |  |
-| `mediaType` | `str` | Yes |  |
-| `name` | `str` | Yes |  |
-| `posterImageUrl` | `str` | No |  |
-| `previewImageUrl` | `str` | No |  |
-| `qualityStatus` | `str` | No |  |
-| `slug` | `str` | Yes |  |
-| `sourceTemplateId` | `str | None` | Yes |  |
-| `sourceUrl` | `str` | No |  |
-| `tags` | `list` | Yes |  |
-| `width` | `float | None` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.Template().list()
-for template in results:
-    print(template)
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `TemplateEntity` instance with the same options.
 
 #### `get_name() -> str`
 

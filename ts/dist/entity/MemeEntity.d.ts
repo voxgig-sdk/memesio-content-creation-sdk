@@ -1,12 +1,13 @@
 import { MemesioContentCreationEntityBase } from '../MemesioContentCreationEntityBase';
 import type { MemesioContentCreationSDK } from '../MemesioContentCreationSDK';
 import type { Control } from '../types';
-import type { Meme, MemeLoadMatch, MemeListMatch, MemeRemoveMatch } from '../MemesioContentCreationTypes';
+import type { Meme, MemeLoadMatch, MemeListMatch, MemeCreateData, MemeRemoveMatch } from '../MemesioContentCreationTypes';
 declare class MemeEntity extends MemesioContentCreationEntityBase<Meme> {
     constructor(client: MemesioContentCreationSDK, entopts: any);
     make(this: MemeEntity): MemeEntity;
     load(this: any, reqmatch?: MemeLoadMatch, ctrl?: Control): Promise<MemeEntity>;
     list(this: any, reqmatch?: MemeListMatch, ctrl?: Control): Promise<MemeEntity[]>;
+    create(this: any, reqdata?: MemeCreateData, ctrl?: Control): Promise<MemeEntity>;
     remove(this: any, reqmatch?: MemeRemoveMatch, ctrl?: Control): Promise<MemeEntity>;
 }
 export { MemeEntity };

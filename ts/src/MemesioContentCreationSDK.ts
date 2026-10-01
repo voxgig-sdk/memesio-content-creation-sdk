@@ -11,18 +11,15 @@ import { AuthEntity } from './entity/AuthEntity'
 import { BillingEntity } from './entity/BillingEntity'
 import { CollaborationEntity } from './entity/CollaborationEntity'
 import { ComplianceEntity } from './entity/ComplianceEntity'
-import { CreateMemeEntity } from './entity/CreateMemeEntity'
 import { DeveloperApiEntity } from './entity/DeveloperApiEntity'
 import { FreeCaptionMemeSuccessEntity } from './entity/FreeCaptionMemeSuccessEntity'
 import { FreeTemplateSearchEntity } from './entity/FreeTemplateSearchEntity'
 import { GenerateEntity } from './entity/GenerateEntity'
-import { GifEntity } from './entity/GifEntity'
 import { GrowthEntity } from './entity/GrowthEntity'
 import { MediaEntity } from './entity/MediaEntity'
 import { MemeEntity } from './entity/MemeEntity'
 import { PublicTemplateMediaItemEntity } from './entity/PublicTemplateMediaItemEntity'
 import { StandaloneAgentBootstrapEntity } from './entity/StandaloneAgentBootstrapEntity'
-import { TemplateEntity } from './entity/TemplateEntity'
 import { TrendAlertEntity } from './entity/TrendAlertEntity'
 import { UploadCaptionMemeSuccessEntity } from './entity/UploadCaptionMemeSuccessEntity'
 import { VideoEntity } from './entity/VideoEntity'
@@ -65,6 +62,12 @@ class MemesioContentCreationSDK {
     })
 
     this._options = this._utility.makeOptions(this._rootctx)
+
+    for (const key of ['_options', '_rootctx', '_features']) {
+      Object.defineProperty(this, key, {
+        value: (this as any)[key], enumerable: false, writable: true, configurable: true
+      })
+    }
 
     const struct = this._utility.struct
     const getpath = struct.getpath
@@ -225,7 +228,7 @@ class MemesioContentCreationSDK {
         return { ok: false, err: ctx.error('direct_no_response', 'response: undefined') }
       }
       else if (fetched instanceof Error) {
-        return { ok: false, err: fetched }
+        return { ok: false, err: utility.clean(ctx, fetched) }
       }
 
       const status = fetched.status
@@ -259,7 +262,7 @@ class MemesioContentCreationSDK {
       }
     }
     catch (err: any) {
-      return { ok: false, err }
+      return { ok: false, err: utility.clean(ctx, err) }
     }
   }
 
@@ -406,15 +409,6 @@ class MemesioContentCreationSDK {
   }
 
 
-  // Entity access: `client.CreateMeme().list()` / `client.CreateMeme().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  CreateMeme(entopts?: Record<string, any>) {
-    const self = this
-    return new CreateMemeEntity(self, entopts)
-  }
-
-
   // Entity access: `client.DeveloperApi().list()` / `client.DeveloperApi().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
@@ -448,15 +442,6 @@ class MemesioContentCreationSDK {
   Generate(entopts?: Record<string, any>) {
     const self = this
     return new GenerateEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Gif().list()` / `client.Gif().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Gif(entopts?: Record<string, any>) {
-    const self = this
-    return new GifEntity(self, entopts)
   }
 
 
@@ -502,15 +487,6 @@ class MemesioContentCreationSDK {
   StandaloneAgentBootstrap(entopts?: Record<string, any>) {
     const self = this
     return new StandaloneAgentBootstrapEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Template().list()` / `client.Template().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Template(entopts?: Record<string, any>) {
-    const self = this
-    return new TemplateEntity(self, entopts)
   }
 
 

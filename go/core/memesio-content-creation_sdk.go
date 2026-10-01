@@ -1,6 +1,7 @@
 package core
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -82,6 +83,22 @@ func NewMemesioContentCreationSDK(options map[string]any) *MemesioContentCreatio
 	sdk.utility.FeatureHook(sdk.rootctx, "PostConstruct")
 
 	return sdk
+}
+
+// The client holds the credential in its options, so a print or a JSON dump
+// carries the name alone. Value receivers: a dereferenced client prints the
+// same way.
+func (sdk MemesioContentCreationSDK) String() string {
+	return "MemesioContentCreation " + vs.Jsonify(map[string]any{"name": "MemesioContentCreation"},
+		map[string]any{"indent": 0})
+}
+
+func (sdk MemesioContentCreationSDK) GoString() string {
+	return sdk.String()
+}
+
+func (sdk MemesioContentCreationSDK) MarshalJSON() ([]byte, error) {
+	return json.Marshal(map[string]any{"name": "MemesioContentCreation"})
 }
 
 func (sdk *MemesioContentCreationSDK) OptionsMap() map[string]any {
@@ -210,7 +227,7 @@ func (sdk *MemesioContentCreationSDK) rawRequest(fetchargs map[string]any) (map[
 
 	fetchdef, err := sdk.Prepare(fetchargs)
 	if err != nil {
-		return map[string]any{"ok": false, "err": err}, nil
+		return map[string]any{"ok": false, "err": sdk.cleanErr(sdk.rootctx, err)}, nil
 	}
 
 	if fetchargs == nil {
@@ -236,7 +253,7 @@ func (sdk *MemesioContentCreationSDK) rawRequest(fetchargs map[string]any) (map[
 	fetched, fetchErr := utility.Fetcher(ctx, url, fetchdef)
 
 	if fetchErr != nil {
-		return map[string]any{"ok": false, "err": fetchErr}, nil
+		return map[string]any{"ok": false, "err": sdk.cleanErr(ctx, fetchErr)}, nil
 	}
 
 	if fetched == nil {
@@ -278,6 +295,14 @@ func (sdk *MemesioContentCreationSDK) rawRequest(fetchargs map[string]any) (map[
 	}
 
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
+}
+
+// A raw request returns its error rather than passing it through MakeError.
+func (sdk *MemesioContentCreationSDK) cleanErr(ctx *Context, err error) error {
+	if cleaned, ok := sdk.utility.Clean(ctx, err).(error); ok {
+		return cleaned
+	}
+	return err
 }
 
 func (sdk *MemesioContentCreationSDK) Graphql(
@@ -414,14 +439,6 @@ func (sdk *MemesioContentCreationSDK) Compliance(data map[string]any) MemesioCon
 }
 
 
-// CreateMeme returns a CreateMeme entity bound to this client.
-// Idiomatic usage: client.CreateMeme(nil).List(nil, nil) or
-// client.CreateMeme(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *MemesioContentCreationSDK) CreateMeme(data map[string]any) MemesioContentCreationEntity {
-	return NewCreateMemeEntityFunc(sdk, data)
-}
-
-
 // DeveloperApi returns a DeveloperApi entity bound to this client.
 // Idiomatic usage: client.DeveloperApi(nil).List(nil, nil) or
 // client.DeveloperApi(nil).Load(map[string]any{"id": ...}, nil).
@@ -451,14 +468,6 @@ func (sdk *MemesioContentCreationSDK) FreeTemplateSearch(data map[string]any) Me
 // client.Generate(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MemesioContentCreationSDK) Generate(data map[string]any) MemesioContentCreationEntity {
 	return NewGenerateEntityFunc(sdk, data)
-}
-
-
-// Gif returns a Gif entity bound to this client.
-// Idiomatic usage: client.Gif(nil).List(nil, nil) or
-// client.Gif(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *MemesioContentCreationSDK) Gif(data map[string]any) MemesioContentCreationEntity {
-	return NewGifEntityFunc(sdk, data)
 }
 
 
@@ -499,14 +508,6 @@ func (sdk *MemesioContentCreationSDK) PublicTemplateMediaItem(data map[string]an
 // client.StandaloneAgentBootstrap(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MemesioContentCreationSDK) StandaloneAgentBootstrap(data map[string]any) MemesioContentCreationEntity {
 	return NewStandaloneAgentBootstrapEntityFunc(sdk, data)
-}
-
-
-// Template returns a Template entity bound to this client.
-// Idiomatic usage: client.Template(nil).List(nil, nil) or
-// client.Template(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *MemesioContentCreationSDK) Template(data map[string]any) MemesioContentCreationEntity {
-	return NewTemplateEntityFunc(sdk, data)
 }
 
 

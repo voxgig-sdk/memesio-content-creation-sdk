@@ -428,40 +428,6 @@ class ComplianceLoadMatch(TypedDict):
     pass
 
 
-class CreateMemeRequired(TypedDict):
-    canvas: dict
-    captions: list
-    imageDataUrl: str
-    sourceImageUrl: str
-    watermark: dict
-
-
-class CreateMeme(CreateMemeRequired, total=False):
-    generationRunId: str | None
-    generationVariantId: str | None
-    overlays: list
-    templateSlug: str
-    title: str
-    visibility: str
-
-
-class CreateMemeCreateDataRequired(TypedDict):
-    canvas: dict
-    captions: list
-    imageDataUrl: str
-    sourceImageUrl: str
-    watermark: dict
-
-
-class CreateMemeCreateData(CreateMemeCreateDataRequired, total=False):
-    generationRunId: str | None
-    generationVariantId: str | None
-    overlays: list
-    templateSlug: str
-    title: str
-    visibility: str
-
-
 class DeveloperApiRequired(TypedDict):
     prompt: str
 
@@ -599,45 +565,6 @@ class GenerateCreateData(GenerateCreateDataRequired, total=False):
     widthPx: int
 
 
-class GifRequired(TypedDict):
-    captions: list
-    description: str
-    height: float | None
-    id: str
-    imageUrl: str
-    mediaType: str
-    name: str
-    slug: str
-    sourceTemplateId: str | None
-    tags: list
-    width: float | None
-
-
-class Gif(GifRequired, total=False):
-    animated: bool
-    assetBytes: int | None
-    assetContentType: str
-    boxCount: int
-    captionCount: int
-    categories: list
-    durationMs: int | None
-    exampleImageUrl: str | None
-    frameCount: int | None
-    posterImageUrl: str
-    previewImageUrl: str
-    qualityStatus: str
-    sourceUrl: str
-
-
-class GifListMatch(TypedDict, total=False):
-    page: int
-    page_size: int
-    q: str
-    query: str
-    sort: str
-    tag: str
-
-
 class GrowthRequired(TypedDict):
     action: str
 
@@ -683,6 +610,7 @@ class MemeRequired(TypedDict):
     canvas: dict
     captions: list
     createdAt: str
+    imageDataUrl: str
     imageUrl: str
     nsfwStatus: str
     overlays: list
@@ -699,6 +627,8 @@ class MemeRequired(TypedDict):
 
 
 class Meme(MemeRequired, total=False):
+    generationRunId: str | None
+    generationVariantId: str | None
     id: str
 
 
@@ -720,6 +650,34 @@ class MemeListMatch(TypedDict, total=False):
     query: str
     template_slug: str
     visibility: str
+
+
+class MemeCreateDataRequired(TypedDict):
+    altText: str
+    canonicalImageUrl: str
+    canvas: dict
+    captions: list
+    createdAt: str
+    imageDataUrl: str
+    imageUrl: str
+    nsfwStatus: str
+    overlays: list
+    shareSlug: str
+    shareUrl: str
+    shareViews: int
+    slug: str
+    sourceImageUrl: str
+    tags: list
+    templateSlug: str
+    title: str
+    visibility: str
+    watermark: dict
+
+
+class MemeCreateData(MemeCreateDataRequired, total=False):
+    generationRunId: str | None
+    generationVariantId: str | None
+    id: str
 
 
 class MemeRemoveMatch(TypedDict):
@@ -762,6 +720,17 @@ class PublicTemplateMediaItemLoadMatchRequired(TypedDict):
 
 class PublicTemplateMediaItemLoadMatch(PublicTemplateMediaItemLoadMatchRequired, total=False):
     media_type: str
+
+
+class PublicTemplateMediaItemListMatch(TypedDict, total=False):
+    media_type: str
+    mode: str
+    page: int
+    page_size: int
+    q: str
+    query: str
+    sort: str
+    tag: str
 
 
 class PublicTemplateMediaItemCreateDataRequired(TypedDict):
@@ -820,47 +789,6 @@ class StandaloneAgentBootstrapCreateData(StandaloneAgentBootstrapCreateDataRequi
     systemPrompt: str
     watermarkText: str
     websiteUrl: str
-
-
-class TemplateRequired(TypedDict):
-    captions: list
-    description: str
-    height: float | None
-    id: str
-    imageUrl: str
-    mediaType: str
-    name: str
-    slug: str
-    sourceTemplateId: str | None
-    tags: list
-    width: float | None
-
-
-class Template(TemplateRequired, total=False):
-    animated: bool
-    assetBytes: int | None
-    assetContentType: str
-    boxCount: int
-    captionCount: int
-    categories: list
-    durationMs: int | None
-    exampleImageUrl: str | None
-    frameCount: int | None
-    posterImageUrl: str
-    previewImageUrl: str
-    qualityStatus: str
-    sourceUrl: str
-
-
-class TemplateListMatch(TypedDict, total=False):
-    media_type: str
-    mode: str
-    page: int
-    page_size: int
-    q: str
-    query: str
-    sort: str
-    tag: str
 
 
 class TrendAlertRequired(TypedDict):

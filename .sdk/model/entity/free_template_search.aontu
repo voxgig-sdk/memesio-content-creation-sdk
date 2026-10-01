@@ -203,7 +203,7 @@ main: kit: entity: free_template_search: {
                 ex: "image"
                 k: "query"
                 n: "media_type"
-                or: "media_type"
+                or: "mediaType"
                 r: false
                 t: "`$STRING`"
               }
@@ -224,7 +224,7 @@ main: kit: entity: free_template_search: {
               {
                 k: "query"
                 n: "page_size"
-                or: "page_size"
+                or: "pageSize"
                 r: false
                 t: "`$INTEGER`"
               }

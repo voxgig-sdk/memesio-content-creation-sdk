@@ -15,9 +15,13 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`):
+release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)), or from a
+clone, which carries the compiled `dist/`:
 
-- Releases: [https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/memesio-content-creation-sdk
+npm install ./memesio-content-creation-sdk/ts
+```
 
 
 ## Tutorial: your first API call
@@ -35,17 +39,14 @@ const client = new MemesioContentCreationSDK({
 })
 ```
 
-### 3. Load a publictemplatemediaitem
+### 3. Load an agent
 
-PublicTemplateMediaItem is nested under slug, so provide the `slug`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const publictemplatemediaitem = await client.PublicTemplateMediaItem().load({
-    slug: 'example_slug',
-  })
-  console.log(publictemplatemediaitem)
+  const agent = await client.Agent().load({ id: 'example_id' })
+  console.log(agent)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -75,8 +76,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const agentinfra = await client.AgentInfra().load()
-  console.log(agentinfra)
+  const aiprovider = await client.AiProvider().load()
+  console.log(aiprovider)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -142,10 +143,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MemesioContentCreationSDK.test()
 
-const agentinfra = await client.AgentInfra().load()
-// agentinfra is the entity, populated with mock response data
-// — call agentinfra.data() for the record itself
-console.log(agentinfra)
+const aiprovider = await client.AiProvider().load()
+// aiprovider is the entity, populated with mock response data
+// — call aiprovider.data() for the record itself
+console.log(aiprovider)
 ```
 
 You can also use the instance method:
@@ -160,14 +161,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.AgentInfra()
+const entity = client.AiProvider()
 
 // First call runs the operation and stores its result
 await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id)
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -258,18 +259,15 @@ new MemesioContentCreationSDK(options?: {
 | `Billing(data?)` | `BillingEntity` | Create a Billing entity instance. |
 | `Collaboration(data?)` | `CollaborationEntity` | Create a Collaboration entity instance. |
 | `Compliance(data?)` | `ComplianceEntity` | Create a Compliance entity instance. |
-| `CreateMeme(data?)` | `CreateMemeEntity` | Create a CreateMeme entity instance. |
 | `DeveloperApi(data?)` | `DeveloperApiEntity` | Create a DeveloperApi entity instance. |
 | `FreeCaptionMemeSuccess(data?)` | `FreeCaptionMemeSuccessEntity` | Create a FreeCaptionMemeSuccess entity instance. |
 | `FreeTemplateSearch(data?)` | `FreeTemplateSearchEntity` | Create a FreeTemplateSearch entity instance. |
 | `Generate(data?)` | `GenerateEntity` | Create a Generate entity instance. |
-| `Gif(data?)` | `GifEntity` | Create a Gif entity instance. |
 | `Growth(data?)` | `GrowthEntity` | Create a Growth entity instance. |
 | `Media(data?)` | `MediaEntity` | Create a Media entity instance. |
 | `Meme(data?)` | `MemeEntity` | Create a Meme entity instance. |
 | `PublicTemplateMediaItem(data?)` | `PublicTemplateMediaItemEntity` | Create a PublicTemplateMediaItem entity instance. |
 | `StandaloneAgentBootstrap(data?)` | `StandaloneAgentBootstrapEntity` | Create a StandaloneAgentBootstrap entity instance. |
-| `Template(data?)` | `TemplateEntity` | Create a Template entity instance. |
 | `TrendAlert(data?)` | `TrendAlertEntity` | Create a TrendAlert entity instance. |
 | `UploadCaptionMemeSuccess(data?)` | `UploadCaptionMemeSuccessEntity` | Create an UploadCaptionMemeSuccess entity instance. |
 | `Video(data?)` | `VideoEntity` | Create a Video entity instance. |
@@ -565,26 +563,6 @@ Operations: load.
 
 API path: `/api/compliance/content-policy`
 
-#### CreateMeme
-
-| Field | Description |
-| --- | --- |
-| `canvas` |  |
-| `captions` |  |
-| `generationRunId` |  |
-| `generationVariantId` |  |
-| `imageDataUrl` |  |
-| `overlays` |  |
-| `sourceImageUrl` |  |
-| `templateSlug` |  |
-| `title` |  |
-| `visibility` |  |
-| `watermark` |  |
-
-Operations: create.
-
-API path: `/api/memes`
-
 #### DeveloperApi
 
 | Field | Description |
@@ -671,39 +649,6 @@ Operations: create.
 
 API path: `/api/v1/gifs/generate`
 
-#### Gif
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: list.
-
-API path: `/api/gifs`
-
 #### Growth
 
 | Field | Description |
@@ -736,7 +681,10 @@ API path: `/api/media/signed-url`
 | `canvas` |  |
 | `captions` |  |
 | `createdAt` |  |
+| `generationRunId` |  |
+| `generationVariantId` |  |
 | `id` |  |
+| `imageDataUrl` |  |
 | `imageUrl` |  |
 | `nsfwStatus` |  |
 | `overlays` |  |
@@ -751,7 +699,7 @@ API path: `/api/media/signed-url`
 | `visibility` |  |
 | `watermark` |  |
 
-Operations: list, load, remove.
+Operations: create, list, load, remove.
 
 API path: `/api/memes`
 
@@ -784,7 +732,7 @@ API path: `/api/memes`
 | `tags` |  |
 | `width` |  |
 
-Operations: create, load.
+Operations: create, list, load.
 
 API path: `/api/gifs/{slug}/generate`
 
@@ -804,39 +752,6 @@ API path: `/api/gifs/{slug}/generate`
 Operations: create.
 
 API path: `/api/v1/agents/bootstrap`
-
-#### Template
-
-| Field | Description |
-| --- | --- |
-| `animated` |  |
-| `assetBytes` |  |
-| `assetContentType` |  |
-| `boxCount` |  |
-| `captionCount` |  |
-| `captions` |  |
-| `categories` |  |
-| `description` |  |
-| `durationMs` |  |
-| `exampleImageUrl` |  |
-| `frameCount` |  |
-| `height` |  |
-| `id` |  |
-| `imageUrl` |  |
-| `mediaType` |  |
-| `name` |  |
-| `posterImageUrl` |  |
-| `previewImageUrl` |  |
-| `qualityStatus` |  |
-| `slug` |  |
-| `sourceTemplateId` |  |
-| `sourceUrl` |  |
-| `tags` |  |
-| `width` |  |
-
-Operations: list.
-
-API path: `/api/templates`
 
 #### TrendAlert
 
@@ -1314,45 +1229,6 @@ const compliance = await client.Compliance().load()
 ```
 
 
-### CreateMeme
-
-Create an instance: `const create_meme = client.CreateMeme()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `canvas` | `Record<string, any>` |  |
-| `captions` | `any[]` |  |
-| `generationRunId` | `string | null` |  |
-| `generationVariantId` | `string | null` |  |
-| `imageDataUrl` | `string` |  |
-| `overlays` | `any[]` |  |
-| `sourceImageUrl` | `string` |  |
-| `templateSlug` | `string` |  |
-| `title` | `string` |  |
-| `visibility` | `string` |  |
-| `watermark` | `Record<string, any>` |  |
-
-#### Example: Create
-
-```ts
-const create_meme = await client.CreateMeme().create({
-  canvas: {},
-  captions: [],
-  imageDataUrl: 'example_imageDataUrl',
-  sourceImageUrl: 'example_sourceImageUrl',
-  watermark: {},
-})
-```
-
-
 ### DeveloperApi
 
 Create an instance: `const developer_api = client.DeveloperApi()`
@@ -1514,52 +1390,6 @@ const generate = await client.Generate().create({
 ```
 
 
-### Gif
-
-Create an instance: `const gif = client.Gif()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `boolean` |  |
-| `assetBytes` | `number | null` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `number` |  |
-| `captionCount` | `number` |  |
-| `captions` | `any[]` |  |
-| `categories` | `any[]` |  |
-| `description` | `string` |  |
-| `durationMs` | `number | null` |  |
-| `exampleImageUrl` | `string | null` |  |
-| `frameCount` | `number | null` |  |
-| `height` | `number | null` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `string | null` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `any[]` |  |
-| `width` | `number | null` |  |
-
-#### Example: List
-
-```ts
-const gifs = await client.Gif().list()
-```
-
-
 ### Growth
 
 Create an instance: `const growth = client.Growth()`
@@ -1622,6 +1452,7 @@ Create an instance: `const meme = client.Meme()`
 
 | Method | Description |
 | --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 | `remove(match)` | Remove the matching entity. |
@@ -1635,7 +1466,10 @@ Create an instance: `const meme = client.Meme()`
 | `canvas` | `Record<string, any>` |  |
 | `captions` | `any[]` |  |
 | `createdAt` | `string` |  |
+| `generationRunId` | `string | null` |  |
+| `generationVariantId` | `string | null` |  |
 | `id` | `string` |  |
+| `imageDataUrl` | `string` |  |
 | `imageUrl` | `string` |  |
 | `nsfwStatus` | `string` |  |
 | `overlays` | `any[]` |  |
@@ -1662,6 +1496,32 @@ const meme = await client.Meme().load({ id: 'meme_id' })
 const memes = await client.Meme().list()
 ```
 
+#### Example: Create
+
+```ts
+const meme = await client.Meme().create({
+  altText: 'example_altText',
+  canonicalImageUrl: 'example_canonicalImageUrl',
+  canvas: {},
+  captions: [],
+  createdAt: 'example_createdAt',
+  imageDataUrl: 'example_imageDataUrl',
+  imageUrl: 'example_imageUrl',
+  nsfwStatus: 'example_nsfwStatus',
+  overlays: [],
+  shareSlug: 'example_shareSlug',
+  shareUrl: 'example_shareUrl',
+  shareViews: 1,
+  slug: 'example_slug',
+  sourceImageUrl: 'example_sourceImageUrl',
+  tags: [],
+  templateSlug: 'example_templateSlug',
+  title: 'example_title',
+  visibility: 'example_visibility',
+  watermark: {},
+})
+```
+
 
 ### PublicTemplateMediaItem
 
@@ -1672,6 +1532,7 @@ Create an instance: `const public_template_media_item = client.PublicTemplateMed
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
+| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
@@ -1707,6 +1568,12 @@ Create an instance: `const public_template_media_item = client.PublicTemplateMed
 
 ```ts
 const public_template_media_item = await client.PublicTemplateMediaItem().load({ slug: 'slug' })
+```
+
+#### Example: List
+
+```ts
+const public_template_media_items = await client.PublicTemplateMediaItem().list()
 ```
 
 #### Example: Create
@@ -1758,52 +1625,6 @@ const standalone_agent_bootstrap = await client.StandaloneAgentBootstrap().creat
   handle: 'example_handle',
   name: 'example_name',
 })
-```
-
-
-### Template
-
-Create an instance: `const template = client.Template()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `boolean` |  |
-| `assetBytes` | `number | null` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `number` |  |
-| `captionCount` | `number` |  |
-| `captions` | `any[]` |  |
-| `categories` | `any[]` |  |
-| `description` | `string` |  |
-| `durationMs` | `number | null` |  |
-| `exampleImageUrl` | `string | null` |  |
-| `frameCount` | `number | null` |  |
-| `height` | `number | null` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `string | null` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `any[]` |  |
-| `width` | `number | null` |  |
-
-#### Example: List
-
-```ts
-const templates = await client.Template().list()
 ```
 
 
@@ -2053,11 +1874,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const agentinfra = client.AgentInfra()
-await agentinfra.load()
+const aiprovider = client.AiProvider()
+await aiprovider.load()
 
-// agentinfra.data() now returns the agentinfra data from the last `load`
-// agentinfra.match() returns the last match criteria
+// aiprovider.data() now returns the aiprovider data from the last `load`
+// aiprovider.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

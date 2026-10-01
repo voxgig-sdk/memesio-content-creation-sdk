@@ -20,14 +20,14 @@ main: kit: entity: billing: {
               {
                 k: "query"
                 n: "window_day"
-                or: "window_day"
+                or: "windowDays"
                 r: false
                 t: "`$INTEGER`"
               }
               {
                 k: "query"
                 n: "workspace_id"
-                or: "workspace_id"
+                or: "workspaceId"
                 r: false
                 t: "`$STRING`"
               }

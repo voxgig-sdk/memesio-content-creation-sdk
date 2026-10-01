@@ -220,7 +220,7 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "actor_id"
-                or: "actor_id"
+                or: "actorId"
                 r: false
                 t: "`$STRING`"
               }
@@ -234,7 +234,7 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "follower_count"
-                or: "follower_count"
+                or: "followerCount"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -255,21 +255,21 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "page_size"
-                or: "page_size"
+                or: "pageSize"
                 r: false
                 t: "`$INTEGER`"
               }
               {
                 k: "query"
                 n: "preferred_niche"
-                or: "preferred_niche"
+                or: "preferredNiche"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "preferred_region"
-                or: "preferred_region"
+                or: "preferredRegion"
                 r: false
                 t: "`$STRING`"
               }
@@ -304,7 +304,7 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "topic"
-                or: "topic"
+                or: "topics"
                 r: false
                 t: "`$STRING`"
               }
@@ -353,7 +353,7 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "actor_id"
-                or: "actor_id"
+                or: "actorId"
                 r: false
                 t: "`$STRING`"
               }
@@ -367,7 +367,7 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "follower_count"
-                or: "follower_count"
+                or: "followerCount"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -381,21 +381,21 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "preferred_niche"
-                or: "preferred_niche"
+                or: "preferredNiche"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "preferred_region"
-                or: "preferred_region"
+                or: "preferredRegion"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "topic"
-                or: "topic"
+                or: "topics"
                 r: false
                 t: "`$STRING`"
               }
@@ -441,7 +441,7 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "actor_id"
-                or: "actor_id"
+                or: "actorId"
                 r: false
                 t: "`$STRING`"
               }
@@ -489,7 +489,7 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "actor_id"
-                or: "actor_id"
+                or: "actorId"
                 r: true
                 t: "`$STRING`"
               }
@@ -649,7 +649,7 @@ main: kit: entity: trend_alert: {
               {
                 k: "query"
                 n: "template_id"
-                or: "template_id"
+                or: "templateId"
                 r: false
                 t: "`$STRING`"
               }

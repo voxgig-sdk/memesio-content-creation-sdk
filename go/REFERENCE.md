@@ -92,10 +92,6 @@ Create a new `Collaboration` entity instance. Pass `nil` for no initial data.
 
 Create a new `Compliance` entity instance. Pass `nil` for no initial data.
 
-#### `CreateMeme(data map[string]any) MemesioContentCreationEntity`
-
-Create a new `CreateMeme` entity instance. Pass `nil` for no initial data.
-
 #### `DeveloperApi(data map[string]any) MemesioContentCreationEntity`
 
 Create a new `DeveloperApi` entity instance. Pass `nil` for no initial data.
@@ -111,10 +107,6 @@ Create a new `FreeTemplateSearch` entity instance. Pass `nil` for no initial dat
 #### `Generate(data map[string]any) MemesioContentCreationEntity`
 
 Create a new `Generate` entity instance. Pass `nil` for no initial data.
-
-#### `Gif(data map[string]any) MemesioContentCreationEntity`
-
-Create a new `Gif` entity instance. Pass `nil` for no initial data.
 
 #### `Growth(data map[string]any) MemesioContentCreationEntity`
 
@@ -135,10 +127,6 @@ Create a new `PublicTemplateMediaItem` entity instance. Pass `nil` for no initia
 #### `StandaloneAgentBootstrap(data map[string]any) MemesioContentCreationEntity`
 
 Create a new `StandaloneAgentBootstrap` entity instance. Pass `nil` for no initial data.
-
-#### `Template(data map[string]any) MemesioContentCreationEntity`
-
-Create a new `Template` entity instance. Pass `nil` for no initial data.
 
 #### `TrendAlert(data map[string]any) MemesioContentCreationEntity`
 
@@ -1062,73 +1050,6 @@ Return the entity name.
 
 ---
 
-## CreateMemeEntity
-
-```go
-createMeme := client.CreateMeme(nil)
-fmt.Println(createMeme.GetName()) // "create_meme"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canvas` | `map[string]any` | Yes |  |
-| `captions` | `[]any` | Yes |  |
-| `generationRunId` | `any` | No |  |
-| `generationVariantId` | `any` | No |  |
-| `imageDataUrl` | `string` | Yes |  |
-| `overlays` | `[]any` | No |  |
-| `sourceImageUrl` | `string` | Yes |  |
-| `templateSlug` | `string` | No |  |
-| `title` | `string` | No |  |
-| `visibility` | `string` | No |  |
-| `watermark` | `map[string]any` | Yes |  |
-
-### Operations
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.CreateMeme(nil).Create(map[string]any{
-    "canvas": map[string]any{},
-    "captions": []any{},
-    "imageDataUrl": "example_imageDataUrl",
-    "sourceImageUrl": "example_sourceImageUrl",
-    "watermark": map[string]any{},
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `CreateMemeEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## DeveloperApiEntity
 
 ```go
@@ -1432,80 +1353,6 @@ Return the entity name.
 
 ---
 
-## GifEntity
-
-```go
-gif := client.Gif(nil)
-fmt.Println(gif.GetName()) // "gif"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `bool` | No |  |
-| `assetBytes` | `any` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `int` | No |  |
-| `captionCount` | `int` | No |  |
-| `captions` | `[]any` | Yes |  |
-| `categories` | `[]any` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `any` | No |  |
-| `exampleImageUrl` | `any` | No |  |
-| `frameCount` | `any` | No |  |
-| `height` | `any` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `any` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `[]any` | Yes |  |
-| `width` | `any` | Yes |  |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.Gif(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(results)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `GifEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## GrowthEntity
 
 ```go
@@ -1637,7 +1484,10 @@ fmt.Println(meme.GetName()) // "meme"
 | `canvas` | `map[string]any` | Yes |  |
 | `captions` | `[]any` | Yes |  |
 | `createdAt` | `string` | Yes |  |
+| `generationRunId` | `any` | No |  |
+| `generationVariantId` | `any` | No |  |
 | `id` | `string` | No |  |
+| `imageDataUrl` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
 | `nsfwStatus` | `string` | Yes |  |
 | `overlays` | `[]any` | Yes |  |
@@ -1651,6 +1501,33 @@ fmt.Println(meme.GetName()) // "meme"
 | `title` | `string` | Yes |  |
 | `visibility` | `string` | Yes |  |
 | `watermark` | `map[string]any` | Yes |  |
+
+### Field Usage by Operation
+
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `altText` | - | - | - | - |
+| `canonicalImageUrl` | - | - | - | - |
+| `canvas` | - | - | - | - |
+| `captions` | - | - | - | - |
+| `createdAt` | - | - | - | - |
+| `generationRunId` | - | - | - | - |
+| `generationVariantId` | - | - | - | - |
+| `id` | - | - | - | - |
+| `imageDataUrl` | - | - | - | - |
+| `imageUrl` | - | - | - | - |
+| `nsfwStatus` | - | - | - | - |
+| `overlays` | - | - | Yes | - |
+| `shareSlug` | - | - | - | - |
+| `shareUrl` | - | - | - | - |
+| `shareViews` | - | - | - | - |
+| `slug` | - | - | - | - |
+| `sourceImageUrl` | - | - | - | - |
+| `tags` | - | - | - | - |
+| `templateSlug` | - | - | Yes | - |
+| `title` | - | - | Yes | - |
+| `visibility` | - | - | Yes | - |
+| `watermark` | - | - | - | - |
 
 ### Operations
 
@@ -1672,6 +1549,38 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Meme(nil).Load(map[string]any{"id": "meme_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Meme(nil).Create(map[string]any{
+    "altText": "example_altText",
+    "canonicalImageUrl": "example_canonicalImageUrl",
+    "canvas": map[string]any{},
+    "captions": []any{},
+    "createdAt": "example_createdAt",
+    "imageDataUrl": "example_imageDataUrl",
+    "imageUrl": "example_imageUrl",
+    "nsfwStatus": "example_nsfwStatus",
+    "overlays": []any{},
+    "shareSlug": "example_shareSlug",
+    "shareUrl": "example_shareUrl",
+    "shareViews": 1,
+    "slug": "example_slug",
+    "sourceImageUrl": "example_sourceImageUrl",
+    "tags": []any{},
+    "templateSlug": "example_templateSlug",
+    "title": "example_title",
+    "visibility": "example_visibility",
+    "watermark": map[string]any{},
+}, nil)
 if err != nil {
     panic(err)
 }
@@ -1751,6 +1660,18 @@ fmt.Println(publicTemplateMediaItem.GetName()) // "public_template_media_item"
 | `width` | `any` | Yes |  |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.PublicTemplateMediaItem(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -1864,80 +1785,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `StandaloneAgentBootstrapEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## TemplateEntity
-
-```go
-template := client.Template(nil)
-fmt.Println(template.GetName()) // "template"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `bool` | No |  |
-| `assetBytes` | `any` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `int` | No |  |
-| `captionCount` | `int` | No |  |
-| `captions` | `[]any` | Yes |  |
-| `categories` | `[]any` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `any` | No |  |
-| `exampleImageUrl` | `any` | No |  |
-| `frameCount` | `any` | No |  |
-| `height` | `any` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `any` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `[]any` | Yes |  |
-| `width` | `any` | Yes |  |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.Template(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(results)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `TemplateEntity` instance with the same client and
 options.
 
 #### `GetName() string`

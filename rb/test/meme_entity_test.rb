@@ -52,7 +52,7 @@ class MemeEntityTest < Minitest::Test
     setup = meme_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    ["list", "load"].each do |_op|
+    ["create", "list", "load", "remove"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "meme." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
@@ -67,20 +67,26 @@ class MemeEntityTest < Minitest::Test
     end
     client = setup[:client]
 
-    # Bootstrap entity data from existing test data.
-    meme_ref01_data_raw = Vs.items(Helpers.to_map(
-      Vs.getpath(setup[:data], "existing.meme")))
-    meme_ref01_data = nil
-    if meme_ref01_data_raw.length > 0
-      meme_ref01_data = Helpers.to_map(meme_ref01_data_raw[0][1])
-    end
+    # CREATE
+    meme_ref01_ent = client.Meme(nil)
+    meme_ref01_data = Helpers.to_map(Vs.getprop(
+      Vs.getpath(setup[:data], "new.meme"), "meme_ref01"))
+
+    meme_ref01_data_result = meme_ref01_ent.create(meme_ref01_data, nil)
+    meme_ref01_data = Helpers.to_map(meme_ref01_data_result.respond_to?(:data_get) ? meme_ref01_data_result.data_get : meme_ref01_data_result)
+    assert !meme_ref01_data.nil?
+    assert !meme_ref01_data["id"].nil?
 
     # LIST
-    meme_ref01_ent = client.Meme(nil)
     meme_ref01_match = {}
 
     meme_ref01_list_result = meme_ref01_ent.list(meme_ref01_match, nil)
     assert meme_ref01_list_result.is_a?(Array)
+
+    found_item = Vs.select(
+      Runner.entity_list_to_data(meme_ref01_list_result),
+      { "id" => meme_ref01_data["id"] })
+    assert !Vs.isempty(found_item)
 
     # LOAD
     meme_ref01_match_dt0 = {
@@ -90,6 +96,23 @@ class MemeEntityTest < Minitest::Test
     meme_ref01_data_dt0_load_result = Helpers.to_map(meme_ref01_data_dt0_loaded.respond_to?(:data_get) ? meme_ref01_data_dt0_loaded.data_get : meme_ref01_data_dt0_loaded)
     assert !meme_ref01_data_dt0_load_result.nil?
     assert_equal meme_ref01_data_dt0_load_result["id"], meme_ref01_data["id"]
+
+    # REMOVE
+    meme_ref01_match_rm0 = {
+      "id" => meme_ref01_data["id"],
+    }
+    meme_ref01_ent.remove(meme_ref01_match_rm0, nil)
+
+    # LIST
+    meme_ref01_match_rt0 = {}
+
+    meme_ref01_list_rt0_result = meme_ref01_ent.list(meme_ref01_match_rt0, nil)
+    assert meme_ref01_list_rt0_result.is_a?(Array)
+
+    not_found_item = Vs.select(
+      Runner.entity_list_to_data(meme_ref01_list_rt0_result),
+      { "id" => meme_ref01_data["id"] })
+    assert Vs.isempty(not_found_item)
 
   end
 end

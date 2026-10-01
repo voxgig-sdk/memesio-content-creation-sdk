@@ -19,6 +19,18 @@ main: kit: flow: BasicPublicTemplateMediaItemFlow:
     }
 
     {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "public_template_media_item_ref01"
+          }
+        }
+      ]
+    }
+
+    {
       i: {
         ref: "public_template_media_item_ref01",
         srcdatavar: "public_template_media_item_ref01_data",

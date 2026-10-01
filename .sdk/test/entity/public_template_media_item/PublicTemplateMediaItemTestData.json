@@ -116,6 +116,16 @@
       "version": 2,
       "source": "openapi3"
     },
+    "GET /api/templates": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/gifs": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
     "GET /api/templates/{slug}": {
       "provenance": "operation-contract",
       "version": 2,

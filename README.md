@@ -12,13 +12,13 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
+> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as **26 semantic entities** that you
+This SDK exposes the API as **23 semantic entities** that you
 call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`, `create`, `update`, `remove`):
@@ -44,23 +44,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = MemesioContentCreationSDK.test({
   entity: {
-    agent_infra: {
-      test01: { id: 'test01', action: 'example_action', chatId: 'example_chatId', memeSlug: 'example_memeSlug' },
+    ai_provider: {
+      test01: { id: 'test01', prompt: 'example_prompt', sourceImageUrl: 'example_sourceImageUrl' },
     },
   },
 })
-const agentinfra = await client.AgentInfra().load()
-// agentinfra is the AgentInfra entity, populated with mock data
-// — call agentinfra.data() for the record itself
-console.log(agentinfra)
+const aiprovider = await client.AiProvider().load()
+// aiprovider is the AiProvider entity, populated with mock data
+// — call aiprovider.data() for the record itself
+console.log(aiprovider)
 ```
 
 ### Python
 
 ```python
 client = MemesioContentCreationSDK.test()
-agentinfra = client.AgentInfra().load()
-print(agentinfra)
+aiprovider = client.AiProvider().load()
+print(aiprovider)
 ```
 
 ### PHP
@@ -68,16 +68,16 @@ print(agentinfra)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = MemesioContentCreationSDK::test([
-    "entity" => ["agentinfra" => ["test01" => []]],
+    "entity" => ["aiprovider" => ["test01" => []]],
 ]);
-$agentinfra = $client->AgentInfra()->load();
+$aiprovider = $client->AiProvider()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.AgentInfra(nil).Load(
+result, err := client.AiProvider(nil).Load(
     nil, nil,
 )
 ```
@@ -87,28 +87,28 @@ result, err := client.AgentInfra(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = MemesioContentCreationSDK.test({
-  "entity" => { "agentinfra" => { "test01" => {} } },
+  "entity" => { "aiprovider" => { "test01" => {} } },
 })
-agentinfra = client.AgentInfra.load()
+aiprovider = client.AiProvider.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:AgentInfra():load()
+local result, err = client:AiProvider():load()
 ```
 
 ## Packages
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/memesio-content-creation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
-| Python | `voxgig-sdk-memesio-content-creation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
-| PHP | `voxgig-sdk/memesio-content-creation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
+| TypeScript | `@voxgig-sdk/memesio-content-creation-sdk` | publish pending — [install from source](ts/README.md#install) |
+| Python | `voxgig-sdk-memesio-content-creation-sdk` | publish pending — [install from source](py/README.md#install) |
+| PHP | `voxgig-sdk/memesio-content-creation-sdk` | publish pending — [install from source](php/README.md#install) |
 | Golang | `github.com/voxgig-sdk/memesio-content-creation-sdk/go` | `go get github.com/voxgig-sdk/memesio-content-creation-sdk/go@latest` |
-| Ruby | `voxgig-sdk-memesio-content-creation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
-| Lua | `voxgig-sdk-memesio-content-creation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) |
+| Ruby | `voxgig-sdk-memesio-content-creation-sdk` | publish pending — [install from source](rb/README.md#install) |
+| Lua | `voxgig-sdk-memesio-content-creation-sdk` | publish pending — [install from source](lua/README.md#install) |
 | Go CLI | `github.com/voxgig-sdk/memesio-content-creation-sdk/go-cli` | `go install github.com/voxgig-sdk/memesio-content-creation-sdk/go-cli/cmd/memesio-content-creation@latest` |
 | Go MCP server | `github.com/voxgig-sdk/memesio-content-creation-sdk/go-mcp` | `go get github.com/voxgig-sdk/memesio-content-creation-sdk/go-mcp@latest` |
 
@@ -123,12 +123,9 @@ const client = new MemesioContentCreationSDK({
   apikey: process.env.MEMESIO_CONTENT_CREATION_APIKEY,
 })
 
-
-// Load a specific publictemplatemediaitem (returns a PublicTemplateMediaItem)
-const publictemplatemediaitem = await client.PublicTemplateMediaItem().load({
-  slug: 'example_slug',
-})
-console.log(publictemplatemediaitem)
+// Load agent data (returns a Agent)
+const agent = await client.Agent().load()
+console.log(agent)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -165,7 +162,7 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 26 entities:
+The API exposes 23 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
@@ -180,18 +177,15 @@ The API exposes 26 entities:
 | **Billing** | The Billing entity (load). | `/api/billing/usage` |
 | **Collaboration** | The Collaboration entity (create, load). | `/api/collab/comments` |
 | **Compliance** | The Compliance entity (load). | `/api/compliance/content-policy` |
-| **CreateMeme** | The CreateMeme entity (create). | `/api/memes` |
 | **DeveloperApi** | The DeveloperApi entity (create, load). | `/api/v1/memes/generate` |
 | **FreeCaptionMemeSuccess** | The FreeCaptionMemeSuccess entity (create). | `/api/free/memes/caption` |
 | **FreeTemplateSearch** | The FreeTemplateSearch entity (list). | `/api/free/templates` |
 | **Generate** | The Generate entity (create). | `/api/v1/gifs/generate` |
-| **Gif** | The Gif entity (list). | `/api/gifs` |
 | **Growth** | The Growth entity (create, load). | `/api/growth/experiments/decision` |
 | **Media** | The Media entity (create). | `/api/media/signed-url` |
-| **Meme** | The Meme entity (list, load, remove). | `/api/memes` |
-| **PublicTemplateMediaItem** | The PublicTemplateMediaItem entity (create, load). | `/api/templates/{slug}` |
+| **Meme** | The Meme entity (create, list, load, remove). | `/api/memes` |
+| **PublicTemplateMediaItem** | The PublicTemplateMediaItem entity (create, list, load). | `/api/templates` |
 | **StandaloneAgentBootstrap** | The StandaloneAgentBootstrap entity (create). | `/api/v1/agents/bootstrap` |
-| **Template** | The Template entity (list). | `/api/templates` |
 | **TrendAlert** | The TrendAlert entity (create, load). | `/api/alerts` |
 | **UploadCaptionMemeSuccess** | The UploadCaptionMemeSuccess entity (create). | `/api/v1/memes/caption-upload` |
 | **Video** | The Video entity (create, load). | `/api/video/subtitles` |
@@ -242,15 +236,12 @@ client := sdk.NewMemesioContentCreationSDK(map[string]any{
     "apikey": os.Getenv("MEMESIO_CONTENT_CREATION_APIKEY"),
 })
 
-
-// Load a specific publictemplatemediaitem
-publicTemplateMediaItem, err := client.PublicTemplateMediaItem(nil).Load(
-    map[string]any{"slug": "example_slug"}, nil,
-)
+// Load agent data
+agent, err := client.Agent(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(publicTemplateMediaItem)
+fmt.Println(agent)
 ```
 
 ### Ruby

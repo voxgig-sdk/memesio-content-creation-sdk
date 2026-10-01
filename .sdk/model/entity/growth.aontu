@@ -193,14 +193,14 @@ main: kit: entity: growth: {
               {
                 k: "query"
                 n: "actor_id"
-                or: "actor_id"
+                or: "actorId"
                 r: true
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "log_exposure"
-                or: "log_exposure"
+                or: "logExposure"
                 r: false
                 t: "`$BOOLEAN`"
               }
@@ -259,14 +259,14 @@ main: kit: entity: growth: {
               {
                 k: "query"
                 n: "published_only"
-                or: "published_only"
+                or: "publishedOnly"
                 r: false
                 t: "`$BOOLEAN`"
               }
               {
                 k: "query"
                 n: "week_start"
-                or: "week_start"
+                or: "weekStart"
                 r: false
                 t: "`$STRING`"
               }
@@ -309,14 +309,14 @@ main: kit: entity: growth: {
               {
                 k: "query"
                 n: "actor_id"
-                or: "actor_id"
+                or: "actorId"
                 r: true
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "publish_limit"
-                or: "publish_limit"
+                or: "publishLimit"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -358,7 +358,7 @@ main: kit: entity: growth: {
               {
                 k: "query"
                 n: "actor_id"
-                or: "actor_id"
+                or: "actorId"
                 r: false
                 t: "`$STRING`"
               }

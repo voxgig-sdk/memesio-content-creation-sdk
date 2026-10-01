@@ -232,7 +232,7 @@
                         "a": true,
                         "k": "param",
                         "n": "id",
-                        "or": "agent_id",
+                        "or": "agentId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -318,7 +318,7 @@
                         "a": true,
                         "k": "param",
                         "n": "id",
-                        "or": "agent_id",
+                        "or": "agentId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -484,7 +484,7 @@
                         "a": true,
                         "k": "param",
                         "n": "agent_id",
-                        "or": "agent_id",
+                        "or": "agentId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -544,7 +544,7 @@
                         "a": true,
                         "k": "param",
                         "n": "agent_id",
-                        "or": "agent_id",
+                        "or": "agentId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -604,7 +604,7 @@
                         "a": true,
                         "k": "param",
                         "n": "agent_id",
-                        "or": "agent_id",
+                        "or": "agentId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -661,7 +661,7 @@
                         "a": true,
                         "k": "param",
                         "n": "id",
-                        "or": "agent_id",
+                        "or": "agentId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -716,7 +716,7 @@
                         "a": true,
                         "k": "param",
                         "n": "unlock_id",
-                        "or": "unlock_id",
+                        "or": "unlockId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -959,7 +959,7 @@
                         "a": true,
                         "k": "query",
                         "n": "week_start",
-                        "or": "week_start",
+                        "or": "weekStart",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -1010,7 +1010,7 @@
                         "a": true,
                         "k": "param",
                         "n": "id",
-                        "or": "agent_id",
+                        "or": "agentId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -1106,7 +1106,7 @@
                         "a": true,
                         "k": "param",
                         "n": "agent_id",
-                        "or": "agent_id",
+                        "or": "agentId",
                         "r": true,
                         "t": "`$STRING`"
                       },
@@ -1114,7 +1114,7 @@
                         "a": true,
                         "k": "param",
                         "n": "key_id",
-                        "or": "key_id",
+                        "or": "keyId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -1996,7 +1996,7 @@
                         "a": true,
                         "k": "param",
                         "n": "job_id",
-                        "or": "job_id",
+                        "or": "jobId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -2051,7 +2051,7 @@
                         "a": true,
                         "k": "param",
                         "n": "job_id",
-                        "or": "job_id",
+                        "or": "jobId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -2257,7 +2257,7 @@
                         "a": true,
                         "k": "query",
                         "n": "from_version_id",
-                        "or": "from_version_id",
+                        "or": "fromVersionId",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -2265,7 +2265,7 @@
                         "a": true,
                         "k": "query",
                         "n": "layer_id",
-                        "or": "layer_id",
+                        "or": "layerId",
                         "r": true,
                         "t": "`$STRING`"
                       },
@@ -2289,7 +2289,7 @@
                         "a": true,
                         "k": "query",
                         "n": "project_id",
-                        "or": "project_id",
+                        "or": "projectId",
                         "r": true,
                         "t": "`$STRING`"
                       },
@@ -2297,7 +2297,7 @@
                         "a": true,
                         "k": "query",
                         "n": "to_version_id",
-                        "or": "to_version_id",
+                        "or": "toVersionId",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -2354,7 +2354,7 @@
                         "a": true,
                         "k": "query",
                         "n": "page_size",
-                        "or": "page_size",
+                        "or": "pageSize",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -2408,7 +2408,7 @@
                         "a": true,
                         "k": "param",
                         "n": "id",
-                        "or": "job_id",
+                        "or": "jobId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -3013,7 +3013,7 @@
                         "a": true,
                         "k": "query",
                         "n": "template_id",
-                        "or": "template_id",
+                        "or": "templateId",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -3060,7 +3060,7 @@
                         "a": true,
                         "k": "query",
                         "n": "window_hour",
-                        "or": "window_hour",
+                        "or": "windowHours",
                         "r": false,
                         "t": "`$INTEGER`"
                       }
@@ -3366,7 +3366,7 @@
                         "a": true,
                         "k": "query",
                         "n": "window_day",
-                        "or": "window_day",
+                        "or": "windowDays",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -3374,7 +3374,7 @@
                         "a": true,
                         "k": "query",
                         "n": "workspace_id",
-                        "or": "workspace_id",
+                        "or": "workspaceId",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -3504,7 +3504,7 @@
                         "a": true,
                         "k": "query",
                         "n": "page_size",
-                        "or": "page_size",
+                        "or": "pageSize",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -3512,7 +3512,7 @@
                         "a": true,
                         "k": "query",
                         "n": "project_id",
-                        "or": "project_id",
+                        "or": "projectId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -3588,141 +3588,6 @@
                     },
                     {
                       "lit": "content-policy"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "create_meme": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "canvas": {
-              "a": true,
-              "h": "Canvas",
-              "n": "canvas",
-              "r": true,
-              "t": "`$OBJECT`"
-            },
-            "captions": {
-              "a": true,
-              "h": "Captions",
-              "n": "captions",
-              "r": true,
-              "t": "`$ARRAY`"
-            },
-            "generationRunId": {
-              "a": true,
-              "h": "Generation Run Id",
-              "n": "generationRunId",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "generationVariantId": {
-              "a": true,
-              "h": "Generation Variant Id",
-              "n": "generationVariantId",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "imageDataUrl": {
-              "a": true,
-              "h": "Image Data Url",
-              "n": "imageDataUrl",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "overlays": {
-              "a": true,
-              "h": "Overlays",
-              "n": "overlays",
-              "r": false,
-              "t": "`$ARRAY`"
-            },
-            "sourceImageUrl": {
-              "a": true,
-              "h": "Source Image Url",
-              "n": "sourceImageUrl",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "templateSlug": {
-              "a": true,
-              "h": "Template Slug",
-              "n": "templateSlug",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "title": {
-              "a": true,
-              "h": "Title",
-              "n": "title",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "visibility": {
-              "a": true,
-              "h": "Visibility",
-              "n": "visibility",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "watermark": {
-              "a": true,
-              "h": "Watermark",
-              "n": "watermark",
-              "r": true,
-              "t": "`$OBJECT`"
-            }
-          },
-          "name": "create_meme",
-          "op": {
-            "create": {
-              "input": "data",
-              "name": "create",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "POST /api/memes",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {},
-                  "k": "http",
-                  "m": "POST",
-                  "o": "/api/memes",
-                  "q": {},
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "memes"
                     }
                   ],
                   "t": {
@@ -4200,7 +4065,7 @@
                         "ex": "image",
                         "k": "query",
                         "n": "media_type",
-                        "or": "media_type",
+                        "or": "mediaType",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -4224,7 +4089,7 @@
                         "a": true,
                         "k": "query",
                         "n": "page_size",
-                        "or": "page_size",
+                        "or": "pageSize",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -4501,326 +4366,6 @@
             "ancestors": []
           }
         },
-        "gif": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "animated": {
-              "a": true,
-              "h": "Animated",
-              "n": "animated",
-              "r": false,
-              "t": "`$BOOLEAN`"
-            },
-            "assetBytes": {
-              "a": true,
-              "h": "Asset Bytes",
-              "n": "assetBytes",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "assetContentType": {
-              "a": true,
-              "h": "Asset Content Type",
-              "n": "assetContentType",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "boxCount": {
-              "a": true,
-              "h": "Box Count",
-              "n": "boxCount",
-              "r": false,
-              "t": "`$INTEGER`"
-            },
-            "captionCount": {
-              "a": true,
-              "h": "Caption Count",
-              "n": "captionCount",
-              "r": false,
-              "t": "`$INTEGER`"
-            },
-            "captions": {
-              "a": true,
-              "h": "Captions",
-              "n": "captions",
-              "r": true,
-              "t": "`$ARRAY`"
-            },
-            "categories": {
-              "a": true,
-              "h": "Categories",
-              "n": "categories",
-              "r": false,
-              "t": "`$ARRAY`"
-            },
-            "description": {
-              "a": true,
-              "h": "Description",
-              "n": "description",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "durationMs": {
-              "a": true,
-              "h": "Duration Ms",
-              "n": "durationMs",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "exampleImageUrl": {
-              "a": true,
-              "h": "Example Image Url",
-              "n": "exampleImageUrl",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "frameCount": {
-              "a": true,
-              "h": "Frame Count",
-              "n": "frameCount",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "height": {
-              "a": true,
-              "h": "Height",
-              "n": "height",
-              "r": true,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "imageUrl": {
-              "a": true,
-              "h": "Image Url",
-              "n": "imageUrl",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "mediaType": {
-              "a": true,
-              "h": "Media Type",
-              "n": "mediaType",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "name": {
-              "a": true,
-              "h": "Name",
-              "n": "name",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "posterImageUrl": {
-              "a": true,
-              "h": "Poster Image Url",
-              "n": "posterImageUrl",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "previewImageUrl": {
-              "a": true,
-              "h": "Preview Image Url",
-              "n": "previewImageUrl",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "qualityStatus": {
-              "a": true,
-              "h": "Quality Status",
-              "n": "qualityStatus",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "slug": {
-              "a": true,
-              "h": "Slug",
-              "n": "slug",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "sourceTemplateId": {
-              "a": true,
-              "h": "Source Template Id",
-              "n": "sourceTemplateId",
-              "r": true,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "sourceUrl": {
-              "a": true,
-              "h": "Source Url",
-              "n": "sourceUrl",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "tags": {
-              "a": true,
-              "h": "Tags",
-              "n": "tags",
-              "r": true,
-              "t": "`$ARRAY`"
-            },
-            "width": {
-              "a": true,
-              "h": "Width",
-              "n": "width",
-              "r": true,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`"
-                ]
-              ]
-            }
-          },
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
-          "name": "gif",
-          "op": {
-            "list": {
-              "input": "data",
-              "name": "list",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/gifs",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "page",
-                        "or": "page",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "page_size",
-                        "or": "page_size",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "q",
-                        "or": "q",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "query",
-                        "or": "query",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "sort",
-                        "or": "sort",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "tag",
-                        "or": "tag",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/gifs",
-                  "q": {
-                    "exist": [
-                      "page",
-                      "page_size",
-                      "q",
-                      "query",
-                      "sort",
-                      "tag"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "gifs"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body.items`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
         "growth": {
           "active": true,
           "alias": {
@@ -5044,7 +4589,7 @@
                         "a": true,
                         "k": "query",
                         "n": "actor_id",
-                        "or": "actor_id",
+                        "or": "actorId",
                         "r": true,
                         "t": "`$STRING`"
                       },
@@ -5052,7 +4597,7 @@
                         "a": true,
                         "k": "query",
                         "n": "log_exposure",
-                        "or": "log_exposure",
+                        "or": "logExposure",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -5117,7 +4662,7 @@
                         "a": true,
                         "k": "query",
                         "n": "published_only",
-                        "or": "published_only",
+                        "or": "publishedOnly",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -5125,7 +4670,7 @@
                         "a": true,
                         "k": "query",
                         "n": "week_start",
-                        "or": "week_start",
+                        "or": "weekStart",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -5172,7 +4717,7 @@
                         "a": true,
                         "k": "query",
                         "n": "actor_id",
-                        "or": "actor_id",
+                        "or": "actorId",
                         "r": true,
                         "t": "`$STRING`"
                       },
@@ -5180,7 +4725,7 @@
                         "a": true,
                         "k": "query",
                         "n": "publish_limit",
-                        "or": "publish_limit",
+                        "or": "publishLimit",
                         "r": false,
                         "t": "`$INTEGER`"
                       }
@@ -5226,7 +4771,7 @@
                         "a": true,
                         "k": "query",
                         "n": "actor_id",
-                        "or": "actor_id",
+                        "or": "actorId",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -5419,11 +4964,44 @@
               "r": true,
               "t": "`$STRING`"
             },
+            "generationRunId": {
+              "a": true,
+              "h": "Generation Run Id",
+              "n": "generationRunId",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "generationVariantId": {
+              "a": true,
+              "h": "Generation Variant Id",
+              "n": "generationVariantId",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
             "id": {
               "a": true,
               "h": "Id",
               "n": "id",
               "r": false,
+              "t": "`$STRING`"
+            },
+            "imageDataUrl": {
+              "a": true,
+              "h": "Image Data Url",
+              "n": "imageDataUrl",
+              "r": true,
               "t": "`$STRING`"
             },
             "imageUrl": {
@@ -5444,6 +5022,12 @@
               "a": true,
               "h": "Overlays",
               "n": "overlays",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$ARRAY`"
+                }
+              },
               "r": true,
               "t": "`$ARRAY`"
             },
@@ -5493,6 +5077,12 @@
               "a": true,
               "h": "Template Slug",
               "n": "templateSlug",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$STRING`"
+                }
+              },
               "r": true,
               "t": "`$STRING`"
             },
@@ -5500,6 +5090,12 @@
               "a": true,
               "h": "Title",
               "n": "title",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$STRING`"
+                }
+              },
               "r": true,
               "t": "`$STRING`"
             },
@@ -5507,6 +5103,12 @@
               "a": true,
               "h": "Visibility",
               "n": "visibility",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$STRING`"
+                }
+              },
               "r": true,
               "t": "`$STRING`"
             },
@@ -5524,6 +5126,38 @@
           },
           "name": "meme",
           "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "POST /api/memes",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/api/memes",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "memes"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
             "list": {
               "input": "data",
               "name": "list",
@@ -5541,7 +5175,7 @@
                         "a": true,
                         "k": "query",
                         "n": "exclude_template_clone",
-                        "or": "exclude_template_clone",
+                        "or": "excludeTemplateClones",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -5549,7 +5183,7 @@
                         "a": true,
                         "k": "query",
                         "n": "include_nsfw",
-                        "or": "include_nsfw",
+                        "or": "includeNsfw",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -5557,7 +5191,7 @@
                         "a": true,
                         "k": "query",
                         "n": "official_only",
-                        "or": "official_only",
+                        "or": "officialOnly",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -5565,7 +5199,7 @@
                         "a": true,
                         "k": "query",
                         "n": "owner_token",
-                        "or": "owner_token",
+                        "or": "ownerToken",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -5581,7 +5215,7 @@
                         "a": true,
                         "k": "query",
                         "n": "page_size",
-                        "or": "page_size",
+                        "or": "pageSize",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -5597,7 +5231,7 @@
                         "a": true,
                         "k": "query",
                         "n": "template_slug",
-                        "or": "template_slug",
+                        "or": "templateSlug",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -5670,7 +5304,7 @@
                         "a": true,
                         "k": "query",
                         "n": "owner_token",
-                        "or": "owner_token",
+                        "or": "ownerToken",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -6044,6 +5678,203 @@
                 }
               ]
             },
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/templates",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "image",
+                        "k": "query",
+                        "n": "media_type",
+                        "or": "mediaType",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "mode",
+                        "or": "mode",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "page_size",
+                        "or": "pageSize",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "query",
+                        "or": "query",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "sort",
+                        "or": "sort",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "tag",
+                        "or": "tag",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/templates",
+                  "q": {
+                    "exist": [
+                      "media_type",
+                      "mode",
+                      "page",
+                      "page_size",
+                      "q",
+                      "query",
+                      "sort",
+                      "tag"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "templates"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.items`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/gifs",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "page_size",
+                        "or": "pageSize",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "query",
+                        "or": "query",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "sort",
+                        "or": "sort",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "tag",
+                        "or": "tag",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/gifs",
+                  "q": {
+                    "exist": [
+                      "page",
+                      "page_size",
+                      "q",
+                      "query",
+                      "sort",
+                      "tag"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "gifs"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.items`"
+                  }
+                }
+              ]
+            },
             "load": {
               "input": "data",
               "name": "load",
@@ -6072,7 +5903,7 @@
                         "ex": "image",
                         "k": "query",
                         "n": "media_type",
-                        "or": "media_type",
+                        "or": "mediaType",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -6152,14 +5983,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "$.main.kit.entity.gif"
-              ],
-              [
-                "$.main.kit.entity.template"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "standalone_agent_bootstrap": {
@@ -6293,345 +6117,6 @@
                   "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "template": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "animated": {
-              "a": true,
-              "h": "Animated",
-              "n": "animated",
-              "r": false,
-              "t": "`$BOOLEAN`"
-            },
-            "assetBytes": {
-              "a": true,
-              "h": "Asset Bytes",
-              "n": "assetBytes",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "assetContentType": {
-              "a": true,
-              "h": "Asset Content Type",
-              "n": "assetContentType",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "boxCount": {
-              "a": true,
-              "h": "Box Count",
-              "n": "boxCount",
-              "r": false,
-              "t": "`$INTEGER`"
-            },
-            "captionCount": {
-              "a": true,
-              "h": "Caption Count",
-              "n": "captionCount",
-              "r": false,
-              "t": "`$INTEGER`"
-            },
-            "captions": {
-              "a": true,
-              "h": "Captions",
-              "n": "captions",
-              "r": true,
-              "t": "`$ARRAY`"
-            },
-            "categories": {
-              "a": true,
-              "h": "Categories",
-              "n": "categories",
-              "r": false,
-              "t": "`$ARRAY`"
-            },
-            "description": {
-              "a": true,
-              "h": "Description",
-              "n": "description",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "durationMs": {
-              "a": true,
-              "h": "Duration Ms",
-              "n": "durationMs",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "exampleImageUrl": {
-              "a": true,
-              "h": "Example Image Url",
-              "n": "exampleImageUrl",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "frameCount": {
-              "a": true,
-              "h": "Frame Count",
-              "n": "frameCount",
-              "r": false,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "height": {
-              "a": true,
-              "h": "Height",
-              "n": "height",
-              "r": true,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "imageUrl": {
-              "a": true,
-              "h": "Image Url",
-              "n": "imageUrl",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "mediaType": {
-              "a": true,
-              "h": "Media Type",
-              "n": "mediaType",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "name": {
-              "a": true,
-              "h": "Name",
-              "n": "name",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "posterImageUrl": {
-              "a": true,
-              "h": "Poster Image Url",
-              "n": "posterImageUrl",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "previewImageUrl": {
-              "a": true,
-              "h": "Preview Image Url",
-              "n": "previewImageUrl",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "qualityStatus": {
-              "a": true,
-              "h": "Quality Status",
-              "n": "qualityStatus",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "slug": {
-              "a": true,
-              "h": "Slug",
-              "n": "slug",
-              "r": true,
-              "t": "`$STRING`"
-            },
-            "sourceTemplateId": {
-              "a": true,
-              "h": "Source Template Id",
-              "n": "sourceTemplateId",
-              "r": true,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            "sourceUrl": {
-              "a": true,
-              "h": "Source Url",
-              "n": "sourceUrl",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "tags": {
-              "a": true,
-              "h": "Tags",
-              "n": "tags",
-              "r": true,
-              "t": "`$ARRAY`"
-            },
-            "width": {
-              "a": true,
-              "h": "Width",
-              "n": "width",
-              "r": true,
-              "t": [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`"
-                ]
-              ]
-            }
-          },
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
-          "name": "template",
-          "op": {
-            "list": {
-              "input": "data",
-              "name": "list",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/templates",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "ex": "image",
-                        "k": "query",
-                        "n": "media_type",
-                        "or": "media_type",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "mode",
-                        "or": "mode",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "page",
-                        "or": "page",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "page_size",
-                        "or": "page_size",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "q",
-                        "or": "q",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "query",
-                        "or": "query",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "sort",
-                        "or": "sort",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "tag",
-                        "or": "tag",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/templates",
-                  "q": {
-                    "exist": [
-                      "media_type",
-                      "mode",
-                      "page",
-                      "page_size",
-                      "q",
-                      "query",
-                      "sort",
-                      "tag"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "templates"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body.items`"
                   }
                 }
               ]
@@ -6901,7 +6386,7 @@
                         "a": true,
                         "k": "query",
                         "n": "actor_id",
-                        "or": "actor_id",
+                        "or": "actorId",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -6917,7 +6402,7 @@
                         "a": true,
                         "k": "query",
                         "n": "follower_count",
-                        "or": "follower_count",
+                        "or": "followerCount",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -6941,7 +6426,7 @@
                         "a": true,
                         "k": "query",
                         "n": "page_size",
-                        "or": "page_size",
+                        "or": "pageSize",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -6949,7 +6434,7 @@
                         "a": true,
                         "k": "query",
                         "n": "preferred_niche",
-                        "or": "preferred_niche",
+                        "or": "preferredNiche",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -6957,7 +6442,7 @@
                         "a": true,
                         "k": "query",
                         "n": "preferred_region",
-                        "or": "preferred_region",
+                        "or": "preferredRegion",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -6997,7 +6482,7 @@
                         "a": true,
                         "k": "query",
                         "n": "topic",
-                        "or": "topic",
+                        "or": "topics",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -7050,7 +6535,7 @@
                         "a": true,
                         "k": "query",
                         "n": "actor_id",
-                        "or": "actor_id",
+                        "or": "actorId",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -7066,7 +6551,7 @@
                         "a": true,
                         "k": "query",
                         "n": "follower_count",
-                        "or": "follower_count",
+                        "or": "followerCount",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -7082,7 +6567,7 @@
                         "a": true,
                         "k": "query",
                         "n": "preferred_niche",
-                        "or": "preferred_niche",
+                        "or": "preferredNiche",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -7090,7 +6575,7 @@
                         "a": true,
                         "k": "query",
                         "n": "preferred_region",
-                        "or": "preferred_region",
+                        "or": "preferredRegion",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -7098,7 +6583,7 @@
                         "a": true,
                         "k": "query",
                         "n": "topic",
-                        "or": "topic",
+                        "or": "topics",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -7148,7 +6633,7 @@
                         "a": true,
                         "k": "query",
                         "n": "actor_id",
-                        "or": "actor_id",
+                        "or": "actorId",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -7201,7 +6686,7 @@
                         "a": true,
                         "k": "query",
                         "n": "actor_id",
-                        "or": "actor_id",
+                        "or": "actorId",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -7377,7 +6862,7 @@
                         "a": true,
                         "k": "query",
                         "n": "template_id",
-                        "or": "template_id",
+                        "or": "templateId",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -7772,7 +7257,7 @@
                         "a": true,
                         "k": "query",
                         "n": "beat_offset_m",
-                        "or": "beat_offset_m",
+                        "or": "beatOffsetMs",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -7796,7 +7281,7 @@
                         "a": true,
                         "k": "query",
                         "n": "style_preset_id",
-                        "or": "style_preset_id",
+                        "or": "stylePresetId",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -7804,7 +7289,7 @@
                         "a": true,
                         "k": "query",
                         "n": "sync_to_beat_grid",
-                        "or": "sync_to_beat_grid",
+                        "or": "syncToBeatGrid",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -7828,7 +7313,7 @@
                         "a": true,
                         "k": "query",
                         "n": "trend_keyword",
-                        "or": "trend_keyword",
+                        "or": "trendKeywords",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -7912,7 +7397,7 @@
                         "a": true,
                         "k": "query",
                         "n": "target_bpm",
-                        "or": "target_bpm",
+                        "or": "targetBpm",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -7920,7 +7405,7 @@
                         "a": true,
                         "k": "query",
                         "n": "tolerance_bpm",
-                        "or": "tolerance_bpm",
+                        "or": "toleranceBpm",
                         "r": false,
                         "t": "`$INTEGER`"
                       }
@@ -7970,7 +7455,7 @@
                         "a": true,
                         "k": "query",
                         "n": "bitrate_kbp",
-                        "or": "bitrate_kbp",
+                        "or": "bitrateKbps",
                         "r": false,
                         "t": "`$NUMBER`"
                       },
@@ -7986,7 +7471,7 @@
                         "a": true,
                         "k": "query",
                         "n": "plan_tier",
-                        "or": "plan_tier",
+                        "or": "planTier",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -7994,7 +7479,7 @@
                         "a": true,
                         "k": "query",
                         "n": "preset_id",
-                        "or": "preset_id",
+                        "or": "presetId",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -8002,7 +7487,7 @@
                         "a": true,
                         "k": "query",
                         "n": "watermark_enabled",
-                        "or": "watermark_enabled",
+                        "or": "watermarkEnabled",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -8010,7 +7495,7 @@
                         "a": true,
                         "k": "query",
                         "n": "watermark_text",
-                        "or": "watermark_text",
+                        "or": "watermarkText",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -8060,7 +7545,7 @@
                         "a": true,
                         "k": "query",
                         "n": "duration_second",
-                        "or": "duration_second",
+                        "or": "durationSeconds",
                         "r": false,
                         "t": "`$NUMBER`"
                       },
@@ -8068,7 +7553,7 @@
                         "a": true,
                         "k": "query",
                         "n": "input_format",
-                        "or": "input_format",
+                        "or": "inputFormat",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -8076,7 +7561,7 @@
                         "a": true,
                         "k": "query",
                         "n": "mime_type",
-                        "or": "mime_type",
+                        "or": "mimeType",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -8084,7 +7569,7 @@
                         "a": true,
                         "k": "query",
                         "n": "output_preset_id",
-                        "or": "output_preset_id",
+                        "or": "outputPresetId",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -8092,7 +7577,7 @@
                         "a": true,
                         "k": "query",
                         "n": "plan_tier",
-                        "or": "plan_tier",
+                        "or": "planTier",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -8157,7 +7642,7 @@
                         "a": true,
                         "k": "query",
                         "n": "plan_tier",
-                        "or": "plan_tier",
+                        "or": "planTier",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -8213,7 +7698,7 @@
                         "a": true,
                         "k": "query",
                         "n": "duration_m",
-                        "or": "duration_m",
+                        "or": "durationMs",
                         "r": false,
                         "t": "`$NUMBER`"
                       },
@@ -8229,7 +7714,7 @@
                         "a": true,
                         "k": "query",
                         "n": "preset_id",
-                        "or": "preset_id",
+                        "or": "presetId",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -8237,7 +7722,7 @@
                         "a": true,
                         "k": "query",
                         "n": "start_m",
-                        "or": "start_m",
+                        "or": "startMs",
                         "r": false,
                         "t": "`$NUMBER`"
                       }
@@ -8293,7 +7778,7 @@
                         "a": true,
                         "k": "query",
                         "n": "project_id",
-                        "or": "project_id",
+                        "or": "projectId",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -8347,7 +7832,7 @@
                         "a": true,
                         "k": "query",
                         "n": "project_id",
-                        "or": "project_id",
+                        "or": "projectId",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -9262,27 +8747,6 @@
             }
           ]
         },
-        "BasicCreateMemeFlow": {
-          "active": true,
-          "entity": "create_meme",
-          "key$": "BasicCreateMemeFlow",
-          "kind": "basic",
-          "name": "BasicCreateMemeFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {
-                "ref": "create_meme_ref01"
-              },
-              "m": {},
-              "o": "create",
-              "s": [],
-              "v": []
-            }
-          ]
-        },
         "BasicDeveloperApiFlow": {
           "active": true,
           "entity": "developer_api",
@@ -9392,32 +8856,6 @@
             }
           ]
         },
-        "BasicGifFlow": {
-          "active": true,
-          "entity": "gif",
-          "key$": "BasicGifFlow",
-          "kind": "basic",
-          "name": "BasicGifFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {},
-              "m": {},
-              "o": "list",
-              "s": [],
-              "v": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "gif_ref01"
-                  }
-                }
-              ]
-            }
-          ]
-        },
         "BasicGrowthFlow": {
           "active": true,
           "entity": "growth",
@@ -9491,6 +8929,17 @@
             {
               "a": true,
               "d": {},
+              "i": {
+                "ref": "meme_ref01"
+              },
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
               "i": {},
               "m": {},
               "o": "list",
@@ -9525,6 +8974,38 @@
                   }
                 }
               ]
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "meme_ref01",
+                "suffix": "_rm0"
+              },
+              "m": {
+                "id": "meme01"
+              },
+              "o": "remove",
+              "s": [],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "suffix": "_rt0"
+              },
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemNotExists",
+                  "def": {
+                    "ref": "meme_ref01"
+                  }
+                }
+              ]
             }
           ]
         },
@@ -9548,6 +9029,22 @@
               "o": "create",
               "s": [],
               "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "public_template_media_item_ref01"
+                  }
+                }
+              ]
             },
             {
               "a": true,
@@ -9591,32 +9088,6 @@
               "o": "create",
               "s": [],
               "v": []
-            }
-          ]
-        },
-        "BasicTemplateFlow": {
-          "active": true,
-          "entity": "template",
-          "key$": "BasicTemplateFlow",
-          "kind": "basic",
-          "name": "BasicTemplateFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {},
-              "m": {},
-              "o": "list",
-              "s": [],
-              "v": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "template_ref01"
-                  }
-                }
-              ]
             }
           ]
         },
@@ -9758,7 +9229,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

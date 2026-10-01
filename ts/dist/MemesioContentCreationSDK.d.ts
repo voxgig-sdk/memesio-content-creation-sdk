@@ -9,18 +9,15 @@ import { AuthEntity } from './entity/AuthEntity';
 import { BillingEntity } from './entity/BillingEntity';
 import { CollaborationEntity } from './entity/CollaborationEntity';
 import { ComplianceEntity } from './entity/ComplianceEntity';
-import { CreateMemeEntity } from './entity/CreateMemeEntity';
 import { DeveloperApiEntity } from './entity/DeveloperApiEntity';
 import { FreeCaptionMemeSuccessEntity } from './entity/FreeCaptionMemeSuccessEntity';
 import { FreeTemplateSearchEntity } from './entity/FreeTemplateSearchEntity';
 import { GenerateEntity } from './entity/GenerateEntity';
-import { GifEntity } from './entity/GifEntity';
 import { GrowthEntity } from './entity/GrowthEntity';
 import { MediaEntity } from './entity/MediaEntity';
 import { MemeEntity } from './entity/MemeEntity';
 import { PublicTemplateMediaItemEntity } from './entity/PublicTemplateMediaItemEntity';
 import { StandaloneAgentBootstrapEntity } from './entity/StandaloneAgentBootstrapEntity';
-import { TemplateEntity } from './entity/TemplateEntity';
 import { TrendAlertEntity } from './entity/TrendAlertEntity';
 import { UploadCaptionMemeSuccessEntity } from './entity/UploadCaptionMemeSuccessEntity';
 import { VideoEntity } from './entity/VideoEntity';
@@ -44,29 +41,29 @@ declare class MemesioContentCreationSDK {
     prepare(fetchargs?: any): Promise<any>;
     direct(fetchargs?: any): Promise<Error | {
         ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    } | {
-        ok: boolean;
         err: any;
         status?: undefined;
         headers?: undefined;
         data?: undefined;
+    } | {
+        ok: boolean;
+        status: number;
+        headers: any;
+        data: any;
+        err?: undefined;
     }>;
     _rawRequest(fetchargs?: any): Promise<Error | {
         ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    } | {
-        ok: boolean;
         err: any;
         status?: undefined;
         headers?: undefined;
         data?: undefined;
+    } | {
+        ok: boolean;
+        status: number;
+        headers: any;
+        data: any;
+        err?: undefined;
     }>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Agent(entopts?: Record<string, any>): AgentEntity;
@@ -80,18 +77,15 @@ declare class MemesioContentCreationSDK {
     Billing(entopts?: Record<string, any>): BillingEntity;
     Collaboration(entopts?: Record<string, any>): CollaborationEntity;
     Compliance(entopts?: Record<string, any>): ComplianceEntity;
-    CreateMeme(entopts?: Record<string, any>): CreateMemeEntity;
     DeveloperApi(entopts?: Record<string, any>): DeveloperApiEntity;
     FreeCaptionMemeSuccess(entopts?: Record<string, any>): FreeCaptionMemeSuccessEntity;
     FreeTemplateSearch(entopts?: Record<string, any>): FreeTemplateSearchEntity;
     Generate(entopts?: Record<string, any>): GenerateEntity;
-    Gif(entopts?: Record<string, any>): GifEntity;
     Growth(entopts?: Record<string, any>): GrowthEntity;
     Media(entopts?: Record<string, any>): MediaEntity;
     Meme(entopts?: Record<string, any>): MemeEntity;
     PublicTemplateMediaItem(entopts?: Record<string, any>): PublicTemplateMediaItemEntity;
     StandaloneAgentBootstrap(entopts?: Record<string, any>): StandaloneAgentBootstrapEntity;
-    Template(entopts?: Record<string, any>): TemplateEntity;
     TrendAlert(entopts?: Record<string, any>): TrendAlertEntity;
     UploadCaptionMemeSuccess(entopts?: Record<string, any>): UploadCaptionMemeSuccessEntity;
     Video(entopts?: Record<string, any>): VideoEntity;

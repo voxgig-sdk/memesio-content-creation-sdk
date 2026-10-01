@@ -405,34 +405,6 @@ export interface ComplianceLoadMatch {
   [action: string]: any
 }
 
-export interface CreateMeme {
-  canvas: Record<string, any>
-  captions: any[]
-  generationRunId?: string | null
-  generationVariantId?: string | null
-  imageDataUrl: string
-  overlays?: any[]
-  sourceImageUrl: string
-  templateSlug?: string
-  title?: string
-  visibility?: string
-  watermark: Record<string, any>
-}
-
-export interface CreateMemeCreateData {
-  canvas: Record<string, any>
-  captions: any[]
-  generationRunId?: string | null
-  generationVariantId?: string | null
-  imageDataUrl: string
-  overlays?: any[]
-  sourceImageUrl: string
-  templateSlug?: string
-  title?: string
-  visibility?: string
-  watermark: Record<string, any>
-}
-
 export interface DeveloperApi {
   limit?: number
   prompt: string
@@ -549,42 +521,6 @@ export interface GenerateCreateData {
   widthPx?: number
 }
 
-export interface Gif {
-  animated?: boolean
-  assetBytes?: number | null
-  assetContentType?: string
-  boxCount?: number
-  captionCount?: number
-  captions: any[]
-  categories?: any[]
-  description: string
-  durationMs?: number | null
-  exampleImageUrl?: string | null
-  frameCount?: number | null
-  height: number | null
-  id: string
-  imageUrl: string
-  mediaType: string
-  name: string
-  posterImageUrl?: string
-  previewImageUrl?: string
-  qualityStatus?: string
-  slug: string
-  sourceTemplateId: string | null
-  sourceUrl?: string
-  tags: any[]
-  width: number | null
-}
-
-export interface GifListMatch {
-  page?: number
-  page_size?: number
-  q?: string
-  query?: string
-  sort?: string
-  tag?: string
-}
-
 export interface Growth {
   action: string
   actorId?: string
@@ -637,7 +573,10 @@ export interface Meme {
   canvas: Record<string, any>
   captions: any[]
   createdAt: string
+  generationRunId?: string | null
+  generationVariantId?: string | null
   id?: string
+  imageDataUrl: string
   imageUrl: string
   nsfwStatus: string
   overlays: any[]
@@ -668,6 +607,31 @@ export interface MemeListMatch {
   query?: string
   template_slug?: string
   visibility?: string
+}
+
+export interface MemeCreateData {
+  altText: string
+  canonicalImageUrl: string
+  canvas: Record<string, any>
+  captions: any[]
+  createdAt: string
+  generationRunId?: string | null
+  generationVariantId?: string | null
+  id?: string
+  imageDataUrl: string
+  imageUrl: string
+  nsfwStatus: string
+  overlays: any[]
+  shareSlug: string
+  shareUrl: string
+  shareViews: number
+  slug: string
+  sourceImageUrl: string
+  tags: any[]
+  templateSlug: string
+  title: string
+  visibility: string
+  watermark: Record<string, any>
 }
 
 export interface MemeRemoveMatch {
@@ -704,6 +668,17 @@ export interface PublicTemplateMediaItem {
 export interface PublicTemplateMediaItemLoadMatch {
   slug: string
   media_type?: string
+}
+
+export interface PublicTemplateMediaItemListMatch {
+  media_type?: string
+  mode?: string
+  page?: number
+  page_size?: number
+  q?: string
+  query?: string
+  sort?: string
+  tag?: string
 }
 
 export interface PublicTemplateMediaItemCreateData {
@@ -759,44 +734,6 @@ export interface StandaloneAgentBootstrapCreateData {
   systemPrompt?: string
   watermarkText?: string
   websiteUrl?: string
-}
-
-export interface Template {
-  animated?: boolean
-  assetBytes?: number | null
-  assetContentType?: string
-  boxCount?: number
-  captionCount?: number
-  captions: any[]
-  categories?: any[]
-  description: string
-  durationMs?: number | null
-  exampleImageUrl?: string | null
-  frameCount?: number | null
-  height: number | null
-  id: string
-  imageUrl: string
-  mediaType: string
-  name: string
-  posterImageUrl?: string
-  previewImageUrl?: string
-  qualityStatus?: string
-  slug: string
-  sourceTemplateId: string | null
-  sourceUrl?: string
-  tags: any[]
-  width: number | null
-}
-
-export interface TemplateListMatch {
-  media_type?: string
-  mode?: string
-  page?: number
-  page_size?: number
-  q?: string
-  query?: string
-  sort?: string
-  tag?: string
 }
 
 export interface TrendAlert {

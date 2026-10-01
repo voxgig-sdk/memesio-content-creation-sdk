@@ -85,10 +85,6 @@ Create a new `Collaboration` entity instance. Pass `nil` for no initial data.
 
 Create a new `Compliance` entity instance. Pass `nil` for no initial data.
 
-#### `CreateMeme(data)`
-
-Create a new `CreateMeme` entity instance. Pass `nil` for no initial data.
-
 #### `DeveloperApi(data)`
 
 Create a new `DeveloperApi` entity instance. Pass `nil` for no initial data.
@@ -104,10 +100,6 @@ Create a new `FreeTemplateSearch` entity instance. Pass `nil` for no initial dat
 #### `Generate(data)`
 
 Create a new `Generate` entity instance. Pass `nil` for no initial data.
-
-#### `Gif(data)`
-
-Create a new `Gif` entity instance. Pass `nil` for no initial data.
 
 #### `Growth(data)`
 
@@ -128,10 +120,6 @@ Create a new `PublicTemplateMediaItem` entity instance. Pass `nil` for no initia
 #### `StandaloneAgentBootstrap(data)`
 
 Create a new `StandaloneAgentBootstrap` entity instance. Pass `nil` for no initial data.
-
-#### `Template(data)`
-
-Create a new `Template` entity instance. Pass `nil` for no initial data.
 
 #### `TrendAlert(data)`
 
@@ -1034,74 +1022,6 @@ Return the entity name.
 
 ---
 
-## CreateMemeEntity
-
-```lua
-local create_meme = client:CreateMeme(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canvas` | `table` | Yes |  |
-| `captions` | `table` | Yes |  |
-| `generationRunId` | `string|nil` | No |  |
-| `generationVariantId` | `string|nil` | No |  |
-| `imageDataUrl` | `string` | Yes |  |
-| `overlays` | `table` | No |  |
-| `sourceImageUrl` | `string` | Yes |  |
-| `templateSlug` | `string` | No |  |
-| `title` | `string` | No |  |
-| `visibility` | `string` | No |  |
-| `watermark` | `table` | Yes |  |
-
-### Operations
-
-#### `create(reqdata, ctrl) -> any, err`
-
-Create a new entity with the given data.
-
-```lua
-local result, err = client:CreateMeme():create({
-  canvas = --[[ table ]],
-  captions = --[[ table ]],
-  imageDataUrl = --[[ string ]],
-  sourceImageUrl = --[[ string ]],
-  watermark = --[[ table ]],
-})
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreateMemeEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## DeveloperApiEntity
 
 ```lua
@@ -1405,81 +1325,6 @@ Return the entity name.
 
 ---
 
-## GifEntity
-
-```lua
-local gif = client:Gif(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `boolean` | No |  |
-| `assetBytes` | `number|nil` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `number` | No |  |
-| `captionCount` | `number` | No |  |
-| `captions` | `table` | Yes |  |
-| `categories` | `table` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `number|nil` | No |  |
-| `exampleImageUrl` | `string|nil` | No |  |
-| `frameCount` | `number|nil` | No |  |
-| `height` | `number|nil` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `string|nil` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `table` | Yes |  |
-| `width` | `number|nil` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:Gif():list()
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `GifEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## GrowthEntity
 
 ```lua
@@ -1608,7 +1453,10 @@ local meme = client:Meme(nil)
 | `canvas` | `table` | Yes |  |
 | `captions` | `table` | Yes |  |
 | `createdAt` | `string` | Yes |  |
+| `generationRunId` | `string|nil` | No |  |
+| `generationVariantId` | `string|nil` | No |  |
 | `id` | `string` | No |  |
+| `imageDataUrl` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
 | `nsfwStatus` | `string` | Yes |  |
 | `overlays` | `table` | Yes |  |
@@ -1623,7 +1471,62 @@ local meme = client:Meme(nil)
 | `visibility` | `string` | Yes |  |
 | `watermark` | `table` | Yes |  |
 
+### Field Usage by Operation
+
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `altText` | - | - | - | - |
+| `canonicalImageUrl` | - | - | - | - |
+| `canvas` | - | - | - | - |
+| `captions` | - | - | - | - |
+| `createdAt` | - | - | - | - |
+| `generationRunId` | - | - | - | - |
+| `generationVariantId` | - | - | - | - |
+| `id` | - | - | - | - |
+| `imageDataUrl` | - | - | - | - |
+| `imageUrl` | - | - | - | - |
+| `nsfwStatus` | - | - | - | - |
+| `overlays` | - | - | Yes | - |
+| `shareSlug` | - | - | - | - |
+| `shareUrl` | - | - | - | - |
+| `shareViews` | - | - | - | - |
+| `slug` | - | - | - | - |
+| `sourceImageUrl` | - | - | - | - |
+| `tags` | - | - | - | - |
+| `templateSlug` | - | - | Yes | - |
+| `title` | - | - | Yes | - |
+| `visibility` | - | - | Yes | - |
+| `watermark` | - | - | - | - |
+
 ### Operations
+
+#### `create(reqdata, ctrl) -> any, err`
+
+Create a new entity with the given data.
+
+```lua
+local result, err = client:Meme():create({
+  altText = --[[ string ]],
+  canonicalImageUrl = --[[ string ]],
+  canvas = --[[ table ]],
+  captions = --[[ table ]],
+  createdAt = --[[ string ]],
+  imageDataUrl = --[[ string ]],
+  imageUrl = --[[ string ]],
+  nsfwStatus = --[[ string ]],
+  overlays = --[[ table ]],
+  shareSlug = --[[ string ]],
+  shareUrl = --[[ string ]],
+  shareViews = --[[ number ]],
+  slug = --[[ string ]],
+  sourceImageUrl = --[[ string ]],
+  tags = --[[ table ]],
+  templateSlug = --[[ string ]],
+  title = --[[ string ]],
+  visibility = --[[ string ]],
+  watermark = --[[ table ]],
+})
+```
 
 #### `list(reqmatch, ctrl) -> any, err`
 
@@ -1736,6 +1639,14 @@ local result, err = client:PublicTemplateMediaItem():create({
 })
 ```
 
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:PublicTemplateMediaItem():list()
+```
+
 #### `load(reqmatch, ctrl) -> any, err`
 
 Load a single entity matching the given criteria.
@@ -1827,81 +1738,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `StandaloneAgentBootstrapEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## TemplateEntity
-
-```lua
-local template = client:Template(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `boolean` | No |  |
-| `assetBytes` | `number|nil` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `number` | No |  |
-| `captionCount` | `number` | No |  |
-| `captions` | `table` | Yes |  |
-| `categories` | `table` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `number|nil` | No |  |
-| `exampleImageUrl` | `string|nil` | No |  |
-| `frameCount` | `number|nil` | No |  |
-| `height` | `number|nil` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `string|nil` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `table` | Yes |  |
-| `width` | `number|nil` | Yes |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:Template():list()
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `TemplateEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

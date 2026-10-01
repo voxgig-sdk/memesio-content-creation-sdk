@@ -36,10 +36,40 @@ main: kit: entity: meme: {
       r: true
       t: "`$STRING`"
     }
+    generationRunId: {
+      h: "Generation Run Id"
+      n: "generationRunId"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    generationVariantId: {
+      h: "Generation Variant Id"
+      n: "generationVariantId"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
     id: {
       h: "Id"
       n: "id"
       r: false
+      t: "`$STRING`"
+    }
+    imageDataUrl: {
+      h: "Image Data Url"
+      n: "imageDataUrl"
+      r: true
       t: "`$STRING`"
     }
     imageUrl: {
@@ -57,6 +87,12 @@ main: kit: entity: meme: {
     overlays: {
       h: "Overlays"
       n: "overlays"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
       r: true
       t: "`$ARRAY`"
     }
@@ -99,18 +135,36 @@ main: kit: entity: meme: {
     templateSlug: {
       h: "Template Slug"
       n: "templateSlug"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
       r: true
       t: "`$STRING`"
     }
     title: {
       h: "Title"
       n: "title"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
       r: true
       t: "`$STRING`"
     }
     visibility: {
       h: "Visibility"
       n: "visibility"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
       r: true
       t: "`$STRING`"
     }
@@ -129,6 +183,32 @@ main: kit: entity: meme: {
 
   name: "meme"
   op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/memes"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/memes"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "memes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
     list: {
       name: "list"
       points: [
@@ -143,28 +223,28 @@ main: kit: entity: meme: {
               {
                 k: "query"
                 n: "exclude_template_clone"
-                or: "exclude_template_clone"
+                or: "excludeTemplateClones"
                 r: false
                 t: "`$BOOLEAN`"
               }
               {
                 k: "query"
                 n: "include_nsfw"
-                or: "include_nsfw"
+                or: "includeNsfw"
                 r: false
                 t: "`$BOOLEAN`"
               }
               {
                 k: "query"
                 n: "official_only"
-                or: "official_only"
+                or: "officialOnly"
                 r: false
                 t: "`$BOOLEAN`"
               }
               {
                 k: "query"
                 n: "owner_token"
-                or: "owner_token"
+                or: "ownerToken"
                 r: false
                 t: "`$STRING`"
               }
@@ -178,7 +258,7 @@ main: kit: entity: meme: {
               {
                 k: "query"
                 n: "page_size"
-                or: "page_size"
+                or: "pageSize"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -192,7 +272,7 @@ main: kit: entity: meme: {
               {
                 k: "query"
                 n: "template_slug"
-                or: "template_slug"
+                or: "templateSlug"
                 r: false
                 t: "`$STRING`"
               }
@@ -258,7 +338,7 @@ main: kit: entity: meme: {
               {
                 k: "query"
                 n: "owner_token"
-                or: "owner_token"
+                or: "ownerToken"
                 r: false
                 t: "`$STRING`"
               }

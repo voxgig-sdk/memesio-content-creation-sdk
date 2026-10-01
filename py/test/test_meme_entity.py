@@ -61,7 +61,7 @@ class TestMemeEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["list", "load"]:
+        for _op in ["create", "list", "load", "remove"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "meme." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -73,19 +73,25 @@ class TestMemeEntity:
                         "set MEMESIO_CONTENT_CREATION_TEST_MEME_ENTID JSON to run live")
         client = setup["client"]
 
-        # Bootstrap entity data from existing test data.
-        meme_ref01_data_raw = vs.items(helpers.to_map(
-            vs.getpath(setup["data"], "existing.meme")))
-        meme_ref01_data = None
-        if len(meme_ref01_data_raw) > 0:
-            meme_ref01_data = helpers.to_map(meme_ref01_data_raw[0][1])
+        # CREATE
+        meme_ref01_ent = client.Meme(None)
+        meme_ref01_data = helpers.to_map(vs.getprop(
+            vs.getpath(setup["data"], "new.meme"), "meme_ref01"))
+
+        meme_ref01_data = helpers.to_map(runner.entity_data(meme_ref01_ent.create(meme_ref01_data, None)))
+        assert meme_ref01_data is not None
+        assert meme_ref01_data["id"] is not None
 
         # LIST
-        meme_ref01_ent = client.Meme(None)
         meme_ref01_match = {}
 
         meme_ref01_list_result = meme_ref01_ent.list(meme_ref01_match, None)
         assert isinstance(meme_ref01_list_result, list)
+
+        found_item = vs.select(
+            runner.entity_list_to_data(meme_ref01_list_result),
+            {"id": meme_ref01_data["id"]})
+        assert not vs.isempty(found_item)
 
         # LOAD
         meme_ref01_match_dt0 = {
@@ -95,6 +101,23 @@ class TestMemeEntity:
         meme_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(meme_ref01_data_dt0_loaded))
         assert meme_ref01_data_dt0_load_result is not None
         assert meme_ref01_data_dt0_load_result["id"] == meme_ref01_data["id"]
+
+        # REMOVE
+        meme_ref01_match_rm0 = {
+            "id": meme_ref01_data["id"],
+        }
+        meme_ref01_ent.remove(meme_ref01_match_rm0, None)
+
+        # LIST
+        meme_ref01_match_rt0 = {}
+
+        meme_ref01_list_rt0_result = meme_ref01_ent.list(meme_ref01_match_rt0, None)
+        assert isinstance(meme_ref01_list_rt0_result, list)
+
+        not_found_item = vs.select(
+            runner.entity_list_to_data(meme_ref01_list_rt0_result),
+            {"id": meme_ref01_data["id"]})
+        assert vs.isempty(not_found_item)
 
 
 

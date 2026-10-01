@@ -95,6 +95,17 @@ class MemesioContentCreationSDK
     @_rootctx
   end
 
+  # The options and the root context both hold the credential, so the
+  # client's printed form is its name alone; `options_map` is the
+  # documented way to read them back.
+  def to_s
+    "MemesioContentCreation " + VoxgigStruct.jsonify({ "name" => "MemesioContentCreation" })
+  end
+
+  def inspect
+    to_s
+  end
+
   def prepare(fetchargs = {})
     utility = @_utility
     fetchargs ||= {}
@@ -202,7 +213,7 @@ class MemesioContentCreationSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err } if fetch_err
+    return { "ok" => false, "err" => utility.clean.call(ctx, fetch_err) } if fetch_err
 
     if fetched.nil?
       return {
@@ -366,13 +377,6 @@ class MemesioContentCreationSDK
   end
 
 
-  # Canonical facade: client.CreateMeme.list / client.CreateMeme.load({ "id" => ... })
-  def CreateMeme(data = nil)
-    require_relative 'entity/create_meme_entity'
-    CreateMemeEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.DeveloperApi.list / client.DeveloperApi.load({ "id" => ... })
   def DeveloperApi(data = nil)
     require_relative 'entity/developer_api_entity'
@@ -398,13 +402,6 @@ class MemesioContentCreationSDK
   def Generate(data = nil)
     require_relative 'entity/generate_entity'
     GenerateEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Gif.list / client.Gif.load({ "id" => ... })
-  def Gif(data = nil)
-    require_relative 'entity/gif_entity'
-    GifEntity.new(self, data)
   end
 
 
@@ -440,13 +437,6 @@ class MemesioContentCreationSDK
   def StandaloneAgentBootstrap(data = nil)
     require_relative 'entity/standalone_agent_bootstrap_entity'
     StandaloneAgentBootstrapEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Template.list / client.Template.load({ "id" => ... })
-  def Template(data = nil)
-    require_relative 'entity/template_entity'
-    TemplateEntity.new(self, data)
   end
 
 

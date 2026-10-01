@@ -6,7 +6,7 @@ Contract baseline for AI jobs, trend alerts, collaboration, and billing surfaces
 
 This guide introduces the API, the client libraries, and the companion tools in this repository. Start with the API capabilities, choose a client for your application, and use the linked reference when you need exact request and response details.
 
-The selected API surface contains 26 entities and 117 HTTP routes. There are 6 SDK targets and 2 companion tools.
+The selected API surface contains 23 entities and 117 HTTP routes. There are 6 SDK targets and 2 companion tools.
 
 An entity groups related API operations. An operation can have several routes with different inputs or authentication requirements. The SDK exposes the entity and its operations using the conventions of the selected language.
 
@@ -78,12 +78,6 @@ Results: Content usage policy payload.
 
 SDK operations: `load`.
 
-### CreateMeme
-
-Results: Meme stored.
-
-SDK operations: `create`.
-
 ### DeveloperApi
 
 Results: Template idea ranking payload; Current keyed actor AI quota snapshot.
@@ -117,12 +111,6 @@ Key fields to recognise:
 - `gifSlug`: Required for /api/v1/gifs/generate.
 - `returnBase64`: Only used by /api/v1/gifs/generate.
 
-### Gif
-
-Results: GIF template search results.
-
-SDK operations: `list`.
-
 ### Growth
 
 Results: Exposure history payload; Decision payload; Preview/history payload; Run payload; Redeemed referral code; Created referral code; Disconnect response; Connect/publish response; Published weekly campaign pack; Experiment decisions payload; Weekly campaign pack payload; Social publish state payload; Referral credit balance; Lifecycle messaging config payload; Viral loop trigger payload.
@@ -137,27 +125,21 @@ SDK operations: `create`.
 
 ### Meme
 
-Results: Meme search results; Meme details; Meme deleted.
+Results: Meme stored; Meme search results; Meme details; Meme deleted.
 
-SDK operations: `list`, `load`, `remove`.
+SDK operations: `create`, `list`, `load`, `remove`.
 
 ### PublicTemplateMediaItem
 
-Results: Generated GIF bytes; Template details; GIF template details.
+Results: Generated GIF bytes; Template search results; GIF template search results; Template details; GIF template details.
 
-SDK operations: `create`, `load`.
+SDK operations: `create`, `list`, `load`.
 
 ### StandaloneAgentBootstrap
 
 Results: Standalone agent account created.
 
 SDK operations: `create`.
-
-### Template
-
-Results: Template search results.
-
-SDK operations: `list`.
 
 ### TrendAlert
 
@@ -240,14 +222,12 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Collaboration | `create` | `POST /api/collab/comments` | See reference |
 | Collaboration | `load` | `GET /api/collab/comments` | See reference |
 | Compliance | `load` | `GET /api/compliance/content-policy` | See reference |
-| CreateMeme | `create` | `POST /api/memes` | See reference |
 | DeveloperApi | `create` | `POST /api/v1/templates/ideas` | Required |
 | DeveloperApi | `load` | `GET /api/v1/memes/generate` | Required |
 | FreeCaptionMemeSuccess | `create` | `POST /api/free/memes/caption` | Required |
 | FreeCaptionMemeSuccess | `create` | `POST /api/v1/memes/caption-template` | Required |
 | FreeTemplateSearch | `list` | `GET /api/free/templates` | Not required |
 | Generate | `create` | `POST /api/v1/gifs/generate` | Not required |
-| Gif | `list` | `GET /api/gifs` | See reference |
 | Growth | `create` | `POST /api/growth/experiments/decision` | See reference |
 | Growth | `create` | `POST /api/growth/lifecycle-messaging` | See reference |
 | Growth | `create` | `POST /api/growth/referrals` | See reference |
@@ -260,15 +240,17 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Growth | `load` | `GET /api/growth/lifecycle-messaging` | See reference |
 | Growth | `load` | `GET /api/growth/viral-triggers` | See reference |
 | Media | `create` | `POST /api/media/signed-url` | See reference |
+| Meme | `create` | `POST /api/memes` | See reference |
 | Meme | `list` | `GET /api/memes` | See reference |
 | Meme | `load` | `GET /api/memes/{slug}` | See reference |
 | Meme | `remove` | `DELETE /api/memes/{slug}` | See reference |
 | PublicTemplateMediaItem | `create` | `POST /api/gifs/{slug}/generate` | Not required |
+| PublicTemplateMediaItem | `list` | `GET /api/templates` | See reference |
+| PublicTemplateMediaItem | `list` | `GET /api/gifs` | See reference |
 | PublicTemplateMediaItem | `load` | `GET /api/templates/{slug}` | See reference |
 | PublicTemplateMediaItem | `load` | `GET /api/gifs/{slug}` | See reference |
 | StandaloneAgentBootstrap | `create` | `POST /api/v1/agents/bootstrap` | See reference |
 | StandaloneAgentBootstrap | `create` | `POST /api/v1/agents/create-agent` | See reference |
-| Template | `list` | `GET /api/templates` | See reference |
 | TrendAlert | `create` | `POST /api/alerts/delivery` | See reference |
 | TrendAlert | `create` | `POST /api/alerts/feedback` | See reference |
 | TrendAlert | `create` | `POST /api/alerts/preferences` | See reference |
@@ -361,7 +343,7 @@ Use the MCP server to expose supported API operations to an MCP client.
 
 Repository directory: `go-mcp/`. Not published. Build from the go-mcp directory.
 
-- `memesio-content-creation_list`: List records for an entity. Supported entities: `free_template_search`, `gif`, `meme`, `template`.
+- `memesio-content-creation_list`: List records for an entity. Supported entities: `free_template_search`, `meme`, `public_template_media_item`.
 - `memesio-content-creation_load`: Load one record for an entity. Supported entities: `agent`, `agent_infra`, `ai_caption`, `ai_job`, `ai_provider`, `analytics`, `billing`, `collaboration`, `compliance`, `developer_api`, `growth`, `meme`, `public_template_media_item`, `trend_alert`, `video`.
 
 ## Operational features

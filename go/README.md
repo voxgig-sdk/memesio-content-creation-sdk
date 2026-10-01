@@ -83,12 +83,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-agentinfra, err := client.AgentInfra(nil).Load(nil, nil)
+aiprovider, err := client.AiProvider(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = agentinfra
+_ = aiprovider
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -152,13 +152,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-agentInfra, err := client.AgentInfra(nil).Load(
+aiProvider, err := client.AiProvider(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(agentInfra) // the returned mock data
+fmt.Println(aiProvider) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -248,18 +248,15 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Billing` | `(data map[string]any) MemesioContentCreationEntity` | Create a Billing entity instance. |
 | `Collaboration` | `(data map[string]any) MemesioContentCreationEntity` | Create a Collaboration entity instance. |
 | `Compliance` | `(data map[string]any) MemesioContentCreationEntity` | Create a Compliance entity instance. |
-| `CreateMeme` | `(data map[string]any) MemesioContentCreationEntity` | Create a CreateMeme entity instance. |
 | `DeveloperApi` | `(data map[string]any) MemesioContentCreationEntity` | Create a DeveloperApi entity instance. |
 | `FreeCaptionMemeSuccess` | `(data map[string]any) MemesioContentCreationEntity` | Create a FreeCaptionMemeSuccess entity instance. |
 | `FreeTemplateSearch` | `(data map[string]any) MemesioContentCreationEntity` | Create a FreeTemplateSearch entity instance. |
 | `Generate` | `(data map[string]any) MemesioContentCreationEntity` | Create a Generate entity instance. |
-| `Gif` | `(data map[string]any) MemesioContentCreationEntity` | Create a Gif entity instance. |
 | `Growth` | `(data map[string]any) MemesioContentCreationEntity` | Create a Growth entity instance. |
 | `Media` | `(data map[string]any) MemesioContentCreationEntity` | Create a Media entity instance. |
 | `Meme` | `(data map[string]any) MemesioContentCreationEntity` | Create a Meme entity instance. |
 | `PublicTemplateMediaItem` | `(data map[string]any) MemesioContentCreationEntity` | Create a PublicTemplateMediaItem entity instance. |
 | `StandaloneAgentBootstrap` | `(data map[string]any) MemesioContentCreationEntity` | Create a StandaloneAgentBootstrap entity instance. |
-| `Template` | `(data map[string]any) MemesioContentCreationEntity` | Create a Template entity instance. |
 | `TrendAlert` | `(data map[string]any) MemesioContentCreationEntity` | Create a TrendAlert entity instance. |
 | `UploadCaptionMemeSuccess` | `(data map[string]any) MemesioContentCreationEntity` | Create an UploadCaptionMemeSuccess entity instance. |
 | `Video` | `(data map[string]any) MemesioContentCreationEntity` | Create a Video entity instance. |
@@ -524,26 +521,6 @@ Operations: Load.
 
 API path: `/api/compliance/content-policy`
 
-#### CreateMeme
-
-| Field | Description |
-| --- | --- |
-| `"canvas"` |  |
-| `"captions"` |  |
-| `"generationRunId"` |  |
-| `"generationVariantId"` |  |
-| `"imageDataUrl"` |  |
-| `"overlays"` |  |
-| `"sourceImageUrl"` |  |
-| `"templateSlug"` |  |
-| `"title"` |  |
-| `"visibility"` |  |
-| `"watermark"` |  |
-
-Operations: Create.
-
-API path: `/api/memes`
-
 #### DeveloperApi
 
 | Field | Description |
@@ -630,39 +607,6 @@ Operations: Create.
 
 API path: `/api/v1/gifs/generate`
 
-#### Gif
-
-| Field | Description |
-| --- | --- |
-| `"animated"` |  |
-| `"assetBytes"` |  |
-| `"assetContentType"` |  |
-| `"boxCount"` |  |
-| `"captionCount"` |  |
-| `"captions"` |  |
-| `"categories"` |  |
-| `"description"` |  |
-| `"durationMs"` |  |
-| `"exampleImageUrl"` |  |
-| `"frameCount"` |  |
-| `"height"` |  |
-| `"id"` |  |
-| `"imageUrl"` |  |
-| `"mediaType"` |  |
-| `"name"` |  |
-| `"posterImageUrl"` |  |
-| `"previewImageUrl"` |  |
-| `"qualityStatus"` |  |
-| `"slug"` |  |
-| `"sourceTemplateId"` |  |
-| `"sourceUrl"` |  |
-| `"tags"` |  |
-| `"width"` |  |
-
-Operations: List.
-
-API path: `/api/gifs`
-
 #### Growth
 
 | Field | Description |
@@ -695,7 +639,10 @@ API path: `/api/media/signed-url`
 | `"canvas"` |  |
 | `"captions"` |  |
 | `"createdAt"` |  |
+| `"generationRunId"` |  |
+| `"generationVariantId"` |  |
 | `"id"` |  |
+| `"imageDataUrl"` |  |
 | `"imageUrl"` |  |
 | `"nsfwStatus"` |  |
 | `"overlays"` |  |
@@ -710,7 +657,7 @@ API path: `/api/media/signed-url`
 | `"visibility"` |  |
 | `"watermark"` |  |
 
-Operations: List, Load, Remove.
+Operations: Create, List, Load, Remove.
 
 API path: `/api/memes`
 
@@ -743,7 +690,7 @@ API path: `/api/memes`
 | `"tags"` |  |
 | `"width"` |  |
 
-Operations: Create, Load.
+Operations: Create, List, Load.
 
 API path: `/api/gifs/{slug}/generate`
 
@@ -763,39 +710,6 @@ API path: `/api/gifs/{slug}/generate`
 Operations: Create.
 
 API path: `/api/v1/agents/bootstrap`
-
-#### Template
-
-| Field | Description |
-| --- | --- |
-| `"animated"` |  |
-| `"assetBytes"` |  |
-| `"assetContentType"` |  |
-| `"boxCount"` |  |
-| `"captionCount"` |  |
-| `"captions"` |  |
-| `"categories"` |  |
-| `"description"` |  |
-| `"durationMs"` |  |
-| `"exampleImageUrl"` |  |
-| `"frameCount"` |  |
-| `"height"` |  |
-| `"id"` |  |
-| `"imageUrl"` |  |
-| `"mediaType"` |  |
-| `"name"` |  |
-| `"posterImageUrl"` |  |
-| `"previewImageUrl"` |  |
-| `"qualityStatus"` |  |
-| `"slug"` |  |
-| `"sourceTemplateId"` |  |
-| `"sourceUrl"` |  |
-| `"tags"` |  |
-| `"width"` |  |
-
-Operations: List.
-
-API path: `/api/templates`
 
 #### TrendAlert
 
@@ -1341,49 +1255,6 @@ fmt.Println(compliance) // the loaded record
 ```
 
 
-### CreateMeme
-
-Create an instance: `createMeme := client.CreateMeme(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `canvas` | `map[string]any` |  |
-| `captions` | `[]any` |  |
-| `generationRunId` | `any` |  |
-| `generationVariantId` | `any` |  |
-| `imageDataUrl` | `string` |  |
-| `overlays` | `[]any` |  |
-| `sourceImageUrl` | `string` |  |
-| `templateSlug` | `string` |  |
-| `title` | `string` |  |
-| `visibility` | `string` |  |
-| `watermark` | `map[string]any` |  |
-
-#### Example: Create
-
-```go
-result, err := client.CreateMeme(nil).Create(map[string]any{
-    "canvas": map[string]any{},
-    "captions": []any{},
-    "imageDataUrl": "example_imageDataUrl",
-    "sourceImageUrl": "example_sourceImageUrl",
-    "watermark": map[string]any{},
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-
 ### DeveloperApi
 
 Create an instance: `developerApi := client.DeveloperApi(nil)`
@@ -1565,56 +1436,6 @@ fmt.Println(result)
 ```
 
 
-### Gif
-
-Create an instance: `gif := client.Gif(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `bool` |  |
-| `assetBytes` | `any` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `int` |  |
-| `captionCount` | `int` |  |
-| `captions` | `[]any` |  |
-| `categories` | `[]any` |  |
-| `description` | `string` |  |
-| `durationMs` | `any` |  |
-| `exampleImageUrl` | `any` |  |
-| `frameCount` | `any` |  |
-| `height` | `any` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `any` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `[]any` |  |
-| `width` | `any` |  |
-
-#### Example: List
-
-```go
-gifs, err := client.Gif(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(gifs) // the array of records
-```
-
-
 ### Growth
 
 Create an instance: `growth := client.Growth(nil)`
@@ -1691,6 +1512,7 @@ Create an instance: `meme := client.Meme(nil)`
 | --- | --- |
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
@@ -1702,7 +1524,10 @@ Create an instance: `meme := client.Meme(nil)`
 | `canvas` | `map[string]any` |  |
 | `captions` | `[]any` |  |
 | `createdAt` | `string` |  |
+| `generationRunId` | `any` |  |
+| `generationVariantId` | `any` |  |
 | `id` | `string` |  |
+| `imageDataUrl` | `string` |  |
 | `imageUrl` | `string` |  |
 | `nsfwStatus` | `string` |  |
 | `overlays` | `[]any` |  |
@@ -1737,6 +1562,36 @@ if err != nil {
 fmt.Println(memes) // the array of records
 ```
 
+#### Example: Create
+
+```go
+result, err := client.Meme(nil).Create(map[string]any{
+    "altText": "example_altText",
+    "canonicalImageUrl": "example_canonicalImageUrl",
+    "canvas": map[string]any{},
+    "captions": []any{},
+    "createdAt": "example_createdAt",
+    "imageDataUrl": "example_imageDataUrl",
+    "imageUrl": "example_imageUrl",
+    "nsfwStatus": "example_nsfwStatus",
+    "overlays": []any{},
+    "shareSlug": "example_shareSlug",
+    "shareUrl": "example_shareUrl",
+    "shareViews": 1,
+    "slug": "example_slug",
+    "sourceImageUrl": "example_sourceImageUrl",
+    "tags": []any{},
+    "templateSlug": "example_templateSlug",
+    "title": "example_title",
+    "visibility": "example_visibility",
+    "watermark": map[string]any{},
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
 
 ### PublicTemplateMediaItem
 
@@ -1746,6 +1601,7 @@ Create an instance: `publicTemplateMediaItem := client.PublicTemplateMediaItem(n
 
 | Method | Description |
 | --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
 
@@ -1786,6 +1642,16 @@ if err != nil {
     panic(err)
 }
 fmt.Println(publicTemplateMediaItem) // the loaded record
+```
+
+#### Example: List
+
+```go
+publicTemplateMediaItems, err := client.PublicTemplateMediaItem(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(publicTemplateMediaItems) // the array of records
 ```
 
 #### Example: Create
@@ -1845,56 +1711,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(result)
-```
-
-
-### Template
-
-Create an instance: `template := client.Template(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `animated` | `bool` |  |
-| `assetBytes` | `any` |  |
-| `assetContentType` | `string` |  |
-| `boxCount` | `int` |  |
-| `captionCount` | `int` |  |
-| `captions` | `[]any` |  |
-| `categories` | `[]any` |  |
-| `description` | `string` |  |
-| `durationMs` | `any` |  |
-| `exampleImageUrl` | `any` |  |
-| `frameCount` | `any` |  |
-| `height` | `any` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
-| `mediaType` | `string` |  |
-| `name` | `string` |  |
-| `posterImageUrl` | `string` |  |
-| `previewImageUrl` | `string` |  |
-| `qualityStatus` | `string` |  |
-| `slug` | `string` |  |
-| `sourceTemplateId` | `any` |  |
-| `sourceUrl` | `string` |  |
-| `tags` | `[]any` |  |
-| `width` | `any` |  |
-
-#### Example: List
-
-```go
-templates, err := client.Template(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(templates) // the array of records
 ```
 
 
@@ -2168,11 +1984,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-agentinfra := client.AgentInfra(nil)
-agentinfra.Load(nil, nil)
+aiprovider := client.AiProvider(nil)
+aiprovider.Load(nil, nil)
 
-// agentinfra.Data() now returns the agentinfra data from the last load
-// agentinfra.Match() returns the last match criteria
+// aiprovider.Data() now returns the aiprovider data from the last load
+// aiprovider.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

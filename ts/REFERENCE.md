@@ -181,18 +181,6 @@ Create a new `Compliance` entity instance.
 
 **Returns:** `ComplianceEntity` instance.
 
-#### `CreateMeme(data?: object)`
-
-Create a new `CreateMeme` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `CreateMemeEntity` instance.
-
 #### `DeveloperApi(data?: object)`
 
 Create a new `DeveloperApi` entity instance.
@@ -240,18 +228,6 @@ Create a new `Generate` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `GenerateEntity` instance.
-
-#### `Gif(data?: object)`
-
-Create a new `Gif` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `GifEntity` instance.
 
 #### `Growth(data?: object)`
 
@@ -312,18 +288,6 @@ Create a new `StandaloneAgentBootstrap` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `StandaloneAgentBootstrapEntity` instance.
-
-#### `Template(data?: object)`
-
-Create a new `Template` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `TemplateEntity` instance.
 
 #### `TrendAlert(data?: object)`
 
@@ -1361,72 +1325,6 @@ Return a copy of the entity options.
 
 ---
 
-## CreateMemeEntity
-
-```ts
-const create_meme = client.CreateMeme()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canvas` | `Record<string, any>` | Yes |  |
-| `captions` | `any[]` | Yes |  |
-| `generationRunId` | `string | null` | No |  |
-| `generationVariantId` | `string | null` | No |  |
-| `imageDataUrl` | `string` | Yes |  |
-| `overlays` | `any[]` | No |  |
-| `sourceImageUrl` | `string` | Yes |  |
-| `templateSlug` | `string` | No |  |
-| `title` | `string` | No |  |
-| `visibility` | `string` | No |  |
-| `watermark` | `Record<string, any>` | Yes |  |
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data.
-
-```ts
-const result = await client.CreateMeme().create({
-  canvas: {},
-  captions: [],
-  imageDataUrl: 'example_imageDataUrl',
-  sourceImageUrl: 'example_sourceImageUrl',
-  watermark: {},
-})
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `CreateMemeEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `MemesioContentCreationSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## DeveloperApiEntity
 
 ```ts
@@ -1722,79 +1620,6 @@ Return a copy of the entity options.
 
 ---
 
-## GifEntity
-
-```ts
-const gif = client.Gif()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `boolean` | No |  |
-| `assetBytes` | `number | null` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `number` | No |  |
-| `captionCount` | `number` | No |  |
-| `captions` | `any[]` | Yes |  |
-| `categories` | `any[]` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `number | null` | No |  |
-| `exampleImageUrl` | `string | null` | No |  |
-| `frameCount` | `number | null` | No |  |
-| `height` | `number | null` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `string | null` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `any[]` | Yes |  |
-| `width` | `number | null` | Yes |  |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Returns an array.
-
-```ts
-const results = await client.Gif().list()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `GifEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `MemesioContentCreationSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## GrowthEntity
 
 ```ts
@@ -1967,7 +1792,10 @@ const meme = client.Meme()
 | `canvas` | `Record<string, any>` | Yes |  |
 | `captions` | `any[]` | Yes |  |
 | `createdAt` | `string` | Yes |  |
+| `generationRunId` | `string | null` | No |  |
+| `generationVariantId` | `string | null` | No |  |
 | `id` | `string` | No |  |
+| `imageDataUrl` | `string` | Yes |  |
 | `imageUrl` | `string` | Yes |  |
 | `nsfwStatus` | `string` | Yes |  |
 | `overlays` | `any[]` | Yes |  |
@@ -1982,7 +1810,62 @@ const meme = client.Meme()
 | `visibility` | `string` | Yes |  |
 | `watermark` | `Record<string, any>` | Yes |  |
 
+### Field Usage by Operation
+
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `altText` | - | - | - | - |
+| `canonicalImageUrl` | - | - | - | - |
+| `canvas` | - | - | - | - |
+| `captions` | - | - | - | - |
+| `createdAt` | - | - | - | - |
+| `generationRunId` | - | - | - | - |
+| `generationVariantId` | - | - | - | - |
+| `id` | - | - | - | - |
+| `imageDataUrl` | - | - | - | - |
+| `imageUrl` | - | - | - | - |
+| `nsfwStatus` | - | - | - | - |
+| `overlays` | - | - | Yes | - |
+| `shareSlug` | - | - | - | - |
+| `shareUrl` | - | - | - | - |
+| `shareViews` | - | - | - | - |
+| `slug` | - | - | - | - |
+| `sourceImageUrl` | - | - | - | - |
+| `tags` | - | - | - | - |
+| `templateSlug` | - | - | Yes | - |
+| `title` | - | - | Yes | - |
+| `visibility` | - | - | Yes | - |
+| `watermark` | - | - | - | - |
+
 ### Operations
+
+#### `create(data: object, ctrl?: object)`
+
+Create a new entity with the given data.
+
+```ts
+const result = await client.Meme().create({
+  altText: 'example_altText',
+  canonicalImageUrl: 'example_canonicalImageUrl',
+  canvas: {},
+  captions: [],
+  createdAt: 'example_createdAt',
+  imageDataUrl: 'example_imageDataUrl',
+  imageUrl: 'example_imageUrl',
+  nsfwStatus: 'example_nsfwStatus',
+  overlays: [],
+  shareSlug: 'example_shareSlug',
+  shareUrl: 'example_shareUrl',
+  shareViews: 1,
+  slug: 'example_slug',
+  sourceImageUrl: 'example_sourceImageUrl',
+  tags: [],
+  templateSlug: 'example_templateSlug',
+  title: 'example_title',
+  visibility: 'example_visibility',
+  watermark: {},
+})
+```
 
 #### `list(match: object, ctrl?: object)`
 
@@ -2113,6 +1996,14 @@ const result = await client.PublicTemplateMediaItem().create({
 })
 ```
 
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.PublicTemplateMediaItem().list()
+```
+
 #### `load(match: object, ctrl?: object)`
 
 Load a single entity matching the given criteria.
@@ -2196,79 +2087,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `StandaloneAgentBootstrapEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `MemesioContentCreationSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## TemplateEntity
-
-```ts
-const template = client.Template()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `animated` | `boolean` | No |  |
-| `assetBytes` | `number | null` | No |  |
-| `assetContentType` | `string` | No |  |
-| `boxCount` | `number` | No |  |
-| `captionCount` | `number` | No |  |
-| `captions` | `any[]` | Yes |  |
-| `categories` | `any[]` | No |  |
-| `description` | `string` | Yes |  |
-| `durationMs` | `number | null` | No |  |
-| `exampleImageUrl` | `string | null` | No |  |
-| `frameCount` | `number | null` | No |  |
-| `height` | `number | null` | Yes |  |
-| `id` | `string` | Yes |  |
-| `imageUrl` | `string` | Yes |  |
-| `mediaType` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `posterImageUrl` | `string` | No |  |
-| `previewImageUrl` | `string` | No |  |
-| `qualityStatus` | `string` | No |  |
-| `slug` | `string` | Yes |  |
-| `sourceTemplateId` | `string | null` | Yes |  |
-| `sourceUrl` | `string` | No |  |
-| `tags` | `any[]` | Yes |  |
-| `width` | `number | null` | Yes |  |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Returns an array.
-
-```ts
-const results = await client.Template().list()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `TemplateEntity` instance with the same client and
 options.
 
 #### `client()`

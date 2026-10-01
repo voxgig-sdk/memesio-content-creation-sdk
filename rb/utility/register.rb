@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 MemesioContentCreationUtility.registrar = ->(u) {
   u.clean = MemesioContentCreationUtilities::Clean
+  u.clean_add = MemesioContentCreationUtilities::CleanAdd
+  u.clean_explain = MemesioContentCreationUtilities::CleanExplain
   u.done = MemesioContentCreationUtilities::Done
   u.make_error = MemesioContentCreationUtilities::MakeError
   u.feature_add = MemesioContentCreationUtilities::FeatureAdd

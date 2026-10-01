@@ -106,7 +106,7 @@ main: kit: entity: agent_infra: {
               {
                 k: "param"
                 n: "agent_id"
-                or: "agent_id"
+                or: "agentId"
                 r: true
                 t: "`$STRING`"
               }
@@ -163,7 +163,7 @@ main: kit: entity: agent_infra: {
               {
                 k: "param"
                 n: "agent_id"
-                or: "agent_id"
+                or: "agentId"
                 r: true
                 t: "`$STRING`"
               }
@@ -220,7 +220,7 @@ main: kit: entity: agent_infra: {
               {
                 k: "param"
                 n: "agent_id"
-                or: "agent_id"
+                or: "agentId"
                 r: true
                 t: "`$STRING`"
               }
@@ -274,7 +274,7 @@ main: kit: entity: agent_infra: {
               {
                 k: "param"
                 n: "id"
-                or: "agent_id"
+                or: "agentId"
                 r: true
                 t: "`$STRING`"
               }
@@ -326,7 +326,7 @@ main: kit: entity: agent_infra: {
               {
                 k: "param"
                 n: "unlock_id"
-                or: "unlock_id"
+                or: "unlockId"
                 r: true
                 t: "`$STRING`"
               }
@@ -539,7 +539,7 @@ main: kit: entity: agent_infra: {
               {
                 k: "query"
                 n: "week_start"
-                or: "week_start"
+                or: "weekStart"
                 r: false
                 t: "`$STRING`"
               }
@@ -586,7 +586,7 @@ main: kit: entity: agent_infra: {
               {
                 k: "param"
                 n: "id"
-                or: "agent_id"
+                or: "agentId"
                 r: true
                 t: "`$STRING`"
               }
@@ -673,14 +673,14 @@ main: kit: entity: agent_infra: {
               {
                 k: "param"
                 n: "agent_id"
-                or: "agent_id"
+                or: "agentId"
                 r: true
                 t: "`$STRING`"
               }
               {
                 k: "param"
                 n: "key_id"
-                or: "key_id"
+                or: "keyId"
                 r: true
                 t: "`$STRING`"
               }

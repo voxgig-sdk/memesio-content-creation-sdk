@@ -94,18 +94,15 @@ local function make_config()
         ["billing"] = {},
         ["collaboration"] = {},
         ["compliance"] = {},
-        ["create_meme"] = {},
         ["developer_api"] = {},
         ["free_caption_meme_success"] = {},
         ["free_template_search"] = {},
         ["generate"] = {},
-        ["gif"] = {},
         ["growth"] = {},
         ["media"] = {},
         ["meme"] = {},
         ["public_template_media_item"] = {},
         ["standalone_agent_bootstrap"] = {},
-        ["template"] = {},
         ["trend_alert"] = {},
         ["upload_caption_meme_success"] = {},
         ["video"] = {},
@@ -252,7 +249,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "id",
-                      ["orig"] = "agent_id",
+                      ["orig"] = "agentId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -336,7 +333,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "id",
-                      ["orig"] = "agent_id",
+                      ["orig"] = "agentId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -488,7 +485,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "agent_id",
-                      ["orig"] = "agent_id",
+                      ["orig"] = "agentId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -550,7 +547,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "agent_id",
-                      ["orig"] = "agent_id",
+                      ["orig"] = "agentId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -608,7 +605,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "agent_id",
-                      ["orig"] = "agent_id",
+                      ["orig"] = "agentId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -662,7 +659,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "id",
-                      ["orig"] = "agent_id",
+                      ["orig"] = "agentId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -721,7 +718,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "unlock_id",
-                      ["orig"] = "unlock_id",
+                      ["orig"] = "unlockId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -959,7 +956,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "week_start",
-                      ["orig"] = "week_start",
+                      ["orig"] = "weekStart",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -1013,7 +1010,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "id",
-                      ["orig"] = "agent_id",
+                      ["orig"] = "agentId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -1115,14 +1112,14 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "agent_id",
-                      ["orig"] = "agent_id",
+                      ["orig"] = "agentId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
                     },
                     {
                       ["name"] = "key_id",
-                      ["orig"] = "key_id",
+                      ["orig"] = "keyId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -1875,7 +1872,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "job_id",
-                      ["orig"] = "job_id",
+                      ["orig"] = "jobId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -1930,7 +1927,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "job_id",
-                      ["orig"] = "job_id",
+                      ["orig"] = "jobId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -2119,13 +2116,13 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "from_version_id",
-                      ["orig"] = "from_version_id",
+                      ["orig"] = "fromVersionId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "layer_id",
-                      ["orig"] = "layer_id",
+                      ["orig"] = "layerId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["reqd"] = true,
@@ -2144,14 +2141,14 @@ local function make_config()
                     },
                     {
                       ["name"] = "project_id",
-                      ["orig"] = "project_id",
+                      ["orig"] = "projectId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["reqd"] = true,
                     },
                     {
                       ["name"] = "to_version_id",
-                      ["orig"] = "to_version_id",
+                      ["orig"] = "toVersionId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -2203,7 +2200,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "page_size",
-                      ["orig"] = "page_size",
+                      ["orig"] = "pageSize",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
@@ -2260,7 +2257,7 @@ local function make_config()
                   ["params"] = {
                     {
                       ["name"] = "id",
-                      ["orig"] = "job_id",
+                      ["orig"] = "jobId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
                       ["reqd"] = true,
@@ -2788,7 +2785,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "template_id",
-                      ["orig"] = "template_id",
+                      ["orig"] = "templateId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -2833,7 +2830,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "window_hour",
-                      ["orig"] = "window_hour",
+                      ["orig"] = "windowHours",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
@@ -3122,13 +3119,13 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "window_day",
-                      ["orig"] = "window_day",
+                      ["orig"] = "windowDays",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "workspace_id",
-                      ["orig"] = "workspace_id",
+                      ["orig"] = "workspaceId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -3244,13 +3241,13 @@ local function make_config()
                     },
                     {
                       ["name"] = "page_size",
-                      ["orig"] = "page_size",
+                      ["orig"] = "pageSize",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "project_id",
-                      ["orig"] = "project_id",
+                      ["orig"] = "projectId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["reqd"] = true,
@@ -3309,118 +3306,6 @@ local function make_config()
                 ["select"] = {
                   ["$action"] = "content_policy",
                 },
-              },
-            },
-          },
-        },
-        ["relations"] = {
-          ["ancestors"] = {},
-        },
-      },
-      ["create_meme"] = {
-        ["fields"] = {
-          {
-            ["name"] = "canvas",
-            ["title"] = "Canvas",
-            ["type"] = "`$OBJECT`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "captions",
-            ["title"] = "Captions",
-            ["type"] = "`$ARRAY`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "generationRunId",
-            ["title"] = "Generation Run Id",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$STRING`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "generationVariantId",
-            ["title"] = "Generation Variant Id",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$STRING`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "imageDataUrl",
-            ["title"] = "Image Data Url",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "overlays",
-            ["title"] = "Overlays",
-            ["type"] = "`$ARRAY`",
-          },
-          {
-            ["name"] = "sourceImageUrl",
-            ["title"] = "Source Image Url",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "templateSlug",
-            ["title"] = "Template Slug",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "title",
-            ["title"] = "Title",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "visibility",
-            ["title"] = "Visibility",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "watermark",
-            ["title"] = "Watermark",
-            ["type"] = "`$OBJECT`",
-            ["req"] = true,
-          },
-        },
-        ["name"] = "create_meme",
-        ["op"] = {
-          ["create"] = {
-            ["input"] = "data",
-            ["name"] = "create",
-            ["points"] = {
-              {
-                ["kind"] = "http",
-                ["method"] = "POST",
-                ["orig"] = "/api/memes",
-                ["segments"] = {
-                  {
-                    ["lit"] = "api",
-                  },
-                  {
-                    ["lit"] = "memes",
-                  },
-                },
-                ["parts"] = {
-                  "api",
-                  "memes",
-                },
-                ["rename"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["args"] = {},
-                ["select"] = {},
               },
             },
           },
@@ -3845,7 +3730,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "media_type",
-                      ["orig"] = "media_type",
+                      ["orig"] = "mediaType",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["example"] = "image",
@@ -3864,7 +3749,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "page_size",
-                      ["orig"] = "page_size",
+                      ["orig"] = "pageSize",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
@@ -4071,271 +3956,6 @@ local function make_config()
                 },
                 ["args"] = {},
                 ["select"] = {},
-              },
-            },
-          },
-        },
-        ["relations"] = {
-          ["ancestors"] = {},
-        },
-      },
-      ["gif"] = {
-        ["fields"] = {
-          {
-            ["name"] = "animated",
-            ["title"] = "Animated",
-            ["type"] = "`$BOOLEAN`",
-          },
-          {
-            ["name"] = "assetBytes",
-            ["title"] = "Asset Bytes",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$INTEGER`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "assetContentType",
-            ["title"] = "Asset Content Type",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "boxCount",
-            ["title"] = "Box Count",
-            ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "captionCount",
-            ["title"] = "Caption Count",
-            ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "captions",
-            ["title"] = "Captions",
-            ["type"] = "`$ARRAY`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "categories",
-            ["title"] = "Categories",
-            ["type"] = "`$ARRAY`",
-          },
-          {
-            ["name"] = "description",
-            ["title"] = "Description",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "durationMs",
-            ["title"] = "Duration Ms",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$INTEGER`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "exampleImageUrl",
-            ["title"] = "Example Image Url",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$STRING`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "frameCount",
-            ["title"] = "Frame Count",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$INTEGER`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "height",
-            ["title"] = "Height",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$NUMBER`",
-                "`$NULL`",
-              },
-            },
-            ["req"] = true,
-          },
-          {
-            ["name"] = "id",
-            ["title"] = "Id",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "imageUrl",
-            ["title"] = "Image Url",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "mediaType",
-            ["title"] = "Media Type",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "name",
-            ["title"] = "Name",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "posterImageUrl",
-            ["title"] = "Poster Image Url",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "previewImageUrl",
-            ["title"] = "Preview Image Url",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "qualityStatus",
-            ["title"] = "Quality Status",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "slug",
-            ["title"] = "Slug",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "sourceTemplateId",
-            ["title"] = "Source Template Id",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$STRING`",
-                "`$NULL`",
-              },
-            },
-            ["req"] = true,
-          },
-          {
-            ["name"] = "sourceUrl",
-            ["title"] = "Source Url",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "tags",
-            ["title"] = "Tags",
-            ["type"] = "`$ARRAY`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "width",
-            ["title"] = "Width",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$NUMBER`",
-                "`$NULL`",
-              },
-            },
-            ["req"] = true,
-          },
-        },
-        ["id"] = {
-          ["field"] = "id",
-          ["name"] = "id",
-        },
-        ["name"] = "gif",
-        ["op"] = {
-          ["list"] = {
-            ["input"] = "data",
-            ["name"] = "list",
-            ["points"] = {
-              {
-                ["kind"] = "http",
-                ["method"] = "GET",
-                ["orig"] = "/api/gifs",
-                ["segments"] = {
-                  {
-                    ["lit"] = "api",
-                  },
-                  {
-                    ["lit"] = "gifs",
-                  },
-                },
-                ["parts"] = {
-                  "api",
-                  "gifs",
-                },
-                ["rename"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.items`",
-                },
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["name"] = "page",
-                      ["orig"] = "page",
-                      ["type"] = "`$INTEGER`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "page_size",
-                      ["orig"] = "page_size",
-                      ["type"] = "`$INTEGER`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "tag",
-                      ["orig"] = "tag",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                    },
-                  },
-                },
-                ["select"] = {
-                  ["exist"] = {
-                    "page",
-                    "page_size",
-                    "q",
-                    "query",
-                    "sort",
-                    "tag",
-                  },
-                },
               },
             },
           },
@@ -4570,14 +4190,14 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "actor_id",
-                      ["orig"] = "actor_id",
+                      ["orig"] = "actorId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["reqd"] = true,
                     },
                     {
                       ["name"] = "log_exposure",
-                      ["orig"] = "log_exposure",
+                      ["orig"] = "logExposure",
                       ["type"] = "`$BOOLEAN`",
                       ["kind"] = "query",
                     },
@@ -4632,13 +4252,13 @@ local function make_config()
                     },
                     {
                       ["name"] = "published_only",
-                      ["orig"] = "published_only",
+                      ["orig"] = "publishedOnly",
                       ["type"] = "`$BOOLEAN`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "week_start",
-                      ["orig"] = "week_start",
+                      ["orig"] = "weekStart",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -4682,14 +4302,14 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "actor_id",
-                      ["orig"] = "actor_id",
+                      ["orig"] = "actorId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["reqd"] = true,
                     },
                     {
                       ["name"] = "publish_limit",
-                      ["orig"] = "publish_limit",
+                      ["orig"] = "publishLimit",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
@@ -4732,7 +4352,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "actor_id",
-                      ["orig"] = "actor_id",
+                      ["orig"] = "actorId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -4891,9 +4511,37 @@ local function make_config()
             ["format"] = "date-time",
           },
           {
+            ["name"] = "generationRunId",
+            ["title"] = "Generation Run Id",
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+          },
+          {
+            ["name"] = "generationVariantId",
+            ["title"] = "Generation Variant Id",
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+          },
+          {
             ["name"] = "id",
             ["title"] = "Id",
             ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "imageDataUrl",
+            ["title"] = "Image Data Url",
+            ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "imageUrl",
@@ -4912,6 +4560,11 @@ local function make_config()
             ["title"] = "Overlays",
             ["type"] = "`$ARRAY`",
             ["req"] = true,
+            ["op"] = {
+              ["create"] = {
+                ["type"] = "`$ARRAY`",
+              },
+            },
           },
           {
             ["name"] = "shareSlug",
@@ -4954,18 +4607,33 @@ local function make_config()
             ["title"] = "Template Slug",
             ["type"] = "`$STRING`",
             ["req"] = true,
+            ["op"] = {
+              ["create"] = {
+                ["type"] = "`$STRING`",
+              },
+            },
           },
           {
             ["name"] = "title",
             ["title"] = "Title",
             ["type"] = "`$STRING`",
             ["req"] = true,
+            ["op"] = {
+              ["create"] = {
+                ["type"] = "`$STRING`",
+              },
+            },
           },
           {
             ["name"] = "visibility",
             ["title"] = "Visibility",
             ["type"] = "`$STRING`",
             ["req"] = true,
+            ["op"] = {
+              ["create"] = {
+                ["type"] = "`$STRING`",
+              },
+            },
           },
           {
             ["name"] = "watermark",
@@ -4980,6 +4648,36 @@ local function make_config()
         },
         ["name"] = "meme",
         ["op"] = {
+          ["create"] = {
+            ["input"] = "data",
+            ["name"] = "create",
+            ["points"] = {
+              {
+                ["kind"] = "http",
+                ["method"] = "POST",
+                ["orig"] = "/api/memes",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "memes",
+                  },
+                },
+                ["parts"] = {
+                  "api",
+                  "memes",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
+              },
+            },
+          },
           ["list"] = {
             ["input"] = "data",
             ["name"] = "list",
@@ -5009,25 +4707,25 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "exclude_template_clone",
-                      ["orig"] = "exclude_template_clone",
+                      ["orig"] = "excludeTemplateClones",
                       ["type"] = "`$BOOLEAN`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "include_nsfw",
-                      ["orig"] = "include_nsfw",
+                      ["orig"] = "includeNsfw",
                       ["type"] = "`$BOOLEAN`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "official_only",
-                      ["orig"] = "official_only",
+                      ["orig"] = "officialOnly",
                       ["type"] = "`$BOOLEAN`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "owner_token",
-                      ["orig"] = "owner_token",
+                      ["orig"] = "ownerToken",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -5039,7 +4737,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "page_size",
-                      ["orig"] = "page_size",
+                      ["orig"] = "pageSize",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
@@ -5051,7 +4749,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "template_slug",
-                      ["orig"] = "template_slug",
+                      ["orig"] = "templateSlug",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -5125,7 +4823,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "owner_token",
-                      ["orig"] = "owner_token",
+                      ["orig"] = "ownerToken",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -5432,6 +5130,171 @@ local function make_config()
               },
             },
           },
+          ["list"] = {
+            ["input"] = "data",
+            ["name"] = "list",
+            ["points"] = {
+              {
+                ["kind"] = "http",
+                ["method"] = "GET",
+                ["orig"] = "/api/templates",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "templates",
+                  },
+                },
+                ["parts"] = {
+                  "api",
+                  "templates",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.items`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "media_type",
+                      ["orig"] = "mediaType",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "image",
+                    },
+                    {
+                      ["name"] = "mode",
+                      ["orig"] = "mode",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "page",
+                      ["orig"] = "page",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "page_size",
+                      ["orig"] = "pageSize",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "tag",
+                      ["orig"] = "tag",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "media_type",
+                    "mode",
+                    "page",
+                    "page_size",
+                    "q",
+                    "query",
+                    "sort",
+                    "tag",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "GET",
+                ["orig"] = "/api/gifs",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "gifs",
+                  },
+                },
+                ["parts"] = {
+                  "api",
+                  "gifs",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.items`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "page",
+                      ["orig"] = "page",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "page_size",
+                      ["orig"] = "pageSize",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "tag",
+                      ["orig"] = "tag",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "page",
+                    "page_size",
+                    "q",
+                    "query",
+                    "sort",
+                    "tag",
+                  },
+                },
+              },
+            },
+          },
           ["load"] = {
             ["input"] = "data",
             ["name"] = "load",
@@ -5474,7 +5337,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "media_type",
-                      ["orig"] = "media_type",
+                      ["orig"] = "mediaType",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["example"] = "image",
@@ -5534,14 +5397,7 @@ local function make_config()
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "$.main.kit.entity.gif",
-            },
-            {
-              "$.main.kit.entity.template",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["standalone_agent_bootstrap"] = {
@@ -5658,286 +5514,6 @@ local function make_config()
                 },
                 ["args"] = {},
                 ["select"] = {},
-              },
-            },
-          },
-        },
-        ["relations"] = {
-          ["ancestors"] = {},
-        },
-      },
-      ["template"] = {
-        ["fields"] = {
-          {
-            ["name"] = "animated",
-            ["title"] = "Animated",
-            ["type"] = "`$BOOLEAN`",
-          },
-          {
-            ["name"] = "assetBytes",
-            ["title"] = "Asset Bytes",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$INTEGER`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "assetContentType",
-            ["title"] = "Asset Content Type",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "boxCount",
-            ["title"] = "Box Count",
-            ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "captionCount",
-            ["title"] = "Caption Count",
-            ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "captions",
-            ["title"] = "Captions",
-            ["type"] = "`$ARRAY`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "categories",
-            ["title"] = "Categories",
-            ["type"] = "`$ARRAY`",
-          },
-          {
-            ["name"] = "description",
-            ["title"] = "Description",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "durationMs",
-            ["title"] = "Duration Ms",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$INTEGER`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "exampleImageUrl",
-            ["title"] = "Example Image Url",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$STRING`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "frameCount",
-            ["title"] = "Frame Count",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$INTEGER`",
-                "`$NULL`",
-              },
-            },
-          },
-          {
-            ["name"] = "height",
-            ["title"] = "Height",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$NUMBER`",
-                "`$NULL`",
-              },
-            },
-            ["req"] = true,
-          },
-          {
-            ["name"] = "id",
-            ["title"] = "Id",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "imageUrl",
-            ["title"] = "Image Url",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "mediaType",
-            ["title"] = "Media Type",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "name",
-            ["title"] = "Name",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "posterImageUrl",
-            ["title"] = "Poster Image Url",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "previewImageUrl",
-            ["title"] = "Preview Image Url",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "qualityStatus",
-            ["title"] = "Quality Status",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "slug",
-            ["title"] = "Slug",
-            ["type"] = "`$STRING`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "sourceTemplateId",
-            ["title"] = "Source Template Id",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$STRING`",
-                "`$NULL`",
-              },
-            },
-            ["req"] = true,
-          },
-          {
-            ["name"] = "sourceUrl",
-            ["title"] = "Source Url",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "tags",
-            ["title"] = "Tags",
-            ["type"] = "`$ARRAY`",
-            ["req"] = true,
-          },
-          {
-            ["name"] = "width",
-            ["title"] = "Width",
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$NUMBER`",
-                "`$NULL`",
-              },
-            },
-            ["req"] = true,
-          },
-        },
-        ["id"] = {
-          ["field"] = "id",
-          ["name"] = "id",
-        },
-        ["name"] = "template",
-        ["op"] = {
-          ["list"] = {
-            ["input"] = "data",
-            ["name"] = "list",
-            ["points"] = {
-              {
-                ["kind"] = "http",
-                ["method"] = "GET",
-                ["orig"] = "/api/templates",
-                ["segments"] = {
-                  {
-                    ["lit"] = "api",
-                  },
-                  {
-                    ["lit"] = "templates",
-                  },
-                },
-                ["parts"] = {
-                  "api",
-                  "templates",
-                },
-                ["rename"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.items`",
-                },
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["name"] = "media_type",
-                      ["orig"] = "media_type",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                      ["example"] = "image",
-                    },
-                    {
-                      ["name"] = "mode",
-                      ["orig"] = "mode",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "page",
-                      ["orig"] = "page",
-                      ["type"] = "`$INTEGER`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "page_size",
-                      ["orig"] = "page_size",
-                      ["type"] = "`$INTEGER`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                    },
-                    {
-                      ["name"] = "tag",
-                      ["orig"] = "tag",
-                      ["type"] = "`$STRING`",
-                      ["kind"] = "query",
-                    },
-                  },
-                },
-                ["select"] = {
-                  ["exist"] = {
-                    "media_type",
-                    "mode",
-                    "page",
-                    "page_size",
-                    "q",
-                    "query",
-                    "sort",
-                    "tag",
-                  },
-                },
               },
             },
           },
@@ -6182,7 +5758,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "actor_id",
-                      ["orig"] = "actor_id",
+                      ["orig"] = "actorId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6194,7 +5770,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "follower_count",
-                      ["orig"] = "follower_count",
+                      ["orig"] = "followerCount",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
@@ -6212,19 +5788,19 @@ local function make_config()
                     },
                     {
                       ["name"] = "page_size",
-                      ["orig"] = "page_size",
+                      ["orig"] = "pageSize",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "preferred_niche",
-                      ["orig"] = "preferred_niche",
+                      ["orig"] = "preferredNiche",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "preferred_region",
-                      ["orig"] = "preferred_region",
+                      ["orig"] = "preferredRegion",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6254,7 +5830,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "topic",
-                      ["orig"] = "topic",
+                      ["orig"] = "topics",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6307,7 +5883,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "actor_id",
-                      ["orig"] = "actor_id",
+                      ["orig"] = "actorId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6319,7 +5895,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "follower_count",
-                      ["orig"] = "follower_count",
+                      ["orig"] = "followerCount",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
@@ -6331,19 +5907,19 @@ local function make_config()
                     },
                     {
                       ["name"] = "preferred_niche",
-                      ["orig"] = "preferred_niche",
+                      ["orig"] = "preferredNiche",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "preferred_region",
-                      ["orig"] = "preferred_region",
+                      ["orig"] = "preferredRegion",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "topic",
-                      ["orig"] = "topic",
+                      ["orig"] = "topics",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6390,7 +5966,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "actor_id",
-                      ["orig"] = "actor_id",
+                      ["orig"] = "actorId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6438,7 +6014,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "actor_id",
-                      ["orig"] = "actor_id",
+                      ["orig"] = "actorId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["reqd"] = true,
@@ -6603,7 +6179,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "template_id",
-                      ["orig"] = "template_id",
+                      ["orig"] = "templateId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6978,7 +6554,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "beat_offset_m",
-                      ["orig"] = "beat_offset_m",
+                      ["orig"] = "beatOffsetMs",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
@@ -6996,13 +6572,13 @@ local function make_config()
                     },
                     {
                       ["name"] = "style_preset_id",
-                      ["orig"] = "style_preset_id",
+                      ["orig"] = "stylePresetId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "sync_to_beat_grid",
-                      ["orig"] = "sync_to_beat_grid",
+                      ["orig"] = "syncToBeatGrid",
                       ["type"] = "`$BOOLEAN`",
                       ["kind"] = "query",
                     },
@@ -7020,7 +6596,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "trend_keyword",
-                      ["orig"] = "trend_keyword",
+                      ["orig"] = "trendKeywords",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7093,13 +6669,13 @@ local function make_config()
                     },
                     {
                       ["name"] = "target_bpm",
-                      ["orig"] = "target_bpm",
+                      ["orig"] = "targetBpm",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "tolerance_bpm",
-                      ["orig"] = "tolerance_bpm",
+                      ["orig"] = "toleranceBpm",
                       ["type"] = "`$INTEGER`",
                       ["kind"] = "query",
                     },
@@ -7146,7 +6722,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "bitrate_kbp",
-                      ["orig"] = "bitrate_kbp",
+                      ["orig"] = "bitrateKbps",
                       ["type"] = "`$NUMBER`",
                       ["kind"] = "query",
                     },
@@ -7158,25 +6734,25 @@ local function make_config()
                     },
                     {
                       ["name"] = "plan_tier",
-                      ["orig"] = "plan_tier",
+                      ["orig"] = "planTier",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "preset_id",
-                      ["orig"] = "preset_id",
+                      ["orig"] = "presetId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "watermark_enabled",
-                      ["orig"] = "watermark_enabled",
+                      ["orig"] = "watermarkEnabled",
                       ["type"] = "`$BOOLEAN`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "watermark_text",
-                      ["orig"] = "watermark_text",
+                      ["orig"] = "watermarkText",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7223,31 +6799,31 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "duration_second",
-                      ["orig"] = "duration_second",
+                      ["orig"] = "durationSeconds",
                       ["type"] = "`$NUMBER`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "input_format",
-                      ["orig"] = "input_format",
+                      ["orig"] = "inputFormat",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "mime_type",
-                      ["orig"] = "mime_type",
+                      ["orig"] = "mimeType",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "output_preset_id",
-                      ["orig"] = "output_preset_id",
+                      ["orig"] = "outputPresetId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "plan_tier",
-                      ["orig"] = "plan_tier",
+                      ["orig"] = "planTier",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7305,7 +6881,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "plan_tier",
-                      ["orig"] = "plan_tier",
+                      ["orig"] = "planTier",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7356,7 +6932,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "duration_m",
-                      ["orig"] = "duration_m",
+                      ["orig"] = "durationMs",
                       ["type"] = "`$NUMBER`",
                       ["kind"] = "query",
                     },
@@ -7368,13 +6944,13 @@ local function make_config()
                     },
                     {
                       ["name"] = "preset_id",
-                      ["orig"] = "preset_id",
+                      ["orig"] = "presetId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "start_m",
-                      ["orig"] = "start_m",
+                      ["orig"] = "startMs",
                       ["type"] = "`$NUMBER`",
                       ["kind"] = "query",
                     },
@@ -7425,7 +7001,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "project_id",
-                      ["orig"] = "project_id",
+                      ["orig"] = "projectId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7474,7 +7050,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "project_id",
-                      ["orig"] = "project_id",
+                      ["orig"] = "projectId",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },

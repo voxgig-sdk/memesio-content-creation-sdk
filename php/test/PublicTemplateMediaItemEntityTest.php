@@ -18,12 +18,51 @@ class PublicTemplateMediaItemEntityTest extends TestCase
         $this->assertNotNull($ent);
     }
 
+    // Feature #4: the entity stream(action, ...) method runs the op pipeline
+    // and yields result items. With the streaming feature active it yields the
+    // feature's incremental output; otherwise it falls back to the materialised
+    // list so stream always yields.
+    public function test_stream(): void
+    {
+        $seed = [
+            "entity" => [
+                "public_template_media_item" => [
+                    "s1" => ["id" => "s1"],
+                    "s2" => ["id" => "s2"],
+                    "s3" => ["id" => "s3"],
+                ],
+            ],
+        ];
+
+        // Fallback: streaming inactive -> yields the materialised list items.
+        $base = MemesioContentCreationSDK::test($seed, null);
+        $seen = iterator_to_array($base->PublicTemplateMediaItem(null)->stream("list", null, null), false);
+        $this->assertCount(3, $seen);
+
+        // Inbound: streaming active -> yields each item from the feature.
+        $cfg = MemesioContentCreationConfig::shared_config();
+        if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
+            $sdk = MemesioContentCreationSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
+            $got = [];
+            foreach ($sdk->PublicTemplateMediaItem(null)->stream("list", null, null) as $item) {
+                if (is_array($item) && array_is_list($item)) {
+                    foreach ($item as $sub) {
+                        $got[] = $sub;
+                    }
+                } else {
+                    $got[] = $item;
+                }
+            }
+            $this->assertCount(3, $got);
+        }
+    }
+
     public function test_basic_flow(): void
     {
         $setup = public_template_media_item_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach (["create", "load"] as $_op) {
+        foreach (["create", "list", "load"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "public_template_media_item." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
@@ -48,6 +87,17 @@ class PublicTemplateMediaItemEntityTest extends TestCase
         $public_template_media_item_ref01_data = Helpers::to_map(is_object($public_template_media_item_ref01_data_result) && method_exists($public_template_media_item_ref01_data_result, 'data_get') ? $public_template_media_item_ref01_data_result->data_get() : $public_template_media_item_ref01_data_result);
         $this->assertNotNull($public_template_media_item_ref01_data);
         $this->assertNotNull($public_template_media_item_ref01_data["id"]);
+
+        // LIST
+        $public_template_media_item_ref01_match = [];
+
+        $public_template_media_item_ref01_list_result = $public_template_media_item_ref01_ent->list($public_template_media_item_ref01_match, null);
+        $this->assertIsArray($public_template_media_item_ref01_list_result);
+
+        $found_item = sdk_select(
+            Runner::entity_list_to_data($public_template_media_item_ref01_list_result),
+            ["id" => $public_template_media_item_ref01_data["id"]]);
+        $this->assertNotEmpty($found_item);
 
         // LOAD
         $public_template_media_item_ref01_match_dt0 = [
@@ -76,7 +126,7 @@ function public_template_media_item_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "gif01", "gif02", "gif03", "template01", "template02", "template03", "slug01"] as $k) {
+    foreach (["public_template_media_item01", "public_template_media_item02", "public_template_media_item03", "slug01"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

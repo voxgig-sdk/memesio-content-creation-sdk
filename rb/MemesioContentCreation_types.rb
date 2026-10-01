@@ -1224,104 +1224,6 @@ end
 class ComplianceLoadMatch
 end
 
-# CreateMeme entity data model.
-#
-# @!attribute [rw] canvas
-#   @return [Hash]
-#
-# @!attribute [rw] captions
-#   @return [Array]
-#
-# @!attribute [rw] generationRunId
-#   @return [Object, nil]
-#
-# @!attribute [rw] generationVariantId
-#   @return [Object, nil]
-#
-# @!attribute [rw] imageDataUrl
-#   @return [String]
-#
-# @!attribute [rw] overlays
-#   @return [Array, nil]
-#
-# @!attribute [rw] sourceImageUrl
-#   @return [String]
-#
-# @!attribute [rw] templateSlug
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] visibility
-#   @return [String, nil]
-#
-# @!attribute [rw] watermark
-#   @return [Hash]
-CreateMeme = Struct.new(
-  :canvas,
-  :captions,
-  :generationRunId,
-  :generationVariantId,
-  :imageDataUrl,
-  :overlays,
-  :sourceImageUrl,
-  :templateSlug,
-  :title,
-  :visibility,
-  :watermark,
-  keyword_init: true
-)
-
-# Request payload for CreateMeme#create.
-#
-# @!attribute [rw] canvas
-#   @return [Hash]
-#
-# @!attribute [rw] captions
-#   @return [Array]
-#
-# @!attribute [rw] generationRunId
-#   @return [Object, nil]
-#
-# @!attribute [rw] generationVariantId
-#   @return [Object, nil]
-#
-# @!attribute [rw] imageDataUrl
-#   @return [String]
-#
-# @!attribute [rw] overlays
-#   @return [Array, nil]
-#
-# @!attribute [rw] sourceImageUrl
-#   @return [String]
-#
-# @!attribute [rw] templateSlug
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] visibility
-#   @return [String, nil]
-#
-# @!attribute [rw] watermark
-#   @return [Hash]
-CreateMemeCreateData = Struct.new(
-  :canvas,
-  :captions,
-  :generationRunId,
-  :generationVariantId,
-  :imageDataUrl,
-  :overlays,
-  :sourceImageUrl,
-  :templateSlug,
-  :title,
-  :visibility,
-  :watermark,
-  keyword_init: true
-)
-
 # DeveloperApi entity data model.
 #
 # @!attribute [rw] limit
@@ -1723,136 +1625,6 @@ GenerateCreateData = Struct.new(
   keyword_init: true
 )
 
-# Gif entity data model.
-#
-# @!attribute [rw] animated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] assetBytes
-#   @return [Object, nil]
-#
-# @!attribute [rw] assetContentType
-#   @return [String, nil]
-#
-# @!attribute [rw] boxCount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] captionCount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] captions
-#   @return [Array]
-#
-# @!attribute [rw] categories
-#   @return [Array, nil]
-#
-# @!attribute [rw] description
-#   @return [String]
-#
-# @!attribute [rw] durationMs
-#   @return [Object, nil]
-#
-# @!attribute [rw] exampleImageUrl
-#   @return [Object, nil]
-#
-# @!attribute [rw] frameCount
-#   @return [Object, nil]
-#
-# @!attribute [rw] height
-#   @return [Object]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] imageUrl
-#   @return [String]
-#
-# @!attribute [rw] mediaType
-#   @return [String]
-#
-# @!attribute [rw] name
-#   @return [String]
-#
-# @!attribute [rw] posterImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] previewImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] qualityStatus
-#   @return [String, nil]
-#
-# @!attribute [rw] slug
-#   @return [String]
-#
-# @!attribute [rw] sourceTemplateId
-#   @return [Object]
-#
-# @!attribute [rw] sourceUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array]
-#
-# @!attribute [rw] width
-#   @return [Object]
-Gif = Struct.new(
-  :animated,
-  :assetBytes,
-  :assetContentType,
-  :boxCount,
-  :captionCount,
-  :captions,
-  :categories,
-  :description,
-  :durationMs,
-  :exampleImageUrl,
-  :frameCount,
-  :height,
-  :id,
-  :imageUrl,
-  :mediaType,
-  :name,
-  :posterImageUrl,
-  :previewImageUrl,
-  :qualityStatus,
-  :slug,
-  :sourceTemplateId,
-  :sourceUrl,
-  :tags,
-  :width,
-  keyword_init: true
-)
-
-# Request payload for Gif#list.
-#
-# @!attribute [rw] page
-#   @return [Integer, nil]
-#
-# @!attribute [rw] page_size
-#   @return [Integer, nil]
-#
-# @!attribute [rw] q
-#   @return [String, nil]
-#
-# @!attribute [rw] query
-#   @return [String, nil]
-#
-# @!attribute [rw] sort
-#   @return [String, nil]
-#
-# @!attribute [rw] tag
-#   @return [String, nil]
-GifListMatch = Struct.new(
-  :page,
-  :page_size,
-  :q,
-  :query,
-  :sort,
-  :tag,
-  keyword_init: true
-)
-
 # Growth entity data model.
 #
 # @!attribute [rw] action
@@ -1945,8 +1717,17 @@ end
 # @!attribute [rw] createdAt
 #   @return [String]
 #
+# @!attribute [rw] generationRunId
+#   @return [Object, nil]
+#
+# @!attribute [rw] generationVariantId
+#   @return [Object, nil]
+#
 # @!attribute [rw] id
 #   @return [String, nil]
+#
+# @!attribute [rw] imageDataUrl
+#   @return [String]
 #
 # @!attribute [rw] imageUrl
 #   @return [String]
@@ -1992,7 +1773,10 @@ Meme = Struct.new(
   :canvas,
   :captions,
   :createdAt,
+  :generationRunId,
+  :generationVariantId,
   :id,
+  :imageDataUrl,
   :imageUrl,
   :nsfwStatus,
   :overlays,
@@ -2060,6 +1844,99 @@ MemeListMatch = Struct.new(
   :query,
   :template_slug,
   :visibility,
+  keyword_init: true
+)
+
+# Request payload for Meme#create.
+#
+# @!attribute [rw] altText
+#   @return [String]
+#
+# @!attribute [rw] canonicalImageUrl
+#   @return [String]
+#
+# @!attribute [rw] canvas
+#   @return [Hash]
+#
+# @!attribute [rw] captions
+#   @return [Array]
+#
+# @!attribute [rw] createdAt
+#   @return [String]
+#
+# @!attribute [rw] generationRunId
+#   @return [Object, nil]
+#
+# @!attribute [rw] generationVariantId
+#   @return [Object, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] imageDataUrl
+#   @return [String]
+#
+# @!attribute [rw] imageUrl
+#   @return [String]
+#
+# @!attribute [rw] nsfwStatus
+#   @return [String]
+#
+# @!attribute [rw] overlays
+#   @return [Array]
+#
+# @!attribute [rw] shareSlug
+#   @return [String]
+#
+# @!attribute [rw] shareUrl
+#   @return [String]
+#
+# @!attribute [rw] shareViews
+#   @return [Integer]
+#
+# @!attribute [rw] slug
+#   @return [String]
+#
+# @!attribute [rw] sourceImageUrl
+#   @return [String]
+#
+# @!attribute [rw] tags
+#   @return [Array]
+#
+# @!attribute [rw] templateSlug
+#   @return [String]
+#
+# @!attribute [rw] title
+#   @return [String]
+#
+# @!attribute [rw] visibility
+#   @return [String]
+#
+# @!attribute [rw] watermark
+#   @return [Hash]
+MemeCreateData = Struct.new(
+  :altText,
+  :canonicalImageUrl,
+  :canvas,
+  :captions,
+  :createdAt,
+  :generationRunId,
+  :generationVariantId,
+  :id,
+  :imageDataUrl,
+  :imageUrl,
+  :nsfwStatus,
+  :overlays,
+  :shareSlug,
+  :shareUrl,
+  :shareViews,
+  :slug,
+  :sourceImageUrl,
+  :tags,
+  :templateSlug,
+  :title,
+  :visibility,
+  :watermark,
   keyword_init: true
 )
 
@@ -2183,6 +2060,43 @@ PublicTemplateMediaItem = Struct.new(
 PublicTemplateMediaItemLoadMatch = Struct.new(
   :slug,
   :media_type,
+  keyword_init: true
+)
+
+# Request payload for PublicTemplateMediaItem#list.
+#
+# @!attribute [rw] media_type
+#   @return [String, nil]
+#
+# @!attribute [rw] mode
+#   @return [String, nil]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] page_size
+#   @return [Integer, nil]
+#
+# @!attribute [rw] q
+#   @return [String, nil]
+#
+# @!attribute [rw] query
+#   @return [String, nil]
+#
+# @!attribute [rw] sort
+#   @return [String, nil]
+#
+# @!attribute [rw] tag
+#   @return [String, nil]
+PublicTemplateMediaItemListMatch = Struct.new(
+  :media_type,
+  :mode,
+  :page,
+  :page_size,
+  :q,
+  :query,
+  :sort,
+  :tag,
   keyword_init: true
 )
 
@@ -2358,144 +2272,6 @@ StandaloneAgentBootstrapCreateData = Struct.new(
   :systemPrompt,
   :watermarkText,
   :websiteUrl,
-  keyword_init: true
-)
-
-# Template entity data model.
-#
-# @!attribute [rw] animated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] assetBytes
-#   @return [Object, nil]
-#
-# @!attribute [rw] assetContentType
-#   @return [String, nil]
-#
-# @!attribute [rw] boxCount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] captionCount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] captions
-#   @return [Array]
-#
-# @!attribute [rw] categories
-#   @return [Array, nil]
-#
-# @!attribute [rw] description
-#   @return [String]
-#
-# @!attribute [rw] durationMs
-#   @return [Object, nil]
-#
-# @!attribute [rw] exampleImageUrl
-#   @return [Object, nil]
-#
-# @!attribute [rw] frameCount
-#   @return [Object, nil]
-#
-# @!attribute [rw] height
-#   @return [Object]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] imageUrl
-#   @return [String]
-#
-# @!attribute [rw] mediaType
-#   @return [String]
-#
-# @!attribute [rw] name
-#   @return [String]
-#
-# @!attribute [rw] posterImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] previewImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] qualityStatus
-#   @return [String, nil]
-#
-# @!attribute [rw] slug
-#   @return [String]
-#
-# @!attribute [rw] sourceTemplateId
-#   @return [Object]
-#
-# @!attribute [rw] sourceUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] tags
-#   @return [Array]
-#
-# @!attribute [rw] width
-#   @return [Object]
-Template = Struct.new(
-  :animated,
-  :assetBytes,
-  :assetContentType,
-  :boxCount,
-  :captionCount,
-  :captions,
-  :categories,
-  :description,
-  :durationMs,
-  :exampleImageUrl,
-  :frameCount,
-  :height,
-  :id,
-  :imageUrl,
-  :mediaType,
-  :name,
-  :posterImageUrl,
-  :previewImageUrl,
-  :qualityStatus,
-  :slug,
-  :sourceTemplateId,
-  :sourceUrl,
-  :tags,
-  :width,
-  keyword_init: true
-)
-
-# Request payload for Template#list.
-#
-# @!attribute [rw] media_type
-#   @return [String, nil]
-#
-# @!attribute [rw] mode
-#   @return [String, nil]
-#
-# @!attribute [rw] page
-#   @return [Integer, nil]
-#
-# @!attribute [rw] page_size
-#   @return [Integer, nil]
-#
-# @!attribute [rw] q
-#   @return [String, nil]
-#
-# @!attribute [rw] query
-#   @return [String, nil]
-#
-# @!attribute [rw] sort
-#   @return [String, nil]
-#
-# @!attribute [rw] tag
-#   @return [String, nil]
-TemplateListMatch = Struct.new(
-  :media_type,
-  :mode,
-  :page,
-  :page_size,
-  :q,
-  :query,
-  :sort,
-  :tag,
   keyword_init: true
 )
 
