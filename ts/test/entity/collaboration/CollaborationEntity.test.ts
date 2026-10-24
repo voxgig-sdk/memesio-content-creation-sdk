@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MemesioContentCreationSDK, BaseFeature, stdutil } from '../../..'
+import { MemesioContentCreationSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('CollaborationEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = MemesioContentCreationSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Collaboration().load({"page":"x","project_id":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE
@@ -51,7 +63,7 @@ describe('CollaborationEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"authorId":{"a":true,"h":"Author Id","n":"authorId","r":false,"t":"`$STRING`","key$":"authorId","index$":0},"message":{"a":true,"h":"Message","n":"message","r":true,"t":"`$STRING`","key$":"message","index$":1},"projectId":{"a":true,"h":"Project Id","n":"projectId","r":true,"t":"`$STRING`","key$":"projectId","index$":2}},"name":"collaboration","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /api/collab/comments","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/api/collab/comments","q":{},"r":{},"s":[{"lit":"api"},{"lit":"collab"},{"lit":"comments"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/collab/comments","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"page","or":"page","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"page_size","or":"pageSize","r":false,"t":"`$INTEGER`","index$":1},{"a":true,"k":"query","n":"project_id","or":"projectId","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/api/collab/comments","q":{"exist":["page","page_size","project_id"]},"r":{},"s":[{"lit":"api"},{"lit":"collab"},{"lit":"comments"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"collaboration","name__orig":"collaboration","Name":"Collaboration","name_":"collaboration","name-":"collaboration","NAME":"COLLABORATION","index$":9}, {"active":true,"entity":"collaboration","key$":"BasicCollaborationFlow","kind":"basic","name":"BasicCollaborationFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"collaboration_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0},{"a":true,"d":{},"i":{"ref":"collaboration_ref01","srcdatavar":"collaboration_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-collaboration_ref01"}}],"index$":1}]}, 'Collaboration', {"POST /api/collab/comments":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["projectId","message"],"properties":{"projectId":{"type":"string","key$":"projectId"},"message":{"type":"string","minLength":1,"maxLength":1500,"key$":"message"},"authorId":{"type":"string","key$":"authorId"}},"index$":1}}}},"parameters":[]},"GET /api/collab/comments":{"protocol":"http","parameters":[{"name":"projectId","in":"query","required":true,"schema":{"type":"string"},"index$":0},{"name":"page","in":"query","schema":{"type":"integer","minimum":1},"index$":1},{"name":"pageSize","in":"query","schema":{"type":"integer","minimum":1,"maximum":100},"index$":2}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"authorId":{"a":true,"h":"Author Id","n":"authorId","r":false,"t":"`$STRING`","key$":"authorId","index$":0},"message":{"a":true,"h":"Message","n":"message","r":true,"t":"`$STRING`","key$":"message","index$":1},"projectId":{"a":true,"h":"Project Id","n":"projectId","r":true,"t":"`$STRING`","key$":"projectId","index$":2}},"name":"collaboration","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["authorId","message","projectId"],"co":{"id":"POST /api/collab/comments","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/api/collab/comments","q":{},"r":{},"s":[{"lit":"api"},{"lit":"collab"},{"lit":"comments"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/collab/comments","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"page","or":"page","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"page_size","or":"pageSize","r":false,"t":"`$INTEGER`","index$":1},{"a":true,"k":"query","n":"project_id","or":"projectId","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/api/collab/comments","q":{"exist":["project_id"]},"r":{},"s":[{"lit":"api"},{"lit":"collab"},{"lit":"comments"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"collaboration","name__orig":"collaboration","Name":"Collaboration","name_":"collaboration","name-":"collaboration","NAME":"COLLABORATION","index$":9}, {"active":true,"entity":"collaboration","key$":"BasicCollaborationFlow","kind":"basic","name":"BasicCollaborationFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"collaboration_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0},{"a":true,"d":{},"i":{"ref":"collaboration_ref01","srcdatavar":"collaboration_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-collaboration_ref01"}}],"index$":1}]}, 'Collaboration', {"POST /api/collab/comments":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["projectId","message"],"properties":{"projectId":{"type":"string","key$":"projectId"},"message":{"type":"string","minLength":1,"maxLength":1500,"key$":"message"},"authorId":{"type":"string","key$":"authorId"}},"index$":1}}}},"parameters":[]},"GET /api/collab/comments":{"protocol":"http","parameters":[{"name":"projectId","in":"query","required":true,"schema":{"type":"string"},"index$":0},{"name":"page","in":"query","schema":{"type":"integer","minimum":1},"index$":1},{"name":"pageSize","in":"query","schema":{"type":"integer","minimum":1,"maximum":100},"index$":2}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -78,6 +90,12 @@ describe('CollaborationEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

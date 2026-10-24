@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MemesioContentCreationSDK, BaseFeature, stdutil } from '../../..'
+import { MemesioContentCreationSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('UploadCaptionMemeSuccessEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = MemesioContentCreationSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.UploadCaptionMemeSuccess().create({"captions":1,"file":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE
@@ -51,7 +63,7 @@ describe('UploadCaptionMemeSuccessEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"upload_caption_meme_success","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /api/v1/memes/caption-upload","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/api/v1/memes/caption-upload","q":{},"r":{},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"memes"},{"lit":"caption-upload"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"upload_caption_meme_success","name__orig":"upload_caption_meme_success","Name":"UploadCaptionMemeSuccess","name_":"upload_caption_meme_success","name-":"upload-caption-meme-success","NAME":"UPLOAD_CAPTION_MEME_SUCCESS","index$":21}, {"active":true,"entity":"upload_caption_meme_success","key$":"BasicUploadCaptionMemeSuccessFlow","kind":"basic","name":"BasicUploadCaptionMemeSuccessFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"upload_caption_meme_success_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'UploadCaptionMemeSuccess', {"POST /api/v1/memes/caption-upload":{"protocol":"http","requestBody":{"required":true,"content":{"multipart/form-data":{"schema":{"type":"object","required":["file","captions"],"properties":{"file":{"type":"string","format":"binary"},"captions":{"type":"string","description":"JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields."},"title":{"type":"string","maxLength":140},"visibility":{"type":"string","enum":["private","public"]},"watermark":{"type":"string","description":"Optional JSON watermark object. Non-premium callers are forced to the default Memesio watermark; premium callers can customize enabled, text, position, and scale."}}}}}},"parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"captions":{"a":true,"h":"Captions","n":"captions","r":true,"sh":"JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields.","t":"`$STRING`","key$":"captions","index$":0},"file":{"a":true,"fo":"binary","h":"File","n":"file","r":true,"t":"`$STRING`","key$":"file","index$":1},"title":{"a":true,"h":"Title","n":"title","r":false,"t":"`$STRING`","key$":"title","index$":2},"visibility":{"a":true,"h":"Visibility","n":"visibility","r":false,"t":"`$STRING`","key$":"visibility","index$":3},"watermark":{"a":true,"h":"Watermark","n":"watermark","r":false,"sh":"Optional JSON watermark object.","t":"`$STRING`","key$":"watermark","index$":4}},"name":"upload_caption_meme_success","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /api/v1/memes/caption-upload","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/api/v1/memes/caption-upload","q":{},"r":{},"rb":{"fields":[{"name":"captions"},{"binary":true,"name":"file"},{"name":"title"},{"name":"visibility"},{"name":"watermark"}],"kind":"multipart","media":"multipart/form-data"},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"memes"},{"lit":"caption-upload"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"upload_caption_meme_success","name__orig":"upload_caption_meme_success","Name":"UploadCaptionMemeSuccess","name_":"upload_caption_meme_success","name-":"upload-caption-meme-success","NAME":"UPLOAD_CAPTION_MEME_SUCCESS","index$":21}, {"active":true,"entity":"upload_caption_meme_success","key$":"BasicUploadCaptionMemeSuccessFlow","kind":"basic","name":"BasicUploadCaptionMemeSuccessFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"upload_caption_meme_success_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'UploadCaptionMemeSuccess', {"POST /api/v1/memes/caption-upload":{"protocol":"http","requestBody":{"required":true,"content":{"multipart/form-data":{"schema":{"type":"object","required":["file","captions"],"properties":{"file":{"type":"string","format":"binary","key$":"file"},"captions":{"type":"string","description":"JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields.","key$":"captions"},"title":{"type":"string","maxLength":140,"key$":"title"},"visibility":{"type":"string","enum":["private","public"],"key$":"visibility"},"watermark":{"type":"string","description":"Optional JSON watermark object. Non-premium callers are forced to the default Memesio watermark; premium callers can customize enabled, text, position, and scale.","key$":"watermark"}},"index$":1}}}},"parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('UploadCaptionMemeSuccessEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

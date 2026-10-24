@@ -15,11 +15,9 @@ export interface AgentLoadMatch {
 }
 export interface AgentCreateData {
     description?: string;
-    id?: string;
     locale?: string;
     name: string;
     slug?: string;
-    status?: string;
     stylePreset?: string;
     systemPrompt?: string;
     watermarkText?: string;
@@ -30,7 +28,6 @@ export interface AgentUpdateData {
     description?: string;
     locale?: string;
     name?: string;
-    slug?: string;
     status?: string;
     stylePreset?: string;
     systemPrompt?: string;
@@ -110,7 +107,34 @@ export interface AiCaption {
     voiceRules?: any[];
 }
 export interface AiCaptionLoadMatch {
+    blockedTerms?: any[];
+    canvasText?: any[];
+    captionCount?: number;
+    captionSets?: any[];
+    entities?: any[];
+    fallbackUsed?: boolean;
+    generationStrategy?: string;
     locale?: string;
+    memeId?: string;
+    memeSlug?: string;
+    name?: string;
+    ok?: boolean;
+    optionCount?: number;
+    ownerToken?: string;
+    providerId?: string;
+    referenceCaptions?: any[];
+    rewriteNote?: string;
+    sceneSummary?: string;
+    templateDescription?: string;
+    templateName?: string;
+    templateTags?: any[];
+    tone?: string;
+    toneCues?: any[];
+    trendKeywords?: any[];
+    trendReferences?: any[];
+    trendSignals?: any[];
+    variationOffset?: number;
+    voiceRules?: any[];
 }
 export interface AiCaptionCreateData {
     blockedTerms?: any[];
@@ -188,24 +212,21 @@ export interface AiJobCreateData {
     action: string;
     actorId?: string;
     afterState?: Record<string, any>;
-    attempts?: number;
     beforeState?: Record<string, any>;
     brushEdits?: any[];
     capability: string;
     celebrityConfidence?: number;
     consentAttested?: boolean;
-    createdAt?: string;
     detectedFaceCount: number;
     edgeRefinement?: number;
     frameTimeMs?: number;
     height: number;
-    id: string;
     input?: Record<string, any>;
     layerId: string;
     layerType?: string;
     maxAttempts?: number;
     maxFaces?: number;
-    mediaType?: string;
+    mediaType: string;
     metadata?: Record<string, any>;
     nsfwScore?: number;
     projectId: string;
@@ -213,12 +234,10 @@ export interface AiJobCreateData {
     sourceAssetUrl: string;
     sourceFaceIndex?: number;
     sourceImageUrl: string;
-    status: string;
     targetAssetUrl: string;
     targetFaceIndex?: number;
     timeoutMs?: number;
     traceId?: string;
-    updatedAt?: string;
     versionId?: string;
     width: number;
     workspaceId?: string;
@@ -253,22 +272,17 @@ export interface AiMemeGenerationSucceededCreateData {
     captionSource?: string;
     captions?: any[];
     correlationId?: string;
-    degradedFromAsync?: boolean;
     editableCaptions?: any[];
-    flow: string;
+    flow?: string;
     imageUrl?: string;
-    mode: string;
-    ok: boolean;
+    mode?: string;
     preferredProviderId?: string;
     prompt: string;
     rewriteNote?: string;
-    runId?: string;
-    status: string;
     templateId?: string;
     tone?: string;
     toneCues?: any[];
-    variantCount: number;
-    variants: any[];
+    variantCount?: number;
     workspaceId?: string;
 }
 export interface AiProvider {
@@ -284,7 +298,16 @@ export interface AiProvider {
     workspaceId?: string;
 }
 export interface AiProviderLoadMatch {
-    refresh?: boolean;
+    actorId?: string;
+    correlationId?: string;
+    limit?: number;
+    mappingMode?: string;
+    maxSlots?: number;
+    prompt?: string;
+    sourceImageUrl?: string;
+    texts?: any[];
+    trendSignals?: any[];
+    workspaceId?: string;
 }
 export interface AiProviderCreateData {
     actorId?: string;
@@ -301,13 +324,15 @@ export interface AiProviderCreateData {
 export interface Analytics {
 }
 export interface AnalyticsLoadMatch {
-    template_id?: string;
     $action?: string;
     [action: string]: any;
 }
 export interface Auth {
 }
 export interface AuthCreateData {
+    displayName?: any;
+    email?: any;
+    password?: any;
     $action?: string;
     [action: string]: any;
 }
@@ -426,25 +451,14 @@ export interface Generate {
     widthPx?: number;
 }
 export interface GenerateCreateData {
-    base64?: string;
-    byteLength: number;
     captions?: any[];
-    dataUrl?: string;
-    delayMs: number;
     durationMs?: number;
-    filename: string;
     fps?: number;
-    gifSlug: string;
-    height: number;
-    mimeType: string;
-    pages: number;
-    parameters: Record<string, any>;
+    gifSlug?: string;
     returnBase64?: boolean;
-    sourceDurationMs: number;
     startMs?: number;
     tags?: any[];
     title?: string;
-    width: number;
     widthPx?: number;
 }
 export interface Growth {
@@ -473,6 +487,12 @@ export interface GrowthCreateData {
 export interface Media {
 }
 export interface MediaCreateData {
+    action?: any;
+    contentType?: any;
+    expiresInSeconds?: any;
+    ownerToken?: any;
+    path?: any;
+    prefix?: any;
     $action?: string;
     [action: string]: any;
 }
@@ -516,27 +536,16 @@ export interface MemeListMatch {
     visibility?: string;
 }
 export interface MemeCreateData {
-    altText: string;
-    canonicalImageUrl: string;
     canvas: Record<string, any>;
     captions: any[];
-    createdAt: string;
     generationRunId?: string | null;
     generationVariantId?: string | null;
-    id?: string;
     imageDataUrl: string;
-    imageUrl: string;
-    nsfwStatus: string;
-    overlays: any[];
-    shareSlug: string;
-    shareUrl: string;
-    shareViews: number;
-    slug: string;
+    overlays?: any[];
     sourceImageUrl: string;
-    tags: any[];
-    templateSlug: string;
-    title: string;
-    visibility: string;
+    templateSlug?: string;
+    title?: string;
+    visibility?: string;
     watermark: Record<string, any>;
 }
 export interface MemeRemoveMatch {
@@ -573,8 +582,6 @@ export interface PublicTemplateMediaItemLoadMatch {
     media_type?: string;
 }
 export interface PublicTemplateMediaItemListMatch {
-    media_type?: string;
-    mode?: string;
     page?: number;
     page_size?: number;
     q?: string;
@@ -584,29 +591,15 @@ export interface PublicTemplateMediaItemListMatch {
 }
 export interface PublicTemplateMediaItemCreateData {
     slug: string;
-    animated?: boolean;
-    assetBytes?: number | null;
-    assetContentType?: string;
-    boxCount?: number;
-    captionCount?: number;
     captions: any[];
-    categories?: any[];
-    description: string;
     durationMs?: number | null;
-    exampleImageUrl?: string | null;
-    frameCount?: number | null;
-    height: number | null;
-    id: string;
-    imageUrl: string;
-    mediaType: string;
-    name: string;
-    posterImageUrl?: string;
-    previewImageUrl?: string;
-    qualityStatus?: string;
-    sourceTemplateId: string | null;
-    sourceUrl?: string;
     tags: any[];
-    width: number | null;
+    fps?: any;
+    gifSlug?: any;
+    returnBase64?: any;
+    startMs?: any;
+    title?: any;
+    widthPx?: any;
     $action?: string;
     [action: string]: any;
 }
@@ -682,24 +675,77 @@ export interface TrendAlertCreateData {
     topic: string;
 }
 export interface UploadCaptionMemeSuccess {
+    captions: string;
+    file: string;
+    title?: string;
+    visibility?: string;
+    watermark?: string;
 }
 export interface UploadCaptionMemeSuccessCreateData {
+    captions: string;
+    file: string;
+    title?: string;
+    visibility?: string;
+    watermark?: string;
 }
 export interface Video {
 }
 export interface VideoLoadMatch {
-    beat_offset_m?: number;
-    bpm?: number;
-    locale?: string;
-    style_preset_id?: string;
-    sync_to_beat_grid?: boolean;
-    tone?: string;
-    transcript?: string;
-    trend_keyword?: string;
+    kind?: string;
+    limit?: number;
+    query?: string;
+    tag?: string;
+    target_bpm?: number;
+    tolerance_bpm?: number;
     $action?: string;
     [action: string]: any;
 }
 export interface VideoCreateData {
+    action?: any;
+    assetId?: any;
+    atMs?: any;
+    audioAssetId?: any;
+    beatOffsetMs?: any;
+    bitrateKbps?: any;
+    bpm?: any;
+    cancelled?: any;
+    container?: any;
+    durationMs?: any;
+    durationSeconds?: any;
+    easing?: any;
+    error?: any;
+    frameRate?: any;
+    inputFormat?: any;
+    intensity?: any;
+    jobId?: any;
+    locale?: any;
+    mimeType?: any;
+    name?: any;
+    offsetMs?: any;
+    outputPresetId?: any;
+    outputUrl?: any;
+    planTier?: any;
+    presetId?: any;
+    progressPercent?: any;
+    project?: any;
+    projectId?: any;
+    property?: any;
+    sourceDeviceId?: any;
+    sourceUrl?: any;
+    stage?: any;
+    startMs?: any;
+    stylePresetId?: any;
+    syncToBeatGrid?: any;
+    tone?: any;
+    trackId?: any;
+    transcript?: any;
+    trendKeywords?: any;
+    type?: any;
+    updatedAt?: any;
+    value?: any;
+    watermarkEnabled?: any;
+    watermarkText?: any;
+    workerId?: any;
     $action?: string;
     [action: string]: any;
 }

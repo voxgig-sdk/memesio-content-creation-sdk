@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -920,62 +921,6 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
-								"orig": "/api/v1/agents/rewards/leaderboard",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "agents",
-									},
-									map[string]any{
-										"lit": "rewards",
-									},
-									map[string]any{
-										"lit": "leaderboard",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"agents",
-									"rewards",
-									"leaderboard",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "week_start",
-											"orig": "weekStart",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"limit",
-										"week_start",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
 								"orig": "/api/v1/agents/{agentId}/keys",
 								"segments": []any{
 									map[string]any{
@@ -1027,6 +972,57 @@ func MakeConfig() map[string]any {
 										"id",
 									},
 								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/agents/rewards/leaderboard",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "agents",
+									},
+									map[string]any{
+										"lit": "rewards",
+									},
+									map[string]any{
+										"lit": "leaderboard",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"agents",
+									"rewards",
+									"leaderboard",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "week_start",
+											"orig": "weekStart",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -1334,6 +1330,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 							map[string]any{
 								"kind": "http",
@@ -1536,6 +1536,38 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
+								"orig": "/api/ai/captions/generate",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "ai",
+									},
+									map[string]any{
+										"lit": "captions",
+									},
+									map[string]any{
+										"lit": "generate",
+									},
+								},
+								"parts": []any{
+									"api",
+									"ai",
+									"captions",
+									"generate",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
 								"orig": "/api/ai/captions/tone-presets",
 								"segments": []any{
 									map[string]any{
@@ -1569,45 +1601,10 @@ func MakeConfig() map[string]any {
 											"orig": "locale",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"locale",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/ai/captions/generate",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "ai",
-									},
-									map[string]any{
-										"lit": "captions",
-									},
-									map[string]any{
-										"lit": "generate",
-									},
-								},
-								"parts": []any{
-									"api",
-									"ai",
-									"captions",
-									"generate",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
 								"select": map[string]any{},
 							},
 						},
@@ -2160,67 +2157,8 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"from_version_id",
 										"layer_id",
-										"limit",
-										"mode",
 										"project_id",
-										"to_version_id",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/ai/jobs",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "ai",
-									},
-									map[string]any{
-										"lit": "jobs",
-									},
-								},
-								"parts": []any{
-									"api",
-									"ai",
-									"jobs",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "page_size",
-											"orig": "pageSize",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "status",
-											"orig": "status",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"page",
-										"page_size",
-										"status",
 									},
 								},
 							},
@@ -2273,6 +2211,60 @@ func MakeConfig() map[string]any {
 										"id",
 									},
 								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/ai/jobs",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "ai",
+									},
+									map[string]any{
+										"lit": "jobs",
+									},
+								},
+								"parts": []any{
+									"api",
+									"ai",
+									"jobs",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "page_size",
+											"orig": "pageSize",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "status",
+											"orig": "status",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -2448,6 +2440,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 							map[string]any{
 								"kind": "http",
@@ -2480,6 +2476,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -2622,6 +2622,38 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
+								"orig": "/api/ai/memes/generate",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "ai",
+									},
+									map[string]any{
+										"lit": "memes",
+									},
+									map[string]any{
+										"lit": "generate",
+									},
+								},
+								"parts": []any{
+									"api",
+									"ai",
+									"memes",
+									"generate",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
 								"orig": "/api/ai/providers/background-remove-benchmark",
 								"segments": []any{
 									map[string]any{
@@ -2658,11 +2690,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"refresh",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -2703,42 +2731,6 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"refresh",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/ai/memes/generate",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "ai",
-									},
-									map[string]any{
-										"lit": "memes",
-									},
-									map[string]any{
-										"lit": "generate",
-									},
-								},
-								"parts": []any{
-									"api",
-									"ai",
-									"memes",
-									"generate",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
 								"select": map[string]any{},
 							},
 						},
@@ -2756,96 +2748,6 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "load",
 						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/analytics/experiments/templates",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "analytics",
-									},
-									map[string]any{
-										"lit": "experiments",
-									},
-									map[string]any{
-										"lit": "templates",
-									},
-								},
-								"parts": []any{
-									"api",
-									"analytics",
-									"experiments",
-									"templates",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "template_id",
-											"orig": "templateId",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"template_id",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/analytics/dashboards/backend-reliability",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "analytics",
-									},
-									map[string]any{
-										"lit": "dashboards",
-									},
-									map[string]any{
-										"lit": "backend-reliability",
-									},
-								},
-								"parts": []any{
-									"api",
-									"analytics",
-									"dashboards",
-									"backend-reliability",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "window_hour",
-											"orig": "windowHours",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"window_hour",
-									},
-								},
-							},
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
@@ -2945,6 +2847,47 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
+								"orig": "/api/analytics/dashboards/backend-reliability",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "analytics",
+									},
+									map[string]any{
+										"lit": "dashboards",
+									},
+									map[string]any{
+										"lit": "backend-reliability",
+									},
+								},
+								"parts": []any{
+									"api",
+									"analytics",
+									"dashboards",
+									"backend-reliability",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "window_hour",
+											"orig": "windowHours",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
 								"orig": "/api/analytics/dashboards/feature-adoption",
 								"segments": []any{
 									map[string]any{
@@ -2972,6 +2915,47 @@ func MakeConfig() map[string]any {
 									"res": "`body`",
 								},
 								"args": map[string]any{},
+								"select": map[string]any{},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/analytics/experiments/templates",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "analytics",
+									},
+									map[string]any{
+										"lit": "experiments",
+									},
+									map[string]any{
+										"lit": "templates",
+									},
+								},
+								"parts": []any{
+									"api",
+									"analytics",
+									"experiments",
+									"templates",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "template_id",
+											"orig": "templateId",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{},
 							},
 							map[string]any{
@@ -3137,10 +3121,6 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"$action": "usage",
-									"exist": []any{
-										"window_day",
-										"workspace_id",
-									},
 								},
 							},
 						},
@@ -3260,8 +3240,6 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"page",
-										"page_size",
 										"project_id",
 									},
 								},
@@ -3488,6 +3466,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 							map[string]any{
 								"kind": "http",
@@ -3520,6 +3502,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -3783,17 +3769,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"media_type",
-										"mode",
-										"page",
-										"page_size",
-										"q",
-										"query",
-										"sort",
-										"tag",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -3960,6 +3939,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -4210,70 +4193,13 @@ func MakeConfig() map[string]any {
 											"orig": "surface",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 									},
 								},
 								"select": map[string]any{
 									"exist": []any{
 										"actor_id",
-										"log_exposure",
-										"surface",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/growth/trend-campaigns",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "growth",
-									},
-									map[string]any{
-										"lit": "trend-campaigns",
-									},
-								},
-								"parts": []any{
-									"api",
-									"growth",
-									"trend-campaigns",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "published_only",
-											"orig": "publishedOnly",
-											"type": "`$BOOLEAN`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "week_start",
-											"orig": "weekStart",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "trend_campaign",
-									"exist": []any{
-										"limit",
-										"published_only",
-										"week_start",
 									},
 								},
 							},
@@ -4323,8 +4249,37 @@ func MakeConfig() map[string]any {
 									"$action": "social_publish",
 									"exist": []any{
 										"actor_id",
-										"publish_limit",
 									},
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/growth/lifecycle-messaging",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "growth",
+									},
+									map[string]any{
+										"lit": "lifecycle-messaging",
+									},
+								},
+								"parts": []any{
+									"api",
+									"growth",
+									"lifecycle-messaging",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "lifecycle_messaging",
 								},
 							},
 							map[string]any{
@@ -4364,15 +4319,12 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"$action": "referral",
-									"exist": []any{
-										"actor_id",
-									},
 								},
 							},
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
-								"orig": "/api/growth/lifecycle-messaging",
+								"orig": "/api/growth/trend-campaigns",
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -4381,22 +4333,44 @@ func MakeConfig() map[string]any {
 										"lit": "growth",
 									},
 									map[string]any{
-										"lit": "lifecycle-messaging",
+										"lit": "trend-campaigns",
 									},
 								},
 								"parts": []any{
 									"api",
 									"growth",
-									"lifecycle-messaging",
+									"trend-campaigns",
 								},
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"args": map[string]any{},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "published_only",
+											"orig": "publishedOnly",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "week_start",
+											"orig": "weekStart",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
-									"$action": "lifecycle_messaging",
+									"$action": "trend_campaign",
 								},
 							},
 							map[string]any{
@@ -4679,6 +4653,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -4762,21 +4740,14 @@ func MakeConfig() map[string]any {
 											"orig": "visibility",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"exclude_template_clone",
-										"include_nsfw",
-										"official_only",
-										"owner_token",
-										"page",
-										"page_size",
-										"query",
-										"template_slug",
-										"visibility",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -4836,8 +4807,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"exist": []any{
 										"id",
-										"owner_token",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -4890,6 +4864,10 @@ func MakeConfig() map[string]any {
 									"exist": []any{
 										"id",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -5131,6 +5109,11 @@ func MakeConfig() map[string]any {
 										"slug",
 									},
 								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "image/gif",
+								},
 							},
 						},
 					},
@@ -5138,6 +5121,73 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "list",
 						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/gifs",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "gifs",
+									},
+								},
+								"parts": []any{
+									"api",
+									"gifs",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.items`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "page_size",
+											"orig": "pageSize",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "tag",
+											"orig": "tag",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
@@ -5212,89 +5262,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"media_type",
-										"mode",
-										"page",
-										"page_size",
-										"q",
-										"query",
-										"sort",
-										"tag",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/gifs",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "gifs",
-									},
-								},
-								"parts": []any{
-									"api",
-									"gifs",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.items`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "page_size",
-											"orig": "pageSize",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "tag",
-											"orig": "tag",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"page",
-										"page_size",
-										"q",
-										"query",
-										"sort",
-										"tag",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -5303,6 +5274,52 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "load",
 						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/gifs/{slug}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "gifs",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+								},
+								"parts": []any{
+									"api",
+									"gifs",
+									"{slug}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"slug",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
@@ -5350,51 +5367,12 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"media_type",
 										"slug",
 									},
 								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/gifs/{slug}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "gifs",
-									},
-									map[string]any{
-										"var": "slug",
-									},
-								},
-								"parts": []any{
-									"api",
-									"gifs",
-									"{slug}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "slug",
-											"orig": "slug",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"slug",
-									},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -5486,6 +5464,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 							map[string]any{
 								"kind": "http",
@@ -5518,6 +5500,10 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -5740,258 +5726,6 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
-								"orig": "/api/alerts",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "alerts",
-									},
-								},
-								"parts": []any{
-									"api",
-									"alerts",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "actor_id",
-											"orig": "actorId",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "aggressiveness",
-											"orig": "aggressiveness",
-											"type": "`$NUMBER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "follower_count",
-											"orig": "followerCount",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "niche",
-											"orig": "niche",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "page_size",
-											"orig": "pageSize",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "preferred_niche",
-											"orig": "preferredNiche",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "preferred_region",
-											"orig": "preferredRegion",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "region",
-											"orig": "region",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "source",
-											"orig": "source",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "status",
-											"orig": "status",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "topic",
-											"orig": "topics",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"actor_id",
-										"aggressiveness",
-										"follower_count",
-										"niche",
-										"page",
-										"page_size",
-										"preferred_niche",
-										"preferred_region",
-										"query",
-										"region",
-										"source",
-										"status",
-										"topic",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/alerts/ranking",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "alerts",
-									},
-									map[string]any{
-										"lit": "ranking",
-									},
-								},
-								"parts": []any{
-									"api",
-									"alerts",
-									"ranking",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "actor_id",
-											"orig": "actorId",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "aggressiveness",
-											"orig": "aggressiveness",
-											"type": "`$NUMBER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "follower_count",
-											"orig": "followerCount",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "preferred_niche",
-											"orig": "preferredNiche",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "preferred_region",
-											"orig": "preferredRegion",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "topic",
-											"orig": "topics",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"actor_id",
-										"aggressiveness",
-										"follower_count",
-										"limit",
-										"preferred_niche",
-										"preferred_region",
-										"topic",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/alerts/feedback",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "alerts",
-									},
-									map[string]any{
-										"lit": "feedback",
-									},
-								},
-								"parts": []any{
-									"api",
-									"alerts",
-									"feedback",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "actor_id",
-											"orig": "actorId",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"actor_id",
-										"limit",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
 								"orig": "/api/alerts/preferences",
 								"segments": []any{
 									map[string]any{
@@ -6034,6 +5768,144 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
+								"orig": "/api/alerts",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "alerts",
+									},
+								},
+								"parts": []any{
+									"api",
+									"alerts",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "actor_id",
+											"orig": "actorId",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "aggressiveness",
+											"orig": "aggressiveness",
+											"type": "`$NUMBER`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "follower_count",
+											"orig": "followerCount",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "niche",
+											"orig": "niche",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "page_size",
+											"orig": "pageSize",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "preferred_niche",
+											"orig": "preferredNiche",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "preferred_region",
+											"orig": "preferredRegion",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "region",
+											"orig": "region",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "source",
+											"orig": "source",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "status",
+											"orig": "status",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "topic",
+											"orig": "topics",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/alerts/connectors",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "alerts",
+									},
+									map[string]any{
+										"lit": "connectors",
+									},
+								},
+								"parts": []any{
+									"api",
+									"alerts",
+									"connectors",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
 								"orig": "/api/alerts/delivery",
 								"segments": []any{
 									map[string]any{
@@ -6066,11 +5938,50 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"refresh",
+								"select": map[string]any{},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/alerts/feedback",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "alerts",
+									},
+									map[string]any{
+										"lit": "feedback",
 									},
 								},
+								"parts": []any{
+									"api",
+									"alerts",
+									"feedback",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "actor_id",
+											"orig": "actorId",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6107,52 +6018,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"refresh",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/alerts/quality-report",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "alerts",
-									},
-									map[string]any{
-										"lit": "quality-report",
-									},
-								},
-								"parts": []any{
-									"api",
-									"alerts",
-									"quality-report",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "refresh",
-											"orig": "refresh",
-											"type": "`$BOOLEAN`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"refresh",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6189,16 +6055,12 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"template_id",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
-								"orig": "/api/alerts/connectors",
+								"orig": "/api/alerts/quality-report",
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -6207,20 +6069,104 @@ func MakeConfig() map[string]any {
 										"lit": "alerts",
 									},
 									map[string]any{
-										"lit": "connectors",
+										"lit": "quality-report",
 									},
 								},
 								"parts": []any{
 									"api",
 									"alerts",
-									"connectors",
+									"quality-report",
 								},
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"args": map[string]any{},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "refresh",
+											"orig": "refresh",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/alerts/ranking",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "alerts",
+									},
+									map[string]any{
+										"lit": "ranking",
+									},
+								},
+								"parts": []any{
+									"api",
+									"alerts",
+									"ranking",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "actor_id",
+											"orig": "actorId",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "aggressiveness",
+											"orig": "aggressiveness",
+											"type": "`$NUMBER`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "follower_count",
+											"orig": "followerCount",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "preferred_niche",
+											"orig": "preferredNiche",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "preferred_region",
+											"orig": "preferredRegion",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "topic",
+											"orig": "topics",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
 								"select": map[string]any{},
 							},
 							map[string]any{
@@ -6259,7 +6205,38 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"upload_caption_meme_success": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "captions",
+						"title": "Captions",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields.",
+					},
+					map[string]any{
+						"name": "file",
+						"title": "File",
+						"type": "`$STRING`",
+						"req": true,
+						"format": "binary",
+					},
+					map[string]any{
+						"name": "title",
+						"title": "Title",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "visibility",
+						"title": "Visibility",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "watermark",
+						"title": "Watermark",
+						"type": "`$STRING`",
+						"short": "Optional JSON watermark object.",
+					},
+				},
 				"name": "upload_caption_meme_success",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -6297,6 +6274,32 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
+								"body": map[string]any{
+									"fields": []any{
+										map[string]any{
+											"name": "captions",
+										},
+										map[string]any{
+											"binary": true,
+											"name": "file",
+										},
+										map[string]any{
+											"name": "title",
+										},
+										map[string]any{
+											"name": "visibility",
+										},
+										map[string]any{
+											"name": "watermark",
+										},
+									},
+									"kind": "multipart",
+									"media": "multipart/form-data",
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
 							},
 						},
 					},
@@ -6532,6 +6535,348 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
+								"orig": "/api/video/audio-library",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "video",
+									},
+									map[string]any{
+										"lit": "audio-library",
+									},
+								},
+								"parts": []any{
+									"api",
+									"video",
+									"audio-library",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "kind",
+											"orig": "kind",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "tag",
+											"orig": "tag",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "target_bpm",
+											"orig": "targetBpm",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "tolerance_bpm",
+											"orig": "toleranceBpm",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "audio_library",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/video/drafts",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "video",
+									},
+									map[string]any{
+										"lit": "drafts",
+									},
+								},
+								"parts": []any{
+									"api",
+									"video",
+									"drafts",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "project_id",
+											"orig": "projectId",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "draft",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/video/export-settings",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "video",
+									},
+									map[string]any{
+										"lit": "export-settings",
+									},
+								},
+								"parts": []any{
+									"api",
+									"video",
+									"export-settings",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "bitrate_kbp",
+											"orig": "bitrateKbps",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "container",
+											"orig": "container",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "plan_tier",
+											"orig": "planTier",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "preset_id",
+											"orig": "presetId",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "watermark_enabled",
+											"orig": "watermarkEnabled",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "watermark_text",
+											"orig": "watermarkText",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "export_setting",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/video/formats",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "video",
+									},
+									map[string]any{
+										"lit": "formats",
+									},
+								},
+								"parts": []any{
+									"api",
+									"video",
+									"formats",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "duration_second",
+											"orig": "durationSeconds",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "input_format",
+											"orig": "inputFormat",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "mime_type",
+											"orig": "mimeType",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "output_preset_id",
+											"orig": "outputPresetId",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "plan_tier",
+											"orig": "planTier",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "format",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/video/render-performance",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "video",
+									},
+									map[string]any{
+										"lit": "render-performance",
+									},
+								},
+								"parts": []any{
+									"api",
+									"video",
+									"render-performance",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "refresh",
+											"orig": "refresh",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "render_performance",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/video/render-queue",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "video",
+									},
+									map[string]any{
+										"lit": "render-queue",
+									},
+								},
+								"parts": []any{
+									"api",
+									"video",
+									"render-queue",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "mode",
+											"orig": "mode",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "plan_tier",
+											"orig": "planTier",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "status",
+											"orig": "status",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "render_queue",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
 								"orig": "/api/video/subtitles",
 								"segments": []any{
 									map[string]any{
@@ -6608,303 +6953,6 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"$action": "subtitle",
-									"exist": []any{
-										"beat_offset_m",
-										"bpm",
-										"locale",
-										"style_preset_id",
-										"sync_to_beat_grid",
-										"tone",
-										"transcript",
-										"trend_keyword",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/video/audio-library",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "video",
-									},
-									map[string]any{
-										"lit": "audio-library",
-									},
-								},
-								"parts": []any{
-									"api",
-									"video",
-									"audio-library",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "kind",
-											"orig": "kind",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "tag",
-											"orig": "tag",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "target_bpm",
-											"orig": "targetBpm",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "tolerance_bpm",
-											"orig": "toleranceBpm",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "audio_library",
-									"exist": []any{
-										"kind",
-										"limit",
-										"query",
-										"tag",
-										"target_bpm",
-										"tolerance_bpm",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/video/export-settings",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "video",
-									},
-									map[string]any{
-										"lit": "export-settings",
-									},
-								},
-								"parts": []any{
-									"api",
-									"video",
-									"export-settings",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "bitrate_kbp",
-											"orig": "bitrateKbps",
-											"type": "`$NUMBER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "container",
-											"orig": "container",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "plan_tier",
-											"orig": "planTier",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "preset_id",
-											"orig": "presetId",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "watermark_enabled",
-											"orig": "watermarkEnabled",
-											"type": "`$BOOLEAN`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "watermark_text",
-											"orig": "watermarkText",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "export_setting",
-									"exist": []any{
-										"bitrate_kbp",
-										"container",
-										"plan_tier",
-										"preset_id",
-										"watermark_enabled",
-										"watermark_text",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/video/formats",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "video",
-									},
-									map[string]any{
-										"lit": "formats",
-									},
-								},
-								"parts": []any{
-									"api",
-									"video",
-									"formats",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "duration_second",
-											"orig": "durationSeconds",
-											"type": "`$NUMBER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "input_format",
-											"orig": "inputFormat",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "mime_type",
-											"orig": "mimeType",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "output_preset_id",
-											"orig": "outputPresetId",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "plan_tier",
-											"orig": "planTier",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "format",
-									"exist": []any{
-										"duration_second",
-										"input_format",
-										"mime_type",
-										"output_preset_id",
-										"plan_tier",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/video/render-queue",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "video",
-									},
-									map[string]any{
-										"lit": "render-queue",
-									},
-								},
-								"parts": []any{
-									"api",
-									"video",
-									"render-queue",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "mode",
-											"orig": "mode",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "plan_tier",
-											"orig": "planTier",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "status",
-											"orig": "status",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "render_queue",
-									"exist": []any{
-										"limit",
-										"mode",
-										"plan_tier",
-										"status",
-									},
 								},
 							},
 							map[string]any{
@@ -6962,61 +7010,6 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"$action": "text_animation",
-									"exist": []any{
-										"duration_m",
-										"intensity",
-										"preset_id",
-										"start_m",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/video/drafts",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "video",
-									},
-									map[string]any{
-										"lit": "drafts",
-									},
-								},
-								"parts": []any{
-									"api",
-									"video",
-									"drafts",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "project_id",
-											"orig": "projectId",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "draft",
-									"exist": []any{
-										"limit",
-										"project_id",
-									},
 								},
 							},
 							map[string]any{
@@ -7062,52 +7055,6 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"$action": "timeline",
-									"exist": []any{
-										"limit",
-										"project_id",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/video/render-performance",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "video",
-									},
-									map[string]any{
-										"lit": "render-performance",
-									},
-								},
-								"parts": []any{
-									"api",
-									"video",
-									"render-performance",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "refresh",
-											"orig": "refresh",
-											"type": "`$BOOLEAN`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "render_performance",
-									"exist": []any{
-										"refresh",
-									},
 								},
 							},
 						},

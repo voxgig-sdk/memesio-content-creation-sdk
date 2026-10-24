@@ -15,6 +15,13 @@ import (
 	vs "github.com/voxgig-sdk/memesio-content-creation-sdk/go/utility/struct"
 )
 
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const videoEntityLiveStrict = true
+
+
 func TestVideoEntity(t *testing.T) {
 	t.Run("instance", func(t *testing.T) {
 		testsdk := sdk.TestSDK(nil, nil)
@@ -24,7 +31,8 @@ func TestVideoEntity(t *testing.T) {
 		}
 	})
 
-	t.Run("basic", func(t *testing.T) {
+	t.Run("basic", func(tt *testing.T) {
+		var t testing.TB = tt
 		setup := videoBasicSetup(nil)
 		// Per-op sdk-test-control.json skip — basic test exercises a flow
 		// with multiple ops; skipping any op skips the whole flow.
@@ -32,7 +40,7 @@ func TestVideoEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create", "load"} {
+		for _, _op := range []string{} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "video." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -41,37 +49,15 @@ func TestVideoEntity(t *testing.T) {
 				return
 			}
 		}
-		// The basic flow consumes synthetic IDs from the fixture. In live mode
-		// without an *_ENTID env override, those IDs hit the live API and 4xx.
-		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set MEMESIO_CONTENT_CREATION_TEST_VIDEO_ENTID JSON to run live")
-			return
+		// Bootstrap entity data from existing test data (no create step in flow).
+		videoRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.video")))
+		var videoRef01Data map[string]any
+		if len(videoRef01DataRaw) > 0 {
+			videoRef01Data = core.ToMapAny(videoRef01DataRaw[0][1])
 		}
-		client := setup.client
-
-		// CREATE
-		videoRef01Ent := client.Video(nil)
-		videoRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath(setup.data, []any{"new", "video"}), "video_ref01"))
-
-		videoRef01DataResult, err := videoRef01Ent.Create(videoRef01Data, nil)
-		if err != nil {
-			t.Fatalf("create failed: %v", err)
-		}
-		videoRef01Data = core.ToMapAny(entityData(videoRef01DataResult))
-		if videoRef01Data == nil {
-			t.Fatal("expected create result to be a map")
-		}
-
-		// LOAD
-		videoRef01MatchDt0 := map[string]any{}
-		videoRef01DataDt0Loaded, err := videoRef01Ent.Load(videoRef01MatchDt0, nil)
-		if err != nil {
-			t.Fatalf("load failed: %v", err)
-		}
-		if videoRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
-		}
+		// Discard guards against Go's unused-var check when the flow's steps
+		// happen not to consume the bootstrap data (e.g. list-only flows).
+		_ = videoRef01Data
 
 	})
 }
@@ -110,9 +96,8 @@ func videoBasicSetup(extra map[string]any) *entityTestSetup {
 		},
 	)
 
-	// Detect ENTID env override before envOverride consumes it. When live
-	// mode is on without a real override, the basic test runs against synthetic
-	// IDs from the fixture and 4xx's. Surface this so the test can skip.
+	// Whether *_ENTID supplied the idmap, read before envOverride consumes it:
+	// without it, the ids a live flow binds are the fixture's synthetic ones.
 	entidEnvRaw := os.Getenv("MEMESIO_CONTENT_CREATION_TEST_VIDEO_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 

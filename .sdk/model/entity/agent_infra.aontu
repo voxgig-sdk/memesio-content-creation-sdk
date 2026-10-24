@@ -96,6 +96,11 @@ main: kit: entity: agent_infra: {
       name: "create"
       points: [
         {
+          bf: [
+            "chatId"
+            "metadata"
+            "userId"
+          ]
           co: {
             id: "POST /api/v1/agents/{agentId}/channels/telegram/bind"
             source: "openapi3"
@@ -153,6 +158,11 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          bf: [
+            "metadata"
+            "phoneOrChatId"
+            "userId"
+          ]
           co: {
             id: "POST /api/v1/agents/{agentId}/channels/whatsapp/bind"
             source: "openapi3"
@@ -210,6 +220,10 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          bf: [
+            "action"
+            "proof"
+          ]
           co: {
             id: "POST /api/v1/agents/{agentId}/unlocks/social-action"
             source: "openapi3"
@@ -264,6 +278,9 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          bf: [
+            "scopes"
+          ]
           co: {
             id: "POST /api/v1/agents/{agentId}/keys"
             source: "openapi3"
@@ -316,6 +333,9 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          bf: [
+            "quotaBoostPerDay"
+          ]
           co: {
             id: "POST /api/v1/agents/unlocks/{unlockId}/approve"
             source: "openapi3"
@@ -370,6 +390,9 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          bf: [
+            "prompt"
+          ]
           co: {
             id: "POST /api/v1/agents/names:generate"
             source: "openapi3"
@@ -397,6 +420,10 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          bf: [
+            "memeSlug"
+            "weekStart"
+          ]
           co: {
             id: "POST /api/v1/agents/rewards/votes"
             source: "openapi3"
@@ -427,6 +454,11 @@ main: kit: entity: agent_infra: {
           }
         }
         {
+          bf: [
+            "payoutReference"
+            "payoutStatus"
+            "weekStart"
+          ]
           co: {
             id: "POST /api/v1/agents/rewards/winner:close"
             source: "openapi3"
@@ -523,60 +555,6 @@ main: kit: entity: agent_infra: {
       points: [
         {
           co: {
-            id: "GET /api/v1/agents/rewards/leaderboard"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "limit"
-                or: "limit"
-                r: false
-                t: "`$INTEGER`"
-              }
-              {
-                k: "query"
-                n: "week_start"
-                or: "weekStart"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/v1/agents/rewards/leaderboard"
-          q: {
-            exist: [
-              "limit"
-              "week_start"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "v1"
-            }
-            {
-              lit: "agents"
-            }
-            {
-              lit: "rewards"
-            }
-            {
-              lit: "leaderboard"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
             id: "GET /api/v1/agents/{agentId}/keys"
             source: "openapi3"
             version: 2
@@ -620,6 +598,54 @@ main: kit: entity: agent_infra: {
             }
             {
               lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/agents/rewards/leaderboard"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "week_start"
+                or: "weekStart"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/agents/rewards/leaderboard"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              lit: "rewards"
+            }
+            {
+              lit: "leaderboard"
             }
           ]
           t: {

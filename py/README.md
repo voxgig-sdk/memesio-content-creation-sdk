@@ -15,7 +15,7 @@ keeps the cognitive load low.
 
 ## Install
 This package is not yet published to PyPI. Install it from the GitHub
-release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)) or
+release tag (`py/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags)) or
 from a source checkout:
 
 ```bash
@@ -26,7 +26,7 @@ pip install -e .
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `x-developer-api-key` header.
 
 ### 1. Create a client
 
@@ -46,7 +46,7 @@ client = MemesioContentCreationSDK({
 ```python
 try:
     agent = client.Agent().load({"id": "example_id"})
-    print(agent)
+    print(agent.data_get())
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -57,7 +57,7 @@ except Exception as err:
 # Create — returns the ENTITY (call data_get() for the record)
 created = client.Agent().create({"name": "example_name"})
 
-# Update — the created record's id is a plain dict key
+# Update — the created entity's record holds its id
 client.Agent().update({"id": created.data_get()["id"], "description": "example_description", "locale": "example_locale"})
 
 ```
@@ -70,7 +70,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 ```python
 try:
     aiprovider = client.AiProvider().load()
-    print(aiprovider)
+    print(aiprovider.data_get())
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -136,10 +136,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MemesioContentCreationSDK.test()
 
-# Entity ops return the ENTITY and raises on error;
-# call data_get() for the record.
+# Entity ops return the entity, and list one per record; they raise on error.
 aiprovider = client.AiProvider().load()
-# aiprovider contains the mock response record
+# data_get() on an entity reads its mock response record
 ```
 
 ### Use a custom fetch function
@@ -247,11 +246,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria, one per record. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity, and return it. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity, and return it. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity, and return it marked as deleted. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -261,9 +260,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
-ops, a `list` for `list`) and raise on error. Wrap calls in
-`try`/`except` to handle failures.
+Entity operations return the entity, and `list` a `list` of entities, one
+per record; an entity's `data_get()` reads its record (a `dict`). They raise
+on error, so wrap calls in `try`/`except` to handle failures.
 
 The `direct()` escape hatch never raises — it returns a result `dict`
 you branch on via `result["ok"]`:
@@ -459,7 +458,7 @@ API path: `/api/ai/templates/detect`
 
 Operations: Load.
 
-API path: `/api/analytics/experiments/templates`
+API path: `/api/analytics/alerts/backend`
 
 #### Auth
 
@@ -719,6 +718,11 @@ API path: `/api/alerts/delivery`
 
 | Field | Description |
 | --- | --- |
+| `captions` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` |  |
+| `title` |  |
+| `visibility` |  |
+| `watermark` | Optional JSON watermark object. |
 
 Operations: Create.
 
@@ -957,12 +961,11 @@ ai_job = client.AiJob().create({
     "capability": "example_capability",  # str
     "detectedFaceCount": 1,  # float
     "height": 1,  # float
-    "id": "example_id",  # str
     "layerId": "example_layerId",  # str
+    "mediaType": "example_mediaType",  # str
     "projectId": "example_projectId",  # str
     "sourceAssetUrl": "example_sourceAssetUrl",  # str
     "sourceImageUrl": "example_sourceImageUrl",  # str
-    "status": "example_status",  # str
     "targetAssetUrl": "example_targetAssetUrl",  # str
     "width": 1,  # float
 })
@@ -1009,13 +1012,7 @@ Create an instance: `ai_meme_generation_succeeded = client.AiMemeGenerationSucce
 
 ```python
 ai_meme_generation_succeeded = client.AiMemeGenerationSucceeded().create({
-    "flow": "example_flow",  # str
-    "mode": "example_mode",  # str
-    "ok": True,  # bool
     "prompt": "example_prompt",  # str
-    "status": "example_status",  # str
-    "variantCount": 1,  # int
-    "variants": [],  # list
 })
 ```
 
@@ -1088,13 +1085,6 @@ Create an instance: `auth = client.Auth()`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-
-#### Example: Create
-
-```python
-auth = client.Auth().create({
-})
-```
 
 
 ### Billing
@@ -1313,16 +1303,6 @@ Create an instance: `generate = client.Generate()`
 
 ```python
 generate = client.Generate().create({
-    "byteLength": 1,  # int
-    "delayMs": 1,  # int
-    "filename": "example_filename",  # str
-    "gifSlug": "example_gifSlug",  # str
-    "height": 1,  # int
-    "mimeType": "example_mimeType",  # str
-    "pages": 1,  # int
-    "parameters": {},  # dict
-    "sourceDurationMs": 1,  # int
-    "width": 1,  # int
 })
 ```
 
@@ -1437,24 +1417,10 @@ memes = client.Meme().list()
 
 ```python
 meme = client.Meme().create({
-    "altText": "example_altText",  # str
-    "canonicalImageUrl": "example_canonicalImageUrl",  # str
     "canvas": {},  # dict
     "captions": [],  # list
-    "createdAt": "example_createdAt",  # str
     "imageDataUrl": "example_imageDataUrl",  # str
-    "imageUrl": "example_imageUrl",  # str
-    "nsfwStatus": "example_nsfwStatus",  # str
-    "overlays": [],  # list
-    "shareSlug": "example_shareSlug",  # str
-    "shareUrl": "example_shareUrl",  # str
-    "shareViews": 1,  # int
-    "slug": "example_slug",  # str
     "sourceImageUrl": "example_sourceImageUrl",  # str
-    "tags": [],  # list
-    "templateSlug": "example_templateSlug",  # str
-    "title": "example_title",  # str
-    "visibility": "example_visibility",  # str
     "watermark": {},  # dict
 })
 ```
@@ -1519,15 +1485,7 @@ public_template_media_items = client.PublicTemplateMediaItem().list()
 public_template_media_item = client.PublicTemplateMediaItem().create({
     "slug": "example_slug",  # str
     "captions": [],  # list
-    "description": "example_description",  # str
-    "height": 1,  # float | None
-    "id": "example_id",  # str
-    "imageUrl": "example_imageUrl",  # str
-    "mediaType": "example_mediaType",  # str
-    "name": "example_name",  # str
-    "sourceTemplateId": "example_sourceTemplateId",  # str | None
     "tags": [],  # list
-    "width": 1,  # float | None
 })
 ```
 
@@ -1625,10 +1583,22 @@ Create an instance: `upload_caption_meme_success = client.UploadCaptionMemeSucce
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `captions` | `str` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `str` |  |
+| `title` | `str` |  |
+| `visibility` | `str` |  |
+| `watermark` | `str` | Optional JSON watermark object. |
+
 #### Example: Create
 
 ```python
 upload_caption_meme_success = client.UploadCaptionMemeSuccess().create({
+    "captions": "example_captions",  # str
+    "file": "example_file",  # str
 })
 ```
 
@@ -1643,19 +1613,6 @@ Create an instance: `video = client.Video()`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Example: Load
-
-```python
-video = client.Video().load()
-```
-
-#### Example: Create
-
-```python
-video = client.Video().create({
-})
-```
 
 ## Features
 

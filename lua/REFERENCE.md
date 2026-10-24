@@ -209,7 +209,7 @@ local agent = client:Agent(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Agent():create({
@@ -219,7 +219,7 @@ local result, err = client:Agent():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Agent():load({ id = "agent_id" })
@@ -227,7 +227,7 @@ local result, err = client:Agent():load({ id = "agent_id" })
 
 #### `update(reqdata, ctrl) -> any, err`
 
-Update an existing entity. The data must include the entity `id`.
+Update an existing entity. The data must include the entity `id`. Returns the updated entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Agent():update({
@@ -294,7 +294,7 @@ local agent_infra = client:AgentInfra(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AgentInfra():create({
@@ -308,7 +308,7 @@ local result, err = client:AgentInfra():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AgentInfra():load()
@@ -316,7 +316,7 @@ local result, err = client:AgentInfra():load()
 
 #### `remove(reqmatch, ctrl) -> any, err`
 
-Remove the entity matching the given criteria.
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AgentInfra():remove({ agent_id = "agent_id", key_id = "key_id" })
@@ -395,7 +395,7 @@ local ai_caption = client:AiCaption(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AiCaption():create({
@@ -407,7 +407,7 @@ local result, err = client:AiCaption():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AiCaption():load()
@@ -537,7 +537,7 @@ local ai_job = client:AiJob(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AiJob():create({
@@ -545,12 +545,11 @@ local result, err = client:AiJob():create({
   capability = --[[ string ]],
   detectedFaceCount = --[[ number ]],
   height = --[[ number ]],
-  id = --[[ string ]],
   layerId = --[[ string ]],
+  mediaType = --[[ string ]],
   projectId = --[[ string ]],
   sourceAssetUrl = --[[ string ]],
   sourceImageUrl = --[[ string ]],
-  status = --[[ string ]],
   targetAssetUrl = --[[ string ]],
   width = --[[ number ]],
 })
@@ -558,7 +557,7 @@ local result, err = client:AiJob():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AiJob():load({ id = "ai_job_id" })
@@ -656,17 +655,11 @@ local ai_meme_generation_succeeded = client:AiMemeGenerationSucceeded(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AiMemeGenerationSucceeded():create({
-  flow = --[[ string ]],
-  mode = --[[ string ]],
-  ok = --[[ boolean ]],
   prompt = --[[ string ]],
-  status = --[[ string ]],
-  variantCount = --[[ number ]],
-  variants = --[[ table ]],
 })
 ```
 
@@ -725,7 +718,7 @@ local ai_provider = client:AiProvider(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AiProvider():create({
@@ -736,7 +729,7 @@ local result, err = client:AiProvider():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:AiProvider():load()
@@ -782,7 +775,7 @@ local analytics = client:Analytics(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Analytics():load()
@@ -828,12 +821,7 @@ local auth = client:Auth(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
-
-```lua
-local result, err = client:Auth():create({
-})
-```
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ### Common Methods
 
@@ -875,7 +863,7 @@ local billing = client:Billing(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Billing():load()
@@ -929,7 +917,7 @@ local collaboration = client:Collaboration(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Collaboration():create({
@@ -940,7 +928,7 @@ local result, err = client:Collaboration():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Collaboration():load({ project_id = "project_id" })
@@ -986,7 +974,7 @@ local compliance = client:Compliance(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Compliance():load()
@@ -1040,7 +1028,7 @@ local developer_api = client:DeveloperApi(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:DeveloperApi():create({
@@ -1050,7 +1038,7 @@ local result, err = client:DeveloperApi():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:DeveloperApi():load()
@@ -1106,7 +1094,7 @@ local free_caption_meme_success = client:FreeCaptionMemeSuccess(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:FreeCaptionMemeSuccess():create({
@@ -1182,7 +1170,7 @@ local free_template_search = client:FreeTemplateSearch(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:FreeTemplateSearch():list()
@@ -1278,20 +1266,10 @@ local generate = client:Generate(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Generate():create({
-  byteLength = --[[ number ]],
-  delayMs = --[[ number ]],
-  filename = --[[ string ]],
-  gifSlug = --[[ string ]],
-  height = --[[ number ]],
-  mimeType = --[[ string ]],
-  pages = --[[ number ]],
-  parameters = --[[ table ]],
-  sourceDurationMs = --[[ number ]],
-  width = --[[ number ]],
 })
 ```
 
@@ -1345,7 +1323,7 @@ local growth = client:Growth(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Growth():create({
@@ -1355,7 +1333,7 @@ local result, err = client:Growth():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Growth():load({ actor_id = "actor_id" })
@@ -1401,7 +1379,7 @@ local media = client:Media(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Media():create({
@@ -1502,35 +1480,21 @@ local meme = client:Meme(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Meme():create({
-  altText = --[[ string ]],
-  canonicalImageUrl = --[[ string ]],
   canvas = --[[ table ]],
   captions = --[[ table ]],
-  createdAt = --[[ string ]],
   imageDataUrl = --[[ string ]],
-  imageUrl = --[[ string ]],
-  nsfwStatus = --[[ string ]],
-  overlays = --[[ table ]],
-  shareSlug = --[[ string ]],
-  shareUrl = --[[ string ]],
-  shareViews = --[[ number ]],
-  slug = --[[ string ]],
   sourceImageUrl = --[[ string ]],
-  tags = --[[ table ]],
-  templateSlug = --[[ string ]],
-  title = --[[ string ]],
-  visibility = --[[ string ]],
   watermark = --[[ table ]],
 })
 ```
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Meme():list()
@@ -1538,7 +1502,7 @@ local results, err = client:Meme():list()
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Meme():load({ id = "meme_id" })
@@ -1546,7 +1510,7 @@ local result, err = client:Meme():load({ id = "meme_id" })
 
 #### `remove(reqmatch, ctrl) -> any, err`
 
-Remove the entity matching the given criteria.
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Meme():remove({ id = "meme_id" })
@@ -1621,27 +1585,19 @@ local public_template_media_item = client:PublicTemplateMediaItem(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:PublicTemplateMediaItem():create({
   slug = --[[ string ]],
   captions = --[[ table ]],
-  description = --[[ string ]],
-  height = --[[ number|nil ]],
-  id = --[[ string ]],
-  imageUrl = --[[ string ]],
-  mediaType = --[[ string ]],
-  name = --[[ string ]],
-  sourceTemplateId = --[[ string|nil ]],
   tags = --[[ table ]],
-  width = --[[ number|nil ]],
 })
 ```
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:PublicTemplateMediaItem():list()
@@ -1649,7 +1605,7 @@ local results, err = client:PublicTemplateMediaItem():list()
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:PublicTemplateMediaItem():load({ slug = "slug" })
@@ -1708,7 +1664,7 @@ local standalone_agent_bootstrap = client:StandaloneAgentBootstrap(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:StandaloneAgentBootstrap():create({
@@ -1778,7 +1734,7 @@ local trend_alert = client:TrendAlert(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:TrendAlert():create({
@@ -1791,7 +1747,7 @@ local result, err = client:TrendAlert():create({
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:TrendAlert():load()
@@ -1833,16 +1789,30 @@ Return the entity name.
 local upload_caption_meme_success = client:UploadCaptionMemeSuccess(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `captions` | `string` | Yes | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `string` | Yes |  |
+| `title` | `string` | No |  |
+| `visibility` | `string` | No |  |
+| `watermark` | `string` | No | Optional JSON watermark object. |
+
 ### Operations
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:UploadCaptionMemeSuccess():create({
+  captions = --[[ string ]],
+  file = --[[ string ]],
 })
 ```
+
+Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -1884,20 +1854,11 @@ local video = client:Video(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
-
-```lua
-local result, err = client:Video():create({
-})
-```
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
-
-```lua
-local result, err = client:Video():load()
-```
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ### Common Methods
 
@@ -2086,6 +2047,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

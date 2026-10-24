@@ -56,25 +56,26 @@ const utility_1 = require("../../utility");
     });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE;
-        for (const op of ['create']) {
+        for (const op of []) {
             if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'auth.' + op, live))
                 return;
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "auth", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /api/auth/resend-verification", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/api/auth/resend-verification", "q": { "$action": "resend_verification" }, "r": {}, "s": [{ "lit": "api" }, { "lit": "auth" }, { "lit": "resend-verification" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }, { "a": true, "co": { "id": "POST /api/auth/signup", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/api/auth/signup", "q": { "$action": "signup" }, "r": {}, "s": [{ "lit": "api" }, { "lit": "auth" }, { "lit": "signup" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 1 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "auth", "name__orig": "auth", "Name": "Auth", "name_": "auth", "name-": "auth", "NAME": "AUTH", "index$": 7 }, { "active": true, "entity": "auth", "key$": "BasicAuthFlow", "kind": "basic", "name": "BasicAuthFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "auth_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'Auth', { "POST /api/auth/resend-verification": { "protocol": "http", "parameters": [] }, "POST /api/auth/signup": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["email", "password"], "properties": { "email": { "type": "string", "format": "email" }, "password": { "type": "string", "minLength": 8, "maxLength": 128 }, "displayName": { "type": "string", "maxLength": 80 } } } } } }, "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "auth", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /api/auth/resend-verification", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/api/auth/resend-verification", "q": { "$action": "resend_verification" }, "r": {}, "s": [{ "lit": "api" }, { "lit": "auth" }, { "lit": "resend-verification" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }, { "a": true, "bf": ["displayName", "email", "password"], "co": { "id": "POST /api/auth/signup", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/api/auth/signup", "q": { "$action": "signup" }, "r": {}, "s": [{ "lit": "api" }, { "lit": "auth" }, { "lit": "signup" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 1 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "auth", "name__orig": "auth", "Name": "Auth", "name_": "auth", "name-": "auth", "NAME": "AUTH", "index$": 7 }, { "active": true, "entity": "auth", "key$": "BasicAuthFlow", "kind": "basic", "name": "BasicAuthFlow", "param": {}, "step": [{ "a": false, "d": {}, "i": { "ref": "auth_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "unreachable": true }] }, 'Auth', { "POST /api/auth/resend-verification": { "protocol": "http", "parameters": [] }, "POST /api/auth/signup": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["email", "password"], "properties": { "email": { "type": "string", "format": "email" }, "password": { "type": "string", "minLength": 8, "maxLength": 128 }, "displayName": { "type": "string", "maxLength": 80 } } } } } }, "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
         const isempty = struct.isempty;
         const select = struct.select;
-        // CREATE
-        const auth_ref01_ent = client.Auth();
-        let auth_ref01_data = setup.data.new.auth['auth_ref01'];
-        auth_ref01_data = (await auth_ref01_ent.create(auth_ref01_data)).data();
-        (0, node_assert_1.default)(null != auth_ref01_data);
+        let auth_ref01_data = Object.values(setup.data.existing.auth)[0];
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

@@ -9,9 +9,19 @@ import pytest
 from memesiocontentcreation_sdk.utility.voxgig_struct import voxgig_struct as vs
 from memesiocontentcreation_sdk import MemesioContentCreationSDK
 from memesiocontentcreation_sdk.core import helpers
+from memesiocontentcreation_sdk.config import shared_config
+from memesiocontentcreation_sdk.feature.base_feature import MemesioContentCreationBaseFeature
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
+
+
+
+# main.kit.test.live.strict is true (the default is true): a live
+# request that fails, or a live test missing an input it needs,
+# fails the test.
+# An account with no record for a test to read skips it either way.
+LIVE_STRICT = True
 
 
 class TestAuthEntity:
@@ -27,25 +37,19 @@ class TestAuthEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["create"]:
+        for _op in []:
             _skip, _reason = runner.is_control_skipped("entityOp", "auth." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
                 return
-        # The basic flow consumes synthetic IDs from the fixture. In live mode
-        # without an *_ENTID env override, those IDs hit the live API and 4xx.
-        if setup.get("synthetic_only"):
-            pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set MEMESIO_CONTENT_CREATION_TEST_AUTH_ENTID JSON to run live")
         client = setup["client"]
 
-        # CREATE
-        auth_ref01_ent = client.Auth(None)
-        auth_ref01_data = helpers.to_map(vs.getprop(
-            vs.getpath(setup["data"], "new.auth"), "auth_ref01"))
-
-        auth_ref01_data = helpers.to_map(runner.entity_data(auth_ref01_ent.create(auth_ref01_data, None)))
-        assert auth_ref01_data is not None
+        # Bootstrap entity data from existing test data.
+        auth_ref01_data_raw = vs.items(helpers.to_map(
+            vs.getpath(setup["data"], "existing.auth")))
+        auth_ref01_data = None
+        if len(auth_ref01_data_raw) > 0:
+            auth_ref01_data = helpers.to_map(auth_ref01_data_raw[0][1])
 
 
 
@@ -53,7 +57,7 @@ def _auth_basic_setup(extra):
     runner.load_env_local()
 
     entity_data_file = os.path.join(_TEST_DIR, "../../.sdk/test/entity/auth/AuthTestData.json")
-    with open(entity_data_file, "r") as f:
+    with open(entity_data_file, "r", encoding="utf-8") as f:
         entity_data_source = f.read()
 
     entity_data = json.loads(entity_data_source)
@@ -74,9 +78,8 @@ def _auth_basic_setup(extra):
         }
     )
 
-    # Detect ENTID env override before envOverride consumes it. When live
-    # mode is on without a real override, the basic test runs against synthetic
-    # IDs from the fixture and 4xx's. We surface this so the test can skip.
+    # Whether *_ENTID supplied the idmap, read before env_override consumes
+    # it: without it, the ids a live flow binds are the fixture's synthetic ones.
     _entid_env_raw = os.environ.get(
         "MEMESIO_CONTENT_CREATION_TEST_AUTH_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")

@@ -206,12 +206,12 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/ai/jobs": {
+    "GET /api/ai/jobs/{jobId}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/ai/jobs/{jobId}": {
+    "GET /api/ai/jobs": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

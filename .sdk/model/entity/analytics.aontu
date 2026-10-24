@@ -11,92 +11,6 @@ main: kit: entity: analytics: {
       points: [
         {
           co: {
-            id: "GET /api/analytics/experiments/templates"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "template_id"
-                or: "templateId"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/analytics/experiments/templates"
-          q: {
-            exist: [
-              "template_id"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "analytics"
-            }
-            {
-              lit: "experiments"
-            }
-            {
-              lit: "templates"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/analytics/dashboards/backend-reliability"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "window_hour"
-                or: "windowHours"
-                r: false
-                t: "`$INTEGER`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/analytics/dashboards/backend-reliability"
-          q: {
-            exist: [
-              "window_hour"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "analytics"
-            }
-            {
-              lit: "dashboards"
-            }
-            {
-              lit: "backend-reliability"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
             id: "GET /api/analytics/alerts/backend"
             source: "openapi3"
             version: 2
@@ -178,6 +92,44 @@ main: kit: entity: analytics: {
         }
         {
           co: {
+            id: "GET /api/analytics/dashboards/backend-reliability"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "window_hour"
+                or: "windowHours"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/analytics/dashboards/backend-reliability"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "dashboards"
+            }
+            {
+              lit: "backend-reliability"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
             id: "GET /api/analytics/dashboards/feature-adoption"
             source: "openapi3"
             version: 2
@@ -196,6 +148,44 @@ main: kit: entity: analytics: {
             }
             {
               lit: "feature-adoption"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/analytics/experiments/templates"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "template_id"
+                or: "templateId"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/analytics/experiments/templates"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "experiments"
+            }
+            {
+              lit: "templates"
             }
           ]
           t: {

@@ -84,9 +84,12 @@ class GrowthEntity extends MemesioContentCreationEntityBase_1.MemesioContentCrea
         catch (err) {
             // What a hook throws here must not escape the cleaning below.
             try {
-                fres = featureHook(ctx, 'PreUnexpected');
-                if (fres instanceof Promise) {
-                    await fres;
+                // Once per operation: makeError fires it for its own error.
+                if (!ctx.unexpectedFired) {
+                    fres = featureHook(ctx, 'PreUnexpected');
+                    if (fres instanceof Promise) {
+                        await fres;
+                    }
                 }
             }
             catch (hookerr) {
@@ -98,7 +101,7 @@ class GrowthEntity extends MemesioContentCreationEntityBase_1.MemesioContentCrea
             }
             else {
                 // Off-happy-path (throw disabled): typed as any so the method's
-                // Promise<Growth> return stays clean under strict null checks.
+                // Promise<GrowthEntity> return stays clean under strict null checks.
                 return undefined;
             }
         }
@@ -172,9 +175,12 @@ class GrowthEntity extends MemesioContentCreationEntityBase_1.MemesioContentCrea
         catch (err) {
             // What a hook throws here must not escape the cleaning below.
             try {
-                fres = featureHook(ctx, 'PreUnexpected');
-                if (fres instanceof Promise) {
-                    await fres;
+                // Once per operation: makeError fires it for its own error.
+                if (!ctx.unexpectedFired) {
+                    fres = featureHook(ctx, 'PreUnexpected');
+                    if (fres instanceof Promise) {
+                        await fres;
+                    }
                 }
             }
             catch (hookerr) {
@@ -186,7 +192,7 @@ class GrowthEntity extends MemesioContentCreationEntityBase_1.MemesioContentCrea
             }
             else {
                 // Off-happy-path (throw disabled): typed as any so the method's
-                // Promise<Growth> return stays clean under strict null checks.
+                // Promise<GrowthEntity> return stays clean under strict null checks.
                 return undefined;
             }
         }

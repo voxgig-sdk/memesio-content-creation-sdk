@@ -166,12 +166,12 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/ai/captions/tone-presets": {
+    "GET /api/ai/captions/generate": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/ai/captions/generate": {
+    "GET /api/ai/captions/tone-presets": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

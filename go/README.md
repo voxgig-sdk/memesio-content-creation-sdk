@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/memesio-content-creation-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -30,14 +30,15 @@ go mod edit -replace github.com/voxgig-sdk/memesio-content-creation-sdk/go=../me
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `x-developer-api-key` header.
 
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -53,26 +54,26 @@ func main() {
         "apikey": os.Getenv("MEMESIO_CONTENT_CREATION_APIKEY"),
     })
 
-    // Load a single agent — the value is the loaded record.
+    // Load a single agent — the value is the entity; Data() reads its record.
     agent, err := client.Agent(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(agent)
+    fmt.Println(agent.(sdk.Entity).Data())
 
     // Create a agent.
     created, err := client.Agent(nil).Create(map[string]any{"name": "example_name"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(created)
+    fmt.Println(created.(sdk.Entity).Data())
 
     // Update a agent.
     updated, err := client.Agent(nil).Update(map[string]any{"id": "example_id", "description": "example_description", "locale": "example_locale"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(updated)
+    fmt.Println(updated.(sdk.Entity).Data())
 }
 ```
 
@@ -158,7 +159,7 @@ aiProvider, err := client.AiProvider(nil).Load(
 if err != nil {
     panic(err)
 }
-fmt.Println(aiProvider) // the returned mock data
+fmt.Println(aiProvider.(sdk.Entity).Data()) // the entity's mock record
 ```
 
 ### Use a custom fetch function
@@ -267,11 +268,11 @@ All entities implement the `MemesioContentCreationEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria, one per record. |
+| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity, and return it. |
+| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity, and return it. |
+| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity, and return it marked as deleted. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -279,13 +280,13 @@ All entities implement the `MemesioContentCreationEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` / `Create` / `Update` / `Remove` | the entity, whose `Data()` reads its record (`map[string]any`) |
+| `List` | a `[]any` of entities, one per record |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
@@ -293,7 +294,7 @@ slice):
 
     agent, err := client.Agent(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
-    // agent is the returned record
+    // agent is the entity; agent.(sdk.Entity).Data() reads its record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -480,7 +481,7 @@ API path: `/api/ai/templates/detect`
 
 Operations: Load.
 
-API path: `/api/analytics/experiments/templates`
+API path: `/api/analytics/alerts/backend`
 
 #### Auth
 
@@ -740,6 +741,11 @@ API path: `/api/alerts/delivery`
 
 | Field | Description |
 | --- | --- |
+| `"captions"` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `"file"` |  |
+| `"title"` |  |
+| `"visibility"` |  |
+| `"watermark"` | Optional JSON watermark object. |
 
 Operations: Create.
 
@@ -793,7 +799,7 @@ agent, err := client.Agent(nil).Load(map[string]any{"id": "agent_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agent) // the loaded record
+fmt.Println(agent.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: Create
@@ -805,7 +811,7 @@ result, err := client.Agent(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -846,7 +852,7 @@ agentInfra, err := client.AgentInfra(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agentInfra) // the loaded record
+fmt.Println(agentInfra.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: Create
@@ -862,7 +868,7 @@ result, err := client.AgentInfra(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -917,7 +923,7 @@ aiCaption, err := client.AiCaption(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(aiCaption) // the loaded record
+fmt.Println(aiCaption.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: Create
@@ -931,7 +937,7 @@ result, err := client.AiCaption(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -995,7 +1001,7 @@ aiJob, err := client.AiJob(nil).Load(map[string]any{"id": "ai_job_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(aiJob) // the loaded record
+fmt.Println(aiJob.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: Create
@@ -1006,19 +1012,18 @@ result, err := client.AiJob(nil).Create(map[string]any{
     "capability": "example_capability",
     "detectedFaceCount": 1,
     "height": 1,
-    "id": "example_id",
     "layerId": "example_layerId",
+    "mediaType": "example_mediaType",
     "projectId": "example_projectId",
     "sourceAssetUrl": "example_sourceAssetUrl",
     "sourceImageUrl": "example_sourceImageUrl",
-    "status": "example_status",
     "targetAssetUrl": "example_targetAssetUrl",
     "width": 1,
 }, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1062,18 +1067,12 @@ Create an instance: `aiMemeGenerationSucceeded := client.AiMemeGenerationSucceed
 
 ```go
 result, err := client.AiMemeGenerationSucceeded(nil).Create(map[string]any{
-    "flow": "example_flow",
-    "mode": "example_mode",
-    "ok": true,
     "prompt": "example_prompt",
-    "status": "example_status",
-    "variantCount": 1,
-    "variants": []any{},
 }, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1110,7 +1109,7 @@ aiProvider, err := client.AiProvider(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(aiProvider) // the loaded record
+fmt.Println(aiProvider.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: Create
@@ -1123,7 +1122,7 @@ result, err := client.AiProvider(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1144,30 +1143,13 @@ analytics, err := client.Analytics(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(analytics) // the loaded record
+fmt.Println(analytics.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
 ### Auth
 
 Create an instance: `auth := client.Auth(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
-
-#### Example: Create
-
-```go
-result, err := client.Auth(nil).Create(map[string]any{
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
 
 
 ### Billing
@@ -1187,7 +1169,7 @@ billing, err := client.Billing(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(billing) // the loaded record
+fmt.Println(billing.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -1217,7 +1199,7 @@ collaboration, err := client.Collaboration(nil).Load(map[string]any{"project_id"
 if err != nil {
     panic(err)
 }
-fmt.Println(collaboration) // the loaded record
+fmt.Println(collaboration.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: Create
@@ -1230,7 +1212,7 @@ result, err := client.Collaboration(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1251,7 +1233,7 @@ compliance, err := client.Compliance(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(compliance) // the loaded record
+fmt.Println(compliance.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -1281,7 +1263,7 @@ developerApi, err := client.DeveloperApi(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(developerApi) // the loaded record
+fmt.Println(developerApi.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: Create
@@ -1293,7 +1275,7 @@ result, err := client.DeveloperApi(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1327,7 +1309,7 @@ result, err := client.FreeCaptionMemeSuccess(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1375,7 +1357,10 @@ freeTemplateSearchs, err := client.FreeTemplateSearch(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(freeTemplateSearchs) // the array of records
+// A []any of entities, one per record.
+for _, item := range freeTemplateSearchs.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1418,21 +1403,11 @@ Create an instance: `generate := client.Generate(nil)`
 
 ```go
 result, err := client.Generate(nil).Create(map[string]any{
-    "byteLength": 1,
-    "delayMs": 1,
-    "filename": "example_filename",
-    "gifSlug": "example_gifSlug",
-    "height": 1,
-    "mimeType": "example_mimeType",
-    "pages": 1,
-    "parameters": map[string]any{},
-    "sourceDurationMs": 1,
-    "width": 1,
 }, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1464,7 +1439,7 @@ growth, err := client.Growth(nil).Load(map[string]any{"actor_id": "actor_id"}, n
 if err != nil {
     panic(err)
 }
-fmt.Println(growth) // the loaded record
+fmt.Println(growth.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: Create
@@ -1476,7 +1451,7 @@ result, err := client.Growth(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1498,7 +1473,7 @@ result, err := client.Media(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1549,7 +1524,7 @@ meme, err := client.Meme(nil).Load(map[string]any{"id": "meme_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(meme) // the loaded record
+fmt.Println(meme.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1559,37 +1534,26 @@ memes, err := client.Meme(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(memes) // the array of records
+// A []any of entities, one per record.
+for _, item := range memes.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 #### Example: Create
 
 ```go
 result, err := client.Meme(nil).Create(map[string]any{
-    "altText": "example_altText",
-    "canonicalImageUrl": "example_canonicalImageUrl",
     "canvas": map[string]any{},
     "captions": []any{},
-    "createdAt": "example_createdAt",
     "imageDataUrl": "example_imageDataUrl",
-    "imageUrl": "example_imageUrl",
-    "nsfwStatus": "example_nsfwStatus",
-    "overlays": []any{},
-    "shareSlug": "example_shareSlug",
-    "shareUrl": "example_shareUrl",
-    "shareViews": 1,
-    "slug": "example_slug",
     "sourceImageUrl": "example_sourceImageUrl",
-    "tags": []any{},
-    "templateSlug": "example_templateSlug",
-    "title": "example_title",
-    "visibility": "example_visibility",
     "watermark": map[string]any{},
 }, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1641,7 +1605,7 @@ publicTemplateMediaItem, err := client.PublicTemplateMediaItem(nil).Load(map[str
 if err != nil {
     panic(err)
 }
-fmt.Println(publicTemplateMediaItem) // the loaded record
+fmt.Println(publicTemplateMediaItem.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1651,7 +1615,10 @@ publicTemplateMediaItems, err := client.PublicTemplateMediaItem(nil).List(nil, n
 if err != nil {
     panic(err)
 }
-fmt.Println(publicTemplateMediaItems) // the array of records
+// A []any of entities, one per record.
+for _, item := range publicTemplateMediaItems.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 #### Example: Create
@@ -1660,20 +1627,12 @@ fmt.Println(publicTemplateMediaItems) // the array of records
 result, err := client.PublicTemplateMediaItem(nil).Create(map[string]any{
     "slug": "example_slug",
     "captions": []any{},
-    "description": "example_description",
-    "height": 1,
-    "id": "example_id",
-    "imageUrl": "example_imageUrl",
-    "mediaType": "example_mediaType",
-    "name": "example_name",
-    "sourceTemplateId": "example_sourceTemplateId",
     "tags": []any{},
-    "width": 1,
 }, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1710,7 +1669,7 @@ result, err := client.StandaloneAgentBootstrap(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1753,7 +1712,7 @@ trendAlert, err := client.TrendAlert(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(trendAlert) // the loaded record
+fmt.Println(trendAlert.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: Create
@@ -1768,7 +1727,7 @@ result, err := client.TrendAlert(nil).Create(map[string]any{
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -1782,49 +1741,33 @@ Create an instance: `uploadCaptionMemeSuccess := client.UploadCaptionMemeSuccess
 | --- | --- |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `captions` | `string` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `string` |  |
+| `title` | `string` |  |
+| `visibility` | `string` |  |
+| `watermark` | `string` | Optional JSON watermark object. |
+
 #### Example: Create
 
 ```go
 result, err := client.UploadCaptionMemeSuccess(nil).Create(map[string]any{
+    "captions": "example_captions",
+    "file": "example_file",
 }, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
 ### Video
 
 Create an instance: `video := client.Video(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `Load(match, ctrl)` | Load a single entity by match criteria. |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
-
-#### Example: Load
-
-```go
-video, err := client.Video(nil).Load(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(video) // the loaded record
-```
-
-#### Example: Create
-
-```go
-result, err := client.Video(nil).Create(map[string]any{
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
 
 ## Features
 
@@ -1960,7 +1903,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

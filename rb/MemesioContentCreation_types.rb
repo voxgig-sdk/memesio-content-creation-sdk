@@ -67,9 +67,6 @@ AgentLoadMatch = Struct.new(
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
 # @!attribute [rw] locale
 #   @return [String, nil]
 #
@@ -77,9 +74,6 @@ AgentLoadMatch = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] slug
-#   @return [String, nil]
-#
-# @!attribute [rw] status
 #   @return [String, nil]
 #
 # @!attribute [rw] stylePreset
@@ -95,11 +89,9 @@ AgentLoadMatch = Struct.new(
 #   @return [String, nil]
 AgentCreateData = Struct.new(
   :description,
-  :id,
   :locale,
   :name,
   :slug,
-  :status,
   :stylePreset,
   :systemPrompt,
   :watermarkText,
@@ -121,9 +113,6 @@ AgentCreateData = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] slug
-#   @return [String, nil]
-#
 # @!attribute [rw] status
 #   @return [String, nil]
 #
@@ -143,7 +132,6 @@ AgentUpdateData = Struct.new(
   :description,
   :locale,
   :name,
-  :slug,
   :status,
   :stylePreset,
   :systemPrompt,
@@ -411,10 +399,118 @@ AiCaption = Struct.new(
 
 # Request payload for AiCaption#load.
 #
+# @!attribute [rw] blockedTerms
+#   @return [Array, nil]
+#
+# @!attribute [rw] canvasText
+#   @return [Array, nil]
+#
+# @!attribute [rw] captionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] captionSets
+#   @return [Array, nil]
+#
+# @!attribute [rw] entities
+#   @return [Array, nil]
+#
+# @!attribute [rw] fallbackUsed
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] generationStrategy
+#   @return [String, nil]
+#
 # @!attribute [rw] locale
 #   @return [String, nil]
+#
+# @!attribute [rw] memeId
+#   @return [String, nil]
+#
+# @!attribute [rw] memeSlug
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] ok
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] optionCount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] ownerToken
+#   @return [String, nil]
+#
+# @!attribute [rw] providerId
+#   @return [String, nil]
+#
+# @!attribute [rw] referenceCaptions
+#   @return [Array, nil]
+#
+# @!attribute [rw] rewriteNote
+#   @return [String, nil]
+#
+# @!attribute [rw] sceneSummary
+#   @return [String, nil]
+#
+# @!attribute [rw] templateDescription
+#   @return [String, nil]
+#
+# @!attribute [rw] templateName
+#   @return [String, nil]
+#
+# @!attribute [rw] templateTags
+#   @return [Array, nil]
+#
+# @!attribute [rw] tone
+#   @return [String, nil]
+#
+# @!attribute [rw] toneCues
+#   @return [Array, nil]
+#
+# @!attribute [rw] trendKeywords
+#   @return [Array, nil]
+#
+# @!attribute [rw] trendReferences
+#   @return [Array, nil]
+#
+# @!attribute [rw] trendSignals
+#   @return [Array, nil]
+#
+# @!attribute [rw] variationOffset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] voiceRules
+#   @return [Array, nil]
 AiCaptionLoadMatch = Struct.new(
+  :blockedTerms,
+  :canvasText,
+  :captionCount,
+  :captionSets,
+  :entities,
+  :fallbackUsed,
+  :generationStrategy,
   :locale,
+  :memeId,
+  :memeSlug,
+  :name,
+  :ok,
+  :optionCount,
+  :ownerToken,
+  :providerId,
+  :referenceCaptions,
+  :rewriteNote,
+  :sceneSummary,
+  :templateDescription,
+  :templateName,
+  :templateTags,
+  :tone,
+  :toneCues,
+  :trendKeywords,
+  :trendReferences,
+  :trendSignals,
+  :variationOffset,
+  :voiceRules,
   keyword_init: true
 )
 
@@ -708,9 +804,6 @@ AiJobLoadMatch = Struct.new(
 # @!attribute [rw] afterState
 #   @return [Hash, nil]
 #
-# @!attribute [rw] attempts
-#   @return [Integer, nil]
-#
 # @!attribute [rw] beforeState
 #   @return [Hash, nil]
 #
@@ -726,9 +819,6 @@ AiJobLoadMatch = Struct.new(
 # @!attribute [rw] consentAttested
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] createdAt
-#   @return [String, nil]
-#
 # @!attribute [rw] detectedFaceCount
 #   @return [Float]
 #
@@ -740,9 +830,6 @@ AiJobLoadMatch = Struct.new(
 #
 # @!attribute [rw] height
 #   @return [Float]
-#
-# @!attribute [rw] id
-#   @return [String]
 #
 # @!attribute [rw] input
 #   @return [Hash, nil]
@@ -760,7 +847,7 @@ AiJobLoadMatch = Struct.new(
 #   @return [Float, nil]
 #
 # @!attribute [rw] mediaType
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] metadata
 #   @return [Hash, nil]
@@ -783,9 +870,6 @@ AiJobLoadMatch = Struct.new(
 # @!attribute [rw] sourceImageUrl
 #   @return [String]
 #
-# @!attribute [rw] status
-#   @return [String]
-#
 # @!attribute [rw] targetAssetUrl
 #   @return [String]
 #
@@ -796,9 +880,6 @@ AiJobLoadMatch = Struct.new(
 #   @return [Integer, nil]
 #
 # @!attribute [rw] traceId
-#   @return [String, nil]
-#
-# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
 # @!attribute [rw] versionId
@@ -813,18 +894,15 @@ AiJobCreateData = Struct.new(
   :action,
   :actorId,
   :afterState,
-  :attempts,
   :beforeState,
   :brushEdits,
   :capability,
   :celebrityConfidence,
   :consentAttested,
-  :createdAt,
   :detectedFaceCount,
   :edgeRefinement,
   :frameTimeMs,
   :height,
-  :id,
   :input,
   :layerId,
   :layerType,
@@ -838,12 +916,10 @@ AiJobCreateData = Struct.new(
   :sourceAssetUrl,
   :sourceFaceIndex,
   :sourceImageUrl,
-  :status,
   :targetAssetUrl,
   :targetFaceIndex,
   :timeoutMs,
   :traceId,
-  :updatedAt,
   :versionId,
   :width,
   :workspaceId,
@@ -953,23 +1029,17 @@ AiMemeGenerationSucceeded = Struct.new(
 # @!attribute [rw] correlationId
 #   @return [String, nil]
 #
-# @!attribute [rw] degradedFromAsync
-#   @return [Boolean, nil]
-#
 # @!attribute [rw] editableCaptions
 #   @return [Array, nil]
 #
 # @!attribute [rw] flow
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] mode
-#   @return [String]
-#
-# @!attribute [rw] ok
-#   @return [Boolean]
+#   @return [String, nil]
 #
 # @!attribute [rw] preferredProviderId
 #   @return [String, nil]
@@ -979,12 +1049,6 @@ AiMemeGenerationSucceeded = Struct.new(
 #
 # @!attribute [rw] rewriteNote
 #   @return [String, nil]
-#
-# @!attribute [rw] runId
-#   @return [String, nil]
-#
-# @!attribute [rw] status
-#   @return [String]
 #
 # @!attribute [rw] templateId
 #   @return [String, nil]
@@ -996,10 +1060,7 @@ AiMemeGenerationSucceeded = Struct.new(
 #   @return [Array, nil]
 #
 # @!attribute [rw] variantCount
-#   @return [Integer]
-#
-# @!attribute [rw] variants
-#   @return [Array]
+#   @return [Integer, nil]
 #
 # @!attribute [rw] workspaceId
 #   @return [String, nil]
@@ -1008,22 +1069,17 @@ AiMemeGenerationSucceededCreateData = Struct.new(
   :captionSource,
   :captions,
   :correlationId,
-  :degradedFromAsync,
   :editableCaptions,
   :flow,
   :imageUrl,
   :mode,
-  :ok,
   :preferredProviderId,
   :prompt,
   :rewriteNote,
-  :runId,
-  :status,
   :templateId,
   :tone,
   :toneCues,
   :variantCount,
-  :variants,
   :workspaceId,
   keyword_init: true
 )
@@ -1075,10 +1131,46 @@ AiProvider = Struct.new(
 
 # Request payload for AiProvider#load.
 #
-# @!attribute [rw] refresh
-#   @return [Boolean, nil]
+# @!attribute [rw] actorId
+#   @return [String, nil]
+#
+# @!attribute [rw] correlationId
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
+#   @return [Float, nil]
+#
+# @!attribute [rw] mappingMode
+#   @return [String, nil]
+#
+# @!attribute [rw] maxSlots
+#   @return [Integer, nil]
+#
+# @!attribute [rw] prompt
+#   @return [String, nil]
+#
+# @!attribute [rw] sourceImageUrl
+#   @return [String, nil]
+#
+# @!attribute [rw] texts
+#   @return [Array, nil]
+#
+# @!attribute [rw] trendSignals
+#   @return [Array, nil]
+#
+# @!attribute [rw] workspaceId
+#   @return [String, nil]
 AiProviderLoadMatch = Struct.new(
-  :refresh,
+  :actorId,
+  :correlationId,
+  :limit,
+  :mappingMode,
+  :maxSlots,
+  :prompt,
+  :sourceImageUrl,
+  :texts,
+  :trendSignals,
+  :workspaceId,
   keyword_init: true
 )
 
@@ -1132,21 +1224,29 @@ class Analytics
 end
 
 # Request payload for Analytics#load.
-#
-# @!attribute [rw] template_id
-#   @return [String, nil]
-AnalyticsLoadMatch = Struct.new(
-  :template_id,
-  keyword_init: true
-)
+class AnalyticsLoadMatch
+end
 
 # Auth entity data model.
 class Auth
 end
 
 # Request payload for Auth#create.
-class AuthCreateData
-end
+#
+# @!attribute [rw] displayName
+#   @return [Object, nil]
+#
+# @!attribute [rw] email
+#   @return [Object, nil]
+#
+# @!attribute [rw] password
+#   @return [Object, nil]
+AuthCreateData = Struct.new(
+  :displayName,
+  :email,
+  :password,
+  keyword_init: true
+)
 
 # Billing entity data model.
 class Billing
@@ -1542,50 +1642,20 @@ Generate = Struct.new(
 
 # Request payload for Generate#create.
 #
-# @!attribute [rw] base64
-#   @return [String, nil]
-#
-# @!attribute [rw] byteLength
-#   @return [Integer]
-#
 # @!attribute [rw] captions
 #   @return [Array, nil]
 #
-# @!attribute [rw] dataUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] delayMs
-#   @return [Integer]
-#
 # @!attribute [rw] durationMs
 #   @return [Integer, nil]
-#
-# @!attribute [rw] filename
-#   @return [String]
 #
 # @!attribute [rw] fps
 #   @return [Integer, nil]
 #
 # @!attribute [rw] gifSlug
-#   @return [String]
-#
-# @!attribute [rw] height
-#   @return [Integer]
-#
-# @!attribute [rw] mimeType
-#   @return [String]
-#
-# @!attribute [rw] pages
-#   @return [Integer]
-#
-# @!attribute [rw] parameters
-#   @return [Hash]
+#   @return [String, nil]
 #
 # @!attribute [rw] returnBase64
 #   @return [Boolean, nil]
-#
-# @!attribute [rw] sourceDurationMs
-#   @return [Integer]
 #
 # @!attribute [rw] startMs
 #   @return [Integer, nil]
@@ -1596,31 +1666,17 @@ Generate = Struct.new(
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] width
-#   @return [Integer]
-#
 # @!attribute [rw] widthPx
 #   @return [Integer, nil]
 GenerateCreateData = Struct.new(
-  :base64,
-  :byteLength,
   :captions,
-  :dataUrl,
-  :delayMs,
   :durationMs,
-  :filename,
   :fps,
   :gifSlug,
-  :height,
-  :mimeType,
-  :pages,
-  :parameters,
   :returnBase64,
-  :sourceDurationMs,
   :startMs,
   :tags,
   :title,
-  :width,
   :widthPx,
   keyword_init: true
 )
@@ -1697,8 +1753,33 @@ class Media
 end
 
 # Request payload for Media#create.
-class MediaCreateData
-end
+#
+# @!attribute [rw] action
+#   @return [Object, nil]
+#
+# @!attribute [rw] contentType
+#   @return [Object, nil]
+#
+# @!attribute [rw] expiresInSeconds
+#   @return [Object, nil]
+#
+# @!attribute [rw] ownerToken
+#   @return [Object, nil]
+#
+# @!attribute [rw] path
+#   @return [Object, nil]
+#
+# @!attribute [rw] prefix
+#   @return [Object, nil]
+MediaCreateData = Struct.new(
+  :action,
+  :contentType,
+  :expiresInSeconds,
+  :ownerToken,
+  :path,
+  :prefix,
+  keyword_init: true
+)
 
 # Meme entity data model.
 #
@@ -1849,20 +1930,11 @@ MemeListMatch = Struct.new(
 
 # Request payload for Meme#create.
 #
-# @!attribute [rw] altText
-#   @return [String]
-#
-# @!attribute [rw] canonicalImageUrl
-#   @return [String]
-#
 # @!attribute [rw] canvas
 #   @return [Hash]
 #
 # @!attribute [rw] captions
 #   @return [Array]
-#
-# @!attribute [rw] createdAt
-#   @return [String]
 #
 # @!attribute [rw] generationRunId
 #   @return [Object, nil]
@@ -1870,69 +1942,34 @@ MemeListMatch = Struct.new(
 # @!attribute [rw] generationVariantId
 #   @return [Object, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
 # @!attribute [rw] imageDataUrl
 #   @return [String]
 #
-# @!attribute [rw] imageUrl
-#   @return [String]
-#
-# @!attribute [rw] nsfwStatus
-#   @return [String]
-#
 # @!attribute [rw] overlays
-#   @return [Array]
-#
-# @!attribute [rw] shareSlug
-#   @return [String]
-#
-# @!attribute [rw] shareUrl
-#   @return [String]
-#
-# @!attribute [rw] shareViews
-#   @return [Integer]
-#
-# @!attribute [rw] slug
-#   @return [String]
+#   @return [Array, nil]
 #
 # @!attribute [rw] sourceImageUrl
 #   @return [String]
 #
-# @!attribute [rw] tags
-#   @return [Array]
-#
 # @!attribute [rw] templateSlug
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] title
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] visibility
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] watermark
 #   @return [Hash]
 MemeCreateData = Struct.new(
-  :altText,
-  :canonicalImageUrl,
   :canvas,
   :captions,
-  :createdAt,
   :generationRunId,
   :generationVariantId,
-  :id,
   :imageDataUrl,
-  :imageUrl,
-  :nsfwStatus,
   :overlays,
-  :shareSlug,
-  :shareUrl,
-  :shareViews,
-  :slug,
   :sourceImageUrl,
-  :tags,
   :templateSlug,
   :title,
   :visibility,
@@ -2065,12 +2102,6 @@ PublicTemplateMediaItemLoadMatch = Struct.new(
 
 # Request payload for PublicTemplateMediaItem#list.
 #
-# @!attribute [rw] media_type
-#   @return [String, nil]
-#
-# @!attribute [rw] mode
-#   @return [String, nil]
-#
 # @!attribute [rw] page
 #   @return [Integer, nil]
 #
@@ -2089,8 +2120,6 @@ PublicTemplateMediaItemLoadMatch = Struct.new(
 # @!attribute [rw] tag
 #   @return [String, nil]
 PublicTemplateMediaItemListMatch = Struct.new(
-  :media_type,
-  :mode,
   :page,
   :page_size,
   :q,
@@ -2105,99 +2134,43 @@ PublicTemplateMediaItemListMatch = Struct.new(
 # @!attribute [rw] slug
 #   @return [String]
 #
-# @!attribute [rw] animated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] assetBytes
-#   @return [Object, nil]
-#
-# @!attribute [rw] assetContentType
-#   @return [String, nil]
-#
-# @!attribute [rw] boxCount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] captionCount
-#   @return [Integer, nil]
-#
 # @!attribute [rw] captions
 #   @return [Array]
-#
-# @!attribute [rw] categories
-#   @return [Array, nil]
-#
-# @!attribute [rw] description
-#   @return [String]
 #
 # @!attribute [rw] durationMs
 #   @return [Object, nil]
 #
-# @!attribute [rw] exampleImageUrl
-#   @return [Object, nil]
-#
-# @!attribute [rw] frameCount
-#   @return [Object, nil]
-#
-# @!attribute [rw] height
-#   @return [Object]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] imageUrl
-#   @return [String]
-#
-# @!attribute [rw] mediaType
-#   @return [String]
-#
-# @!attribute [rw] name
-#   @return [String]
-#
-# @!attribute [rw] posterImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] previewImageUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] qualityStatus
-#   @return [String, nil]
-#
-# @!attribute [rw] sourceTemplateId
-#   @return [Object]
-#
-# @!attribute [rw] sourceUrl
-#   @return [String, nil]
-#
 # @!attribute [rw] tags
 #   @return [Array]
 #
-# @!attribute [rw] width
-#   @return [Object]
+# @!attribute [rw] fps
+#   @return [Object, nil]
+#
+# @!attribute [rw] gifSlug
+#   @return [Object, nil]
+#
+# @!attribute [rw] returnBase64
+#   @return [Object, nil]
+#
+# @!attribute [rw] startMs
+#   @return [Object, nil]
+#
+# @!attribute [rw] title
+#   @return [Object, nil]
+#
+# @!attribute [rw] widthPx
+#   @return [Object, nil]
 PublicTemplateMediaItemCreateData = Struct.new(
   :slug,
-  :animated,
-  :assetBytes,
-  :assetContentType,
-  :boxCount,
-  :captionCount,
   :captions,
-  :categories,
-  :description,
   :durationMs,
-  :exampleImageUrl,
-  :frameCount,
-  :height,
-  :id,
-  :imageUrl,
-  :mediaType,
-  :name,
-  :posterImageUrl,
-  :previewImageUrl,
-  :qualityStatus,
-  :sourceTemplateId,
-  :sourceUrl,
   :tags,
-  :width,
+  :fps,
+  :gifSlug,
+  :returnBase64,
+  :startMs,
+  :title,
+  :widthPx,
   keyword_init: true
 )
 
@@ -2471,12 +2444,54 @@ TrendAlertCreateData = Struct.new(
 )
 
 # UploadCaptionMemeSuccess entity data model.
-class UploadCaptionMemeSuccess
-end
+#
+# @!attribute [rw] captions
+#   @return [String]
+#
+# @!attribute [rw] file
+#   @return [String]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] visibility
+#   @return [String, nil]
+#
+# @!attribute [rw] watermark
+#   @return [String, nil]
+UploadCaptionMemeSuccess = Struct.new(
+  :captions,
+  :file,
+  :title,
+  :visibility,
+  :watermark,
+  keyword_init: true
+)
 
 # Request payload for UploadCaptionMemeSuccess#create.
-class UploadCaptionMemeSuccessCreateData
-end
+#
+# @!attribute [rw] captions
+#   @return [String]
+#
+# @!attribute [rw] file
+#   @return [String]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] visibility
+#   @return [String, nil]
+#
+# @!attribute [rw] watermark
+#   @return [String, nil]
+UploadCaptionMemeSuccessCreateData = Struct.new(
+  :captions,
+  :file,
+  :title,
+  :visibility,
+  :watermark,
+  keyword_init: true
+)
 
 # Video entity data model.
 class Video
@@ -2484,42 +2499,215 @@ end
 
 # Request payload for Video#load.
 #
-# @!attribute [rw] beat_offset_m
+# @!attribute [rw] kind
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] bpm
+# @!attribute [rw] query
+#   @return [String, nil]
+#
+# @!attribute [rw] tag
+#   @return [String, nil]
+#
+# @!attribute [rw] target_bpm
 #   @return [Integer, nil]
 #
-# @!attribute [rw] locale
-#   @return [String, nil]
-#
-# @!attribute [rw] style_preset_id
-#   @return [String, nil]
-#
-# @!attribute [rw] sync_to_beat_grid
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] tone
-#   @return [String, nil]
-#
-# @!attribute [rw] transcript
-#   @return [String, nil]
-#
-# @!attribute [rw] trend_keyword
-#   @return [String, nil]
+# @!attribute [rw] tolerance_bpm
+#   @return [Integer, nil]
 VideoLoadMatch = Struct.new(
-  :beat_offset_m,
-  :bpm,
-  :locale,
-  :style_preset_id,
-  :sync_to_beat_grid,
-  :tone,
-  :transcript,
-  :trend_keyword,
+  :kind,
+  :limit,
+  :query,
+  :tag,
+  :target_bpm,
+  :tolerance_bpm,
   keyword_init: true
 )
 
 # Request payload for Video#create.
-class VideoCreateData
-end
+#
+# @!attribute [rw] action
+#   @return [Object, nil]
+#
+# @!attribute [rw] assetId
+#   @return [Object, nil]
+#
+# @!attribute [rw] atMs
+#   @return [Object, nil]
+#
+# @!attribute [rw] audioAssetId
+#   @return [Object, nil]
+#
+# @!attribute [rw] beatOffsetMs
+#   @return [Object, nil]
+#
+# @!attribute [rw] bitrateKbps
+#   @return [Object, nil]
+#
+# @!attribute [rw] bpm
+#   @return [Object, nil]
+#
+# @!attribute [rw] cancelled
+#   @return [Object, nil]
+#
+# @!attribute [rw] container
+#   @return [Object, nil]
+#
+# @!attribute [rw] durationMs
+#   @return [Object, nil]
+#
+# @!attribute [rw] durationSeconds
+#   @return [Object, nil]
+#
+# @!attribute [rw] easing
+#   @return [Object, nil]
+#
+# @!attribute [rw] error
+#   @return [Object, nil]
+#
+# @!attribute [rw] frameRate
+#   @return [Object, nil]
+#
+# @!attribute [rw] inputFormat
+#   @return [Object, nil]
+#
+# @!attribute [rw] intensity
+#   @return [Object, nil]
+#
+# @!attribute [rw] jobId
+#   @return [Object, nil]
+#
+# @!attribute [rw] locale
+#   @return [Object, nil]
+#
+# @!attribute [rw] mimeType
+#   @return [Object, nil]
+#
+# @!attribute [rw] name
+#   @return [Object, nil]
+#
+# @!attribute [rw] offsetMs
+#   @return [Object, nil]
+#
+# @!attribute [rw] outputPresetId
+#   @return [Object, nil]
+#
+# @!attribute [rw] outputUrl
+#   @return [Object, nil]
+#
+# @!attribute [rw] planTier
+#   @return [Object, nil]
+#
+# @!attribute [rw] presetId
+#   @return [Object, nil]
+#
+# @!attribute [rw] progressPercent
+#   @return [Object, nil]
+#
+# @!attribute [rw] project
+#   @return [Object, nil]
+#
+# @!attribute [rw] projectId
+#   @return [Object, nil]
+#
+# @!attribute [rw] property
+#   @return [Object, nil]
+#
+# @!attribute [rw] sourceDeviceId
+#   @return [Object, nil]
+#
+# @!attribute [rw] sourceUrl
+#   @return [Object, nil]
+#
+# @!attribute [rw] stage
+#   @return [Object, nil]
+#
+# @!attribute [rw] startMs
+#   @return [Object, nil]
+#
+# @!attribute [rw] stylePresetId
+#   @return [Object, nil]
+#
+# @!attribute [rw] syncToBeatGrid
+#   @return [Object, nil]
+#
+# @!attribute [rw] tone
+#   @return [Object, nil]
+#
+# @!attribute [rw] trackId
+#   @return [Object, nil]
+#
+# @!attribute [rw] transcript
+#   @return [Object, nil]
+#
+# @!attribute [rw] trendKeywords
+#   @return [Object, nil]
+#
+# @!attribute [rw] type
+#   @return [Object, nil]
+#
+# @!attribute [rw] updatedAt
+#   @return [Object, nil]
+#
+# @!attribute [rw] value
+#   @return [Object, nil]
+#
+# @!attribute [rw] watermarkEnabled
+#   @return [Object, nil]
+#
+# @!attribute [rw] watermarkText
+#   @return [Object, nil]
+#
+# @!attribute [rw] workerId
+#   @return [Object, nil]
+VideoCreateData = Struct.new(
+  :action,
+  :assetId,
+  :atMs,
+  :audioAssetId,
+  :beatOffsetMs,
+  :bitrateKbps,
+  :bpm,
+  :cancelled,
+  :container,
+  :durationMs,
+  :durationSeconds,
+  :easing,
+  :error,
+  :frameRate,
+  :inputFormat,
+  :intensity,
+  :jobId,
+  :locale,
+  :mimeType,
+  :name,
+  :offsetMs,
+  :outputPresetId,
+  :outputUrl,
+  :planTier,
+  :presetId,
+  :progressPercent,
+  :project,
+  :projectId,
+  :property,
+  :sourceDeviceId,
+  :sourceUrl,
+  :stage,
+  :startMs,
+  :stylePresetId,
+  :syncToBeatGrid,
+  :tone,
+  :trackId,
+  :transcript,
+  :trendKeywords,
+  :type,
+  :updatedAt,
+  :value,
+  :watermarkEnabled,
+  :watermarkText,
+  :workerId,
+  keyword_init: true
+)
 

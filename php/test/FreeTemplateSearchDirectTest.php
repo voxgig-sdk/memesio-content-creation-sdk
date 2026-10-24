@@ -10,6 +10,18 @@ use PHPUnit\Framework\TestCase;
 
 class FreeTemplateSearchDirectTest extends TestCase
 {
+    // main.kit.test.live.strict is true (the default is true): a live
+    // request that fails, or a live test missing an input it needs,
+    // fails the test.
+    // An account with no record for a test to read skips it either way.
+    private const LIVE_STRICT = true;
+
+    private static function liveOk(array $result): bool
+    {
+        $status = Helpers::to_int($result["status"] ?? 0);
+        return empty($result["err"]) && !empty($result["ok"]) && $status >= 200 && $status < 300;
+    }
+
     public function test_direct_list_free_template_search(): void
     {
         $setup = free_template_search_direct_setup([
@@ -23,29 +35,21 @@ class FreeTemplateSearchDirectTest extends TestCase
         }
         $client = $setup["client"];
 
+        $params = [];
 
         $result = $client->direct([
             "path" => "api/free/templates",
             "method" => "GET",
-            "params" => [],
+            "params" => $params,
         ]);
         if ($setup["live"]) {
-            // Live mode is lenient: synthetic IDs frequently 4xx and the
-            // list-response shape varies wildly across public APIs. Skip
-            // rather than fail when the call doesn't return a usable list.
-            if (!empty($result["err"])) {
-                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$result["err"]);
-                return;
+            if (!self::liveOk($result)) {
+                Runner::live_miss(self::LIVE_STRICT, "Live list failed: " . Runner::live_describe($result));
             }
-            if (empty($result["ok"])) {
-                $this->markTestSkipped("list call not ok (likely synthetic IDs against live API)");
-                return;
+            if (null === Runner::live_list($result["data"] ?? null)) {
+                Runner::live_miss(self::LIVE_STRICT, "Live list returned no list: " . Runner::live_describe($result));
             }
-            $status = Helpers::to_int($result["status"]);
-            if ($status < 200 || $status >= 300) {
-                $this->markTestSkipped("expected 2xx status, got " . $status);
-                return;
-            }
+            $this->assertIsArray(Runner::live_list($result["data"]));
         } else {
             $this->assertArrayNotHasKey("err", $result);
             $this->assertTrue($result["ok"]);
@@ -80,11 +84,12 @@ function free_template_search_direct_setup($mockres)
             "apikey" => $env["MEMESIO_CONTENT_CREATION_APIKEY"],
         ]);
         $client = new MemesioContentCreationSDK($merged_opts);
+        $idmap = $env["MEMESIO_CONTENT_CREATION_TEST_FREE_TEMPLATE_SEARCH_ENTID"] ?? [];
         return [
             "client" => $client,
             "calls" => $calls,
             "live" => true,
-            "idmap" => [],
+            "idmap" => is_array($idmap) ? $idmap : [],
         ];
     }
 

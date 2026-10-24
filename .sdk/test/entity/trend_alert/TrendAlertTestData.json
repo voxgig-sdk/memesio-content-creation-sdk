@@ -103,22 +103,17 @@
       "version": 2,
       "source": "openapi3"
     },
+    "GET /api/alerts/preferences": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
     "GET /api/alerts": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/alerts/ranking": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
-    "GET /api/alerts/feedback": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
-    "GET /api/alerts/preferences": {
+    "GET /api/alerts/connectors": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
@@ -128,12 +123,12 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/alerts/ingestion": {
+    "GET /api/alerts/feedback": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/alerts/quality-report": {
+    "GET /api/alerts/ingestion": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
@@ -143,7 +138,12 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/alerts/connectors": {
+    "GET /api/alerts/quality-report": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/alerts/ranking": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

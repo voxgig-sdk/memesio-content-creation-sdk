@@ -21,10 +21,6 @@ main: kit: flow: BasicAiJobFlow:
         suffix: "_dt0"
       }
 
-      m: {
-        id: "ai_job01"
-      }
-
       o: "load",
       v: [
         {

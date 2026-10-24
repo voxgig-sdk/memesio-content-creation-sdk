@@ -10,6 +10,13 @@ main: kit: entity: video: {
       name: "create"
       points: [
         {
+          bf: [
+            "action"
+            "project"
+            "projectId"
+            "sourceDeviceId"
+            "updatedAt"
+          ]
           co: {
             id: "POST /api/video/drafts"
             source: "openapi3"
@@ -37,6 +44,14 @@ main: kit: entity: video: {
           }
         }
         {
+          bf: [
+            "bitrateKbps"
+            "container"
+            "planTier"
+            "presetId"
+            "watermarkEnabled"
+            "watermarkText"
+          ]
           co: {
             id: "POST /api/video/export-settings"
             source: "openapi3"
@@ -64,6 +79,13 @@ main: kit: entity: video: {
           }
         }
         {
+          bf: [
+            "durationSeconds"
+            "inputFormat"
+            "mimeType"
+            "outputPresetId"
+            "planTier"
+          ]
           co: {
             id: "POST /api/video/formats"
             source: "openapi3"
@@ -91,6 +113,20 @@ main: kit: entity: video: {
           }
         }
         {
+          bf: [
+            "action"
+            "cancelled"
+            "durationSeconds"
+            "error"
+            "jobId"
+            "outputPresetId"
+            "outputUrl"
+            "planTier"
+            "progressPercent"
+            "projectId"
+            "stage"
+            "workerId"
+          ]
           co: {
             id: "POST /api/video/render-queue"
             source: "openapi3"
@@ -118,6 +154,20 @@ main: kit: entity: video: {
           }
         }
         {
+          bf: [
+            "action"
+            "audioAssetId"
+            "beatOffsetMs"
+            "bpm"
+            "locale"
+            "projectId"
+            "stylePresetId"
+            "syncToBeatGrid"
+            "tone"
+            "trackId"
+            "transcript"
+            "trendKeywords"
+          ]
           co: {
             id: "POST /api/video/subtitles"
             source: "openapi3"
@@ -145,6 +195,15 @@ main: kit: entity: video: {
           }
         }
         {
+          bf: [
+            "action"
+            "durationMs"
+            "intensity"
+            "presetId"
+            "projectId"
+            "startMs"
+            "trackId"
+          ]
           co: {
             id: "POST /api/video/text-animations"
             source: "openapi3"
@@ -172,6 +231,23 @@ main: kit: entity: video: {
           }
         }
         {
+          bf: [
+            "action"
+            "assetId"
+            "atMs"
+            "durationMs"
+            "easing"
+            "frameRate"
+            "name"
+            "offsetMs"
+            "projectId"
+            "property"
+            "sourceUrl"
+            "startMs"
+            "trackId"
+            "type"
+            "value"
+          ]
           co: {
             id: "POST /api/video/timeline"
             source: "openapi3"
@@ -203,6 +279,360 @@ main: kit: entity: video: {
     load: {
       name: "load"
       points: [
+        {
+          co: {
+            id: "GET /api/video/audio-library"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "kind"
+                or: "kind"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "tag"
+                or: "tag"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "target_bpm"
+                or: "targetBpm"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "tolerance_bpm"
+                or: "toleranceBpm"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/video/audio-library"
+          q: {
+            "$action": "audio_library"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "audio-library"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/video/drafts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "project_id"
+                or: "projectId"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/video/drafts"
+          q: {
+            "$action": "draft"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "drafts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/video/export-settings"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "bitrate_kbp"
+                or: "bitrateKbps"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "container"
+                or: "container"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "plan_tier"
+                or: "planTier"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "preset_id"
+                or: "presetId"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "watermark_enabled"
+                or: "watermarkEnabled"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "watermark_text"
+                or: "watermarkText"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/video/export-settings"
+          q: {
+            "$action": "export_setting"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "export-settings"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/video/formats"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "duration_second"
+                or: "durationSeconds"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "input_format"
+                or: "inputFormat"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "mime_type"
+                or: "mimeType"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "output_preset_id"
+                or: "outputPresetId"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "plan_tier"
+                or: "planTier"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/video/formats"
+          q: {
+            "$action": "format"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "formats"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/video/render-performance"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "refresh"
+                or: "refresh"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/video/render-performance"
+          q: {
+            "$action": "render_performance"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "render-performance"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/video/render-queue"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "mode"
+                or: "mode"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "plan_tier"
+                or: "planTier"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "status"
+                or: "status"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/video/render-queue"
+          q: {
+            "$action": "render_queue"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "video"
+            }
+            {
+              lit: "render-queue"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
         {
           co: {
             id: "GET /api/video/subtitles"
@@ -273,16 +703,6 @@ main: kit: entity: video: {
           o: "/api/video/subtitles"
           q: {
             "$action": "subtitle"
-            exist: [
-              "beat_offset_m"
-              "bpm"
-              "locale"
-              "style_preset_id"
-              "sync_to_beat_grid"
-              "tone"
-              "transcript"
-              "trend_keyword"
-            ]
           }
           s: [
             {
@@ -293,306 +713,6 @@ main: kit: entity: video: {
             }
             {
               lit: "subtitles"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/video/audio-library"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "kind"
-                or: "kind"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "limit"
-                or: "limit"
-                r: false
-                t: "`$INTEGER`"
-              }
-              {
-                k: "query"
-                n: "query"
-                or: "query"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "tag"
-                or: "tag"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "target_bpm"
-                or: "targetBpm"
-                r: false
-                t: "`$INTEGER`"
-              }
-              {
-                k: "query"
-                n: "tolerance_bpm"
-                or: "toleranceBpm"
-                r: false
-                t: "`$INTEGER`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/video/audio-library"
-          q: {
-            "$action": "audio_library"
-            exist: [
-              "kind"
-              "limit"
-              "query"
-              "tag"
-              "target_bpm"
-              "tolerance_bpm"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "video"
-            }
-            {
-              lit: "audio-library"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/video/export-settings"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "bitrate_kbp"
-                or: "bitrateKbps"
-                r: false
-                t: "`$NUMBER`"
-              }
-              {
-                k: "query"
-                n: "container"
-                or: "container"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "plan_tier"
-                or: "planTier"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "preset_id"
-                or: "presetId"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "watermark_enabled"
-                or: "watermarkEnabled"
-                r: false
-                t: "`$BOOLEAN`"
-              }
-              {
-                k: "query"
-                n: "watermark_text"
-                or: "watermarkText"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/video/export-settings"
-          q: {
-            "$action": "export_setting"
-            exist: [
-              "bitrate_kbp"
-              "container"
-              "plan_tier"
-              "preset_id"
-              "watermark_enabled"
-              "watermark_text"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "video"
-            }
-            {
-              lit: "export-settings"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/video/formats"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "duration_second"
-                or: "durationSeconds"
-                r: false
-                t: "`$NUMBER`"
-              }
-              {
-                k: "query"
-                n: "input_format"
-                or: "inputFormat"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "mime_type"
-                or: "mimeType"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "output_preset_id"
-                or: "outputPresetId"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "plan_tier"
-                or: "planTier"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/video/formats"
-          q: {
-            "$action": "format"
-            exist: [
-              "duration_second"
-              "input_format"
-              "mime_type"
-              "output_preset_id"
-              "plan_tier"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "video"
-            }
-            {
-              lit: "formats"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/video/render-queue"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "limit"
-                or: "limit"
-                r: false
-                t: "`$INTEGER`"
-              }
-              {
-                k: "query"
-                n: "mode"
-                or: "mode"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "plan_tier"
-                or: "planTier"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "status"
-                or: "status"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/video/render-queue"
-          q: {
-            "$action": "render_queue"
-            exist: [
-              "limit"
-              "mode"
-              "plan_tier"
-              "status"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "video"
-            }
-            {
-              lit: "render-queue"
             }
           ]
           t: {
@@ -642,12 +762,6 @@ main: kit: entity: video: {
           o: "/api/video/text-animations"
           q: {
             "$action": "text_animation"
-            exist: [
-              "duration_m"
-              "intensity"
-              "preset_id"
-              "start_m"
-            ]
           }
           s: [
             {
@@ -658,55 +772,6 @@ main: kit: entity: video: {
             }
             {
               lit: "text-animations"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/video/drafts"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "limit"
-                or: "limit"
-                r: false
-                t: "`$INTEGER`"
-              }
-              {
-                k: "query"
-                n: "project_id"
-                or: "projectId"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/video/drafts"
-          q: {
-            "$action": "draft"
-            exist: [
-              "limit"
-              "project_id"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "video"
-            }
-            {
-              lit: "drafts"
             }
           ]
           t: {
@@ -742,10 +807,6 @@ main: kit: entity: video: {
           o: "/api/video/timeline"
           q: {
             "$action": "timeline"
-            exist: [
-              "limit"
-              "project_id"
-            ]
           }
           s: [
             {
@@ -756,47 +817,6 @@ main: kit: entity: video: {
             }
             {
               lit: "timeline"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/video/render-performance"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "refresh"
-                or: "refresh"
-                r: false
-                t: "`$BOOLEAN`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/video/render-performance"
-          q: {
-            "$action": "render_performance"
-            exist: [
-              "refresh"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "video"
-            }
-            {
-              lit: "render-performance"
             }
           ]
           t: {

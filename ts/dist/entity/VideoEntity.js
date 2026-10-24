@@ -84,9 +84,12 @@ class VideoEntity extends MemesioContentCreationEntityBase_1.MemesioContentCreat
         catch (err) {
             // What a hook throws here must not escape the cleaning below.
             try {
-                fres = featureHook(ctx, 'PreUnexpected');
-                if (fres instanceof Promise) {
-                    await fres;
+                // Once per operation: makeError fires it for its own error.
+                if (!ctx.unexpectedFired) {
+                    fres = featureHook(ctx, 'PreUnexpected');
+                    if (fres instanceof Promise) {
+                        await fres;
+                    }
                 }
             }
             catch (hookerr) {
@@ -98,7 +101,7 @@ class VideoEntity extends MemesioContentCreationEntityBase_1.MemesioContentCreat
             }
             else {
                 // Off-happy-path (throw disabled): typed as any so the method's
-                // Promise<Video> return stays clean under strict null checks.
+                // Promise<VideoEntity> return stays clean under strict null checks.
                 return undefined;
             }
         }
@@ -172,9 +175,12 @@ class VideoEntity extends MemesioContentCreationEntityBase_1.MemesioContentCreat
         catch (err) {
             // What a hook throws here must not escape the cleaning below.
             try {
-                fres = featureHook(ctx, 'PreUnexpected');
-                if (fres instanceof Promise) {
-                    await fres;
+                // Once per operation: makeError fires it for its own error.
+                if (!ctx.unexpectedFired) {
+                    fres = featureHook(ctx, 'PreUnexpected');
+                    if (fres instanceof Promise) {
+                        await fres;
+                    }
                 }
             }
             catch (hookerr) {
@@ -186,7 +192,7 @@ class VideoEntity extends MemesioContentCreationEntityBase_1.MemesioContentCreat
             }
             else {
                 // Off-happy-path (throw disabled): typed as any so the method's
-                // Promise<Video> return stays clean under strict null checks.
+                // Promise<VideoEntity> return stays clean under strict null checks.
                 return undefined;
             }
         }

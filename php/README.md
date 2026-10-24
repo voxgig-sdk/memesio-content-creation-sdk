@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -25,7 +25,7 @@ composer require voxgig-sdk/memesio-content-creation-sdk:@dev
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `x-developer-api-key` header.
 
 ### 1. Create a client
 
@@ -258,11 +258,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `load` | `($reqmatch, $ctrl): mixed` | Load a single entity by match criteria, and return it. |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
+| `create` | `($reqdata, $ctrl): mixed` | Create a new entity, and return it. |
+| `update` | `($reqdata, $ctrl): mixed` | Update an existing entity, and return it. |
+| `remove` | `($reqmatch, $ctrl): mixed` | Remove an entity, and return it marked as deleted. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -272,9 +272,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -470,7 +470,7 @@ API path: `/api/ai/templates/detect`
 
 Operations: Load.
 
-API path: `/api/analytics/experiments/templates`
+API path: `/api/analytics/alerts/backend`
 
 #### Auth
 
@@ -730,6 +730,11 @@ API path: `/api/alerts/delivery`
 
 | Field | Description |
 | --- | --- |
+| `captions` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` |  |
+| `title` |  |
+| `visibility` |  |
+| `watermark` | Optional JSON watermark object. |
 
 Operations: Create.
 
@@ -972,12 +977,11 @@ $ai_job = $client->AiJob()->create([
     "capability" => null, // string
     "detectedFaceCount" => null, // float
     "height" => null, // float
-    "id" => null, // string
     "layerId" => null, // string
+    "mediaType" => null, // string
     "projectId" => null, // string
     "sourceAssetUrl" => null, // string
     "sourceImageUrl" => null, // string
-    "status" => null, // string
     "targetAssetUrl" => null, // string
     "width" => null, // float
 ]);
@@ -1024,13 +1028,7 @@ Create an instance: `$ai_meme_generation_succeeded = $client->AiMemeGenerationSu
 
 ```php
 $ai_meme_generation_succeeded = $client->AiMemeGenerationSucceeded()->create([
-    "flow" => null, // string
-    "mode" => null, // string
-    "ok" => null, // bool
     "prompt" => null, // string
-    "status" => null, // string
-    "variantCount" => null, // int
-    "variants" => null, // array
 ]);
 ```
 
@@ -1105,13 +1103,6 @@ Create an instance: `$auth = $client->Auth();`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-
-#### Example: Create
-
-```php
-$auth = $client->Auth()->create([
-]);
-```
 
 
 ### Billing
@@ -1291,7 +1282,7 @@ Create an instance: `$free_template_search = $client->FreeTemplateSearch();`
 #### Example: List
 
 ```php
-// list() returns an array of FreeTemplateSearch records (throws on error).
+// list() returns an array of FreeTemplateSearch entities, one per record (throws on error).
 $free_template_searchs = $client->FreeTemplateSearch()->list();
 ```
 
@@ -1335,16 +1326,6 @@ Create an instance: `$generate = $client->Generate();`
 
 ```php
 $generate = $client->Generate()->create([
-    "byteLength" => null, // int
-    "delayMs" => null, // int
-    "filename" => null, // string
-    "gifSlug" => null, // string
-    "height" => null, // int
-    "mimeType" => null, // string
-    "pages" => null, // int
-    "parameters" => null, // array
-    "sourceDurationMs" => null, // int
-    "width" => null, // int
 ]);
 ```
 
@@ -1454,7 +1435,7 @@ $meme = $client->Meme()->load(["id" => "meme_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Meme records (throws on error).
+// list() returns an array of Meme entities, one per record (throws on error).
 $memes = $client->Meme()->list();
 ```
 
@@ -1462,24 +1443,10 @@ $memes = $client->Meme()->list();
 
 ```php
 $meme = $client->Meme()->create([
-    "altText" => null, // string
-    "canonicalImageUrl" => null, // string
     "canvas" => null, // array
     "captions" => null, // array
-    "createdAt" => null, // string
     "imageDataUrl" => null, // string
-    "imageUrl" => null, // string
-    "nsfwStatus" => null, // string
-    "overlays" => null, // array
-    "shareSlug" => null, // string
-    "shareUrl" => null, // string
-    "shareViews" => null, // int
-    "slug" => null, // string
     "sourceImageUrl" => null, // string
-    "tags" => null, // array
-    "templateSlug" => null, // string
-    "title" => null, // string
-    "visibility" => null, // string
     "watermark" => null, // array
 ]);
 ```
@@ -1536,7 +1503,7 @@ $public_template_media_item = $client->PublicTemplateMediaItem()->load(["slug" =
 #### Example: List
 
 ```php
-// list() returns an array of PublicTemplateMediaItem records (throws on error).
+// list() returns an array of PublicTemplateMediaItem entities, one per record (throws on error).
 $public_template_media_items = $client->PublicTemplateMediaItem()->list();
 ```
 
@@ -1546,15 +1513,7 @@ $public_template_media_items = $client->PublicTemplateMediaItem()->list();
 $public_template_media_item = $client->PublicTemplateMediaItem()->create([
     "slug" => null, // string
     "captions" => null, // array
-    "description" => null, // string
-    "height" => null, // mixed
-    "id" => null, // string
-    "imageUrl" => null, // string
-    "mediaType" => null, // string
-    "name" => null, // string
-    "sourceTemplateId" => null, // mixed
     "tags" => null, // array
-    "width" => null, // mixed
 ]);
 ```
 
@@ -1653,10 +1612,22 @@ Create an instance: `$upload_caption_meme_success = $client->UploadCaptionMemeSu
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `captions` | `string` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `string` |  |
+| `title` | `string` |  |
+| `visibility` | `string` |  |
+| `watermark` | `string` | Optional JSON watermark object. |
+
 #### Example: Create
 
 ```php
 $upload_caption_meme_success = $client->UploadCaptionMemeSuccess()->create([
+    "captions" => null, // string
+    "file" => null, // string
 ]);
 ```
 
@@ -1671,20 +1642,6 @@ Create an instance: `$video = $client->Video();`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Example: Load
-
-```php
-// load() returns the ENTITY — call data_get() for the Video record (throws on error).
-$video = $client->Video()->load();
-```
-
-#### Example: Create
-
-```php
-$video = $client->Video()->create([
-]);
-```
 
 ## Features
 

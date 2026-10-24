@@ -24,11 +24,9 @@ type AgentLoadMatch struct {
 // AgentCreateData is the typed request payload for Agent.CreateTyped.
 type AgentCreateData struct {
 	Description *string `json:"description,omitempty"`
-	Id *string `json:"id,omitempty"`
 	Locale *string `json:"locale,omitempty"`
 	Name string `json:"name"`
 	Slug *string `json:"slug,omitempty"`
-	Status *string `json:"status,omitempty"`
 	StylePreset *string `json:"stylePreset,omitempty"`
 	SystemPrompt *string `json:"systemPrompt,omitempty"`
 	WatermarkText *string `json:"watermarkText,omitempty"`
@@ -41,7 +39,6 @@ type AgentUpdateData struct {
 	Description *string `json:"description,omitempty"`
 	Locale *string `json:"locale,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Slug *string `json:"slug,omitempty"`
 	Status *string `json:"status,omitempty"`
 	StylePreset *string `json:"stylePreset,omitempty"`
 	SystemPrompt *string `json:"systemPrompt,omitempty"`
@@ -88,7 +85,34 @@ type AiCaption struct {
 
 // AiCaptionLoadMatch is the typed request payload for AiCaption.LoadTyped.
 type AiCaptionLoadMatch struct {
+	BlockedTerms *[]any `json:"blockedTerms,omitempty"`
+	CanvasText *[]any `json:"canvasText,omitempty"`
+	CaptionCount *int `json:"captionCount,omitempty"`
+	CaptionSets *[]any `json:"captionSets,omitempty"`
+	Entities *[]any `json:"entities,omitempty"`
+	FallbackUsed *bool `json:"fallbackUsed,omitempty"`
+	GenerationStrategy *string `json:"generationStrategy,omitempty"`
 	Locale *string `json:"locale,omitempty"`
+	MemeId *string `json:"memeId,omitempty"`
+	MemeSlug *string `json:"memeSlug,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Ok *bool `json:"ok,omitempty"`
+	OptionCount *int `json:"optionCount,omitempty"`
+	OwnerToken *string `json:"ownerToken,omitempty"`
+	ProviderId *string `json:"providerId,omitempty"`
+	ReferenceCaptions *[]any `json:"referenceCaptions,omitempty"`
+	RewriteNote *string `json:"rewriteNote,omitempty"`
+	SceneSummary *string `json:"sceneSummary,omitempty"`
+	TemplateDescription *string `json:"templateDescription,omitempty"`
+	TemplateName *string `json:"templateName,omitempty"`
+	TemplateTags *[]any `json:"templateTags,omitempty"`
+	Tone *string `json:"tone,omitempty"`
+	ToneCues *[]any `json:"toneCues,omitempty"`
+	TrendKeywords *[]any `json:"trendKeywords,omitempty"`
+	TrendReferences *[]any `json:"trendReferences,omitempty"`
+	TrendSignals *[]any `json:"trendSignals,omitempty"`
+	VariationOffset *int `json:"variationOffset,omitempty"`
+	VoiceRules *[]any `json:"voiceRules,omitempty"`
 }
 
 // AiCaptionCreateData is the typed request payload for AiCaption.CreateTyped.
@@ -137,24 +161,21 @@ type AiJobCreateData struct {
 	Action string `json:"action"`
 	ActorId *string `json:"actorId,omitempty"`
 	AfterState *map[string]any `json:"afterState,omitempty"`
-	Attempts *int `json:"attempts,omitempty"`
 	BeforeState *map[string]any `json:"beforeState,omitempty"`
 	BrushEdits *[]any `json:"brushEdits,omitempty"`
 	Capability string `json:"capability"`
 	CelebrityConfidence *float64 `json:"celebrityConfidence,omitempty"`
 	ConsentAttested *bool `json:"consentAttested,omitempty"`
-	CreatedAt *string `json:"createdAt,omitempty"`
 	DetectedFaceCount float64 `json:"detectedFaceCount"`
 	EdgeRefinement *float64 `json:"edgeRefinement,omitempty"`
 	FrameTimeMs *float64 `json:"frameTimeMs,omitempty"`
 	Height float64 `json:"height"`
-	Id string `json:"id"`
 	Input *map[string]any `json:"input,omitempty"`
 	LayerId string `json:"layerId"`
 	LayerType *string `json:"layerType,omitempty"`
 	MaxAttempts *int `json:"maxAttempts,omitempty"`
 	MaxFaces *float64 `json:"maxFaces,omitempty"`
-	MediaType *string `json:"mediaType,omitempty"`
+	MediaType string `json:"mediaType"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	NsfwScore *float64 `json:"nsfwScore,omitempty"`
 	ProjectId string `json:"projectId"`
@@ -162,12 +183,10 @@ type AiJobCreateData struct {
 	SourceAssetUrl string `json:"sourceAssetUrl"`
 	SourceFaceIndex *float64 `json:"sourceFaceIndex,omitempty"`
 	SourceImageUrl string `json:"sourceImageUrl"`
-	Status string `json:"status"`
 	TargetAssetUrl string `json:"targetAssetUrl"`
 	TargetFaceIndex *float64 `json:"targetFaceIndex,omitempty"`
 	TimeoutMs *int `json:"timeoutMs,omitempty"`
 	TraceId *string `json:"traceId,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
 	VersionId *string `json:"versionId,omitempty"`
 	Width float64 `json:"width"`
 	WorkspaceId *string `json:"workspaceId,omitempty"`
@@ -183,22 +202,17 @@ type AiMemeGenerationSucceededCreateData struct {
 	CaptionSource *string `json:"captionSource,omitempty"`
 	Captions *[]any `json:"captions,omitempty"`
 	CorrelationId *string `json:"correlationId,omitempty"`
-	DegradedFromAsync *bool `json:"degradedFromAsync,omitempty"`
 	EditableCaptions *[]any `json:"editableCaptions,omitempty"`
-	Flow string `json:"flow"`
+	Flow *string `json:"flow,omitempty"`
 	ImageUrl *string `json:"imageUrl,omitempty"`
-	Mode string `json:"mode"`
-	Ok bool `json:"ok"`
+	Mode *string `json:"mode,omitempty"`
 	PreferredProviderId *string `json:"preferredProviderId,omitempty"`
 	Prompt string `json:"prompt"`
 	RewriteNote *string `json:"rewriteNote,omitempty"`
-	RunId *string `json:"runId,omitempty"`
-	Status string `json:"status"`
 	TemplateId *string `json:"templateId,omitempty"`
 	Tone *string `json:"tone,omitempty"`
 	ToneCues *[]any `json:"toneCues,omitempty"`
-	VariantCount int `json:"variantCount"`
-	Variants []any `json:"variants"`
+	VariantCount *int `json:"variantCount,omitempty"`
 	WorkspaceId *string `json:"workspaceId,omitempty"`
 }
 
@@ -208,7 +222,16 @@ type AiProvider struct {
 
 // AiProviderLoadMatch is the typed request payload for AiProvider.LoadTyped.
 type AiProviderLoadMatch struct {
-	Refresh *bool `json:"refresh,omitempty"`
+	ActorId *string `json:"actorId,omitempty"`
+	CorrelationId *string `json:"correlationId,omitempty"`
+	Limit *float64 `json:"limit,omitempty"`
+	MappingMode *string `json:"mappingMode,omitempty"`
+	MaxSlots *int `json:"maxSlots,omitempty"`
+	Prompt *string `json:"prompt,omitempty"`
+	SourceImageUrl *string `json:"sourceImageUrl,omitempty"`
+	Texts *[]any `json:"texts,omitempty"`
+	TrendSignals *[]any `json:"trendSignals,omitempty"`
+	WorkspaceId *string `json:"workspaceId,omitempty"`
 }
 
 // AiProviderCreateData is the typed request payload for AiProvider.CreateTyped.
@@ -231,7 +254,6 @@ type Analytics struct {
 
 // AnalyticsLoadMatch is the typed request payload for Analytics.LoadTyped.
 type AnalyticsLoadMatch struct {
-	TemplateId *string `json:"template_id,omitempty"`
 }
 
 // Auth is the typed data model for the auth entity.
@@ -240,6 +262,9 @@ type Auth struct {
 
 // AuthCreateData is the typed request payload for Auth.CreateTyped.
 type AuthCreateData struct {
+	DisplayName *any `json:"displayName,omitempty"`
+	Email *any `json:"email,omitempty"`
+	Password *any `json:"password,omitempty"`
 }
 
 // Billing is the typed data model for the billing entity.
@@ -331,25 +356,14 @@ type Generate struct {
 
 // GenerateCreateData is the typed request payload for Generate.CreateTyped.
 type GenerateCreateData struct {
-	Base64 *string `json:"base64,omitempty"`
-	ByteLength int `json:"byteLength"`
 	Captions *[]any `json:"captions,omitempty"`
-	DataUrl *string `json:"dataUrl,omitempty"`
-	DelayMs int `json:"delayMs"`
 	DurationMs *int `json:"durationMs,omitempty"`
-	Filename string `json:"filename"`
 	Fps *int `json:"fps,omitempty"`
-	GifSlug string `json:"gifSlug"`
-	Height int `json:"height"`
-	MimeType string `json:"mimeType"`
-	Pages int `json:"pages"`
-	Parameters map[string]any `json:"parameters"`
+	GifSlug *string `json:"gifSlug,omitempty"`
 	ReturnBase64 *bool `json:"returnBase64,omitempty"`
-	SourceDurationMs int `json:"sourceDurationMs"`
 	StartMs *int `json:"startMs,omitempty"`
 	Tags *[]any `json:"tags,omitempty"`
 	Title *string `json:"title,omitempty"`
-	Width int `json:"width"`
 	WidthPx *int `json:"widthPx,omitempty"`
 }
 
@@ -379,6 +393,12 @@ type Media struct {
 
 // MediaCreateData is the typed request payload for Media.CreateTyped.
 type MediaCreateData struct {
+	Action *any `json:"action,omitempty"`
+	ContentType *any `json:"contentType,omitempty"`
+	ExpiresInSeconds *any `json:"expiresInSeconds,omitempty"`
+	OwnerToken *any `json:"ownerToken,omitempty"`
+	Path *any `json:"path,omitempty"`
+	Prefix *any `json:"prefix,omitempty"`
 }
 
 // Meme is the typed data model for the meme entity.
@@ -406,27 +426,16 @@ type MemeListMatch struct {
 
 // MemeCreateData is the typed request payload for Meme.CreateTyped.
 type MemeCreateData struct {
-	AltText string `json:"altText"`
-	CanonicalImageUrl string `json:"canonicalImageUrl"`
 	Canvas map[string]any `json:"canvas"`
 	Captions []any `json:"captions"`
-	CreatedAt string `json:"createdAt"`
 	GenerationRunId *any `json:"generationRunId,omitempty"`
 	GenerationVariantId *any `json:"generationVariantId,omitempty"`
-	Id *string `json:"id,omitempty"`
 	ImageDataUrl string `json:"imageDataUrl"`
-	ImageUrl string `json:"imageUrl"`
-	NsfwStatus string `json:"nsfwStatus"`
-	Overlays []any `json:"overlays"`
-	ShareSlug string `json:"shareSlug"`
-	ShareUrl string `json:"shareUrl"`
-	ShareViews int `json:"shareViews"`
-	Slug string `json:"slug"`
+	Overlays *[]any `json:"overlays,omitempty"`
 	SourceImageUrl string `json:"sourceImageUrl"`
-	Tags []any `json:"tags"`
-	TemplateSlug string `json:"templateSlug"`
-	Title string `json:"title"`
-	Visibility string `json:"visibility"`
+	TemplateSlug *string `json:"templateSlug,omitempty"`
+	Title *string `json:"title,omitempty"`
+	Visibility *string `json:"visibility,omitempty"`
 	Watermark map[string]any `json:"watermark"`
 }
 
@@ -447,8 +456,6 @@ type PublicTemplateMediaItemLoadMatch struct {
 
 // PublicTemplateMediaItemListMatch is the typed request payload for PublicTemplateMediaItem.ListTyped.
 type PublicTemplateMediaItemListMatch struct {
-	MediaType *string `json:"media_type,omitempty"`
-	Mode *string `json:"mode,omitempty"`
 	Page *int `json:"page,omitempty"`
 	PageSize *int `json:"page_size,omitempty"`
 	Q *string `json:"q,omitempty"`
@@ -460,29 +467,15 @@ type PublicTemplateMediaItemListMatch struct {
 // PublicTemplateMediaItemCreateData is the typed request payload for PublicTemplateMediaItem.CreateTyped.
 type PublicTemplateMediaItemCreateData struct {
 	Slug string `json:"slug"`
-	Animated *bool `json:"animated,omitempty"`
-	AssetBytes *any `json:"assetBytes,omitempty"`
-	AssetContentType *string `json:"assetContentType,omitempty"`
-	BoxCount *int `json:"boxCount,omitempty"`
-	CaptionCount *int `json:"captionCount,omitempty"`
 	Captions []any `json:"captions"`
-	Categories *[]any `json:"categories,omitempty"`
-	Description string `json:"description"`
 	DurationMs *any `json:"durationMs,omitempty"`
-	ExampleImageUrl *any `json:"exampleImageUrl,omitempty"`
-	FrameCount *any `json:"frameCount,omitempty"`
-	Height any `json:"height"`
-	Id string `json:"id"`
-	ImageUrl string `json:"imageUrl"`
-	MediaType string `json:"mediaType"`
-	Name string `json:"name"`
-	PosterImageUrl *string `json:"posterImageUrl,omitempty"`
-	PreviewImageUrl *string `json:"previewImageUrl,omitempty"`
-	QualityStatus *string `json:"qualityStatus,omitempty"`
-	SourceTemplateId any `json:"sourceTemplateId"`
-	SourceUrl *string `json:"sourceUrl,omitempty"`
 	Tags []any `json:"tags"`
-	Width any `json:"width"`
+	Fps *any `json:"fps,omitempty"`
+	GifSlug *any `json:"gifSlug,omitempty"`
+	ReturnBase64 *any `json:"returnBase64,omitempty"`
+	StartMs *any `json:"startMs,omitempty"`
+	Title *any `json:"title,omitempty"`
+	WidthPx *any `json:"widthPx,omitempty"`
 }
 
 // StandaloneAgentBootstrap is the typed data model for the standalone_agent_bootstrap entity.
@@ -548,6 +541,11 @@ type UploadCaptionMemeSuccess struct {
 
 // UploadCaptionMemeSuccessCreateData is the typed request payload for UploadCaptionMemeSuccess.CreateTyped.
 type UploadCaptionMemeSuccessCreateData struct {
+	Captions string `json:"captions"`
+	File string `json:"file"`
+	Title *string `json:"title,omitempty"`
+	Visibility *string `json:"visibility,omitempty"`
+	Watermark *string `json:"watermark,omitempty"`
 }
 
 // Video is the typed data model for the video entity.
@@ -556,18 +554,61 @@ type Video struct {
 
 // VideoLoadMatch is the typed request payload for Video.LoadTyped.
 type VideoLoadMatch struct {
-	BeatOffsetM *int `json:"beat_offset_m,omitempty"`
-	Bpm *int `json:"bpm,omitempty"`
-	Locale *string `json:"locale,omitempty"`
-	StylePresetId *string `json:"style_preset_id,omitempty"`
-	SyncToBeatGrid *bool `json:"sync_to_beat_grid,omitempty"`
-	Tone *string `json:"tone,omitempty"`
-	Transcript *string `json:"transcript,omitempty"`
-	TrendKeyword *string `json:"trend_keyword,omitempty"`
+	Kind *string `json:"kind,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Query *string `json:"query,omitempty"`
+	Tag *string `json:"tag,omitempty"`
+	TargetBpm *int `json:"target_bpm,omitempty"`
+	ToleranceBpm *int `json:"tolerance_bpm,omitempty"`
 }
 
 // VideoCreateData is the typed request payload for Video.CreateTyped.
 type VideoCreateData struct {
+	Action *any `json:"action,omitempty"`
+	AssetId *any `json:"assetId,omitempty"`
+	AtMs *any `json:"atMs,omitempty"`
+	AudioAssetId *any `json:"audioAssetId,omitempty"`
+	BeatOffsetMs *any `json:"beatOffsetMs,omitempty"`
+	BitrateKbps *any `json:"bitrateKbps,omitempty"`
+	Bpm *any `json:"bpm,omitempty"`
+	Cancelled *any `json:"cancelled,omitempty"`
+	Container *any `json:"container,omitempty"`
+	DurationMs *any `json:"durationMs,omitempty"`
+	DurationSeconds *any `json:"durationSeconds,omitempty"`
+	Easing *any `json:"easing,omitempty"`
+	Error *any `json:"error,omitempty"`
+	FrameRate *any `json:"frameRate,omitempty"`
+	InputFormat *any `json:"inputFormat,omitempty"`
+	Intensity *any `json:"intensity,omitempty"`
+	JobId *any `json:"jobId,omitempty"`
+	Locale *any `json:"locale,omitempty"`
+	MimeType *any `json:"mimeType,omitempty"`
+	Name *any `json:"name,omitempty"`
+	OffsetMs *any `json:"offsetMs,omitempty"`
+	OutputPresetId *any `json:"outputPresetId,omitempty"`
+	OutputUrl *any `json:"outputUrl,omitempty"`
+	PlanTier *any `json:"planTier,omitempty"`
+	PresetId *any `json:"presetId,omitempty"`
+	ProgressPercent *any `json:"progressPercent,omitempty"`
+	Project *any `json:"project,omitempty"`
+	ProjectId *any `json:"projectId,omitempty"`
+	Property *any `json:"property,omitempty"`
+	SourceDeviceId *any `json:"sourceDeviceId,omitempty"`
+	SourceUrl *any `json:"sourceUrl,omitempty"`
+	Stage *any `json:"stage,omitempty"`
+	StartMs *any `json:"startMs,omitempty"`
+	StylePresetId *any `json:"stylePresetId,omitempty"`
+	SyncToBeatGrid *any `json:"syncToBeatGrid,omitempty"`
+	Tone *any `json:"tone,omitempty"`
+	TrackId *any `json:"trackId,omitempty"`
+	Transcript *any `json:"transcript,omitempty"`
+	TrendKeywords *any `json:"trendKeywords,omitempty"`
+	Type *any `json:"type,omitempty"`
+	UpdatedAt *any `json:"updatedAt,omitempty"`
+	Value *any `json:"value,omitempty"`
+	WatermarkEnabled *any `json:"watermarkEnabled,omitempty"`
+	WatermarkText *any `json:"watermarkText,omitempty"`
+	WorkerId *any `json:"workerId,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

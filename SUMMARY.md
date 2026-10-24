@@ -20,19 +20,19 @@ SDK operations: `create`, `load`, `update`.
 
 ### AgentInfra
 
-Results: Telegram binding created/updated; WhatsApp binding created/updated; Unlock request submitted; Agent key created (plaintext returned once); Unlock approved; Name suggestions payload; Duplicate vote ignored; Vote accepted; Winner record created/updated; Webhook processed; Ignored non-message Telegram update; Ignored non-message event; Leaderboard payload; Agent key list payload; Verification challenge accepted; Key revoked.
+Results: Telegram binding created/updated; WhatsApp binding created/updated; Unlock request submitted; Agent key created (plaintext returned once); Unlock approved; Name suggestions payload; Duplicate vote ignored; Vote accepted; Winner record created/updated; Webhook processed; Ignored non-message Telegram update; Ignored non-message event; Agent key list payload; Leaderboard payload; Verification challenge accepted; Key revoked.
 
 SDK operations: `create`, `load`, `remove`.
 
 ### AiCaption
 
-Results: Caption generation + ranking payload with reroll quota snapshot; Caption moderation payload; Caption prompt payload; Caption ranking payload; Caption rewrite payload; Scene understanding payload; Tone preset saved; Tone preset list payload; Current actor caption reroll quota snapshot.
+Results: Caption generation + ranking payload with reroll quota snapshot; Caption moderation payload; Caption prompt payload; Caption ranking payload; Caption rewrite payload; Scene understanding payload; Tone preset saved; Current actor caption reroll quota snapshot; Tone preset list payload.
 
 SDK operations: `create`, `load`.
 
 ### AiJob
 
-Results: Canceled; Completed job; Background removal result and mask stats; Rollback payload; Version recorded; Real-time face swap completed; Preview fallback served and async job queued; Face target detection payload; AI job created; Layer history payload; AI job list; AI job details.
+Results: Canceled; Completed job; Background removal result and mask stats; Rollback payload; Version recorded; Real-time face swap completed; Preview fallback served and async job queued; Face target detection payload; AI job created; Layer history payload; AI job details; AI job list.
 
 SDK operations: `create`, `load`.
 
@@ -44,13 +44,13 @@ SDK operations: `create`.
 
 ### AiProvider
 
-Results: Template detection payload; Template suggestion ranking payload; Background-remove provider benchmark report; Face-swap provider benchmark report; Current actor AI quota snapshot.
+Results: Template detection payload; Template suggestion ranking payload; Current actor AI quota snapshot; Background-remove provider benchmark report; Face-swap provider benchmark report.
 
 SDK operations: `create`, `load`.
 
 ### Analytics
 
-Results: Pricing experiment templates payload; Backend reliability dashboard + metrics snapshot payload; Backend alerting summary payload; AI anomaly detection summary; Dashboard spec payload; Metric dictionary payload.
+Results: Backend alerting summary payload; AI anomaly detection summary; Dashboard spec payload; Backend reliability dashboard + metrics snapshot payload; Pricing experiment templates payload; Metric dictionary payload.
 
 SDK operations: `load`.
 
@@ -113,7 +113,7 @@ Key fields to recognise:
 
 ### Growth
 
-Results: Exposure history payload; Decision payload; Preview/history payload; Run payload; Redeemed referral code; Created referral code; Disconnect response; Connect/publish response; Published weekly campaign pack; Experiment decisions payload; Weekly campaign pack payload; Social publish state payload; Referral credit balance; Lifecycle messaging config payload; Viral loop trigger payload.
+Results: Exposure history payload; Decision payload; Preview/history payload; Run payload; Redeemed referral code; Created referral code; Disconnect response; Connect/publish response; Published weekly campaign pack; Experiment decisions payload; Social publish state payload; Lifecycle messaging config payload; Referral credit balance; Weekly campaign pack payload; Viral loop trigger payload.
 
 SDK operations: `create`, `load`.
 
@@ -131,7 +131,7 @@ SDK operations: `create`, `list`, `load`, `remove`.
 
 ### PublicTemplateMediaItem
 
-Results: Generated GIF bytes; Template search results; GIF template search results; Template details; GIF template details.
+Results: Generated GIF bytes; GIF template search results; Template search results; GIF template details; Template details.
 
 SDK operations: `create`, `list`, `load`.
 
@@ -143,7 +143,7 @@ SDK operations: `create`.
 
 ### TrendAlert
 
-Results: Trend alert delivery execution payload; Feedback stored and vector updated; Updated preference vector payload; Trigger execution payload; Trend alerts list; Ranked trend alerts payload; Trend feedback events payload; Preference vector payload; Trend alert delivery report payload; Trend ingestion output payload; Trend alert quality report payload; Trend alert message templates payload; Trend source connector contract payload; Trigger decision payload.
+Results: Trend alert delivery execution payload; Feedback stored and vector updated; Updated preference vector payload; Trigger execution payload; Preference vector payload; Trend alerts list; Trend source connector contract payload; Trend alert delivery report payload; Trend feedback events payload; Trend ingestion output payload; Trend alert message templates payload; Trend alert quality report payload; Ranked trend alerts payload; Trigger decision payload.
 
 SDK operations: `create`, `load`.
 
@@ -153,9 +153,14 @@ Results: Uploaded meme created.
 
 SDK operations: `create`.
 
+Key fields to recognise:
+
+- `captions`: JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields.
+- `watermark`: Caption API requests accept watermark input, but non-premium callers are forced to the default Memesio watermark. Premium callers can customize enabled, text, position, and scale.
+
 ### Video
 
-Results: Draft resume payload; Draft saved payload; Export settings decision payload; Video job estimate payload; Queue mutation payload; Render job enqueued; No queued job available; Subtitle preview payload; Subtitles applied to timeline; Preview keyframes payload; Preset applied to timeline; Timeline updated; Timeline created; Subtitle style preset + preview payload; Audio library + beat sync suggestions payload; Export policy payload; Video format policy payload; Render queue payload; Text animation preset payload; Video draft payload; Timeline project payload; Video render performance summary payload.
+Results: Draft resume payload; Draft saved payload; Export settings decision payload; Video job estimate payload; Queue mutation payload; Render job enqueued; No queued job available; Subtitle preview payload; Subtitles applied to timeline; Preview keyframes payload; Preset applied to timeline; Timeline updated; Timeline created; Audio library + beat sync suggestions payload; Video draft payload; Export policy payload; Video format policy payload; Video render performance summary payload; Render queue payload; Subtitle style preset + preview payload; Text animation preset payload; Timeline project payload.
 
 SDK operations: `create`, `load`.
 
@@ -179,8 +184,8 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | AgentInfra | `create` | `POST /api/v1/agents/rewards/winner:close` | See reference |
 | AgentInfra | `create` | `POST /api/v1/agents/webhooks/telegram` | See reference |
 | AgentInfra | `create` | `POST /api/v1/agents/webhooks/whatsapp` | See reference |
-| AgentInfra | `load` | `GET /api/v1/agents/rewards/leaderboard` | See reference |
 | AgentInfra | `load` | `GET /api/v1/agents/{agentId}/keys` | See reference |
+| AgentInfra | `load` | `GET /api/v1/agents/rewards/leaderboard` | See reference |
 | AgentInfra | `load` | `GET /api/v1/agents/webhooks/whatsapp` | See reference |
 | AgentInfra | `remove` | `DELETE /api/v1/agents/{agentId}/keys/{keyId}` | See reference |
 | AiCaption | `create` | `POST /api/ai/captions/generate` | Not required |
@@ -190,8 +195,8 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | AiCaption | `create` | `POST /api/ai/captions/rewrite` | Not required |
 | AiCaption | `create` | `POST /api/ai/captions/scene` | See reference |
 | AiCaption | `create` | `POST /api/ai/captions/tone-presets` | See reference |
-| AiCaption | `load` | `GET /api/ai/captions/tone-presets` | See reference |
 | AiCaption | `load` | `GET /api/ai/captions/generate` | Not required |
+| AiCaption | `load` | `GET /api/ai/captions/tone-presets` | See reference |
 | AiJob | `create` | `POST /api/ai/jobs/{jobId}/cancel` | See reference |
 | AiJob | `create` | `POST /api/ai/jobs/{jobId}/complete` | See reference |
 | AiJob | `create` | `POST /api/ai/background-remove` | See reference |
@@ -200,21 +205,21 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | AiJob | `create` | `POST /api/ai/face-targets` | See reference |
 | AiJob | `create` | `POST /api/ai/jobs` | See reference |
 | AiJob | `load` | `GET /api/ai/edit-history` | See reference |
-| AiJob | `load` | `GET /api/ai/jobs` | See reference |
 | AiJob | `load` | `GET /api/ai/jobs/{jobId}` | See reference |
+| AiJob | `load` | `GET /api/ai/jobs` | See reference |
 | AiMemeGenerationSucceeded | `create` | `POST /api/ai/memes/generate` | Not required |
 | AiMemeGenerationSucceeded | `create` | `POST /api/v1/memes/generate` | Required |
 | AiProvider | `create` | `POST /api/ai/templates/detect` | See reference |
 | AiProvider | `create` | `POST /api/ai/templates/suggest` | Not required |
+| AiProvider | `load` | `GET /api/ai/memes/generate` | Not required |
 | AiProvider | `load` | `GET /api/ai/providers/background-remove-benchmark` | See reference |
 | AiProvider | `load` | `GET /api/ai/providers/face-swap-benchmark` | See reference |
-| AiProvider | `load` | `GET /api/ai/memes/generate` | Not required |
-| Analytics | `load` | `GET /api/analytics/experiments/templates` | See reference |
-| Analytics | `load` | `GET /api/analytics/dashboards/backend-reliability` | See reference |
 | Analytics | `load` | `GET /api/analytics/alerts/backend` | See reference |
 | Analytics | `load` | `GET /api/analytics/anomalies/ai` | See reference |
 | Analytics | `load` | `GET /api/analytics/dashboards/activation-retention` | See reference |
+| Analytics | `load` | `GET /api/analytics/dashboards/backend-reliability` | See reference |
 | Analytics | `load` | `GET /api/analytics/dashboards/feature-adoption` | See reference |
+| Analytics | `load` | `GET /api/analytics/experiments/templates` | See reference |
 | Analytics | `load` | `GET /api/analytics/metric-dictionary` | See reference |
 | Auth | `create` | `POST /api/auth/resend-verification` | See reference |
 | Auth | `create` | `POST /api/auth/signup` | See reference |
@@ -234,10 +239,10 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Growth | `create` | `POST /api/growth/social-publish` | See reference |
 | Growth | `create` | `POST /api/growth/trend-campaigns` | See reference |
 | Growth | `load` | `GET /api/growth/experiments/decision` | See reference |
-| Growth | `load` | `GET /api/growth/trend-campaigns` | See reference |
 | Growth | `load` | `GET /api/growth/social-publish` | See reference |
-| Growth | `load` | `GET /api/growth/referrals` | See reference |
 | Growth | `load` | `GET /api/growth/lifecycle-messaging` | See reference |
+| Growth | `load` | `GET /api/growth/referrals` | See reference |
+| Growth | `load` | `GET /api/growth/trend-campaigns` | See reference |
 | Growth | `load` | `GET /api/growth/viral-triggers` | See reference |
 | Media | `create` | `POST /api/media/signed-url` | See reference |
 | Meme | `create` | `POST /api/memes` | See reference |
@@ -245,25 +250,25 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Meme | `load` | `GET /api/memes/{slug}` | See reference |
 | Meme | `remove` | `DELETE /api/memes/{slug}` | See reference |
 | PublicTemplateMediaItem | `create` | `POST /api/gifs/{slug}/generate` | Not required |
-| PublicTemplateMediaItem | `list` | `GET /api/templates` | See reference |
 | PublicTemplateMediaItem | `list` | `GET /api/gifs` | See reference |
-| PublicTemplateMediaItem | `load` | `GET /api/templates/{slug}` | See reference |
+| PublicTemplateMediaItem | `list` | `GET /api/templates` | See reference |
 | PublicTemplateMediaItem | `load` | `GET /api/gifs/{slug}` | See reference |
+| PublicTemplateMediaItem | `load` | `GET /api/templates/{slug}` | See reference |
 | StandaloneAgentBootstrap | `create` | `POST /api/v1/agents/bootstrap` | See reference |
 | StandaloneAgentBootstrap | `create` | `POST /api/v1/agents/create-agent` | See reference |
 | TrendAlert | `create` | `POST /api/alerts/delivery` | See reference |
 | TrendAlert | `create` | `POST /api/alerts/feedback` | See reference |
 | TrendAlert | `create` | `POST /api/alerts/preferences` | See reference |
 | TrendAlert | `create` | `POST /api/alerts/triggers` | See reference |
-| TrendAlert | `load` | `GET /api/alerts` | See reference |
-| TrendAlert | `load` | `GET /api/alerts/ranking` | See reference |
-| TrendAlert | `load` | `GET /api/alerts/feedback` | See reference |
 | TrendAlert | `load` | `GET /api/alerts/preferences` | See reference |
-| TrendAlert | `load` | `GET /api/alerts/delivery` | See reference |
-| TrendAlert | `load` | `GET /api/alerts/ingestion` | See reference |
-| TrendAlert | `load` | `GET /api/alerts/quality-report` | See reference |
-| TrendAlert | `load` | `GET /api/alerts/message-templates` | See reference |
+| TrendAlert | `load` | `GET /api/alerts` | See reference |
 | TrendAlert | `load` | `GET /api/alerts/connectors` | See reference |
+| TrendAlert | `load` | `GET /api/alerts/delivery` | See reference |
+| TrendAlert | `load` | `GET /api/alerts/feedback` | See reference |
+| TrendAlert | `load` | `GET /api/alerts/ingestion` | See reference |
+| TrendAlert | `load` | `GET /api/alerts/message-templates` | See reference |
+| TrendAlert | `load` | `GET /api/alerts/quality-report` | See reference |
+| TrendAlert | `load` | `GET /api/alerts/ranking` | See reference |
 | TrendAlert | `load` | `GET /api/alerts/triggers` | See reference |
 | UploadCaptionMemeSuccess | `create` | `POST /api/v1/memes/caption-upload` | Required |
 | Video | `create` | `POST /api/video/drafts` | See reference |
@@ -273,15 +278,15 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Video | `create` | `POST /api/video/subtitles` | See reference |
 | Video | `create` | `POST /api/video/text-animations` | See reference |
 | Video | `create` | `POST /api/video/timeline` | See reference |
-| Video | `load` | `GET /api/video/subtitles` | See reference |
 | Video | `load` | `GET /api/video/audio-library` | See reference |
+| Video | `load` | `GET /api/video/drafts` | See reference |
 | Video | `load` | `GET /api/video/export-settings` | See reference |
 | Video | `load` | `GET /api/video/formats` | See reference |
-| Video | `load` | `GET /api/video/render-queue` | See reference |
-| Video | `load` | `GET /api/video/text-animations` | See reference |
-| Video | `load` | `GET /api/video/drafts` | See reference |
-| Video | `load` | `GET /api/video/timeline` | See reference |
 | Video | `load` | `GET /api/video/render-performance` | See reference |
+| Video | `load` | `GET /api/video/render-queue` | See reference |
+| Video | `load` | `GET /api/video/subtitles` | See reference |
+| Video | `load` | `GET /api/video/text-animations` | See reference |
+| Video | `load` | `GET /api/video/timeline` | See reference |
 
 ## Connect to the API
 

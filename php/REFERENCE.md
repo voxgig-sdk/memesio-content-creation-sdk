@@ -211,7 +211,7 @@ $agent = $client->Agent();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->Agent()->create([
@@ -221,7 +221,7 @@ $result = $client->Agent()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Agent()->load(["id" => "agent_id"]);
@@ -229,7 +229,7 @@ $result = $client->Agent()->load(["id" => "agent_id"]);
 
 #### `update(array $reqdata, ?array $ctrl = null): mixed`
 
-Update an existing entity. The data must include the entity `id`. Throws on error.
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and throws on error.
 
 ```php
 $result = $client->Agent()->update([
@@ -296,7 +296,7 @@ $agent_infra = $client->AgentInfra();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->AgentInfra()->create([
@@ -310,7 +310,7 @@ $result = $client->AgentInfra()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->AgentInfra()->load();
@@ -318,7 +318,7 @@ $result = $client->AgentInfra()->load();
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
 
-Remove the entity matching the given criteria. Throws on error.
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and throws on error.
 
 ```php
 $result = $client->AgentInfra()->remove(["agent_id" => "agent_id", "key_id" => "key_id"]);
@@ -397,7 +397,7 @@ $ai_caption = $client->AiCaption();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->AiCaption()->create([
@@ -409,7 +409,7 @@ $result = $client->AiCaption()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->AiCaption()->load();
@@ -539,7 +539,7 @@ $ai_job = $client->AiJob();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->AiJob()->create([
@@ -547,12 +547,11 @@ $result = $client->AiJob()->create([
   "capability" => null, // string
   "detectedFaceCount" => null, // float
   "height" => null, // float
-  "id" => null, // string
   "layerId" => null, // string
+  "mediaType" => null, // string
   "projectId" => null, // string
   "sourceAssetUrl" => null, // string
   "sourceImageUrl" => null, // string
-  "status" => null, // string
   "targetAssetUrl" => null, // string
   "width" => null, // float
 ]);
@@ -560,7 +559,7 @@ $result = $client->AiJob()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->AiJob()->load(["id" => "ai_job_id"]);
@@ -658,17 +657,11 @@ $ai_meme_generation_succeeded = $client->AiMemeGenerationSucceeded();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->AiMemeGenerationSucceeded()->create([
-  "flow" => null, // string
-  "mode" => null, // string
-  "ok" => null, // bool
   "prompt" => null, // string
-  "status" => null, // string
-  "variantCount" => null, // int
-  "variants" => null, // array
 ]);
 ```
 
@@ -727,7 +720,7 @@ $ai_provider = $client->AiProvider();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->AiProvider()->create([
@@ -738,7 +731,7 @@ $result = $client->AiProvider()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->AiProvider()->load();
@@ -784,7 +777,7 @@ $analytics = $client->Analytics();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Analytics()->load();
@@ -830,12 +823,7 @@ $auth = $client->Auth();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
-
-```php
-$result = $client->Auth()->create([
-]);
-```
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ### Common Methods
 
@@ -877,7 +865,7 @@ $billing = $client->Billing();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Billing()->load();
@@ -931,7 +919,7 @@ $collaboration = $client->Collaboration();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->Collaboration()->create([
@@ -942,7 +930,7 @@ $result = $client->Collaboration()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Collaboration()->load(["project_id" => "project_id"]);
@@ -988,7 +976,7 @@ $compliance = $client->Compliance();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Compliance()->load();
@@ -1042,7 +1030,7 @@ $developer_api = $client->DeveloperApi();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->DeveloperApi()->create([
@@ -1052,7 +1040,7 @@ $result = $client->DeveloperApi()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->DeveloperApi()->load();
@@ -1108,7 +1096,7 @@ $free_caption_meme_success = $client->FreeCaptionMemeSuccess();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->FreeCaptionMemeSuccess()->create([
@@ -1184,7 +1172,7 @@ $free_template_search = $client->FreeTemplateSearch();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
 $results = $client->FreeTemplateSearch()->list();
@@ -1280,20 +1268,10 @@ $generate = $client->Generate();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->Generate()->create([
-  "byteLength" => null, // int
-  "delayMs" => null, // int
-  "filename" => null, // string
-  "gifSlug" => null, // string
-  "height" => null, // int
-  "mimeType" => null, // string
-  "pages" => null, // int
-  "parameters" => null, // array
-  "sourceDurationMs" => null, // int
-  "width" => null, // int
 ]);
 ```
 
@@ -1347,7 +1325,7 @@ $growth = $client->Growth();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->Growth()->create([
@@ -1357,7 +1335,7 @@ $result = $client->Growth()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Growth()->load(["actor_id" => "actor_id"]);
@@ -1403,7 +1381,7 @@ $media = $client->Media();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->Media()->create([
@@ -1504,35 +1482,21 @@ $meme = $client->Meme();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->Meme()->create([
-  "altText" => null, // string
-  "canonicalImageUrl" => null, // string
   "canvas" => null, // array
   "captions" => null, // array
-  "createdAt" => null, // string
   "imageDataUrl" => null, // string
-  "imageUrl" => null, // string
-  "nsfwStatus" => null, // string
-  "overlays" => null, // array
-  "shareSlug" => null, // string
-  "shareUrl" => null, // string
-  "shareViews" => null, // int
-  "slug" => null, // string
   "sourceImageUrl" => null, // string
-  "tags" => null, // array
-  "templateSlug" => null, // string
-  "title" => null, // string
-  "visibility" => null, // string
   "watermark" => null, // array
 ]);
 ```
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
 $results = $client->Meme()->list();
@@ -1540,7 +1504,7 @@ $results = $client->Meme()->list();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Meme()->load(["id" => "meme_id"]);
@@ -1548,7 +1512,7 @@ $result = $client->Meme()->load(["id" => "meme_id"]);
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
 
-Remove the entity matching the given criteria. Throws on error.
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and throws on error.
 
 ```php
 $result = $client->Meme()->remove(["id" => "meme_id"]);
@@ -1623,27 +1587,19 @@ $public_template_media_item = $client->PublicTemplateMediaItem();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->PublicTemplateMediaItem()->create([
   "slug" => null, // string
   "captions" => null, // array
-  "description" => null, // string
-  "height" => null, // mixed
-  "id" => null, // string
-  "imageUrl" => null, // string
-  "mediaType" => null, // string
-  "name" => null, // string
-  "sourceTemplateId" => null, // mixed
   "tags" => null, // array
-  "width" => null, // mixed
 ]);
 ```
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
 $results = $client->PublicTemplateMediaItem()->list();
@@ -1651,7 +1607,7 @@ $results = $client->PublicTemplateMediaItem()->list();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->PublicTemplateMediaItem()->load(["slug" => "slug"]);
@@ -1710,7 +1666,7 @@ $standalone_agent_bootstrap = $client->StandaloneAgentBootstrap();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->StandaloneAgentBootstrap()->create([
@@ -1780,7 +1736,7 @@ $trend_alert = $client->TrendAlert();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->TrendAlert()->create([
@@ -1793,7 +1749,7 @@ $result = $client->TrendAlert()->create([
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->TrendAlert()->load();
@@ -1835,16 +1791,30 @@ Return the entity name.
 $upload_caption_meme_success = $client->UploadCaptionMemeSuccess();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `captions` | `string` | Yes | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `string` | Yes |  |
+| `title` | `string` | No |  |
+| `visibility` | `string` | No |  |
+| `watermark` | `string` | No | Optional JSON watermark object. |
+
 ### Operations
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 ```php
 $result = $client->UploadCaptionMemeSuccess()->create([
+  "captions" => null, // string
+  "file" => null, // string
 ]);
 ```
+
+Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -1886,20 +1856,11 @@ $video = $client->Video();
 
 #### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data. Throws on error.
-
-```php
-$result = $client->Video()->create([
-]);
-```
+Create a new entity with the given data. Returns the created entity and throws on error.
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
-
-```php
-$result = $client->Video()->load();
-```
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ### Common Methods
 
@@ -2088,6 +2049,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

@@ -37,6 +37,11 @@ main: kit: entity: auth: {
           }
         }
         {
+          bf: [
+            "displayName"
+            "email"
+            "password"
+          ]
           co: {
             id: "POST /api/auth/signup"
             source: "openapi3"

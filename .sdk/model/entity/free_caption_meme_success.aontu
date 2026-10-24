@@ -49,6 +49,13 @@ main: kit: entity: free_caption_meme_success: {
       name: "create"
       points: [
         {
+          bf: [
+            "captions"
+            "templateSlug"
+            "title"
+            "visibility"
+            "watermark"
+          ]
           co: {
             id: "POST /api/free/memes/caption"
             source: "openapi3"
@@ -56,6 +63,10 @@ main: kit: entity: free_caption_meme_success: {
           }
           m: "POST"
           o: "/api/free/memes/caption"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"
@@ -76,6 +87,13 @@ main: kit: entity: free_caption_meme_success: {
           }
         }
         {
+          bf: [
+            "captions"
+            "templateSlug"
+            "title"
+            "visibility"
+            "watermark"
+          ]
           co: {
             id: "POST /api/v1/memes/caption-template"
             source: "openapi3"
@@ -83,6 +101,10 @@ main: kit: entity: free_caption_meme_success: {
           }
           m: "POST"
           o: "/api/v1/memes/caption-template"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"

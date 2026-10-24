@@ -186,6 +186,16 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "description",
+                    "locale",
+                    "name",
+                    "slug",
+                    "stylePreset",
+                    "systemPrompt",
+                    "watermarkText",
+                    "websiteUrl"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents",
                     "source": "openapi3",
@@ -307,6 +317,16 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "description",
+                    "locale",
+                    "name",
+                    "status",
+                    "stylePreset",
+                    "systemPrompt",
+                    "watermarkText",
+                    "websiteUrl"
+                  ],
                   "co": {
                     "id": "PATCH /api/v1/agents/{agentId}",
                     "source": "openapi3",
@@ -473,6 +493,11 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "chatId",
+                    "metadata",
+                    "userId"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/{agentId}/channels/telegram/bind",
                     "source": "openapi3",
@@ -533,6 +558,11 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "metadata",
+                    "phoneOrChatId",
+                    "userId"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/{agentId}/channels/whatsapp/bind",
                     "source": "openapi3",
@@ -593,6 +623,10 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "proof"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/{agentId}/unlocks/social-action",
                     "source": "openapi3",
@@ -650,6 +684,9 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "scopes"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/{agentId}/keys",
                     "source": "openapi3",
@@ -705,6 +742,9 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "quotaBoostPerDay"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/unlocks/{unlockId}/approve",
                     "source": "openapi3",
@@ -762,6 +802,9 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "prompt"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/names:generate",
                     "source": "openapi3",
@@ -794,6 +837,10 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "memeSlug",
+                    "weekStart"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/rewards/votes",
                     "source": "openapi3",
@@ -829,6 +876,11 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "payoutReference",
+                    "payoutStatus",
+                    "weekStart"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/rewards/winner:close",
                     "source": "openapi3",
@@ -941,65 +993,6 @@
                 {
                   "a": true,
                   "co": {
-                    "id": "GET /api/v1/agents/rewards/leaderboard",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "limit",
-                        "or": "limit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "week_start",
-                        "or": "weekStart",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/v1/agents/rewards/leaderboard",
-                  "q": {
-                    "exist": [
-                      "limit",
-                      "week_start"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "agents"
-                    },
-                    {
-                      "lit": "rewards"
-                    },
-                    {
-                      "lit": "leaderboard"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
                     "id": "GET /api/v1/agents/{agentId}/keys",
                     "source": "openapi3",
                     "version": 2
@@ -1045,6 +1038,60 @@
                     },
                     {
                       "lit": "keys"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/agents/rewards/leaderboard",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "week_start",
+                        "or": "weekStart",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/agents/rewards/leaderboard",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "lit": "rewards"
+                    },
+                    {
+                      "lit": "leaderboard"
                     }
                   ],
                   "t": {
@@ -1385,6 +1432,22 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "captionCount",
+                    "entities",
+                    "memeId",
+                    "memeSlug",
+                    "optionCount",
+                    "ownerToken",
+                    "referenceCaptions",
+                    "rewriteNote",
+                    "sceneSummary",
+                    "tone",
+                    "toneCues",
+                    "trendKeywords",
+                    "trendReferences",
+                    "variationOffset"
+                  ],
                   "co": {
                     "id": "POST /api/ai/captions/generate",
                     "source": "openapi3",
@@ -1396,6 +1459,10 @@
                   "o": "/api/ai/captions/generate",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -1545,6 +1612,13 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "canvasText",
+                    "templateDescription",
+                    "templateName",
+                    "templateTags",
+                    "trendSignals"
+                  ],
                   "co": {
                     "id": "POST /api/ai/captions/scene",
                     "source": "openapi3",
@@ -1577,6 +1651,12 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "blockedTerms",
+                    "locale",
+                    "name",
+                    "voiceRules"
+                  ],
                   "co": {
                     "id": "POST /api/ai/captions/tone-presets",
                     "source": "openapi3",
@@ -1616,53 +1696,6 @@
                 {
                   "a": true,
                   "co": {
-                    "id": "GET /api/ai/captions/tone-presets",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "locale",
-                        "or": "locale",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/ai/captions/tone-presets",
-                  "q": {
-                    "exist": [
-                      "locale"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "ai"
-                    },
-                    {
-                      "lit": "captions"
-                    },
-                    {
-                      "lit": "tone-presets"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
                     "id": "GET /api/ai/captions/generate",
                     "source": "openapi3",
                     "version": 2
@@ -1685,6 +1718,49 @@
                     },
                     {
                       "lit": "generate"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/ai/captions/tone-presets",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "locale",
+                        "or": "locale",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/ai/captions/tone-presets",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "captions"
+                    },
+                    {
+                      "lit": "tone-presets"
                     }
                   ],
                   "t": {
@@ -1985,6 +2061,9 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "reason"
+                  ],
                   "co": {
                     "id": "POST /api/ai/jobs/{jobId}/cancel",
                     "source": "openapi3",
@@ -2040,6 +2119,12 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "estimatedCostUsd",
+                    "output",
+                    "providerId",
+                    "workerId"
+                  ],
                   "co": {
                     "id": "POST /api/ai/jobs/{jobId}/complete",
                     "source": "openapi3",
@@ -2095,6 +2180,15 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "brushEdits",
+                    "edgeRefinement",
+                    "frameTimeMs",
+                    "height",
+                    "mediaType",
+                    "sourceAssetUrl",
+                    "width"
+                  ],
                   "co": {
                     "id": "POST /api/ai/background-remove",
                     "source": "openapi3",
@@ -2124,6 +2218,17 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "actorId",
+                    "afterState",
+                    "beforeState",
+                    "layerId",
+                    "layerType",
+                    "metadata",
+                    "projectId",
+                    "versionId"
+                  ],
                   "co": {
                     "id": "POST /api/ai/edit-history",
                     "source": "openapi3",
@@ -2153,6 +2258,22 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "actorId",
+                    "celebrityConfidence",
+                    "consentAttested",
+                    "detectedFaceCount",
+                    "frameTimeMs",
+                    "height",
+                    "mediaType",
+                    "nsfwScore",
+                    "sourceAssetUrl",
+                    "sourceFaceIndex",
+                    "targetAssetUrl",
+                    "targetFaceIndex",
+                    "width",
+                    "workspaceId"
+                  ],
                   "co": {
                     "id": "POST /api/ai/face-swap",
                     "source": "openapi3",
@@ -2182,6 +2303,10 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "maxFaces",
+                    "sourceImageUrl"
+                  ],
                   "co": {
                     "id": "POST /api/ai/face-targets",
                     "source": "openapi3",
@@ -2211,6 +2336,16 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "actorId",
+                    "capability",
+                    "input",
+                    "maxAttempts",
+                    "runAfterMs",
+                    "timeoutMs",
+                    "traceId",
+                    "workspaceId"
+                  ],
                   "co": {
                     "id": "POST /api/ai/jobs",
                     "source": "openapi3",
@@ -2308,12 +2443,8 @@
                   "o": "/api/ai/edit-history",
                   "q": {
                     "exist": [
-                      "from_version_id",
                       "layer_id",
-                      "limit",
-                      "mode",
-                      "project_id",
-                      "to_version_id"
+                      "project_id"
                     ]
                   },
                   "r": {},
@@ -2326,6 +2457,61 @@
                     },
                     {
                       "lit": "edit-history"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/ai/jobs/{jobId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "jobId",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/ai/jobs/{jobId}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "jobId": "id"
+                    }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "jobs"
+                    },
+                    {
+                      "var": "id"
                     }
                   ],
                   "t": {
@@ -2371,13 +2557,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/ai/jobs",
-                  "q": {
-                    "exist": [
-                      "page",
-                      "page_size",
-                      "status"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -2388,57 +2568,6 @@
                     },
                     {
                       "lit": "jobs"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/ai/jobs/{jobId}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "id",
-                        "or": "jobId",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/ai/jobs/{jobId}",
-                  "q": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "r": {
-                    "param": {
-                      "jobId": "id"
-                    }
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "ai"
-                    },
-                    {
-                      "lit": "jobs"
-                    },
-                    {
-                      "var": "id"
                     }
                   ],
                   "t": {
@@ -2633,6 +2762,24 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "allowHeuristicFallback",
+                    "captionSource",
+                    "captions",
+                    "correlationId",
+                    "editableCaptions",
+                    "flow",
+                    "imageUrl",
+                    "mode",
+                    "preferredProviderId",
+                    "prompt",
+                    "rewriteNote",
+                    "templateId",
+                    "tone",
+                    "toneCues",
+                    "variantCount",
+                    "workspaceId"
+                  ],
                   "co": {
                     "id": "POST /api/ai/memes/generate",
                     "source": "openapi3",
@@ -2644,6 +2791,10 @@
                   "o": "/api/ai/memes/generate",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -2665,6 +2816,24 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "allowHeuristicFallback",
+                    "captionSource",
+                    "captions",
+                    "correlationId",
+                    "editableCaptions",
+                    "flow",
+                    "imageUrl",
+                    "mode",
+                    "preferredProviderId",
+                    "prompt",
+                    "rewriteNote",
+                    "templateId",
+                    "tone",
+                    "toneCues",
+                    "variantCount",
+                    "workspaceId"
+                  ],
                   "co": {
                     "id": "POST /api/v1/memes/generate",
                     "source": "openapi3",
@@ -2676,6 +2845,10 @@
                   "o": "/api/v1/memes/generate",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -2787,6 +2960,15 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "actorId",
+                    "correlationId",
+                    "mappingMode",
+                    "maxSlots",
+                    "sourceImageUrl",
+                    "texts",
+                    "workspaceId"
+                  ],
                   "co": {
                     "id": "POST /api/ai/templates/detect",
                     "source": "openapi3",
@@ -2819,6 +3001,11 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "limit",
+                    "prompt",
+                    "trendSignals"
+                  ],
                   "co": {
                     "id": "POST /api/ai/templates/suggest",
                     "source": "openapi3",
@@ -2858,6 +3045,38 @@
                 {
                   "a": true,
                   "co": {
+                    "id": "GET /api/ai/memes/generate",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/ai/memes/generate",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "ai"
+                    },
+                    {
+                      "lit": "memes"
+                    },
+                    {
+                      "lit": "generate"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
                     "id": "GET /api/ai/providers/background-remove-benchmark",
                     "source": "openapi3",
                     "version": 2
@@ -2877,11 +3096,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/ai/providers/background-remove-benchmark",
-                  "q": {
-                    "exist": [
-                      "refresh"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -2924,11 +3139,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/ai/providers/face-swap-benchmark",
-                  "q": {
-                    "exist": [
-                      "refresh"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -2942,38 +3153,6 @@
                     },
                     {
                       "lit": "face-swap-benchmark"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/ai/memes/generate",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {},
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/ai/memes/generate",
-                  "q": {},
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "ai"
-                    },
-                    {
-                      "lit": "memes"
-                    },
-                    {
-                      "lit": "generate"
                     }
                   ],
                   "t": {
@@ -3000,100 +3179,6 @@
               "input": "data",
               "name": "load",
               "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/analytics/experiments/templates",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "template_id",
-                        "or": "templateId",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/analytics/experiments/templates",
-                  "q": {
-                    "exist": [
-                      "template_id"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "analytics"
-                    },
-                    {
-                      "lit": "experiments"
-                    },
-                    {
-                      "lit": "templates"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/analytics/dashboards/backend-reliability",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "window_hour",
-                        "or": "windowHours",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/analytics/dashboards/backend-reliability",
-                  "q": {
-                    "exist": [
-                      "window_hour"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "analytics"
-                    },
-                    {
-                      "lit": "dashboards"
-                    },
-                    {
-                      "lit": "backend-reliability"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
                 {
                   "a": true,
                   "co": {
@@ -3193,6 +3278,49 @@
                 {
                   "a": true,
                   "co": {
+                    "id": "GET /api/analytics/dashboards/backend-reliability",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "window_hour",
+                        "or": "windowHours",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/analytics/dashboards/backend-reliability",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "dashboards"
+                    },
+                    {
+                      "lit": "backend-reliability"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
                     "id": "GET /api/analytics/dashboards/feature-adoption",
                     "source": "openapi3",
                     "version": 2
@@ -3215,6 +3343,49 @@
                     },
                     {
                       "lit": "feature-adoption"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/analytics/experiments/templates",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "template_id",
+                        "or": "templateId",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/analytics/experiments/templates",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "experiments"
+                    },
+                    {
+                      "lit": "templates"
                     }
                   ],
                   "t": {
@@ -3305,6 +3476,11 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "displayName",
+                    "email",
+                    "password"
+                  ],
                   "co": {
                     "id": "POST /api/auth/signup",
                     "source": "openapi3",
@@ -3384,11 +3560,7 @@
                   "m": "GET",
                   "o": "/api/billing/usage",
                   "q": {
-                    "$action": "usage",
-                    "exist": [
-                      "window_day",
-                      "workspace_id"
-                    ]
+                    "$action": "usage"
                   },
                   "r": {},
                   "s": [
@@ -3450,6 +3622,11 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "authorId",
+                    "message",
+                    "projectId"
+                  ],
                   "co": {
                     "id": "POST /api/collab/comments",
                     "source": "openapi3",
@@ -3523,8 +3700,6 @@
                   "o": "/api/collab/comments",
                   "q": {
                     "exist": [
-                      "page",
-                      "page_size",
                       "project_id"
                     ]
                   },
@@ -3638,6 +3813,11 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "limit",
+                    "prompt",
+                    "trendSignals"
+                  ],
                   "co": {
                     "id": "POST /api/v1/templates/ideas",
                     "source": "openapi3",
@@ -3769,6 +3949,13 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "captions",
+                    "templateSlug",
+                    "title",
+                    "visibility",
+                    "watermark"
+                  ],
                   "co": {
                     "id": "POST /api/free/memes/caption",
                     "source": "openapi3",
@@ -3780,6 +3967,10 @@
                   "o": "/api/free/memes/caption",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -3801,6 +3992,13 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "captions",
+                    "templateSlug",
+                    "title",
+                    "visibility",
+                    "watermark"
+                  ],
                   "co": {
                     "id": "POST /api/v1/memes/caption-template",
                     "source": "openapi3",
@@ -3812,6 +4010,10 @@
                   "o": "/api/v1/memes/caption-template",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -4130,19 +4332,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/free/templates",
-                  "q": {
-                    "exist": [
-                      "media_type",
-                      "mode",
-                      "page",
-                      "page_size",
-                      "q",
-                      "query",
-                      "sort",
-                      "tag"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -4329,6 +4524,17 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "captions",
+                    "durationMs",
+                    "fps",
+                    "gifSlug",
+                    "returnBase64",
+                    "startMs",
+                    "tags",
+                    "title",
+                    "widthPx"
+                  ],
                   "co": {
                     "id": "POST /api/v1/gifs/generate",
                     "source": "openapi3",
@@ -4340,6 +4546,10 @@
                   "o": "/api/v1/gifs/generate",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -4416,6 +4626,13 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "actorId",
+                    "limit",
+                    "logExposure",
+                    "surface"
+                  ],
                   "co": {
                     "id": "POST /api/growth/experiments/decision",
                     "source": "openapi3",
@@ -4448,6 +4665,12 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "limit",
+                    "now",
+                    "profiles"
+                  ],
                   "co": {
                     "id": "POST /api/growth/lifecycle-messaging",
                     "source": "openapi3",
@@ -4479,6 +4702,12 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "actorId",
+                    "code",
+                    "shareSlug"
+                  ],
                   "co": {
                     "id": "POST /api/growth/referrals",
                     "source": "openapi3",
@@ -4510,6 +4739,16 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "accountId",
+                    "action",
+                    "actorId",
+                    "caption",
+                    "externalAccountId",
+                    "handle",
+                    "memeSlug",
+                    "platform"
+                  ],
                   "co": {
                     "id": "POST /api/growth/social-publish",
                     "source": "openapi3",
@@ -4541,6 +4780,11 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "limit",
+                    "weekStart"
+                  ],
                   "co": {
                     "id": "POST /api/growth/trend-campaigns",
                     "source": "openapi3",
@@ -4616,9 +4860,7 @@
                   "o": "/api/growth/experiments/decision",
                   "q": {
                     "exist": [
-                      "actor_id",
-                      "log_exposure",
-                      "surface"
+                      "actor_id"
                     ]
                   },
                   "r": {},
@@ -4634,6 +4876,132 @@
                     },
                     {
                       "lit": "decision"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/growth/social-publish",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "actor_id",
+                        "or": "actorId",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "publish_limit",
+                        "or": "publishLimit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/growth/social-publish",
+                  "q": {
+                    "$action": "social_publish",
+                    "exist": [
+                      "actor_id"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "social-publish"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/growth/lifecycle-messaging",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/growth/lifecycle-messaging",
+                  "q": {
+                    "$action": "lifecycle_messaging"
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "lifecycle-messaging"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/growth/referrals",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "actor_id",
+                        "or": "actorId",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/growth/referrals",
+                  "q": {
+                    "$action": "referral"
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "growth"
+                    },
+                    {
+                      "lit": "referrals"
                     }
                   ],
                   "t": {
@@ -4680,12 +5048,7 @@
                   "m": "GET",
                   "o": "/api/growth/trend-campaigns",
                   "q": {
-                    "$action": "trend_campaign",
-                    "exist": [
-                      "limit",
-                      "published_only",
-                      "week_start"
-                    ]
+                    "$action": "trend_campaign"
                   },
                   "r": {},
                   "s": [
@@ -4697,136 +5060,6 @@
                     },
                     {
                       "lit": "trend-campaigns"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/growth/social-publish",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "actor_id",
-                        "or": "actorId",
-                        "r": true,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "publish_limit",
-                        "or": "publishLimit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/growth/social-publish",
-                  "q": {
-                    "$action": "social_publish",
-                    "exist": [
-                      "actor_id",
-                      "publish_limit"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "growth"
-                    },
-                    {
-                      "lit": "social-publish"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/growth/referrals",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "actor_id",
-                        "or": "actorId",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/growth/referrals",
-                  "q": {
-                    "$action": "referral",
-                    "exist": [
-                      "actor_id"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "growth"
-                    },
-                    {
-                      "lit": "referrals"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/growth/lifecycle-messaging",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {},
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/growth/lifecycle-messaging",
-                  "q": {
-                    "$action": "lifecycle_messaging"
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "growth"
-                    },
-                    {
-                      "lit": "lifecycle-messaging"
                     }
                   ],
                   "t": {
@@ -4886,6 +5119,14 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "contentType",
+                    "expiresInSeconds",
+                    "ownerToken",
+                    "path",
+                    "prefix"
+                  ],
                   "co": {
                     "id": "POST /api/media/signed-url",
                     "source": "openapi3",
@@ -5132,6 +5373,19 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "canvas",
+                    "captions",
+                    "generationRunId",
+                    "generationVariantId",
+                    "imageDataUrl",
+                    "overlays",
+                    "sourceImageUrl",
+                    "templateSlug",
+                    "title",
+                    "visibility",
+                    "watermark"
+                  ],
                   "co": {
                     "id": "POST /api/memes",
                     "source": "openapi3",
@@ -5143,6 +5397,10 @@
                   "o": "/api/memes",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -5248,20 +5506,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/memes",
-                  "q": {
-                    "exist": [
-                      "exclude_template_clone",
-                      "include_nsfw",
-                      "official_only",
-                      "owner_token",
-                      "page",
-                      "page_size",
-                      "query",
-                      "template_slug",
-                      "visibility"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -5315,14 +5565,17 @@
                   "o": "/api/memes/{slug}",
                   "q": {
                     "exist": [
-                      "id",
-                      "owner_token"
+                      "id"
                     ]
                   },
                   "r": {
                     "param": {
                       "slug": "id"
                     }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
                   },
                   "s": [
                     {
@@ -5377,6 +5630,10 @@
                     "param": {
                       "slug": "id"
                     }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
                   },
                   "s": [
                     {
@@ -5630,6 +5887,17 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "captions",
+                    "durationMs",
+                    "fps",
+                    "gifSlug",
+                    "returnBase64",
+                    "startMs",
+                    "tags",
+                    "title",
+                    "widthPx"
+                  ],
                   "co": {
                     "id": "POST /api/gifs/{slug}/generate",
                     "source": "openapi3",
@@ -5657,6 +5925,11 @@
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "image/gif"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -5682,6 +5955,87 @@
               "input": "data",
               "name": "list",
               "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/gifs",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "page_size",
+                        "or": "pageSize",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "query",
+                        "or": "query",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "sort",
+                        "or": "sort",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "tag",
+                        "or": "tag",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/gifs",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "gifs"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.items`"
+                  }
+                },
                 {
                   "a": true,
                   "co": {
@@ -5761,111 +6115,18 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/templates",
-                  "q": {
-                    "exist": [
-                      "media_type",
-                      "mode",
-                      "page",
-                      "page_size",
-                      "q",
-                      "query",
-                      "sort",
-                      "tag"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
                     },
                     {
                       "lit": "templates"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body.items`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/gifs",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "page",
-                        "or": "page",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "page_size",
-                        "or": "pageSize",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "q",
-                        "or": "q",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "query",
-                        "or": "query",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "sort",
-                        "or": "sort",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "tag",
-                        "or": "tag",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/gifs",
-                  "q": {
-                    "exist": [
-                      "page",
-                      "page_size",
-                      "q",
-                      "query",
-                      "sort",
-                      "tag"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "gifs"
                     }
                   ],
                   "t": {
@@ -5879,6 +6140,54 @@
               "input": "data",
               "name": "load",
               "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/gifs/{slug}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "slug",
+                        "or": "slug",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/gifs/{slug}",
+                  "q": {
+                    "exist": [
+                      "slug"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "gifs"
+                    },
+                    {
+                      "var": "slug"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
                 {
                   "a": true,
                   "co": {
@@ -5914,61 +6223,20 @@
                   "o": "/api/templates/{slug}",
                   "q": {
                     "exist": [
-                      "media_type",
                       "slug"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
                     },
                     {
                       "lit": "templates"
-                    },
-                    {
-                      "var": "slug"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/gifs/{slug}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "slug",
-                        "or": "slug",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/gifs/{slug}",
-                  "q": {
-                    "exist": [
-                      "slug"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "gifs"
                     },
                     {
                       "var": "slug"
@@ -6057,6 +6325,16 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "description",
+                    "handle",
+                    "locale",
+                    "name",
+                    "stylePreset",
+                    "systemPrompt",
+                    "watermarkText",
+                    "websiteUrl"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/bootstrap",
                     "source": "openapi3",
@@ -6068,6 +6346,10 @@
                   "o": "/api/v1/agents/bootstrap",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -6089,6 +6371,16 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "description",
+                    "handle",
+                    "locale",
+                    "name",
+                    "stylePreset",
+                    "systemPrompt",
+                    "watermarkText",
+                    "websiteUrl"
+                  ],
                   "co": {
                     "id": "POST /api/v1/agents/create-agent",
                     "source": "openapi3",
@@ -6100,6 +6392,10 @@
                   "o": "/api/v1/agents/create-agent",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -6253,6 +6549,10 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "channels",
+                    "deliverAllAlerts"
+                  ],
                   "co": {
                     "id": "POST /api/alerts/delivery",
                     "source": "openapi3",
@@ -6282,6 +6582,15 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "actorId",
+                    "alertId",
+                    "niche",
+                    "region",
+                    "source",
+                    "topic"
+                  ],
                   "co": {
                     "id": "POST /api/alerts/feedback",
                     "source": "openapi3",
@@ -6311,6 +6620,16 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "actorId",
+                    "aggressiveness",
+                    "event",
+                    "explicitNiches",
+                    "explicitRegions",
+                    "explicitSources",
+                    "explicitTopics",
+                    "followerCount"
+                  ],
                   "co": {
                     "id": "POST /api/alerts/preferences",
                     "source": "openapi3",
@@ -6373,6 +6692,50 @@
               "input": "data",
               "name": "load",
               "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/alerts/preferences",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "actor_id",
+                        "or": "actorId",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/alerts/preferences",
+                  "q": {
+                    "exist": [
+                      "actor_id"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "preferences"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
                 {
                   "a": true,
                   "co": {
@@ -6491,23 +6854,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/alerts",
-                  "q": {
-                    "exist": [
-                      "actor_id",
-                      "aggressiveness",
-                      "follower_count",
-                      "niche",
-                      "page",
-                      "page_size",
-                      "preferred_niche",
-                      "preferred_region",
-                      "query",
-                      "region",
-                      "source",
-                      "status",
-                      "topic"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -6515,6 +6862,243 @@
                     },
                     {
                       "lit": "alerts"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/alerts/connectors",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/alerts/connectors",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "connectors"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/alerts/delivery",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "refresh",
+                        "or": "refresh",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/alerts/delivery",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "delivery"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/alerts/feedback",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "actor_id",
+                        "or": "actorId",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/alerts/feedback",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "feedback"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/alerts/ingestion",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "refresh",
+                        "or": "refresh",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/alerts/ingestion",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "ingestion"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/alerts/message-templates",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "template_id",
+                        "or": "templateId",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/alerts/message-templates",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "message-templates"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/alerts/quality-report",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "refresh",
+                        "or": "refresh",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/alerts/quality-report",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "alerts"
+                    },
+                    {
+                      "lit": "quality-report"
                     }
                   ],
                   "t": {
@@ -6592,318 +7176,6 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/alerts/ranking",
-                  "q": {
-                    "exist": [
-                      "actor_id",
-                      "aggressiveness",
-                      "follower_count",
-                      "limit",
-                      "preferred_niche",
-                      "preferred_region",
-                      "topic"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "alerts"
-                    },
-                    {
-                      "lit": "ranking"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/alerts/feedback",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "actor_id",
-                        "or": "actorId",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "limit",
-                        "or": "limit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/alerts/feedback",
-                  "q": {
-                    "exist": [
-                      "actor_id",
-                      "limit"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "alerts"
-                    },
-                    {
-                      "lit": "feedback"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/alerts/preferences",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "actor_id",
-                        "or": "actorId",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/alerts/preferences",
-                  "q": {
-                    "exist": [
-                      "actor_id"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "alerts"
-                    },
-                    {
-                      "lit": "preferences"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/alerts/delivery",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "refresh",
-                        "or": "refresh",
-                        "r": false,
-                        "t": "`$BOOLEAN`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/alerts/delivery",
-                  "q": {
-                    "exist": [
-                      "refresh"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "alerts"
-                    },
-                    {
-                      "lit": "delivery"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/alerts/ingestion",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "refresh",
-                        "or": "refresh",
-                        "r": false,
-                        "t": "`$BOOLEAN`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/alerts/ingestion",
-                  "q": {
-                    "exist": [
-                      "refresh"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "alerts"
-                    },
-                    {
-                      "lit": "ingestion"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/alerts/quality-report",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "refresh",
-                        "or": "refresh",
-                        "r": false,
-                        "t": "`$BOOLEAN`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/alerts/quality-report",
-                  "q": {
-                    "exist": [
-                      "refresh"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "alerts"
-                    },
-                    {
-                      "lit": "quality-report"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/alerts/message-templates",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "template_id",
-                        "or": "templateId",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/alerts/message-templates",
-                  "q": {
-                    "exist": [
-                      "template_id"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "alerts"
-                    },
-                    {
-                      "lit": "message-templates"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/alerts/connectors",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {},
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/alerts/connectors",
                   "q": {},
                   "r": {},
                   "s": [
@@ -6914,7 +7186,7 @@
                       "lit": "alerts"
                     },
                     {
-                      "lit": "connectors"
+                      "lit": "ranking"
                     }
                   ],
                   "t": {
@@ -6963,7 +7235,46 @@
           "alias": {
             "field": {}
           },
-          "fields": {},
+          "fields": {
+            "captions": {
+              "a": true,
+              "h": "Captions",
+              "n": "captions",
+              "r": true,
+              "sh": "JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields.",
+              "t": "`$STRING`"
+            },
+            "file": {
+              "a": true,
+              "fo": "binary",
+              "h": "File",
+              "n": "file",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "visibility": {
+              "a": true,
+              "h": "Visibility",
+              "n": "visibility",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "watermark": {
+              "a": true,
+              "h": "Watermark",
+              "n": "watermark",
+              "r": false,
+              "sh": "Optional JSON watermark object.",
+              "t": "`$STRING`"
+            }
+          },
           "name": "upload_caption_meme_success",
           "op": {
             "create": {
@@ -6983,6 +7294,32 @@
                   "o": "/api/v1/memes/caption-upload",
                   "q": {},
                   "r": {},
+                  "rb": {
+                    "fields": [
+                      {
+                        "name": "captions"
+                      },
+                      {
+                        "binary": true,
+                        "name": "file"
+                      },
+                      {
+                        "name": "title"
+                      },
+                      {
+                        "name": "visibility"
+                      },
+                      {
+                        "name": "watermark"
+                      }
+                    ],
+                    "kind": "multipart",
+                    "media": "multipart/form-data"
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -7023,6 +7360,13 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "project",
+                    "projectId",
+                    "sourceDeviceId",
+                    "updatedAt"
+                  ],
                   "co": {
                     "id": "POST /api/video/drafts",
                     "source": "openapi3",
@@ -7054,6 +7398,14 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "bitrateKbps",
+                    "container",
+                    "planTier",
+                    "presetId",
+                    "watermarkEnabled",
+                    "watermarkText"
+                  ],
                   "co": {
                     "id": "POST /api/video/export-settings",
                     "source": "openapi3",
@@ -7085,6 +7437,13 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "durationSeconds",
+                    "inputFormat",
+                    "mimeType",
+                    "outputPresetId",
+                    "planTier"
+                  ],
                   "co": {
                     "id": "POST /api/video/formats",
                     "source": "openapi3",
@@ -7116,6 +7475,20 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "cancelled",
+                    "durationSeconds",
+                    "error",
+                    "jobId",
+                    "outputPresetId",
+                    "outputUrl",
+                    "planTier",
+                    "progressPercent",
+                    "projectId",
+                    "stage",
+                    "workerId"
+                  ],
                   "co": {
                     "id": "POST /api/video/render-queue",
                     "source": "openapi3",
@@ -7147,6 +7520,20 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "audioAssetId",
+                    "beatOffsetMs",
+                    "bpm",
+                    "locale",
+                    "projectId",
+                    "stylePresetId",
+                    "syncToBeatGrid",
+                    "tone",
+                    "trackId",
+                    "transcript",
+                    "trendKeywords"
+                  ],
                   "co": {
                     "id": "POST /api/video/subtitles",
                     "source": "openapi3",
@@ -7178,6 +7565,15 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "durationMs",
+                    "intensity",
+                    "presetId",
+                    "projectId",
+                    "startMs",
+                    "trackId"
+                  ],
                   "co": {
                     "id": "POST /api/video/text-animations",
                     "source": "openapi3",
@@ -7209,6 +7605,23 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "action",
+                    "assetId",
+                    "atMs",
+                    "durationMs",
+                    "easing",
+                    "frameRate",
+                    "name",
+                    "offsetMs",
+                    "projectId",
+                    "property",
+                    "sourceUrl",
+                    "startMs",
+                    "trackId",
+                    "type",
+                    "value"
+                  ],
                   "co": {
                     "id": "POST /api/video/timeline",
                     "source": "openapi3",
@@ -7244,6 +7657,402 @@
               "input": "data",
               "name": "load",
               "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/video/audio-library",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "kind",
+                        "or": "kind",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "query",
+                        "or": "query",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "tag",
+                        "or": "tag",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "target_bpm",
+                        "or": "targetBpm",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "tolerance_bpm",
+                        "or": "toleranceBpm",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/video/audio-library",
+                  "q": {
+                    "$action": "audio_library"
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "audio-library"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/video/drafts",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "project_id",
+                        "or": "projectId",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/video/drafts",
+                  "q": {
+                    "$action": "draft"
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "drafts"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/video/export-settings",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "bitrate_kbp",
+                        "or": "bitrateKbps",
+                        "r": false,
+                        "t": "`$NUMBER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "container",
+                        "or": "container",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "plan_tier",
+                        "or": "planTier",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "preset_id",
+                        "or": "presetId",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "watermark_enabled",
+                        "or": "watermarkEnabled",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "watermark_text",
+                        "or": "watermarkText",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/video/export-settings",
+                  "q": {
+                    "$action": "export_setting"
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "export-settings"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/video/formats",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "duration_second",
+                        "or": "durationSeconds",
+                        "r": false,
+                        "t": "`$NUMBER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "input_format",
+                        "or": "inputFormat",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "mime_type",
+                        "or": "mimeType",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "output_preset_id",
+                        "or": "outputPresetId",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "plan_tier",
+                        "or": "planTier",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/video/formats",
+                  "q": {
+                    "$action": "format"
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "formats"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/video/render-performance",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "refresh",
+                        "or": "refresh",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/video/render-performance",
+                  "q": {
+                    "$action": "render_performance"
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "render-performance"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/video/render-queue",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "mode",
+                        "or": "mode",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "plan_tier",
+                        "or": "planTier",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "status",
+                        "or": "status",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/video/render-queue",
+                  "q": {
+                    "$action": "render_queue"
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "video"
+                    },
+                    {
+                      "lit": "render-queue"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
                 {
                   "a": true,
                   "co": {
@@ -7323,17 +8132,7 @@
                   "m": "GET",
                   "o": "/api/video/subtitles",
                   "q": {
-                    "$action": "subtitle",
-                    "exist": [
-                      "beat_offset_m",
-                      "bpm",
-                      "locale",
-                      "style_preset_id",
-                      "sync_to_beat_grid",
-                      "tone",
-                      "transcript",
-                      "trend_keyword"
-                    ]
+                    "$action": "subtitle"
                   },
                   "r": {},
                   "s": [
@@ -7345,339 +8144,6 @@
                     },
                     {
                       "lit": "subtitles"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/video/audio-library",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "kind",
-                        "or": "kind",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "limit",
-                        "or": "limit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "query",
-                        "or": "query",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "tag",
-                        "or": "tag",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "target_bpm",
-                        "or": "targetBpm",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "tolerance_bpm",
-                        "or": "toleranceBpm",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/video/audio-library",
-                  "q": {
-                    "$action": "audio_library",
-                    "exist": [
-                      "kind",
-                      "limit",
-                      "query",
-                      "tag",
-                      "target_bpm",
-                      "tolerance_bpm"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "video"
-                    },
-                    {
-                      "lit": "audio-library"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/video/export-settings",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "bitrate_kbp",
-                        "or": "bitrateKbps",
-                        "r": false,
-                        "t": "`$NUMBER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "container",
-                        "or": "container",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "plan_tier",
-                        "or": "planTier",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "preset_id",
-                        "or": "presetId",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "watermark_enabled",
-                        "or": "watermarkEnabled",
-                        "r": false,
-                        "t": "`$BOOLEAN`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "watermark_text",
-                        "or": "watermarkText",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/video/export-settings",
-                  "q": {
-                    "$action": "export_setting",
-                    "exist": [
-                      "bitrate_kbp",
-                      "container",
-                      "plan_tier",
-                      "preset_id",
-                      "watermark_enabled",
-                      "watermark_text"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "video"
-                    },
-                    {
-                      "lit": "export-settings"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/video/formats",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "duration_second",
-                        "or": "durationSeconds",
-                        "r": false,
-                        "t": "`$NUMBER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "input_format",
-                        "or": "inputFormat",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "mime_type",
-                        "or": "mimeType",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "output_preset_id",
-                        "or": "outputPresetId",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "plan_tier",
-                        "or": "planTier",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/video/formats",
-                  "q": {
-                    "$action": "format",
-                    "exist": [
-                      "duration_second",
-                      "input_format",
-                      "mime_type",
-                      "output_preset_id",
-                      "plan_tier"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "video"
-                    },
-                    {
-                      "lit": "formats"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/video/render-queue",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "limit",
-                        "or": "limit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "mode",
-                        "or": "mode",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "plan_tier",
-                        "or": "planTier",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "status",
-                        "or": "status",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/video/render-queue",
-                  "q": {
-                    "$action": "render_queue",
-                    "exist": [
-                      "limit",
-                      "mode",
-                      "plan_tier",
-                      "status"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "video"
-                    },
-                    {
-                      "lit": "render-queue"
                     }
                   ],
                   "t": {
@@ -7732,13 +8198,7 @@
                   "m": "GET",
                   "o": "/api/video/text-animations",
                   "q": {
-                    "$action": "text_animation",
-                    "exist": [
-                      "duration_m",
-                      "intensity",
-                      "preset_id",
-                      "start_m"
-                    ]
+                    "$action": "text_animation"
                   },
                   "r": {},
                   "s": [
@@ -7750,60 +8210,6 @@
                     },
                     {
                       "lit": "text-animations"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/video/drafts",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "limit",
-                        "or": "limit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "project_id",
-                        "or": "projectId",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/video/drafts",
-                  "q": {
-                    "$action": "draft",
-                    "exist": [
-                      "limit",
-                      "project_id"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "video"
-                    },
-                    {
-                      "lit": "drafts"
                     }
                   ],
                   "t": {
@@ -7842,11 +8248,7 @@
                   "m": "GET",
                   "o": "/api/video/timeline",
                   "q": {
-                    "$action": "timeline",
-                    "exist": [
-                      "limit",
-                      "project_id"
-                    ]
+                    "$action": "timeline"
                   },
                   "r": {},
                   "s": [
@@ -7858,51 +8260,6 @@
                     },
                     {
                       "lit": "timeline"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/video/render-performance",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "refresh",
-                        "or": "refresh",
-                        "r": false,
-                        "t": "`$BOOLEAN`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/video/render-performance",
-                  "q": {
-                    "$action": "render_performance",
-                    "exist": [
-                      "refresh"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "video"
-                    },
-                    {
-                      "lit": "render-performance"
                     }
                   ],
                   "t": {
@@ -8240,6 +8597,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -8517,9 +8875,7 @@
                 "srcdatavar": "ai_job_ref01_data",
                 "suffix": "_dt0"
               },
-              "m": {
-                "id": "ai_job01"
-              },
+              "m": {},
               "o": "load",
               "s": [],
               "v": [
@@ -9199,6 +9555,17 @@
         "description": "Contract baseline for AI jobs, trend alerts, collaboration, and billing surfaces.",
         "meta_source": "https://www.freepublicapis.com",
         "security": {
+          "alternatives": [
+            [
+              {
+                "in": "header",
+                "name": "x-agent-api-key",
+                "prefix": "",
+                "scheme": "AgentApiKeyAuth",
+                "type": "apiKey"
+              }
+            ]
+          ],
           "in": "header",
           "name": "x-developer-api-key",
           "prefix": "",
@@ -9218,7 +9585,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -9271,6 +9638,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -9501,7 +9873,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -9878,6 +10253,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

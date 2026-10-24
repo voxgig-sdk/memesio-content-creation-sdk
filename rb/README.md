@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -29,7 +29,7 @@ gem "voxgig-sdk-memesio-content-creation-sdk", path: "./memesio-content-creation
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `x-developer-api-key` header.
 
 ### 1. Create a client
 
@@ -47,7 +47,7 @@ client = MemesioContentCreationSDK.new({
 begin
   # load returns the ENTITY — call data_get for the Agent record (raises on error).
   agent = client.Agent.load({ "id" => "example_id" })
-  puts agent
+  puts agent.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -140,9 +140,9 @@ Create a mock client for unit testing — no server required:
 client = MemesioContentCreationSDK.test
 
 # Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
+# data_get reads its mock record.
 aiprovider = client.AiProvider.load()
-puts aiprovider
+puts aiprovider.data_get
 ```
 
 ### Use a custom fetch function
@@ -250,11 +250,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity, and return it. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity, and return it. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity, and return it marked as deleted. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -264,9 +264,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `MemesioContentCreationError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`MemesioContentCreationError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -461,7 +462,7 @@ API path: `/api/ai/templates/detect`
 
 Operations: Load.
 
-API path: `/api/analytics/experiments/templates`
+API path: `/api/analytics/alerts/backend`
 
 #### Auth
 
@@ -721,6 +722,11 @@ API path: `/api/alerts/delivery`
 
 | Field | Description |
 | --- | --- |
+| `captions` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` |  |
+| `title` |  |
+| `visibility` |  |
+| `watermark` | Optional JSON watermark object. |
 
 Operations: Create.
 
@@ -963,12 +969,11 @@ ai_job = client.AiJob.create({
   "capability" => "example_capability", # String
   "detectedFaceCount" => 1, # Float
   "height" => 1, # Float
-  "id" => "example_id", # String
   "layerId" => "example_layerId", # String
+  "mediaType" => "example_mediaType", # String
   "projectId" => "example_projectId", # String
   "sourceAssetUrl" => "example_sourceAssetUrl", # String
   "sourceImageUrl" => "example_sourceImageUrl", # String
-  "status" => "example_status", # String
   "targetAssetUrl" => "example_targetAssetUrl", # String
   "width" => 1, # Float
 })
@@ -1015,13 +1020,7 @@ Create an instance: `ai_meme_generation_succeeded = client.AiMemeGenerationSucce
 
 ```ruby
 ai_meme_generation_succeeded = client.AiMemeGenerationSucceeded.create({
-  "flow" => "example_flow", # String
-  "mode" => "example_mode", # String
-  "ok" => true, # Boolean
   "prompt" => "example_prompt", # String
-  "status" => "example_status", # String
-  "variantCount" => 1, # Integer
-  "variants" => [], # Array
 })
 ```
 
@@ -1096,13 +1095,6 @@ Create an instance: `auth = client.Auth`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-
-#### Example: Create
-
-```ruby
-auth = client.Auth.create({
-})
-```
 
 
 ### Billing
@@ -1282,8 +1274,9 @@ Create an instance: `free_template_search = client.FreeTemplateSearch`
 #### Example: List
 
 ```ruby
-# list returns an Array of FreeTemplateSearch records (raises on error).
+# list returns an Array of FreeTemplateSearch entities, one per record (raises on error).
 free_template_searchs = client.FreeTemplateSearch.list
+free_template_searchs.each { |item| puts item.data_get }
 ```
 
 
@@ -1326,16 +1319,6 @@ Create an instance: `generate = client.Generate`
 
 ```ruby
 generate = client.Generate.create({
-  "byteLength" => 1, # Integer
-  "delayMs" => 1, # Integer
-  "filename" => "example_filename", # String
-  "gifSlug" => "example_gifSlug", # String
-  "height" => 1, # Integer
-  "mimeType" => "example_mimeType", # String
-  "pages" => 1, # Integer
-  "parameters" => {}, # Hash
-  "sourceDurationMs" => 1, # Integer
-  "width" => 1, # Integer
 })
 ```
 
@@ -1445,32 +1428,19 @@ meme = client.Meme.load({ "id" => "meme_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Meme records (raises on error).
+# list returns an Array of Meme entities, one per record (raises on error).
 memes = client.Meme.list
+memes.each { |item| puts item.data_get }
 ```
 
 #### Example: Create
 
 ```ruby
 meme = client.Meme.create({
-  "altText" => "example_altText", # String
-  "canonicalImageUrl" => "example_canonicalImageUrl", # String
   "canvas" => {}, # Hash
   "captions" => [], # Array
-  "createdAt" => "example_createdAt", # String
   "imageDataUrl" => "example_imageDataUrl", # String
-  "imageUrl" => "example_imageUrl", # String
-  "nsfwStatus" => "example_nsfwStatus", # String
-  "overlays" => [], # Array
-  "shareSlug" => "example_shareSlug", # String
-  "shareUrl" => "example_shareUrl", # String
-  "shareViews" => 1, # Integer
-  "slug" => "example_slug", # String
   "sourceImageUrl" => "example_sourceImageUrl", # String
-  "tags" => [], # Array
-  "templateSlug" => "example_templateSlug", # String
-  "title" => "example_title", # String
-  "visibility" => "example_visibility", # String
   "watermark" => {}, # Hash
 })
 ```
@@ -1527,8 +1497,9 @@ public_template_media_item = client.PublicTemplateMediaItem.load({ "slug" => "sl
 #### Example: List
 
 ```ruby
-# list returns an Array of PublicTemplateMediaItem records (raises on error).
+# list returns an Array of PublicTemplateMediaItem entities, one per record (raises on error).
 public_template_media_items = client.PublicTemplateMediaItem.list
+public_template_media_items.each { |item| puts item.data_get }
 ```
 
 #### Example: Create
@@ -1537,15 +1508,7 @@ public_template_media_items = client.PublicTemplateMediaItem.list
 public_template_media_item = client.PublicTemplateMediaItem.create({
   "slug" => "example_slug", # String
   "captions" => [], # Array
-  "description" => "example_description", # String
-  "height" => 1, # Object
-  "id" => "example_id", # String
-  "imageUrl" => "example_imageUrl", # String
-  "mediaType" => "example_mediaType", # String
-  "name" => "example_name", # String
-  "sourceTemplateId" => "example_sourceTemplateId", # Object
   "tags" => [], # Array
-  "width" => 1, # Object
 })
 ```
 
@@ -1644,10 +1607,22 @@ Create an instance: `upload_caption_meme_success = client.UploadCaptionMemeSucce
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `captions` | `String` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `String` |  |
+| `title` | `String` |  |
+| `visibility` | `String` |  |
+| `watermark` | `String` | Optional JSON watermark object. |
+
 #### Example: Create
 
 ```ruby
 upload_caption_meme_success = client.UploadCaptionMemeSuccess.create({
+  "captions" => "example_captions", # String
+  "file" => "example_file", # String
 })
 ```
 
@@ -1662,20 +1637,6 @@ Create an instance: `video = client.Video`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Example: Load
-
-```ruby
-# load returns the ENTITY — call data_get for the Video record (raises on error).
-video = client.Video.load()
-```
-
-#### Example: Create
-
-```ruby
-video = client.Video.create({
-})
-```
 
 ## Features
 

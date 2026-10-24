@@ -61,6 +61,16 @@ main: kit: entity: standalone_agent_bootstrap: {
       name: "create"
       points: [
         {
+          bf: [
+            "description"
+            "handle"
+            "locale"
+            "name"
+            "stylePreset"
+            "systemPrompt"
+            "watermarkText"
+            "websiteUrl"
+          ]
           co: {
             id: "POST /api/v1/agents/bootstrap"
             source: "openapi3"
@@ -68,6 +78,10 @@ main: kit: entity: standalone_agent_bootstrap: {
           }
           m: "POST"
           o: "/api/v1/agents/bootstrap"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"
@@ -88,6 +102,16 @@ main: kit: entity: standalone_agent_bootstrap: {
           }
         }
         {
+          bf: [
+            "description"
+            "handle"
+            "locale"
+            "name"
+            "stylePreset"
+            "systemPrompt"
+            "watermarkText"
+            "websiteUrl"
+          ]
           co: {
             id: "POST /api/v1/agents/create-agent"
             source: "openapi3"
@@ -95,6 +119,10 @@ main: kit: entity: standalone_agent_bootstrap: {
           }
           m: "POST"
           o: "/api/v1/agents/create-agent"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"

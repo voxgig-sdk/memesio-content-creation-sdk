@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MemesioContentCreationSDK, BaseFeature, stdutil } from '../../..'
+import { MemesioContentCreationSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,8 @@ describe('ComplianceEntity', async () => {
   })
 
 
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE
@@ -51,7 +53,7 @@ describe('ComplianceEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"compliance","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/compliance/content-policy","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/api/compliance/content-policy","q":{"$action":"content_policy"},"r":{},"s":[{"lit":"api"},{"lit":"compliance"},{"lit":"content-policy"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"compliance","name__orig":"compliance","Name":"Compliance","name_":"compliance","name-":"compliance","NAME":"COMPLIANCE","index$":10}, {"active":true,"entity":"compliance","key$":"BasicComplianceFlow","kind":"basic","name":"BasicComplianceFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"compliance_ref01","srcdatavar":"compliance_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-compliance_ref01"}}],"index$":0}]}, 'Compliance', {"GET /api/compliance/content-policy":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"compliance","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/compliance/content-policy","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/api/compliance/content-policy","q":{"$action":"content_policy"},"r":{},"s":[{"lit":"api"},{"lit":"compliance"},{"lit":"content-policy"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"compliance","name__orig":"compliance","Name":"Compliance","name_":"compliance","name-":"compliance","NAME":"COMPLIANCE","index$":10}, {"active":true,"entity":"compliance","key$":"BasicComplianceFlow","kind":"basic","name":"BasicComplianceFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"compliance_ref01","srcdatavar":"compliance_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-compliance_ref01"}}],"index$":0}]}, 'Compliance', {"GET /api/compliance/content-policy":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +74,12 @@ describe('ComplianceEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

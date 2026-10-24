@@ -62,7 +62,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "media", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /api/media/signed-url", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/api/media/signed-url", "q": { "$action": "signed_url" }, "r": {}, "s": [{ "lit": "api" }, { "lit": "media" }, { "lit": "signed-url" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "media", "name__orig": "media", "Name": "Media", "name_": "media", "name-": "media", "NAME": "MEDIA", "index$": 16 }, { "active": true, "entity": "media", "key$": "BasicMediaFlow", "kind": "basic", "name": "BasicMediaFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "media_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'Media', { "POST /api/media/signed-url": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["action"], "properties": { "action": { "type": "string", "enum": ["upload", "download"] }, "path": { "type": "string" }, "prefix": { "type": "string", "enum": ["templates", "memes"] }, "ownerToken": { "type": "string" }, "contentType": { "type": "string" }, "expiresInSeconds": { "type": "integer", "minimum": 30, "maximum": 86400 } } } } } }, "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "media", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "bf": ["action", "contentType", "expiresInSeconds", "ownerToken", "path", "prefix"], "co": { "id": "POST /api/media/signed-url", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/api/media/signed-url", "q": { "$action": "signed_url" }, "r": {}, "s": [{ "lit": "api" }, { "lit": "media" }, { "lit": "signed-url" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "media", "name__orig": "media", "Name": "Media", "name_": "media", "name-": "media", "NAME": "MEDIA", "index$": 16 }, { "active": true, "entity": "media", "key$": "BasicMediaFlow", "kind": "basic", "name": "BasicMediaFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "media_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'Media', { "POST /api/media/signed-url": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["action"], "properties": { "action": { "type": "string", "enum": ["upload", "download"] }, "path": { "type": "string" }, "prefix": { "type": "string", "enum": ["templates", "memes"] }, "ownerToken": { "type": "string" }, "contentType": { "type": "string" }, "expiresInSeconds": { "type": "integer", "minimum": 30, "maximum": 86400 } } } } } }, "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +75,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != media_ref01_data);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

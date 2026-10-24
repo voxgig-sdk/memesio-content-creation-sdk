@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MemesioContentCreationSDK, BaseFeature, stdutil } from '../../..'
+import { MemesioContentCreationSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('StandaloneAgentBootstrapEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = MemesioContentCreationSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.StandaloneAgentBootstrap().create({"description":1,"handle":"x","name":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.MEMESIO_CONTENT_CREATION_TEST_LIVE
@@ -51,7 +63,7 @@ describe('StandaloneAgentBootstrapEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"description":{"a":true,"h":"Description","n":"description","r":false,"t":"`$STRING`","key$":"description","index$":0},"handle":{"a":true,"h":"Handle","n":"handle","r":true,"t":"`$STRING`","key$":"handle","index$":1},"locale":{"a":true,"h":"Locale","n":"locale","r":false,"t":"`$STRING`","key$":"locale","index$":2},"name":{"a":true,"h":"Name","n":"name","r":true,"t":"`$STRING`","key$":"name","index$":3},"stylePreset":{"a":true,"h":"Style Preset","n":"stylePreset","r":false,"t":"`$STRING`","key$":"stylePreset","index$":4},"systemPrompt":{"a":true,"h":"System Prompt","n":"systemPrompt","r":false,"t":"`$STRING`","key$":"systemPrompt","index$":5},"watermarkText":{"a":true,"h":"Watermark Text","n":"watermarkText","r":false,"t":"`$STRING`","key$":"watermarkText","index$":6},"websiteUrl":{"a":true,"h":"Website Url","n":"websiteUrl","r":false,"t":"`$STRING`","key$":"websiteUrl","index$":7}},"name":"standalone_agent_bootstrap","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /api/v1/agents/bootstrap","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/api/v1/agents/bootstrap","q":{},"r":{},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"agents"},{"lit":"bootstrap"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"POST /api/v1/agents/create-agent","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/api/v1/agents/create-agent","q":{},"r":{},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"agents"},{"lit":"create-agent"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"standalone_agent_bootstrap","name__orig":"standalone_agent_bootstrap","Name":"StandaloneAgentBootstrap","name_":"standalone_agent_bootstrap","name-":"standalone-agent-bootstrap","NAME":"STANDALONE_AGENT_BOOTSTRAP","index$":19}, {"active":true,"entity":"standalone_agent_bootstrap","key$":"BasicStandaloneAgentBootstrapFlow","kind":"basic","name":"BasicStandaloneAgentBootstrapFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"standalone_agent_bootstrap_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'StandaloneAgentBootstrap', {"POST /api/v1/agents/bootstrap":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["handle","name"],"properties":{"handle":{"type":"string","minLength":3,"maxLength":80,"key$":"handle"},"name":{"type":"string","minLength":1,"maxLength":120,"key$":"name"},"description":{"type":"string","maxLength":1000,"key$":"description"},"websiteUrl":{"type":"string","maxLength":2000,"key$":"websiteUrl"},"systemPrompt":{"type":"string","maxLength":2000,"key$":"systemPrompt"},"watermarkText":{"type":"string","maxLength":160,"key$":"watermarkText"},"stylePreset":{"type":"string","maxLength":80,"key$":"stylePreset"},"locale":{"type":"string","maxLength":40,"key$":"locale"}},"index$":1}}}},"parameters":[]},"POST /api/v1/agents/create-agent":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["handle","name"],"properties":{"handle":{"type":"string","minLength":3,"maxLength":80,"key$":"handle"},"name":{"type":"string","minLength":1,"maxLength":120,"key$":"name"},"description":{"type":"string","maxLength":1000,"key$":"description"},"websiteUrl":{"type":"string","maxLength":2000,"key$":"websiteUrl"},"systemPrompt":{"type":"string","maxLength":2000,"key$":"systemPrompt"},"watermarkText":{"type":"string","maxLength":160,"key$":"watermarkText"},"stylePreset":{"type":"string","maxLength":80,"key$":"stylePreset"},"locale":{"type":"string","maxLength":40,"key$":"locale"}},"index$":1}}}},"parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"description":{"a":true,"h":"Description","n":"description","r":false,"t":"`$STRING`","key$":"description","index$":0},"handle":{"a":true,"h":"Handle","n":"handle","r":true,"t":"`$STRING`","key$":"handle","index$":1},"locale":{"a":true,"h":"Locale","n":"locale","r":false,"t":"`$STRING`","key$":"locale","index$":2},"name":{"a":true,"h":"Name","n":"name","r":true,"t":"`$STRING`","key$":"name","index$":3},"stylePreset":{"a":true,"h":"Style Preset","n":"stylePreset","r":false,"t":"`$STRING`","key$":"stylePreset","index$":4},"systemPrompt":{"a":true,"h":"System Prompt","n":"systemPrompt","r":false,"t":"`$STRING`","key$":"systemPrompt","index$":5},"watermarkText":{"a":true,"h":"Watermark Text","n":"watermarkText","r":false,"t":"`$STRING`","key$":"watermarkText","index$":6},"websiteUrl":{"a":true,"h":"Website Url","n":"websiteUrl","r":false,"t":"`$STRING`","key$":"websiteUrl","index$":7}},"name":"standalone_agent_bootstrap","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["description","handle","locale","name","stylePreset","systemPrompt","watermarkText","websiteUrl"],"co":{"id":"POST /api/v1/agents/bootstrap","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/api/v1/agents/bootstrap","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"agents"},{"lit":"bootstrap"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"bf":["description","handle","locale","name","stylePreset","systemPrompt","watermarkText","websiteUrl"],"co":{"id":"POST /api/v1/agents/create-agent","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/api/v1/agents/create-agent","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"agents"},{"lit":"create-agent"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"standalone_agent_bootstrap","name__orig":"standalone_agent_bootstrap","Name":"StandaloneAgentBootstrap","name_":"standalone_agent_bootstrap","name-":"standalone-agent-bootstrap","NAME":"STANDALONE_AGENT_BOOTSTRAP","index$":19}, {"active":true,"entity":"standalone_agent_bootstrap","key$":"BasicStandaloneAgentBootstrapFlow","kind":"basic","name":"BasicStandaloneAgentBootstrapFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"standalone_agent_bootstrap_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'StandaloneAgentBootstrap', {"POST /api/v1/agents/bootstrap":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["handle","name"],"properties":{"handle":{"type":"string","minLength":3,"maxLength":80,"key$":"handle"},"name":{"type":"string","minLength":1,"maxLength":120,"key$":"name"},"description":{"type":"string","maxLength":1000,"key$":"description"},"websiteUrl":{"type":"string","maxLength":2000,"key$":"websiteUrl"},"systemPrompt":{"type":"string","maxLength":2000,"key$":"systemPrompt"},"watermarkText":{"type":"string","maxLength":160,"key$":"watermarkText"},"stylePreset":{"type":"string","maxLength":80,"key$":"stylePreset"},"locale":{"type":"string","maxLength":40,"key$":"locale"}},"index$":1}}}},"parameters":[]},"POST /api/v1/agents/create-agent":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["handle","name"],"properties":{"handle":{"type":"string","minLength":3,"maxLength":80,"key$":"handle"},"name":{"type":"string","minLength":1,"maxLength":120,"key$":"name"},"description":{"type":"string","maxLength":1000,"key$":"description"},"websiteUrl":{"type":"string","maxLength":2000,"key$":"websiteUrl"},"systemPrompt":{"type":"string","maxLength":2000,"key$":"systemPrompt"},"watermarkText":{"type":"string","maxLength":160,"key$":"watermarkText"},"stylePreset":{"type":"string","maxLength":80,"key$":"stylePreset"},"locale":{"type":"string","maxLength":40,"key$":"locale"}},"index$":1}}}},"parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('StandaloneAgentBootstrapEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

@@ -42,10 +42,8 @@ class AgentCreateDataRequired(TypedDict):
 
 class AgentCreateData(AgentCreateDataRequired, total=False):
     description: str
-    id: str
     locale: str
     slug: str
-    status: str
     stylePreset: str
     systemPrompt: str
     watermarkText: str
@@ -60,7 +58,6 @@ class AgentUpdateData(AgentUpdateDataRequired, total=False):
     description: str
     locale: str
     name: str
-    slug: str
     status: str
     stylePreset: str
     systemPrompt: str
@@ -151,7 +148,34 @@ class AiCaption(AiCaptionRequired, total=False):
 
 
 class AiCaptionLoadMatch(TypedDict, total=False):
+    blockedTerms: list
+    canvasText: list
+    captionCount: int
+    captionSets: list
+    entities: list
+    fallbackUsed: bool
+    generationStrategy: str
     locale: str
+    memeId: str
+    memeSlug: str
+    name: str
+    ok: bool
+    optionCount: int
+    ownerToken: str
+    providerId: str
+    referenceCaptions: list
+    rewriteNote: str
+    sceneSummary: str
+    templateDescription: str
+    templateName: str
+    templateTags: list
+    tone: str
+    toneCues: list
+    trendKeywords: list
+    trendReferences: list
+    trendSignals: list
+    variationOffset: int
+    voiceRules: list
 
 
 class AiCaptionCreateDataRequired(TypedDict):
@@ -240,12 +264,11 @@ class AiJobCreateDataRequired(TypedDict):
     capability: str
     detectedFaceCount: float
     height: float
-    id: str
     layerId: str
+    mediaType: str
     projectId: str
     sourceAssetUrl: str
     sourceImageUrl: str
-    status: str
     targetAssetUrl: str
     width: float
 
@@ -253,19 +276,16 @@ class AiJobCreateDataRequired(TypedDict):
 class AiJobCreateData(AiJobCreateDataRequired, total=False):
     actorId: str
     afterState: dict
-    attempts: int
     beforeState: dict
     brushEdits: list
     celebrityConfidence: float
     consentAttested: bool
-    createdAt: str
     edgeRefinement: float
     frameTimeMs: float
     input: dict
     layerType: str
     maxAttempts: int
     maxFaces: float
-    mediaType: str
     metadata: dict
     nsfwScore: float
     runAfterMs: int
@@ -273,7 +293,6 @@ class AiJobCreateData(AiJobCreateDataRequired, total=False):
     targetFaceIndex: float
     timeoutMs: int
     traceId: str
-    updatedAt: str
     versionId: str
     workspaceId: str
 
@@ -306,13 +325,7 @@ class AiMemeGenerationSucceeded(AiMemeGenerationSucceededRequired, total=False):
 
 
 class AiMemeGenerationSucceededCreateDataRequired(TypedDict):
-    flow: str
-    mode: str
-    ok: bool
     prompt: str
-    status: str
-    variantCount: int
-    variants: list
 
 
 class AiMemeGenerationSucceededCreateData(AiMemeGenerationSucceededCreateDataRequired, total=False):
@@ -320,15 +333,16 @@ class AiMemeGenerationSucceededCreateData(AiMemeGenerationSucceededCreateDataReq
     captionSource: str
     captions: list
     correlationId: str
-    degradedFromAsync: bool
     editableCaptions: list
+    flow: str
     imageUrl: str
+    mode: str
     preferredProviderId: str
     rewriteNote: str
-    runId: str
     templateId: str
     tone: str
     toneCues: list
+    variantCount: int
     workspaceId: str
 
 
@@ -349,7 +363,16 @@ class AiProvider(AiProviderRequired, total=False):
 
 
 class AiProviderLoadMatch(TypedDict, total=False):
-    refresh: bool
+    actorId: str
+    correlationId: str
+    limit: float
+    mappingMode: str
+    maxSlots: int
+    prompt: str
+    sourceImageUrl: str
+    texts: list
+    trendSignals: list
+    workspaceId: str
 
 
 class AiProviderCreateDataRequired(TypedDict):
@@ -372,16 +395,18 @@ class Analytics(TypedDict):
     pass
 
 
-class AnalyticsLoadMatch(TypedDict, total=False):
-    template_id: str
+class AnalyticsLoadMatch(TypedDict):
+    pass
 
 
 class Auth(TypedDict):
     pass
 
 
-class AuthCreateData(TypedDict):
-    pass
+class AuthCreateData(TypedDict, total=False):
+    displayName: Any
+    email: Any
+    password: Any
 
 
 class Billing(TypedDict):
@@ -539,25 +564,11 @@ class Generate(GenerateRequired, total=False):
     widthPx: int
 
 
-class GenerateCreateDataRequired(TypedDict):
-    byteLength: int
-    delayMs: int
-    filename: str
-    gifSlug: str
-    height: int
-    mimeType: str
-    pages: int
-    parameters: dict
-    sourceDurationMs: int
-    width: int
-
-
-class GenerateCreateData(GenerateCreateDataRequired, total=False):
-    base64: str
+class GenerateCreateData(TypedDict, total=False):
     captions: list
-    dataUrl: str
     durationMs: int
     fps: int
+    gifSlug: str
     returnBase64: bool
     startMs: int
     tags: list
@@ -600,8 +611,13 @@ class Media(TypedDict):
     pass
 
 
-class MediaCreateData(TypedDict):
-    pass
+class MediaCreateData(TypedDict, total=False):
+    action: Any
+    contentType: Any
+    expiresInSeconds: Any
+    ownerToken: Any
+    path: Any
+    prefix: Any
 
 
 class MemeRequired(TypedDict):
@@ -653,31 +669,20 @@ class MemeListMatch(TypedDict, total=False):
 
 
 class MemeCreateDataRequired(TypedDict):
-    altText: str
-    canonicalImageUrl: str
     canvas: dict
     captions: list
-    createdAt: str
     imageDataUrl: str
-    imageUrl: str
-    nsfwStatus: str
-    overlays: list
-    shareSlug: str
-    shareUrl: str
-    shareViews: int
-    slug: str
     sourceImageUrl: str
-    tags: list
-    templateSlug: str
-    title: str
-    visibility: str
     watermark: dict
 
 
 class MemeCreateData(MemeCreateDataRequired, total=False):
     generationRunId: str | None
     generationVariantId: str | None
-    id: str
+    overlays: list
+    templateSlug: str
+    title: str
+    visibility: str
 
 
 class MemeRemoveMatch(TypedDict):
@@ -723,8 +728,6 @@ class PublicTemplateMediaItemLoadMatch(PublicTemplateMediaItemLoadMatchRequired,
 
 
 class PublicTemplateMediaItemListMatch(TypedDict, total=False):
-    media_type: str
-    mode: str
     page: int
     page_size: int
     q: str
@@ -736,31 +739,17 @@ class PublicTemplateMediaItemListMatch(TypedDict, total=False):
 class PublicTemplateMediaItemCreateDataRequired(TypedDict):
     slug: str
     captions: list
-    description: str
-    height: float | None
-    id: str
-    imageUrl: str
-    mediaType: str
-    name: str
-    sourceTemplateId: str | None
     tags: list
-    width: float | None
 
 
 class PublicTemplateMediaItemCreateData(PublicTemplateMediaItemCreateDataRequired, total=False):
-    animated: bool
-    assetBytes: int | None
-    assetContentType: str
-    boxCount: int
-    captionCount: int
-    categories: list
     durationMs: int | None
-    exampleImageUrl: str | None
-    frameCount: int | None
-    posterImageUrl: str
-    previewImageUrl: str
-    qualityStatus: str
-    sourceUrl: str
+    fps: Any
+    gifSlug: Any
+    returnBase64: Any
+    startMs: Any
+    title: Any
+    widthPx: Any
 
 
 class StandaloneAgentBootstrapRequired(TypedDict):
@@ -851,12 +840,26 @@ class TrendAlertCreateData(TrendAlertCreateDataRequired, total=False):
     source: str
 
 
-class UploadCaptionMemeSuccess(TypedDict):
-    pass
+class UploadCaptionMemeSuccessRequired(TypedDict):
+    captions: str
+    file: str
 
 
-class UploadCaptionMemeSuccessCreateData(TypedDict):
-    pass
+class UploadCaptionMemeSuccess(UploadCaptionMemeSuccessRequired, total=False):
+    title: str
+    visibility: str
+    watermark: str
+
+
+class UploadCaptionMemeSuccessCreateDataRequired(TypedDict):
+    captions: str
+    file: str
+
+
+class UploadCaptionMemeSuccessCreateData(UploadCaptionMemeSuccessCreateDataRequired, total=False):
+    title: str
+    visibility: str
+    watermark: str
 
 
 class Video(TypedDict):
@@ -864,15 +867,57 @@ class Video(TypedDict):
 
 
 class VideoLoadMatch(TypedDict, total=False):
-    beat_offset_m: int
-    bpm: int
-    locale: str
-    style_preset_id: str
-    sync_to_beat_grid: bool
-    tone: str
-    transcript: str
-    trend_keyword: str
+    kind: str
+    limit: int
+    query: str
+    tag: str
+    target_bpm: int
+    tolerance_bpm: int
 
 
-class VideoCreateData(TypedDict):
-    pass
+class VideoCreateData(TypedDict, total=False):
+    action: Any
+    assetId: Any
+    atMs: Any
+    audioAssetId: Any
+    beatOffsetMs: Any
+    bitrateKbps: Any
+    bpm: Any
+    cancelled: Any
+    container: Any
+    durationMs: Any
+    durationSeconds: Any
+    easing: Any
+    error: Any
+    frameRate: Any
+    inputFormat: Any
+    intensity: Any
+    jobId: Any
+    locale: Any
+    mimeType: Any
+    name: Any
+    offsetMs: Any
+    outputPresetId: Any
+    outputUrl: Any
+    planTier: Any
+    presetId: Any
+    progressPercent: Any
+    project: Any
+    projectId: Any
+    property: Any
+    sourceDeviceId: Any
+    sourceUrl: Any
+    stage: Any
+    startMs: Any
+    stylePresetId: Any
+    syncToBeatGrid: Any
+    tone: Any
+    trackId: Any
+    transcript: Any
+    trendKeywords: Any
+    type: Any
+    updatedAt: Any
+    value: Any
+    watermarkEnabled: Any
+    watermarkText: Any
+    workerId: Any

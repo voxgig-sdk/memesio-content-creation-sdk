@@ -2,19 +2,40 @@
   "existing": {
     "upload_caption_meme_success": {
       "UPLOAD_CAPTION_MEME_SUCCESS00": {
+        "captions": "s32",
+        "file": "s33",
+        "title": "s34",
+        "visibility": "s35",
+        "watermark": "s36",
         "id": "UPLOAD_CAPTION_MEME_SUCCESS00"
       },
       "UPLOAD_CAPTION_MEME_SUCCESS01": {
+        "captions": "s64",
+        "file": "s65",
+        "title": "s66",
+        "visibility": "s67",
+        "watermark": "s68",
         "id": "UPLOAD_CAPTION_MEME_SUCCESS01"
       },
       "UPLOAD_CAPTION_MEME_SUCCESS02": {
+        "captions": "s96",
+        "file": "s97",
+        "title": "s98",
+        "visibility": "s99",
+        "watermark": "s9a",
         "id": "UPLOAD_CAPTION_MEME_SUCCESS02"
       }
     }
   },
   "new": {
     "upload_caption_meme_success": {
-      "upload_caption_meme_success_ref01": {}
+      "upload_caption_meme_success_ref01": {
+        "captions": "sc8",
+        "file": "sc9",
+        "title": "sca",
+        "visibility": "scb",
+        "watermark": "scc"
+      }
     }
   },
   "requests": {

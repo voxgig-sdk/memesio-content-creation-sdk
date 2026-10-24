@@ -141,6 +141,17 @@ main: kit: entity: generate: {
       name: "create"
       points: [
         {
+          bf: [
+            "captions"
+            "durationMs"
+            "fps"
+            "gifSlug"
+            "returnBase64"
+            "startMs"
+            "tags"
+            "title"
+            "widthPx"
+          ]
           co: {
             id: "POST /api/v1/gifs/generate"
             source: "openapi3"
@@ -148,6 +159,10 @@ main: kit: entity: generate: {
           }
           m: "POST"
           o: "/api/v1/gifs/generate"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"

@@ -109,6 +109,10 @@ main: kit: entity: trend_alert: {
       name: "create"
       points: [
         {
+          bf: [
+            "channels"
+            "deliverAllAlerts"
+          ]
           co: {
             id: "POST /api/alerts/delivery"
             source: "openapi3"
@@ -133,6 +137,15 @@ main: kit: entity: trend_alert: {
           }
         }
         {
+          bf: [
+            "action"
+            "actorId"
+            "alertId"
+            "niche"
+            "region"
+            "source"
+            "topic"
+          ]
           co: {
             id: "POST /api/alerts/feedback"
             source: "openapi3"
@@ -157,6 +170,16 @@ main: kit: entity: trend_alert: {
           }
         }
         {
+          bf: [
+            "actorId"
+            "aggressiveness"
+            "event"
+            "explicitNiches"
+            "explicitRegions"
+            "explicitSources"
+            "explicitTopics"
+            "followerCount"
+          ]
           co: {
             id: "POST /api/alerts/preferences"
             source: "openapi3"
@@ -209,6 +232,46 @@ main: kit: entity: trend_alert: {
     load: {
       name: "load"
       points: [
+        {
+          co: {
+            id: "GET /api/alerts/preferences"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actorId"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/preferences"
+          q: {
+            exist: [
+              "actor_id"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "preferences"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
         {
           co: {
             id: "GET /api/alerts"
@@ -312,29 +375,218 @@ main: kit: entity: trend_alert: {
           }
           m: "GET"
           o: "/api/alerts"
-          q: {
-            exist: [
-              "actor_id"
-              "aggressiveness"
-              "follower_count"
-              "niche"
-              "page"
-              "page_size"
-              "preferred_niche"
-              "preferred_region"
-              "query"
-              "region"
-              "source"
-              "status"
-              "topic"
-            ]
-          }
           s: [
             {
               lit: "api"
             }
             {
               lit: "alerts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/connectors"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/alerts/connectors"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "connectors"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/delivery"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "refresh"
+                or: "refresh"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/delivery"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "delivery"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/feedback"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actorId"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/feedback"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "feedback"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/ingestion"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "refresh"
+                or: "refresh"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/ingestion"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "ingestion"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/message-templates"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "template_id"
+                or: "templateId"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/message-templates"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "message-templates"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/alerts/quality-report"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "refresh"
+                or: "refresh"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/alerts/quality-report"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "alerts"
+            }
+            {
+              lit: "quality-report"
             }
           ]
           t: {
@@ -403,17 +655,6 @@ main: kit: entity: trend_alert: {
           }
           m: "GET"
           o: "/api/alerts/ranking"
-          q: {
-            exist: [
-              "actor_id"
-              "aggressiveness"
-              "follower_count"
-              "limit"
-              "preferred_niche"
-              "preferred_region"
-              "topic"
-            ]
-          }
           s: [
             {
               lit: "api"
@@ -423,278 +664,6 @@ main: kit: entity: trend_alert: {
             }
             {
               lit: "ranking"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/alerts/feedback"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "actor_id"
-                or: "actorId"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "limit"
-                or: "limit"
-                r: false
-                t: "`$INTEGER`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/alerts/feedback"
-          q: {
-            exist: [
-              "actor_id"
-              "limit"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "alerts"
-            }
-            {
-              lit: "feedback"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/alerts/preferences"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "actor_id"
-                or: "actorId"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/alerts/preferences"
-          q: {
-            exist: [
-              "actor_id"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "alerts"
-            }
-            {
-              lit: "preferences"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/alerts/delivery"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "refresh"
-                or: "refresh"
-                r: false
-                t: "`$BOOLEAN`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/alerts/delivery"
-          q: {
-            exist: [
-              "refresh"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "alerts"
-            }
-            {
-              lit: "delivery"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/alerts/ingestion"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "refresh"
-                or: "refresh"
-                r: false
-                t: "`$BOOLEAN`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/alerts/ingestion"
-          q: {
-            exist: [
-              "refresh"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "alerts"
-            }
-            {
-              lit: "ingestion"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/alerts/quality-report"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "refresh"
-                or: "refresh"
-                r: false
-                t: "`$BOOLEAN`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/alerts/quality-report"
-          q: {
-            exist: [
-              "refresh"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "alerts"
-            }
-            {
-              lit: "quality-report"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/alerts/message-templates"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "template_id"
-                or: "templateId"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/alerts/message-templates"
-          q: {
-            exist: [
-              "template_id"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "alerts"
-            }
-            {
-              lit: "message-templates"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/alerts/connectors"
-            source: "openapi3"
-            version: 2
-          }
-          m: "GET"
-          o: "/api/alerts/connectors"
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "alerts"
-            }
-            {
-              lit: "connectors"
             }
           ]
           t: {

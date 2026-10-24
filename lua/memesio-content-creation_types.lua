@@ -23,11 +23,9 @@
 
 ---@class AgentCreateData
 ---@field description? string
----@field id? string
 ---@field locale? string
 ---@field name string
 ---@field slug? string
----@field status? string
 ---@field stylePreset? string
 ---@field systemPrompt? string
 ---@field watermarkText? string
@@ -38,7 +36,6 @@
 ---@field description? string
 ---@field locale? string
 ---@field name? string
----@field slug? string
 ---@field status? string
 ---@field stylePreset? string
 ---@field systemPrompt? string
@@ -114,7 +111,34 @@
 ---@field voiceRules? table
 
 ---@class AiCaptionLoadMatch
+---@field blockedTerms? table
+---@field canvasText? table
+---@field captionCount? number
+---@field captionSets? table
+---@field entities? table
+---@field fallbackUsed? boolean
+---@field generationStrategy? string
 ---@field locale? string
+---@field memeId? string
+---@field memeSlug? string
+---@field name? string
+---@field ok? boolean
+---@field optionCount? number
+---@field ownerToken? string
+---@field providerId? string
+---@field referenceCaptions? table
+---@field rewriteNote? string
+---@field sceneSummary? string
+---@field templateDescription? string
+---@field templateName? string
+---@field templateTags? table
+---@field tone? string
+---@field toneCues? table
+---@field trendKeywords? table
+---@field trendReferences? table
+---@field trendSignals? table
+---@field variationOffset? number
+---@field voiceRules? table
 
 ---@class AiCaptionCreateData
 ---@field blockedTerms? table
@@ -192,24 +216,21 @@
 ---@field action string
 ---@field actorId? string
 ---@field afterState? table
----@field attempts? number
 ---@field beforeState? table
 ---@field brushEdits? table
 ---@field capability string
 ---@field celebrityConfidence? number
 ---@field consentAttested? boolean
----@field createdAt? string
 ---@field detectedFaceCount number
 ---@field edgeRefinement? number
 ---@field frameTimeMs? number
 ---@field height number
----@field id string
 ---@field input? table
 ---@field layerId string
 ---@field layerType? string
 ---@field maxAttempts? number
 ---@field maxFaces? number
----@field mediaType? string
+---@field mediaType string
 ---@field metadata? table
 ---@field nsfwScore? number
 ---@field projectId string
@@ -217,12 +238,10 @@
 ---@field sourceAssetUrl string
 ---@field sourceFaceIndex? number
 ---@field sourceImageUrl string
----@field status string
 ---@field targetAssetUrl string
 ---@field targetFaceIndex? number
 ---@field timeoutMs? number
 ---@field traceId? string
----@field updatedAt? string
 ---@field versionId? string
 ---@field width number
 ---@field workspaceId? string
@@ -255,22 +274,17 @@
 ---@field captionSource? string
 ---@field captions? table
 ---@field correlationId? string
----@field degradedFromAsync? boolean
 ---@field editableCaptions? table
----@field flow string
+---@field flow? string
 ---@field imageUrl? string
----@field mode string
----@field ok boolean
+---@field mode? string
 ---@field preferredProviderId? string
 ---@field prompt string
 ---@field rewriteNote? string
----@field runId? string
----@field status string
 ---@field templateId? string
 ---@field tone? string
 ---@field toneCues? table
----@field variantCount number
----@field variants table
+---@field variantCount? number
 ---@field workspaceId? string
 
 ---@class AiProvider
@@ -286,7 +300,16 @@
 ---@field workspaceId? string
 
 ---@class AiProviderLoadMatch
----@field refresh? boolean
+---@field actorId? string
+---@field correlationId? string
+---@field limit? number
+---@field mappingMode? string
+---@field maxSlots? number
+---@field prompt? string
+---@field sourceImageUrl? string
+---@field texts? table
+---@field trendSignals? table
+---@field workspaceId? string
 
 ---@class AiProviderCreateData
 ---@field actorId? string
@@ -303,11 +326,13 @@
 ---@class Analytics
 
 ---@class AnalyticsLoadMatch
----@field template_id? string
 
 ---@class Auth
 
 ---@class AuthCreateData
+---@field displayName? any
+---@field email? any
+---@field password? any
 
 ---@class Billing
 
@@ -420,25 +445,14 @@
 ---@field widthPx? number
 
 ---@class GenerateCreateData
----@field base64? string
----@field byteLength number
 ---@field captions? table
----@field dataUrl? string
----@field delayMs number
 ---@field durationMs? number
----@field filename string
 ---@field fps? number
----@field gifSlug string
----@field height number
----@field mimeType string
----@field pages number
----@field parameters table
+---@field gifSlug? string
 ---@field returnBase64? boolean
----@field sourceDurationMs number
 ---@field startMs? number
 ---@field tags? table
 ---@field title? string
----@field width number
 ---@field widthPx? number
 
 ---@class Growth
@@ -463,6 +477,12 @@
 ---@class Media
 
 ---@class MediaCreateData
+---@field action? any
+---@field contentType? any
+---@field expiresInSeconds? any
+---@field ownerToken? any
+---@field path? any
+---@field prefix? any
 
 ---@class Meme
 ---@field altText string
@@ -504,27 +524,16 @@
 ---@field visibility? string
 
 ---@class MemeCreateData
----@field altText string
----@field canonicalImageUrl string
 ---@field canvas table
 ---@field captions table
----@field createdAt string
 ---@field generationRunId? string|nil
 ---@field generationVariantId? string|nil
----@field id? string
 ---@field imageDataUrl string
----@field imageUrl string
----@field nsfwStatus string
----@field overlays table
----@field shareSlug string
----@field shareUrl string
----@field shareViews number
----@field slug string
+---@field overlays? table
 ---@field sourceImageUrl string
----@field tags table
----@field templateSlug string
----@field title string
----@field visibility string
+---@field templateSlug? string
+---@field title? string
+---@field visibility? string
 ---@field watermark table
 
 ---@class MemeRemoveMatch
@@ -561,8 +570,6 @@
 ---@field media_type? string
 
 ---@class PublicTemplateMediaItemListMatch
----@field media_type? string
----@field mode? string
 ---@field page? number
 ---@field page_size? number
 ---@field q? string
@@ -572,29 +579,15 @@
 
 ---@class PublicTemplateMediaItemCreateData
 ---@field slug string
----@field animated? boolean
----@field assetBytes? number|nil
----@field assetContentType? string
----@field boxCount? number
----@field captionCount? number
 ---@field captions table
----@field categories? table
----@field description string
 ---@field durationMs? number|nil
----@field exampleImageUrl? string|nil
----@field frameCount? number|nil
----@field height number|nil
----@field id string
----@field imageUrl string
----@field mediaType string
----@field name string
----@field posterImageUrl? string
----@field previewImageUrl? string
----@field qualityStatus? string
----@field sourceTemplateId string|nil
----@field sourceUrl? string
 ---@field tags table
----@field width number|nil
+---@field fps? any
+---@field gifSlug? any
+---@field returnBase64? any
+---@field startMs? any
+---@field title? any
+---@field widthPx? any
 
 ---@class StandaloneAgentBootstrap
 ---@field description? string
@@ -668,22 +661,75 @@
 ---@field topic string
 
 ---@class UploadCaptionMemeSuccess
+---@field captions string
+---@field file string
+---@field title? string
+---@field visibility? string
+---@field watermark? string
 
 ---@class UploadCaptionMemeSuccessCreateData
+---@field captions string
+---@field file string
+---@field title? string
+---@field visibility? string
+---@field watermark? string
 
 ---@class Video
 
 ---@class VideoLoadMatch
----@field beat_offset_m? number
----@field bpm? number
----@field locale? string
----@field style_preset_id? string
----@field sync_to_beat_grid? boolean
----@field tone? string
----@field transcript? string
----@field trend_keyword? string
+---@field kind? string
+---@field limit? number
+---@field query? string
+---@field tag? string
+---@field target_bpm? number
+---@field tolerance_bpm? number
 
 ---@class VideoCreateData
+---@field action? any
+---@field assetId? any
+---@field atMs? any
+---@field audioAssetId? any
+---@field beatOffsetMs? any
+---@field bitrateKbps? any
+---@field bpm? any
+---@field cancelled? any
+---@field container? any
+---@field durationMs? any
+---@field durationSeconds? any
+---@field easing? any
+---@field error? any
+---@field frameRate? any
+---@field inputFormat? any
+---@field intensity? any
+---@field jobId? any
+---@field locale? any
+---@field mimeType? any
+---@field name? any
+---@field offsetMs? any
+---@field outputPresetId? any
+---@field outputUrl? any
+---@field planTier? any
+---@field presetId? any
+---@field progressPercent? any
+---@field project? any
+---@field projectId? any
+---@field property? any
+---@field sourceDeviceId? any
+---@field sourceUrl? any
+---@field stage? any
+---@field startMs? any
+---@field stylePresetId? any
+---@field syncToBeatGrid? any
+---@field tone? any
+---@field trackId? any
+---@field transcript? any
+---@field trendKeywords? any
+---@field type? any
+---@field updatedAt? any
+---@field value? any
+---@field watermarkEnabled? any
+---@field watermarkText? any
+---@field workerId? any
 
 local M = {}
 

@@ -69,17 +69,17 @@
       "version": 2,
       "source": "openapi3"
     },
+    "GET /api/ai/memes/generate": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
     "GET /api/ai/providers/background-remove-benchmark": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
     "GET /api/ai/providers/face-swap-benchmark": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
-    "GET /api/ai/memes/generate": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

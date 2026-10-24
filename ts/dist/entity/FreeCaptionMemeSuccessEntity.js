@@ -81,9 +81,12 @@ class FreeCaptionMemeSuccessEntity extends MemesioContentCreationEntityBase_1.Me
         catch (err) {
             // What a hook throws here must not escape the cleaning below.
             try {
-                fres = featureHook(ctx, 'PreUnexpected');
-                if (fres instanceof Promise) {
-                    await fres;
+                // Once per operation: makeError fires it for its own error.
+                if (!ctx.unexpectedFired) {
+                    fres = featureHook(ctx, 'PreUnexpected');
+                    if (fres instanceof Promise) {
+                        await fres;
+                    }
                 }
             }
             catch (hookerr) {
@@ -95,7 +98,7 @@ class FreeCaptionMemeSuccessEntity extends MemesioContentCreationEntityBase_1.Me
             }
             else {
                 // Off-happy-path (throw disabled): typed as any so the method's
-                // Promise<FreeCaptionMemeSuccess> return stays clean under strict null checks.
+                // Promise<FreeCaptionMemeSuccessEntity> return stays clean under strict null checks.
                 return undefined;
             }
         }

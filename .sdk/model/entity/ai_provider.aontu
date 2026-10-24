@@ -73,6 +73,15 @@ main: kit: entity: ai_provider: {
       name: "create"
       points: [
         {
+          bf: [
+            "actorId"
+            "correlationId"
+            "mappingMode"
+            "maxSlots"
+            "sourceImageUrl"
+            "texts"
+            "workspaceId"
+          ]
           co: {
             id: "POST /api/ai/templates/detect"
             source: "openapi3"
@@ -100,6 +109,11 @@ main: kit: entity: ai_provider: {
           }
         }
         {
+          bf: [
+            "limit"
+            "prompt"
+            "trendSignals"
+          ]
           co: {
             id: "POST /api/ai/templates/suggest"
             source: "openapi3"
@@ -133,6 +147,33 @@ main: kit: entity: ai_provider: {
       points: [
         {
           co: {
+            id: "GET /api/ai/memes/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/ai/memes/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "memes"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
             id: "GET /api/ai/providers/background-remove-benchmark"
             source: "openapi3"
             version: 2
@@ -150,11 +191,6 @@ main: kit: entity: ai_provider: {
           }
           m: "GET"
           o: "/api/ai/providers/background-remove-benchmark"
-          q: {
-            exist: [
-              "refresh"
-            ]
-          }
           s: [
             {
               lit: "api"
@@ -193,11 +229,6 @@ main: kit: entity: ai_provider: {
           }
           m: "GET"
           o: "/api/ai/providers/face-swap-benchmark"
-          q: {
-            exist: [
-              "refresh"
-            ]
-          }
           s: [
             {
               lit: "api"
@@ -210,33 +241,6 @@ main: kit: entity: ai_provider: {
             }
             {
               lit: "face-swap-benchmark"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/ai/memes/generate"
-            source: "openapi3"
-            version: 2
-          }
-          m: "GET"
-          o: "/api/ai/memes/generate"
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "ai"
-            }
-            {
-              lit: "memes"
-            }
-            {
-              lit: "generate"
             }
           ]
           t: {

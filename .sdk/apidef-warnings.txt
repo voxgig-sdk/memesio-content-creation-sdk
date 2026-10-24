@@ -1,0 +1,232 @@
+{
+  point: "warning"
+  note: "Points POST /api/v1/agents/{agentId}/channels/telegram/bind, POST /api/v1/agents/{agentId}/channels/whatsapp/bind and POST /api/v1/agents/{agentId}/unlocks/social-action on entity=agent_infra op=create have the same selector (exist: agent_id), so only POST /api/v1/agents/{agentId}/channels/telegram/bind is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "agent_infra"
+  op: "create"
+  points: [
+    "POST /api/v1/agents/{agentId}/channels/telegram/bind"
+    "POST /api/v1/agents/{agentId}/channels/whatsapp/bind"
+    "POST /api/v1/agents/{agentId}/unlocks/social-action"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points POST /api/v1/agents/names:generate, POST /api/v1/agents/rewards/votes, POST /api/v1/agents/rewards/winner:close, POST /api/v1/agents/webhooks/telegram and POST /api/v1/agents/webhooks/whatsapp on entity=agent_infra op=create have the same selector (exist: none), so only POST /api/v1/agents/names:generate is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "agent_infra"
+  op: "create"
+  points: [
+    "POST /api/v1/agents/names:generate"
+    "POST /api/v1/agents/rewards/votes"
+    "POST /api/v1/agents/rewards/winner:close"
+    "POST /api/v1/agents/webhooks/telegram"
+    "POST /api/v1/agents/webhooks/whatsapp"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /api/v1/agents/rewards/leaderboard and GET /api/v1/agents/webhooks/whatsapp on entity=agent_infra op=load have the same selector (exist: none), so only GET /api/v1/agents/rewards/leaderboard is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "agent_infra"
+  op: "load"
+  points: [
+    "GET /api/v1/agents/rewards/leaderboard"
+    "GET /api/v1/agents/webhooks/whatsapp"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points POST /api/ai/captions/generate, POST /api/ai/captions/moderate, POST /api/ai/captions/prompt, POST /api/ai/captions/rank, POST /api/ai/captions/rewrite, POST /api/ai/captions/scene and POST /api/ai/captions/tone-presets on entity=ai_caption op=create have the same selector (exist: none), so only POST /api/ai/captions/generate is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "ai_caption"
+  op: "create"
+  points: [
+    "POST /api/ai/captions/generate"
+    "POST /api/ai/captions/moderate"
+    "POST /api/ai/captions/prompt"
+    "POST /api/ai/captions/rank"
+    "POST /api/ai/captions/rewrite"
+    "POST /api/ai/captions/scene"
+    "POST /api/ai/captions/tone-presets"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /api/ai/captions/generate and GET /api/ai/captions/tone-presets on entity=ai_caption op=load have the same selector (exist: none), so only GET /api/ai/captions/generate is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "ai_caption"
+  op: "load"
+  points: [
+    "GET /api/ai/captions/generate"
+    "GET /api/ai/captions/tone-presets"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points POST /api/ai/background-remove, POST /api/ai/edit-history, POST /api/ai/face-swap, POST /api/ai/face-targets and POST /api/ai/jobs on entity=ai_job op=create have the same selector (exist: none), so only POST /api/ai/background-remove is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "ai_job"
+  op: "create"
+  points: [
+    "POST /api/ai/background-remove"
+    "POST /api/ai/edit-history"
+    "POST /api/ai/face-swap"
+    "POST /api/ai/face-targets"
+    "POST /api/ai/jobs"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points POST /api/ai/memes/generate and POST /api/v1/memes/generate on entity=ai_meme_generation_succeeded op=create have the same selector (exist: none), so only POST /api/ai/memes/generate is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "ai_meme_generation_succeeded"
+  op: "create"
+  points: [
+    "POST /api/ai/memes/generate"
+    "POST /api/v1/memes/generate"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points POST /api/ai/templates/detect and POST /api/ai/templates/suggest on entity=ai_provider op=create have the same selector (exist: none), so only POST /api/ai/templates/detect is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "ai_provider"
+  op: "create"
+  points: [
+    "POST /api/ai/templates/detect"
+    "POST /api/ai/templates/suggest"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /api/ai/memes/generate, GET /api/ai/providers/background-remove-benchmark and GET /api/ai/providers/face-swap-benchmark on entity=ai_provider op=load have the same selector (exist: none), so only GET /api/ai/memes/generate is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "ai_provider"
+  op: "load"
+  points: [
+    "GET /api/ai/memes/generate"
+    "GET /api/ai/providers/background-remove-benchmark"
+    "GET /api/ai/providers/face-swap-benchmark"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /api/analytics/alerts/backend, GET /api/analytics/anomalies/ai, GET /api/analytics/dashboards/activation-retention, GET /api/analytics/dashboards/backend-reliability, GET /api/analytics/dashboards/feature-adoption and GET /api/analytics/experiments/templates on entity=analytics op=load have the same selector (exist: none), so only GET /api/analytics/alerts/backend is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "analytics"
+  op: "load"
+  points: [
+    "GET /api/analytics/alerts/backend"
+    "GET /api/analytics/anomalies/ai"
+    "GET /api/analytics/dashboards/activation-retention"
+    "GET /api/analytics/dashboards/backend-reliability"
+    "GET /api/analytics/dashboards/feature-adoption"
+    "GET /api/analytics/experiments/templates"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points POST /api/free/memes/caption and POST /api/v1/memes/caption-template on entity=free_caption_meme_success op=create have the same selector (exist: none), so only POST /api/free/memes/caption is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "free_caption_meme_success"
+  op: "create"
+  points: [
+    "POST /api/free/memes/caption"
+    "POST /api/v1/memes/caption-template"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /api/gifs and GET /api/templates on entity=public_template_media_item op=list have the same selector (exist: none), so only GET /api/gifs is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "public_template_media_item"
+  op: "list"
+  points: [
+    "GET /api/gifs"
+    "GET /api/templates"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /api/gifs/{slug} and GET /api/templates/{slug} on entity=public_template_media_item op=load have the same selector (exist: slug), so only GET /api/gifs/{slug} is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "public_template_media_item"
+  op: "load"
+  points: [
+    "GET /api/gifs/{slug}"
+    "GET /api/templates/{slug}"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points POST /api/v1/agents/bootstrap and POST /api/v1/agents/create-agent on entity=standalone_agent_bootstrap op=create have the same selector (exist: none), so only POST /api/v1/agents/bootstrap is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "standalone_agent_bootstrap"
+  op: "create"
+  points: [
+    "POST /api/v1/agents/bootstrap"
+    "POST /api/v1/agents/create-agent"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points POST /api/alerts/delivery, POST /api/alerts/feedback, POST /api/alerts/preferences and POST /api/alerts/triggers on entity=trend_alert op=create have the same selector (exist: none), so only POST /api/alerts/delivery is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "trend_alert"
+  op: "create"
+  points: [
+    "POST /api/alerts/delivery"
+    "POST /api/alerts/feedback"
+    "POST /api/alerts/preferences"
+    "POST /api/alerts/triggers"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /api/alerts, GET /api/alerts/connectors, GET /api/alerts/delivery, GET /api/alerts/feedback, GET /api/alerts/ingestion, GET /api/alerts/message-templates, GET /api/alerts/quality-report, GET /api/alerts/ranking and GET /api/alerts/triggers on entity=trend_alert op=load have the same selector (exist: none), so only GET /api/alerts is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "trend_alert"
+  op: "load"
+  points: [
+    "GET /api/alerts"
+    "GET /api/alerts/connectors"
+    "GET /api/alerts/delivery"
+    "GET /api/alerts/feedback"
+    "GET /api/alerts/ingestion"
+    "GET /api/alerts/message-templates"
+    "GET /api/alerts/quality-report"
+    "GET /api/alerts/ranking"
+    "GET /api/alerts/triggers"
+  ]
+
+}

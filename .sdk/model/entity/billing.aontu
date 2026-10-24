@@ -37,10 +37,6 @@ main: kit: entity: billing: {
           o: "/api/billing/usage"
           q: {
             "$action": "usage"
-            exist: [
-              "window_day"
-              "workspace_id"
-            ]
           }
           s: [
             {

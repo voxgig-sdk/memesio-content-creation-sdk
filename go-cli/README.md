@@ -22,6 +22,7 @@ export MEMESIO_CONTENT_CREATION_APIKEY=sk_live_xxx
 ./memesio-content-creation-cli load 1 agent            # {id:1} shorthand
 ./memesio-content-creation-cli load '{id:1}' agent       # explicit match map
 ./memesio-content-creation-cli update '{name:"x"}' agent
+./memesio-content-creation-cli list free_template_search
 
 # 5. Override the API base URL for a single call
 MEMESIO_CONTENT_CREATION_BASE=https://api.example.com ./memesio-content-creation-cli load 1 agent

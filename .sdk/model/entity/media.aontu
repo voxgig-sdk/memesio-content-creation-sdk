@@ -10,6 +10,14 @@ main: kit: entity: media: {
       name: "create"
       points: [
         {
+          bf: [
+            "action"
+            "contentType"
+            "expiresInSeconds"
+            "ownerToken"
+            "path"
+            "prefix"
+          ]
           co: {
             id: "POST /api/media/signed-url"
             source: "openapi3"

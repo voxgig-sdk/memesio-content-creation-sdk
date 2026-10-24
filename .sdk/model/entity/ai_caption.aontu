@@ -181,6 +181,22 @@ main: kit: entity: ai_caption: {
       name: "create"
       points: [
         {
+          bf: [
+            "captionCount"
+            "entities"
+            "memeId"
+            "memeSlug"
+            "optionCount"
+            "ownerToken"
+            "referenceCaptions"
+            "rewriteNote"
+            "sceneSummary"
+            "tone"
+            "toneCues"
+            "trendKeywords"
+            "trendReferences"
+            "variationOffset"
+          ]
           co: {
             id: "POST /api/ai/captions/generate"
             source: "openapi3"
@@ -188,6 +204,10 @@ main: kit: entity: ai_caption: {
           }
           m: "POST"
           o: "/api/ai/captions/generate"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"
@@ -316,6 +336,13 @@ main: kit: entity: ai_caption: {
           }
         }
         {
+          bf: [
+            "canvasText"
+            "templateDescription"
+            "templateName"
+            "templateTags"
+            "trendSignals"
+          ]
           co: {
             id: "POST /api/ai/captions/scene"
             source: "openapi3"
@@ -343,6 +370,12 @@ main: kit: entity: ai_caption: {
           }
         }
         {
+          bf: [
+            "blockedTerms"
+            "locale"
+            "name"
+            "voiceRules"
+          ]
           co: {
             id: "POST /api/ai/captions/tone-presets"
             source: "openapi3"
@@ -376,49 +409,6 @@ main: kit: entity: ai_caption: {
       points: [
         {
           co: {
-            id: "GET /api/ai/captions/tone-presets"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "locale"
-                or: "locale"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/ai/captions/tone-presets"
-          q: {
-            exist: [
-              "locale"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "ai"
-            }
-            {
-              lit: "captions"
-            }
-            {
-              lit: "tone-presets"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
             id: "GET /api/ai/captions/generate"
             source: "openapi3"
             version: 2
@@ -437,6 +427,44 @@ main: kit: entity: ai_caption: {
             }
             {
               lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/ai/captions/tone-presets"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/ai/captions/tone-presets"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "captions"
+            }
+            {
+              lit: "tone-presets"
             }
           ]
           t: {

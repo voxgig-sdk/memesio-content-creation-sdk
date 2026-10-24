@@ -260,17 +260,9 @@ main: kit: entity: free_template_search: {
           }
           m: "GET"
           o: "/api/free/templates"
-          q: {
-            exist: [
-              "media_type"
-              "mode"
-              "page"
-              "page_size"
-              "q"
-              "query"
-              "sort"
-              "tag"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

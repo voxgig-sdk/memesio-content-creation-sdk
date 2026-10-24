@@ -4,6 +4,42 @@ main: kit: entity: upload_caption_meme_success: {
 
   alias: field: {}
 
+  fields: {
+    captions: {
+      h: "Captions"
+      n: "captions"
+      r: true
+      sh: "JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields."
+      t: "`$STRING`"
+    }
+    file: {
+      fo: "binary"
+      h: "File"
+      n: "file"
+      r: true
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      t: "`$STRING`"
+    }
+    visibility: {
+      h: "Visibility"
+      n: "visibility"
+      r: false
+      t: "`$STRING`"
+    }
+    watermark: {
+      h: "Watermark"
+      n: "watermark"
+      r: false
+      sh: "Optional JSON watermark object."
+      t: "`$STRING`"
+    }
+  }
+
   name: "upload_caption_meme_success"
   op: {
     create: {
@@ -17,6 +53,32 @@ main: kit: entity: upload_caption_meme_success: {
           }
           m: "POST"
           o: "/api/v1/memes/caption-upload"
+          rb: {
+            fields: [
+              {
+                name: "captions"
+              }
+              {
+                binary: true
+                name: "file"
+              }
+              {
+                name: "title"
+              }
+              {
+                name: "visibility"
+              }
+              {
+                name: "watermark"
+              }
+            ]
+            kind: "multipart"
+            media: "multipart/form-data"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"
@@ -38,9 +100,6 @@ main: kit: entity: upload_caption_meme_success: {
         }
       ]
     }
-  }
-
-  fields: {
   }
 
 

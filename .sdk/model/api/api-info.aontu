@@ -6,6 +6,17 @@ main: {
     info: {
       description: "Contract baseline for AI jobs, trend alerts, collaboration, and billing surfaces."
       security: {
+        alternatives: [
+          [
+            {
+              in: "header"
+              name: "x-agent-api-key"
+              prefix: ""
+              scheme: "AgentApiKeyAuth"
+              type: "apiKey"
+            }
+          ]
+        ]
         in: "header"
         name: "x-developer-api-key"
         prefix: ""

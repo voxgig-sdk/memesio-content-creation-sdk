@@ -187,6 +187,19 @@ main: kit: entity: meme: {
       name: "create"
       points: [
         {
+          bf: [
+            "canvas"
+            "captions"
+            "generationRunId"
+            "generationVariantId"
+            "imageDataUrl"
+            "overlays"
+            "sourceImageUrl"
+            "templateSlug"
+            "title"
+            "visibility"
+            "watermark"
+          ]
           co: {
             id: "POST /api/memes"
             source: "openapi3"
@@ -194,6 +207,10 @@ main: kit: entity: meme: {
           }
           m: "POST"
           o: "/api/memes"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"
@@ -287,18 +304,9 @@ main: kit: entity: meme: {
           }
           m: "GET"
           o: "/api/memes"
-          q: {
-            exist: [
-              "exclude_template_clone"
-              "include_nsfw"
-              "official_only"
-              "owner_token"
-              "page"
-              "page_size"
-              "query"
-              "template_slug"
-              "visibility"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -349,13 +357,16 @@ main: kit: entity: meme: {
           q: {
             exist: [
               "id"
-              "owner_token"
             ]
           }
           r: {
             param: {
               slug: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -406,6 +417,10 @@ main: kit: entity: meme: {
             param: {
               slug: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

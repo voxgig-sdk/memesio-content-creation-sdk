@@ -15,7 +15,7 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)), or from a
+release tag (`ts/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags)), or from a
 clone, which carries the compiled `dist/`:
 
 ```bash
@@ -27,7 +27,7 @@ npm install ./memesio-content-creation-sdk/ts
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `x-developer-api-key` header.
 
 ### 1. Create a client
 
@@ -41,12 +41,12 @@ const client = new MemesioContentCreationSDK({
 
 ### 3. Load an agent
 
-`load()` returns the entity directly and throws on failure:
+`load()` returns the entity and throws on failure; `.data()` reads its record:
 
 ```ts
 try {
   const agent = await client.Agent().load({ id: 'example_id' })
-  console.log(agent)
+  console.log(agent.data())
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -77,14 +77,15 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 ```ts
 try {
   const aiprovider = await client.AiProvider().load()
-  console.log(aiprovider)
+  console.log(aiprovider.data())
 } catch (err) {
   console.error('load failed:', err)
 }
 ```
 
 The low-level `direct()` method does **not** throw — it returns the
-value or an `Error`, so check the result before using it:
+result envelope. Branch on `ok`; on failure `status` holds the HTTP status
+(for error responses) and `err` holds the error:
 
 ```ts
 const result = await client.direct({
@@ -93,8 +94,8 @@ const result = await client.direct({
   params: { id: 'example_id' },
 })
 
-if (result instanceof Error) {
-  throw result
+if (!result.ok) {
+  console.error('request failed:', result.status, result.err)
 }
 ```
 
@@ -112,9 +113,6 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
-if (result instanceof Error) {
-  throw result
-}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -144,9 +142,8 @@ Create a mock client for unit testing — no server required:
 const client = MemesioContentCreationSDK.test()
 
 const aiprovider = await client.AiProvider().load()
-// aiprovider is the entity, populated with mock response data
-// — call aiprovider.data() for the record itself
-console.log(aiprovider)
+// aiprovider is the AiProvider entity; .data() reads its mock record
+console.log(aiprovider.data())
 ```
 
 You can also use the instance method:
@@ -287,11 +284,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria, and return it. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria, one per record. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity, and return it. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity, and return it. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<Entity>` | Remove an entity, and return it marked as deleted. |
 | `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
 | `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
@@ -300,13 +297,13 @@ All entities share the same interface.
 
 #### Return values
 
-Entity operations resolve to the entity data directly — there is no
-result envelope:
+Entity operations resolve to the entity itself — there is no result
+envelope, and an entity's `data()` reads its record:
 
 - `load`, `create` and `update` resolve to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
+- `remove` resolves to the entity, marked as deleted.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -522,7 +519,7 @@ API path: `/api/ai/templates/detect`
 
 Operations: load.
 
-API path: `/api/analytics/experiments/templates`
+API path: `/api/analytics/alerts/backend`
 
 #### Auth
 
@@ -782,6 +779,11 @@ API path: `/api/alerts/delivery`
 
 | Field | Description |
 | --- | --- |
+| `captions` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` |  |
+| `title` |  |
+| `visibility` |  |
+| `watermark` | Optional JSON watermark object. |
 
 Operations: create.
 
@@ -1020,12 +1022,11 @@ const ai_job = await client.AiJob().create({
   capability: 'example_capability',
   detectedFaceCount: 1,
   height: 1,
-  id: 'example_id',
   layerId: 'example_layerId',
+  mediaType: 'example_mediaType',
   projectId: 'example_projectId',
   sourceAssetUrl: 'example_sourceAssetUrl',
   sourceImageUrl: 'example_sourceImageUrl',
-  status: 'example_status',
   targetAssetUrl: 'example_targetAssetUrl',
   width: 1,
 })
@@ -1072,13 +1073,7 @@ Create an instance: `const ai_meme_generation_succeeded = client.AiMemeGeneratio
 
 ```ts
 const ai_meme_generation_succeeded = await client.AiMemeGenerationSucceeded().create({
-  flow: 'example_flow',
-  mode: 'example_mode',
-  ok: true,
   prompt: 'example_prompt',
-  status: 'example_status',
-  variantCount: 1,
-  variants: [],
 })
 ```
 
@@ -1151,13 +1146,6 @@ Create an instance: `const auth = client.Auth()`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-
-#### Example: Create
-
-```ts
-const auth = await client.Auth().create({
-})
-```
 
 
 ### Billing
@@ -1376,16 +1364,6 @@ Create an instance: `const generate = client.Generate()`
 
 ```ts
 const generate = await client.Generate().create({
-  byteLength: 1,
-  delayMs: 1,
-  filename: 'example_filename',
-  gifSlug: 'example_gifSlug',
-  height: 1,
-  mimeType: 'example_mimeType',
-  pages: 1,
-  parameters: {},
-  sourceDurationMs: 1,
-  width: 1,
 })
 ```
 
@@ -1500,24 +1478,10 @@ const memes = await client.Meme().list()
 
 ```ts
 const meme = await client.Meme().create({
-  altText: 'example_altText',
-  canonicalImageUrl: 'example_canonicalImageUrl',
   canvas: {},
   captions: [],
-  createdAt: 'example_createdAt',
   imageDataUrl: 'example_imageDataUrl',
-  imageUrl: 'example_imageUrl',
-  nsfwStatus: 'example_nsfwStatus',
-  overlays: [],
-  shareSlug: 'example_shareSlug',
-  shareUrl: 'example_shareUrl',
-  shareViews: 1,
-  slug: 'example_slug',
   sourceImageUrl: 'example_sourceImageUrl',
-  tags: [],
-  templateSlug: 'example_templateSlug',
-  title: 'example_title',
-  visibility: 'example_visibility',
   watermark: {},
 })
 ```
@@ -1582,15 +1546,7 @@ const public_template_media_items = await client.PublicTemplateMediaItem().list(
 const public_template_media_item = await client.PublicTemplateMediaItem().create({
   slug: 'example_slug',
   captions: [],
-  description: 'example_description',
-  height: 1,
-  id: 'example_id',
-  imageUrl: 'example_imageUrl',
-  mediaType: 'example_mediaType',
-  name: 'example_name',
-  sourceTemplateId: 'example_sourceTemplateId',
   tags: [],
-  width: 1,
 })
 ```
 
@@ -1688,10 +1644,22 @@ Create an instance: `const upload_caption_meme_success = client.UploadCaptionMem
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `captions` | `string` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `string` |  |
+| `title` | `string` |  |
+| `visibility` | `string` |  |
+| `watermark` | `string` | Optional JSON watermark object. |
+
 #### Example: Create
 
 ```ts
 const upload_caption_meme_success = await client.UploadCaptionMemeSuccess().create({
+  captions: 'example_captions',
+  file: 'example_file',
 })
 ```
 
@@ -1706,19 +1674,6 @@ Create an instance: `const video = client.Video()`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Example: Load
-
-```ts
-const video = await client.Video().load()
-```
-
-#### Example: Create
-
-```ts
-const video = await client.Video().create({
-})
-```
 
 ## Features
 

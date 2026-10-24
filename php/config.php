@@ -93,6 +93,7 @@ class MemesioContentCreationConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -942,62 +943,6 @@ class MemesioContentCreationConfig
                 [
                   'kind' => 'http',
                   'method' => 'GET',
-                  'orig' => '/api/v1/agents/rewards/leaderboard',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'v1',
-                    ],
-                    [
-                      'lit' => 'agents',
-                    ],
-                    [
-                      'lit' => 'rewards',
-                    ],
-                    [
-                      'lit' => 'leaderboard',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'v1',
-                    'agents',
-                    'rewards',
-                    'leaderboard',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'week_start',
-                        'orig' => 'weekStart',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'limit',
-                      'week_start',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
                   'orig' => '/api/v1/agents/{agentId}/keys',
                   'segments' => [
                     [
@@ -1049,6 +994,57 @@ class MemesioContentCreationConfig
                       'id',
                     ],
                   ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/v1/agents/rewards/leaderboard',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'agents',
+                    ],
+                    [
+                      'lit' => 'rewards',
+                    ],
+                    [
+                      'lit' => 'leaderboard',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'v1',
+                    'agents',
+                    'rewards',
+                    'leaderboard',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'week_start',
+                        'orig' => 'weekStart',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [],
                 ],
                 [
                   'kind' => 'http',
@@ -1356,6 +1352,10 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
                 [
                   'kind' => 'http',
@@ -1558,6 +1558,38 @@ class MemesioContentCreationConfig
                 [
                   'kind' => 'http',
                   'method' => 'GET',
+                  'orig' => '/api/ai/captions/generate',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'ai',
+                    ],
+                    [
+                      'lit' => 'captions',
+                    ],
+                    [
+                      'lit' => 'generate',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'ai',
+                    'captions',
+                    'generate',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
                   'orig' => '/api/ai/captions/tone-presets',
                   'segments' => [
                     [
@@ -1591,45 +1623,10 @@ class MemesioContentCreationConfig
                         'orig' => 'locale',
                         'type' => '`$STRING`',
                         'kind' => 'query',
+                        'field' => true,
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'locale',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/ai/captions/generate',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'ai',
-                    ],
-                    [
-                      'lit' => 'captions',
-                    ],
-                    [
-                      'lit' => 'generate',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'ai',
-                    'captions',
-                    'generate',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [],
                   'select' => [],
                 ],
               ],
@@ -2182,67 +2179,8 @@ class MemesioContentCreationConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'from_version_id',
                       'layer_id',
-                      'limit',
-                      'mode',
                       'project_id',
-                      'to_version_id',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/ai/jobs',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'ai',
-                    ],
-                    [
-                      'lit' => 'jobs',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'ai',
-                    'jobs',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'page',
-                        'orig' => 'page',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'page_size',
-                        'orig' => 'pageSize',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'status',
-                        'orig' => 'status',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'page',
-                      'page_size',
-                      'status',
                     ],
                   ],
                 ],
@@ -2295,6 +2233,60 @@ class MemesioContentCreationConfig
                       'id',
                     ],
                   ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/ai/jobs',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'ai',
+                    ],
+                    [
+                      'lit' => 'jobs',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'ai',
+                    'jobs',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'page',
+                        'orig' => 'page',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'page_size',
+                        'orig' => 'pageSize',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'status',
+                        'orig' => 'status',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'field' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [],
                 ],
               ],
             ],
@@ -2470,6 +2462,10 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
                 [
                   'kind' => 'http',
@@ -2502,6 +2498,10 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -2644,6 +2644,38 @@ class MemesioContentCreationConfig
                 [
                   'kind' => 'http',
                   'method' => 'GET',
+                  'orig' => '/api/ai/memes/generate',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'ai',
+                    ],
+                    [
+                      'lit' => 'memes',
+                    ],
+                    [
+                      'lit' => 'generate',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'ai',
+                    'memes',
+                    'generate',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
                   'orig' => '/api/ai/providers/background-remove-benchmark',
                   'segments' => [
                     [
@@ -2680,11 +2712,7 @@ class MemesioContentCreationConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'refresh',
-                    ],
-                  ],
+                  'select' => [],
                 ],
                 [
                   'kind' => 'http',
@@ -2725,42 +2753,6 @@ class MemesioContentCreationConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'refresh',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/ai/memes/generate',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'ai',
-                    ],
-                    [
-                      'lit' => 'memes',
-                    ],
-                    [
-                      'lit' => 'generate',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'ai',
-                    'memes',
-                    'generate',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [],
                   'select' => [],
                 ],
               ],
@@ -2778,96 +2770,6 @@ class MemesioContentCreationConfig
               'input' => 'data',
               'name' => 'load',
               'points' => [
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/analytics/experiments/templates',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'analytics',
-                    ],
-                    [
-                      'lit' => 'experiments',
-                    ],
-                    [
-                      'lit' => 'templates',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'analytics',
-                    'experiments',
-                    'templates',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'template_id',
-                        'orig' => 'templateId',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'template_id',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/analytics/dashboards/backend-reliability',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'analytics',
-                    ],
-                    [
-                      'lit' => 'dashboards',
-                    ],
-                    [
-                      'lit' => 'backend-reliability',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'analytics',
-                    'dashboards',
-                    'backend-reliability',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'window_hour',
-                        'orig' => 'windowHours',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'window_hour',
-                    ],
-                  ],
-                ],
                 [
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2967,6 +2869,47 @@ class MemesioContentCreationConfig
                 [
                   'kind' => 'http',
                   'method' => 'GET',
+                  'orig' => '/api/analytics/dashboards/backend-reliability',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'analytics',
+                    ],
+                    [
+                      'lit' => 'dashboards',
+                    ],
+                    [
+                      'lit' => 'backend-reliability',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'analytics',
+                    'dashboards',
+                    'backend-reliability',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'window_hour',
+                        'orig' => 'windowHours',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
                   'orig' => '/api/analytics/dashboards/feature-adoption',
                   'segments' => [
                     [
@@ -2994,6 +2937,47 @@ class MemesioContentCreationConfig
                     'res' => '`body`',
                   ],
                   'args' => [],
+                  'select' => [],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/analytics/experiments/templates',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'analytics',
+                    ],
+                    [
+                      'lit' => 'experiments',
+                    ],
+                    [
+                      'lit' => 'templates',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'analytics',
+                    'experiments',
+                    'templates',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'template_id',
+                        'orig' => 'templateId',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [],
                 ],
                 [
@@ -3159,10 +3143,6 @@ class MemesioContentCreationConfig
                   ],
                   'select' => [
                     '$action' => 'usage',
-                    'exist' => [
-                      'window_day',
-                      'workspace_id',
-                    ],
                   ],
                 ],
               ],
@@ -3282,8 +3262,6 @@ class MemesioContentCreationConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'page',
-                      'page_size',
                       'project_id',
                     ],
                   ],
@@ -3510,6 +3488,10 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
                 [
                   'kind' => 'http',
@@ -3542,6 +3524,10 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -3805,17 +3791,10 @@ class MemesioContentCreationConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'media_type',
-                      'mode',
-                      'page',
-                      'page_size',
-                      'q',
-                      'query',
-                      'sort',
-                      'tag',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -3982,6 +3961,10 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -4232,70 +4215,13 @@ class MemesioContentCreationConfig
                         'orig' => 'surface',
                         'type' => '`$STRING`',
                         'kind' => 'query',
+                        'field' => true,
                       ],
                     ],
                   ],
                   'select' => [
                     'exist' => [
                       'actor_id',
-                      'log_exposure',
-                      'surface',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/growth/trend-campaigns',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'growth',
-                    ],
-                    [
-                      'lit' => 'trend-campaigns',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'growth',
-                    'trend-campaigns',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'published_only',
-                        'orig' => 'publishedOnly',
-                        'type' => '`$BOOLEAN`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'week_start',
-                        'orig' => 'weekStart',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    '$action' => 'trend_campaign',
-                    'exist' => [
-                      'limit',
-                      'published_only',
-                      'week_start',
                     ],
                   ],
                 ],
@@ -4345,8 +4271,37 @@ class MemesioContentCreationConfig
                     '$action' => 'social_publish',
                     'exist' => [
                       'actor_id',
-                      'publish_limit',
                     ],
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/growth/lifecycle-messaging',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'growth',
+                    ],
+                    [
+                      'lit' => 'lifecycle-messaging',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'growth',
+                    'lifecycle-messaging',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'lifecycle_messaging',
                   ],
                 ],
                 [
@@ -4386,15 +4341,12 @@ class MemesioContentCreationConfig
                   ],
                   'select' => [
                     '$action' => 'referral',
-                    'exist' => [
-                      'actor_id',
-                    ],
                   ],
                 ],
                 [
                   'kind' => 'http',
                   'method' => 'GET',
-                  'orig' => '/api/growth/lifecycle-messaging',
+                  'orig' => '/api/growth/trend-campaigns',
                   'segments' => [
                     [
                       'lit' => 'api',
@@ -4403,22 +4355,44 @@ class MemesioContentCreationConfig
                       'lit' => 'growth',
                     ],
                     [
-                      'lit' => 'lifecycle-messaging',
+                      'lit' => 'trend-campaigns',
                     ],
                   ],
                   'parts' => [
                     'api',
                     'growth',
-                    'lifecycle-messaging',
+                    'trend-campaigns',
                   ],
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'args' => [],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                        'field' => true,
+                      ],
+                      [
+                        'name' => 'published_only',
+                        'orig' => 'publishedOnly',
+                        'type' => '`$BOOLEAN`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'week_start',
+                        'orig' => 'weekStart',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
-                    '$action' => 'lifecycle_messaging',
+                    '$action' => 'trend_campaign',
                   ],
                 ],
                 [
@@ -4701,6 +4675,10 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -4784,21 +4762,14 @@ class MemesioContentCreationConfig
                         'orig' => 'visibility',
                         'type' => '`$STRING`',
                         'kind' => 'query',
+                        'field' => true,
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'exclude_template_clone',
-                      'include_nsfw',
-                      'official_only',
-                      'owner_token',
-                      'page',
-                      'page_size',
-                      'query',
-                      'template_slug',
-                      'visibility',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -4858,8 +4829,11 @@ class MemesioContentCreationConfig
                   'select' => [
                     'exist' => [
                       'id',
-                      'owner_token',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -4912,6 +4886,10 @@ class MemesioContentCreationConfig
                     'exist' => [
                       'id',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -5153,6 +5131,11 @@ class MemesioContentCreationConfig
                       'slug',
                     ],
                   ],
+                  'response' => [
+                    'binary' => true,
+                    'kind' => 'raw',
+                    'media' => 'image/gif',
+                  ],
                 ],
               ],
             ],
@@ -5160,6 +5143,73 @@ class MemesioContentCreationConfig
               'input' => 'data',
               'name' => 'list',
               'points' => [
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/gifs',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'gifs',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'gifs',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.items`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'page',
+                        'orig' => 'page',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'page_size',
+                        'orig' => 'pageSize',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'q',
+                        'orig' => 'q',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'query',
+                        'orig' => 'query',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'sort',
+                        'orig' => 'sort',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'tag',
+                        'orig' => 'tag',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                ],
                 [
                   'kind' => 'http',
                   'method' => 'GET',
@@ -5234,89 +5284,10 @@ class MemesioContentCreationConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'media_type',
-                      'mode',
-                      'page',
-                      'page_size',
-                      'q',
-                      'query',
-                      'sort',
-                      'tag',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/gifs',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'gifs',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'gifs',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.items`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'page',
-                        'orig' => 'page',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'page_size',
-                        'orig' => 'pageSize',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'q',
-                        'orig' => 'q',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'query',
-                        'orig' => 'query',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'sort',
-                        'orig' => 'sort',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'tag',
-                        'orig' => 'tag',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'page',
-                      'page_size',
-                      'q',
-                      'query',
-                      'sort',
-                      'tag',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -5325,6 +5296,52 @@ class MemesioContentCreationConfig
               'input' => 'data',
               'name' => 'load',
               'points' => [
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/gifs/{slug}',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'gifs',
+                    ],
+                    [
+                      'var' => 'slug',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'gifs',
+                    '{slug}',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'slug',
+                        'orig' => 'slug',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'slug',
+                    ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                ],
                 [
                   'kind' => 'http',
                   'method' => 'GET',
@@ -5372,51 +5389,12 @@ class MemesioContentCreationConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'media_type',
                       'slug',
                     ],
                   ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/gifs/{slug}',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'gifs',
-                    ],
-                    [
-                      'var' => 'slug',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'gifs',
-                    '{slug}',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'params' => [
-                      [
-                        'name' => 'slug',
-                        'orig' => 'slug',
-                        'type' => '`$STRING`',
-                        'kind' => 'param',
-                        'reqd' => true,
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'slug',
-                    ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -5508,6 +5486,10 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
                 [
                   'kind' => 'http',
@@ -5540,6 +5522,10 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -5762,258 +5748,6 @@ class MemesioContentCreationConfig
                 [
                   'kind' => 'http',
                   'method' => 'GET',
-                  'orig' => '/api/alerts',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'alerts',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'alerts',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'actor_id',
-                        'orig' => 'actorId',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'aggressiveness',
-                        'orig' => 'aggressiveness',
-                        'type' => '`$NUMBER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'follower_count',
-                        'orig' => 'followerCount',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'niche',
-                        'orig' => 'niche',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'page',
-                        'orig' => 'page',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'page_size',
-                        'orig' => 'pageSize',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'preferred_niche',
-                        'orig' => 'preferredNiche',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'preferred_region',
-                        'orig' => 'preferredRegion',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'query',
-                        'orig' => 'query',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'region',
-                        'orig' => 'region',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'source',
-                        'orig' => 'source',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'status',
-                        'orig' => 'status',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'topic',
-                        'orig' => 'topics',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'actor_id',
-                      'aggressiveness',
-                      'follower_count',
-                      'niche',
-                      'page',
-                      'page_size',
-                      'preferred_niche',
-                      'preferred_region',
-                      'query',
-                      'region',
-                      'source',
-                      'status',
-                      'topic',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/alerts/ranking',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'alerts',
-                    ],
-                    [
-                      'lit' => 'ranking',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'alerts',
-                    'ranking',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'actor_id',
-                        'orig' => 'actorId',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'aggressiveness',
-                        'orig' => 'aggressiveness',
-                        'type' => '`$NUMBER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'follower_count',
-                        'orig' => 'followerCount',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'preferred_niche',
-                        'orig' => 'preferredNiche',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'preferred_region',
-                        'orig' => 'preferredRegion',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'topic',
-                        'orig' => 'topics',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'actor_id',
-                      'aggressiveness',
-                      'follower_count',
-                      'limit',
-                      'preferred_niche',
-                      'preferred_region',
-                      'topic',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/alerts/feedback',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'alerts',
-                    ],
-                    [
-                      'lit' => 'feedback',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'alerts',
-                    'feedback',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'actor_id',
-                        'orig' => 'actorId',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'actor_id',
-                      'limit',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
                   'orig' => '/api/alerts/preferences',
                   'segments' => [
                     [
@@ -6056,6 +5790,144 @@ class MemesioContentCreationConfig
                 [
                   'kind' => 'http',
                   'method' => 'GET',
+                  'orig' => '/api/alerts',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'alerts',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'alerts',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'actor_id',
+                        'orig' => 'actorId',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'aggressiveness',
+                        'orig' => 'aggressiveness',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                        'field' => true,
+                      ],
+                      [
+                        'name' => 'follower_count',
+                        'orig' => 'followerCount',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'niche',
+                        'orig' => 'niche',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'field' => true,
+                      ],
+                      [
+                        'name' => 'page',
+                        'orig' => 'page',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'page_size',
+                        'orig' => 'pageSize',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'preferred_niche',
+                        'orig' => 'preferredNiche',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'preferred_region',
+                        'orig' => 'preferredRegion',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'query',
+                        'orig' => 'query',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'region',
+                        'orig' => 'region',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'field' => true,
+                      ],
+                      [
+                        'name' => 'source',
+                        'orig' => 'source',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'field' => true,
+                      ],
+                      [
+                        'name' => 'status',
+                        'orig' => 'status',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'topic',
+                        'orig' => 'topics',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'field' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/alerts/connectors',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'alerts',
+                    ],
+                    [
+                      'lit' => 'connectors',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'alerts',
+                    'connectors',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
                   'orig' => '/api/alerts/delivery',
                   'segments' => [
                     [
@@ -6088,11 +5960,50 @@ class MemesioContentCreationConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'refresh',
+                  'select' => [],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/alerts/feedback',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'alerts',
+                    ],
+                    [
+                      'lit' => 'feedback',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'alerts',
+                    'feedback',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'actor_id',
+                        'orig' => 'actorId',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [],
                 ],
                 [
                   'kind' => 'http',
@@ -6129,52 +6040,7 @@ class MemesioContentCreationConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'refresh',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/alerts/quality-report',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'alerts',
-                    ],
-                    [
-                      'lit' => 'quality-report',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'alerts',
-                    'quality-report',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'refresh',
-                        'orig' => 'refresh',
-                        'type' => '`$BOOLEAN`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    'exist' => [
-                      'refresh',
-                    ],
-                  ],
+                  'select' => [],
                 ],
                 [
                   'kind' => 'http',
@@ -6211,16 +6077,12 @@ class MemesioContentCreationConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'template_id',
-                    ],
-                  ],
+                  'select' => [],
                 ],
                 [
                   'kind' => 'http',
                   'method' => 'GET',
-                  'orig' => '/api/alerts/connectors',
+                  'orig' => '/api/alerts/quality-report',
                   'segments' => [
                     [
                       'lit' => 'api',
@@ -6229,20 +6091,104 @@ class MemesioContentCreationConfig
                       'lit' => 'alerts',
                     ],
                     [
-                      'lit' => 'connectors',
+                      'lit' => 'quality-report',
                     ],
                   ],
                   'parts' => [
                     'api',
                     'alerts',
-                    'connectors',
+                    'quality-report',
                   ],
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'args' => [],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'refresh',
+                        'orig' => 'refresh',
+                        'type' => '`$BOOLEAN`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/alerts/ranking',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'alerts',
+                    ],
+                    [
+                      'lit' => 'ranking',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'alerts',
+                    'ranking',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'actor_id',
+                        'orig' => 'actorId',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'aggressiveness',
+                        'orig' => 'aggressiveness',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                        'field' => true,
+                      ],
+                      [
+                        'name' => 'follower_count',
+                        'orig' => 'followerCount',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'preferred_niche',
+                        'orig' => 'preferredNiche',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'preferred_region',
+                        'orig' => 'preferredRegion',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'topic',
+                        'orig' => 'topics',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'field' => true,
+                      ],
+                    ],
+                  ],
                   'select' => [],
                 ],
                 [
@@ -6281,7 +6227,38 @@ class MemesioContentCreationConfig
           ],
         ],
         'upload_caption_meme_success' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'captions',
+              'title' => 'Captions',
+              'type' => '`$STRING`',
+              'req' => true,
+              'short' => 'JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields.',
+            ],
+            [
+              'name' => 'file',
+              'title' => 'File',
+              'type' => '`$STRING`',
+              'req' => true,
+              'format' => 'binary',
+            ],
+            [
+              'name' => 'title',
+              'title' => 'Title',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'visibility',
+              'title' => 'Visibility',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'watermark',
+              'title' => 'Watermark',
+              'type' => '`$STRING`',
+              'short' => 'Optional JSON watermark object.',
+            ],
+          ],
           'name' => 'upload_caption_meme_success',
           'op' => [
             'create' => [
@@ -6319,6 +6296,32 @@ class MemesioContentCreationConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'body' => [
+                    'fields' => [
+                      [
+                        'name' => 'captions',
+                      ],
+                      [
+                        'binary' => true,
+                        'name' => 'file',
+                      ],
+                      [
+                        'name' => 'title',
+                      ],
+                      [
+                        'name' => 'visibility',
+                      ],
+                      [
+                        'name' => 'watermark',
+                      ],
+                    ],
+                    'kind' => 'multipart',
+                    'media' => 'multipart/form-data',
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -6554,6 +6557,348 @@ class MemesioContentCreationConfig
                 [
                   'kind' => 'http',
                   'method' => 'GET',
+                  'orig' => '/api/video/audio-library',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'video',
+                    ],
+                    [
+                      'lit' => 'audio-library',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'video',
+                    'audio-library',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'kind',
+                        'orig' => 'kind',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'query',
+                        'orig' => 'query',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'tag',
+                        'orig' => 'tag',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'target_bpm',
+                        'orig' => 'targetBpm',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'tolerance_bpm',
+                        'orig' => 'toleranceBpm',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    '$action' => 'audio_library',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/video/drafts',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'video',
+                    ],
+                    [
+                      'lit' => 'drafts',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'video',
+                    'drafts',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'project_id',
+                        'orig' => 'projectId',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    '$action' => 'draft',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/video/export-settings',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'video',
+                    ],
+                    [
+                      'lit' => 'export-settings',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'video',
+                    'export-settings',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'bitrate_kbp',
+                        'orig' => 'bitrateKbps',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'container',
+                        'orig' => 'container',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'plan_tier',
+                        'orig' => 'planTier',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'preset_id',
+                        'orig' => 'presetId',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'watermark_enabled',
+                        'orig' => 'watermarkEnabled',
+                        'type' => '`$BOOLEAN`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'watermark_text',
+                        'orig' => 'watermarkText',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    '$action' => 'export_setting',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/video/formats',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'video',
+                    ],
+                    [
+                      'lit' => 'formats',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'video',
+                    'formats',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'duration_second',
+                        'orig' => 'durationSeconds',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'input_format',
+                        'orig' => 'inputFormat',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'mime_type',
+                        'orig' => 'mimeType',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'output_preset_id',
+                        'orig' => 'outputPresetId',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'plan_tier',
+                        'orig' => 'planTier',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    '$action' => 'format',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/video/render-performance',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'video',
+                    ],
+                    [
+                      'lit' => 'render-performance',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'video',
+                    'render-performance',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'refresh',
+                        'orig' => 'refresh',
+                        'type' => '`$BOOLEAN`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    '$action' => 'render_performance',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
+                  'orig' => '/api/video/render-queue',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'video',
+                    ],
+                    [
+                      'lit' => 'render-queue',
+                    ],
+                  ],
+                  'parts' => [
+                    'api',
+                    'video',
+                    'render-queue',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'mode',
+                        'orig' => 'mode',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'plan_tier',
+                        'orig' => 'planTier',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'status',
+                        'orig' => 'status',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    '$action' => 'render_queue',
+                  ],
+                ],
+                [
+                  'kind' => 'http',
+                  'method' => 'GET',
                   'orig' => '/api/video/subtitles',
                   'segments' => [
                     [
@@ -6630,303 +6975,6 @@ class MemesioContentCreationConfig
                   ],
                   'select' => [
                     '$action' => 'subtitle',
-                    'exist' => [
-                      'beat_offset_m',
-                      'bpm',
-                      'locale',
-                      'style_preset_id',
-                      'sync_to_beat_grid',
-                      'tone',
-                      'transcript',
-                      'trend_keyword',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/video/audio-library',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'video',
-                    ],
-                    [
-                      'lit' => 'audio-library',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'video',
-                    'audio-library',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'kind',
-                        'orig' => 'kind',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'query',
-                        'orig' => 'query',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'tag',
-                        'orig' => 'tag',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'target_bpm',
-                        'orig' => 'targetBpm',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'tolerance_bpm',
-                        'orig' => 'toleranceBpm',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    '$action' => 'audio_library',
-                    'exist' => [
-                      'kind',
-                      'limit',
-                      'query',
-                      'tag',
-                      'target_bpm',
-                      'tolerance_bpm',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/video/export-settings',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'video',
-                    ],
-                    [
-                      'lit' => 'export-settings',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'video',
-                    'export-settings',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'bitrate_kbp',
-                        'orig' => 'bitrateKbps',
-                        'type' => '`$NUMBER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'container',
-                        'orig' => 'container',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'plan_tier',
-                        'orig' => 'planTier',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'preset_id',
-                        'orig' => 'presetId',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'watermark_enabled',
-                        'orig' => 'watermarkEnabled',
-                        'type' => '`$BOOLEAN`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'watermark_text',
-                        'orig' => 'watermarkText',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    '$action' => 'export_setting',
-                    'exist' => [
-                      'bitrate_kbp',
-                      'container',
-                      'plan_tier',
-                      'preset_id',
-                      'watermark_enabled',
-                      'watermark_text',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/video/formats',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'video',
-                    ],
-                    [
-                      'lit' => 'formats',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'video',
-                    'formats',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'duration_second',
-                        'orig' => 'durationSeconds',
-                        'type' => '`$NUMBER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'input_format',
-                        'orig' => 'inputFormat',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'mime_type',
-                        'orig' => 'mimeType',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'output_preset_id',
-                        'orig' => 'outputPresetId',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'plan_tier',
-                        'orig' => 'planTier',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    '$action' => 'format',
-                    'exist' => [
-                      'duration_second',
-                      'input_format',
-                      'mime_type',
-                      'output_preset_id',
-                      'plan_tier',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/video/render-queue',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'video',
-                    ],
-                    [
-                      'lit' => 'render-queue',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'video',
-                    'render-queue',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'mode',
-                        'orig' => 'mode',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'plan_tier',
-                        'orig' => 'planTier',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'status',
-                        'orig' => 'status',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    '$action' => 'render_queue',
-                    'exist' => [
-                      'limit',
-                      'mode',
-                      'plan_tier',
-                      'status',
-                    ],
                   ],
                 ],
                 [
@@ -6984,61 +7032,6 @@ class MemesioContentCreationConfig
                   ],
                   'select' => [
                     '$action' => 'text_animation',
-                    'exist' => [
-                      'duration_m',
-                      'intensity',
-                      'preset_id',
-                      'start_m',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/video/drafts',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'video',
-                    ],
-                    [
-                      'lit' => 'drafts',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'video',
-                    'drafts',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                        'kind' => 'query',
-                      ],
-                      [
-                        'name' => 'project_id',
-                        'orig' => 'projectId',
-                        'type' => '`$STRING`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    '$action' => 'draft',
-                    'exist' => [
-                      'limit',
-                      'project_id',
-                    ],
                   ],
                 ],
                 [
@@ -7084,52 +7077,6 @@ class MemesioContentCreationConfig
                   ],
                   'select' => [
                     '$action' => 'timeline',
-                    'exist' => [
-                      'limit',
-                      'project_id',
-                    ],
-                  ],
-                ],
-                [
-                  'kind' => 'http',
-                  'method' => 'GET',
-                  'orig' => '/api/video/render-performance',
-                  'segments' => [
-                    [
-                      'lit' => 'api',
-                    ],
-                    [
-                      'lit' => 'video',
-                    ],
-                    [
-                      'lit' => 'render-performance',
-                    ],
-                  ],
-                  'parts' => [
-                    'api',
-                    'video',
-                    'render-performance',
-                  ],
-                  'rename' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'args' => [
-                    'query' => [
-                      [
-                        'name' => 'refresh',
-                        'orig' => 'refresh',
-                        'type' => '`$BOOLEAN`',
-                        'kind' => 'query',
-                      ],
-                    ],
-                  ],
-                  'select' => [
-                    '$action' => 'render_performance',
-                    'exist' => [
-                      'refresh',
-                    ],
                   ],
                 ],
               ],

@@ -248,6 +248,9 @@ main: kit: entity: ai_job: {
       name: "create"
       points: [
         {
+          bf: [
+            "reason"
+          ]
           co: {
             id: "POST /api/ai/jobs/{jobId}/cancel"
             source: "openapi3"
@@ -300,6 +303,12 @@ main: kit: entity: ai_job: {
           }
         }
         {
+          bf: [
+            "estimatedCostUsd"
+            "output"
+            "providerId"
+            "workerId"
+          ]
           co: {
             id: "POST /api/ai/jobs/{jobId}/complete"
             source: "openapi3"
@@ -352,6 +361,15 @@ main: kit: entity: ai_job: {
           }
         }
         {
+          bf: [
+            "brushEdits"
+            "edgeRefinement"
+            "frameTimeMs"
+            "height"
+            "mediaType"
+            "sourceAssetUrl"
+            "width"
+          ]
           co: {
             id: "POST /api/ai/background-remove"
             source: "openapi3"
@@ -376,6 +394,17 @@ main: kit: entity: ai_job: {
           }
         }
         {
+          bf: [
+            "action"
+            "actorId"
+            "afterState"
+            "beforeState"
+            "layerId"
+            "layerType"
+            "metadata"
+            "projectId"
+            "versionId"
+          ]
           co: {
             id: "POST /api/ai/edit-history"
             source: "openapi3"
@@ -400,6 +429,22 @@ main: kit: entity: ai_job: {
           }
         }
         {
+          bf: [
+            "actorId"
+            "celebrityConfidence"
+            "consentAttested"
+            "detectedFaceCount"
+            "frameTimeMs"
+            "height"
+            "mediaType"
+            "nsfwScore"
+            "sourceAssetUrl"
+            "sourceFaceIndex"
+            "targetAssetUrl"
+            "targetFaceIndex"
+            "width"
+            "workspaceId"
+          ]
           co: {
             id: "POST /api/ai/face-swap"
             source: "openapi3"
@@ -424,6 +469,10 @@ main: kit: entity: ai_job: {
           }
         }
         {
+          bf: [
+            "maxFaces"
+            "sourceImageUrl"
+          ]
           co: {
             id: "POST /api/ai/face-targets"
             source: "openapi3"
@@ -448,6 +497,16 @@ main: kit: entity: ai_job: {
           }
         }
         {
+          bf: [
+            "actorId"
+            "capability"
+            "input"
+            "maxAttempts"
+            "runAfterMs"
+            "timeoutMs"
+            "traceId"
+            "workspaceId"
+          ]
           co: {
             id: "POST /api/ai/jobs"
             source: "openapi3"
@@ -532,12 +591,8 @@ main: kit: entity: ai_job: {
           o: "/api/ai/edit-history"
           q: {
             exist: [
-              "from_version_id"
               "layer_id"
-              "limit"
-              "mode"
               "project_id"
-              "to_version_id"
             ]
           }
           s: [
@@ -549,6 +604,58 @@ main: kit: entity: ai_job: {
             }
             {
               lit: "edit-history"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/ai/jobs/{jobId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "jobId"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/ai/jobs/{jobId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              jobId: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "ai"
+            }
+            {
+              lit: "jobs"
+            }
+            {
+              var: "id"
             }
           ]
           t: {
@@ -589,13 +696,6 @@ main: kit: entity: ai_job: {
           }
           m: "GET"
           o: "/api/ai/jobs"
-          q: {
-            exist: [
-              "page"
-              "page_size"
-              "status"
-            ]
-          }
           s: [
             {
               lit: "api"
@@ -605,54 +705,6 @@ main: kit: entity: ai_job: {
             }
             {
               lit: "jobs"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/ai/jobs/{jobId}"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                k: "param"
-                n: "id"
-                or: "jobId"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/ai/jobs/{jobId}"
-          q: {
-            exist: [
-              "id"
-            ]
-          }
-          r: {
-            param: {
-              jobId: "id"
-            }
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "ai"
-            }
-            {
-              lit: "jobs"
-            }
-            {
-              var: "id"
             }
           ]
           t: {

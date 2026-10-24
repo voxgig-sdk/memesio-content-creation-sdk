@@ -204,9 +204,9 @@ agent = client.Agent()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> AgentEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.Agent().create({
@@ -214,17 +214,17 @@ result = client.Agent().create({
 })
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> AgentEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Agent().load({"id": "agent_id"})
 ```
 
-#### `update(reqdata, ctrl=None) -> dict`
+#### `update(reqdata, ctrl=None) -> AgentEntity`
 
-Update an existing entity. The data must include the entity `id`. Returns the updated entity data and raises on error.
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
 
 ```python
 result = client.Agent().update({
@@ -288,9 +288,9 @@ agent_infra = client.AgentInfra()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> AgentInfraEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.AgentInfra().create({
@@ -302,17 +302,17 @@ result = client.AgentInfra().create({
 })
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> AgentInfraEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.AgentInfra().load()
 ```
 
-#### `remove(reqmatch, ctrl=None) -> dict`
+#### `remove(reqmatch, ctrl=None) -> AgentInfraEntity`
 
-Remove the entity matching the given criteria. Raises on error.
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
 
 ```python
 result = client.AgentInfra().remove({"agent_id": "agent_id", "key_id": "key_id"})
@@ -388,9 +388,9 @@ ai_caption = client.AiCaption()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> AiCaptionEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.AiCaption().create({
@@ -400,9 +400,9 @@ result = client.AiCaption().create({
 })
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> AiCaptionEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.AiCaption().load()
@@ -529,9 +529,9 @@ ai_job = client.AiJob()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> AiJobEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.AiJob().create({
@@ -539,20 +539,19 @@ result = client.AiJob().create({
     "capability": "example_capability",  # str
     "detectedFaceCount": 1,  # float
     "height": 1,  # float
-    "id": "example_id",  # str
     "layerId": "example_layerId",  # str
+    "mediaType": "example_mediaType",  # str
     "projectId": "example_projectId",  # str
     "sourceAssetUrl": "example_sourceAssetUrl",  # str
     "sourceImageUrl": "example_sourceImageUrl",  # str
-    "status": "example_status",  # str
     "targetAssetUrl": "example_targetAssetUrl",  # str
     "width": 1,  # float
 })
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> AiJobEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.AiJob().load({"id": "ai_job_id"})
@@ -647,19 +646,13 @@ ai_meme_generation_succeeded = client.AiMemeGenerationSucceeded()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> AiMemeGenerationSucceededEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.AiMemeGenerationSucceeded().create({
-    "flow": "example_flow",  # str
-    "mode": "example_mode",  # str
-    "ok": True,  # bool
     "prompt": "example_prompt",  # str
-    "status": "example_status",  # str
-    "variantCount": 1,  # int
-    "variants": [],  # list
 })
 ```
 
@@ -715,9 +708,9 @@ ai_provider = client.AiProvider()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> AiProviderEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.AiProvider().create({
@@ -726,9 +719,9 @@ result = client.AiProvider().create({
 })
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> AiProviderEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.AiProvider().load()
@@ -771,9 +764,9 @@ analytics = client.Analytics()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> AnalyticsEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Analytics().load()
@@ -816,14 +809,9 @@ auth = client.Auth()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> AuthEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
-
-```python
-result = client.Auth().create({
-})
-```
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ### Common Methods
 
@@ -862,9 +850,9 @@ billing = client.Billing()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> BillingEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Billing().load()
@@ -915,9 +903,9 @@ collaboration = client.Collaboration()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> CollaborationEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.Collaboration().create({
@@ -926,9 +914,9 @@ result = client.Collaboration().create({
 })
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> CollaborationEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Collaboration().load({"project_id": "project_id"})
@@ -971,9 +959,9 @@ compliance = client.Compliance()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> ComplianceEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Compliance().load()
@@ -1024,9 +1012,9 @@ developer_api = client.DeveloperApi()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> DeveloperApiEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.DeveloperApi().create({
@@ -1034,9 +1022,9 @@ result = client.DeveloperApi().create({
 })
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> DeveloperApiEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.DeveloperApi().load()
@@ -1089,9 +1077,9 @@ free_caption_meme_success = client.FreeCaptionMemeSuccess()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> FreeCaptionMemeSuccessEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.FreeCaptionMemeSuccess().create({
@@ -1164,14 +1152,14 @@ free_template_search = client.FreeTemplateSearch()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[FreeTemplateSearchEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.FreeTemplateSearch().list()
 for free_template_search in results:
-    print(free_template_search)
+    print(free_template_search.data_get())
 ```
 
 ### Common Methods
@@ -1261,22 +1249,12 @@ generate = client.Generate()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> GenerateEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.Generate().create({
-    "byteLength": 1,  # int
-    "delayMs": 1,  # int
-    "filename": "example_filename",  # str
-    "gifSlug": "example_gifSlug",  # str
-    "height": 1,  # int
-    "mimeType": "example_mimeType",  # str
-    "pages": 1,  # int
-    "parameters": {},  # dict
-    "sourceDurationMs": 1,  # int
-    "width": 1,  # int
 })
 ```
 
@@ -1327,9 +1305,9 @@ growth = client.Growth()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> GrowthEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.Growth().create({
@@ -1337,9 +1315,9 @@ result = client.Growth().create({
 })
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> GrowthEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Growth().load({"actor_id": "actor_id"})
@@ -1382,9 +1360,9 @@ media = client.Media()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> MediaEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.Media().create({
@@ -1482,55 +1460,41 @@ meme = client.Meme()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> MemeEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.Meme().create({
-    "altText": "example_altText",  # str
-    "canonicalImageUrl": "example_canonicalImageUrl",  # str
     "canvas": {},  # dict
     "captions": [],  # list
-    "createdAt": "example_createdAt",  # str
     "imageDataUrl": "example_imageDataUrl",  # str
-    "imageUrl": "example_imageUrl",  # str
-    "nsfwStatus": "example_nsfwStatus",  # str
-    "overlays": [],  # list
-    "shareSlug": "example_shareSlug",  # str
-    "shareUrl": "example_shareUrl",  # str
-    "shareViews": 1,  # int
-    "slug": "example_slug",  # str
     "sourceImageUrl": "example_sourceImageUrl",  # str
-    "tags": [],  # list
-    "templateSlug": "example_templateSlug",  # str
-    "title": "example_title",  # str
-    "visibility": "example_visibility",  # str
     "watermark": {},  # dict
 })
 ```
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[MemeEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Meme().list()
 for meme in results:
-    print(meme)
+    print(meme.data_get())
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> MemeEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Meme().load({"id": "meme_id"})
 ```
 
-#### `remove(reqmatch, ctrl=None) -> dict`
+#### `remove(reqmatch, ctrl=None) -> MemeEntity`
 
-Remove the entity matching the given criteria. Raises on error.
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
 
 ```python
 result = client.Meme().remove({"id": "meme_id"})
@@ -1602,39 +1566,31 @@ public_template_media_item = client.PublicTemplateMediaItem()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> PublicTemplateMediaItemEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.PublicTemplateMediaItem().create({
     "slug": "example_slug",  # str
     "captions": [],  # list
-    "description": "example_description",  # str
-    "height": 1,  # float | None
-    "id": "example_id",  # str
-    "imageUrl": "example_imageUrl",  # str
-    "mediaType": "example_mediaType",  # str
-    "name": "example_name",  # str
-    "sourceTemplateId": "example_sourceTemplateId",  # str | None
     "tags": [],  # list
-    "width": 1,  # float | None
 })
 ```
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[PublicTemplateMediaItemEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.PublicTemplateMediaItem().list()
 for public_template_media_item in results:
-    print(public_template_media_item)
+    print(public_template_media_item.data_get())
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> PublicTemplateMediaItemEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.PublicTemplateMediaItem().load({"slug": "slug"})
@@ -1690,9 +1646,9 @@ standalone_agent_bootstrap = client.StandaloneAgentBootstrap()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> StandaloneAgentBootstrapEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.StandaloneAgentBootstrap().create({
@@ -1759,9 +1715,9 @@ trend_alert = client.TrendAlert()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> TrendAlertEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.TrendAlert().create({
@@ -1772,9 +1728,9 @@ result = client.TrendAlert().create({
 })
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> TrendAlertEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.TrendAlert().load()
@@ -1815,16 +1771,30 @@ Return the entity name.
 upload_caption_meme_success = client.UploadCaptionMemeSuccess()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `captions` | `str` | Yes | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `str` | Yes |  |
+| `title` | `str` | No |  |
+| `visibility` | `str` | No |  |
+| `watermark` | `str` | No | Optional JSON watermark object. |
+
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> UploadCaptionMemeSuccessEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.UploadCaptionMemeSuccess().create({
+    "captions": "example_captions",  # str
+    "file": "example_file",  # str
 })
 ```
+
+Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -1863,22 +1833,13 @@ video = client.Video()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> VideoEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
-```python
-result = client.Video().create({
-})
-```
+#### `load(reqmatch, ctrl=None) -> VideoEntity`
 
-#### `load(reqmatch, ctrl=None) -> dict`
-
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
-
-```python
-result = client.Video().load()
-```
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ### Common Methods
 
@@ -2066,6 +2027,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

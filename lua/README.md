@@ -12,7 +12,7 @@ It exposes the API as capitalised, semantic **Entities** — e.g. `client:Agent(
 
 ## Install
 This package is not yet published to LuaRocks. Install it from the
-GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/memesio-content-creation-sdk/releases)),
+GitHub release tag (`lua/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/memesio-content-creation-sdk/tags)),
 or add the source directory to your `LUA_PATH`:
 
 ```bash
@@ -23,7 +23,7 @@ export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `x-developer-api-key` header.
 
 ### 1. Create a client
 
@@ -37,10 +37,13 @@ local client = sdk.new({
 
 ### 3. Load an agent
 
+`load` returns the entity; `data_get()` reads its record.
+
 ```lua
 local agent, err = client:Agent():load({ id = "example_id" })
 if err then error(err) end
-print(agent)
+local rec = agent:data_get()
+print(rec["id"])
 ```
 
 ### 4. Create, update, and remove
@@ -121,7 +124,7 @@ Create a mock client for unit testing — no server required:
 local client = sdk.test()
 
 local result, err = client:AiProvider():load()
--- result is the returned data; err is set on failure
+-- result is the entity; data_get() reads its mock record; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -231,11 +234,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria, and return it. |
+| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria, one per record. |
+| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity, and return it. |
+| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity, and return it. |
+| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity, and return it marked as deleted. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -245,19 +248,19 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(value, err)`. The `value` is the operation's
-data **directly** — there is no wrapper:
+Entity operations return `(value, err)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
-| `list` | an array (`table`) of entity records |
+| `load` / `create` / `update` / `remove` | the entity, whose `data_get()` reads its record (a `table`) |
+| `list` | an array (`table`) of entities, one per record |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
     local agent, err = client:Agent():load({ id = "example_id" })
     if err then error(err) end
-    -- agent is the loaded record
+    -- agent is the loaded entity
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -444,7 +447,7 @@ API path: `/api/ai/templates/detect`
 
 Operations: Load.
 
-API path: `/api/analytics/experiments/templates`
+API path: `/api/analytics/alerts/backend`
 
 #### Auth
 
@@ -704,6 +707,11 @@ API path: `/api/alerts/delivery`
 
 | Field | Description |
 | --- | --- |
+| `captions` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` |  |
+| `title` |  |
+| `visibility` |  |
+| `watermark` | Optional JSON watermark object. |
 
 Operations: Create.
 
@@ -942,12 +950,11 @@ local ai_job, err = client:AiJob():create({
   capability = "example_capability", -- string
   detectedFaceCount = 1, -- number
   height = 1, -- number
-  id = "example_id", -- string
   layerId = "example_layerId", -- string
+  mediaType = "example_mediaType", -- string
   projectId = "example_projectId", -- string
   sourceAssetUrl = "example_sourceAssetUrl", -- string
   sourceImageUrl = "example_sourceImageUrl", -- string
-  status = "example_status", -- string
   targetAssetUrl = "example_targetAssetUrl", -- string
   width = 1, -- number
 })
@@ -994,13 +1001,7 @@ Create an instance: `local ai_meme_generation_succeeded = client:AiMemeGeneratio
 
 ```lua
 local ai_meme_generation_succeeded, err = client:AiMemeGenerationSucceeded():create({
-  flow = "example_flow", -- string
-  mode = "example_mode", -- string
-  ok = true, -- boolean
   prompt = "example_prompt", -- string
-  status = "example_status", -- string
-  variantCount = 1, -- number
-  variants = {}, -- table
 })
 ```
 
@@ -1073,13 +1074,6 @@ Create an instance: `local auth = client:Auth(nil)`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-
-#### Example: Create
-
-```lua
-local auth, err = client:Auth():create({
-})
-```
 
 
 ### Billing
@@ -1298,16 +1292,6 @@ Create an instance: `local generate = client:Generate(nil)`
 
 ```lua
 local generate, err = client:Generate():create({
-  byteLength = 1, -- number
-  delayMs = 1, -- number
-  filename = "example_filename", -- string
-  gifSlug = "example_gifSlug", -- string
-  height = 1, -- number
-  mimeType = "example_mimeType", -- string
-  pages = 1, -- number
-  parameters = {}, -- table
-  sourceDurationMs = 1, -- number
-  width = 1, -- number
 })
 ```
 
@@ -1422,24 +1406,10 @@ local memes, err = client:Meme():list()
 
 ```lua
 local meme, err = client:Meme():create({
-  altText = "example_altText", -- string
-  canonicalImageUrl = "example_canonicalImageUrl", -- string
   canvas = {}, -- table
   captions = {}, -- table
-  createdAt = "example_createdAt", -- string
   imageDataUrl = "example_imageDataUrl", -- string
-  imageUrl = "example_imageUrl", -- string
-  nsfwStatus = "example_nsfwStatus", -- string
-  overlays = {}, -- table
-  shareSlug = "example_shareSlug", -- string
-  shareUrl = "example_shareUrl", -- string
-  shareViews = 1, -- number
-  slug = "example_slug", -- string
   sourceImageUrl = "example_sourceImageUrl", -- string
-  tags = {}, -- table
-  templateSlug = "example_templateSlug", -- string
-  title = "example_title", -- string
-  visibility = "example_visibility", -- string
   watermark = {}, -- table
 })
 ```
@@ -1504,15 +1474,7 @@ local public_template_media_items, err = client:PublicTemplateMediaItem():list()
 local public_template_media_item, err = client:PublicTemplateMediaItem():create({
   slug = "example_slug", -- string
   captions = {}, -- table
-  description = "example_description", -- string
-  height = 1, -- number|nil
-  id = "example_id", -- string
-  imageUrl = "example_imageUrl", -- string
-  mediaType = "example_mediaType", -- string
-  name = "example_name", -- string
-  sourceTemplateId = "example_sourceTemplateId", -- string|nil
   tags = {}, -- table
-  width = 1, -- number|nil
 })
 ```
 
@@ -1610,10 +1572,22 @@ Create an instance: `local upload_caption_meme_success = client:UploadCaptionMem
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `captions` | `string` | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `string` |  |
+| `title` | `string` |  |
+| `visibility` | `string` |  |
+| `watermark` | `string` | Optional JSON watermark object. |
+
 #### Example: Create
 
 ```lua
 local upload_caption_meme_success, err = client:UploadCaptionMemeSuccess():create({
+  captions = "example_captions", -- string
+  file = "example_file", -- string
 })
 ```
 
@@ -1628,19 +1602,6 @@ Create an instance: `local video = client:Video(nil)`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Example: Load
-
-```lua
-local video, err = client:Video():load()
-```
-
-#### Example: Create
-
-```lua
-local video, err = client:Video():create({
-})
-```
 
 ## Features
 

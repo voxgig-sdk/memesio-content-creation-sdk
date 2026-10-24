@@ -31,6 +31,11 @@ main: kit: entity: developer_api: {
       name: "create"
       points: [
         {
+          bf: [
+            "limit"
+            "prompt"
+            "trendSignals"
+          ]
           co: {
             id: "POST /api/v1/templates/ideas"
             source: "openapi3"

@@ -212,7 +212,7 @@ agent = client.Agent
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Agent.create({
@@ -222,7 +222,7 @@ result = client.Agent.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Agent.load({ "id" => "agent_id" })
@@ -230,7 +230,7 @@ result = client.Agent.load({ "id" => "agent_id" })
 
 #### `update(reqdata, ctrl = nil) -> result`
 
-Update an existing entity. The data must include the entity `id`. Raises on error.
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
 
 ```ruby
 result = client.Agent.update({
@@ -297,7 +297,7 @@ agent_infra = client.AgentInfra
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.AgentInfra.create({
@@ -311,7 +311,7 @@ result = client.AgentInfra.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.AgentInfra.load()
@@ -319,7 +319,7 @@ result = client.AgentInfra.load()
 
 #### `remove(reqmatch, ctrl = nil) -> result`
 
-Remove the entity matching the given criteria. Raises on error.
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
 
 ```ruby
 result = client.AgentInfra.remove({ "agent_id" => "agent_id", "key_id" => "key_id" })
@@ -398,7 +398,7 @@ ai_caption = client.AiCaption
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.AiCaption.create({
@@ -410,7 +410,7 @@ result = client.AiCaption.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.AiCaption.load()
@@ -540,7 +540,7 @@ ai_job = client.AiJob
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.AiJob.create({
@@ -548,12 +548,11 @@ result = client.AiJob.create({
   "capability" => "example_capability", # String
   "detectedFaceCount" => 1, # Float
   "height" => 1, # Float
-  "id" => "example_id", # String
   "layerId" => "example_layerId", # String
+  "mediaType" => "example_mediaType", # String
   "projectId" => "example_projectId", # String
   "sourceAssetUrl" => "example_sourceAssetUrl", # String
   "sourceImageUrl" => "example_sourceImageUrl", # String
-  "status" => "example_status", # String
   "targetAssetUrl" => "example_targetAssetUrl", # String
   "width" => 1, # Float
 })
@@ -561,7 +560,7 @@ result = client.AiJob.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.AiJob.load({ "id" => "ai_job_id" })
@@ -659,17 +658,11 @@ ai_meme_generation_succeeded = client.AiMemeGenerationSucceeded
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.AiMemeGenerationSucceeded.create({
-  "flow" => "example_flow", # String
-  "mode" => "example_mode", # String
-  "ok" => true, # Boolean
   "prompt" => "example_prompt", # String
-  "status" => "example_status", # String
-  "variantCount" => 1, # Integer
-  "variants" => [], # Array
 })
 ```
 
@@ -728,7 +721,7 @@ ai_provider = client.AiProvider
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.AiProvider.create({
@@ -739,7 +732,7 @@ result = client.AiProvider.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.AiProvider.load()
@@ -785,7 +778,7 @@ analytics = client.Analytics
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Analytics.load()
@@ -831,12 +824,7 @@ auth = client.Auth
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
-
-```ruby
-result = client.Auth.create({
-})
-```
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ### Common Methods
 
@@ -878,7 +866,7 @@ billing = client.Billing
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Billing.load()
@@ -932,7 +920,7 @@ collaboration = client.Collaboration
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Collaboration.create({
@@ -943,7 +931,7 @@ result = client.Collaboration.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Collaboration.load({ "project_id" => "project_id" })
@@ -989,7 +977,7 @@ compliance = client.Compliance
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Compliance.load()
@@ -1043,7 +1031,7 @@ developer_api = client.DeveloperApi
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.DeveloperApi.create({
@@ -1053,7 +1041,7 @@ result = client.DeveloperApi.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.DeveloperApi.load()
@@ -1109,7 +1097,7 @@ free_caption_meme_success = client.FreeCaptionMemeSuccess
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.FreeCaptionMemeSuccess.create({
@@ -1185,10 +1173,11 @@ free_template_search = client.FreeTemplateSearch
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.FreeTemplateSearch.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -1281,20 +1270,10 @@ generate = client.Generate
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Generate.create({
-  "byteLength" => 1, # Integer
-  "delayMs" => 1, # Integer
-  "filename" => "example_filename", # String
-  "gifSlug" => "example_gifSlug", # String
-  "height" => 1, # Integer
-  "mimeType" => "example_mimeType", # String
-  "pages" => 1, # Integer
-  "parameters" => {}, # Hash
-  "sourceDurationMs" => 1, # Integer
-  "width" => 1, # Integer
 })
 ```
 
@@ -1348,7 +1327,7 @@ growth = client.Growth
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Growth.create({
@@ -1358,7 +1337,7 @@ result = client.Growth.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Growth.load({ "actor_id" => "actor_id" })
@@ -1404,7 +1383,7 @@ media = client.Media
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Media.create({
@@ -1505,43 +1484,30 @@ meme = client.Meme
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Meme.create({
-  "altText" => "example_altText", # String
-  "canonicalImageUrl" => "example_canonicalImageUrl", # String
   "canvas" => {}, # Hash
   "captions" => [], # Array
-  "createdAt" => "example_createdAt", # String
   "imageDataUrl" => "example_imageDataUrl", # String
-  "imageUrl" => "example_imageUrl", # String
-  "nsfwStatus" => "example_nsfwStatus", # String
-  "overlays" => [], # Array
-  "shareSlug" => "example_shareSlug", # String
-  "shareUrl" => "example_shareUrl", # String
-  "shareViews" => 1, # Integer
-  "slug" => "example_slug", # String
   "sourceImageUrl" => "example_sourceImageUrl", # String
-  "tags" => [], # Array
-  "templateSlug" => "example_templateSlug", # String
-  "title" => "example_title", # String
-  "visibility" => "example_visibility", # String
   "watermark" => {}, # Hash
 })
 ```
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.Meme.list
+results.each { |item| puts item.data_get }
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Meme.load({ "id" => "meme_id" })
@@ -1549,7 +1515,7 @@ result = client.Meme.load({ "id" => "meme_id" })
 
 #### `remove(reqmatch, ctrl = nil) -> result`
 
-Remove the entity matching the given criteria. Raises on error.
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
 
 ```ruby
 result = client.Meme.remove({ "id" => "meme_id" })
@@ -1624,35 +1590,28 @@ public_template_media_item = client.PublicTemplateMediaItem
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.PublicTemplateMediaItem.create({
   "slug" => "example_slug", # String
   "captions" => [], # Array
-  "description" => "example_description", # String
-  "height" => 1, # Object
-  "id" => "example_id", # String
-  "imageUrl" => "example_imageUrl", # String
-  "mediaType" => "example_mediaType", # String
-  "name" => "example_name", # String
-  "sourceTemplateId" => "example_sourceTemplateId", # Object
   "tags" => [], # Array
-  "width" => 1, # Object
 })
 ```
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.PublicTemplateMediaItem.list
+results.each { |item| puts item.data_get }
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.PublicTemplateMediaItem.load({ "slug" => "slug" })
@@ -1711,7 +1670,7 @@ standalone_agent_bootstrap = client.StandaloneAgentBootstrap
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.StandaloneAgentBootstrap.create({
@@ -1781,7 +1740,7 @@ trend_alert = client.TrendAlert
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.TrendAlert.create({
@@ -1794,7 +1753,7 @@ result = client.TrendAlert.create({
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.TrendAlert.load()
@@ -1836,16 +1795,30 @@ Return the entity name.
 upload_caption_meme_success = client.UploadCaptionMemeSuccess
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `captions` | `String` | Yes | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `String` | Yes |  |
+| `title` | `String` | No |  |
+| `visibility` | `String` | No |  |
+| `watermark` | `String` | No | Optional JSON watermark object. |
+
 ### Operations
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.UploadCaptionMemeSuccess.create({
+  "captions" => "example_captions", # String
+  "file" => "example_file", # String
 })
 ```
+
+Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -1887,20 +1860,11 @@ video = client.Video
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
-
-```ruby
-result = client.Video.create({
-})
-```
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
-
-```ruby
-result = client.Video.load()
-```
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ### Common Methods
 
@@ -2089,6 +2053,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

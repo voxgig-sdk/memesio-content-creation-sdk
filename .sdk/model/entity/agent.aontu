@@ -84,6 +84,16 @@ main: kit: entity: agent: {
       name: "create"
       points: [
         {
+          bf: [
+            "description"
+            "locale"
+            "name"
+            "slug"
+            "stylePreset"
+            "systemPrompt"
+            "watermarkText"
+            "websiteUrl"
+          ]
           co: {
             id: "POST /api/v1/agents"
             source: "openapi3"
@@ -190,6 +200,16 @@ main: kit: entity: agent: {
       name: "update"
       points: [
         {
+          bf: [
+            "description"
+            "locale"
+            "name"
+            "status"
+            "stylePreset"
+            "systemPrompt"
+            "watermarkText"
+            "websiteUrl"
+          ]
           co: {
             id: "PATCH /api/v1/agents/{agentId}"
             source: "openapi3"

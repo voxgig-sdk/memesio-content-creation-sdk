@@ -157,6 +157,24 @@ main: kit: entity: ai_meme_generation_succeeded: {
       name: "create"
       points: [
         {
+          bf: [
+            "allowHeuristicFallback"
+            "captionSource"
+            "captions"
+            "correlationId"
+            "editableCaptions"
+            "flow"
+            "imageUrl"
+            "mode"
+            "preferredProviderId"
+            "prompt"
+            "rewriteNote"
+            "templateId"
+            "tone"
+            "toneCues"
+            "variantCount"
+            "workspaceId"
+          ]
           co: {
             id: "POST /api/ai/memes/generate"
             source: "openapi3"
@@ -164,6 +182,10 @@ main: kit: entity: ai_meme_generation_succeeded: {
           }
           m: "POST"
           o: "/api/ai/memes/generate"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"
@@ -184,6 +206,24 @@ main: kit: entity: ai_meme_generation_succeeded: {
           }
         }
         {
+          bf: [
+            "allowHeuristicFallback"
+            "captionSource"
+            "captions"
+            "correlationId"
+            "editableCaptions"
+            "flow"
+            "imageUrl"
+            "mode"
+            "preferredProviderId"
+            "prompt"
+            "rewriteNote"
+            "templateId"
+            "tone"
+            "toneCues"
+            "variantCount"
+            "workspaceId"
+          ]
           co: {
             id: "POST /api/v1/memes/generate"
             source: "openapi3"
@@ -191,6 +231,10 @@ main: kit: entity: ai_meme_generation_succeeded: {
           }
           m: "POST"
           o: "/api/v1/memes/generate"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"

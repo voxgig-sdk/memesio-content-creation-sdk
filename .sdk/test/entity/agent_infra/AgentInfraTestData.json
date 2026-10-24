@@ -126,12 +126,12 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/v1/agents/rewards/leaderboard": {
+    "GET /api/v1/agents/{agentId}/keys": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/v1/agents/{agentId}/keys": {
+    "GET /api/v1/agents/rewards/leaderboard": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

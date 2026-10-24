@@ -352,8 +352,10 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs.headers` | `object` | Request headers (merged with defaults). |
 | `fetchargs.body` | `any` | Request body (objects are JSON-serialized). |
 | `fetchargs.ctrl` | `object` | Control options (e.g. `{ explain: true }`). |
+| `fetchargs.ctrl.signal` | `AbortSignal` | Aborts the request in flight: `ok` is then `false` and `err.code` is `request_aborted`. |
 
-**Returns:** `Promise<{ ok, status, headers, data } | Error>`
+**Returns:** `Promise<{ ok, status, headers, data }>`. On a failure
+`ok` is `false` and `err` holds the error.
 
 #### `prepare(fetchargs?: object)`
 
@@ -367,6 +369,15 @@ same parameters as `direct()`.
 Alias for `MemesioContentCreationSDK.test()`.
 
 **Returns:** `MemesioContentCreationSDK` instance in test mode.
+
+#### Cancelling a call
+
+Every entity operation takes an optional `ctrl` object after its match or
+data, and an `AbortSignal` in `ctrl.signal` cancels the request in flight.
+The operation then rejects with an error whose `code` is
+`request_aborted` and whose `cause` is the signal's reason. A request
+whose signal has already aborted is not sent. `stream()` takes the signal
+as `callopts.signal`, and ends when it aborts.
 
 
 ---
@@ -411,7 +422,7 @@ const agent = client.Agent()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Agent().create({
@@ -421,7 +432,7 @@ const result = await client.Agent().create({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Agent().load({ id: 'agent_id' })
@@ -429,7 +440,7 @@ const result = await client.Agent().load({ id: 'agent_id' })
 
 #### `update(data: object, ctrl?: object)`
 
-Update an existing entity. The data must include the entity `id`.
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
 
 ```ts
 const result = await client.Agent().update({
@@ -515,7 +526,7 @@ const result = await client.AgentInfra().create({
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.AgentInfra().create({
@@ -529,7 +540,7 @@ const result = await client.AgentInfra().create({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.AgentInfra().load()
@@ -537,7 +548,7 @@ const result = await client.AgentInfra().load()
 
 #### `remove(match: object, ctrl?: object)`
 
-Remove the entity matching the given criteria.
+Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
 
 ```ts
 const result = await client.AgentInfra().remove({ agent_id: 'agent_id', key_id: 'key_id' })
@@ -614,7 +625,7 @@ const ai_caption = client.AiCaption()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.AiCaption().create({
@@ -626,7 +637,7 @@ const result = await client.AiCaption().create({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.AiCaption().load()
@@ -775,7 +786,7 @@ const result = await client.AiJob().create({
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.AiJob().create({
@@ -783,12 +794,11 @@ const result = await client.AiJob().create({
   capability: 'example_capability',
   detectedFaceCount: 1,
   height: 1,
-  id: 'example_id',
   layerId: 'example_layerId',
+  mediaType: 'example_mediaType',
   projectId: 'example_projectId',
   sourceAssetUrl: 'example_sourceAssetUrl',
   sourceImageUrl: 'example_sourceImageUrl',
-  status: 'example_status',
   targetAssetUrl: 'example_targetAssetUrl',
   width: 1,
 })
@@ -796,7 +806,7 @@ const result = await client.AiJob().create({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.AiJob().load({ id: 'ai_job_id' })
@@ -892,17 +902,11 @@ const ai_meme_generation_succeeded = client.AiMemeGenerationSucceeded()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.AiMemeGenerationSucceeded().create({
-  flow: 'example_flow',
-  mode: 'example_mode',
-  ok: true,
   prompt: 'example_prompt',
-  status: 'example_status',
-  variantCount: 1,
-  variants: [],
 })
 ```
 
@@ -959,7 +963,7 @@ const ai_provider = client.AiProvider()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.AiProvider().create({
@@ -970,7 +974,7 @@ const result = await client.AiProvider().create({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.AiProvider().load()
@@ -1034,7 +1038,7 @@ const result = await client.Analytics().load({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Analytics().load()
@@ -1099,12 +1103,7 @@ const result = await client.Auth().create({
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
-
-```ts
-const result = await client.Auth().create({
-})
-```
+Create a new entity with the given data. Resolves to the created entity.
 
 ### Common Methods
 
@@ -1164,7 +1163,7 @@ const result = await client.Billing().load({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Billing().load()
@@ -1216,7 +1215,7 @@ const collaboration = client.Collaboration()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Collaboration().create({
@@ -1227,7 +1226,7 @@ const result = await client.Collaboration().create({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Collaboration().load({ project_id: 'project_id' })
@@ -1291,7 +1290,7 @@ const result = await client.Compliance().load({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Compliance().load()
@@ -1343,7 +1342,7 @@ const developer_api = client.DeveloperApi()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.DeveloperApi().create({
@@ -1353,7 +1352,7 @@ const result = await client.DeveloperApi().create({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.DeveloperApi().load()
@@ -1407,7 +1406,7 @@ const free_caption_meme_success = client.FreeCaptionMemeSuccess()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.FreeCaptionMemeSuccess().create({
@@ -1481,7 +1480,7 @@ const free_template_search = client.FreeTemplateSearch()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.FreeTemplateSearch().list()
@@ -1575,20 +1574,10 @@ const generate = client.Generate()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Generate().create({
-  byteLength: 1,
-  delayMs: 1,
-  filename: 'example_filename',
-  gifSlug: 'example_gifSlug',
-  height: 1,
-  mimeType: 'example_mimeType',
-  pages: 1,
-  parameters: {},
-  sourceDurationMs: 1,
-  width: 1,
 })
 ```
 
@@ -1668,7 +1657,7 @@ const result = await client.Growth().create({
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Growth().create({
@@ -1678,7 +1667,7 @@ const result = await client.Growth().create({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Growth().load({ actor_id: 'actor_id' })
@@ -1742,7 +1731,7 @@ const result = await client.Media().create({
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Media().create({
@@ -1841,35 +1830,21 @@ const meme = client.Meme()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Meme().create({
-  altText: 'example_altText',
-  canonicalImageUrl: 'example_canonicalImageUrl',
   canvas: {},
   captions: [],
-  createdAt: 'example_createdAt',
   imageDataUrl: 'example_imageDataUrl',
-  imageUrl: 'example_imageUrl',
-  nsfwStatus: 'example_nsfwStatus',
-  overlays: [],
-  shareSlug: 'example_shareSlug',
-  shareUrl: 'example_shareUrl',
-  shareViews: 1,
-  slug: 'example_slug',
   sourceImageUrl: 'example_sourceImageUrl',
-  tags: [],
-  templateSlug: 'example_templateSlug',
-  title: 'example_title',
-  visibility: 'example_visibility',
   watermark: {},
 })
 ```
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Meme().list()
@@ -1877,7 +1852,7 @@ const results = await client.Meme().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Meme().load({ id: 'meme_id' })
@@ -1885,7 +1860,7 @@ const result = await client.Meme().load({ id: 'meme_id' })
 
 #### `remove(match: object, ctrl?: object)`
 
-Remove the entity matching the given criteria.
+Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
 
 ```ts
 const result = await client.Meme().remove({ id: 'meme_id' })
@@ -1978,27 +1953,19 @@ const result = await client.PublicTemplateMediaItem().create({
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.PublicTemplateMediaItem().create({
   slug: 'example_slug',
   captions: [],
-  description: 'example_description',
-  height: 1,
-  id: 'example_id',
-  imageUrl: 'example_imageUrl',
-  mediaType: 'example_mediaType',
-  name: 'example_name',
-  sourceTemplateId: 'example_sourceTemplateId',
   tags: [],
-  width: 1,
 })
 ```
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.PublicTemplateMediaItem().list()
@@ -2006,7 +1973,7 @@ const results = await client.PublicTemplateMediaItem().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.PublicTemplateMediaItem().load({ slug: 'slug' })
@@ -2063,7 +2030,7 @@ const standalone_agent_bootstrap = client.StandaloneAgentBootstrap()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.StandaloneAgentBootstrap().create({
@@ -2131,7 +2098,7 @@ const trend_alert = client.TrendAlert()
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.TrendAlert().create({
@@ -2144,7 +2111,7 @@ const result = await client.TrendAlert().create({
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.TrendAlert().load()
@@ -2184,16 +2151,30 @@ Return a copy of the entity options.
 const upload_caption_meme_success = client.UploadCaptionMemeSuccess()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `captions` | `string` | Yes | JSON array of caption slot objects with text, x, y, boxWidthPct, boxHeightPct, fontSize, and alignment fields. |
+| `file` | `string` | Yes |  |
+| `title` | `string` | No |  |
+| `visibility` | `string` | No |  |
+| `watermark` | `string` | No | Optional JSON watermark object. |
+
 ### Operations
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.UploadCaptionMemeSuccess().create({
+  captions: 'example_captions',
+  file: 'example_file',
 })
 ```
+
+Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -2268,20 +2249,11 @@ const result = await client.Video().create({
 
 #### `create(data: object, ctrl?: object)`
 
-Create a new entity with the given data.
-
-```ts
-const result = await client.Video().create({
-})
-```
+Create a new entity with the given data. Resolves to the created entity.
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
-
-```ts
-const result = await client.Video().load()
-```
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ### Common Methods
 
@@ -2468,6 +2440,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

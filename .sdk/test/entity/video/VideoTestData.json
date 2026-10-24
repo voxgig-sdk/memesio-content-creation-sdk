@@ -53,12 +53,12 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/video/subtitles": {
+    "GET /api/video/audio-library": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/video/audio-library": {
+    "GET /api/video/drafts": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
@@ -73,7 +73,17 @@
       "version": 2,
       "source": "openapi3"
     },
+    "GET /api/video/render-performance": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
     "GET /api/video/render-queue": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/video/subtitles": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
@@ -83,17 +93,7 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/video/drafts": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
     "GET /api/video/timeline": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
-    "GET /api/video/render-performance": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

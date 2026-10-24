@@ -43,6 +43,13 @@ main: kit: entity: growth: {
       name: "create"
       points: [
         {
+          bf: [
+            "action"
+            "actorId"
+            "limit"
+            "logExposure"
+            "surface"
+          ]
           co: {
             id: "POST /api/growth/experiments/decision"
             source: "openapi3"
@@ -70,6 +77,12 @@ main: kit: entity: growth: {
           }
         }
         {
+          bf: [
+            "action"
+            "limit"
+            "now"
+            "profiles"
+          ]
           co: {
             id: "POST /api/growth/lifecycle-messaging"
             source: "openapi3"
@@ -97,6 +110,12 @@ main: kit: entity: growth: {
           }
         }
         {
+          bf: [
+            "action"
+            "actorId"
+            "code"
+            "shareSlug"
+          ]
           co: {
             id: "POST /api/growth/referrals"
             source: "openapi3"
@@ -124,6 +143,16 @@ main: kit: entity: growth: {
           }
         }
         {
+          bf: [
+            "accountId"
+            "action"
+            "actorId"
+            "caption"
+            "externalAccountId"
+            "handle"
+            "memeSlug"
+            "platform"
+          ]
           co: {
             id: "POST /api/growth/social-publish"
             source: "openapi3"
@@ -151,6 +180,11 @@ main: kit: entity: growth: {
           }
         }
         {
+          bf: [
+            "action"
+            "limit"
+            "weekStart"
+          ]
           co: {
             id: "POST /api/growth/trend-campaigns"
             source: "openapi3"
@@ -218,8 +252,6 @@ main: kit: entity: growth: {
           q: {
             exist: [
               "actor_id"
-              "log_exposure"
-              "surface"
             ]
           }
           s: [
@@ -234,6 +266,119 @@ main: kit: entity: growth: {
             }
             {
               lit: "decision"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/growth/social-publish"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actorId"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "publish_limit"
+                or: "publishLimit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/growth/social-publish"
+          q: {
+            "$action": "social_publish"
+            exist: [
+              "actor_id"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "social-publish"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/growth/lifecycle-messaging"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/growth/lifecycle-messaging"
+          q: {
+            "$action": "lifecycle_messaging"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "lifecycle-messaging"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/growth/referrals"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "actor_id"
+                or: "actorId"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/growth/referrals"
+          q: {
+            "$action": "referral"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "growth"
+            }
+            {
+              lit: "referrals"
             }
           ]
           t: {
@@ -276,11 +421,6 @@ main: kit: entity: growth: {
           o: "/api/growth/trend-campaigns"
           q: {
             "$action": "trend_campaign"
-            exist: [
-              "limit"
-              "published_only"
-              "week_start"
-            ]
           }
           s: [
             {
@@ -291,123 +431,6 @@ main: kit: entity: growth: {
             }
             {
               lit: "trend-campaigns"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/growth/social-publish"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "actor_id"
-                or: "actorId"
-                r: true
-                t: "`$STRING`"
-              }
-              {
-                k: "query"
-                n: "publish_limit"
-                or: "publishLimit"
-                r: false
-                t: "`$INTEGER`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/growth/social-publish"
-          q: {
-            "$action": "social_publish"
-            exist: [
-              "actor_id"
-              "publish_limit"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "growth"
-            }
-            {
-              lit: "social-publish"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/growth/referrals"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            query: [
-              {
-                k: "query"
-                n: "actor_id"
-                or: "actorId"
-                r: false
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/api/growth/referrals"
-          q: {
-            "$action": "referral"
-            exist: [
-              "actor_id"
-            ]
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "growth"
-            }
-            {
-              lit: "referrals"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /api/growth/lifecycle-messaging"
-            source: "openapi3"
-            version: 2
-          }
-          m: "GET"
-          o: "/api/growth/lifecycle-messaging"
-          q: {
-            "$action": "lifecycle_messaging"
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "growth"
-            }
-            {
-              lit: "lifecycle-messaging"
             }
           ]
           t: {

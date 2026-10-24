@@ -69,12 +69,12 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/growth/trend-campaigns": {
+    "GET /api/growth/social-publish": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/growth/social-publish": {
+    "GET /api/growth/lifecycle-messaging": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
@@ -84,7 +84,7 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /api/growth/lifecycle-messaging": {
+    "GET /api/growth/trend-campaigns": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

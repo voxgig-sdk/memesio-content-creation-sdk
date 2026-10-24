@@ -18,16 +18,6 @@
     }
   },
   "requests": {
-    "GET /api/analytics/experiments/templates": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
-    "GET /api/analytics/dashboards/backend-reliability": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
     "GET /api/analytics/alerts/backend": {
       "provenance": "operation-contract",
       "version": 2,
@@ -43,7 +33,17 @@
       "version": 2,
       "source": "openapi3"
     },
+    "GET /api/analytics/dashboards/backend-reliability": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
     "GET /api/analytics/dashboards/feature-adoption": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/analytics/experiments/templates": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
